@@ -1,0 +1,29 @@
+<svg viewBox="264.972 153 127 116" width="127.102" height="106.558" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="gradient-6" gradientUnits="userSpaceOnUse" cx="280.186" cy="205.23" r="11" gradientTransform="matrix(2.134207, -0.133732, 0.155071, 2.47476, -349.614217, -265.195094)">
+      <stop offset="0" style="stop-color: rgba(63, 93, 74, 1)"></stop>
+      <stop offset="1" style="stop-color: rgb(43, 62, 51);"></stop>
+    </radialGradient>
+    <radialGradient id="gradient-5" gradientUnits="userSpaceOnUse" cx="280.186" cy="205.23" r="11" gradientTransform="matrix(1.998299, -0.154888, 0.175638, 2.265985, -315.755731, -216.420385)">
+      <stop offset="0" style="stop-color: rgba(63, 93, 74, 1)"></stop>
+      <stop offset="1" style="stop-color: rgb(43, 62, 51);"></stop>
+    </radialGradient>
+    <radialGradient id="gradient-4" gradientUnits="userSpaceOnUse" cx="281.219" cy="204.891" r="11" gradientTransform="matrix(2.366536, 0.14787, -0.159878, 2.558715, -351.538301, -360.950648)">
+      <stop offset="0" style="stop-color: rgba(63, 93, 74, 1)"></stop>
+      <stop offset="1" style="stop-color: rgb(43, 62, 51);"></stop>
+    </radialGradient>
+    <radialGradient id="gradient-3" gradientUnits="userSpaceOnUse" cx="277.989" cy="196.754" r="11" gradientTransform="matrix(2.229152, 0.300728, -0.377808, 2.800515, -267.355425, -437.857473)">
+      <stop offset="0" style="stop-color: rgba(63, 93, 74, 1)"></stop>
+      <stop offset="1" style="stop-color: rgb(43, 62, 51);"></stop>
+    </radialGradient>
+    <radialGradient id="gradient-2" gradientUnits="userSpaceOnUse" cx="331.473" cy="230.26" r="42.033">
+      <stop offset="0" style="stop-color: rgb(63, 93, 74);"></stop>
+      <stop offset="1" style="stop-color: rgb(43, 62, 51);"></stop>
+    </radialGradient>
+  </defs>
+  <ellipse style="stroke: rgb(68, 117, 87); stroke-width: 4px; fill: url(#gradient-6);" cx="280.186" cy="205.23" rx="11" ry="18" transform="matrix(0.970296, -0.241922, 0.241922, 0.970296, -41.512917, 73.64959)"></ellipse>
+  <ellipse style="stroke: rgb(68, 117, 87); stroke-width: 4px; fill: url(#gradient-5);" cx="280.186" cy="205.23" rx="11" ry="19" transform="matrix(0.978148, -0.207912, 0.207912, 0.978148, -8.281364, 36.026798)"></ellipse>
+  <ellipse style="stroke: rgb(68, 117, 87); stroke-width: 4px; fill: url(#gradient-4);" cx="281.219" cy="204.891" rx="11" ry="20" transform="matrix(0.984808, 0.173648, -0.173648, 0.984808, 106.632515, -75.611504)"></ellipse>
+  <ellipse style="stroke: rgb(68, 117, 87); stroke-width: 4px; fill: url(#gradient-3);" cx="277.989" cy="196.754" rx="11" ry="19" transform="matrix(0.956305, 0.292371, -0.292371, 0.956305, 167.682495, -69.432426)"></ellipse>
+  <path style="stroke: rgb(68, 117, 87); stroke-width: 4px; fill: url(#gradient-2);" d="M 294.13 231.678 C 300.506 226.194 303.288 227.426 315.672 207.26 C 323.09 195.729 341.998 201.007 350.754 208.823 C 360.974 217.337 363.105 223.236 370.502 234.921 C 372.277 242.807 375.896 251.964 371.176 256.394 C 363.885 263.238 338.726 250.221 327.204 253.992 C 318.715 254.236 316.677 257.423 301.469 259.952 C 288.52 259.312 285.948 239.605 294.13 231.678 Z"></path>
+</svg>

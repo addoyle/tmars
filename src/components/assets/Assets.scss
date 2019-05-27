@@ -1,0 +1,175 @@
+$title-font: 'Prototype', sans-serif;
+
+@mixin icon($img, $hue, $sat, $tint, $bg:true, $l:false, $bgsize:85%, $gstop:60%, $inverse:false) {
+  @if $inverse {
+    background: linear-gradient(hsl($hue,$sat,22%) $gstop, hsl($hue,$sat,if($l,$l,45%)));
+  } @else {
+    background: linear-gradient(hsl($hue,$sat,if($l,$l,45%)) $gstop, hsl($hue,$sat,22%));
+  }
+
+  &:before {
+    @if $bg {
+      background: $img no-repeat center/$bgsize,
+        radial-gradient(ellipse at center,hsla($hue,$sat,if($l,$l + 26%,76%),1) 0%,hsla($hue,$sat,if($l,$l,50%),1) 100%);
+    } @else {
+      background: radial-gradient(ellipse at center,hsla($hue,$sat,if($l,$l + 26%,66%),1) 0%,hsla($hue,$sat,if($l,$l,50%),1) 100%);
+    }
+    box-shadow: 0 -2.47em 0 -2em hsla($hue,$sat,6%,$tint) inset;
+  }
+  &:after {
+    @if not $bg {
+      background: $img no-repeat center/$bgsize,
+    }
+  }
+}
+
+.icon {
+  width: 1em;
+  height: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  vertical-align: text-bottom;
+
+  &:before, &:after {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 90%;
+    top: 6%;
+  }
+}
+
+.icon.tag, .icon.vp {
+  border-radius: 50%;
+
+  &:before, &:after {
+    border-radius: 50%;
+  }
+}
+
+.icon.tag, .icon.resource, .icon.mc {
+  border: .01em solid #000;
+}
+
+.icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2); }
+.icon.space { @include icon(url('./icons/space.svg'), 26, 0%, .6, false); }
+.icon.science { @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%); }
+.icon.earth { @include icon(url('./icons/earth.svg'), 330, 0%, .4, true, 90%, 99%, 10%); }
+.icon.city { @include icon(url('./icons/city.svg'), 330, 0%, .2, true, 80%); }
+.icon.animal { @include icon(url('./icons/animal.svg'), 103, 43%, .2, true); }
+.icon.event { @include icon(url('./icons/event.svg'), 53, 100%, .1); }
+.icon.jovian { @include icon(url('./icons/jovian.svg'), 330, 0%, .1, true, 90%, 99%, 15%); }
+.icon.microbe { @include icon(url('./icons/microbe.svg'), 67, 62%, .05); }
+.icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .1, false); }
+.icon.plant { @include icon(url('./icons/plant.svg'), 95, 65%, .1); }
+.icon.mars { @include icon(url('./icons/mars.svg'), 330, 0%, .3, true, 90%, 105%, 10%, true); }
+.mc {
+  font-family: $title-font;
+  background: url('./icons/mc.svg') no-repeat center/100%;
+  width: 1em;
+  height: 1em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  vertical-align: text-bottom;
+
+  .euro {
+    font-weight: bold;
+    color: rgba(246,136,7,.6);
+    font-size: 1em;
+    padding-right: .1em;
+    vertical-align: text-top;
+    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    -webkit-text-stroke: .03em rgba(246,136,7,.8);
+  }
+}
+.mc span {
+  font-size: .55em;
+  color: #222;
+}
+
+.requirement {
+  font-size: .05em;
+  display: inline-block;
+  height: 100%;
+  background: linear-gradient(to right, #ee8209 0%, #f5f30a 50%, #ee8209 100%);
+  // min-width: .015em;
+  border: .05em solid black;
+  margin: .05em;
+  box-shadow: 0 0 0 .05em white;
+  margin-right: .1em;
+  display: flex;
+  flex-direction: row;
+
+  span {
+    font-family: $title-font;
+    white-space: nowrap;
+    margin-right: .1em;
+
+    .icon {
+      font-size: 1.6em;
+      margin-top: -.1em;
+    }
+
+    &:first-of-type {
+      margin-left: .1em;
+    }
+  }
+
+  &.max {
+    background: linear-gradient(to right, #ee1918 0%, #f68807 50%, #ee1918 100%);
+  }
+
+  &:before {
+    font-weight: bold;
+    content: '\00A6';
+    margin: 0 -.05em;
+  }
+}
+
+.production {
+  background: linear-gradient(#555, #fff);
+  padding: .15em;
+  font-size: 2.5em;
+  display: inline-flex;
+  position: relative;
+
+  .icon, .mc, span {
+    margin: .1em;
+    z-index: 1;
+  }
+
+  &:before {
+    display: block;
+    content: '';;
+    position: absolute;
+    margin: .07em;
+    background: url('./texture/production.svg') repeat top/.35em,
+      linear-gradient(#805940, #a37144);
+    border-image: linear-gradient(#AC7542, #573925) 1;
+    border-width: .07em;
+    border-style: solid;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+  }
+}
+
+.vp {
+  font-size: 7em;
+  color: black;
+  vertical-align: bottom;
+
+  &:after {
+    font-size: .8em;
+    font-family: $title-font;
+    -webkit-text-stroke: .02em #F9B000;
+    text-align: center;
+    line-height: 1.1;
+    content: attr(data-point);
+  }
+}
