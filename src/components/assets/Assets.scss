@@ -1,11 +1,7 @@
 $title-font: 'Prototype', sans-serif;
 
-@mixin icon($img, $hue, $sat, $tint, $bg:true, $l:false, $bgsize:85%, $gstop:60%, $inverse:false) {
-  @if $inverse {
-    background: linear-gradient(hsl($hue,$sat,22%) $gstop, hsl($hue,$sat,if($l,$l,45%)));
-  } @else {
-    background: linear-gradient(hsl($hue,$sat,if($l,$l,45%)) $gstop, hsl($hue,$sat,22%));
-  }
+@mixin icon($img, $hue, $sat, $tint, $bg:true, $l:false, $bgsize:85%, $gstop:60%) {
+  background: linear-gradient(hsl($hue,$sat,if($l,$l,45%)) $gstop, hsl($hue,$sat,22%));
 
   &:before {
     @if $bg {
@@ -18,19 +14,23 @@ $title-font: 'Prototype', sans-serif;
   }
   &:after {
     @if not $bg {
-      background: $img no-repeat center/$bgsize,
+      background: $img no-repeat center/$bgsize;
     }
   }
 }
 
-.icon {
+.icon, .mc {
   width: 1em;
   height: 1em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  position: relative;
+  line-height: 1;
   vertical-align: text-bottom;
+}
+
+.icon {
+  position: relative;
 
   &:before, &:after {
     content: '';
@@ -50,7 +50,7 @@ $title-font: 'Prototype', sans-serif;
 }
 
 .icon.tag, .icon.resource, .icon.mc {
-  border: .01em solid #000;
+  border: calc(.005em + 1px) solid #000;
 }
 
 .icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2); }
@@ -64,17 +64,9 @@ $title-font: 'Prototype', sans-serif;
 .icon.microbe { @include icon(url('./icons/microbe.svg'), 67, 62%, .05); }
 .icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .1, false); }
 .icon.plant { @include icon(url('./icons/plant.svg'), 95, 65%, .1); }
-.icon.mars { @include icon(url('./icons/mars.svg'), 330, 0%, .3, true, 90%, 105%, 10%, true); }
 .mc {
-  font-family: $title-font;
   background: url('./icons/mc.svg') no-repeat center/100%;
-  width: 1em;
-  height: 1em;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  line-height: 1;
-  vertical-align: text-bottom;
+  font-family: $title-font;
 
   .euro {
     font-weight: bold;
@@ -96,7 +88,6 @@ $title-font: 'Prototype', sans-serif;
   display: inline-block;
   height: 100%;
   background: linear-gradient(to right, #ee8209 0%, #f5f30a 50%, #ee8209 100%);
-  // min-width: .015em;
   border: .05em solid black;
   margin: .05em;
   box-shadow: 0 0 0 .05em white;
@@ -110,12 +101,16 @@ $title-font: 'Prototype', sans-serif;
     margin-right: .1em;
 
     .icon {
-      font-size: 1.6em;
-      margin-top: -.1em;
+      font-size: 1.5em;
+      margin-top: -.06em;
+      margin-left: .06em;
     }
 
     &:first-of-type {
-      margin-left: .1em;
+      margin-left: .2em;
+    }
+    &:last-of-type {
+      margin-right: .3em;
     }
   }
 
@@ -125,15 +120,21 @@ $title-font: 'Prototype', sans-serif;
 
   &:before {
     font-weight: bold;
+    line-height: 1;
     content: '\00A6';
     margin: 0 -.05em;
   }
 }
 
+.resources {
+  font-size: 2em;
+  font-family: $title-font;
+  margin-bottom: .2em;
+}
+
 .production {
   background: linear-gradient(#555, #fff);
   padding: .15em;
-  font-size: 2.5em;
   display: inline-flex;
   position: relative;
 
@@ -160,16 +161,44 @@ $title-font: 'Prototype', sans-serif;
 }
 
 .vp {
-  font-size: 7em;
   color: black;
-  vertical-align: bottom;
+  font-size: .8em;
+  font-family: $title-font;
+  text-align: center;
+  line-height: .9;
+  width: 1em;
+  height: 1em;
+  background: url('./icons/mars.svg') no-repeat center/105%;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 -2.47em 0 -2em hsla(330,0%,6%,.3) inset;
+  border: .04em solid #666;
+  display: flex;
+  text-align: center;
 
-  &:after {
-    font-size: .8em;
-    font-family: $title-font;
-    -webkit-text-stroke: .02em #F9B000;
-    text-align: center;
-    line-height: 1.1;
-    content: attr(data-point);
+  span {
+    font-size: .3em;
+    align-self: center;
+    margin: 0 auto;
+
+    &.point {
+      font-size: 1.5em;
+      -webkit-text-stroke: .02em #F9B000;
+      vertical-align: middle;
+
+      &.big {
+        font-size: inherit;
+      }
+    }
+  }
+}
+
+.arrow {
+  color: #d94c38;
+  -webkit-text-stroke: .1em #d94c38;
+
+  &:before {
+    content: '\2192';
   }
 }

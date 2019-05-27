@@ -23,9 +23,12 @@ export default class Project extends Component {
             <Requirement values={this.props.requirements ? this.props.requirements.values : []} max={this.props.requirements && this.props.requirements.max} />
           </div>
           <div className="title">{this.props.title}</div>
-          <div className="image">&#x1F4A9;</div>
+          {this.props.top ? (
+            <div className="body top">{this.props.top}</div>
+          ) : ''}
+          <div className="image">{this.props.emoji}</div>
           <div className="separator">{'0'.repeat(8 - binaryNum.length) + binaryNum}</div>
-          <div className="desc">
+          <div className="body">
             <div className="number">{'0'.repeat(3 - this.props.number.length) + this.props.number}</div>
             {this.props.children}
             <div className="flavor">{this.props.flavor}</div>
