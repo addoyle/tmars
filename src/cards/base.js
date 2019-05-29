@@ -58,7 +58,7 @@ const cards = {
       game.activePlayer.production('power', 1);
       game.temperature(1, game.activePlayer)
     },
-    emoji: '♨'
+    emoji: '☕'
   },
   4: {
     number: 4,
@@ -139,6 +139,75 @@ const cards = {
     clientEffect: game => {},
     serverEffect: game => {},
     emoji: '🚝'
+  },
+  8: {
+    number: 8,
+    type: 'automated',
+    title: 'Capital',
+    cost: 26,
+    tags: ['city', 'building'],
+    restriction: {
+      value: 4,
+      tile: 'ocean'
+    },
+    desc: 'Requires 4 ocean tiles. Place this tile. Decrease your energy production 2 steps and increase your M€ production 5 steps. 1 ADDITIONAL VP FOR EACH OCEAN TILE ADJACENT TO THIS CITY TILE.',
+    flavor: 'With its ideal placement and all its facilities, this is the true capital of Mars',
+    clientAction: game => {},
+    serverAction: game => {},
+    vp: game => {},
+    emoji: '🏛'
+  },
+  9: {
+    number: 9,
+    type: 'event',
+    title: 'Asteroid',
+    cost: 14,
+    tags: ['space', 'event'],
+    desc: 'Raise temperature 1 step and gain 2 titanium. Remove up to 3 plants from any player.',
+    flavor: 'What are those plants in our impact zone?',
+    clientAction: game => {},
+    serverAction: game => {},
+    emoji: '☄'
+  },
+  10: {
+    number: 10,
+    type: 'event',
+    title: 'Comet',
+    cost: 21,
+    tags: ['space', 'event'],
+    desc: 'Raise temperature 1 step and place an ocean tile. Remove up to 3 plants from any player.',
+    flavor: 'Prepare to be cratered!',
+    clientAction: game => {},
+    serverAction: game => {},
+    emoji: '☄'
+  },
+  11: {
+    number: 11,
+    type: 'event',
+    title: 'Big Asteroid',
+    cost: 27,
+    tags: ['space', 'event'],
+    desc: 'Raise temperature 2 steps and gain 4 titanium. Remove up to 4 plants from any player.',
+    flavor: 'There are many unpopulated areas to crash it in',
+    clientAction: game => {},
+    serverAction: game => {},
+    emoji: '☄'
+  },
+  12: {
+    number: 12,
+    type: 'active',
+    title: 'Water Import From Europa',
+    cost: 25,
+    tags: ['jovian', 'space'],
+    desc: '1 VP for each Jovian tag you have.',
+    top_desc: 'Action: Pay 12 M€ to place an ocean tile. TITANIUM MAY BE USED as if playing a space card.',
+    flavor: 'With its low gravity, this Jovian ice moon is suitable for mass export of water.',
+    clientAction: game => {},
+    serverAction: game => {},
+    clientActiveAction: game => {},
+    serverActiveAction: game => {},
+    vp: game => {},
+    emoji: '🚰'
   }
 };
 

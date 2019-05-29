@@ -24,19 +24,20 @@ export default class Project extends Component {
       } else {
         const render = (key) => {
           if (res.value > 3) {
-            restriction.push({text: res.value}, {tag: res[key]});
-          } else {
-            if (!res.value) {
-              res.value = 1;
-            }
+            restriction.push({text: res.value});
+            res.value = 1;
+          }
 
-            if (!Array.isArray(res[key])) {
-              res[key] = [res[key]];
-            }
+          if (!res.value) {
+            res.value = 1;
+          }
 
-            for (var i = 0; i < res.value; i++) {
-              res[key].forEach(item => restriction.push({[key]: item}));
-            }
+          if (!Array.isArray(res[key])) {
+            res[key] = [res[key]];
+          }
+
+          for (var i = 0; i < res.value; i++) {
+            res[key].forEach(item => restriction.push({[key]: item}));
           }
         };
 

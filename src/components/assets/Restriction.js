@@ -21,7 +21,7 @@ function renderRestriction(restriction) {
     )
   } else if (restriction.tile) {
     return (
-      <Tile name="ocean" />
+      <Tile name={restriction.tile} />
     )
   }
 }

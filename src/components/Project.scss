@@ -115,8 +115,10 @@ $title-font: 'Prototype', sans-serif;
         font-size: 2em;
       }
 
-      .param {
-        margin: auto;
+      .resources {
+        .param {
+          font-size: 1em;
+        }
       }
 
       hr {
