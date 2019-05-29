@@ -9,6 +9,7 @@ $title-font: 'Prototype', sans-serif;
   background-color: white;
   position: relative;
   z-index: 1;
+  display: inline-block;
 
   > .mc, > .tags {
     font-size: .15em;
@@ -56,7 +57,7 @@ $title-font: 'Prototype', sans-serif;
         content: "";
       }
 
-      .requirement {
+      .restriction {
         margin-left: 2.8em;
         height: 1.4em;
       }
@@ -97,10 +98,9 @@ $title-font: 'Prototype', sans-serif;
       position: relative;
       background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
       font-size: .045em;
-      font-family: 'Baskerville', 'Palantino', serif;
+      font-family: 'Palantino', serif;
       padding: .5em;
       line-height: .9;
-      display: flex;
       flex-wrap: wrap;
 
       &.top {
@@ -111,18 +111,45 @@ $title-font: 'Prototype', sans-serif;
         box-shadow: 0 .1em 0 0 black, 0 .2em 0 0 #eee, 0 .3em 0 0 black;
       }
 
+      .production, .param {
+        font-size: 2em;
+      }
+
+      .param {
+        margin: auto;
+      }
+
       hr {
         width: 90%;
         border: none;
-        height: .2em;
+        height: .1em;
         background-color: #222;
         margin: .4em auto;
+      }
+
+      .gutter > * {
+        margin-left: .5em;
+        &:first-of-type {
+          margin-left: inherit;
+        }
+      }
+
+      .m-top {
+        margin-top: 1em;
+      }
+
+      .m-bottom {
+        margin-bottom: 1em;
       }
 
       .flavor {
         font-style: italic;
         text-align: center;
         line-height: .9;
+        width: 100%;
+        border-top: .1em solid black;
+        margin-top: .3em;
+        padding-top: .3em;
       }
 
       .number {
@@ -135,6 +162,7 @@ $title-font: 'Prototype', sans-serif;
         border-width: .2em;
         border-color: #444 #666 #eee #444;
         padding-top: .2em;
+        color: #666;
       }
 
       .vp {
@@ -142,8 +170,6 @@ $title-font: 'Prototype', sans-serif;
       }
 
       .description {
-        flex: 1;
-
         &:before {
           content: '(';
         }

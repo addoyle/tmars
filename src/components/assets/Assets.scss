@@ -37,7 +37,7 @@ $title-font: 'Prototype', sans-serif;
     position: absolute;
     width: 90%;
     height: 90%;
-    top: 6%;
+    top: 5%;
   }
 }
 
@@ -49,8 +49,47 @@ $title-font: 'Prototype', sans-serif;
   }
 }
 
+.tile {
+  width: 1em;
+  height: 1em;
+  vertical-align: text-bottom;
+
+  .base {
+    stroke: black;
+    stroke-width: 8px;
+    fill: none;
+  }
+
+  .outline-color {
+    fill: none;
+    stroke-width: 30px;
+  }
+
+  &.ocean {
+    .outline-color {
+      stroke: #80b3d2;
+      fill: #b2e2fa;
+    }
+
+    .drip {
+      stroke-width: 5px;
+      fill: url('#drip-gradient');
+      stroke: rgb(22, 72, 124);
+      fill-opacity: .8;
+    }
+
+    .waves {
+      fill: url('#waves-gradient');
+    }
+  }
+}
+
 .icon.tag, .icon.resource, .icon.mc {
   border: calc(.005em + 1px) solid #000;
+
+  &.anyone {
+    outline: calc(.05em + 1px) solid #C02B39;
+  }
 }
 
 .icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2); }
@@ -60,10 +99,13 @@ $title-font: 'Prototype', sans-serif;
 .icon.city { @include icon(url('./icons/city.svg'), 330, 0%, .2, true, 80%); }
 .icon.animal { @include icon(url('./icons/animal.svg'), 103, 43%, .2, true); }
 .icon.event { @include icon(url('./icons/event.svg'), 53, 100%, .1); }
-.icon.jovian { @include icon(url('./icons/jovian.svg'), 330, 0%, .1, true, 90%, 99%, 15%); }
+.icon.jovian { @include icon(url('./icons/jovian.svg'), 330, 0%, .1, true, 90%, 100%, 15%); }
 .icon.microbe { @include icon(url('./icons/microbe.svg'), 67, 62%, .05); }
 .icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .1, false); }
 .icon.plant { @include icon(url('./icons/plant.svg'), 95, 65%, .1); }
+.icon.titanium { @include icon(url('./icons/titanium.svg'), 26, 0%, .6, false); }
+.icon.heat { @include icon(url('./icons/heat.svg'), 13, 82%, .2); }
+// .tile.ocean { @include tile(url('./icons/ocean.svg'), 13, 82%, 0%, .6); }
 .mc {
   background: url('./icons/mc.svg') no-repeat center/100%;
   font-family: $title-font;
@@ -83,7 +125,18 @@ $title-font: 'Prototype', sans-serif;
   color: #222;
 }
 
-.requirement {
+.oxygen {
+  background: url('./icons/oxygen.svg') no-repeat center/100%;
+  height: 1em;
+  width: 1em;
+}
+.temperature {
+  background: url('./icons/temperature.svg') no-repeat center/100%;
+  height: 1.3em;
+  width: 1.3em;
+}
+
+.restriction {
   font-size: .05em;
   display: inline-block;
   height: 100%;
@@ -100,9 +153,9 @@ $title-font: 'Prototype', sans-serif;
     white-space: nowrap;
     margin-right: .1em;
 
-    .icon {
+    .icon, .param, .tile {
       font-size: 1.5em;
-      margin-top: -.06em;
+      margin-top: -.07em;
       margin-left: .06em;
     }
 
@@ -112,6 +165,13 @@ $title-font: 'Prototype', sans-serif;
     &:last-of-type {
       margin-right: .3em;
     }
+  }
+
+  .production {
+    background: #444;
+    padding: .3em;
+    font-size: .75em;
+    margin-top: -.2em;
   }
 
   &.max {
@@ -130,15 +190,19 @@ $title-font: 'Prototype', sans-serif;
   font-size: 2em;
   font-family: $title-font;
   margin-bottom: .2em;
+
+  .tile {
+    font-size: 1.2em;
+  }
 }
 
 .production {
+  font-family: $title-font;
   background: linear-gradient(#555, #fff);
-  padding: .15em;
-  display: inline-flex;
+  padding: .2em;
   position: relative;
 
-  .icon, .mc, span {
+  .icon, .mc, span, div {
     margin: .1em;
     z-index: 1;
   }
@@ -188,7 +252,7 @@ $title-font: 'Prototype', sans-serif;
       vertical-align: middle;
 
       &.big {
-        font-size: inherit;
+        font-size: .8em;
       }
     }
   }

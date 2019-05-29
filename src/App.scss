@@ -25,6 +25,12 @@ p {
   text-align: right;
 }
 
+.flex {
+  display: flex;
+}
+.inline-flex {
+  display: inline-flex;
+}
 .col-1 {
   flex: 1;
 }

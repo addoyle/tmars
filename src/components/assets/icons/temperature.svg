@@ -1,0 +1,17 @@
+<svg viewBox="0 0 87.1 87.1" width="92.4px" height="92.379" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient-0" gradientUnits="userSpaceOnUse" x1="233.684" y1="180.052" x2="233.684" y2="206.215" gradientTransform="matrix(0, 3.054602, -3.054602, 0, 822.572693, -521.224048)" spreadMethod="pad">
+      <stop offset="0" style="stop-color: rgb(229, 34, 28);"></stop>
+      <stop offset="1" style="stop-color: rgb(37, 203, 247);"></stop>
+    </linearGradient>
+  </defs>
+  <g transform="matrix(0, -0.921626, 0.921626, 0, -134.879333, 257.790924)" style="">
+    <path style="stroke: rgb(0, 0, 0); stroke-width: 2px; fill: url(#gradient-0);" d="M 211.2 186.443 L 272.492 186.415 C 277.231 186.438 280.168 191.582 277.78 195.675 C 276.67 197.574 274.633 198.738 272.433 198.728 C 272.433 198.728 211.2 198.743 211.2 198.743 C 205.7 207.843 193.1 207.843 188 199.043 C 183 190.343 189.3 179.443 199.4 179.443 C 204.7 179.443 208.9 181.443 211.2 186.443 Z"></path>
+    <line style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2px;" x1="200" y1="187" x2="200" y2="198"></line>
+    <line style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2px;" x1="212.5" y1="190" x2="212.5" y2="195"></line>
+    <line style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2px;" x1="226" y1="190" x2="226" y2="195"></line>
+    <line style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2px;" x1="240" y1="190" x2="240" y2="195"></line>
+    <line style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2px;" x1="254" y1="190" x2="254" y2="195"></line>
+    <line style="fill: none; stroke: rgb(255, 255, 255); stroke-width: 2px;" x1="267" y1="190" x2="267" y2="195"></line>
+  </g>
+</svg>
