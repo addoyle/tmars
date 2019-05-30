@@ -1,229 +1,180 @@
 $title-font: 'Prototype', sans-serif;
 
 .project {
-  font-size: 310px;
-  height: 1.4em;
-  width: 1em;
-  border-radius: .04em;
-  padding: .05em;
-  background-color: white;
-  position: relative;
-  z-index: 1;
-  display: inline-block;
+  border-radius: .08em;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+  border: .003em solid black;
 
-  > .mc, > .tags {
-    font-size: .15em;
-    margin: -.15em;
-    position: absolute;
-  }
-
-  .tags {
-    right: 0;
-    padding-right: .5em;
-    padding-top: .01em;
-    .tag {
-      font-size: .9em;
-      margin-right: .07em;
-      vertical-align: top;
-    }
-  }
-
-  .project-body {
-    border-radius: .08em;
-    height: 100%;
-    width: 100%;
+  .header {
     display: flex;
-    flex-flow: column;
-    overflow: hidden;
-    border: .003em solid black;
+    flex-direction: row-reverse;
+    border-color: black;
+    border-style: solid;
+    border-width: 0 0 .003em 0;
+    height: .1em;
+    min-height: .1em;
+    width: 100%;
+    background: repeating-linear-gradient(90deg, #444, #eee 10%, #444 20%);
+    padding: .01em 0;
 
-    .header {
-      display: flex;
-      flex-direction: row-reverse;
-      border-color: black;
-      border-style: solid;
-      border-width: 0 0 .003em 0;
-      height: .1em;
-      min-height: .1em;
-      width: 100%;
-      background: repeating-linear-gradient(90deg, #444, #eee 10%, #444 20%);
-      padding: .01em 0;
-
-      &:before {
-        display: block;
-        background: repeating-linear-gradient(-45deg, #888 0%, #eee 25%, #888 50%);
-        width: 100%;
-        height: 100%;
-        content: "";
-      }
-
-      .restriction {
-        margin-left: 2.8em;
-        height: 1.4em;
-      }
-    }
-
-    .title, .separator {
-      font-family: $title-font;
-      font-size: .05em;
-      text-align: center;
-    }
-
-    .title {
-      text-transform: uppercase;
-      padding: .2em 0;
-      box-shadow: 0 .2em 0 0 rgba(255,255,255,.2) inset, 0 -.1em 0 0 rgba(0,0,0,.5) inset;
-      border-bottom: .05em solid #999;
-    }
-
-    .separator {
-      box-shadow: 0 .2em 0 0 rgba(255,255,255,.2) inset, 0 .1em 0 0 rgba(0,0,0,.5) inset, 0 -.2em .1em 0 rgba(0,0,0,.7) inset;
-      color: rgba(0,0,0,.1);
-      border-top: .05em solid #999;
-      padding-bottom: .1em;
-      position: relative;
-
-      &:after {
-        display: block;
-        position: absolute;
-        bottom: -.2em;
-        content: '';
-        height: .2em;
-        width: 100%;
-        background: repeating-linear-gradient(to right, #444, #eee 20%, #444 40%);
-      }
-    }
-
-    .body {
-      position: relative;
-      background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
-      font-size: .045em;
-      font-family: 'Palantino', serif;
-      padding: .5em;
-      line-height: .9;
-      flex-wrap: wrap;
-
-      &.top {
-        border-style: solid;
-        border-width: 0;
-        border-bottom-width: .2em;
-        border-image: linear-gradient(to right, #444, #eee 15%, #444 30%, #eee 45%, #444 60%, #eee 75%, #444 90%) 1 100%;
-        box-shadow: 0 .1em 0 0 black, 0 .2em 0 0 #eee, 0 .3em 0 0 black;
-      }
-
-      .production, .param {
-        font-size: 2em;
-      }
-
-      .resources {
-        .param {
-          font-size: 1em;
-        }
-      }
-
-      hr {
-        width: 90%;
-        border: none;
-        height: .1em;
-        background-color: #222;
-        margin: .4em auto;
-      }
-
-      .gutter > * {
-        margin-left: .5em;
-        &:first-of-type {
-          margin-left: inherit;
-        }
-      }
-
-      .m-top {
-        margin-top: 1em;
-      }
-
-      .m-bottom {
-        margin-bottom: 1em;
-      }
-
-      .flavor {
-        font-style: italic;
-        text-align: center;
-        line-height: .9;
-        width: 100%;
-        border-top: .1em solid black;
-        margin-top: .3em;
-        padding-top: .3em;
-      }
-
-      .number {
-        font-size: .6em;
-        font-family: $title-font;
-        position: absolute;
-        right: .5em;
-        background-color: #aaa;
-        border-style: solid;
-        border-width: .2em;
-        border-color: #444 #666 #eee #444;
-        padding-top: .2em;
-        color: #666;
-      }
-
-      .vp {
-        font-size: 5.5em;
-      }
-
-      .description {
-        &:before {
-          content: '(';
-        }
-        &:after {
-          content: ')';
-        }
-      }
-    }
-
-    .image {
-      display: flex;
-      flex-grow: 1;
-      background-color: #444;
-      font-size: .3em;
-      align-items: center;
-      justify-content: center;
-      min-height: .5em;
-    }
-
-    .expac {
-      position: absolute;
+    &:before {
       display: block;
-      left: -.1em;
-      bottom: .2em;
-      width: .1em;
+      background: repeating-linear-gradient(-45deg, #888 0%, #eee 25%, #888 50%);
+      width: 100%;
+      height: 100%;
+      content: "";
+    }
+
+    .restriction {
+      margin-left: 2.8em;
+      height: 1.4em;
+    }
+  }
+
+  .title, .separator {
+    font-family: $title-font;
+    font-size: .05em;
+    text-align: center;
+  }
+
+  .title {
+    text-transform: uppercase;
+    padding: .2em 0;
+    box-shadow: 0 .2em 0 0 rgba(255,255,255,.2) inset, 0 -.1em 0 0 rgba(0,0,0,.5) inset;
+    border-bottom: .05em solid #999;
+  }
+
+  .separator {
+    box-shadow: 0 .2em 0 0 rgba(255,255,255,.2) inset, 0 .1em 0 0 rgba(0,0,0,.5) inset, 0 -.2em .1em 0 rgba(0,0,0,.7) inset;
+    color: rgba(0,0,0,.1);
+    border-top: .05em solid #999;
+    padding-bottom: .1em;
+    position: relative;
+
+    .number {
+      width: 2.2em;
+      font-size: .6em;
+      font-family: $title-font;
+      float: right;
+      margin-right: .3em;
+      margin-top: .4em;
+      background-color: rgba(170,170,170,.7);
+      border-style: solid;
+      border-width: .2em;
+      border-color: #444 #666 #eee #444;
+      color: #666;
+      line-height: .95;
+    }
+
+    &:after {
+      display: block;
+      position: absolute;
+      bottom: -.2em;
+      content: '';
+      height: .2em;
+      width: 100%;
+      background: repeating-linear-gradient(to right, #444, #eee 20%, #444 40%);
+    }
+  }
+
+  .body {
+    position: relative;
+    background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+    font-size: .045em;
+    font-family: 'Palantino', serif;
+    padding: .5em;
+    line-height: .9;
+    flex-wrap: wrap;
+
+    &.top {
+      border-style: solid;
+      border-width: 0;
+      border-bottom-width: .2em;
+      border-image: linear-gradient(to right, #444, #eee 15%, #444 30%, #eee 45%, #444 60%, #eee 75%, #444 90%) 1 100%;
+      box-shadow: 0 .1em 0 0 black, 0 .2em 0 0 #eee, 0 .3em 0 0 black;
+    }
+
+    .production, .param {
+      font-size: 2em;
+    }
+
+    .resources {
+      .param {
+        font-size: 1em;
+      }
+    }
+
+    hr {
+      width: 90%;
+      border: none;
       height: .1em;
-      background-color: red;
+      background-color: #222;
+      margin: .4em auto;
+    }
+
+    .gutter > * {
+      margin-left: .5em;
+      &:first-of-type {
+        margin-left: inherit;
+      }
+    }
+
+    .m-top {
+      margin-top: 1em;
+    }
+
+    .m-bottom {
+      margin-bottom: 1em;
+    }
+
+    .flavor {
+      font-style: italic;
+      text-align: center;
+      line-height: .9;
+      width: 100%;
+      border-top: .1em solid black;
+      margin-top: .3em;
+      padding-top: .3em;
+    }
+
+    .vp {
+      font-size: 5.5em;
+    }
+
+    .description {
+      &:before {
+        content: '(';
+      }
+      &:after {
+        content: ')';
+      }
     }
   }
 
-  .active {
-    box-shadow: 0 0 0 .01em #0082cc;
-
-    .title, .separator {
-      background:
-        linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
-    }
+  .image {
+    display: flex;
+    flex-grow: 1;
+    background-color: #444;
+    font-size: .3em;
+    align-items: center;
+    justify-content: center;
+    min-height: .5em;
+    font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji",
+      Times, Symbola, Aegyptus, Code2000, Code2001, Code2002, Musica, serif,
+      LastResort;
   }
-  .automated {
-    box-shadow: 0 0 0 .01em #34A027;
 
-    .title, .separator {
-      background:
-        linear-gradient(to right, #003D22 0%, #009F3E 20%, #BACB00 40%, #BACB00 60%, #009F3E 80%, #003D22 100%);
-    }
-  }
-  .event {
-    box-shadow: 0 0 0 .01em #e66d1c;
-
-    .title, .separator {
-      background:
-        linear-gradient(to right, #a22722 0%, #f8ad06 15%, #e12021 25%, #f3a40b 35%, #f7d335 60%, #e31f21 80%, #ffcd3e 90%, #d82221 100%);
-    }
+  .expac {
+    position: absolute;
+    display: block;
+    left: -.1em;
+    bottom: .2em;
+    width: .1em;
+    height: .1em;
+    background-color: red;
   }
 }

@@ -207,7 +207,7 @@ const cards = {
     clientActiveAction: game => {},
     serverActiveAction: game => {},
     vp: game => {},
-    emoji: '🚰'
+    emoji: '💧'
   }
 };
 

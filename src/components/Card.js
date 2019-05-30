@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import Project from './Project';
-import CardLayout from './assets/CardLayout';
+import './Card.scss';
 
 export default class Card extends Component {
-  render() {
-    const card = this.props.card;
+  title;
+  tags;
+  desc;
+  flavor;
 
-    if (card.type === 'automated' || card.type === 'active' || card.type === 'event') {
-      return (
-        <Project {...card} top={card.type === 'active' && (<CardLayout card={{number: `${card.number}_top`}} />)}>
-          <CardLayout card={card} />
-        </Project>
-      );
-    }
+  constructor(props) {
+    super(props);
+
+    Object.assign(this, props);
+  }
+
+  render() {
+    return (<div className={`card ${this.props.type}`}>{this.props.children}</div>);
   }
 }

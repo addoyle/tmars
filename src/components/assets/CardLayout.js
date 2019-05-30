@@ -4,7 +4,7 @@ import VictoryPoint from './VictoryPoint';
 import Tag from './Tag';
 import Tile from './Tile';
 import Resource from './Resource';
-import Production from './Production';
+import Production from '../Production';
 import MegaCredit from './MegaCredit';
 import Param from './Param';
 import cards from '../../cards/base.js';
@@ -133,28 +133,30 @@ const cardLayouts = {
 8: (
   <div>
     <div className="gutter">
-      <Production>
-        <div className="flex">
-          <div className="col-1">&ndash;</div>
-          <Resource name="power" />
-          <Resource name="power" />
-        </div>
-        <div className="flex">
-          <div className="col-1">+</div>
-          <MegaCredit value="5" />
-          <Resource name="blank" />
-        </div>
-      </Production>
-      <div className="inline-block valign-top">
-        <div className="resources" style={{verticalAlign: 'top'}}><Tile name="city capital" /></div>
-      </div>
+      <div className="description">{cards[8].desc}</div>
     </div>
-    <div className="flex">
-      <div className="description col-3">{cards[8].desc}</div>
+    <div className="flex m-top">
+      <div className="col-3">
+        <Production>
+          <div className="flex">
+            <div className="col-1">&ndash;</div>
+            <Resource name="power" />
+            <Resource name="power" />
+          </div>
+          <div className="flex">
+            <div className="col-1">+</div>
+            <MegaCredit value="5" />
+            <Resource name="blank" />
+          </div>
+        </Production>
+        <div className="inline-block valign-top">
+          <div className="resources" style={{verticalAlign: 'top'}}><Tile name="city capital" /></div>
+        </div>
+      </div>
       <div className="col-1 bottom">
         <VictoryPoint>
           <span>
-            <span className="point">3</span>/<Tile name="ocean" />*
+            <span className="point">1</span>/<Tile name="ocean" />*
           </span>
         </VictoryPoint>
       </div>

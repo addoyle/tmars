@@ -291,7 +291,7 @@ $title-font: 'Prototype', sans-serif;
     margin: 0 auto;
 
     &.point {
-      font-size: 1.5em;
+      font-size: 1.3em;
       -webkit-text-stroke: .02em #F9B000;
       vertical-align: middle;
 
@@ -299,12 +299,22 @@ $title-font: 'Prototype', sans-serif;
         font-size: .8em;
       }
     }
+
+    .tile {
+      font-size: 1.5em;
+      vertical-align: middle;
+    }
+    .tag {
+      font-size: 1.2em;
+      vertical-align: middle;
+    }
   }
 }
 
 .arrow {
   color: #d94c38;
   -webkit-text-stroke: .1em #d94c38;
+  vertical-align: baseline;
 
   &:before {
     content: '\2192';

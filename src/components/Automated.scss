@@ -1,0 +1,10 @@
+.card {
+  .project {
+    box-shadow: 0 0 0 .01em #34A027;
+
+    .title, .separator {
+      background:
+        linear-gradient(to right, #003D22 0%, #009F3E 20%, #BACB00 40%, #BACB00 60%, #009F3E 80%, #003D22 100%);
+    }
+  }
+}
