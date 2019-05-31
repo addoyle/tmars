@@ -1,0 +1,10 @@
+.card.event {
+  .project {
+    box-shadow: 0 0 0 .01em #e66d1c;
+
+    .title, .separator {
+      background:
+        linear-gradient(to right, #a22722 0%, #f8ad06 15%, #e12021 25%, #f3a40b 35%, #f7d335 60%, #e31f21 80%, #ffcd3e 90%, #d82221 100%);
+    }
+  }
+}

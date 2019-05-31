@@ -1,5 +1,23 @@
+import React from 'react';
+import './Active.scss';
+import Project from './Project';
+import Art from './Art';
+import Separator from './Separator';
+
 export default class Active extends Project {
-  get type() {
-    return 'active';
+  render() {
+    return (
+      <Project {...this.props} type="active">
+        <div className="body">
+          {this.props.activeLayout}
+        </div>
+        <Art art={this.props.emoji} />
+        <Separator number={this.props.number} />
+        <div className="body">
+          {this.props.layout}
+          <div className="flavor">{this.props.flavor}</div>
+        </div>
+      </Project>
+    );
   }
 }

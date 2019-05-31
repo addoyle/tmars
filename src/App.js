@@ -12,7 +12,7 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const files = ['001', '002'];
+    const files = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012'];
 
     files.forEach(file => {
       import('./cards/base/projects/' + file).then(m => this.setState({ cards: this.state.cards.concat(m.default) }));

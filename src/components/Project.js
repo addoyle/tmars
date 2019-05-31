@@ -12,10 +12,6 @@ export default class Project extends Card {
   vp;
   emoji;
 
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const restriction = [];
     if (this.props.restriction) {

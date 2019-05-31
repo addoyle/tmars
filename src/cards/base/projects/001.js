@@ -19,7 +19,7 @@ export default new Automated({
   flavor: 'Preparing for settlement of the moons of Jupiter',
   emoji: '🏕',
   layout: (
-    <div className="flex m-top">
+    <div className="flex">
       <div className="description col-3 text-center middle">{desc}</div>
       <div className="col-1 middle">
         <VictoryPoint>

@@ -5,10 +5,6 @@ import Art from './Art';
 import Separator from './Separator';
 
 export default class Automated extends Project {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <Project {...this.props} type="automated">
