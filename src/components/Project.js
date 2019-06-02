@@ -3,7 +3,7 @@ import './Project.scss';
 import Card from './Card';
 import Tag from './assets/Tag';
 import MegaCredit from './assets/MegaCredit';
-import Restriction from './Restriction';
+import Restriction from './assets/Restriction';
 
 export default class Project extends Card {
   number;

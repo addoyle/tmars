@@ -1,5 +1,5 @@
 import React from 'react';
-import './assets/Assets.scss';
+import './Assets.scss';
 
 export default function Production(props) {
   return (

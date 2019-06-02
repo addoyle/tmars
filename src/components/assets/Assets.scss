@@ -34,6 +34,12 @@ $title-font: 'Prototype', sans-serif;
     height: 1.6em;
     width: .48em;
   }
+
+  &.card {
+    font-size: 1em;
+    height: 1.4em;
+    vertical-align: middle;
+  }
 }
 
 .icon {
@@ -42,9 +48,9 @@ $title-font: 'Prototype', sans-serif;
   &:before, &:after {
     content: '';
     position: absolute;
-    width: 90%;
-    height: 90%;
-    top: 5%;
+    width: .85em;
+    height: .85em;
+    top: .05em;
   }
 }
 
@@ -124,6 +130,21 @@ $title-font: 'Prototype', sans-serif;
   }
 }
 
+.icon.resource {
+  &.tr {
+    font-size: 1.3em;
+    width: 1.4em;
+
+    &:before, &:after {
+      content: '';
+      position: absolute;
+      width: 1.25em;
+      height: .85em;
+      top: .05em;
+    }
+  }
+}
+
 .icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2); }
 .icon.space { @include icon(url('./icons/space.svg'), 26, 0%, .6, false); }
 .icon.science { @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%); }
@@ -137,7 +158,17 @@ $title-font: 'Prototype', sans-serif;
 .icon.plant { @include icon(url('./icons/plant.svg'), 95, 65%, .1); }
 .icon.titanium { @include icon(url('./icons/titanium.svg'), 26, 0%, .6, false); }
 .icon.heat { @include icon(url('./icons/heat.svg'), 13, 82%, .2); }
-// .tile.ocean { @include tile(url('./icons/ocean.svg'), 13, 82%, 0%, .6); }
+.icon.steel { @include icon(url('./icons/steel.svg'), 30, 59%, .1); }
+.icon.tr {
+  // @include icon(url('./icons/tr.svg'), 17, 90%, .1);
+  background: linear-gradient(hsl(28,94%,65%) 60%, hsl(28,94%,65%));
+  &:before {
+    background: url('./icons/tr.svg') no-repeat center/85%,
+      radial-gradient(ellipse at center,hsla(36,93%,58%,1) 0%,hsla(17,82%,49%,1) 100%);
+    box-shadow: 0 -2.47em 0 -2em hsla(36,67%,4%,.1) inset;
+  }
+}
+
 .mc {
   background: url('./icons/mc.svg') no-repeat center/100%;
   font-family: $title-font;
@@ -225,8 +256,12 @@ $title-font: 'Prototype', sans-serif;
     vertical-align: middle;
   }
 
-  > :not(:first-of-type):not(.icon):not(.mc):not(.tile) {
+  > :not(:first-of-type):not(.icon):not(.mc):not(.tile):not(.param) {
     margin-top: .5em;
+  }
+
+  > span {
+    font-size: .7em;
   }
 
   .sup {
@@ -237,6 +272,10 @@ $title-font: 'Prototype', sans-serif;
   .tile {
     font-size: 1.5em;
   }
+
+  .production {
+    font-size: 1em;
+  }
 }
 
 .production {
@@ -245,10 +284,16 @@ $title-font: 'Prototype', sans-serif;
   padding: .2em;
   position: relative;
   display: inline-block;
+  font-size: 2em;
 
-  .icon, .mc, span, div {
-    margin: .1em;
+  * {
     z-index: 1;
+    vertical-align: middle;
+    line-height: 1.2;
+  }
+
+  .icon, .mc {
+    margin: .1em;
   }
 
   &:before {
@@ -314,7 +359,6 @@ $title-font: 'Prototype', sans-serif;
 .arrow {
   color: #d94c38;
   -webkit-text-stroke: .1em #d94c38;
-  vertical-align: baseline;
 
   &:before {
     content: '\2192';

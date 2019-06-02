@@ -20,6 +20,10 @@
     position: absolute;
   }
 
+  &.back {
+    background: black url('./assets/texture/card-back.jpg') no-repeat center/75%;
+  }
+
   .tags {
     right: 0;
     padding-right: .5em;

@@ -1,10 +1,10 @@
 import React from 'react';
-import './assets/Assets.scss';
-import Tag from './assets/Tag.js';
-import Tile from './assets/Tile.js';
-import Param from './assets/Param.js';
+import './Assets.scss';
+import Tag from './Tag.js';
+import Tile from './Tile.js';
+import Param from './Param.js';
 import Production from './Production.js';
-import Resource from './assets/Resource.js';
+import Resource from './Resource.js';
 
 function renderRestriction(restriction) {
   if (restriction.tag) {

@@ -6,6 +6,7 @@ export default class Card extends Component {
   tags;
   desc;
   flavor;
+  set = 'base';
 
   constructor(props) {
     super(props);
