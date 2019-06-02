@@ -3,39 +3,36 @@ import Active from '../../components/Active';
 import VictoryPoint from '../../components/assets/VictoryPoint';
 import Resource from '../../components/assets/Resource';
 
-const top_desc = 'Action: Remove 1 animal from any card and add it to this card.';
-const desc = 'Requires 11% oxygen. 1 VP per animal on this card.';
+const top_desc = 'Action: Spend 1 titanium to add 1 fighter resource to this card.';
+const desc = '1 VP for each fighter resource on this card.';
 
 export default new Active({
-  number: 24,
-  title: 'Predators',
-  cost: 14,
-  tags: ['animal'],
-  restriction: {
-    value: 11,
-    param: 'oxygen'
-  },
+  number: 28,
+  title: 'Security Fleet',
+  cost: 12,
+  tags: ['space'],
+  set: 'corporate',
   top_desc,
   desc,
-  flavor: 'Lions and tigers and bears, oh my',
+  flavor: 'Keeping the peace by force',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '🧸',
+  emoji: '🚀',
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Resource name="animal" anyone /> <span className="arrow" /> <Resource name="animal" />
+        <Resource name="titanium" /> <span className="arrow" /> <Resource name="fighter" />
       </div>
       <div className="description text-center">{top_desc}</div>
     </div>
   ),
   layout: (
-    <div className="flex gutter">
+    <div className="flex">
       <div className="col-4 description text-center middle">{desc}</div>
       <div className="col-1">
         <VictoryPoint>
           <span>
-            <span className="point">1</span>/<Resource name="animal" />
+            <span className="point">1</span>/<Resource name="fighter" />
           </span>
         </VictoryPoint>
       </div>
