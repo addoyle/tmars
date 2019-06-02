@@ -159,6 +159,7 @@ $title-font: 'Prototype', sans-serif;
 .icon.titanium { @include icon(url('./icons/titanium.svg'), 26, 0%, .6, false); }
 .icon.heat { @include icon(url('./icons/heat.svg'), 13, 82%, .2); }
 .icon.steel { @include icon(url('./icons/steel.svg'), 30, 59%, .1); }
+.icon.fighter { @include icon(url('./icons/fighter.svg'), 26, 0%, .6, false, 30%); }
 .icon.tr {
   // @include icon(url('./icons/tr.svg'), 17, 90%, .1);
   background: linear-gradient(hsl(28,94%,65%) 60%, hsl(28,94%,65%));
