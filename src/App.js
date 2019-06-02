@@ -13,10 +13,10 @@ class App extends Component {
 
   componentDidMount() {
     const files = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', '014', '015', '016', '017', '018', '019', '020'];
+    const promises = [];
 
-    files.forEach(file => {
-      import('./cards/projects/' + file).then(m => this.setState({ cards: this.state.cards.concat(m.default) }));
-    });
+    files.forEach(file => promises.push(import('./cards/projects/' + file)));
+    Promise.all(promises).then(values => this.setState({ cards: values.map(value => value.default) }));
   }
 
 
@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.cards.map((card, i) => React.createElement(card.constructor, card))}
+        {this.state.cards.map((card, i) => React.createElement(card.constructor, card.props))}
       </div>
     );
   }

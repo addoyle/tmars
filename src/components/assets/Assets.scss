@@ -148,13 +148,13 @@ $title-font: 'Prototype', sans-serif;
 .icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2); }
 .icon.space { @include icon(url('./icons/space.svg'), 26, 0%, .6, false); }
 .icon.science { @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%); }
-.icon.earth { @include icon(url('./icons/earth.svg'), 330, 0%, .4, true, 90%, 99%, 10%); }
+.icon.earth { @include icon(url('./icons/earth.svg'), 330, 0%, .4, true, 90%, 101%, 10%); }
 .icon.city { @include icon(url('./icons/city.svg'), 330, 0%, .2, true, 80%); }
 .icon.animal { @include icon(url('./icons/animal.svg'), 103, 43%, .2, true); }
 .icon.event { @include icon(url('./icons/event.svg'), 53, 100%, .1); }
-.icon.jovian { @include icon(url('./icons/jovian.svg'), 330, 0%, .1, true, 90%, 100%, 15%); }
+.icon.jovian { @include icon(url('./icons/jovian.svg'), 330, 0%, .1, true, 90%, 101%, 15%); }
 .icon.microbe { @include icon(url('./icons/microbe.svg'), 67, 62%, .05); }
-.icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .1, false); }
+.icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .1, false, 40%); }
 .icon.plant { @include icon(url('./icons/plant.svg'), 95, 65%, .1); }
 .icon.titanium { @include icon(url('./icons/titanium.svg'), 26, 0%, .6, false); }
 .icon.heat { @include icon(url('./icons/heat.svg'), 13, 82%, .2); }

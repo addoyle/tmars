@@ -26,10 +26,10 @@ export default new Event({
         <Resource name="animal" />*
       </div>
       <div className="flex gutter">
-        <div class="col-1 resources">
+        <div className="col-1 resources">
           <Tile name="ocean" />
         </div>
-        <div class="col-5 description middle">{desc}</div>
+        <div className="col-5 description middle">{desc}</div>
       </div>
     </div>
   )
