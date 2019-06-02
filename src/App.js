@@ -12,7 +12,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const files = ['001', '002', '003', '004', '005', '006', '007', '008', '009', '010', '011', '012', '013', '014', '015', '016', '017', '018', '019', '020'];
+    const files = [];
+    for (var i = 1; i <= 24; i++) {
+      const num = i.toString();
+      files.push('0'.repeat(3 - num.length) + num);
+    }
     const promises = [];
 
     files.forEach(file => promises.push(import('./cards/projects/' + file)));
@@ -24,7 +28,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {this.state.cards.map((card, i) => React.createElement(card.constructor, card.props))}
+        {this.state.cards.map((card, i) => React.createElement(card.constructor, {...card.props, key: i}))}
       </div>
     );
   }
