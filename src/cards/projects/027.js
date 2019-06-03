@@ -1,7 +1,6 @@
 import React from 'react';
 import Event from '../../components/Event';
 import VictoryPoint from '../../components/assets/VictoryPoint';
-import Resource from '../../components/assets/Resource';
 
 const desc = 'Requires 5 science tags.';
 

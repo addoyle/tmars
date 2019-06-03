@@ -23,7 +23,7 @@ export default new Automated({
   emoji: '🏞',
   layout: (
     <div>
-      <div class="resources">
+      <div className="resources">
         <Resource name="animal" />* <Resource name="plant" /> <Resource name="plant" /> <Resource name="plant" />
       </div>
       <div className="flex gutter">

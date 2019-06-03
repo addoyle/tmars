@@ -15,6 +15,11 @@ export default class Card extends Component {
   }
 
   render() {
-    return (<div className={`card ${this.props.type}`}>{this.props.children}</div>);
+    return (
+      <div className={`card ${this.props.type}`}>
+        {this.props.children}
+        {this.props.set ? (<div className={`set ${this.props.set}`} />) : ''}
+      </div>
+    );
   }
 }

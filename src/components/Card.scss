@@ -34,4 +34,28 @@
       vertical-align: top;
     }
   }
+
+  .set {
+    font-size: .038em;
+    position: absolute;
+    display: block;
+    left: .55em;
+    bottom: 3em;
+    height: 1.4em;
+    width: 1.4em;
+    text-align: center;
+    border-radius: 50%;
+    border: .05em solid black;
+    box-shadow: 0 0 0 .1em white, 0 .05em .05em white inset;
+    color: white;
+    text-shadow: 0 .05em 0 black;
+
+    &.corporate {
+      background-color: red;
+
+      &:after {
+        content: '\25B2';
+      }
+    }
+  }
 }

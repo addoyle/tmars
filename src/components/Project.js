@@ -62,7 +62,7 @@ export default class Project extends Card {
     }
 
     return (
-      <Card type={this.props.type}>
+      <Card type={this.props.type} set={this.props.set}>
         <MegaCredit value={this.props.cost} />
         <div className="tags">{this.props.tags.map(tag => ( <Tag key={tag} name={tag} /> ))}</div>
         <div className="project">
