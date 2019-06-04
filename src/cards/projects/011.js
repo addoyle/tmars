@@ -18,12 +18,22 @@ export default new Event({
   emoji: '☄',
   layout: (
     <div className="flex gutter m-top m-bottom">
-      <div className="resources col-2">
-        <div>+ &nbsp;<Param name="temperature" /> <Param name="temperature" /></div>
-        <div>&ndash;4 <Resource name="plant" anyone /></div>
+      <div className="col-2">
+        <div className="resources">
+          +<Param name="temperature" />
+          <Param name="temperature" />
+        </div>
+        <div className="resources">
+          4<Resource name="plant" anyone />
+        </div>
       </div>
       <div className="col-5">
-        <div className="resources"><Resource name="titanium" /> <Resource name="titanium" /> <Resource name="titanium" /> <Resource name="titanium" /></div>
+        <div className="resources">
+          <Resource name="titanium" />
+          <Resource name="titanium" />
+          <Resource name="titanium" />
+          <Resource name="titanium" />
+        </div>
         <div className="description">{desc}</div>
       </div>
     </div>

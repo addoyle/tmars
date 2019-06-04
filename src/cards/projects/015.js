@@ -18,13 +18,18 @@ export default new Active({
   serverActiveAction: game => {},
   emoji: '🧲',
   activeLayout: (
-    <div>
-      <div className="center text-center">
-        <div className="resources">
-          <Production><div className="flex"><div>&ndash;</div><Resource name="power" /></div></Production> <span className="arrow" /> <Resource name="tr" />
+    <div className="text-center">
+      <Production>
+        <div className="flex">
+          <div>&ndash;</div>
+          <Resource name="power" />
         </div>
-        <div className="description text-center">{top_desc}</div>
-      </div>
+      </Production>
+      <span className="resources">
+        <span className="arrow" />
+        <Resource name="tr" />
+      </span>
+      <div className="description text-center">{top_desc}</div>
     </div>
   ),
   layout: (

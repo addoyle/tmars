@@ -18,11 +18,18 @@ export default new Event({
   emoji: '☄',
   layout: (
     <div className="flex gutter m-top m-bottom">
-      <div className="resources col-1">
-        <div>+ <Param name="temperature" /> <Tile name="ocean" /></div>
-        <div>&ndash; <Resource name="plant" anyone /> <Resource name="plant" anyone /> <Resource name="plant" anyone /></div>
+      <div className="col-1">
+        <div className="resources">
+          +<Param name="temperature" />
+          <Tile name="ocean" />
+        </div>
+        <div className="resources">
+          &ndash;<Resource name="plant" anyone />
+          <Resource name="plant" anyone />
+          <Resource name="plant" anyone />
+        </div>
       </div>
-      <div className="description col-1">{desc}</div>
+      <div className="description col-1 middle">{desc}</div>
     </div>
   )
 });

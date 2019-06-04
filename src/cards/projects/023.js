@@ -25,7 +25,9 @@ export default new Active({
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Tile name="ocean" anyone /> : <Resource name="plant" /> <Resource name="plant" />
+        <Tile name="ocean" anyone />:
+        <Resource name="plant" />
+        <Resource name="plant" />
       </div>
       <div className="description text-center">{top_desc}</div>
     </div>

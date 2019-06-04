@@ -29,7 +29,7 @@ export default new Active({
       <div className="col-1 resources">
         <Tile name="city" />*
       </div>
-      <div className="col-4 description text-center middle">{desc}</div>
+      <div className="col-3 description text-center middle">{desc}</div>
     </div>
   )
 });

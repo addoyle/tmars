@@ -42,7 +42,10 @@ export default new Active({
     <div>
       <div className="center text-center">
         <div className="resources">
-          <MegaCredit value="1" /> <span className="arrow" /> <Tag name="microbe" />*: <Resource name="science" />
+          <MegaCredit value="1" />
+          <span className="arrow" />
+          <Tag name="microbe" />*:
+            <Resource name="science" />
         </div>
         <div className="description text-center">{top_desc}</div>
       </div>

@@ -1,6 +1,5 @@
 import React from 'react';
 import Active from '../../components/Active';
-import VictoryPoint from '../../components/assets/VictoryPoint';
 import Resource from '../../components/assets/Resource';
 import MegaCredit from '../../components/assets/MegaCredit';
 import Tag from '../../components/assets/Tag';
@@ -20,7 +19,12 @@ export default new Active({
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Tag name="space" /> <Tag name="event" /> : <MegaCredit value="3" /> <Resource name="heat" /> <Resource name="heat" /> <Resource name="heat" />
+        <Tag name="space" />
+        <Tag name="event" />:
+        <MegaCredit value="3" />
+        <Resource name="heat" />
+        <Resource name="heat" />
+        <Resource name="heat" />
       </div>
       <div className="description text-center">{top_desc}</div>
     </div>

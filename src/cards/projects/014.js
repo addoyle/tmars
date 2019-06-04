@@ -23,7 +23,9 @@ export default new Active({
     <div>
       <div className="center text-center">
         <div className="resources">
-          <Resource name="power" /> <span className="arrow" /> <Param name="card back" />
+          <Resource name="power" />
+          <span className="arrow" />
+          <Param name="card back" />
         </div>
         <div className="description text-center">{top_desc}</div>
       </div>

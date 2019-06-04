@@ -27,19 +27,21 @@ export default new Automated({
   layout: (
     <div>
       <div className="flex gutter">
-        <div className="col-1 middle">
+        <div className="col-3 middle">
           <div className="resources">
-            <Resource name="plant" /> <Resource name="plant" /> <Resource name="plant" />
+            <Resource name="plant" />
+            <Resource name="plant" />
+            <Resource name="plant" />
           </div>
         </div>
-        <div className="col-1 middle">
+        <div className="col-4 middle">
           <div className="resources">
             <Tile name="city" />
           </div>
         </div>
       </div>
       <div className="flex gutter">
-        <div className="col-2">
+        <div className="col-1">
           <Production>
             <div className="flex">
               <div className="col-1">&ndash;</div>
@@ -51,8 +53,8 @@ export default new Automated({
             </div>
           </Production>
         </div>
-        <div className="col-3">{desc}</div>
-        <div className="col-2 bottom">
+        <div className="col-2">{desc}</div>
+        <div className="col-1 bottom">
           <VictoryPoint><span className="point big">1</span></VictoryPoint>
         </div>
       </div>

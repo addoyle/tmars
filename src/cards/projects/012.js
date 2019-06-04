@@ -27,7 +27,10 @@ export default new Active({
     <div>
       <div className="center text-center">
         <div className="resources">
-          <Resource name="power" /> <span className="arrow" /> <MegaCredit value="1" /> / <Tile name="city" anyone />*
+          <Resource name="power" />
+          <span className="arrow" />
+          <MegaCredit value="1" />/
+          <Tile name="city" anyone />*
         </div>
         <div className="description text-center">{top_desc}</div>
       </div>

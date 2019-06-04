@@ -21,7 +21,9 @@ export default new Active({
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Resource name="titanium" /> <span className="arrow" /> <Resource name="fighter" />
+        <Resource name="titanium" />
+        <span className="arrow" />
+        <Resource name="fighter" />
       </div>
       <div className="description text-center">{top_desc}</div>
     </div>

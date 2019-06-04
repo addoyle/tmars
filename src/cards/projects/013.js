@@ -27,7 +27,9 @@ export default new Active({
     <div>
       <div className="center text-center">
         <div className="resources">
-          <Resource name="steel" /> <span className="arrow" /> <MegaCredit value="5" />
+          <Resource name="steel" />
+          <span className="arrow" />
+          <MegaCredit value="5" />
         </div>
         <div className="description text-center">{top_desc}</div>
       </div>

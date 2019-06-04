@@ -260,6 +260,13 @@ $title-font: 'Prototype', sans-serif;
 
   * {
     vertical-align: middle;
+    margin: .1em;
+
+    &.param.temperature {
+      margin-left: .1em;
+      margin-right: .1em;
+      margin-bottom: .1em;
+    }
   }
 
   > :not(:first-of-type):not(.icon):not(.mc):not(.tile):not(.param) {

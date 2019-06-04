@@ -24,7 +24,10 @@ export default new Automated({
   layout: (
     <div>
       <div className="resources">
-        <Resource name="animal" />* <Resource name="plant" /> <Resource name="plant" /> <Resource name="plant" />
+        <Resource name="animal" />*
+        <Resource name="plant" />
+        <Resource name="plant" />
+        <Resource name="plant" />
       </div>
       <div className="flex gutter">
         <div className="col-1">

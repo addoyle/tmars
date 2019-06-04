@@ -21,7 +21,8 @@ export default new Active({
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Tag name="space" /> : <MegaCredit value="-2" />
+        <Tag name="space" />:
+        <MegaCredit value="-2" />
       </div>
       <div className="description text-center">{top_desc}</div>
     </div>

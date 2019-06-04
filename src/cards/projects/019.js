@@ -18,11 +18,11 @@ export default new Event({
   layout: (
     <div>
       <div className="resources text-center">
-        <span>3 </span>
+        <span>3</span>
         <Resource name="plant" />
-        <span> OR 3 </span>
+        <span>OR 3</span>
         <Resource name="microbe" />*
-        <span> OR 2 </span>
+        <span>OR 2</span>
         <Resource name="animal" />*
       </div>
       <div className="flex gutter">
