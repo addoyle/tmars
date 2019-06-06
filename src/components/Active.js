@@ -8,7 +8,7 @@ export default class Active extends Project {
   render() {
     return (
       <Project {...this.props} type="active">
-        <div className="body">
+        <div className="body top">
           {this.props.activeLayout}
         </div>
         <Art art={this.props.emoji} />

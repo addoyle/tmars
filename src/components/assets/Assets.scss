@@ -146,7 +146,7 @@ $title-font: 'Prototype', sans-serif;
 }
 
 .icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2); }
-.icon.space { @include icon(url('./icons/space.svg'), 26, 0%, .6, false); }
+.icon.space { @include icon(url('./icons/space.svg'), 26, 0%, .6, false, false, 70%); }
 .icon.science { @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%); }
 .icon.earth { @include icon(url('./icons/earth.svg'), 330, 0%, .4, true, 90%, 101%, 10%); }
 .icon.city { @include icon(url('./icons/city.svg'), 330, 0%, .2, true, 80%); }
@@ -184,8 +184,8 @@ $title-font: 'Prototype', sans-serif;
     -webkit-text-stroke: .03em rgba(246,136,7,.8);
   }
 }
-.mc span {
-  font-size: .55em;
+.mc > .value {
+  font-size: .5em;
   color: #222;
 }
 
@@ -193,6 +193,8 @@ $title-font: 'Prototype', sans-serif;
   background: url('./icons/oxygen.svg') no-repeat center/100%;
   height: 1em;
   width: 1em;
+  border-radius: 50%;
+  border: .02em solid #444;
 }
 .temperature {
   background: url('./icons/temperature.svg') no-repeat center/100%;
@@ -253,6 +255,18 @@ $title-font: 'Prototype', sans-serif;
   }
 }
 
+.table {
+  display: table;
+
+  .row {
+    display: table-row;
+
+    .cell {
+      display: table-cell;
+    }
+  }
+}
+
 .resources {
   font-size: 2em;
   font-family: $title-font;
@@ -265,7 +279,8 @@ $title-font: 'Prototype', sans-serif;
     &.param.temperature {
       margin-left: .1em;
       margin-right: .1em;
-      margin-bottom: .1em;
+      margin-bottom: -.1em;
+      margin-top: -.1em;
     }
   }
 
@@ -273,8 +288,12 @@ $title-font: 'Prototype', sans-serif;
     margin-top: .5em;
   }
 
-  > span {
+  > span:not(.arrow) {
     font-size: .7em;
+  }
+
+  .param.oxygen {
+    font-size: 1.4em;
   }
 
   .sup {
@@ -307,6 +326,10 @@ $title-font: 'Prototype', sans-serif;
 
   .icon, .mc {
     margin: .1em;
+  }
+
+  span {
+    font-size: .7em;
   }
 
   &:before {

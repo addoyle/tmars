@@ -7,6 +7,6 @@ const euro = (
 
 export default function MegaCredit(props) {
   return (
-    <div className="mc"><span>{props.value || euro}</span></div>
+    <div className="mc"><span className="value">{props.value || euro}</span></div>
   );
 }
