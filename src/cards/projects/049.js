@@ -1,0 +1,41 @@
+import React from 'react';
+import Active from '../../components/Active';
+import Resource from '../../components/assets/Resource';
+import VictoryPoint from '../../components/assets/VictoryPoint'
+
+const top_desc = 'Action: Add 1 microbe to this card.';
+const desc = '1 VP per 4 microbes on this card.';
+
+export default new Active({
+  number: 49,
+  title: 'Tardigrades',
+  cost: 4,
+  tags: ['microbe'],
+  set: 'corporate',
+  desc,
+  flavor: 'These microscopic creatures can survive freezing, boiling, drying out, heavy radiation, and brute force',
+  clientAction: game => {},
+  serverAction: game => {},
+  emoji: '🐛',
+  activeLayout: (
+    <div>
+      <div className="resources text-center">
+        <span className="arrow" />
+        <Resource name="microbe" />
+      </div>
+      <div className="description text-center">{top_desc}</div>
+    </div>
+  ),
+  layout: (
+    <div className="flex gutter">
+      <div className="col-4 middle description text-center">{desc}</div>
+      <div className="col-1 bottom">
+        <VictoryPoint>
+          <span>
+            <span className="point">1</span>/4<Resource name="microbe" />
+          </span>
+        </VictoryPoint>
+      </div>
+    </div>
+  )
+});

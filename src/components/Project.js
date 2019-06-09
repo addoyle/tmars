@@ -24,7 +24,7 @@ export default class Project extends Card {
         if (res.param === 'oxygen') {
           restriction.push({text: res.value + '%'}, {param: 'oxygen'});
         } else if (res.param === 'temperature') {
-          restriction.push({text: res.value + '°C'}, {param: 'temperature'});
+          restriction.push({text: (res.value > 0 ? '+' : '') + res.value + '°C'}, {param: 'temperature'});
         }
       } else {
         const prepareItem = (key) => {

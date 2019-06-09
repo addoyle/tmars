@@ -24,7 +24,7 @@ export default new Automated({
         <div className="resources text-center">
           <Production><Resource name="titanium" /></Production>
           <Resource name="blank" />
-          <Tile name="city" />*
+          <Tile name="city" asterisk />
         </div>
         <div className="description text-center">{desc}</div>
       </div>

@@ -37,7 +37,7 @@ export default new Automated({
         </div>
       </div>
       <div className="resources">
-        <Tile name="city" />*
+        <Tile name="city" asterisk />
       </div>
     </div>
   )

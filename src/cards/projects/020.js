@@ -27,7 +27,7 @@ export default new Active({
   layout: (
     <div className="flex">
       <div className="col-1 resources">
-        <Tile name="city" />*
+        <Tile name="city" asterisk />
       </div>
       <div className="col-3 description text-center middle">{desc}</div>
     </div>

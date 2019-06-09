@@ -30,7 +30,7 @@ export default new Active({
           <Resource name="power" />
           <span className="arrow" />
           <MegaCredit value="1" />/
-          <Tile name="city" anyone />*
+          <Tile name="city" anyone asterisk />
         </div>
         <div className="description text-center">{top_desc}</div>
       </div>

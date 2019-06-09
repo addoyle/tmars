@@ -1,12 +1,17 @@
 $title-font: 'Prototype', sans-serif;
 
-@mixin icon($img, $hue, $sat, $tint, $bg:true, $l:false, $bgsize:85%, $gstop:60%) {
+@mixin icon($img, $hue, $sat, $tint, $bg:true, $l:50%, $bgsize:85%, $gstop:60%) {
+
   background: linear-gradient(hsl($hue,$sat,if($l,$l,45%)) $gstop, hsl($hue,$sat,22%));
 
   &:before {
     @if $bg {
-      background: $img no-repeat center/$bgsize,
-        radial-gradient(ellipse at center,hsla($hue,$sat,if($l,$l + 26%,76%),1) 0%,hsla($hue,$sat,if($l,$l,50%),1) 100%);
+      @if ($l) {
+        background: $img no-repeat center/$bgsize,
+          radial-gradient(ellipse at center,hsla($hue,$sat,$l + 26%,1) 0%,hsla($hue,$sat,$l,1) 100%);
+      } @else {
+        background: $img no-repeat center/$bgsize;
+      }
     } @else {
       background: radial-gradient(ellipse at center,hsla($hue,$sat,if($l,$l + 26%,66%),1) 0%,hsla($hue,$sat,if($l,$l,50%),1) 100%);
     }
@@ -32,7 +37,7 @@ $title-font: 'Prototype', sans-serif;
     margin-top: -.3em;
     margin-bottom: -.3em;
     height: 1.6em;
-    width: .48em;
+    width: .5em;
   }
 
   &.card {
@@ -78,6 +83,10 @@ $title-font: 'Prototype', sans-serif;
     stroke-width: 30px;
   }
 
+  .asterisk {
+    font-size: 350px;
+  }
+
   &.anyone {
     .base {
       stroke: #C02B39;
@@ -116,6 +125,18 @@ $title-font: 'Prototype', sans-serif;
       }
     }
   }
+
+  &.special {
+    .outline-color {
+      stroke: #834B29;
+      fill: url('#special-gradient');
+    }
+
+    .icon-text {
+      font-size: 600px;
+      font-weight: bold;
+    }
+  }
 }
 
 .icon.tag, .icon.resource, .icon.mc {
@@ -146,19 +167,19 @@ $title-font: 'Prototype', sans-serif;
 }
 
 .icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2); }
-.icon.space { @include icon(url('./icons/space.svg'), 26, 0%, .6, false, false, 70%); }
+.icon.space { @include icon(url('./icons/space.svg'), 26, 0%, .6, false, 50%, 70%); }
 .icon.science { @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%); }
 .icon.earth { @include icon(url('./icons/earth.svg'), 330, 0%, .4, true, 90%, 101%, 10%); }
 .icon.city { @include icon(url('./icons/city.svg'), 330, 0%, .2, true, 80%); }
-.icon.animal { @include icon(url('./icons/animal.svg'), 103, 43%, .2, true); }
+.icon.animal { @include icon(url('./icons/animal.svg'), 103, 43%, .2, true, 35%); }
 .icon.event { @include icon(url('./icons/event.svg'), 53, 100%, .1); }
 .icon.jovian { @include icon(url('./icons/jovian.svg'), 330, 0%, .1, true, 90%, 101%, 15%); }
 .icon.microbe { @include icon(url('./icons/microbe.svg'), 67, 62%, .05); }
-.icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .1, false, 40%); }
+.icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .1, false, false); }
 .icon.plant { @include icon(url('./icons/plant.svg'), 95, 65%, .1); }
 .icon.titanium { @include icon(url('./icons/titanium.svg'), 26, 0%, .6, false); }
-.icon.heat { @include icon(url('./icons/heat.svg'), 13, 82%, .2); }
-.icon.steel { @include icon(url('./icons/steel.svg'), 30, 59%, .1); }
+.icon.heat { @include icon(url('./icons/heat.svg'), 13, 82%, .2, false, false); }
+.icon.steel { @include icon(url('./icons/steel.svg'), 30, 59%, .1, false, false); }
 .icon.fighter { @include icon(url('./icons/fighter.svg'), 26, 0%, .6, false, 30%); }
 .icon.tr {
   // @include icon(url('./icons/tr.svg'), 17, 90%, .1);
@@ -303,6 +324,7 @@ $title-font: 'Prototype', sans-serif;
 
   .tile {
     font-size: 1.5em;
+    position: relative;
   }
 
   .production {

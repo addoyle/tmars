@@ -3,7 +3,7 @@ import './Assets.scss';
 // <div className={`icon tile ${props.name}`} />
 
 const tiles = {
-  ocean: (
+  ocean: props => (
     <g>
       <defs>
         <radialGradient id="drip-gradient" gradientUnits="userSpaceOnUse" cx="200" cy="139" r="16" gradientTransform="matrix(8.328334, -0.062929, 0.067163, 8.888846, -1462.416382, -964.419189)">
@@ -20,7 +20,7 @@ const tiles = {
       <path className="drip" d="M 216.533 61.976 C 216.533 61.976 110.302 214.682 110.302 281.075 C 110.302 360.748 170.054 397.27 216.533 397.27 C 263.009 397.27 322.763 360.748 322.763 281.075 C 322.763 214.682 216.533 61.976 216.533 61.976 Z" />
     </g>
   ),
-  city: (
+  city: props => (
     <g>
       <defs>
         <radialGradient id="city-gradient" gradientUnits="userSpaceOnUse" cx="216.5" cy="250" r="193.5">
@@ -29,6 +29,20 @@ const tiles = {
         </radialGradient>
       </defs>
       <image href="/icons/city.svg" width="300" height="300" x="64" y="100" />
+    </g>
+  ),
+  greenery: props => (
+    <g />
+  ),
+  special: props => (
+    <g>
+      <defs>
+        <radialGradient id="special-gradient" gradientUnits="userSpaceOnUse" cx="216.5" cy="250" r="193.5">
+          <stop offset="0" style={{stopColor: '#CC9256'}}></stop>
+          <stop offset="1" style={{stopColor: '#A26E3A'}}></stop>
+        </radialGradient>
+      </defs>
+      {props.children}
     </g>
   )
 };
@@ -40,11 +54,12 @@ export default function Tile(props) {
   }
 
   return (
-    <svg viewBox="12 -12 443.012 524" className={`tile ${props.name} ${props.anyone ? 'anyone' : ''}`}>
+    <svg viewBox="12 -12 443.012 524" className={`tile ${props.name} ${props.anyone ? 'anyone' : ''}`} data-icon={props.icon}>
       <path className="base" d="M 216.5 4 L 428.999 127 L 428.999 373 L 216.5 496 L 4.001 373 L 4.001 127 Z"></path>
       <path className="outline-color" d="M 216.5 26 L 410 138 L 410 362 L 216.5 474 L 23 362 L 23 138 Z" />
 
-      {tiles[key]}
+      {tiles[key](props)}
+      {props.asterisk ? (<text x="360" y="240" className="asterisk">*</text>) : ''}
     </svg>
   );
 }
