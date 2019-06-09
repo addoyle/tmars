@@ -20,7 +20,7 @@ export default new Active({
   flavor: 'Lions and tigers and bears, oh my',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '🧸',
+  emoji: '🐻',
   activeLayout: (
     <div>
       <div className="resources text-center">
