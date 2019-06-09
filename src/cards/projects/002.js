@@ -29,7 +29,7 @@ export default new Automated({
     game.activePlayer.production('titanium', 1);
     game.targetPlayer.production('titanium', -1);
   },
-  emoji: '🍪',
+  emoji: '🌘',
   layout: (
     <div className="flex gutter">
       <div className="col-2">
