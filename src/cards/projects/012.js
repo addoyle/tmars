@@ -1,10 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import Resource from '../../components/assets/Resource';
-import MegaCredit from '../../components/assets/MegaCredit';
-import Tile from '../../components/assets/Tile';
-import Tag from '../../components/assets/Tag';
-import VictoryPoint from '../../components/assets/VictoryPoint';
+import Active from '../../client/components/Active';
+import { Resource, MegaCredit, Tile, Tag, VictoryPoint } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Pay 12 M€ to place an ocean tile. TITANIUM MAY BE USED as if playing a space card.';
 const desc = '1 VP for each Jovian tag you have.';

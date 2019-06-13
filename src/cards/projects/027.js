@@ -1,6 +1,6 @@
 import React from 'react';
-import Event from '../../components/Event';
-import VictoryPoint from '../../components/assets/VictoryPoint';
+import Event from '../../client/components/Event';
+import { VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 5 science tags.';
 

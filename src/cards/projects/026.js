@@ -1,9 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import VictoryPoint from '../../components/assets/VictoryPoint';
-import Resource from '../../components/assets/Resource';
-import MegaCredit from '../../components/assets/MegaCredit';
-import Production from '../../components/assets/Production';
+import Automated from '../../client/components/Automated';
+import { VictoryPoint, Resource, MegaCredit, Production } from '../../client/components/assets/Assets';
 
 const desc = 'Requires -12°C or warmer. Add 1 animal TO ANY ANIMAL CARD. Gain 3 plants. Increase your M€ production 2 steps.';
 

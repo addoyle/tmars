@@ -1,7 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import VictoryPoint from '../../components/assets/VictoryPoint';
-import Resource from '../../components/assets/Resource';
+import Active from '../../client/components/Active';
+import { Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Remove 1 animal from any card and add it to this card.';
 const desc = 'Requires 11% oxygen. 1 VP per animal on this card.';

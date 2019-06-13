@@ -1,8 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import VictoryPoint from '../../components/assets/VictoryPoint';
-import Tag from '../../components/assets/Tag';
-import MegaCredit from '../../components/assets/MegaCredit';
+import Active from '../../client/components/Active';
+import { VictoryPoint, Tag, MegaCredit } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When you play a space card, you pay 2 M€ less for it.';
 

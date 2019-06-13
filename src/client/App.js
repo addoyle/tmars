@@ -19,7 +19,7 @@ class App extends Component {
     }
     const promises = [];
 
-    files.forEach(file => promises.push(import('./cards/projects/' + file)));
+    files.forEach(file => promises.push(require('../cards/projects/' + file)));
     Promise.all(promises).then(values => this.setState({ cards: values.map(value => value.default) }));
   }
 

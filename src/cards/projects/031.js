@@ -1,8 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import Resource from '../../components/assets/Resource';
-import MegaCredit from '../../components/assets/MegaCredit';
-import Tag from '../../components/assets/Tag';
+import Active from '../../client/components/Active';
+import { Resource, MegaCredit, Tag } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When you play a space event, you gain 3 M€ and 3 heat.';
 

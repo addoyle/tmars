@@ -1,7 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import Resource from '../../components/assets/Resource';
-import Production from '../../components/assets/Production';
+import Automated from '../../client/components/Automated';
+import { Resource, Production } from '../../client/components/assets/Assets';
 
 const desc = 'It must be -18°C or colder. Increase your plant production 1 step.';
 

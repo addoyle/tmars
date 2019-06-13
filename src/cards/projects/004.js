@@ -1,8 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import Resource from '../../components/assets/Resource';
-import MegaCredit from '../../components/assets/MegaCredit';
-import Production from '../../components/assets/Production';
+import Automated from '../../client/components/Automated';
+import { Resource, MegaCredit, Production } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 3 ocean tiles. Decrease your M€ production 1 step and any heat production 1 step. Increase your plant production 2 steps.';
 

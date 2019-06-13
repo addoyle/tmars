@@ -1,9 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import Resource from '../../components/assets/Resource';
-import Tile from '../../components/assets/Tile';
-import Production from '../../components/assets/Production';
-import MegaCredit from '../../components/assets/MegaCredit';
+import Automated from '../../client/components/Automated';
+import { Resource, Tile, Production, MegaCredit } from '../../client/components/assets/Assets';
 
 const desc = 'Decrease your energy production 1 step and increase your M€ 3 steps. Place a city tile ON THE RESERVED AREA, disregarding normal placement restrictions.';
 

@@ -1,9 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import Resource from '../../components/assets/Resource';
-import Production from '../../components/assets/Production';
-import VictoryPoint from '../../components/assets/VictoryPoint';
-import Tile from '../../components/assets/Tile';
+import Automated from '../../client/components/Automated';
+import { Resource, Production, VictoryPoint, Tile } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your titanium production 1 step and place a city tile ON THE RESERVED AREA.';
 

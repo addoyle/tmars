@@ -1,7 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import Resource from '../../components/assets/Resource';
-import Production from '../../components/assets/Production';
+import Active from '../../client/components/Active';
+import { Resource, Production } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Decrease your Energy production 1 step to increase your terraform rating 1 step.';
 

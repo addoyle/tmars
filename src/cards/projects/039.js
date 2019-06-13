@@ -1,7 +1,6 @@
 import React from 'react';
-import Event from '../../components/Event';
-import Param from '../../components/assets/Param';
-import Resource from '../../components/assets/Resource';
+import Event from '../../client/components/Event';
+import { Resource, Param } from '../../client/components/assets/Assets';
 
 const desc = 'Raise temperature 3 steps and gain 4 steel. Remove up to 8 plants from any player.';
 

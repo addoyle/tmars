@@ -1,7 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import VictoryPoint from '../../components/assets/VictoryPoint';
-import Resource from '../../components/assets/Resource';
+import Active from '../../client/components/Active';
+import { Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Spend 1 titanium to add 1 fighter resource to this card.';
 const desc = '1 VP for each fighter resource on this card.';

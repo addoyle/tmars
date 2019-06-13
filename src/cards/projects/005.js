@@ -1,9 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import Resource from '../../components/assets/Resource';
-import MegaCredit from '../../components/assets/MegaCredit';
-import Tag from '../../components/assets/Tag';
-import VictoryPoint from '../../components/assets/VictoryPoint';
+import Active from '../../client/components/Active';
+import { Resource, MegaCredit, Tag, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Oxygen must be 6% or less. 3 VPs if you have one or more science resources here.';
 const top_desc = 'Action: Spend 1 M€ to reveal and discard the top card of the draw deck. If that card has a microbe tag, add a science resource here.';

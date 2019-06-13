@@ -1,7 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import MegaCredit from '../../components/assets/MegaCredit';
-import Tile from '../../components/assets/Tile';
+import Active from '../../client/components/Active';
+import { MegaCredit, Tile } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When you play a card, you pay 1 M€ less for it.';
 const desc = 'Place a city tile NEXT TO NO OTHER TILE.';

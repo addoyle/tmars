@@ -1,7 +1,6 @@
 import React from 'react';
-import Event from '../../components/Event';
-import Resource from '../../components/assets/Resource';
-import Param from '../../components/assets/Param';
+import Event from '../../client/components/Event';
+import { Resource, Param } from '../../client/components/assets/Assets';
 
 const desc = 'Raise temperature 1 step and gain 2 titanium. Remove up to 3 plants from any player.';
 

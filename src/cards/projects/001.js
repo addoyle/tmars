@@ -1,6 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import VictoryPoint from '../../components/assets/VictoryPoint';
+import Automated from '../../client/components/Automated';
+import { VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Oxygen must be 5% or less.';
 

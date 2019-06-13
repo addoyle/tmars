@@ -1,8 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import Tile from '../../components/assets/Tile';
-import VictoryPoint from '../../components/assets/VictoryPoint';
-import MegaCredit from '../../components/assets/MegaCredit';
+import Active from '../../client/components/Active';
+import { Tile, VictoryPoint, MegaCredit } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When any city tile is placed, gain 2 M€';
 

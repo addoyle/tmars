@@ -1,8 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import Resource from '../../components/assets/Resource';
-import Param from '../../components/assets/Param';
-import Production from '../../components/assets/Production';
+import Automated from '../../client/components/Automated';
+import { Resource, Param, Production } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your energy production 1 step. Increase temperature 1 step.';
 

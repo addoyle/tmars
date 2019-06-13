@@ -1,7 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import Tile from '../../components/assets/Tile';
-import Resource from '../../components/assets/Resource';
+import Active from '../../client/components/Active';
+import { Resource, Tile } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When anyone places an ocean tile, gain 2 plants.';
 const desc = 'It must be -12°C or colder to play. Gain 1 plant.';

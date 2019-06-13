@@ -1,9 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import MegaCredit from '../../components/assets/MegaCredit';
-import Tile from '../../components/assets/Tile';
-import Resource from '../../components/assets/Resource';
-import Production from '../../components/assets/Production';
+import Automated from '../../client/components/Automated';
+import { MegaCredit, Tile, Resource, Production } from '../../client/components/assets/Assets';
 
 const desc = 'Place an ocean tile. Decrease your M€ prodution 2 steps and increase your heat production 3 steps.';
 

@@ -50,6 +50,10 @@
     color: white;
     text-shadow: 0 .05em 0 black;
 
+    &:after {
+      font-size: .9em;
+    }
+
     &.corporate {
       background-color: red;
 

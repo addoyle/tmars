@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../components/Active';
+import Active from '../../client/components/Active';
 
 const top_desc = 'ACTION: LOOK AT THE TOP CARD AND EITHER BUY IT OR DISCARD IT.';
 

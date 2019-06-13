@@ -1,8 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import Resource from '../../components/assets/Resource';
-import Production from '../../components/assets/Production'
-import VictoryPoint from '../../components/assets/VictoryPoint'
+import Active from '../../client/components/Active';
+import { Resource, Production, VictoryPoint } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Add 1 animal to this card.'
 const desc = 'Requires +2°C or warmer. Decrease any plant production 1 step. 1 VP for each animal on this card.';

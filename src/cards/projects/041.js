@@ -1,9 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import VictoryPoint from '../../components/assets/VictoryPoint';
-import Resource from '../../components/assets/Resource';
-import Production from '../../components/assets/Production';
-import MegaCredit from '../../components/assets/MegaCredit';
+import Automated from '../../client/components/Automated';
+import { Resource, Production, MegaCredit, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Decrease your plant production 1 step and increase your M€ production 4 steps.';
 

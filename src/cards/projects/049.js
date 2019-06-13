@@ -1,7 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import Resource from '../../components/assets/Resource';
-import VictoryPoint from '../../components/assets/VictoryPoint'
+import Active from '../../client/components/Active';
+import { Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Add 1 microbe to this card.';
 const desc = '1 VP per 4 microbes on this card.';

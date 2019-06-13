@@ -1,7 +1,6 @@
 import React from 'react';
-import Event from '../../components/Event';
-import Resource from '../../components/assets/Resource';
-import Tile from '../../components/assets/Tile';
+import Event from '../../client/components/Event';
+import { Resource, Tile } from '../../client/components/assets/Assets';
 
 const desc = 'Gain 3 plants, or add 3 microbes or 2 animals to ANOTHER card. Place an ocean tile.';
 

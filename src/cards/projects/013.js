@@ -1,9 +1,6 @@
 import React from 'react';
-import Active from '../../components/Active';
-import Resource from '../../components/assets/Resource';
-import MegaCredit from '../../components/assets/MegaCredit';
-import VictoryPoint from '../../components/assets/VictoryPoint';
-import Production from '../../components/assets/Production';
+import Active from '../../client/components/Active';
+import { Resource, MegaCredit, VictoryPoint, Production } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Spend 1 steel to gain 5 M€';
 const desc = 'Increase your titanium production 1 step.';

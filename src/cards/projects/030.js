@@ -1,8 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import MegaCredit from '../../components/assets/MegaCredit';
-import Resource from '../../components/assets/Resource';
-import Production from '../../components/assets/Production';
+import Automated from '../../client/components/Automated';
+import { Resource, Production, MegaCredit } from '../../client/components/assets/Assets';
 
 const desc = 'Decrease your M€ production 2 steps and increase your heat production and energy production 2 steps each.';
 

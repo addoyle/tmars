@@ -1,9 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import Resource from '../../components/assets/Resource';
-import Production from '../../components/assets/Production';
-import Tile from '../../components/assets/Tile';
-import MegaCredit from '../../components/assets/MegaCredit';
+import Automated from '../../client/components/Automated';
+import { Resource, Production, Tile, MegaCredit } from '../../client/components/assets/Assets';
 
 const desc = 'Oxygen must be 9% or less. Place a city tile. Decrease your energy production 1 step and increase your M€ production 3 steps.';
 

@@ -1,9 +1,6 @@
 import React from 'react';
-import Automated from '../../components/Automated';
-import VictoryPoint from '../../components/assets/VictoryPoint';
-import Production from '../../components/assets/Production'
-import MegaCredit from '../../components/assets/MegaCredit';
-import Tile from '../../components/assets/Tile';
+import Automated from '../../client/components/Automated';
+import { VictoryPoint, Production, MegaCredit, Tile } from '../../client/components/assets/Assets';
 
 const desc = 'Oxygen must be 4% or less. Place this tile NEXT TO NO OTHER TILE. Increase your M€ production 1 step.';
 
