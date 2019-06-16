@@ -12,15 +12,20 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const files = [];
-    for (var i = 1; i <= 52; i++) {
-      const num = i.toString();
-      files.push('0'.repeat(3 - num.length) + num);
-    }
+    const files = ['000'];
+    // for (var i = 1; i <= 52; i++) {
+    // for (var i = 0; i <= 0; i++) {
+    //   const num = i.toString();
+    //   files.push('0'.repeat(3 - num.length) + num);
+    // }
     const promises = [];
 
-    files.forEach(file => promises.push(require('../cards/projects/' + file)));
-    Promise.all(promises).then(values => this.setState({ cards: values.map(value => value.default) }));
+    // files.forEach(file => promises.push(require('../cards/projects/' + file)));
+    files.forEach(file => promises.push(require('../cards/corps/' + file)));
+    Promise.all(promises).then(values => {
+      console.log(values);
+      this.setState({ cards: values.map(value => value.default) });
+    });
   }
 
 

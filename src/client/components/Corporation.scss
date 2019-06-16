@@ -1,0 +1,26 @@
+$title-font: 'Prototype', sans-serif;
+
+.corp {
+  border-radius: .08em;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  overflow: hidden;
+  border: .003em solid black;
+  box-shadow: 0 0 0 .016em #999, 0 0 0 .019em #000;
+
+  &:before {
+    content: 'CORPORATION';
+    font-size: .04em;
+    font-family: $title-font;
+    margin: -.5em auto 0;
+    background: #FDBC2D;
+  }
+
+  .title, .separator {
+    font-family: $title-font;
+    font-size: .05em;
+    text-align: center;
+  }
+}
