@@ -6,9 +6,9 @@ $title-font: 'Prototype', sans-serif;
   width: 100%;
   display: flex;
   flex-flow: column;
-  overflow: hidden;
   border: .003em solid black;
   box-shadow: 0 0 0 .016em #999, 0 0 0 .019em #000;
+  background: repeating-linear-gradient(90deg, #444, #eee 10%, #444 20%);
 
   &:before {
     content: 'CORPORATION';
@@ -16,11 +16,42 @@ $title-font: 'Prototype', sans-serif;
     font-family: $title-font;
     margin: -.5em auto 0;
     background: #FDBC2D;
+    padding: .05em 1em;
+    border: 1px solid black;
+    border-bottom-left-radius: 3em;
+    border-bottom-right-radius: 3em;
+    box-shadow: 0 .1em .05em rgba(255,255,255,.5) inset, 0 -.1em .05em hsla(41,98%,8%,.5) inset;
   }
 
-  .title, .separator {
+  .title {
     font-family: $title-font;
-    font-size: .05em;
+    font-size: .1em;
     text-align: center;
+  }
+
+  .flavor {
+    font-size: .05em;
+    font-style: italic;
+    text-align: center;
+    line-height: .9;
+    width: 100%;
+    margin: .3em 0;
+    padding-top: .3em;
+  }
+
+  .body {
+    height: 100%;
+    font-size: .05em;
+
+    .description {
+      font-size: .8em;
+
+      &:before {
+        content: '(';
+      }
+      &:after {
+        content: ')';
+      }
+    }
   }
 }
