@@ -3,6 +3,7 @@ import Corporation from '../../client/components/Corporation';
 import { MegaCredit, Resource, Tile, Production } from '../../client/components/assets/Assets';
 
 const desc = 'You start with 2 plant production, 3 plants, and 36 M€.';
+const effectDesc = 'Effect: You may always pay 7 plants, instead of 8, to place 1 greenery.';
 
 export default new Corporation({
   title: 'Ecoline',
@@ -14,7 +15,6 @@ export default new Corporation({
     letterSpacing: '.2em',
     margin: '.3em'
   },
-  tags: ['plant'],
   starting: {
     mc: 36,
     resources: {
@@ -24,8 +24,9 @@ export default new Corporation({
       plant: 2
     }
   },
-  tags: [],
+  tags: ['plant'],
   desc,
+  effectDesc,
   flavor: 'Having developed a fast-growing lichen suitable for early terraforming, this corporation\'s ambition is to lead the taming of the planets, despite its relatively small size.',
   layout: (
     <div className="flex gutter">
@@ -49,6 +50,13 @@ export default new Corporation({
       <div className="col-1 middle">
         <div className="effect">
           <div className="effect-title">Effect</div>
+          <div className="resources">
+            <span>7</span>
+            <Resource name="plant" />
+            <span className="arrow" />
+            <Tile name="city" />
+          </div>
+          <div className="description">{effectDesc}</div>
         </div>
       </div>
     </div>

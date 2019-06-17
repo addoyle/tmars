@@ -13,7 +13,7 @@ class App extends Component {
 
   componentDidMount() {
     // const files = [];
-    const files = ['002'];
+    const files = ['000', '001', '002'];
     // for (var i = 1; i <= 52; i++) {
     //   const num = i.toString();
     //   files.push('0'.repeat(3 - num.length) + num);

@@ -1,6 +1,18 @@
 $title-font: 'Prototype', sans-serif;
 
-.corp {
+.card.corp {
+  .tags {
+    margin-right: .34em;
+    padding-right: 0;
+    padding-top: .11em;
+    padding-left: .28em;
+    background: url('./assets/texture/tag-shelf.svg') no-repeat top left/2.4em 1.1em;
+    overflow: hidden;
+    border-top-right-radius: .73em;
+  }
+}
+
+.corp-body {
   border-radius: .08em;
   height: 100%;
   width: 100%;
@@ -43,6 +55,7 @@ $title-font: 'Prototype', sans-serif;
   .body {
     height: 100%;
     font-size: .05em;
+    padding: .5em;
 
     .description {
       font-size: .8em;
@@ -52,6 +65,37 @@ $title-font: 'Prototype', sans-serif;
       }
       &:after {
         content: ')';
+      }
+    }
+
+    .gutter > * {
+      margin-left: .5em;
+      &:first-of-type {
+        margin-left: inherit;
+      }
+    }
+
+    .effect {
+      border: .2em solid #444;
+      background: linear-gradient(120deg, #eee 0%, #bbb 10%, #eee 30%, #bbb 50%, #bbb 70%, #eee 90%, #999 100%);
+      padding: .2em;
+      text-align: center;
+
+      .resources {
+        font-size: 1.7em;
+      }
+
+      .effect-title {
+        font-size: .8em;
+        display: inline-block;
+        text-align: center;
+        font-family: $title-font;
+        text-transform: uppercase;
+        box-shadow: 0 .2em 0 0 rgba(255,255,255,.2) inset, 0 .1em 0 0 rgba(0,0,0,.5) inset, 0 -.2em .1em 0 rgba(0,0,0,.7) inset;
+        border: .1em solid #999;
+        padding: .1em 3em;
+        background:
+          linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
       }
     }
   }

@@ -1,6 +1,6 @@
 import React from 'react';
 import Corporation from '../../client/components/Corporation';
-import { MegaCredit, Param } from '../../client/components/assets/Assets';
+import { MegaCredit, Param, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'You start with 42 M€. INSTEAD OF PARTICIPATING IN THE FIRST RESEARCH PHASE, DRAW 10 CARDS FOR FREE.';
 
@@ -17,8 +17,9 @@ export default new Corporation({
     <div>
       <div className="resources text-center">
         <MegaCredit value="42" />
+        <Resource name="blank" />
         <span>10</span>
-        <Param name="card" />*
+        <Param name="card back" />*
       </div>
       <div className="description text-center">{desc}</div>
     </div>
