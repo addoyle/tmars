@@ -11,7 +11,8 @@ export default new Corporation({
     textTransform: 'uppercase',
     color: '#72d22d',
     '-webkit-text-stroke': '.05em #000',
-    letterSpacing: '.2em'
+    letterSpacing: '.2em',
+    margin: '.3em'
   },
   tags: ['plant'],
   starting: {

@@ -8,18 +8,19 @@ $title-font: 'Prototype', sans-serif;
   flex-flow: column;
   border: .003em solid black;
   box-shadow: 0 0 0 .016em #999, 0 0 0 .019em #000;
-  background: repeating-linear-gradient(90deg, #444, #eee 10%, #444 20%);
+  background: repeating-linear-gradient(0, #ddd, #fff 15%, #fff 25%, #ddd 40%, #ddd 55%);
 
   &:before {
     content: 'CORPORATION';
-    font-size: .04em;
+    font-size: .035em;
     font-family: $title-font;
-    margin: -.5em auto 0;
+    margin: -.55em auto 0;
     background: #FDBC2D;
     padding: .05em 1em;
     border: 1px solid black;
-    border-bottom-left-radius: 3em;
-    border-bottom-right-radius: 3em;
+    letter-spacing: .2em;
+    border-bottom-left-radius: 1.5em 3em;
+    border-bottom-right-radius: 1.5em 3em;
     box-shadow: 0 .1em .05em rgba(255,255,255,.5) inset, 0 -.1em .05em hsla(41,98%,8%,.5) inset;
   }
 
