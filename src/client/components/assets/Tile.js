@@ -1,6 +1,5 @@
 import React from 'react';
 import './Assets.scss';
-// <div className={`icon tile ${props.name}`} />
 
 const tiles = {
   ocean: props => (
@@ -32,7 +31,19 @@ const tiles = {
     </g>
   ),
   greenery: props => (
-    <g />
+    <g>
+      <defs>
+        <radialGradient id="tree-gradient" gradientUnits="userSpaceOnUse" cx="308.568" cy="271.652" r="24.363" gradientTransform="matrix(1, 0, 0, 1, -283.205505, -238.336802)">
+          <stop offset="0" style={{stopColor: 'rgb(24, 84, 42)'}}></stop>
+          <stop offset="1" style={{stopColor: 'rgb(32, 106, 48)'}}></stop>
+        </radialGradient>
+        <radialGradient id="greenery-gradient" gradientUnits="userSpaceOnUse" cx="216.5" cy="250" r="193.5">
+          <stop offset="0" style={{stopColor: 'hsl(95, 65%, 50%)'}}></stop>
+          <stop offset="1" style={{stopColor: 'hsl(95, 65%, 40%)'}}></stop>
+        </radialGradient>
+      </defs>
+      <path transform="matrix(.9,0,0,.9,110,110)" className="tree" d="M 106.112 296 C 115.457 250.824 119.006 148.444 90.908 153.748 C 84.068 162.733 27.831 186.879 5.78 143.566 C -2.281 127.73 6.799 102.669 38.167 98.879 C 30.993 23.433 92.486 28.075 98.894 44.559 C 105.054 -36.118 220.307 10.213 203.207 101.926 C 238.623 113.201 234.695 188.044 144.835 163.26 C 135.179 194.181 147.111 278.917 159.137 293.82 L 106.112 296 Z"></path>
+    </g>
   ),
   special: props => (
     <g>
@@ -60,6 +71,12 @@ export default function Tile(props) {
 
       {tiles[key](props)}
       {props.asterisk ? (<text x="360" y="240" className="asterisk">*</text>) : ''}
+      {props.oxygen ? (
+        <g className="oxygen">
+          <text x="290" y="160">+</text>
+          <image href="/icons/oxygen.svg" width="140" height="140" x="355" y="60" />
+        </g>
+      ) : ''}
     </svg>
   );
 }

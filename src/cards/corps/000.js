@@ -6,6 +6,9 @@ const desc = 'You start with 42 M€. INSTEAD OF PARTICIPATING IN THE FIRST RESE
 
 export default new Corporation({
   title: 'Beginner Corporation',
+  titleStyle: {
+    margin: '.7em auto',
+  },
   starting: {
     mc: 42,
     cards: 10

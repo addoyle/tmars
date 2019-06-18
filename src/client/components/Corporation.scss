@@ -48,8 +48,8 @@ $title-font: 'Prototype', sans-serif;
     text-align: center;
     line-height: .9;
     width: 100%;
-    margin: .3em 0;
-    padding-top: .3em;
+    margin: 0 0 .3em;
+    padding: 0 .3em .3em;
   }
 
   .body {
@@ -81,7 +81,7 @@ $title-font: 'Prototype', sans-serif;
       padding: .2em;
       text-align: center;
 
-      .resources {
+      .resources, .production {
         font-size: 1.7em;
       }
 

@@ -126,6 +126,23 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
+  &.greenery {
+    .outline-color {
+      stroke: #59B22C;
+      fill: url('#greenery-gradient');
+    }
+
+    .tree {
+      stroke-width: 5px;
+      stroke: #002c00;
+      fill: url('#tree-gradient');
+    }
+
+    .oxygen {
+      font-size: 100px;
+    }
+  }
+
   &.special {
     .outline-color {
       stroke: #834B29;
@@ -166,7 +183,7 @@ $title-font: 'Prototype', sans-serif;
   }
 }
 
-.icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2); }
+.icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2, true, false); }
 .icon.space { @include icon(url('./icons/space.svg'), 26, 0%, .6, false, 50%, 70%); }
 .icon.science { @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%); }
 .icon.earth { @include icon(url('./icons/earth.svg'), 330, 0%, .4, true, 90%, 101%, 10%); }

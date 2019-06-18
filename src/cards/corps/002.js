@@ -54,7 +54,7 @@ export default new Corporation({
             <span>7</span>
             <Resource name="plant" />
             <span className="arrow" />
-            <Tile name="city" />
+            <Tile name="greenery" oxygen />
           </div>
           <div className="description">{effectDesc}</div>
         </div>

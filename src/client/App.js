@@ -12,12 +12,12 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // const files = [];
-    const files = ['000', '001', '002'];
+    const files = [];
     // for (var i = 1; i <= 52; i++) {
-    //   const num = i.toString();
-    //   files.push('0'.repeat(3 - num.length) + num);
-    // }
+    for (var i = 0; i <= 5; i++) {
+      const num = i.toString();
+      files.push('0'.repeat(3 - num.length) + num);
+    }
     const promises = [];
 
     // files.forEach(file => promises.push(require('../cards/projects/' + file)));

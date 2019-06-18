@@ -14,7 +14,7 @@ export default new Corporation({
     '-webkit-text-stroke': '.04em #000',
     fontFamily: 'Helvetica, sans-serif',
     letterSpacing: '.1em',
-    margin: '.05em auto 0 auto',
+    margin: '.07em auto',
     textShadow: '.1em .1em .3em rgba(0,0,0,.5)',
     padding: '.2em',
     border: '.05em solid purple',
@@ -31,7 +31,7 @@ export default new Corporation({
     <div className="flex gutter">
       <div className="col-1 middle">
         <div className="resources text-center">
-          <MegaCredit value="36" />
+          <MegaCredit value="57" />
         </div>
         <div className="description text-center">{desc}</div>
       </div>
@@ -40,8 +40,7 @@ export default new Corporation({
           <div className="effect-title">Effect</div>
           <div className="resources">
             <span>&ndash;</span>
-            <MegaCredit value="20" />:
-            <MegaCredit value="4" />
+            <MegaCredit value="20" /> : <MegaCredit value="4" />
           </div>
           <div className="description">{effectDesc}</div>
         </div>
