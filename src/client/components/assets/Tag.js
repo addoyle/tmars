@@ -3,6 +3,6 @@ import './Assets.scss';
 
 export default function Tag(props) {
   return (
-    <div className={`icon tag ${props.name}`} />
+    <div className={`icon tag ${props.name} ${props.anyone ? 'anyone' : ''}`} />
   );
 }

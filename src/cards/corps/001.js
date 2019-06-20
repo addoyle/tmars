@@ -6,7 +6,7 @@ const desc = 'You start with 57 M€.';
 const effectDesc = 'Effect: After you pay for a card or standard project with a basic cost of 20 M€ or more, you gain 4 M€.';
 
 export default new Corporation({
-  title: 'Credicor',
+  title: 'CrediCor',
   titleStyle: {
     fontSize: '.12em',
     textTransform: 'lowercase',
@@ -18,7 +18,8 @@ export default new Corporation({
     textShadow: '.1em .1em .3em rgba(0,0,0,.5)',
     padding: '.2em',
     border: '.05em solid purple',
-    width: '5em'
+    borderLeftWidth: '0',
+    boxShadow: '-.1em 0 0 white, -.6em 0 0 purple'
   },
   starting: {
     mc: 57

@@ -40,10 +40,43 @@ $title-font: 'Prototype', sans-serif;
     font-family: $title-font;
     font-size: .1em;
     text-align: center;
+
+    &.unmi {
+      font-size: .05em;
+      text-transform: uppercase;
+      margin: 0.3em 1em -12.5em 1.5em;
+      padding: 1em;
+      background: dodgerblue;
+      color: white;
+      width: 7em;
+      font-family: sans-serif;
+      text-align: center;
+      text-justify: distribute;
+      box-shadow: .3em .5em .5em rgba(0,0,0,.5);
+      position: relative;
+
+      &:before {
+        content: '°';
+        font-size: 18em;
+        display: block;
+        text-align: center;
+        margin: -.25em -.2em -.6em;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -.7em;
+        border-bottom: .7em solid transparent;
+        border-left: 3.5em solid dodgerblue;
+        border-right: 3.5em solid dodgerblue;
+      }
+    }
   }
 
   .flavor {
-    font-size: .05em;
+    font-size: .045em;
     font-style: italic;
     text-align: center;
     line-height: .9;
@@ -83,6 +116,11 @@ $title-font: 'Prototype', sans-serif;
 
       .resources, .production {
         font-size: 1.7em;
+      }
+
+      .production {
+        height: fit-content;
+        align-self: center;
       }
 
       .effect-title {
