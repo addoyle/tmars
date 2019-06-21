@@ -14,7 +14,7 @@ export default new Corporation({
     padding: '.2em 2.4em',
     color: 'white',
     background: 'indigo',
-    border: '.05em solid white',
+    border: '.1em solid white',
     boxShadow: '0 0 0 .03em black, 0 .5em .5em rgba(0,0,0,.5)',
     borderRadius: '100%'
   },
