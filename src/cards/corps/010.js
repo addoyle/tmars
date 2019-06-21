@@ -3,7 +3,7 @@ import Corporation from '../../client/components/Corporation';
 import { MegaCredit, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'You start with 40 M€.';
-const effectDesc = 'Action: If your Terraforming Rating was raised this generation, you may pay 3 M€ to raise it 1 step more.';
+const actionDesc = 'Action: If your Terraforming Rating was raised this generation, you may pay 3 M€ to raise it 1 step more.';
 
 export default new Corporation({
   title: 'United Nations Mars Initiative',
@@ -16,7 +16,7 @@ export default new Corporation({
   },
   tags: ['earth'],
   desc,
-  effectDesc,
+  actionDesc,
   flavor: 'UNMI is the organization carrying out the World Government\'s own terraforming projects. After the terraforming announcement, the UNMI got competition from different corporations, but is still a major force behind Mars\' development.',
   layout: (
     <div className="flex gutter">
@@ -32,7 +32,7 @@ export default new Corporation({
           <div className="col-2" />
         </div>
         <div className="effect">
-          <div className="effect-title">Effect</div>
+          <div className="effect-title">Action</div>
           <div className="flex center">
             <div className="resources">
               <MegaCredit value="3" />
@@ -40,7 +40,7 @@ export default new Corporation({
               <Resource name="tr" />
             </div>
           </div>
-          <div className="description">{effectDesc}</div>
+          <div className="description">{actionDesc}</div>
         </div>
       </div>
     </div>

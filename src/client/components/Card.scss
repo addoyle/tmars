@@ -36,7 +36,7 @@
   }
 
   .set {
-    font-size: .038em;
+    font-size: .034em;
     position: absolute;
     display: block;
     left: .55em;
@@ -46,12 +46,13 @@
     text-align: center;
     border-radius: 50%;
     border: .05em solid black;
-    box-shadow: 0 0 0 .1em white, 0 .05em .05em white inset;
+    box-shadow: 0 0 0 .1em white, 0 .1em .1em white inset;
     color: white;
     text-shadow: 0 .05em 0 black;
 
     &:after {
       font-size: .9em;
+      line-height: 1;
     }
 
     &.corporate {
@@ -59,6 +60,18 @@
 
       &:after {
         content: '\25B2';
+      }
+    }
+
+    &.promo {
+      background-color: black;
+      border-radius: 0;
+      width: 1.2em;
+      height: 1.2em;
+
+      &:after {
+        font-size: .7em;
+        content: '\2B24';
       }
     }
   }
