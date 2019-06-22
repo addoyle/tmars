@@ -47,6 +47,17 @@ $title-font: 'Prototype', sans-serif;
   }
 }
 
+.param {
+  position: relative;
+
+  .icon {
+    position: absolute;
+    font-size: .7em;
+    top: -.5em;
+    right: -.5em;
+  }
+}
+
 .icon {
   position: relative;
 
@@ -160,7 +171,6 @@ $title-font: 'Prototype', sans-serif;
   border: calc(.005em + 1px) solid #000;
 
   &.anyone {
-    // outline: calc(.05em + 1px) solid #C02B39;
     box-shadow: 0 0 0 calc(.05em + 1px) #C02B39;
   }
 
@@ -214,6 +224,12 @@ $title-font: 'Prototype', sans-serif;
   background: url('./icons/mc.svg') no-repeat center/100%;
   font-family: $title-font;
 
+  &.anyone {
+    background-color: #C02B39;
+    border: .1em solid #C02B39;
+    border-radius: .3em;
+  }
+
   .euro {
     font-weight: bold;
     color: rgba(246,136,7,.6);
@@ -223,10 +239,11 @@ $title-font: 'Prototype', sans-serif;
     font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-text-stroke: .03em rgba(246,136,7,.8);
   }
-}
-.mc > .value {
-  font-size: .5em;
-  color: #222;
+
+  > .value {
+    font-size: .5em;
+    color: #222;
+  }
 }
 
 .oxygen {
@@ -334,7 +351,7 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
-  > :not(:first-of-type):not(.icon):not(.mc):not(.tile):not(.param) {
+  > :not(:first-of-type):not(.icon):not(.mc):not(.tile):not(.param):not(.production) {
     margin-top: .5em;
   }
 
@@ -368,6 +385,7 @@ $title-font: 'Prototype', sans-serif;
   position: relative;
   display: inline-block;
   font-size: 2em;
+  min-height: 1.6em;
 
   * {
     z-index: 1;

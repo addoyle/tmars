@@ -28,6 +28,7 @@ export default new Corporation({
   tags: [],
   set: 'promo',
   desc,
+  actionDesc,
   effectDesc,
   flavor: 'Several early settlements came together in the Arcadian Communities. This ever expanding society is investing in terraforming their new home...',
   layout: (
@@ -35,7 +36,7 @@ export default new Corporation({
       <div className="col-1 bottom">
         <div className="flex">
           <div className="resources middle center">
-            <MegaCredit value="42" />
+            <MegaCredit value="40" />
           </div>
           <div className="resources middle center">
             <span>10</span><Resource name="steel" />
