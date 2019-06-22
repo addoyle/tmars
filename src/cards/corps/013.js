@@ -11,7 +11,7 @@ export default new Corporation({
   titleStyle: {
     fontSize: '.07em',
     textTransform: 'uppercase',
-    margin: '.3em 0 -4em 1em',
+    margin: '.3em 0 -3em 1em',
     textAlign: 'center',
     background: 'linear-gradient(to right, #ccc 0%, #fff 50%, #ccc 100%)',
     border: '.05em solid black',

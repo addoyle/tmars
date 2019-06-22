@@ -10,9 +10,9 @@ export default new Corporation({
   titleStyle: {
     fontSize: '.05em',
     textTransform: 'uppercase',
-    margin: '1.5em .3em',
+    margin: '2em auto 1.5em',
     transform: 'scale(1.4,1)',
-    paddingRight: '2em'
+    borderBottom: '.3em solid red'
   },
   starting: {
     mc: 30,

@@ -11,7 +11,7 @@ export default new Corporation({
   titleStyle: {
     fontSize: '.12em',
     textTransform: 'uppercase',
-    margin: '.4em',
+    margin: '.5em',
     fontFamily: 'serif'
   },
   starting: {

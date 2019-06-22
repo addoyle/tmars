@@ -7,20 +7,7 @@ const effectDesc = 'Effect: After you pay for a card or standard project with a 
 
 export default new Corporation({
   title: 'CrediCor',
-  titleStyle: {
-    fontSize: '.12em',
-    textTransform: 'lowercase',
-    color: '#fff',
-    '-webkit-text-stroke': '.04em #000',
-    fontFamily: 'Helvetica, sans-serif',
-    letterSpacing: '.1em',
-    margin: '.07em auto',
-    textShadow: '.1em .1em .3em rgba(0,0,0,.5)',
-    padding: '.2em',
-    border: '.05em solid purple',
-    borderLeftWidth: '0',
-    boxShadow: '-.1em 0 0 white, -.6em 0 0 purple'
-  },
+  titleClass: 'credicor',
   starting: {
     mc: 57
   },

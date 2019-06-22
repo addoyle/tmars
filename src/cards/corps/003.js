@@ -12,7 +12,7 @@ export default new Corporation({
     textTransform: 'lowercase',
     color: '#222',
     letterSpacing: '.2em',
-    margin: '.3em .3em .9em',
+    margin: '.5em .3em 1em',
     fontWeight: 'bold',
     boxShadow: '0 .1em 0 black, 0 .4em 0 yellow, 0 .5em 0 black',
     lineHeight: .8

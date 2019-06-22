@@ -9,7 +9,7 @@ export default new Corporation({
   title: 'Teractor',
   titleStyle: {
     textTransform: 'uppercase',
-    margin: '.3em auto',
+    margin: '1em auto .5em',
     color: 'orange',
     '-webkit-text-stroke': '.04em #000',
     fontFamily: 'Papyrus, fantasy',

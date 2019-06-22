@@ -10,7 +10,7 @@ export default new Corporation({
   titleStyle: {
     fontSize: '.11em',
     textTransform: 'uppercase',
-    margin: '.3em auto',
+    margin: '.5em auto',
     letterSpacing: '.2em',
     background: 'indigo',
     color: 'white',

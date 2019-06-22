@@ -13,7 +13,7 @@ export default new Corporation({
     fontFamily: 'monospace',
     color: 'red',
     '-webkit-text-stroke': '.03em #ccc',
-    margin: '.6em .3em 0',
+    margin: '.8em .3em .1em',
     fontWeight: 'bold',
     transform: 'scale(1.3,1)',
     textShadow: '.07em .07em 0 black'

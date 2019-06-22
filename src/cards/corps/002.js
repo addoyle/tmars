@@ -13,7 +13,7 @@ export default new Corporation({
     color: '#72d22d',
     '-webkit-text-stroke': '.05em #000',
     letterSpacing: '.2em',
-    margin: '.3em'
+    margin: '.4em'
   },
   starting: {
     mc: 36,
