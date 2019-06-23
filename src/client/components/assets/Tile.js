@@ -55,7 +55,8 @@ const tiles = {
       </defs>
       {props.children}
     </g>
-  )
+  ),
+  blank: props => (<g />)
 };
 
 export default function Tile(props) {

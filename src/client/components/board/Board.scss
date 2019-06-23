@@ -1,0 +1,35 @@
+.board {
+  background: #000 url('/icons/mars_bg.jpg') center no-repeat/60vw;
+  width: 100vw;
+  height: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.field {
+  width: 60vw;
+  height: 60vw;
+  border: .5vw solid #8B5E36;
+  border-radius: 100%;
+  text-align: center;
+  margin: 20vw;
+  box-shadow: 0 0 2vw 2vw rgba(255,255,255,.3);
+  font-size: 8.7vw;
+
+  .tiles {
+    margin: 3.2vw -4vw;
+
+    .row {
+      margin: -3.24vw 0;
+    }
+
+    .tile {
+      margin: 0 -.82vw;
+
+      .base {
+        stroke: rgba(255,255,255,.4);
+      }
+    }
+  }
+}
