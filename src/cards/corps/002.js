@@ -7,14 +7,7 @@ const effectDesc = 'Effect: You may always pay 7 plants, instead of 8, to place 
 
 export default new Corporation({
   title: 'Ecoline',
-  titleStyle: {
-    fontSize: '.11em',
-    textTransform: 'uppercase',
-    color: '#72d22d',
-    '-webkit-text-stroke': '.05em #000',
-    letterSpacing: '.2em',
-    margin: '.4em'
-  },
+  titleClass: 'ecoline',
   starting: {
     mc: 36,
     resources: {

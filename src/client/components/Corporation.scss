@@ -71,6 +71,35 @@ $title-font: 'Prototype', sans-serif;
       }
     }
 
+    &.ecoline {
+      font-size: .11em;
+      text-transform: uppercase;
+      color: #72d22d;
+      -webkit-text-stroke: .05em #000;
+      letter-spacing: .2em;
+      margin: .4em;
+
+      &:before {
+        content: '';
+        border-radius: 0 50% / 50% 100%;
+        display: inline-block;
+        background: #72d22d;
+        border: .05em solid #000;
+        height: 1em;
+        width: 2em;
+        margin-right: .2em;
+      }
+
+      &:after {
+        content: 'EVOLVING YOUR WORLD';
+        -webkit-text-stroke: 0;
+        letter-spacing: .73em;
+        font-size: .3em;
+        color: #000;
+        display: block;
+      }
+    }
+
     &.unmi {
       font-size: .05em;
       text-transform: uppercase;
