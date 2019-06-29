@@ -44,6 +44,10 @@ $title-font: 'Prototype', sans-serif;
     font-size: 1em;
     height: 1.4em;
     vertical-align: middle;
+
+    &.back {
+      background: #171717 url('./texture/card-back.jpg') no-repeat center/75%;
+    }
   }
 }
 
@@ -78,6 +82,9 @@ $title-font: 'Prototype', sans-serif;
   }
 }
 
+/***********
+ * TILE
+ ***********/
 .tile {
   width: 1em;
   height: 1em;
@@ -92,6 +99,54 @@ $title-font: 'Prototype', sans-serif;
   .outline-color {
     fill: none;
     stroke-width: 30px;
+    transition: stroke .2s ease, fill .5s ease;
+  }
+
+  &.clickable {
+    .base {
+      cursor: pointer;
+      pointer-events: visible;
+
+      &:hover + .outline-color {
+        stroke: hsla(0,0%,80%,1)!important;
+      }
+    }
+
+    .outline-color {
+      stroke: hsla(0,0%,80%,.5)!important;
+    }
+  }
+  &:not(.clickable) {
+    pointer-events: none;
+    * {
+      pointer-events: none;
+    }
+  }
+
+  &.player-1 {
+    .outline-color {
+      stroke: hsl(0,80%,40%)!important;
+    }
+  }
+  &.player-2 {
+    .outline-color {
+      stroke: hsl(240,80%,40%)!important;
+    }
+  }
+  &.player-3 {
+    .outline-color {
+      stroke: hsl(120,80%,40%)!important;
+    }
+  }
+  &.player-4 {
+    .outline-color {
+      stroke: hsl(60,80%,40%)!important;
+    }
+  }
+  &.player-5 {
+    .outline-color {
+      stroke: hsl(0,0%,25%)!important;
+    }
   }
 
   .asterisk {
@@ -163,6 +218,12 @@ $title-font: 'Prototype', sans-serif;
     .icon-text {
       font-size: 600px;
       font-weight: bold;
+    }
+  }
+
+  &.reserved-ocean {
+    .base {
+      fill: url('#ocean-gradient');
     }
   }
 }

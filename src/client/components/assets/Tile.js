@@ -33,9 +33,9 @@ const tiles = {
   greenery: props => (
     <g>
       <defs>
-        <radialGradient id="tree-gradient" gradientUnits="userSpaceOnUse" cx="308.568" cy="271.652" r="24.363" gradientTransform="matrix(1, 0, 0, 1, -283.205505, -238.336802)">
-          <stop offset="0" style={{stopColor: 'rgb(24, 84, 42)'}}></stop>
-          <stop offset="1" style={{stopColor: 'rgb(32, 106, 48)'}}></stop>
+        <radialGradient id="tree-gradient" gradientUnits="userSpaceOnUse" cx="120.889" cy="104.265" r="110.5" gradientTransform="matrix(0, 1.546839, -1, 0, 225.153999, -82.730797)">
+          <stop offset="0" style={{stopColor: 'hsl(135, 55%, 19%)'}}></stop>
+          <stop offset="1" style={{stopColor: 'hsl(135, 55%, 27%)'}}></stop>
         </radialGradient>
         <radialGradient id="greenery-gradient" gradientUnits="userSpaceOnUse" cx="216.5" cy="250" r="193.5">
           <stop offset="0" style={{stopColor: 'hsl(95, 65%, 50%)'}}></stop>
@@ -56,6 +56,16 @@ const tiles = {
       {props.children}
     </g>
   ),
+  'reserved-ocean': props => (
+    <g>
+      <defs>
+        <radialGradient id="ocean-gradient" gradientUnits="userSpaceOnUse" cx="216.5" cy="250" r="212.499">
+          <stop offset="0" style={{stopColor: 'rgba(142, 211, 245, 0)'}}></stop>
+          <stop offset="1" style={{stopColor: 'rgba(142, 211, 245, .3)'}}></stop>
+        </radialGradient>
+      </defs>
+    </g>
+  ),
   blank: props => (<g />)
 };
 
@@ -65,8 +75,13 @@ export default function Tile(props) {
     key = 'city';
   }
 
+  const classes = ['tile', props.name];
+  if (props.anyone) { classes.push('anyone'); }
+  if (props.player) { classes.push(`player-${props.player}`); }
+  if (props.clickable) { classes.push('clickable'); }
+
   return (
-    <svg viewBox="12 -12 443.012 524" className={`tile ${props.name} ${props.anyone ? 'anyone' : ''}`} data-icon={props.icon}>
+    <svg viewBox="12 -12 443.012 524" className={classes.join(' ')} data-icon={props.icon}>
       <path className="base" d="M 216.5 4 L 428.999 127 L 428.999 373 L 216.5 496 L 4.001 373 L 4.001 127 Z"></path>
       <path className="outline-color" d="M 216.5 26 L 410 138 L 410 362 L 216.5 474 L 23 362 L 23 138 Z" />
 
@@ -77,6 +92,13 @@ export default function Tile(props) {
           <text x="290" y="160">+</text>
           <image href="/icons/oxygen.svg" width="140" height="140" x="355" y="60" />
         </g>
+      ) : ''}
+      {props.children ? (
+        <foreignObject x="0" y="0" width="435" height="503">
+          <div xmlns="http://www.w3.org/1999/xhtml">
+            {props.children}
+          </div>
+        </foreignObject>
       ) : ''}
     </svg>
   );

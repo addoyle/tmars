@@ -1,15 +1,18 @@
+$title-font: 'Prototype', sans-serif;
+
 .board {
-  background: #000 url('/icons/mars_bg.jpg') center no-repeat/60vw;
   width: 100vw;
   height: 100vw;
   position: absolute;
   top: 0;
   left: 0;
+  background: #000;
 }
 
 .field {
   width: 60vw;
   height: 60vw;
+  background: url('/icons/mars_bg.jpg') center no-repeat/60vw;
   border: .5vw solid #8B5E36;
   border-radius: 100%;
   text-align: center;
@@ -22,13 +25,34 @@
 
     .row {
       margin: -3.24vw 0;
+      pointer-events: none;
     }
 
     .tile {
       margin: 0 -.82vw;
 
+      foreignObject > div {
+        padding-top: .2em;
+      }
+
       .base {
         stroke: rgba(255,255,255,.4);
+      }
+
+      .resources {
+        font-size: .8em;
+        margin: 0 0 -.52em;
+        padding: 0;
+      }
+
+      .text {
+        font-family: $title-font;
+        font-size: .5em;
+      }
+
+      img.noctis {
+        margin-top: -1em;
+        margin-bottom: -1em;
       }
     }
   }
