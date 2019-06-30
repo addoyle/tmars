@@ -1,8 +1,11 @@
 $title-font: 'Prototype', sans-serif;
 
+body {
+  overflow: hidden;
+}
+
 .board {
   width: 100vw;
-  height: 100vw;
   position: absolute;
   top: 0;
   left: 0;
@@ -10,29 +13,35 @@ $title-font: 'Prototype', sans-serif;
 }
 
 .field {
-  width: 60vw;
-  height: 60vw;
-  background: url('/icons/mars_bg.jpg') center no-repeat/60vw;
-  border: .5vw solid #8B5E36;
+  width: 7em;
+  height: 7em;
+  background: url('/icons/mars_bg.jpg') center no-repeat/7em;
+  border: .05em solid #8B5E36;
   border-radius: 100%;
   text-align: center;
-  margin: 20vw;
-  box-shadow: 0 0 2vw 2vw rgba(255,255,255,.3);
-  font-size: 8.7vw;
+  margin: 3em auto;
+  box-shadow: 0 0 .3em .3em rgba(255,255,255,.3);
+  font-size: 9em;
+  cursor: grab;
+  user-select: none;
+
+  &.dragging {
+    cursor: grabbing;
+  }
 
   .tiles {
-    margin: 3.2vw -4vw;
+    margin: .46em -1.06em 0 -1em;
 
     .row {
-      margin: -3.24vw 0;
+      margin: -.35em 0;
       pointer-events: none;
     }
 
     .tile {
-      margin: 0 -.82vw;
+      margin: 0 -.095em;
 
       foreignObject > div {
-        padding-top: .2em;
+        padding-top: .18em;
       }
 
       .base {
@@ -40,14 +49,14 @@ $title-font: 'Prototype', sans-serif;
       }
 
       .resources {
-        font-size: .8em;
+        font-size: .6em;
         margin: 0 0 -.52em;
         padding: 0;
       }
 
       .text {
         font-family: $title-font;
-        font-size: .5em;
+        font-size: .37em;
       }
 
       img.noctis {

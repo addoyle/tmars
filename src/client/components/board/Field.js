@@ -4,6 +4,25 @@ import { Tile, Resource, Param } from '../assets/Assets'
 import Tharsis from './Tharsis';
 
 export default class Field extends Component {
+  constructor(props) {
+    super(props);
+
+    this.startDragging = this.startDragging.bind(this);
+    this.stopDragging = this.stopDragging.bind(this);
+
+    this.state = {
+      dragging: false
+    };
+  }
+
+  startDragging() {
+    this.setState({dragging: true});
+  }
+
+  stopDragging() {
+    this.setState({dragging: false});
+  }
+
   render() {
     const field = Tharsis;
 
@@ -32,7 +51,9 @@ export default class Field extends Component {
     };
 
     return (
-      <div className="field">
+      <div className={`field ${this.state.dragging ? 'dragging' : ''}`}
+        onMouseDown={this.startDragging}
+        onMouseUp={this.stopDragging}>
         <div className="tiles">
           {field.map(row => (
             <div className="row">
