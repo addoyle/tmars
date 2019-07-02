@@ -106,46 +106,58 @@ $title-font: 'Prototype', sans-serif;
     .base {
       cursor: pointer;
       pointer-events: visible;
-
-      &:hover + .outline-color {
-        stroke: hsla(0,0%,80%,1)!important;
-      }
     }
 
-    .outline-color {
-      stroke: hsla(0,0%,80%,.5)!important;
+    &.player-1 {
+      .outline-color {
+        stroke: hsla(0,80%,40%,.4)!important;
+      }
+
+      .base:hover + .outline-color {
+        stroke: hsla(0,80%,40%,1)!important;
+      }
+    }
+    &.player-2 {
+      .outline-color {
+        stroke: hsla(240,80%,40%,.4)!important;
+      }
+
+      .base:hover + .outline-color {
+        stroke: hsla(240,80%,40%,1)!important;
+      }
+    }
+    &.player-3 {
+      .outline-color {
+        stroke: hsla(120,80%,40%,.4)!important;
+      }
+
+      .base:hover + .outline-color {
+        stroke: hsla(120,80%,40%,1)!important;
+      }
+    }
+    &.player-4 {
+      .outline-color {
+        stroke: hsla(60,80%,40%,.4)!important;
+      }
+
+      .base:hover + .outline-color {
+        stroke: hsla(60,80%,40%,1)!important;
+      }
+    }
+    &.player-5 {
+      .outline-color {
+        stroke: hsla(0,0%,25%,.4)!important;
+      }
+
+      .base:hover + .outline-color {
+        stroke: hsla(0,0%,25%,1)!important;
+      }
     }
   }
   &:not(.clickable) {
     pointer-events: none;
     * {
       pointer-events: none;
-    }
-  }
-
-  &.player-1 {
-    .outline-color {
-      stroke: hsl(0,80%,40%)!important;
-    }
-  }
-  &.player-2 {
-    .outline-color {
-      stroke: hsl(240,80%,40%)!important;
-    }
-  }
-  &.player-3 {
-    .outline-color {
-      stroke: hsl(120,80%,40%)!important;
-    }
-  }
-  &.player-4 {
-    .outline-color {
-      stroke: hsl(60,80%,40%)!important;
-    }
-  }
-  &.player-5 {
-    .outline-color {
-      stroke: hsl(0,0%,25%)!important;
     }
   }
 
@@ -180,7 +192,7 @@ $title-font: 'Prototype', sans-serif;
 
   &.city {
     .outline-color {
-      stroke: #666;
+      stroke: #999;
       fill: url('#city-gradient');
     }
 
@@ -224,6 +236,22 @@ $title-font: 'Prototype', sans-serif;
   &.reserved-ocean {
     .base {
       fill: url('#ocean-gradient');
+    }
+  }
+
+  &.ocean-placed {
+    .outline-color {
+      stroke: #357197;
+    }
+  }
+  &.city-placed {
+    .outline-color {
+      stroke: #aaa;
+    }
+  }
+  &.greenery-placed {
+    .outline-color {
+      stroke: #59B22C;
     }
   }
 }
@@ -271,6 +299,12 @@ $title-font: 'Prototype', sans-serif;
 .icon.steel { @include icon(url('./icons/steel.svg'), 30, 59%, .1, false, false); }
 .icon.fighter { @include icon(url('./icons/fighter.svg'), 26, 0%, .6, false, 30%); }
 .icon.marker { @include icon(#e06635, 48, 80%, .2, true, false); }
+.icon.player-1 { @include icon(hsl(0,80%,40%), 0, 80%, .2, true, false); }
+.icon.player-2 { @include icon(hsl(240,80%,40%), 240, 80%, .2, true, false); }
+.icon.player-3 { @include icon(hsl(120,80%,40%), 120, 80%, .2, true, false); }
+.icon.player-4 { @include icon(hsl(60,80%,40%), 60, 80%, .2, true, false); }
+.icon.player-5 { @include icon(hsl(0,0%,25%), 0, 0%, .2, true, 40%); }
+
 .icon.tr {
   // @include icon(url('./icons/tr.svg'), 17, 90%, .1);
   background: linear-gradient(hsl(28,94%,65%) 60%, hsl(28,94%,65%));

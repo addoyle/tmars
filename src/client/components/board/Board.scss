@@ -1,7 +1,7 @@
 $title-font: 'Prototype', sans-serif;
 
 body {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .board {
@@ -33,35 +33,79 @@ body {
     margin: .46em -1.06em 0 -1em;
 
     .row {
-      margin: -.35em 0;
+      margin: -54px 0;
       pointer-events: none;
-    }
 
-    .tile {
-      margin: 0 -.095em;
+      > .tile {
+        margin: 0 -13.5px;
 
-      foreignObject > div {
-        padding-top: .18em;
-      }
+        &.ocean-placed {
+          foreignObject {
+            background: url('../assets/texture/ocean.png') center no-repeat/2.9em;
+          }
+        }
 
-      .base {
-        stroke: rgba(255,255,255,.4);
-      }
+        &.city-placed {
+          foreignObject {
+            background: url('../assets/texture/city.png') center no-repeat/2.9em;
+          }
+        }
 
-      .resources {
-        font-size: .6em;
-        margin: 0 0 -.52em;
-        padding: 0;
-      }
+        &.greenery-placed {
+          foreignObject {
+            background: url('../assets/texture/greenery.png') center no-repeat/2.9em;
+          }
+        }
 
-      .text {
-        font-family: $title-font;
-        font-size: .37em;
-      }
+        foreignObject > div {
+          padding-top: 25px;
 
-      img.noctis {
-        margin-top: -1em;
-        margin-bottom: -1em;
+          > .resource {
+            opacity: .85;
+            font-size: .8em;
+          }
+
+          > .tile {
+            display: block;
+            margin: 30px auto -40px;
+
+            + .resource {
+              margin-top: 0;
+            }
+
+            &.ocean {
+              margin-top: 150px;
+            }
+          }
+        }
+
+        .base {
+          stroke: rgba(255,255,255,.4);
+        }
+
+        .rewards {
+          margin-bottom: -87px;
+
+          .resources {
+            font-size: .6em;
+            margin: 0 0 -.52em;
+            padding: 0;
+          }
+        }
+
+        .text {
+          font-family: $title-font;
+          font-size: .37em;
+        }
+
+        img.noctis {
+          margin-top: -65px;
+          margin-bottom: -66px;
+
+          & + .text {
+            margin-top: -60px;
+          }
+        }
       }
     }
   }

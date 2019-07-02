@@ -1,0 +1,41 @@
+$title-font: 'Prototype', sans-serif;
+
+.players {
+  position: fixed;
+  top: 1em;
+  left: 0;
+  display: inline-block;
+  width: 1em;
+}
+
+.player {
+  font-family: $title-font;
+  font-size: 1.5em;
+  margin: .1em .2em;
+  padding: .1em;
+  border: 1px solid #ccc;
+  background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+  border-top-right-radius: .5em;
+  transition: margin .3s ease, box-shadow .15s ease;
+  min-width: 5em;
+  display: inline-block;
+  cursor: pointer;
+  box-shadow: none;
+
+  &:hover {
+    box-shadow: 0 0 0 .2em #666;
+  }
+
+  &.active {
+    margin-left: 1em;
+  }
+
+  > * {
+    margin-right: .2em;
+  }
+
+  > span {
+    font-size: .6em;
+    vertical-align: middle;
+  }
+}

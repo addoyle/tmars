@@ -43,6 +43,10 @@ const tiles = {
         </radialGradient>
       </defs>
       <path transform="matrix(.9,0,0,.9,110,110)" className="tree" d="M 106.112 296 C 115.457 250.824 119.006 148.444 90.908 153.748 C 84.068 162.733 27.831 186.879 5.78 143.566 C -2.281 127.73 6.799 102.669 38.167 98.879 C 30.993 23.433 92.486 28.075 98.894 44.559 C 105.054 -36.118 220.307 10.213 203.207 101.926 C 238.623 113.201 234.695 188.044 144.835 163.26 C 135.179 194.181 147.111 278.917 159.137 293.82 L 106.112 296 Z"></path>
+      <g className="oxygen">
+        <text x="290" y="160">+</text>
+        <image href="/icons/oxygen.svg" width="140" height="140" x="355" y="60" />
+      </g>
     </g>
   ),
   special: props => (
@@ -66,6 +70,15 @@ const tiles = {
       </defs>
     </g>
   ),
+  'ocean-placed': props => (
+    <g />
+  ),
+  'greenery-placed': props => (
+    <g />
+  ),
+  'city-placed': props => (
+    <g />
+  ),
   blank: props => (<g />)
 };
 
@@ -77,8 +90,7 @@ export default function Tile(props) {
 
   const classes = ['tile', props.name];
   if (props.anyone) { classes.push('anyone'); }
-  if (props.player) { classes.push(`player-${props.player}`); }
-  if (props.clickable) { classes.push('clickable'); }
+  if (props.clickable) { classes.push('clickable', `player-${props.clickable}`); }
 
   return (
     <svg viewBox="12 -12 443.012 524" className={classes.join(' ')} data-icon={props.icon}>
@@ -87,12 +99,6 @@ export default function Tile(props) {
 
       {tiles[key](props)}
       {props.asterisk ? (<text x="360" y="240" className="asterisk">*</text>) : ''}
-      {props.oxygen ? (
-        <g className="oxygen">
-          <text x="290" y="160">+</text>
-          <image href="/icons/oxygen.svg" width="140" height="140" x="355" y="60" />
-        </g>
-      ) : ''}
       {props.children ? (
         <foreignObject x="0" y="0" width="435" height="503">
           <div xmlns="http://www.w3.org/1999/xhtml">

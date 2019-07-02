@@ -26,16 +26,6 @@ export default class Field extends Component {
   render() {
     const field = Tharsis;
 
-    // for (var i = 0; i < 9; i++) {
-    //   tharsis.push([]);
-    //   var n = 9 - Math.abs(i + 5 - 9);
-    //   for (var j = 0; j < n; j++) {
-    //     tharsis[i].push(<Tile name="blank" />);
-    //   }
-    // }
-
-    // TODO: Parse out things from Tharsis.js here
-
     const renderResource = (resource, i) => {
       if (resource && resource[i]) {
         if (resource[i] === 'card') {
@@ -50,6 +40,45 @@ export default class Field extends Component {
       }
     };
 
+    field[0][1].name = 'ocean-placed';
+    field[0][1].type = 'ocean';
+    field[2][0].name = 'greenery-placed';
+    field[2][0].type = 'greenery';
+    field[2][0].player = 1;
+    field[2][1].name = 'greenery-placed';
+    field[2][1].type = 'greenery';
+    field[2][1].player = 2;
+    field[2][2].name = 'greenery-placed';
+    field[2][2].type = 'greenery';
+    field[2][2].player = 3;
+    field[2][3].name = 'greenery-placed';
+    field[2][3].type = 'greenery';
+    field[2][3].player = 4;
+    field[2][4].name = 'greenery-placed';
+    field[2][4].type = 'greenery';
+    field[2][4].player = 5;
+    field[3][0].name = 'city-placed';
+    field[3][0].type = 'city';
+    field[3][0].player = 1;
+    field[3][1].name = 'city-placed';
+    field[3][1].type = 'city';
+    field[3][1].player = 2;
+    field[3][2].name = 'city-placed';
+    field[3][2].type = 'city';
+    field[3][2].player = 3;
+    field[3][3].name = 'city-placed';
+    field[3][3].type = 'city';
+    field[3][3].player = 4;
+    field[3][4].name = 'city-placed';
+    field[3][4].type = 'city';
+    field[3][4].player = 5;
+    field[3][5].player = 1;
+    field[4][0].clickable = 1;
+    field[4][1].clickable = 2;
+    field[4][2].clickable = 3;
+    field[4][3].clickable = 4;
+    field[4][4].clickable = 5;
+
     return (
       <div className={`field ${this.state.dragging ? 'dragging' : ''}`}
         onMouseDown={this.startDragging}
@@ -59,9 +88,11 @@ export default class Field extends Component {
             <div className="row">
               {row.map(tile => (
                 <Tile
-                  name={tile.attrs && tile.attrs.indexOf('reserved-ocean') >= 0 ? 'reserved-ocean' : 'blank'}>
+                  name={tile.name || (tile.attrs && tile.attrs.indexOf('reserved-ocean') >= 0 ? 'reserved-ocean' : 'blank')}
+                  clickable={tile.clickable}>
+                  {tile.name ? (<Tile name={tile.type} oxygen={tile.type === 'greenery'} />) : ''}
                   {!tile.name ? (
-                    <div>
+                    <div className="rewards">
                       <div className="resources">
                         {renderResource(tile.resources, 0)}
                       </div>
@@ -73,10 +104,11 @@ export default class Field extends Component {
                       <div className="resources">
                         {renderResource(tile.resources, 3)}
                       </div>
+                      {tile.attrs && tile.attrs.indexOf('noctis-city') >= 0 ? (<img className="noctis" src="/icons/city.svg" />) : ''}
+                      {tile.text ? (<div className="text">{tile.text}</div>) : ''}
                     </div>
                   ) : ''}
-                  {tile.attrs && tile.attrs.indexOf('noctis-city') >= 0 ? (<img className="noctis" src="/icons/city.svg" />) : ''}
-                  {tile.text ? (<div className="text">{tile.text}</div>) : ''}
+                  {tile.player ? (<Resource name={`player-${tile.player}`} />) : ''}
                 </Tile>
               ))}
             </div>
