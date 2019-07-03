@@ -30,6 +30,16 @@ $title-font: 'Prototype', sans-serif;
     margin-left: 1em;
   }
 
+  &.passed {
+    filter: grayscale(.9);
+    background: linear-gradient(135deg, #222 0%, #bbb 25%, #999 50%, #999 75%, #bbb 100%);
+    > span {
+      color: #777;
+      text-shadow: 1px 1px 0 #444;
+      font-style: italic;
+    }
+  }
+
   > * {
     margin-right: .2em;
   }
@@ -37,5 +47,27 @@ $title-font: 'Prototype', sans-serif;
   > span {
     font-size: .6em;
     vertical-align: middle;
+  }
+
+  .points {
+    background: url('../assets/icons/pts.svg') no-repeat center/100%;
+    font-family: $title-font;
+    display: inline-block;
+    width: 1.1em;
+    height: 1em;
+    vertical-align: text-bottom;
+    text-align: center;
+
+    &.o {
+      background: url('../assets/icons/pts-o.svg') no-repeat center/100%;
+    }
+
+    > .value {
+      font-size: .6em;
+      color: #222;
+      vertical-align: top;
+      line-height: 1.7;
+      color: #A22A2E;
+    }
   }
 }

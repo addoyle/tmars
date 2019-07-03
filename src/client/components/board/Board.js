@@ -11,7 +11,7 @@ export default class Board extends Component {
       players: [
         {
           name: 'Andy',
-          tr: 31,
+          tr: 30,
           resources: {
             mc: 34,
             st: 1,
@@ -112,7 +112,8 @@ export default class Board extends Component {
             venus: 0,
             event: 2
           },
-          corp: 'Mining Guild'
+          corp: 'Mining Guild',
+          passed: true
         },
         {
           name: 'Larissa',
