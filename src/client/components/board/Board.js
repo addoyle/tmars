@@ -8,6 +8,7 @@ export default class Board extends Component {
     super(props);
 
     this.state = {
+      turn: 2,
       players: [
         {
           name: 'Andy',
@@ -192,7 +193,7 @@ export default class Board extends Component {
   render() {
     return (
       <div className="board">
-        <Players players={this.state.players} turn="2" />
+        <Players players={this.state.players} turn={this.state.turn} />
         <Field />
       </div>
     );

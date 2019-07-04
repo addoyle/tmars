@@ -5,7 +5,18 @@ $title-font: 'Prototype', sans-serif;
   top: 1em;
   left: 0;
   display: inline-block;
-  width: 1em;
+  user-select: none;
+
+  ul {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+
+    li {
+      margin: 0;
+      list-style: none;
+    }
+  }
 }
 
 .player {
@@ -17,7 +28,6 @@ $title-font: 'Prototype', sans-serif;
   background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
   border-top-right-radius: .5em;
   transition: margin .3s ease, box-shadow .15s ease;
-  min-width: 5em;
   display: inline-block;
   cursor: pointer;
   box-shadow: none;
