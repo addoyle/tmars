@@ -99,7 +99,7 @@ $title-font: 'Prototype', sans-serif;
   .outline-color {
     fill: none;
     stroke-width: 30px;
-    transition: stroke .2s ease, fill .5s ease;
+    transition: stroke .2s ease;
   }
 
   &.clickable {
@@ -108,49 +108,51 @@ $title-font: 'Prototype', sans-serif;
       pointer-events: visible;
     }
 
-    &.player-1 {
+    // #834B29
+
+    &.clickable-city {
       .outline-color {
-        stroke: hsla(0,80%,40%,.4)!important;
+        stroke: hsla(0,0%,67%,.4)!important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(0,80%,40%,1)!important;
+        stroke: hsla(0,0%,67%,1)!important;
       }
     }
-    &.player-2 {
+    &.clickable-greenery {
       .outline-color {
-        stroke: hsla(240,80%,40%,.4)!important;
+        stroke: hsla(100,60%,44%,.4)!important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(240,80%,40%,1)!important;
+        stroke: hsla(100,60%,44%,1)!important;
       }
     }
-    &.player-3 {
+    &.clickable-ocean {
       .outline-color {
-        stroke: hsla(120,80%,40%,.4)!important;
+        stroke: hsla(203,48%,40%,.4)!important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(120,80%,40%,1)!important;
+        stroke: hsla(203,48%,40%,1)!important;
       }
     }
-    &.player-4 {
+    &.clickable-special {
       .outline-color {
-        stroke: hsla(60,80%,40%,.4)!important;
+        stroke: hsla(23,52%,34%,.4)!important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(60,80%,40%,1)!important;
+        stroke: hsla(23,52%,34%,1)!important;
       }
     }
-    &.player-5 {
+    &.clickable-capital {
       .outline-color {
-        stroke: hsla(0,0%,25%,.4)!important;
+        stroke: hsla(0,0%,99%,.4)!important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(0,0%,25%,1)!important;
+        stroke: hsla(0,0%,99%,1)!important;
       }
     }
   }
@@ -191,22 +193,22 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.city {
-    .outline-color {
-      stroke: #999;
+    & > .outline-color {
+      stroke: url('#city-border');
       fill: url('#city-gradient');
     }
 
     &.capital {
-      .outline-color {
-        stroke: #ccc;
+      & > .outline-color {
+        stroke: url('#city-border');
         fill: white;
       }
     }
   }
 
   &.greenery {
-    .outline-color {
-      stroke: #59B22C;
+    & > .outline-color {
+      stroke: url('#greenery-border');
       fill: url('#greenery-gradient');
     }
 
@@ -240,17 +242,17 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.ocean-placed {
-    .outline-color {
+    & > .outline-color {
       stroke: #357197;
     }
   }
   &.city-placed {
-    .outline-color {
+    & > .outline-color {
       stroke: #aaa;
     }
   }
   &.greenery-placed {
-    .outline-color {
+    & > .outline-color {
       stroke: #59B22C;
     }
   }
@@ -333,6 +335,7 @@ $title-font: 'Prototype', sans-serif;
     vertical-align: text-top;
     font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
     -webkit-text-stroke: .03em rgba(246,136,7,.8);
+    line-height: 1;
   }
 
   > .value {

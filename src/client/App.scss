@@ -74,6 +74,9 @@ p {
 .text-right {
   text-align: right;
 }
+.strong {
+	font-weight: bold;
+}
 .center:not(.flex) {
   margin-left: auto;
   margin-right: auto;
@@ -128,4 +131,7 @@ p {
 }
 .m-bottom {
   margin-bottom: 1em;
+}
+.p-rel {
+	position: relative;
 }

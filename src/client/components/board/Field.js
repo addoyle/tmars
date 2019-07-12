@@ -73,11 +73,11 @@ export default class Field extends Component {
     field[3][4].type = 'city';
     field[3][4].player = 5;
     field[3][5].player = 1;
-    field[4][0].clickable = 1;
-    field[4][1].clickable = 2;
-    field[4][2].clickable = 3;
-    field[4][3].clickable = 4;
-    field[4][4].clickable = 5;
+    field[4][0].clickable = 'city';
+    field[4][1].clickable = 'greenery';
+    field[4][2].clickable = 'ocean';
+    field[4][3].clickable = 'special';
+    field[4][4].clickable = 'capital';
 
     return (
       <div className={`field ${this.state.dragging ? 'dragging' : ''}`}

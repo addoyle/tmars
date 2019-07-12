@@ -12,6 +12,39 @@ body {
   background: #000;
 }
 
+.card-ref {
+  cursor: pointer;
+
+  &.active {
+    color: blue;
+    border-bottom: 2px dotted blue;
+  }
+  &.automated {
+    color: green;
+    border-bottom: 2px dotted green;
+  }
+  &.event {
+    color: red;
+    border-bottom: 2px dotted red;
+  }
+}
+
+.card-preview {
+  display: block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin: 0 auto;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: opacity .3s ease;
+
+  &.show {
+    opacity: 1;
+  }
+}
+
 .field {
   width: 7em;
   height: 7em;
@@ -19,7 +52,7 @@ body {
   border: .05em solid #8B5E36;
   border-radius: 100%;
   text-align: center;
-  margin: 3em auto;
+  margin: 1em auto;
   box-shadow: 0 0 .3em .3em rgba(255,255,255,.3);
   font-size: 9em;
   cursor: grab;

@@ -26,6 +26,10 @@ const tiles = {
           <stop offset="0" style={{stopColor: '#ddd'}}></stop>
           <stop offset="1" style={{stopColor: '#999'}}></stop>
         </radialGradient>
+        <linearGradient id="city-border" gradientUnits="userSpaceOnUse" x1="216.42" y1="238.226" x2="216.42" y2="456.34">
+          <stop offset="0" style={{stopColor: '#ccc'}}></stop>
+          <stop offset="1" style={{stopColor: '#333'}}></stop>
+        </linearGradient>
       </defs>
       <image href="/icons/city.svg" width="300" height="300" x="64" y="100" />
     </g>
@@ -41,6 +45,10 @@ const tiles = {
           <stop offset="0" style={{stopColor: 'hsl(95, 65%, 50%)'}}></stop>
           <stop offset="1" style={{stopColor: 'hsl(95, 65%, 40%)'}}></stop>
         </radialGradient>
+        <linearGradient id="greenery-border" gradientUnits="userSpaceOnUse" x1="216.42" y1="238.226" x2="216.42" y2="456.34">
+          <stop offset="0" style={{stopColor: '#59B22C'}}></stop>
+          <stop offset="1" style={{stopColor: '#295214'}}></stop>
+        </linearGradient>
       </defs>
       <path transform="matrix(.9,0,0,.9,110,110)" className="tree" d="M 106.112 296 C 115.457 250.824 119.006 148.444 90.908 153.748 C 84.068 162.733 27.831 186.879 5.78 143.566 C -2.281 127.73 6.799 102.669 38.167 98.879 C 30.993 23.433 92.486 28.075 98.894 44.559 C 105.054 -36.118 220.307 10.213 203.207 101.926 C 238.623 113.201 234.695 188.044 144.835 163.26 C 135.179 194.181 147.111 278.917 159.137 293.82 L 106.112 296 Z"></path>
       <g className="oxygen">
@@ -90,11 +98,11 @@ export default function Tile(props) {
 
   const classes = ['tile', props.name];
   if (props.anyone) { classes.push('anyone'); }
-  if (props.clickable) { classes.push('clickable', `player-${props.clickable}`); }
+  if (props.clickable) { classes.push('clickable', `clickable-${props.clickable}`); }
 
   return (
     <svg viewBox="12 -12 443.012 524" className={classes.join(' ')} data-icon={props.icon}>
-      <path className="base" d="M 216.5 4 L 428.999 127 L 428.999 373 L 216.5 496 L 4.001 373 L 4.001 127 Z"></path>
+      <path className="base" d="M 216.5 4 L 428.999 127 L 428.999 373 L 216.5 496 L 4.001 373 L 4.001 127 Z" />
       <path className="outline-color" d="M 216.5 26 L 410 138 L 410 362 L 216.5 474 L 23 362 L 23 138 Z" />
 
       {tiles[key](props)}

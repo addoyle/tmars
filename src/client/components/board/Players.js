@@ -8,14 +8,25 @@ export default class Players extends Component {
     super(props);
 
     this.state = {
-      statPlayer: null
+      statPlayer: { resources: {}, production: {}, tags: {}},
+      showStats: false,
+      pid: 1
     }
 
     this.toggleStats = this.toggleStats.bind(this);
+    this.closeClick = this.closeClick.bind(this);
   }
 
   toggleStats(player, i) {
-    return e => this.setState({statPlayer: this.state.statPlayer === player ? null : player});
+    return e => this.setState({
+      statPlayer: player,
+      showStats: !this.state.showStats || this.state.statPlayer !== player,
+      pid: i + 1
+    });
+  }
+
+  closeClick() {
+    this.setState({showStats: false});
   }
 
   render() {
@@ -27,7 +38,12 @@ export default class Players extends Component {
         ))}
         </ul>
 
-        <PlayerStats player={this.state.statPlayer} />
+        <PlayerStats
+          player={this.state.statPlayer}
+          pid={this.state.pid}
+          show={this.state.showStats}
+          closeClick={this.closeClick}
+          />
       </div>
     );
   }

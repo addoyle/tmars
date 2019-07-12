@@ -6,6 +6,7 @@ $title-font: 'Prototype', sans-serif;
   left: 0;
   display: inline-block;
   user-select: none;
+  pointer-events: none;
 
   ul {
     display: inline-block;
@@ -31,6 +32,7 @@ $title-font: 'Prototype', sans-serif;
   display: inline-block;
   cursor: pointer;
   box-shadow: none;
+  pointer-events: auto;
 
   &:hover {
     box-shadow: 0 0 0 .2em #666;

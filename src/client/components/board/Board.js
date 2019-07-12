@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './Board.scss';
 import Field from './Field';
 import Players from './Players';
+import Log from './Log';
+import CardPreview from './CardPreview';
 
 export default class Board extends Component {
   constructor(props) {
@@ -9,6 +11,8 @@ export default class Board extends Component {
 
     this.state = {
       turn: 2,
+      previewCard: '001',
+      showPreview: false,
       players: [
         {
           name: 'Andy',
@@ -43,7 +47,7 @@ export default class Board extends Component {
             venus: 0,
             event: 4
           },
-          corp: 'Helion'
+          corp: 'CrediCor'
         },
         {
           name: 'Frank',
@@ -190,11 +194,20 @@ export default class Board extends Component {
     }
   }
 
+  showPreview(card) {
+    this.setState({ previewCard: card, showPreview: true });
+  }
+  hidePreview() {
+    this.setState({ showPreview: false });
+  }
+
   render() {
     return (
       <div className="board">
         <Players players={this.state.players} turn={this.state.turn} />
         <Field />
+        <CardPreview card={this.state.previewCard} show={this.state.showPreview} ref="preview" />
+        <Log log={this.props.log} />
       </div>
     );
   }

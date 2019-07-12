@@ -1,13 +1,132 @@
+$title-font: 'Prototype', sans-serif;
+
 .player-stats {
   background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
   border: 3px solid #444;
-  width: 10em;
-  height: 10em;
-  display: none;
+  opacity: 0;
   margin-left: 1em;
   vertical-align: top;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  display: inline-block;
+  z-index: 1;
+  box-shadow: .5em .5em 1em rgba(0,0,0,.5);
+  position: relative;
+  width: 19em;
+  border-radius: .5em;
 
   &.show {
-    display: inline-block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .title-corp {
+    font-family: $title-font;
+    font-size: 1.2em;
+    margin: -.15em auto 0;
+    width: 90%;
+    background: #FDBC2D;
+    padding: .05em 1em;
+    border: 1px solid black;
+    border-bottom-left-radius: 1.5em 3em;
+    border-bottom-right-radius: 1.5em 3em;
+    border-top: none;
+    box-shadow: 0 .1em .05em rgba(255,255,255,.5) inset, 0 -.1em .05em hsla(41,98%,8%,.5) inset;
+    overflow: hidden;
+    position: relative;
+
+    .close {
+      position: absolute;
+      top: 0;
+      right: -.6em;
+      cursor: pointer;
+      padding-left: .2em;
+      padding-right: 1em;
+      height: 100%;
+      border-left: 1px solid transparent;
+      transition: border-left-color .15s ease;
+
+      &:hover {
+        border-left-color: #e39c02;
+      }
+      &:active {
+        background: #de9902;
+      }
+    }
+  }
+
+  .title {
+    text-align: center;
+    font-family: $title-font;
+    text-transform: uppercase;
+    box-shadow: 0 .2em 0 0 rgba(255,255,255,.2) inset, 0 .1em 0 0 rgba(0,0,0,.5) inset, 0 -.2em .1em 0 rgba(0,0,0,.7) inset;
+    border: .1em solid #999;
+    padding: .2em;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    background:
+      linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
+  }
+
+  .gutter > * {
+    margin-right: .5em;
+    &:first-of-type {
+      margin-left: .5em;
+    }
+  }
+
+  .tags {
+    padding: 0 .5em;
+  }
+
+  .production {
+    width: 100%;
+  }
+
+  .resource-wrapper {
+    padding: 0 .4em;
+    margin-bottom: -.4em;
+  }
+
+  .arrow.transfer {
+    position: absolute;
+    top: 0;
+    left: -.9em;
+  }
+
+  &:before {
+    content: '';
+    width: 1em;
+    height: 1em;
+    border-left: 3px solid #444;
+    border-bottom: 3px solid #444;
+    background-color: #ccc;
+    transform: rotate(45deg);
+    position: absolute;
+    left: -.8em;
+    transition: top .5s ease, background-color .5s ease;
+    z-index: 1;
+  }
+
+  &.player-1:before {
+    top: .4em;
+    background-color: hsl(0,80%,40%);
+  }
+  &.player-2:before {
+    top: 2.7em;
+    background-color: hsl(240,80%,40%);
+  }
+  &.player-3:before {
+    top: 5em;
+    background-color: hsl(120,80%,30%);
+  }
+  &.player-4:before {
+    top: 7.3em;
+    background-color: hsl(60,80%,40%);
+  }
+  &.player-5:before {
+    top: 9.6em;
+    background-color: hsl(0,0%,35%);
   }
 }
