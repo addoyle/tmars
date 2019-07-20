@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './PlayerStats.scss';
+import CardRef from './CardRef';
 import { Tag, MegaCredit, Resource, Production } from '../assets/Assets';
 
 export default class PlayerStats extends Component {
@@ -7,7 +8,11 @@ export default class PlayerStats extends Component {
     return (
       <div className={`player-stats ${this.props.show ? 'show' : ''} player-${this.props.pid}`}>
         <div className="title-corp text-center m-top m-bottom">
-          {this.props.player.corp}
+          {this.props.player.corp ? (
+            <CardRef type="corp" card={this.props.player.corp.number}>
+              {this.props.player.corp.name}
+            </CardRef>
+          ) : ''}
           <div className="close" onClick={this.props.closeClick}>&times;</div>
         </div>
 

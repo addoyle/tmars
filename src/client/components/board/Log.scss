@@ -8,6 +8,7 @@
   right: 0;
   display: flex;
   flex-direction: column;
+  cursor: initial;
 
   .msgs {
     font-family: sans-serif;
@@ -29,6 +30,14 @@
       .player-3 { color: hsl(120,80%,40%); }
       .player-4 { color: hsl(60,80%,40%); }
       .player-5 { color: hsl(0,0%,25%); }
+
+      .card-preview {
+        margin-left: -25em;
+      }
+    }
+
+    .follow-button:after {
+      content: '\2B07';
     }
   }
 

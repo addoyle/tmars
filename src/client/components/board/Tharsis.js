@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default [
   [
     { resources: [0, 0, 'steel', 'steel'] },

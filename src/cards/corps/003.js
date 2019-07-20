@@ -6,6 +6,7 @@ const desc = 'You start with 3 heat production and 42 M€.';
 const effectDesc = 'Effect: You may use heat as M€. You may not use M€ as heat.';
 
 export default new Corporation({
+  number: 3,
   title: 'Helion',
   titleStyle: {
     fontSize: '.11em',

@@ -53,9 +53,13 @@ $title-font: 'Prototype', sans-serif;
         background: #de9902;
       }
     }
+
+    .card-preview {
+      margin-left: 14.5em;
+    }
   }
 
-  .title {
+  > .title {
     text-align: center;
     font-family: $title-font;
     text-transform: uppercase;
@@ -83,6 +87,9 @@ $title-font: 'Prototype', sans-serif;
   .production {
     width: 100%;
   }
+  .card .production {
+    width: auto;
+  }
 
   .resource-wrapper {
     padding: 0 .4em;
@@ -92,7 +99,7 @@ $title-font: 'Prototype', sans-serif;
   .arrow.transfer {
     position: absolute;
     top: 0;
-    left: -.9em;
+    left: -.8em;
   }
 
   &:before {
@@ -104,7 +111,7 @@ $title-font: 'Prototype', sans-serif;
     background-color: #ccc;
     transform: rotate(45deg);
     position: absolute;
-    left: -.8em;
+    left: -.7em;
     transition: top .5s ease, background-color .5s ease;
     z-index: 1;
   }

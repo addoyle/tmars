@@ -6,6 +6,7 @@ const desc = 'You start with 30 M€, 5 steel, and 1 steel production.';
 const effectDesc = 'Effect: Each time you get any steel or titanium as a placement bonus on the map, increase your steel prodution 1 step.';
 
 export default new Corporation({
+  number: 4,
   title: 'Mining Guild',
   titleStyle: {
     fontSize: '.11em',

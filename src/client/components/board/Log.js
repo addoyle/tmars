@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Log.scss';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 export default class Players extends Component {
   constructor(props) {
@@ -19,13 +20,13 @@ export default class Players extends Component {
   render() {
     return (
       <div className="log">
-        <div className="msgs">
+        <ScrollToBottom className="msgs" followButtonClassName="follow-button">
           {this.props.log.map((msg, i) => (
             <div className={`msg ${msg.system ? 'system' : ''}`}>
               <span key={i} className={`strong player-${msg.player}`}>{msg.name}</span>{msg.system ? '' : ': '}{msg.body}
             </div>
           ))}
-        </div>
+        </ScrollToBottom>
         <div className="form">
           <textarea placeholder="Message..." onChange={this.onChange} ref="msg" />
         </div>

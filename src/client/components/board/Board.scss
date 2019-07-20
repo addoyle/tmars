@@ -5,141 +5,14 @@ body {
 }
 
 .board {
-  width: 100vw;
+  width: 200vw;
   position: absolute;
   top: 0;
   left: 0;
   background: #000;
-}
-
-.card-ref {
-  cursor: pointer;
-
-  &.active {
-    color: blue;
-    border-bottom: 2px dotted blue;
-  }
-  &.automated {
-    color: green;
-    border-bottom: 2px dotted green;
-  }
-  &.event {
-    color: red;
-    border-bottom: 2px dotted red;
-  }
-}
-
-.card-preview {
-  display: block;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  margin: 0 auto;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: opacity .3s ease;
-
-  &.show {
-    opacity: 1;
-  }
-}
-
-.field {
-  width: 7em;
-  height: 7em;
-  background: url('/icons/mars_bg.jpg') center no-repeat/7em;
-  border: .05em solid #8B5E36;
-  border-radius: 100%;
-  text-align: center;
-  margin: 1em auto;
-  box-shadow: 0 0 .3em .3em rgba(255,255,255,.3);
-  font-size: 9em;
   cursor: grab;
-  user-select: none;
 
   &.dragging {
     cursor: grabbing;
-  }
-
-  .tiles {
-    margin: .46em -1.06em 0 -1em;
-
-    .row {
-      margin: -54px 0;
-      pointer-events: none;
-
-      > .tile {
-        margin: 0 -13.5px;
-
-        &.ocean-placed {
-          foreignObject {
-            background: url('../assets/texture/ocean.png') center no-repeat/2.9em;
-          }
-        }
-
-        &.city-placed {
-          foreignObject {
-            background: url('../assets/texture/city.png') center no-repeat/2.9em;
-          }
-        }
-
-        &.greenery-placed {
-          foreignObject {
-            background: url('../assets/texture/greenery.png') center no-repeat/2.9em;
-          }
-        }
-
-        foreignObject > div {
-          padding-top: 25px;
-
-          > .resource {
-            opacity: .85;
-            font-size: .8em;
-          }
-
-          > .tile {
-            display: block;
-            margin: 30px auto -40px;
-
-            + .resource {
-              margin-top: 0;
-            }
-
-            &.ocean {
-              margin-top: 150px;
-            }
-          }
-        }
-
-        .base {
-          stroke: rgba(255,255,255,.4);
-        }
-
-        .rewards {
-          margin-bottom: -87px;
-
-          .resources {
-            font-size: .6em;
-            margin: 0 0 -.52em;
-            padding: 0;
-          }
-        }
-
-        .text {
-          font-family: $title-font;
-          font-size: .37em;
-        }
-
-        img.noctis {
-          margin-top: -65px;
-          margin-bottom: -66px;
-
-          & + .text {
-            margin-top: -60px;
-          }
-        }
-      }
-    }
   }
 }

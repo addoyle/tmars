@@ -1,0 +1,19 @@
+.players {
+  position: fixed;
+  top: 1em;
+  left: 0;
+  display: inline-block;
+  user-select: none;
+  pointer-events: none;
+
+  ul {
+    display: inline-block;
+    list-style: none;
+    margin: 0;
+
+    li {
+      margin: 0;
+      list-style: none;
+    }
+  }
+}

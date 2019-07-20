@@ -6,6 +6,7 @@ const desc = 'You start with 10 titanium and 23 M€.';
 const effectDesc = 'Effect: Your titanium resources are each worth 1 M€ extra.';
 
 export default new Corporation({
+  number: 7,
   title: 'PhoboLog',
   titleStyle: {
     fontSize: '.11em',

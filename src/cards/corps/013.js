@@ -7,6 +7,7 @@ const actionDesc = 'ACTION: PLACE A COMMUNITY (PLAYER MARKER) ON A NON-RESERVED 
 const effectDesc = 'EFFECT: MARKED AREAS ARE RESERVED FOR YOU. WHEN YOU PLACE A TILE THERE, GAIN 3 M€.';
 
 export default new Corporation({
+  number: 13,
   title: 'Arcadian Communities',
   titleStyle: {
     fontSize: '.07em',

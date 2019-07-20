@@ -6,6 +6,7 @@ const desc = 'You start with 2 plant production, 3 plants, and 36 M€.';
 const effectDesc = 'Effect: You may always pay 7 plants, instead of 8, to place 1 greenery.';
 
 export default new Corporation({
+  number: 2,
   title: 'Ecoline',
   titleClass: 'ecoline',
   starting: {

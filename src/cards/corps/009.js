@@ -6,6 +6,7 @@ const desc = 'You start with 1 energy production and 48 M€.';
 const effectDesc = 'Effect: When playing a power card OR THE STANDARD PROJECT POWER PLANT, you pay 3 M€ less for it.';
 
 export default new Corporation({
+  number: 9,
   title: 'ThorGate',
   titleStyle: {
     fontSize: '.1em',

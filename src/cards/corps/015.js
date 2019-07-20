@@ -6,6 +6,7 @@ const desc = 'You start with 38 M€ and 1 steel production.';
 const effectDesc = 'Effect: When you play a building tag, including this, gain 1 microbe to this card, or remove 2 microbes here and raise your plant production 1 step.';
 
 export default new Corporation({
+  number: 15,
   title: 'Recyclon',
   titleStyle: {
     fontSize: '.1em',

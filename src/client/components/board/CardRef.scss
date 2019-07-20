@@ -1,0 +1,16 @@
+.card-ref {
+  cursor: context-menu;
+
+  &.active {
+    color: blue;
+    border-bottom: 2px dotted blue;
+  }
+  &.automated {
+    color: green;
+    border-bottom: 2px dotted green;
+  }
+  &.event {
+    color: red;
+    border-bottom: 2px dotted red;
+  }
+}

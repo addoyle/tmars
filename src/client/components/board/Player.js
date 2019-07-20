@@ -13,6 +13,9 @@ export default class Players extends Component {
         <Resource name={`player-${this.props.pid}`} />
         <div className={`points ${this.props.player.tr % 5 !== 0 ? 'o' : ''}`}><span className="value">{this.props.player.tr}</span></div>
         <span>{this.props.player.name}</span>
+        {this.props.player.startingPlayer ? (
+          <span className="starting-player" />
+        ) : null}
       </div>
     );
   }

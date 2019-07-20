@@ -7,6 +7,7 @@ const desc = 'As your first action in the game, draw 3 cards. Start with 45 M€
 const effectDesc = 'Effect: Your temperature, oxygen, and ocean requirements are +2 or -2 steps, your choice in each case.';
 
 export default new Corporation({
+  number: 6,
   title: 'Inventrix',
   titleStyle: {
     fontSize: '.12em',

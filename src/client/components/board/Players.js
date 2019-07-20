@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Player.scss';
+import './Players.scss';
 import Player from './Player';
 import PlayerStats from './PlayerStats';
 
@@ -34,7 +34,13 @@ export default class Players extends Component {
       <div className="players">
         <ul>
         {this.props.players.map((player, i) => (
-          <li><Player pid={i + 1} player={player} turn={i + 1 === +this.props.turn} onClick={this.toggleStats(player, i)} /></li>
+          <li>
+            <Player
+              pid={i + 1}
+              player={player}
+              turn={i + 1 === +this.props.turn}
+              onClick={this.toggleStats(player, i)} />
+          </li>
         ))}
         </ul>
 

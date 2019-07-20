@@ -1,28 +1,9 @@
 import React, { Component } from 'react';
-import './Board.scss';
+import './Field.scss';
 import { Tile, Resource, Param } from '../assets/Assets'
 import Tharsis from './Tharsis';
 
 export default class Field extends Component {
-  constructor(props) {
-    super(props);
-
-    this.startDragging = this.startDragging.bind(this);
-    this.stopDragging = this.stopDragging.bind(this);
-
-    this.state = {
-      dragging: false
-    };
-  }
-
-  startDragging() {
-    this.setState({dragging: true});
-  }
-
-  stopDragging() {
-    this.setState({dragging: false});
-  }
-
   render() {
     const field = Tharsis;
 
@@ -75,14 +56,12 @@ export default class Field extends Component {
     field[3][5].player = 1;
     field[4][0].clickable = 'city';
     field[4][1].clickable = 'greenery';
-    field[4][2].clickable = 'ocean';
-    field[4][3].clickable = 'special';
+    field[4][2].clickable = 'special';
+    field[4][3].clickable = 'ocean';
     field[4][4].clickable = 'capital';
 
     return (
-      <div className={`field ${this.state.dragging ? 'dragging' : ''}`}
-        onMouseDown={this.startDragging}
-        onMouseUp={this.stopDragging}>
+      <div className="field">
         <div className="tiles">
           {field.map(row => (
             <div className="row">

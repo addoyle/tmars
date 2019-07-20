@@ -6,6 +6,7 @@ const desc = 'You start with 40 M€. As your first action in the game, place a 
 const effectDesc = 'Effect: When any city tile is placed ON MARS, increase your M€ production 1 step. When you place a city tile, gain 3 M€.';
 
 export default new Corporation({
+  number: 8,
   title: 'Tharsis Republic',
   titleStyle: {
     fontSize: '.07em',
