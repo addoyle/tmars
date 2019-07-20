@@ -12,14 +12,11 @@ export default class Board extends Component {
 
     this.startDragging = this.startDragging.bind(this);
     this.stopDragging = this.stopDragging.bind(this);
+    this.drag = this.drag.bind(this);
 
     this.state = {
       turn: 2,
       dragging: false,
-      scroll: {
-        x: 0,
-        y: 0
-      },
       players: [
         {
           name: 'Andy',
@@ -218,32 +215,32 @@ export default class Board extends Component {
   }
 
   startDragging() {
-    this.setState({dragging: true, scroll: {x: 100, y: 100}});
+    this.setState({dragging: true});
   }
 
   stopDragging() {
     this.setState({dragging: false});
   }
 
-  componentDidMount() {
-    this.state.scroll = {
-      x: (this.board.current.scrollWidth - window.innerWidth) / 2,
-      y: (this.board.current.scrollHeight - window.innerHeight) / 2
-    };
-
-    console.log(this.state.scroll);
-
-    if (this.state.scroll.x !== 0 && this.state.scroll.y !== 0) {
-      window.scrollTo(this.state.scroll.x, this.state.scroll.y);
+  drag(e) {
+    if (this.state.dragging) {
+      window.scrollTo(window.scrollX - e.movementX, window.scrollY - e.movementY);
     }
+  }
+
+  componentDidMount() {
+    window.scrollTo(
+      (this.board.current.scrollWidth - window.innerWidth) / 2,
+      (this.board.current.scrollHeight - window.innerHeight) / 2);
   }
 
   render() {
     return (
       <div className={`board ${this.state.dragging ? 'dragging' : ''}`}
-        onMouseDown={this.startDragging}
-        onMouseUp={this.stopDragging}
-        ref={this.board}>
+          onMouseDown={this.startDragging}
+          onMouseUp={this.stopDragging}
+          onMouseMove={this.drag}
+          ref={this.board}>
         <Players players={this.state.players} turn={this.state.turn} />
         <Field />
         <Log log={this.props.log} />
