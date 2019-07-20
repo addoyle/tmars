@@ -1,3 +1,6 @@
+/**
+ * Tharsis Board
+ */
 export default [
   [
     { resources: [0, 0, 'steel', 'steel'] },

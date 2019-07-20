@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import './CardPreview.scss'
 
+/**
+ * Displays a card as a popup
+ */
 export default class CardPreview extends Component {
   constructor(props) {
     super(props);
@@ -10,6 +13,9 @@ export default class CardPreview extends Component {
     }
   }
 
+  /**
+   * Loads a card from file
+   */
   loadCard() {
     Promise.all([require(`../../../cards/${this.props.type}s/${this.props.card}`)]).then(res => {
       this.setState({ card: res[0].default });

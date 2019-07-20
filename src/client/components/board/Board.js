@@ -5,6 +5,8 @@ import Players from './Players';
 import Log from './Log';
 
 export default class Board extends Component {
+  board = React.createRef()
+
   constructor(props) {
     super(props);
 
@@ -14,6 +16,10 @@ export default class Board extends Component {
     this.state = {
       turn: 2,
       dragging: false,
+      scroll: {
+        x: 0,
+        y: 0
+      },
       players: [
         {
           name: 'Andy',
@@ -212,18 +218,32 @@ export default class Board extends Component {
   }
 
   startDragging() {
-    this.setState({dragging: true});
+    this.setState({dragging: true, scroll: {x: 100, y: 100}});
   }
 
   stopDragging() {
     this.setState({dragging: false});
   }
 
+  componentDidMount() {
+    this.state.scroll = {
+      x: (this.board.current.scrollWidth - window.innerWidth) / 2,
+      y: (this.board.current.scrollHeight - window.innerHeight) / 2
+    };
+
+    console.log(this.state.scroll);
+
+    if (this.state.scroll.x !== 0 && this.state.scroll.y !== 0) {
+      window.scrollTo(this.state.scroll.x, this.state.scroll.y);
+    }
+  }
+
   render() {
     return (
       <div className={`board ${this.state.dragging ? 'dragging' : ''}`}
         onMouseDown={this.startDragging}
-        onMouseUp={this.stopDragging}>
+        onMouseUp={this.stopDragging}
+        ref={this.board}>
         <Players players={this.state.players} turn={this.state.turn} />
         <Field />
         <Log log={this.props.log} />

@@ -9,6 +9,7 @@ $title-font: 'Prototype', sans-serif;
   overflow: hidden;
   border: .003em solid black;
 
+  // Header bar: M€, restrictions, tags
   .header {
     display: flex;
     flex-direction: row-reverse;
@@ -21,6 +22,7 @@ $title-font: 'Prototype', sans-serif;
     background: repeating-linear-gradient(90deg, #444, #eee 10%, #444 20%);
     padding: .01em 0;
 
+    // Gradient background, with parent tag acting as a border
     &:before {
       display: block;
       background: repeating-linear-gradient(-45deg, #888 0%, #eee 25%, #888 50%);
@@ -41,6 +43,7 @@ $title-font: 'Prototype', sans-serif;
     text-align: center;
   }
 
+  // Title bar (i.e. title of card)
   .title {
     text-transform: uppercase;
     padding: .2em 0;
@@ -48,6 +51,7 @@ $title-font: 'Prototype', sans-serif;
     border-bottom: .05em solid #999;
   }
 
+  // Separator (goes between picture and description)
   .separator {
     box-shadow: 0 .2em 0 0 rgba(255,255,255,.2) inset, 0 .1em 0 0 rgba(0,0,0,.5) inset, 0 -.2em .1em 0 rgba(0,0,0,.7) inset;
     color: rgba(0,0,0,.1);
@@ -55,6 +59,7 @@ $title-font: 'Prototype', sans-serif;
     padding-bottom: .1em;
     position: relative;
 
+    // Card number
     .number {
       width: 2.2em;
       font-size: .6em;
@@ -70,6 +75,7 @@ $title-font: 'Prototype', sans-serif;
       line-height: .95;
     }
 
+    // Bottom border
     &:after {
       display: block;
       position: absolute;
@@ -81,6 +87,7 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
+  // Card body
   .body {
     position: relative;
     background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
@@ -90,6 +97,7 @@ $title-font: 'Prototype', sans-serif;
     line-height: .9;
     flex-wrap: wrap;
 
+    // Top body, for Active cards only
     &.top {
       border-style: solid;
       border-width: 0;
@@ -98,6 +106,7 @@ $title-font: 'Prototype', sans-serif;
       box-shadow: 0 .1em 0 0 black, 0 .2em 0 0 #eee, 0 .3em 0 0 black;
     }
 
+    // Separator line, goes above flavor text
     hr {
       width: 90%;
       border: none;
@@ -106,6 +115,7 @@ $title-font: 'Prototype', sans-serif;
       margin: .4em auto;
     }
 
+    // Gutter, used to separate description items
     .gutter > * {
       margin-left: .5em;
       &:first-of-type {
@@ -113,6 +123,7 @@ $title-font: 'Prototype', sans-serif;
       }
     }
 
+    // Flavor text
     .flavor {
       font-style: italic;
       text-align: center;
@@ -123,10 +134,12 @@ $title-font: 'Prototype', sans-serif;
       padding-top: .3em;
     }
 
+    // Victory point bubble
     .vp {
       font-size: 5.5em;
     }
 
+    // Description text
     .description {
       &:before {
         content: '(';
@@ -137,6 +150,7 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
+  // Card art
   .image {
     display: flex;
     flex-grow: 1;

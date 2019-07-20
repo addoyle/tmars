@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import './Card.scss';
 
+/**
+ * Base level Card class
+ */
 export default class Card extends Component {
   title;
   tags;
   desc;
   flavor;
+
+  // Card set. E.g. base, corporate, venus, colonies, turmoil, promo
   set = 'base';
 
   constructor(props) {

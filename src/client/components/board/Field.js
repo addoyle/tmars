@@ -3,10 +3,20 @@ import './Field.scss';
 import { Tile, Resource, Param } from '../assets/Assets'
 import Tharsis from './Tharsis';
 
+/**
+ * Mars, i.e. the playing field
+ */
 export default class Field extends Component {
   render() {
     const field = Tharsis;
 
+    /**
+     * Renders a resource on a space
+     *
+     * @param resource Resource array to be renderd
+     * @param i        Index of resource to render
+     * @return Rendered resource
+     */
     const renderResource = (resource, i) => {
       if (resource && resource[i]) {
         if (resource[i] === 'card') {

@@ -2,7 +2,10 @@ import React, { Component } from 'react';
 import './Player.scss';
 import { Resource } from '../assets/Assets';
 
-export default class Players extends Component {
+/**
+ * A single player from the player list
+ */
+export default class Player extends Component {
   render() {
     const classes = ['player'];
     if (this.props.turn) { classes.push('active'); }

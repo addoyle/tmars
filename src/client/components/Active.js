@@ -4,6 +4,9 @@ import Project from './Project';
 import Art from './assets/Art';
 import Separator from './assets/Separator';
 
+/**
+ * Active Cards
+ */
 export default class Active extends Project {
   render() {
     return (

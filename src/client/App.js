@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import './App.scss';
-// import cards from './cards/base.js';
-// import card from './cards/base/projects/001.js';
 import Board from './components/board/Board';
 import CardRef from './components/board/CardRef';
 
-// {Object.keys(cards).map((card, i) => (<Card key={i} card={cards[card]} />))}
-
+/**
+ * React entry point
+ */
 class App extends Component {
   constructor(props) {
     super(props);
+
+    // Don't reset scroll on refresh
+    history.scrollRestoration = 'manual';
+
     this.state = {
       cards: [],
       log: [
@@ -31,7 +34,11 @@ class App extends Component {
         { name: 'Frank', player: 2, body: 'stfu adrian and play your turn' },
         { name: 'Adrian', player: 5, body: (<span> converted plants to a <span className="strong">greenery</span>.</span>), system: true },
         { name: 'Adrian', player: 5, body: (<span> placed a <span className="strong">Greenery</span>.</span>), system: true },
-        { name: 'Adrian', player: 5, body: (<span> used an action on <CardRef projectType="active" card="033">Regolith Eaters</CardRef> to add one <span className="strong">microbe</span> to this card.</span>), system: true }
+        { name: 'Adrian', player: 5, body: (<span> used an action on <CardRef projectType="active" card="033">Regolith Eaters</CardRef> to add one <span className="strong">microbe</span> to this card.</span>), system: true },
+        { name: 'Andy', player: 1, body: (<span> played <CardRef projectType="automated" card="018">Methane From Titan</CardRef>.</span>), system: true },
+        { name: 'Andy', player: 1, body: (<span> played <CardRef projectType="event" card="039">Deimos Down</CardRef>.</span>), system: true },
+        { name: 'Andy', player: 1, body: (<span> took <span className="strong">8</span> plants from <span className="strong player-2">Frank</span>!.</span>), system: true },
+        { name: 'Frank', player: 2, body: 'it\s fine. idgaf' }
       ]
     };
   }

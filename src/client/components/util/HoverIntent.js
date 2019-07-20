@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 
+/**
+ * Hover intent utility adds a delay to a hover action to ensure that the user
+ * intended on the hover action instead of an accidental hover.
+ */
 export default class HoverIntent extends Component {
   constructor(props) {
     super(props);
 
+    // Defaults
     this.x = 0;
     this.y = 0;
     this.pX = 0;
@@ -21,17 +26,33 @@ export default class HoverIntent extends Component {
     this.el.removeEventListener('mouseout', this.dispatchOut.bind(this), false);
   }
 
+  /**
+   * Put a delay on the hover action
+   *
+   * @param e onMouseOut event
+   */
   delay(e) {
     if (this.timer) { this.timer = clearTimeout(this.timer); }
     this.hover = false;
     return this.props.onMouseOut.call(this.el, e);
   }
 
+  /**
+   * Tracks the mouse movement, used for onMouseMove
+   *
+   * @param e onMouseOver/onMouseOut event
+   */
   tracker(e) {
     this.x = e.clientX;
     this.y = e.clientY;
   }
 
+  /**
+   * Compares the mouse location based on a sensitivity parameter. If the previous mouse movement was greater
+   * than the mouse movement, then the user probably intended to issue the hover action
+   *
+   * @param e onMouseMove event
+   */
   compare(e) {
     if (this.timer) { this.timer = clearTimeout(this.timer); }
     if ((Math.abs(this.pX - this.x) + Math.abs(this.pY - this.y)) < this.props.sensitivity) {
@@ -44,6 +65,11 @@ export default class HoverIntent extends Component {
     }
   }
 
+  /**
+   * Handles the onMouseOver event
+   *
+   * @param e onMouseOver event
+   */
   dispatchOver(e) {
     if (this.timer) { this.timer = clearTimeout(this.timer); }
     this.el.removeEventListener('mousemove', this.tracker.bind(this), false);
@@ -54,6 +80,12 @@ export default class HoverIntent extends Component {
       this.timer = setTimeout(() => this.compare(this.el, e), this.props.interval);
     }
   }
+
+  /**
+   * Handles the onMouseOut event
+   *
+   * @param e onMouseOut event
+   */
   dispatchOut(e) {
     if (this.timer) { this.timer = clearTimeout(this.timer); }
     this.el.removeEventListener('mousemove', this.tracker.bind(this), false);

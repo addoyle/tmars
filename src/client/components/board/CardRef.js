@@ -3,6 +3,9 @@ import './CardRef.scss';
 import CardPreview from './CardPreview';
 import HoverIntent from '../util/HoverIntent';
 
+/**
+ * Shows a card popup on hover
+ */
 export default class CardRef extends Component {
   constructor(props) {
     super(props);

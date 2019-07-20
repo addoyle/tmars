@@ -4,6 +4,9 @@ import Project from './Project';
 import Art from './assets/Art';
 import Separator from './assets/Separator';
 
+/**
+ * Automated Cards
+ */
 export default class Automated extends Project {
   render() {
     return (

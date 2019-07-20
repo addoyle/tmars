@@ -5,6 +5,9 @@ import Tag from './assets/Tag';
 import MegaCredit from './assets/MegaCredit';
 import Restriction from './assets/Restriction';
 
+/**
+ * Project cards (Automated, Active, or Event)
+ */
 export default class Project extends Card {
   number;
   cost;
@@ -14,50 +17,66 @@ export default class Project extends Card {
 
   render() {
     const restriction = [];
+
+    // Card has a restriction, convert it to a form that's easier to render
     if (this.props.restriction) {
       const res = this.props.restriction;
+
+      // Maximum restriction, append the word 'max'
       if (res.max) {
         restriction.push({text: 'max'});
       }
 
+      // Restriction is a parameter, i.e. oxygen or temperature. Note: oceans are not included here, even though
+      // they're considered parameters. They're handled by the Tiles section
       if (res.param) {
+
+        // Oxygen, shown as N%
         if (res.param === 'oxygen') {
           restriction.push({text: res.value + '%'}, {param: 'oxygen'});
-        } else if (res.param === 'temperature') {
+        }
+
+        // Temperature, shown as ±N°C
+        else if (res.param === 'temperature') {
           restriction.push({text: (res.value > 0 ? '+' : '') + res.value + '°C'}, {param: 'temperature'});
         }
-      } else {
+      }
+
+      // Anything else: tile, tag, production, etc.
+      else {
+        /**
+         * Render a restriction
+         *
+         * @param key Restriction type (tag, resource, tile, production)
+         */
         const prepareItem = (key) => {
+          // More than 3, show with a number denoting the amount
           if (res.value > 3) {
             restriction.push({text: res.value});
             res.value = 1;
           }
 
+          // No value specified, assumed to be 1
           if (!res.value) {
             res.value = 1;
           }
 
+          // Convert to array if not already
           if (!Array.isArray(res[key])) {
             res[key] = [res[key]];
           }
 
+          // Render the restrictions
           for (var i = 0; i < res.value; i++) {
             res[key].forEach(item => restriction.push({[key]: item}));
           }
         };
 
-        if (res.tag) {
-          prepareItem('tag');
-        }
-        if (res.resource) {
-          prepareItem('resource');
-        }
-        if (res.tile) {
-          prepareItem('tile');
-        }
-        if (res.production) {
-          prepareItem('production');
-        }
+        // Render the restrictions
+        res.tag && prepareItem('tag');
+        res.resource && prepareItem('resource');
+        res.tile && prepareItem('tile');
+        res.production && prepareItem('production');
       }
     }
 

@@ -1,5 +1,10 @@
 import React from 'react';
 
+/**
+ * Separator for cards
+ *
+ * @prop number Card number to display on separator
+ */
 export default function Separator(props) {
   const binaryNum = (+props.number).toString(2);
 

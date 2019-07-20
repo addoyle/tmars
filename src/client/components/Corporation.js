@@ -3,8 +3,10 @@ import './Corporation.scss';
 import Card from './Card';
 import { Tag } from './assets/Assets';
 
+/**
+ * Corporation cards
+ */
 export default class Corporation extends Card {
-
   render() {
     return (
       <Card type="corp" set={this.props.set} landscape>

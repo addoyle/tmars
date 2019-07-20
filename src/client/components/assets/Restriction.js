@@ -6,6 +6,11 @@ import Param from './Param.js';
 import Production from './Production.js';
 import Resource from './Resource.js';
 
+/**
+ * Render a restriction
+ *
+ * @param restriction Restriction to render
+ */
 function renderRestriction(restriction) {
   if (restriction.tag) {
     return (
@@ -26,6 +31,12 @@ function renderRestriction(restriction) {
   }
 }
 
+/**
+ * Card restriction
+ *
+ * @prop max    Boolean, true for maximum restriction, otherwise mininum restriction
+ * @prop values Restriction values
+ */
 export default function Restriction(props) {
   return (
     <div className={`restriction ${props.max ? 'max' : ''}`}>

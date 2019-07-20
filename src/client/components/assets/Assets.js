@@ -8,6 +8,12 @@ import Tag from './Tag';
 import Tile from './Tile';
 import VictoryPoint from './VictoryPoint';
 
+/**
+ * Utility to bundle all the assets into one import
+ *
+ * E.g.:
+ * import { Param, Tag, Resource } from './Assets';
+ */
 export {
   MegaCredit,
   Param,

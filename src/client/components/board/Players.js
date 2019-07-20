@@ -3,6 +3,9 @@ import './Players.scss';
 import Player from './Player';
 import PlayerStats from './PlayerStats';
 
+/**
+ * Shows a list of players on the top left
+ */
 export default class Players extends Component {
   constructor(props) {
     super(props);
@@ -17,6 +20,7 @@ export default class Players extends Component {
     this.closeClick = this.closeClick.bind(this);
   }
 
+  // Open/close player pane
   toggleStats(player, i) {
     return e => this.setState({
       statPlayer: player,
@@ -25,6 +29,7 @@ export default class Players extends Component {
     });
   }
 
+  // Close the pane
   closeClick() {
     this.setState({showStats: false});
   }

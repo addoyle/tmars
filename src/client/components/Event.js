@@ -4,6 +4,9 @@ import Project from './Project';
 import Art from './assets/Art';
 import Separator from './assets/Separator';
 
+/**
+ * Event cards
+ */
 export default class Event extends Project {
   render() {
     return (

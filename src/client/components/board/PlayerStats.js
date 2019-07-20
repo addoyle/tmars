@@ -3,10 +3,16 @@ import './PlayerStats.scss';
 import CardRef from './CardRef';
 import { Tag, MegaCredit, Resource, Production } from '../assets/Assets';
 
+/**
+ * Player Stats pane
+ *
+ * Shows player's resources, tags, cards played, etc.
+ */
 export default class PlayerStats extends Component {
   render() {
     return (
       <div className={`player-stats ${this.props.show ? 'show' : ''} player-${this.props.pid}`}>
+        {/* Corp title */}
         <div className="title-corp text-center m-top m-bottom">
           {this.props.player.corp ? (
             <CardRef type="corp" card={this.props.player.corp.number}>
@@ -16,6 +22,8 @@ export default class PlayerStats extends Component {
           <div className="close" onClick={this.props.closeClick}>&times;</div>
         </div>
 
+
+        {/* Resources */}
         <div className="title m-top text-center">Resources</div>
 
         <div className="flex gutter">
@@ -118,6 +126,8 @@ export default class PlayerStats extends Component {
           </div>
         </div>
 
+
+        {/* Tags */}
         <div className="title m-top text-center">Tags</div>
 
         <div className="flex tags">

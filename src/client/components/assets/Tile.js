@@ -90,6 +90,15 @@ const tiles = {
   blank: props => (<g />)
 };
 
+/**
+ * Tile
+ *
+ * @prop name      Tile type (e.g. City, greenery, etc.)
+ * @prop anyone    Boolean, true affects anyone (red border), otherwise false
+ * @prop clickable Tile becomes clickable with specified type (city, greenery, etc.)
+ * @prop icon      Icon to show on the tile (e.g. city, greenery, etc.)
+ * @prop asterisk  Boolean, true to show an asterisk, otherwise false
+ */
 export default function Tile(props) {
   var key = props.name;
   if (props.name === 'city capital') {

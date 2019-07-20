@@ -2,7 +2,12 @@ import React, { Component } from 'react';
 import './Log.scss';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
-export default class Players extends Component {
+/**
+ * The chat log/game history
+ */
+export default class Log extends Component {
+  msg = React.createRef()
+
   constructor(props) {
     super(props);
 
@@ -14,7 +19,7 @@ export default class Players extends Component {
   }
 
   onChange() {
-    this.setState({ msg: this.refs.msg.value });
+    this.setState({ msg: this.msg.current.value });
   }
 
   render() {
@@ -28,7 +33,7 @@ export default class Players extends Component {
           ))}
         </ScrollToBottom>
         <div className="form">
-          <textarea placeholder="Message..." onChange={this.onChange} ref="msg" />
+          <textarea placeholder="Message..." onChange={this.onChange} ref={this.msg} />
         </div>
       </div>
     );
