@@ -77,8 +77,8 @@ export default class Field extends Component {
             <div className="row">
               {row.map(tile => (
                 <Tile
-                  name={tile.name || (tile.attrs && tile.attrs.indexOf('reserved-ocean') >= 0 ? 'reserved-ocean' : 'blank')}
-                  clickable={tile.clickable}>
+                    name={tile.name || (tile.attrs && tile.attrs.indexOf('reserved-ocean') >= 0 ? 'reserved-ocean' : 'blank')}
+                    clickable={tile.clickable}>
                   {tile.name ? (<Tile name={tile.type} oxygen={tile.type === 'greenery'} />) : ''}
                   {!tile.name ? (
                     <div className="rewards">

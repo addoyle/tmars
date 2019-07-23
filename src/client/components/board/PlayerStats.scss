@@ -1,6 +1,7 @@
 $title-font: 'Prototype', sans-serif;
 
 .player-stats {
+  font-size: .8em;
   background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
   border: 3px solid #444;
   opacity: 0;
@@ -71,13 +72,6 @@ $title-font: 'Prototype', sans-serif;
     margin-right: auto;
     background:
       linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
-  }
-
-  .gutter > * {
-    margin-right: .5em;
-    &:first-of-type {
-      margin-left: .5em;
-    }
   }
 
   .tags {

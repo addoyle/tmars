@@ -115,14 +115,6 @@ $title-font: 'Prototype', sans-serif;
       margin: .4em auto;
     }
 
-    // Gutter, used to separate description items
-    .gutter > * {
-      margin-left: .5em;
-      &:first-of-type {
-        margin-left: inherit;
-      }
-    }
-
     // Flavor text
     .flavor {
       font-style: italic;

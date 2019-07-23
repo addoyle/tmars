@@ -3,6 +3,7 @@ import './Board.scss';
 import Field from './Field';
 import Players from './Players';
 import Log from './Log';
+import GlobalParameters from './GlobalParameters';
 
 export default class Board extends Component {
   board = React.createRef()
@@ -17,6 +18,11 @@ export default class Board extends Component {
     this.state = {
       turn: 2,
       dragging: false,
+      params: {
+        temp: -14,
+        oxygen: 10,
+        ocean: 2
+      },
       players: [
         {
           name: 'Andy',
@@ -235,6 +241,7 @@ export default class Board extends Component {
   }
 
   render() {
+    // TODO: figure out onMouseMove outside of browser range
     return (
       <div className={`board ${this.state.dragging ? 'dragging' : ''}`}
           onMouseDown={this.startDragging}
@@ -243,6 +250,7 @@ export default class Board extends Component {
           ref={this.board}>
         <Players players={this.state.players} turn={this.state.turn} />
         <Field />
+        <GlobalParameters temperature={this.state.params.temp} oxygen={this.state.params.oxygen} ocean={this.state.params.ocean} />
         <Log log={this.props.log} />
       </div>
     );

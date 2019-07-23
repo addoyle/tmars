@@ -187,13 +187,6 @@ $title-font: 'Prototype', sans-serif;
       }
     }
 
-    .gutter > * {
-      margin-left: .5em;
-      &:first-of-type {
-        margin-left: inherit;
-      }
-    }
-
     .effect {
       border: .2em solid #444;
       background: linear-gradient(120deg, #eee 0%, #bbb 10%, #eee 30%, #bbb 50%, #bbb 70%, #eee 90%, #999 100%);
