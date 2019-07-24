@@ -2,12 +2,11 @@ $title-font: 'Prototype', sans-serif;
 
 .player {
   font-family: $title-font;
-  font-size: 1.5em;
-  margin: .1em .2em;
-  padding: .1em;
+  margin: 2px 5px;
+  padding: 2px;
   border: 1px solid #ccc;
   background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
-  border-top-right-radius: .5em;
+  border-top-right-radius: 10px;
   transition: margin .3s ease, box-shadow .15s ease;
   display: inline-block;
   cursor: pointer;
@@ -15,11 +14,11 @@ $title-font: 'Prototype', sans-serif;
   pointer-events: auto;
 
   &:hover {
-    box-shadow: 0 0 0 .2em #666;
+    box-shadow: 0 0 0 4px #666;
   }
 
   &.active {
-    margin-left: 1em;
+    margin-left: 24px;
   }
 
   &.passed {
@@ -33,32 +32,34 @@ $title-font: 'Prototype', sans-serif;
   }
 
   > * {
-    margin-right: .2em;
+    margin-right: 5px;
   }
 
   > span {
-    font-size: .6em;
-    vertical-align: middle;
+    font-size: 14px;
+    vertical-align: text-top;
+  }
+
+  > .icon.resource {
+    font-size: 1.6em;
   }
 
   .points {
-    background: url('../assets/icons/pts.svg') no-repeat center/100%;
+    background: url('../assets/icons/pts.svg') no-repeat center/contain;
     font-family: $title-font;
     display: inline-block;
-    width: 1.1em;
-    height: 1em;
+    width: 27px;
     vertical-align: text-bottom;
     text-align: center;
 
     &.o {
-      background: url('../assets/icons/pts-o.svg') no-repeat center/100%;
+      background: url('../assets/icons/pts-o.svg') no-repeat center/contain;
     }
 
     > .value {
-      font-size: .55em;
+      font-size: 13px;
       color: #222;
-      vertical-align: top;
-      line-height: 1.9;
+      line-height: 2;
       color: #A22A2E;
     }
   }
@@ -67,7 +68,7 @@ $title-font: 'Prototype', sans-serif;
     background-image: url('../assets/icons/rover.svg');
     background-size: contain;
     display: inline-block;
-    width: 1em;
-    height: 1em;
+    width: 16px;
+    height: 16px;
   }
 }

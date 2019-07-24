@@ -2,15 +2,15 @@ $title-font: 'Prototype', sans-serif;
 
 .global-params {
   position: fixed;
-  right: 4.2em;
-  top: .25em;
-  font-size: 4em;
+  right: 282px;
+  top: 12px;
   cursor: initial;
 
   .ocean-param {
-    margin-right: -.08em;
-    margin-top: -.14em;
+    margin-right: -4px;
+    margin-top: -8px;
     transition: filter .3s ease;
+    font-size: 64px;
 
     &.maxed {
       filter: grayscale(.9);
@@ -18,42 +18,41 @@ $title-font: 'Prototype', sans-serif;
 
     .ocean-num {
       font-family: $title-font;
-      font-size: 2em;
+      font-size: 150px;
       color: #FFEF00;
       text-align: center;
-      margin: 1.5em 0;
+      margin: 180px 0;
     }
   }
 
   .temp-wrapper, .oxy-wrapper {
-    font-size: .5em;
-    height: 10.3em;
+    height: 340px;
     border: 1px solid black;
-    border-radius: .5em;
+    border-radius: 10px;
     text-align: center;
     background: rgba(255,255,255,.3);
     position: relative;
 
     > .param {
       position: absolute;
-      top: .1em;
-      font-size: .5em;
+      top: 0;
+      font-size: 16px;
       z-index: 1;
     }
 
     .temp-gauge, .oxy-gauge {
-      background-size: 1em 10.25em;
+      background-size: 20px 340px;
       background-position: bottom;
       width: 100%;
       transition: height .3s ease;
       position: relative;
-      border-bottom-left-radius: .5em;
-      border-bottom-right-radius: .5em;
-      height: .25em;
+      border-bottom-left-radius: 9px;
+      border-bottom-right-radius: 9px;
+      height: 9px;
 
       &.maxed {
-        border-top-left-radius: .5em;
-        border-top-right-radius: .5em;
+        border-top-left-radius: 9px;
+        border-top-right-radius: 9px;
         filter: grayscale(.9);
 
         span {
@@ -68,7 +67,7 @@ $title-font: 'Prototype', sans-serif;
         position: absolute;
         border-top: 1px solid white;
         color: white;
-        font-size: .5em;
+        font-size: 16px;
         top: 0;
         z-index: 2;
       }
@@ -78,7 +77,7 @@ $title-font: 'Prototype', sans-serif;
       line-height: 0;
       position: absolute;
       border: 1px solid black;
-      padding: .1em;
+      padding: 2px;
       background-color: #aaa;
 
       &.met {
@@ -86,17 +85,17 @@ $title-font: 'Prototype', sans-serif;
       }
 
       > .production {
-        font-size: .4em;
+        font-size: 17px;
       }
 
       > .tile {
-        font-size: .7em;
-        margin-right: -.09em;
+        font-size: 30px;
+        margin-right: -2px;
       }
 
       > .param {
-        font-size: .5em;
-        margin: 0;
+        font-size: 17px;
+        margin: 0 2px;
       }
 
       &:after {
@@ -105,64 +104,65 @@ $title-font: 'Prototype', sans-serif;
         font-family: $title-font;
         position: absolute;
         top: -1px;
-        font-size: .1em;
+        font-size: 10px;
         line-height: 1;
         text-align: center;
-        width: 1.8em;
+        width: 18px;
       }
     }
   }
 
-  .temp-wrapper {
-    margin-left: .2em;
-    margin-right: .1em;
-
-    .param {
-      margin: .3em;
-    }
-
-    .temp-gauge {
-      background-image: linear-gradient(to top, rgb(37,203,247),rgb(113,43,133),rgb(229,34,28));
-
-      span {
-        padding-right: 1.5em;
-        right: 0;
-      }
-    }
-
-    .bonus {
-      right: .8em;
-
-      &:after {
-        padding-left: 1.5em;
-        padding-right: .2em;
-      }
-    }
-  }
   .oxy-wrapper {
-    margin-left: .1em;
-    margin-right: .2em;
+    margin-left: 8px;
+    margin-right: 2px;
 
     .param {
-      margin: .6em .05em;
+      margin: 10px 1px;
     }
 
     .oxy-gauge {
       background-image: linear-gradient(to top, rgba(0,0,0,.1),rgba(180,140,94,1),rgba(147,207,244,1));
 
       span {
-        padding-left: 1.5em;
+        padding-right: 24px;
+        right: 0;
+      }
+    }
+
+    .bonus {
+      right: 23px;
+
+      &:after {
+        padding-left: 8px;
+        padding-right: 1px;
+      }
+    }
+  }
+
+  .temp-wrapper {
+    margin-left: 3px;
+    margin-right: 7px;
+
+    .param {
+      margin: 5px;
+    }
+
+    .temp-gauge {
+      background-image: linear-gradient(to top, rgb(37,203,247),rgb(113,43,133),rgb(229,34,28));
+
+      span {
+        padding-left: 24px;
         left: 0;
       }
     }
 
     .bonus {
-      left: .8em;
+      left: 23px;
 
       &:after {
         right: 0;
-        padding-right: 2.6em;
-        padding-left: .2em;
+        padding-right: 37px;
+        padding-left: 1px;
       }
     }
   }

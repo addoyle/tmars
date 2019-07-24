@@ -75,7 +75,7 @@ $title-font: 'Prototype', sans-serif;
       linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
   }
 
-  .tags {
+  .section {
     padding: 0 .5em;
   }
 
@@ -112,23 +112,23 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.player-1:before {
-    top: .7em;
+    top: 8px;
     background-color: hsl(0,80%,40%);
   }
   &.player-2:before {
-    top: 3.6em;
+    top: calc(8px + 36px);
     background-color: hsl(240,80%,40%);
   }
   &.player-3:before {
-    top: 6.5em;
+    top: calc(8px + 36px + 36px);
     background-color: hsl(120,80%,30%);
   }
   &.player-4:before {
-    top: 9.4em;
+    top: calc(8px + 36px + 36px + 36px);
     background-color: hsl(60,80%,40%);
   }
   &.player-5:before {
-    top: 12.3em;
+    top: calc(8px + 36px + 36px + 36px + 36px);
     background-color: hsl(0,0%,35%);
   }
 }

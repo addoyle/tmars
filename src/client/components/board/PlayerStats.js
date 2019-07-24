@@ -26,9 +26,9 @@ export default class PlayerStats extends Component {
         {/* Resources */}
         <div className="title m-top text-center">Resources</div>
 
-        <div className="flex gutter">
+        <div className="flex gutter section">
 
-          <div className="col-1 text-center center">
+          <div className="col-1 text-center">
             <div class="resource-wrapper flex">
               <div className="resources col-1 text-center">
                 <span>{this.props.player.resources.mc}</span>
@@ -60,7 +60,7 @@ export default class PlayerStats extends Component {
             </Production>
           </div>
 
-          <div className="col-1 text-center center">
+          <div className="col-1 text-center">
             <div class="resource-wrapper flex">
               <div className="resources col-1 text-center">
                 <span>{this.props.player.resources.st}</span>
@@ -92,7 +92,7 @@ export default class PlayerStats extends Component {
             </Production>
           </div>
 
-          <div className="col-1 text-center center">
+          <div className="col-1 text-center">
             <div class="resource-wrapper flex">
               <div className="resources col-1 text-center">
                 <span>{this.props.player.resources.ti}</span>
@@ -130,8 +130,8 @@ export default class PlayerStats extends Component {
         {/* Tags */}
         <div className="title m-top text-center">Tags</div>
 
-        <div className="flex tags">
-          <div className="col-1 text-center center">
+        <div className="flex section">
+          <div className="col-1 text-center">
             <div class="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.building}</span>
@@ -158,7 +158,7 @@ export default class PlayerStats extends Component {
             </div>
           </div>
 
-          <div className="col-1 text-center center">
+          <div className="col-1 text-center">
             <div class="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.space}</span>
@@ -185,7 +185,7 @@ export default class PlayerStats extends Component {
             </div>
           </div>
 
-          <div className="col-1 text-center center">
+          <div className="col-1 text-center">
             <div class="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.power}</span>
@@ -212,7 +212,7 @@ export default class PlayerStats extends Component {
             </div>
           </div>
 
-          <div className="col-1 text-center center">
+          <div className="col-1 text-center">
             <div class="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.science}</span>
