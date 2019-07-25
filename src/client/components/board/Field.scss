@@ -1,19 +1,18 @@
 $title-font: 'Prototype', sans-serif;
 
 .field {
-  width: 6.9em;
-  height: 6.9em;
+  width: 994px;
+  height: 994px;
   background: url('/icons/mars_bg.jpg') center no-repeat/contain;
-  border: .05em solid #8B5E36;
+  border: 7px solid #8B5E36;
   border-radius: 100%;
   text-align: center;
-  margin: 3em auto;
-  box-shadow: 0 0 .3em .3em rgba(255,255,255,.3);
-  font-size: 9em;
+  margin: 50vh auto;
+  box-shadow: 0 0 100px rgba(255,255,255,.7);
   user-select: none;
 
   .tiles {
-    margin: 58px -152px 0 -143px;
+    margin: 64px -152px 0 -143px;
 
     .row {
       margin: -50px 0;
@@ -21,23 +20,24 @@ $title-font: 'Prototype', sans-serif;
       height: 151px;
 
       > .tile {
+        font-size: 144px;
         margin: 0 -13.5px;
 
         &.ocean-placed {
           foreignObject {
-            background: url('../assets/texture/ocean.png') center no-repeat/2.9em;
+            background: url('../assets/texture/ocean.png') center no-repeat/contain;
           }
         }
 
         &.city-placed {
           foreignObject {
-            background: url('../assets/texture/city.png') center no-repeat/2.9em;
+            background: url('../assets/texture/city.png') center no-repeat/contain;
           }
         }
 
         &.greenery-placed {
           foreignObject {
-            background: url('../assets/texture/greenery.png') center no-repeat/2.9em;
+            background: url('../assets/texture/greenery.png') center no-repeat/contain;
           }
         }
 
@@ -46,7 +46,7 @@ $title-font: 'Prototype', sans-serif;
 
           > .resource {
             opacity: .85;
-            font-size: .8em;
+            font-size: 120px;
           }
 
           > .tile {
@@ -64,22 +64,22 @@ $title-font: 'Prototype', sans-serif;
         }
 
         .base {
-          stroke: rgba(255,255,255,.4);
+          stroke: #ccc;
         }
 
         .rewards {
           margin-bottom: -87px;
 
           .resources {
-            font-size: .6em;
-            margin: 0 0 -.52em;
+            font-size: 88px;
+            margin: 0 0 -46px;
             padding: 0;
           }
         }
 
         .text {
           font-family: $title-font;
-          font-size: .37em;
+          font-size: 53px;
         }
 
         img.noctis {
