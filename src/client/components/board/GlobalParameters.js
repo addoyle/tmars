@@ -7,31 +7,40 @@ import { Tile, Param, Production, Resource } from '../assets/Assets';
  */
 export default class GlobalParameters extends Component {
   render() {
+    const gaugeHeight = 329;
+    const gauge = (max, value, offset = 0, inv = false) => Math.abs((value * gaugeHeight / max) + offset - (inv ? gaugeHeight : 0));
+    const tempMax = 38;
+    const oxyMax = 14
+
     return (
       <div className="global-params">
         <div className="flex">
           <div className="col-1 oxy-wrapper flex">
             <Param name="oxygen" />
             <div
-                className={`oxy-gauge bottom ${this.props.oxygen === 14 ? 'maxed' : ''}`}
-                style={{height: `${(this.props.oxygen / (14 / 329) + 9)}px`}}>
+                className={`oxy-gauge bottom ${this.props.oxygen === oxyMax ? 'maxed' : ''}`}
+                style={{height: `${gauge(oxyMax, this.props.oxygen, 9)}px`}}>
               <span>{`${this.props.oxygen}%`}</span>
             </div>
 
-            <div className={`bonus ${this.props.oxygen >= 8 ? 'met' : ''}`} style={{top: `${329 - (8 / (14 / 329))}px`}} data-content="8%">
+            <div className={`bonus ${this.props.oxygen >= 8 ? 'met' : ''}`} style={{top: `${gauge(oxyMax, 8, 0, true)}px`}} data-content="8%">
               <Param name="temperature" />
             </div>
+
+            {new Array(oxyMax).fill(undefined).map((v,i) => (
+              <span className="tick" style={{top: `${gauge(oxyMax, i, 0, true)}px`}} />
+            ))}
           </div>
 
           <div className="col-1 temp-wrapper flex">
             <Param name="temperature" />
             <div
                 className={`temp-gauge bottom ${this.props.temperature === 8 ? 'maxed' : ''}`}
-                style={{height: `${((this.props.temperature + 30) / (38 / 329) + 9)}px`}}>
+                style={{height: `${gauge(tempMax, this.props.temperature + 30, 9)}px`}}>
               <span>{`${this.props.temperature > 0 ? '+' : ''}${this.props.temperature}°C`}</span>
             </div>
 
-            <div className={`bonus ${this.props.temperature >= -24 ? 'met' : ''}`} style={{top: `${329 - (6 / (38 / 329))}px`}} data-content="-24">
+            <div className={`bonus ${this.props.temperature >= -24 ? 'met' : ''}`} style={{top: `${gauge(tempMax, -24 + 30, 0, true)}px`}} data-content="-24">
               <Production>
                 <div className="flex">
                   <Resource name="heat" />
@@ -39,7 +48,7 @@ export default class GlobalParameters extends Component {
               </Production>
             </div>
 
-            <div className={`bonus ${this.props.temperature >= -20 ? 'met' : ''}`} style={{top: `${329 - (10 / (38 / 329))}px`}} data-content="-20">
+            <div className={`bonus ${this.props.temperature >= -20 ? 'met' : ''}`} style={{top: `${gauge(tempMax, -20 + 30, 0, true)}px`}} data-content="-20">
               <Production>
                 <div className="flex">
                   <Resource name="heat" />
@@ -47,9 +56,13 @@ export default class GlobalParameters extends Component {
               </Production>
             </div>
 
-            <div className={`bonus ${this.props.temperature >= 0 ? 'met' : ''}`} style={{top: `${329 - (30 / (38 / 329))}px`}} data-content="0">
+            <div className={`bonus ${this.props.temperature >= 0 ? 'met' : ''}`} style={{top: `${gauge(tempMax, 0 + 30, 0, true)}px`}} data-content="0°C">
               <Tile name="ocean" />
             </div>
+
+            {new Array(tempMax / 2).fill(undefined).map((v,i) => (
+              <span className="tick" style={{top: `${gauge(tempMax, i * 2, 0, true)}px`}} />
+            ))}
           </div>
         </div>
 

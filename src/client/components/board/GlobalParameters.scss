@@ -110,6 +110,14 @@ $title-font: 'Prototype', sans-serif;
         width: 18px;
       }
     }
+
+    .tick {
+      position: absolute;
+      left: 0;
+      height: 0;
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
   }
 
   .oxy-wrapper {
@@ -161,7 +169,7 @@ $title-font: 'Prototype', sans-serif;
 
       &:after {
         right: 0;
-        padding-right: 37px;
+        padding-right: 38px;
         padding-left: 1px;
       }
     }
