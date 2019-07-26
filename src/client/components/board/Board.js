@@ -217,6 +217,20 @@ export default class Board extends Component {
           }
         }
       ]
+    };
+
+    // Handle if dragging leaves the browser window
+    const mouseleave = (e) => {
+      e = e ? e : window.event;
+      const from = e.relatedTarget || e.toElement;
+      if (!from || from.nodeName === 'HTML') {
+        this.setState({dragging: false});
+      }
+    };
+    if (document.addEventListener) {
+      document.addEventListener('mouseout', mouseleave, false);
+    } else if (document.attachEvent) {
+      document.attachEvent('onmouseout', mouseleave);
     }
   }
 
@@ -224,7 +238,7 @@ export default class Board extends Component {
     this.setState({dragging: true});
   }
 
-  stopDragging() {
+  stopDragging(e) {
     this.setState({dragging: false});
   }
 
