@@ -13,11 +13,91 @@ $title-font: 'Prototype', sans-serif;
 
   .tiles {
     margin: 64px -152px 0 -143px;
+    position: relative;
 
     .row {
       margin: -50px 0;
       pointer-events: none;
       height: 151px;
+
+      &.phobos {
+        position: absolute;
+        top: 10px;
+        left: 120px;
+        background: url('../assets/texture/phobos.png') center no-repeat/contain;
+        padding: 10px 0 10px 20px;
+        height: initial;
+      }
+
+      &.ganymede {
+        position: absolute;
+        top: 200px;
+        left: 0;
+        background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 60%);
+        width: 144px;
+        height: 144px;
+        padding-left: 10px;
+
+        .text {
+          width: 80%;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .dot {
+          position: absolute;
+          top: 135px;
+          left: 69px;
+          color: white;
+          font-size: 25px;
+
+          &:before, &:after {
+            content: '';
+            border-bottom: 2px solid #ccc;
+            height: 0;
+            width: 72px;
+            display: block;
+            position: absolute;
+            top: -10px;
+          }
+          &:before {
+            right: -4px;
+            transform: rotate(35deg);
+          }
+          &:after {
+            left: -4px;
+            transform: rotate(-35deg);
+          }
+        }
+
+        &:before {
+          content: '';
+          display: block;
+          background: url('../assets/icons/jovian.svg') center no-repeat/contain;
+          height: 64px;
+          width: 64px;
+          position: absolute;
+          top: 130px;
+          left: -20px;
+          border-radius: 100%;
+          box-shadow: 0 0 15px rgba(255,255,255,.6);
+          filter: grayscale(.4);
+        }
+
+        // &:after {
+        //   content: '';
+        //   display: block;
+        //   transform: rotate(45deg);
+        //   height: 82px;
+        //   width: 82px;
+        //   position: absolute;
+        //   top: 64px;
+        //   left: 30px;
+        //   border-style: solid;
+        //   border-color: #ccc;
+        //   border-width: 0 2px 2px 0;
+        // }
+      }
 
       > .tile {
         font-size: 144px;
@@ -82,7 +162,7 @@ $title-font: 'Prototype', sans-serif;
           font-size: 53px;
         }
 
-        img.noctis {
+        img.city {
           margin-top: -65px;
           margin-bottom: -66px;
 

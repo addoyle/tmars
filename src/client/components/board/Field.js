@@ -7,8 +7,22 @@ import Tharsis from './Tharsis';
  * Mars, i.e. the playing field
  */
 export default class Field extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      field: [],
+      phobos: {},
+      ganymede: {}
+    }
+  }
+
+  componentDidMount() {
+    this.setState({ field: Tharsis });
+  }
+
   render() {
-    const field = Tharsis;
+    const { field, phobos, ganymede } = this.state;
 
     /**
      * Renders a resource on a space
@@ -31,48 +45,87 @@ export default class Field extends Component {
       }
     };
 
-    field[0][1].name = 'ocean-placed';
-    field[0][1].type = 'ocean';
-    field[2][0].name = 'greenery-placed';
-    field[2][0].type = 'greenery';
-    field[2][0].player = 1;
-    field[2][1].name = 'greenery-placed';
-    field[2][1].type = 'greenery';
-    field[2][1].player = 2;
-    field[2][2].name = 'greenery-placed';
-    field[2][2].type = 'greenery';
-    field[2][2].player = 3;
-    field[2][3].name = 'greenery-placed';
-    field[2][3].type = 'greenery';
-    field[2][3].player = 4;
-    field[2][4].name = 'greenery-placed';
-    field[2][4].type = 'greenery';
-    field[2][4].player = 5;
-    field[3][0].name = 'city-placed';
-    field[3][0].type = 'city';
-    field[3][0].player = 1;
-    field[3][1].name = 'city-placed';
-    field[3][1].type = 'city';
-    field[3][1].player = 2;
-    field[3][2].name = 'city-placed';
-    field[3][2].type = 'city';
-    field[3][2].player = 3;
-    field[3][3].name = 'city-placed';
-    field[3][3].type = 'city';
-    field[3][3].player = 4;
-    field[3][4].name = 'city-placed';
-    field[3][4].type = 'city';
-    field[3][4].player = 5;
-    field[3][5].player = 1;
-    field[4][0].clickable = 'city';
-    field[4][1].clickable = 'greenery';
-    field[4][2].clickable = 'special';
-    field[4][3].clickable = 'ocean';
-    field[4][4].clickable = 'capital';
+    if (field.length) {
+      field[0][1].name = 'ocean-placed';
+      field[0][1].type = 'ocean';
+      field[2][0].name = 'greenery-placed';
+      field[2][0].type = 'greenery';
+      field[2][0].player = 1;
+      field[2][1].name = 'greenery-placed';
+      field[2][1].type = 'greenery';
+      field[2][1].player = 2;
+      field[2][2].name = 'greenery-placed';
+      field[2][2].type = 'greenery';
+      field[2][2].player = 3;
+      field[2][3].name = 'greenery-placed';
+      field[2][3].type = 'greenery';
+      field[2][3].player = 4;
+      field[2][4].name = 'greenery-placed';
+      field[2][4].type = 'greenery';
+      field[2][4].player = 5;
+      field[3][0].name = 'city-placed';
+      field[3][0].type = 'city';
+      field[3][0].player = 1;
+      field[3][1].name = 'city-placed';
+      field[3][1].type = 'city';
+      field[3][1].player = 2;
+      field[3][2].name = 'city-placed';
+      field[3][2].type = 'city';
+      field[3][2].player = 3;
+      field[3][3].name = 'city-placed';
+      field[3][3].type = 'city';
+      field[3][3].player = 4;
+      field[3][4].name = 'city-placed';
+      field[3][4].type = 'city';
+      field[3][4].player = 5;
+      field[3][5].player = 1;
+      field[4][0].clickable = 'city';
+      field[4][1].clickable = 'greenery';
+      field[4][2].clickable = 'special';
+      field[4][3].clickable = 'ocean';
+      field[4][4].clickable = 'capital';
+    }
 
     return (
       <div className="field">
         <div className="tiles">
+          <div className="phobos row">
+            <Tile
+                name={phobos.player ? 'city-placed' : 'blank'}
+                clickable={phobos.clickable ? 'city' : false}>
+              {phobos.player ? (<Tile name="city" />) : ''}
+              {!phobos.player ? (
+                <div className="rewards">
+                  <div className="resources"><Resource name="blank" /></div>
+                  <div className="resources"><Resource name="blank" /></div>
+                  <div className="resources"><Resource name="blank" /></div>
+                  <img className="city" src="/icons/city.svg" />
+                  <div className="text">Phobos Space Haven</div>
+                </div>
+              ) : ''}
+              {phobos.player ? (<Resource name={`player-${phobos.player}`} />) : ''}
+            </Tile>
+          </div>
+
+          <div className="ganymede row">
+            <Tile
+                name={ganymede.player ? 'city-placed' : 'blank'}
+                clickable={ganymede.clickable ? 'city' : false}>
+              {ganymede.player ? (<Tile name="city" />) : ''}
+              {!ganymede.player ? (
+                <div className="rewards">
+                  <div className="resources"><Resource name="blank" /></div>
+                  <div className="resources"><Resource name="blank" /></div>
+                  <div className="resources"><Resource name="blank" /></div>
+                  <img className="city" src="/icons/city.svg" />
+                  <div className="text">Ganymede Colony</div>
+                </div>
+              ) : ''}
+              {ganymede.player ? (<Resource name={`player-${ganymede.player}`} />) : ''}
+            </Tile>
+            <div className="dot">.</div>
+          </div>
+
           {field.map(row => (
             <div className="row">
               {row.map(tile => (
@@ -93,7 +146,7 @@ export default class Field extends Component {
                       <div className="resources">
                         {renderResource(tile.resources, 3)}
                       </div>
-                      {tile.attrs && tile.attrs.indexOf('noctis-city') >= 0 ? (<img className="noctis" src="/icons/city.svg" />) : ''}
+                      {tile.attrs && tile.attrs.indexOf('noctis-city') >= 0 ? (<img className="city" src="/icons/city.svg" />) : ''}
                       {tile.text ? (<div className="text">{tile.text}</div>) : ''}
                     </div>
                   ) : ''}
