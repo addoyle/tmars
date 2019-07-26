@@ -51,6 +51,9 @@ $title-font: 'Prototype', sans-serif;
     width: 27px;
     vertical-align: text-bottom;
     text-align: center;
+    margin-top: -1px;
+    margin-bottom: -1px;
+    padding-top: 2px;
 
     &.o {
       background: url('../assets/icons/pts-o.svg') no-repeat center/contain;
