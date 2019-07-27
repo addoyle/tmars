@@ -44,29 +44,6 @@ $title-font: 'Prototype', sans-serif;
     font-size: 1.6em;
   }
 
-  .points {
-    background: url('../assets/icons/pts.svg') no-repeat center/contain;
-    font-family: $title-font;
-    display: inline-block;
-    width: 27px;
-    vertical-align: text-bottom;
-    text-align: center;
-    margin-top: -1px;
-    margin-bottom: -1px;
-    padding-top: 2px;
-
-    &.o {
-      background: url('../assets/icons/pts-o.svg') no-repeat center/contain;
-    }
-
-    > .value {
-      font-size: 13px;
-      color: #222;
-      line-height: 2;
-      color: #A22A2E;
-    }
-  }
-
   .starting-player {
     background-image: url('../assets/icons/rover.svg');
     background-size: contain;

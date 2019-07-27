@@ -21,7 +21,8 @@ export default class Board extends Component {
       params: {
         temp: -14,
         oxygen: 10,
-        ocean: 2
+        ocean: 2,
+        generation: 4
       },
       players: [
         {
@@ -264,7 +265,11 @@ export default class Board extends Component {
           ref={this.board}>
         <Players players={this.state.players} turn={this.state.turn} />
         <Field />
-        <GlobalParameters temperature={this.state.params.temp} oxygen={this.state.params.oxygen} ocean={this.state.params.ocean} />
+        <GlobalParameters
+          temperature={this.state.params.temp}
+          oxygen={this.state.params.oxygen}
+          ocean={this.state.params.ocean}
+          generation={this.state.params.generation} />
         <Log log={this.props.log} />
       </div>
     );

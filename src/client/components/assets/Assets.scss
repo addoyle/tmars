@@ -567,3 +567,22 @@ $title-font: 'Prototype', sans-serif;
     content: '\27A1';
   }
 }
+
+.points {
+  background: url('./icons/pts.svg') no-repeat center/contain;
+  font-family: $title-font;
+  display: inline-block;
+  width: 1.7em;
+  vertical-align: text-bottom;
+  text-align: center;
+
+  &.o {
+    background: url('./icons/pts-o.svg') no-repeat center/contain;
+  }
+
+  > .value {
+    font-size: .8em;
+    line-height: 2;
+    color: #A22A2E;
+  }
+}
