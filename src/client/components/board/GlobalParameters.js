@@ -14,6 +14,10 @@ export default class GlobalParameters extends Component {
 
     return (
       <div className="global-params">
+        <div className={`points ${this.props.generation % 5 !== 0 ? 'o' : ''}`}>
+          <span className="value">{this.props.generation}</span>
+        </div>
+
         <div className="flex">
           <div className="col-1 oxy-wrapper flex">
             <Param name="oxygen" />

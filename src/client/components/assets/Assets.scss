@@ -573,6 +573,25 @@ $title-font: 'Prototype', sans-serif;
   }
 }
 
+.points {
+  background: url('./icons/pts.svg') no-repeat center/contain;
+  font-family: $title-font;
+  display: inline-block;
+  width: 1.7em;
+  vertical-align: text-bottom;
+  text-align: center;
+
+  &.o {
+    background: url('./icons/pts-o.svg') no-repeat center/contain;
+  }
+
+  > .value {
+    font-size: .8em;
+    line-height: 2;
+    color: #A22A2E;
+  }
+}
+
 .standard-project {
   font-size: 1em;
   font-family: $title-font;
