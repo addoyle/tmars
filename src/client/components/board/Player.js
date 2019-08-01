@@ -12,7 +12,7 @@ export default class Player extends Component {
     if (this.props.player.passed) { classes.push('passed'); }
 
     return (
-      <div className={classes.join(' ')} onClick={this.props.onClick}>
+      <div className={classes.join(' ')} onClick={this.props.onClick} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
         <Resource name={`player-${this.props.pid}`} />
         <div className={`points ${this.props.player.tr % 5 !== 0 ? 'o' : ''}`}><span className="value">{this.props.player.tr}</span></div>
         <span>{this.props.player.name}</span>

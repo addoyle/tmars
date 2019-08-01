@@ -4,6 +4,7 @@ import Field from './Field';
 import Players from './Players';
 import Log from './Log';
 import GlobalParameters from './GlobalParameters';
+import StandardProjects from './StandardProjects';
 
 export default class Board extends Component {
   board = React.createRef()
@@ -265,6 +266,7 @@ export default class Board extends Component {
         <Players players={this.state.players} turn={this.state.turn} />
         <Field />
         <GlobalParameters temperature={this.state.params.temp} oxygen={this.state.params.oxygen} ocean={this.state.params.ocean} />
+        <StandardProjects />
         <Log log={this.props.log} />
       </div>
     );

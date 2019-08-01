@@ -1,0 +1,116 @@
+$title-font: 'Prototype', sans-serif;
+
+.standard-projects {
+  font-family: $title-font;
+  background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+  border: 3px solid #444;
+  position: fixed;
+  right: 282px;
+  bottom: 32px;
+  cursor: initial;
+  font-size: 14px;
+  padding: 6px;
+  height: 309px;
+  transition: height ease .5s;
+
+  .header {
+    background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+    border: 3px solid #444;
+    padding: 9px 16px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    margin-top: -50px;
+    margin-bottom: 6px;
+    border-bottom: none;
+
+    .standard-project {
+      padding-left: 1em;
+      position: relative;
+      margin: 0;
+
+      &:after {
+        content: '▾';
+        font-size: 28px;
+        line-height: .24;
+        vertical-align: middle;
+      }
+    }
+  }
+
+  &.collapse {
+    height: 18px;
+
+    .row {
+      opacity: 0;
+    }
+
+    .header .standard-project:after {
+      content: '▴';
+    }
+  }
+
+  .row {
+    margin-right: -35px;
+    margin-bottom: -5px;
+    transition: opacity ease-out .5s;
+
+    .resources > .mc {
+      font-size: 1.3em;
+    }
+
+    .x {
+      margin-right: -.5em;
+      font-family: $title-font;
+      text-shadow: 0 0 3px rgba(255,255,255,.7);
+      position: relative;
+      z-index: 1;
+      font-size: 1em;
+    }
+
+    &.city {
+      .tile {
+        margin-right: -4px;
+      }
+      .production {
+        font-size: .7em;
+      }
+      button.standard-project {
+        min-width: 64px;
+      }
+    }
+  }
+
+  button.standard-project {
+    position: relative;
+    cursor: pointer;
+    min-width: 88px;
+    transition: background .3s ease, border-color .3s ease;
+    margin-left: .5em;
+
+    &:hover {
+      background: #edb94a;
+      border-color: #f7f255;
+    }
+    &:active {
+      outline: none;
+      background: #d59915;
+      border-color: #dbd40a;
+    }
+    &:focus {
+      outline: none;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: -5px;
+      left: -5px;
+      bottom: -5px;
+      right: -5px;
+      background: repeating-linear-gradient(90deg, #444 0%, #eee 25%, #444 50%);
+      z-index: -1;
+      border-radius: 1.1em;
+    }
+  }
+}

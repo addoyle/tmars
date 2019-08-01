@@ -44,6 +44,7 @@ $title-font: 'Prototype', sans-serif;
     font-size: 1em;
     height: 1.4em;
     vertical-align: middle;
+    border-radius: .1em;
 
     &.back {
       background: #171717 url('./texture/card-back.jpg') no-repeat center/75%;
@@ -431,6 +432,10 @@ $title-font: 'Prototype', sans-serif;
     vertical-align: middle;
     margin: .1em;
 
+    &.production .flex {
+      margin: 0;
+    }
+
     &.param.temperature {
       margin-left: .1em;
       margin-right: .1em;
@@ -566,4 +571,15 @@ $title-font: 'Prototype', sans-serif;
   &:before {
     content: '\27A1';
   }
+}
+
+.standard-project {
+  font-size: 1em;
+  font-family: $title-font;
+  text-align: center;
+  background: #e8a91c;
+  border: 2px solid #f5ee24;
+  border-radius: 1em;
+  box-shadow: 0 0 1px 1px black;
+  padding: 0 .2em
 }

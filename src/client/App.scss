@@ -102,7 +102,7 @@ p {
 .p-rel { position: relative; }
 .gutter > * {
 	margin-left: .5em;
-	&:first-of-type {
+	&:first-child {
 		margin-left: inherit;
 	}
 }

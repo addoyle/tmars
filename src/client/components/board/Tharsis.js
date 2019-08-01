@@ -69,7 +69,7 @@ export default [
   [
     { resources: ['steel', 'steel'] },
     {},
-    {},
+    { resources: ['card'] },
     { resources: ['card'] },
     {},
     { resources: ['titanium'] }
