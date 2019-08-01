@@ -8,6 +8,7 @@
   position: relative;
   z-index: 1;
   display: inline-block;
+  vertical-align: top;
 
   &.landscape {
     height: 1em;

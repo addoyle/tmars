@@ -11,7 +11,7 @@ export default new Corporation({
   titleStyle: {
     fontSize: '.07em',
     textTransform: 'uppercase',
-    margin: '.5em 1.7em -3.3em',
+    margin: '.5em 1.7em -2.2em',
     borderTop: '1em solid orange',
     transform: 'scale(1.2,1)',
     letterSpacing: '.1em',
@@ -42,7 +42,7 @@ export default new Corporation({
       <div className="col-1 middle">
         <div className="effect">
           <div className="effect-title">Effect</div>
-          <div className="flex">
+          <div className="flex" style={{marginBottom: '-.5em'}}>
             <div className="resources">
               <Tile name="city" anyone asterisk /> :&nbsp;
             </div>
@@ -52,7 +52,7 @@ export default new Corporation({
               </div>
             </Production>
           </div>
-          <div className="flex">
+          <div className="flex" style={{marginBottom: '-.5em'}}>
             <div className="resources">
               <Tile name="city" /> : <MegaCredit value="3" />
             </div>
