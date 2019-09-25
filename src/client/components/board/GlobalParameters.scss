@@ -18,7 +18,7 @@ $title-font: 'Prototype', sans-serif;
     font-size: 64px;
 
     &.maxed {
-      filter: grayscale(.9);
+      opacity: .25;
     }
 
     .ocean-num {
@@ -45,6 +45,15 @@ $title-font: 'Prototype', sans-serif;
       z-index: 1;
     }
 
+    &.maxed {
+      opacity: .25;
+
+      .temp-gauge, .oxy-gauge {
+        border-top-left-radius: 9px;
+        border-top-right-radius: 9px;
+      }
+    }
+
     .temp-gauge, .oxy-gauge {
       background-size: 20px 340px;
       background-position: bottom;
@@ -54,18 +63,6 @@ $title-font: 'Prototype', sans-serif;
       border-bottom-left-radius: 9px;
       border-bottom-right-radius: 9px;
       height: 9px;
-
-      &.maxed {
-        border-top-left-radius: 9px;
-        border-top-right-radius: 9px;
-        filter: grayscale(.9);
-
-        span {
-          color: #ddd;
-          font-style: italic;
-          text-shadow: 1px 1px 0 #aaa;
-        }
-      }
 
       span {
         font-family: $title-font;
@@ -175,7 +172,7 @@ $title-font: 'Prototype', sans-serif;
       &:after {
         right: 0;
         padding-right: 38px;
-        padding-left: 1px;
+        padding-left: 0;
       }
     }
   }

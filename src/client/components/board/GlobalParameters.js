@@ -19,11 +19,9 @@ export default class GlobalParameters extends Component {
         </div>
 
         <div className="flex">
-          <div className="col-1 oxy-wrapper flex">
+          <div className={`col-1 oxy-wrapper flex ${this.props.oxygen === oxyMax ? 'maxed' : ''}`}>
             <Param name="oxygen" />
-            <div
-                className={`oxy-gauge bottom ${this.props.oxygen === oxyMax ? 'maxed' : ''}`}
-                style={{height: `${gauge(oxyMax, this.props.oxygen, 9)}px`}}>
+            <div className="oxy-gauge bottom" style={{height: `${gauge(oxyMax, this.props.oxygen, 9)}px`}}>
               <span>{`${this.props.oxygen}%`}</span>
             </div>
 
@@ -36,11 +34,9 @@ export default class GlobalParameters extends Component {
             ))}
           </div>
 
-          <div className="col-1 temp-wrapper flex">
+          <div className={`col-1 temp-wrapper flex ${this.props.temperature === 8 ? 'maxed' : ''}`}>
             <Param name="temperature" />
-            <div
-                className={`temp-gauge bottom ${this.props.temperature === 8 ? 'maxed' : ''}`}
-                style={{height: `${gauge(tempMax, this.props.temperature + 30, 9)}px`}}>
+            <div className="temp-gauge bottom" style={{height: `${gauge(tempMax, this.props.temperature + 30, 9)}px`}}>
               <span>{`${this.props.temperature > 0 ? '+' : ''}${this.props.temperature}°C`}</span>
             </div>
 
