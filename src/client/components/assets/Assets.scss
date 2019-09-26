@@ -372,6 +372,7 @@ $title-font: 'Prototype', sans-serif;
     font-family: $title-font;
     white-space: nowrap;
     margin-right: .1em;
+    line-height: 1.4;
 
     .icon, .param, .tile {
       font-size: 1.5em;
@@ -405,7 +406,7 @@ $title-font: 'Prototype', sans-serif;
 
   &:before {
     font-weight: bold;
-    line-height: 1;
+    line-height: 1.2;
     content: '\00A6';
     margin: 0 -.05em;
   }

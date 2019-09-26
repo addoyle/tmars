@@ -25,9 +25,11 @@ export default new Automated({
           <div>
             <Production>
               <div className="flex">
-                <Resource name="steel" />
-                <div>&nbsp;OR&nbsp;</div>
-                <Resource name="titanium" />
+                <div>
+                  <Resource name="steel" />
+                  <span>&nbsp;OR&nbsp;</span>
+                  <Resource name="titanium" />
+                </div>
               </div>
             </Production>
           </div>

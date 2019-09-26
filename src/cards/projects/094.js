@@ -3,24 +3,24 @@ import Active from '../../client/components/Active';
 import { Tag, Resource, Production, MegaCredit } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When you play a space card, you pay 2 M€ less for it.';
-const desc = 'Requires 4 science tags. Increase your energy production 4 steps.';
+const desc = 'Requires 5 science tags. Increase your energy production 6 steps.';
 
 export default new Active({
-  number: 79,
-  title: 'Quantum Extractor',
-  cost: 13,
+  number: 94,
+  title: 'Mass Converter',
+  cost: 8,
   tags: ['science', 'power'],
   set: 'corporate',
   restriction: {
-    value: 4,
+    value: 5,
     tag: 'science'
   },
   top_desc,
   desc,
-  flavor: 'Tapping trhe very fabric of space',
+  flavor: 'E=mc². 1 kg = a LOT of energy',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '🌟',
+  emoji: '🎆',
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -35,7 +35,7 @@ export default new Active({
         <Production>
           <div className="flex">
             <div>
-              <span>4</span>
+              <span>6</span>
               <Resource name="power" />
             </div>
           </div>

@@ -14,7 +14,7 @@ export default new Automated({
   flavor: 'Supplying fuel and valuable minerals',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '💨',
+  emoji: '⛏',
   layout: (
     <div className="flex gutter">
       <div className="col-3">
