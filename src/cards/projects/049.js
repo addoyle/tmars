@@ -11,6 +11,7 @@ export default new Active({
   cost: 4,
   tags: ['microbe'],
   set: 'corporate',
+  top_desc,
   desc,
   flavor: 'These microscopic creatures can survive freezing, boiling, drying out, heavy radiation, and brute force',
   clientAction: game => {},

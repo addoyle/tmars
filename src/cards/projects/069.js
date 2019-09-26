@@ -1,30 +1,36 @@
 import React from 'react';
 import Active from '../../client/components/Active';
-import { Resource, Production, VictoryPoint } from '../../client/components/assets/Assets';
+import { Resource, Production, VictoryPoint, MegaCredit } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Add 1 animal to this card.';
-const desc = 'Requires +2°C or warmer. Decrease any plant production 1 step. 1 VP for each animal on this card.';
+const top_desc = 'Action: Spend 1 plant or 1 steel to gain 7 M€.';
+const desc = 'Oxygen must be 8% or less. Decrease your energy production 1 step.';
 
 export default new Active({
-  number: 52,
-  title: 'Fish',
-  cost: 9,
-  tags: ['animal'],
+  number: 69,
+  title: 'Electro Catapult',
+  cost: 17,
+  tags: ['building'],
+  set: 'corporate',
   restriction: {
-    value: 2,
-    param: 'temperature'
+    max: true,
+    value: 8,
+    param: 'oxygen'
   },
   top_desc,
   desc,
-  flavor: 'Martian barracudas? Why not!',
+  flavor: 'A 200 km long acceleration ramp up the side of Pavonis Mons, hurtling export goods into space',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '🐟',
+  vp: 1,
+  emoji: '🏸',
   activeLayout: (
     <div>
       <div className="resources text-center">
+        <Resource name="plant" />
+        /
+        <Resource name="steel" />
         <span className="arrow" />
-        <Resource name="animal" />
+        <MegaCredit value="7" />
       </div>
       <div className="description text-center">{top_desc}</div>
     </div>
@@ -35,16 +41,14 @@ export default new Active({
         <Production>
           <div className="flex">
             <div>&ndash;</div>
-            <Resource name="plant" anyone />
+            <Resource name="power" />
           </div>
         </Production>
       </div>
       <div className="col-3 middle description">{desc}</div>
       <div className="col-1 bottom">
         <VictoryPoint>
-          <span>
-            <span className="point">1</span>/<Resource name="animal" />
-          </span>
+          <span className="big point">1</span>
         </VictoryPoint>
       </div>
     </div>

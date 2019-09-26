@@ -3,23 +3,23 @@ import Active from '../../client/components/Active';
 import { Resource, Production, VictoryPoint } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Add 1 animal to this card.';
-const desc = 'Requires +2°C or warmer. Decrease any plant production 1 step. 1 VP for each animal on this card.';
+const desc = 'Requires 6% oxygen. Decrease any plant production 1 step. 1 VP per 2 animals on this card.';
 
 export default new Active({
-  number: 52,
-  title: 'Fish',
-  cost: 9,
+  number: 54,
+  title: 'Small Animals',
+  cost: 6,
   tags: ['animal'],
   restriction: {
-    value: 2,
-    param: 'temperature'
+    value: 6,
+    param: 'oxygen'
   },
   top_desc,
   desc,
-  flavor: 'Martian barracudas? Why not!',
+  flavor: 'Able to live in sparse conditions',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '🐟',
+  emoji: '🐀',
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -43,7 +43,7 @@ export default new Active({
       <div className="col-1 bottom">
         <VictoryPoint>
           <span>
-            <span className="point">1</span>/<Resource name="animal" />
+            <span className="point">1</span>/2<Resource name="animal" />
           </span>
         </VictoryPoint>
       </div>

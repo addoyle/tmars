@@ -1,15 +1,15 @@
 <svg viewBox="320.472 183.608 92.769 95.939" width="92.769" height="95.939" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <radialGradient id="gradient-3" gradientUnits="userSpaceOnUse" cx="346.697" cy="234.513" r="25.866" gradientTransform="matrix(1.099819, 0.033386, -0.035124, 1.157087, -26.242854, -48.022282)" spreadMethod="pad">
-      <stop offset="0" style="stop-color: rgb(171, 182, 99);"></stop>
+      <stop offset="0" style="stop-color: rgb(133, 143, 61);"></stop>
       <stop offset="1" style="stop-color: rgb(53, 53, 14);"></stop>
     </radialGradient>
     <radialGradient id="gradient-7" gradientUnits="userSpaceOnUse" cx="386.13" cy="209.335" r="25.212" gradientTransform="matrix(0.705632, 0.854206, -1.314354, 1.085744, 388.80466, -347.784164)">
-      <stop offset="0" style="stop-color: rgb(168, 180, 78);"></stop>
+      <stop offset="0" style="stop-color: rgb(133, 143, 61);"></stop>
       <stop offset="1" style="stop-color: rgb(53, 53, 14);"></stop>
     </radialGradient>
     <radialGradient id="gradient-8" gradientUnits="userSpaceOnUse" cx="377.023" cy="262.971" r="32.416" gradientTransform="matrix(0.918794, -0.374392, 0.377356, 0.926068, -68.617117, 160.596072)">
-      <stop offset="0" style="stop-color: rgb(168, 180, 78);"></stop>
+      <stop offset="0" style="stop-color: rgb(133, 143, 61);"></stop>
       <stop offset="1" style="stop-color: rgb(53, 53, 14);"></stop>
     </radialGradient>
   </defs>

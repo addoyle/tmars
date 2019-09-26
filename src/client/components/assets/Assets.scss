@@ -295,7 +295,7 @@ $title-font: 'Prototype', sans-serif;
 .icon.event { @include icon(url('./icons/event.svg'), 53, 100%, .1); }
 .icon.jovian { @include icon(url('./icons/jovian.svg'), 330, 0%, .1, true, 60%, 101%, 15%); }
 .icon.microbe { @include icon(url('./icons/microbe.svg'), 67, 62%, .05); }
-.icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .1, false, false); }
+.icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .2, false, false); }
 .icon.plant { @include icon(url('./icons/plant.svg'), 95, 65%, .1); }
 .icon.titanium { @include icon(url('./icons/titanium.svg'), 26, 0%, .6, false); }
 .icon.heat { @include icon(url('./icons/heat.svg'), 13, 82%, .2, false, false); }
@@ -427,6 +427,10 @@ $title-font: 'Prototype', sans-serif;
   font-size: 2em;
   font-family: $title-font;
   margin-bottom: .2em;
+
+  &.condense > *{
+    margin: 0;
+  }
 
   * {
     vertical-align: middle;

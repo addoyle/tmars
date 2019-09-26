@@ -42,7 +42,7 @@ export default new Automated({
           </div>
         </Production>
       </div>
-      <div className="col-3 middle">{desc}</div>
+      <div className="col-3 middle description">{desc}</div>
     </div>
   )
 });

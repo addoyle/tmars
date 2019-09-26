@@ -1,39 +1,37 @@
 import React from 'react';
 import Automated from '../../client/components/Automated';
-import { Resource, Production, MegaCredit } from '../../client/components/assets/Assets';
+import { Production, Resource, MegaCredit } from '../../client/components/assets/Assets';
 
-const desc = 'Decrease your M€ production 2 steps and increase your energy production 3 steps.';
+const desc = 'Decrease your M€ production 1 step and increase your energy production 2 steps.';
 
 export default new Automated({
-  number: 45,
-  title: 'Nuclear Power',
-  cost: 10,
+  number: 89,
+  title: 'Peroxide Power',
+  cost: 7,
   tags: ['power', 'building'],
   desc,
-  flavor: 'A simple way to satisfy your energy needs',
+  flavor: 'The Martian ground is full of oxidizing agents',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '☢',
+  emoji: '🏭',
   layout: (
     <div className="flex gutter">
-      <div className="col-1 middle">
+      <div className="col-2 middle">
         <Production>
           <div className="flex">
             <div className="col-1">&ndash;</div>
-            <MegaCredit value="2" />
-            <Resource name="blank" />
+            <MegaCredit value="1" />
             <Resource name="blank" />
           </div>
           <div className="flex">
             <div className="col-1">+</div>
             <Resource name="power" />
             <Resource name="power" />
-            <Resource name="power" />
           </div>
         </Production>
       </div>
-      <div className="col-1 middle">
-        <div className="description">{desc}</div>
+      <div className="col-3">
+        <div className="description m-top">{desc}</div>
       </div>
     </div>
   )

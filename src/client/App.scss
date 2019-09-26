@@ -56,7 +56,7 @@ table {
 
 body {
   background-color: #444;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 * {
@@ -73,6 +73,7 @@ p {
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .text-right { text-align: right; }
+.float-right { float: right; }
 .strong { font-weight: bold; }
 .center:not(.flex) {
   margin-left: auto;

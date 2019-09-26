@@ -14,6 +14,7 @@ export default new Automated({
   flavor: 'Situated on Verona Rupes, the highest vertical drop in the solar system, the resort attracts many of the thrill-seekers among the rich on Earth',
   clientAction: game => {},
   serverAction: game => {},
+  vp: 1,
   emoji: '🧗',
   layout: (
     <div className="flex gutter">
