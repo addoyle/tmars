@@ -50,8 +50,8 @@ export default class Project extends Card {
          * @param key Restriction type (tag, resource, tile, production)
          */
         const prepareItem = (key) => {
-          // More than 3, show with a number denoting the amount
-          if (res.value > 3) {
+          // More than 3, or max and more than 2, show with a number denoting the amount
+          if (res.value > 3 || (res.max && res.value > 2)) {
             restriction.push({text: res.value});
             res.value = 1;
           }

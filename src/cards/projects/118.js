@@ -14,7 +14,7 @@ export default new Automated({
     param: 'temperature'
   },
   desc,
-  flavor: '[TODO]',
+  flavor: 'At least we can have a decent food production allowing for rapid population increase',
   clientAction: game => {},
   serverAction: game => {},
   vp: 2,
@@ -24,8 +24,9 @@ export default new Automated({
       <div className="flex gutter center">
         <div className="col-1 text-center">
           <Production>
-            <div className="flex center">
+            <div className="flex">
               <MegaCredit value="2" />
+              <Resource name="blank" />
             </div>
             <div className="flex">
               <Resource name="plant" />

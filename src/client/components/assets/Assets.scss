@@ -324,8 +324,10 @@ $title-font: 'Prototype', sans-serif;
 
   &.anyone {
     background-color: #C02B39;
-    border: .1em solid #C02B39;
+    border: .07em solid #C02B39;
     border-radius: .3em;
+    box-sizing: content-box;
+    margin: 0;
   }
 
   .euro {
@@ -427,7 +429,6 @@ $title-font: 'Prototype', sans-serif;
 .resources {
   font-size: 2em;
   font-family: $title-font;
-  margin-bottom: .2em;
 
   &.condense > *{
     margin: 0;
@@ -503,6 +504,10 @@ $title-font: 'Prototype', sans-serif;
 
   .icon, .mc {
     margin: .1em;
+
+    &.mc.anyone {
+      margin: .025em;
+    }
   }
 
   span {
