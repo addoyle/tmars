@@ -12,6 +12,7 @@ export default new Active({
   tags: ['building'],
   set: 'corporate',
   top_desc,
+  desc,
   flavor: 'Assigned to heavy industry, this area is not the nicest place on Mars',
   clientAction: game => {},
   serverAction: game => {},

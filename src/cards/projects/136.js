@@ -1,30 +1,35 @@
 import React from 'react';
 import Automated from '../../client/components/Automated';
-import { Resource, Production, VictoryPoint } from '../../client/components/assets/Assets';
+import { Production, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const desc = 'Increase your energy production 1 step.';
+const desc = 'Requires 4 ocean tiles. Increase your energy production 2 steps.';
 
 export default new Automated({
-  number: 113,
-  title: 'Solar Power',
-  cost: 11,
+  number: 136,
+  title: 'Great Dam',
+  cost: 12,
   tags: ['power', 'building'],
+  restriction: {
+    value: 4,
+    tile: 'ocean'
+  },
   desc,
-  flavor: 'Perhaps the most readily available energy source on Mars',
+  flavor: 'Letting natural processes do the work',
   clientAction: game => {},
   serverAction: game => {},
   vp: 1,
-  emoji: '☀',
+  emoji: '🌊',
   layout: (
     <div className="flex gutter">
-      <div className="col-1 middle text-center">
+      <div className="col-3 text-center">
         <Production>
           <div className="flex">
             <Resource name="power" />
+            <Resource name="power" />
           </div>
         </Production>
+        <div className="description">{desc}</div>
       </div>
-      <div className="col-3 text-center description middle">{desc}</div>
       <div className="col-1 bottom">
         <VictoryPoint>
           <span className="big point">1</span>

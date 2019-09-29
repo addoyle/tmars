@@ -11,7 +11,7 @@ export default new Event({
   tags: ['earth', 'event'],
   set: 'corporate',
   desc,
-  flavor: '[TODO]',
+  flavor: 'Influencing the people in power',
   clientAction: game => {},
   serverAction: game => {},
   vp: -2,

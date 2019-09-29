@@ -14,7 +14,7 @@ export default new Automated({
     param: 'temperature'
   },
   desc,
-  flavor: '[TODO]',
+  flavor: 'Landscaping is as natural as terraforming',
   clientAction: game => {},
   serverAction: game => {},
   vp: 1,

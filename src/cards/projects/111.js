@@ -11,11 +11,11 @@ export default new Event({
   tags: ['earth', 'event'],
   set: 'corporate',
   desc,
-  flavor: '[TODO]',
+  flavor: 'Money and information are often interchangeable',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '💼',
+  emoji: '🤝🏻',
   layout: (
-    <div className="description text-center m-bottom m-top">{desc}</div>
+    <div className="text-center m-bottom m-top">{desc}</div>
   )
 });

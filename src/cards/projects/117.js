@@ -10,7 +10,7 @@ export default new Automated({
   cost: 11,
   tags: ['power', 'building'],
   desc,
-  flavor: '[TODO]',
+  flavor: 'Utilizing heat from the core through the cracks in the crust',
   clientAction: game => {},
   serverAction: game => {},
   emoji: '♨',

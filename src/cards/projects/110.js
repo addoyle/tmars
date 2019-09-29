@@ -12,6 +12,7 @@ export default new Active({
   tags: ['earth'],
   set: 'corporate',
   top_desc,
+  desc,
   flavor: 'Investing in social events can open up new opportunities',
   clientAction: game => {},
   serverAction: game => {},

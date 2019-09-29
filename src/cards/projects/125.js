@@ -15,7 +15,7 @@ export default new Automated({
   clientAction: game => {},
   serverAction: game => {},
   vp: -1,
-  emoji: '🐱‍💻',
+  emoji: '💻',
   layout: (
     <div className="flex gutter center">
       <div className="col-3 text-center">

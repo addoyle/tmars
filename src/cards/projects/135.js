@@ -2,29 +2,29 @@ import React from 'react';
 import Automated from '../../client/components/Automated';
 import { VictoryPoint } from '../../client/components/assets/Assets';
 
-const desc = 'Requires 7% oxygen.';
+const desc = 'Requires a plant tag, a microbe tag, and an animal tag.';
 
 export default new Automated({
-  number: 114,
-  title: 'Breathing Filters',
+  number: 135,
+  title: 'Advanced Ecosystems',
   cost: 11,
-  tags: ['science'],
+  tags: ['plant', 'microbe', 'animal'],
   restriction: {
-    value: 7,
-    param: 'oxygen'
+    value: 1,
+    tag: ['plant', 'microbe', 'animal']
   },
   desc,
-  flavor: 'Allowing easy access to the still quite harsh environment',
+  flavor: 'Constructing functional, dynamic ecosystems requires many ingredients',
   clientAction: game => {},
   serverAction: game => {},
-  vp: 2,
-  emoji: '😷',
+  vp: 3,
+  emoji: '🏞',
   layout: (
     <div className="flex gutter">
-      <div className="col-3 description middle text-center">{desc}</div>
+      <div className="description text-center middle col-3">{desc}</div>
       <div className="col-1 bottom">
         <VictoryPoint>
-          <span className="big point">2</span>
+          <span className="big point">3</span>
         </VictoryPoint>
       </div>
     </div>

@@ -14,7 +14,7 @@ export default new Event({
   flavor: 'Nobody will know who did it',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '🕵️',
+  emoji: '🏴‍☠️',
   layout: (
     <div className="text-center">
       <div className="resources">
