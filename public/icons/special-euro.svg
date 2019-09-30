@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg version="1.1" id="_x31_0" x="0px" y="0px" viewBox="0 0 512 512" style="width: 256px; height: 256px; opacity: 1;" xmlns="http://www.w3.org/2000/svg">
-  <style type="text/css">
-	.st0{fill:#374149;}
-</style>
+<svg version="1.1" viewBox="0 0 512 512" style="width: 256px; height: 256px; opacity: 1;" xmlns="http://www.w3.org/2000/svg">
   <path d="M 218.489 184.138 C 183.642 218.76 191.668 285.969 210.928 309.447 C 251.87 359.353 320.143 316.772 332.257 312.262 C 332.257 312.262 369.035 385.818 369.035 385.818 C 339.806 407.111 302.889 420.407 262.791 420.407 C 166.968 420.407 89.287 346.812 89.287 256.03 C 89.287 165.248 154.173 91.593 252.894 91.593 C 309.029 91.593 350.7 108.65 378.713 141.921 L 320.643 207.734 C 287.477 150.155 232.371 170.345 218.489 184.138 Z" style="fill: rgb(17, 17, 17);"/>
   <line style="stroke: rgb(17, 17, 17); stroke-linecap: round; stroke-width: 27px;" x1="94.167" y1="240.641" x2="239.344" y2="240.641"/>
   <line style="stroke: rgb(17, 17, 17); stroke-linecap: round; stroke-width: 27px;" x1="94.167" y1="279.355" x2="239.344" y2="279.355"/>
