@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+  <path d="M 300 250 L 466.5 250 L 466.512 375 L 250.006 500 L 33.5 375 L 33.5 250 L 200 250 L 200 450 L 250 480 L 300 450 L 300 250 Z" style="fill: rgb(17, 17, 17);"/>
+  <path style="stroke: rgb(0, 0, 0); fill: none; stroke-width: 4px;" d="M 220 425 L 220 225 L 200 225 L 250 160 L 300 225 L 280 225 L 280 425"/>
+  <path style="stroke: rgb(0, 0, 0); fill: none; stroke-width: 6px;" d="M 101 184 C 73 150 120 120 139 137 C 153 129 164 123 187 125 C 183 90 199.979 50 250 50 C 300 50 317 90 313 125 C 336 123 347 129 361 137 C 380 120 427 150 398 184"/>
+</svg>

@@ -32,7 +32,7 @@ export default new Active({
     <div className="flex">
       <div className="middle">
         <div className="resources">
-          <Tile name="special" icon="factory" asterisk />
+          <Tile name="special" icon="animal" asterisk />
         </div>
       </div>
       <div className="col-3 description middle text-center">{desc}</div>
