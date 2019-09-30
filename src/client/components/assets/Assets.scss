@@ -450,6 +450,15 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
+  > .standard-project {
+    font-size: .5em;
+    width: 8em;
+    word-break: break-word;
+    display: inline-block;
+    line-height: .8;
+    padding: .3em 0;
+  }
+
   > .restriction {
     font-size: .7em;
     height: 1.4em;
@@ -464,7 +473,7 @@ $title-font: 'Prototype', sans-serif;
     margin-top: .5em;
   }
 
-  > span:not(.arrow) {
+  > span:not(.arrow):not(.standard-project) {
     font-size: .7em;
   }
 
