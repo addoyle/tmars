@@ -1,26 +1,31 @@
 import React from 'react';
 import Automated from '../../client/components/Automated';
-import { Production, Resource, MegaCredit } from '../../client/components/assets/Assets';
+import { Production, Resource } from '../../client/components/assets/Assets';
 
-const desc = 'Decrease your M€ production 1 step and increase your energy production 1 step.';
+const desc = 'Requires 2 power tags. Decrease any energy production 1 step and increase your own 1 step.';
 
 export default new Automated({
-  number: 100,
-  title: 'Fueled Generators',
-  cost: 1,
-  tags: ['power', 'building'],
+  number: 160,
+  title: 'Power Supply Consortium',
+  cost: 5,
+  tags: ['power'],
+  set: 'corporate',
+  restriction: {
+    value: 2,
+    tag: 'power'
+  },
   desc,
-  flavor: 'Simple but limited power supply',
+  flavor: 'Dominating the energy market allows you to make hostile takovers',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '⛽',
+  emoji: '🔋',
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">
         <Production>
           <div className="flex">
             <div className="col-1">&ndash;</div>
-            <MegaCredit value="1" />
+            <Resource name="power" anyone />
           </div>
           <div className="flex">
             <div className="col-1">+</div>
@@ -28,7 +33,7 @@ export default new Automated({
           </div>
         </Production>
       </div>
-      <div className="col-3 middle description">{desc}</div>
+      <div className="col-3 description middle">{desc}</div>
     </div>
   )
 });
