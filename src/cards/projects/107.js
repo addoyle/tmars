@@ -14,7 +14,7 @@ export default new Automated({
   flavor: 'Accessing information on past events for better planning of the future',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '🎙️',
+  emoji: '🗃️',
   layout: (
     <div className="m-bottom">
       <div className="resources text-center">
