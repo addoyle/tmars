@@ -14,7 +14,7 @@ export default new Active({
   flavor: 'Profiting on every spectacular story',
   clientAction: game => {},
   serverAction: game => {},
-  emoji: '📰',
+  emoji: '🎙',
   activeLayout: (
     <div>
       <div className="resources text-center">
