@@ -68,7 +68,7 @@ export default class Project extends Card {
 
           // Render the restrictions
           for (var i = 0; i < res.value; i++) {
-            res[key].forEach(item => restriction.push({[key]: item}));
+            res[key].forEach(item => restriction.push({[key]: item, anyone: res.anyone}));
           }
         };
 

@@ -14,7 +14,7 @@ import Resource from './Resource.js';
 function renderRestriction(restriction) {
   if (restriction.tag) {
     return (
-      <Tag name={restriction.tag} />
+      <Tag name={restriction.tag} anyone={restriction.anyone} />
     );
   } else if (restriction.param) {
     return (
@@ -22,11 +22,11 @@ function renderRestriction(restriction) {
     )
   } else if (restriction.production) {
     return (
-      <Production><Resource name={restriction.production} /></Production>
+      <Production><Resource name={restriction.production} anyone={restriction.anyone} /></Production>
     )
   } else if (restriction.tile) {
     return (
-      <Tile name={restriction.tile} />
+      <Tile name={restriction.tile} anyone={restriction.anyone} />
     )
   }
 }
