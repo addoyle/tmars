@@ -12,6 +12,6 @@ const euro = (<span class="euro">&euro;</span>);
  */
 export default function MegaCredit(props) {
   return (
-    <div className={`mc ${props.anyone ? 'anyone' : ''}`}><span className="value">{props.value || euro}</span></div>
+    <div className={`mc ${props.anyone ? 'anyone' : ''}`}><span className="value">{props.value === undefined ? euro : props.value}</span></div>
   );
 }
