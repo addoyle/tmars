@@ -59,6 +59,11 @@ export default class Board extends Component {
             venus: 0,
             event: 4
           },
+          tiles: {
+            city: 2,
+            greenery: 1,
+            special: 1
+          },
           corp: {
             name: 'CrediCor',
             number: '001'
@@ -97,6 +102,11 @@ export default class Board extends Component {
             venus: 0,
             event: 5
           },
+          tiles: {
+            city: 3,
+            greenery: 6,
+            special: 2
+          },
           corp: {
             name: 'Tharsis Republic',
             number: '008'
@@ -134,6 +144,11 @@ export default class Board extends Component {
             city: 1,
             venus: 0,
             event: 2
+          },
+          tiles: {
+            city: 1,
+            greenery: 0,
+            special: 0
           },
           corp: {
             name: 'Mining Guild',
@@ -174,6 +189,11 @@ export default class Board extends Component {
             venus: 0,
             event: 2
           },
+          tiles: {
+            city: 2,
+            greenery: 3,
+            special: 3
+          },
           corp: {
             name: 'PhoboLog',
             number: '007'
@@ -212,6 +232,11 @@ export default class Board extends Component {
             city: 2,
             venus: 0,
             event: 6
+          },
+          tiles: {
+            city: 2,
+            greenery: 4,
+            special: 1
           },
           corp: {
             name: 'Interplanetary Cinematics',

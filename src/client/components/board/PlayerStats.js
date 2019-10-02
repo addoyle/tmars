@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './PlayerStats.scss';
 import CardRef from './CardRef';
-import { Tag, MegaCredit, Resource, Production } from '../assets/Assets';
+import { Tag, Tile, MegaCredit, Resource, Production } from '../assets/Assets';
 
 /**
  * Player Stats pane
@@ -235,6 +235,42 @@ export default class PlayerStats extends Component {
               </div>
               <div className="resources col-1 text-center">
                 {/*<Tag name="venus" />*/}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Tiles */}
+        <div className="title m-top text-center">Tiles</div>
+
+        <div className="flex section">
+          <div className="col-1 text-center">
+            <div class="flex">
+              <div className="resources col-1 text-right middle">
+                <span>{this.props.player.tiles.city}</span>
+              </div>
+              <div className="resources col-1 text-center">
+                <Tile name="city" />
+              </div>
+            </div>
+          </div>
+          <div className="col-1 text-center">
+            <div class="flex">
+              <div className="resources col-1 text-right middle">
+                <span>{this.props.player.tiles.greenery}</span>
+              </div>
+              <div className="resources col-1 text-center">
+                <Tile name="greenery" />
+              </div>
+            </div>
+          </div>
+          <div className="col-1 text-center">
+            <div class="flex">
+              <div className="resources col-1 text-right middle">
+                <span>{this.props.player.tiles.special}</span>
+              </div>
+              <div className="resources col-1 text-center">
+                <Tile name="special" />
               </div>
             </div>
           </div>

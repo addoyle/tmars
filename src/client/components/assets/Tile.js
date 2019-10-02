@@ -65,7 +65,7 @@ const tiles = {
           <stop offset="1" style={{stopColor: '#A26E3A'}}></stop>
         </radialGradient>
       </defs>
-      <image href={`/icons/special-${props.icon}.svg`} width="384" height="384" x="25" y="59" />
+      {props.icon ? (<image href={`/icons/special-${props.icon}.svg`} width="384" height="384" x="25" y="59" />) : ''}
       {props.children}
     </g>
   ),
