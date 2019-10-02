@@ -473,7 +473,7 @@ $title-font: 'Prototype', sans-serif;
     margin-top: .5em;
   }
 
-  > span:not(.arrow):not(.standard-project) {
+  > span:not(.arrow):not(.standard-project):not(.sub):not(.sup) {
     font-size: .7em;
   }
 
@@ -482,8 +482,21 @@ $title-font: 'Prototype', sans-serif;
   }
 
   .sup {
-    font-size: .5em;
+    font-size: .6em;
     vertical-align: super;
+
+    > * {
+      margin-right: .1em;
+    }
+  }
+
+  .sub {
+    font-size: .5em;
+    vertical-align: sub;
+
+    > * {
+      margin-right: .1em;
+    }
   }
 
   .tile {
