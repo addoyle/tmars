@@ -11,44 +11,4 @@ $title-font: 'Prototype', sans-serif;
   &.dragging {
     cursor: grabbing;
   }
-
-  .hand-btn {
-    display: block;
-    font-size: 1.5em;
-    padding: 16px 24px;
-    position: fixed;
-    left: 16px;
-    bottom: 16px;
-    cursor: pointer;
-    border: 3px solid #444;
-    border-radius: 16px;
-    background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
-    font-family: $title-font;
-    outline: none;
-    transition: box-shadow .3s ease;
-
-    span {
-      vertical-align: middle;
-    }
-
-    .param {
-      box-shadow: 0 0 2px rgba(255,255,255,.5);
-      margin-right: -16px;
-
-      &:first-of-type {
-        transform: rotateZ(-5deg);
-      }
-      &:last-of-type {
-        transform: rotateZ(5deg);
-        margin-right: 8px;
-      }
-    }
-
-    &:hover {
-      box-shadow: 0 0 0 4px #666;
-    }
-    &:active {
-      box-shadow: 0 0 0 4px #666, 0 0 24px rgba(0,0,0,.5) inset;
-    }
-  }
 }

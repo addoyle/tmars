@@ -17,7 +17,12 @@ export default class CardPreview extends Component {
    * Loads a card from file
    */
   loadCard() {
-    Promise.all([require(`../../../cards/${this.props.type}s/${this.props.card}`)]).then(res => {
+    let card = this.props.card;
+    if (!isNaN(card)) {
+      card = card.toString().padStart(3, '0');
+    }
+
+    Promise.all([require(`../../../cards/${this.props.type}s/${card}`)]).then(res => {
       this.setState({ card: res[0].default });
     });
   }
@@ -45,5 +50,6 @@ export default class CardPreview extends Component {
 }
 
 CardPreview.defaultProps = {
-  type: 'project'
+  type: 'project',
+  show: true
 }

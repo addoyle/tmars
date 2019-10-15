@@ -11,7 +11,7 @@ import { Tag, Tile, MegaCredit, Resource, Production } from '../assets/Assets';
 export default class PlayerStats extends Component {
   render() {
     return (
-      <div className={`player-stats ${this.props.show ? 'show' : ''} player-${this.props.pid}`}>
+      <div className={`player-stats ${this.props.show ? 'show' : ''} player-${this.props.pid}`} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
         {/* Corp title */}
         <div className="title-corp text-center m-top m-bottom">
           {this.props.player.corp ? (

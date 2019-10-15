@@ -5,8 +5,7 @@ import Players from './Players';
 import Log from './Log';
 import GlobalParameters from './GlobalParameters';
 import StandardProjects from './StandardProjects';
-import { Param } from '../assets/Assets'
-// import Hand from './Hand';
+import Hand from './Hand';
 
 export default class Board extends Component {
   board = React.createRef()
@@ -299,12 +298,7 @@ export default class Board extends Component {
           ocean={this.state.params.ocean}
           generation={this.state.params.generation} />
         <StandardProjects />
-        <button className="hand-btn">
-          <Param name="card back" />
-          <Param name="card back" />
-          <Param name="card back" />
-          <span>Hand</span>
-        </button>
+        <Hand />
         <Log log={this.props.log} />
       </div>
     );
