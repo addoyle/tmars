@@ -22,9 +22,11 @@ export default class CardPreview extends Component {
       card = card.toString().padStart(3, '0');
     }
 
-    Promise.all([require(`../../../cards/${this.props.type}s/${card}`)]).then(res => {
-      this.setState({ card: res[0].default });
-    });
+    if (this.props.card) {
+      Promise.all([require(`../../../cards/${this.props.type}s/${card}`)]).then(res => {
+        this.setState({ card: res[0].default });
+      });
+    }
   }
 
   hideCard() {
@@ -32,7 +34,7 @@ export default class CardPreview extends Component {
   }
 
   render() {
-    if (!this.state.card && this.props.show) {
+    if (this.props.show && (!this.state.card || (this.props.card && this.state.card.props.number !== this.props.card))) {
       this.loadCard();
     }
     if (this.state.card && !this.props.show) {

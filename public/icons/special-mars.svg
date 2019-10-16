@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <bx:guide x="393.195" y="293.708" angle="0"/>
-    <bx:guide x="228.427" y="241.161" angle="0"/>
-  </defs>
   <circle style="fill: none; stroke-width: 50px; stroke: rgb(17, 17, 17);" cx="214.067" cy="259.317" r="97.804" transform="matrix(0.258819, 0.965926, -0.965926, 0.258819, 400.656616, -22.831743)"/>
-  <path d="M 344.977 182.39 L 405.435 287.106 L 284.519 287.106 L 344.977 182.39 Z" style="fill: rgb(17, 17, 17);" transform="matrix(0.258903, 0.965903, -0.965903, 0.258903, 529.407532, -192.881363)" bx:shape="triangle 284.519 182.39 120.916 104.716 0.5 0 1@ef33ee11"/>
+  <path d="M 344.977 182.39 L 405.435 287.106 L 284.519 287.106 L 344.977 182.39 Z" style="fill: rgb(17, 17, 17);" transform="matrix(0.258903, 0.965903, -0.965903, 0.258903, 529.407532, -192.881363)"/>
   <path style="fill: rgb(216, 216, 216); stroke-width: 50px; stroke: rgb(17, 17, 17);" d="M 319.074 246.335 L 319.074 194.959" transform="matrix(0.258819, 0.965926, -0.965926, 0.258819, 449.620253, -144.662452)"/>
 </svg>

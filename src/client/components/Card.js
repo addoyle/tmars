@@ -21,7 +21,7 @@ export default class Card extends Component {
 
   render() {
     return (
-      <div className={`card ${this.props.type || ''} ${this.props.landscape ? 'landscape' : ''}`}>
+      <div className={`card ${this.props.type || ''} ${this.props.landscape ? 'landscape' : ''} ${this.props.simple ? 'simple' : ''}`}>
         {this.props.children}
         {this.props.set ? (<div className={`set ${this.props.set}`} />) : ''}
       </div>

@@ -7,6 +7,10 @@ import { Tag } from './assets/Assets';
  * Corporation cards
  */
 export default class Corporation extends Card {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <Card type="corp" set={this.props.set} landscape>
