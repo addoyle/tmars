@@ -13,17 +13,16 @@ export default class CardPreview extends Component {
     }
   }
 
+  convertCard(num) {
+    return isNaN(num) ? num : num.toString().padStart(3, '0');
+  }
+
   /**
    * Loads a card from file
    */
   loadCard() {
-    let card = this.props.card;
-    if (!isNaN(card)) {
-      card = card.toString().padStart(3, '0');
-    }
-
     if (this.props.card) {
-      Promise.all([require(`../../../cards/${this.props.type}s/${card}`)]).then(res => {
+      Promise.all([require(`../../../cards/${this.props.type}s/${this.convertCard(this.props.card)}`)]).then(res => {
         this.setState({ card: res[0].default });
       });
     }
@@ -34,7 +33,7 @@ export default class CardPreview extends Component {
   }
 
   render() {
-    if (this.props.show && (!this.state.card || (this.props.card && this.state.card.props.number !== this.props.card))) {
+    if (this.props.show && (!this.state.card || (this.props.card && this.convertCard(this.state.card.props.number) !== this.convertCard(this.props.card)))) {
       this.loadCard();
     }
     if (this.state.card && !this.props.show) {
@@ -44,7 +43,7 @@ export default class CardPreview extends Component {
     const card = this.state.card ? React.createElement(this.state.card.constructor, this.state.card.props) : (<div>Loading...</div>);
 
     return (
-      <div className={`card-preview ${this.props.show && this.state.card ? 'show' : ''}`}>
+      <div className={`card-preview ${this.props.show && this.state.card ? 'show' : ''} ${this.props.simple ? 'simple' : ''}`}>
         {card}
       </div>
     );

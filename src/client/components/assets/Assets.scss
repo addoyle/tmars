@@ -22,6 +22,10 @@ $title-font: 'Prototype', sans-serif;
       background: $img no-repeat center/$bgsize;
     }
   }
+
+  .simple & {
+    background: hsl($hue,$sat,if($l,$l,45%));
+  }
 }
 
 .icon, .mc, .param {

@@ -18,4 +18,25 @@
   &.show {
     opacity: 1;
   }
+
+  // Simplify for the cards in the hand, for better performance
+  &.simple {
+    .card {
+      .header {
+        background: #666;
+        &:before {
+          background: #ccc;
+        }
+      }
+
+      .production {
+        background: #777;
+        &:before {
+          border-image: none;
+          background: #8d6241;
+          border-color: #694930;
+        }
+      }
+    }
+  }
 }
