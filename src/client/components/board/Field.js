@@ -48,6 +48,7 @@ export default class Field extends Component {
     if (field.length) {
       field[0][1].name = 'ocean-placed';
       field[0][1].type = 'ocean';
+
       field[2][0].name = 'greenery-placed';
       field[2][0].type = 'greenery';
       field[2][0].player = 1;
@@ -63,6 +64,7 @@ export default class Field extends Component {
       field[2][4].name = 'greenery-placed';
       field[2][4].type = 'greenery';
       field[2][4].player = 5;
+
       field[3][0].name = 'city-placed';
       field[3][0].type = 'city';
       field[3][0].player = 1;
@@ -79,11 +81,52 @@ export default class Field extends Component {
       field[3][4].type = 'city';
       field[3][4].player = 5;
       field[3][5].player = 1;
-      field[4][0].clickable = 'city';
-      field[4][1].clickable = 'greenery';
-      field[4][2].clickable = 'special';
-      field[4][3].clickable = 'ocean';
-      field[4][4].clickable = 'capital';
+      field[3][6].name = 'capital-placed';
+      field[3][6].type = 'city';
+      field[3][6].player = 1;
+
+      field[4][0].name = 'special-placed';
+      field[4][0].type = 'special';
+      field[4][0].icon = 'volcano';
+      field[4][0].player = 1;
+      field[4][1].name = 'special-placed';
+      field[4][1].type = 'special';
+      field[4][1].icon = 'mine';
+      field[4][1].player = 2;
+      field[4][2].name = 'special-placed';
+      field[4][2].type = 'special';
+      field[4][2].icon = 'restricted';
+      field[4][2].player = 3;
+      field[4][3].name = 'special-placed';
+      field[4][3].type = 'special';
+      field[4][3].icon = 'nuclear';
+      field[4][3].player = 4;
+      field[4][4].name = 'special-placed';
+      field[4][4].type = 'special';
+      field[4][4].icon = 'mohole';
+      field[4][4].player = 5;
+      field[4][5].name = 'special-placed';
+      field[4][5].type = 'special';
+      field[4][5].icon = 'factory';
+      field[4][5].player = 1;
+      field[4][6].name = 'special-placed';
+      field[4][6].type = 'special';
+      field[4][6].icon = 'euro';
+      field[4][6].player = 2;
+      field[4][7].name = 'special-placed';
+      field[4][7].type = 'special';
+      field[4][7].icon = 'mars';
+      field[4][7].player = 3;
+      field[4][8].name = 'special-placed';
+      field[4][8].type = 'special';
+      field[4][8].icon = 'animal';
+      field[4][8].player = 4;
+
+      field[5][0].clickable = 'city';
+      field[5][1].clickable = 'greenery';
+      field[5][2].clickable = 'special';
+      field[5][3].clickable = 'ocean';
+      field[5][4].clickable = 'capital';
     }
 
     return (
@@ -130,9 +173,9 @@ export default class Field extends Component {
             <div className="row">
               {row.map(tile => (
                 <Tile
-                    name={tile.name || (tile.attrs && tile.attrs.indexOf('reserved-ocean') >= 0 ? 'reserved-ocean' : 'blank')}
+                    name={`${tile.name || (tile.attrs && tile.attrs.indexOf('reserved-ocean') >= 0 ? 'reserved-ocean' : 'blank')} ${tile.icon || ''}`}
                     clickable={tile.clickable}>
-                  {tile.name ? (<Tile name={tile.type} oxygen={tile.type === 'greenery'} />) : ''}
+                  {tile.name ? (<Tile name={tile.type} icon={tile.icon} />) : ''}
                   {!tile.name ? (
                     <div className="rewards">
                       <div className="resources">

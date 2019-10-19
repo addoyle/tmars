@@ -79,15 +79,6 @@ const tiles = {
       </defs>
     </g>
   ),
-  'ocean-placed': props => (
-    <g />
-  ),
-  'greenery-placed': props => (
-    <g />
-  ),
-  'city-placed': props => (
-    <g />
-  ),
   blank: props => (<g />)
 };
 
@@ -115,7 +106,7 @@ export default function Tile(props) {
       <path className="base" d="M 216.5 4 L 428.999 127 L 428.999 373 L 216.5 496 L 4.001 373 L 4.001 127 Z" />
       <path className="outline-color" d="M 216.5 26 L 410 138 L 410 362 L 216.5 474 L 23 362 L 23 138 Z" />
 
-      {tiles[key](props)}
+      {tiles[key] ? tiles[key](props) : (<g />)}
       {props.asterisk ? (<text x="360" y="240" className="asterisk">*</text>) : ''}
       {props.children ? (
         <foreignObject x="0" y="0" width="435" height="503">

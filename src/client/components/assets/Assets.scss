@@ -256,6 +256,16 @@ $title-font: 'Prototype', sans-serif;
       stroke: #aaa;
     }
   }
+  &.capital-placed {
+    & > .outline-color {
+      stroke: #fff;
+    }
+  }
+  &.special-placed {
+    & > .outline-color {
+      stroke: #834B29;
+    }
+  }
   &.greenery-placed {
     & > .outline-color {
       stroke: #59B22C;

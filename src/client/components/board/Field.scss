@@ -103,23 +103,19 @@ $title-font: 'Prototype', sans-serif;
         font-size: 144px;
         margin: 0 -13.5px;
 
-        &.ocean-placed {
-          foreignObject {
-            background: url('../assets/texture/ocean.png') center no-repeat/contain;
-          }
-        }
-
-        &.city-placed {
-          foreignObject {
-            background: url('../assets/texture/city.png') center no-repeat/contain;
-          }
-        }
-
-        &.greenery-placed {
-          foreignObject {
-            background: url('../assets/texture/greenery.png') center no-repeat/contain;
-          }
-        }
+        &.ocean-placed foreignObject { background: url('../assets/texture/ocean.png') center no-repeat/contain; }
+        &.city-placed foreignObject { background: url('../assets/texture/city.png') center no-repeat/contain; }
+        &.greenery-placed foreignObject { background: url('../assets/texture/greenery.png') center no-repeat/contain; }
+        &.capital-placed foreignObject { background: url('../assets/texture/capital.png') center no-repeat/contain; }
+        &.special-placed.mine foreignObject { background: url('../assets/texture/mine.png') center no-repeat/contain; }
+        &.special-placed.restricted foreignObject { background: url('../assets/texture/restricted.png') center no-repeat/contain; }
+        &.special-placed.nuclear foreignObject { background: url('../assets/texture/nuclear.png') center no-repeat/contain; }
+        &.special-placed.mohole foreignObject { background: url('../assets/texture/mohole.png') center no-repeat/contain; }
+        &.special-placed.factory foreignObject { background: url('../assets/texture/factory.png') center no-repeat/contain; }
+        &.special-placed.volcano foreignObject { background: url('../assets/texture/volcano.png') center no-repeat/contain; }
+        &.special-placed.euro foreignObject { background: url('../assets/texture/euro.png') center no-repeat/contain; }
+        &.special-placed.mars foreignObject { background: url('../assets/texture/mars.png') center no-repeat/contain; }
+        &.special-placed.animal foreignObject { background: url('../assets/texture/animal.png') center no-repeat/contain; }
 
         foreignObject > div {
           padding-top: 25px;
@@ -131,7 +127,8 @@ $title-font: 'Prototype', sans-serif;
 
           > .tile {
             display: block;
-            margin: 30px auto -40px;
+            margin: 25px auto -35px;
+            padding-left: 5px;
 
             + .resource {
               margin-top: 0;
