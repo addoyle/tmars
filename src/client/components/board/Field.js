@@ -46,8 +46,14 @@ export default class Field extends Component {
     };
 
     if (field.length) {
-      field[0][1].name = 'ocean-placed';
-      field[0][1].type = 'ocean';
+      field[0][0].clickable = 'city';
+      field[0][1].clickable = 'greenery';
+      field[0][2].clickable = 'special';
+      field[0][3].clickable = 'ocean';
+      field[0][4].clickable = 'capital';
+
+      field[1][1].name = 'ocean-placed';
+      field[1][1].type = 'ocean';
 
       field[2][0].name = 'greenery-placed';
       field[2][0].type = 'greenery';
@@ -127,6 +133,12 @@ export default class Field extends Component {
       field[5][2].clickable = 'special';
       field[5][3].clickable = 'ocean';
       field[5][4].clickable = 'capital';
+
+      field[8][0].clickable = 'city';
+      field[8][1].clickable = 'greenery';
+      field[8][2].clickable = 'special';
+      field[8][3].clickable = 'ocean';
+      field[8][4].clickable = 'capital';
     }
 
     return (

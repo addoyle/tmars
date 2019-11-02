@@ -144,7 +144,7 @@ $title-font: 'Prototype', sans-serif;
     }
     &.clickable-special {
       .outline-color {
-        stroke: hsla(23,52%,34%,.5)!important;
+        stroke: hsla(23,52%,34%,.7)!important;
       }
 
       .base:hover + .outline-color {

@@ -13,7 +13,6 @@ export default class Hand extends Component {
     this.state = {
       collapse: true,
       cards: Array.from({length: 17}, () => Math.floor(Math.random() * 212) + 1),
-      // cards: [150],
       selectedCard: 0
     };
 
