@@ -4,6 +4,7 @@ import Card from './Card';
 import Tag from './assets/Tag';
 import MegaCredit from './assets/MegaCredit';
 import Restriction from './assets/Restriction';
+import { cloneDeep } from 'lodash';
 
 /**
  * Project cards (Automated, Active, or Event)
@@ -26,7 +27,7 @@ export default class Project extends Card {
 
     // Card has a restriction, convert it to a form that's easier to render
     if (this.props.restriction) {
-      const res = this.props.restriction;
+      const res = cloneDeep(this.props.restriction);
 
       // Maximum restriction, append the word 'max'
       if (res.max) {
