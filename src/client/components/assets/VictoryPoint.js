@@ -6,6 +6,6 @@ import './Assets.scss';
  */
 export default function VictoryPoint(props) {
   return (
-    <div className="vp">{props.children}</div>
+    <div className={`vp ${props.anyone ? 'anyone' : ''}`}>{props.children}</div>
   );
 }

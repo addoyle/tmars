@@ -12,9 +12,10 @@ export default class Hand extends Component {
 
     this.state = {
       collapse: true,
-      cards: Array.from({length: 17}, () => Math.floor(Math.random() * 212) + 1),
-      // cards: [150],
-      selectedCard: 0
+      // cards: Array.from({length: 4}, () => Math.floor(Math.random() * 212) + 1),
+      cards: ['X01', 'X02', 'X03', 'X04', 'X05', 'X06', 'X07', 'X08', 'X09', 'X10', 'X11', 'X12'],
+      selectedCard: 0,
+      showActiveCard: false
     };
 
     this.startDragging = this.startDragging.bind(this);
@@ -41,11 +42,12 @@ export default class Hand extends Component {
   }
 
   cancelClick() {
-    this.setState({ selectedCard: 0 })
+    this.setState({ showActiveCard: false });
+    setTimeout(() => this.setState({ selectedCard: 0 }), 500);
   }
 
   selectCard(selectedCard) {
-    this.setState({ selectedCard });
+    this.setState({ selectedCard, showActiveCard: true });
   }
 
   startDragging() {
@@ -76,15 +78,15 @@ export default class Hand extends Component {
         { !this.state.collapse ? (
           <ul className="cards">
             {this.state.cards.map(card => (
-              <li onClick={e => this.selectCard(card)} class={`card-selector ${card === this.state.selectedCard ? 'selected' : ''}`}>
-                <CardPreview card={card} simple />
+              <li onClick={e => this.selectCard(card)} class={`card-selector ${this.state.showActiveCard && card === this.state.selectedCard ? 'selected' : ''}`}>
+                <CardPreview card={card} />
               </li>
             ))}
           </ul>
         ) : ''}
 
         <div
-            className={`active-card ${this.state.selectedCard ? 'show' : ''}`}
+            className={`active-card ${this.state.showActiveCard ? 'show' : ''}`}
             ref="selectedCard"
             onMouseDown={this.startDragging}
             onMouseUp={this.stopDragging}

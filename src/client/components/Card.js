@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { castArray } from 'lodash';
 import './Card.scss';
 
 /**
@@ -23,7 +24,7 @@ export default class Card extends Component {
     return (
       <div className={`card ${this.props.type || ''} ${this.props.landscape ? 'landscape' : ''} ${this.props.simple ? 'simple' : ''}`}>
         {this.props.children}
-        {this.props.set ? (<div className={`set ${this.props.set}`} />) : ''}
+        {this.props.set ? castArray(this.props.set).map(set => <div className={`set ${set}`} />) : ''}
       </div>
     );
   }

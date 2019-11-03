@@ -231,10 +231,10 @@ export default class PlayerStats extends Component {
             </div>
             <div class="flex">
               <div className="resources col-1 text-right">
-                {/*<span>{this.props.player.tags.venus}</span>*/}
+                <span>{this.props.player.tags.venus}</span>
               </div>
               <div className="resources col-1 text-center">
-                {/*<Tag name="venus" />*/}
+                <Tag name="venus" />
               </div>
             </div>
           </div>

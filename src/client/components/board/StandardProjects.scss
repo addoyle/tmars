@@ -6,7 +6,7 @@ $title-font: 'Prototype', sans-serif;
   border: 3px solid #444;
   position: fixed;
   right: 282px;
-  bottom: 32px;
+  bottom: 0;
   cursor: initial;
   font-size: 14px;
   padding: 6px;
@@ -40,7 +40,7 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.collapse {
-    height: 18px;
+    height: 0;
 
     .row {
       opacity: 0;
