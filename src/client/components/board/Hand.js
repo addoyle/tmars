@@ -12,8 +12,8 @@ export default class Hand extends Component {
 
     this.state = {
       collapse: true,
-      cards: Array.from({length: 4}, () => Math.floor(Math.random() * 212) + 1),
-      // cards: [150],
+      // cards: Array.from({length: 4}, () => Math.floor(Math.random() * 212) + 1),
+      cards: ['X01', 'X02', 'X03', 'X04', 'X05', 'X06', 'X07', 'X08', 'X09', 'X10', 'X11', 'X12'],
       selectedCard: 0,
       showActiveCard: false
     };

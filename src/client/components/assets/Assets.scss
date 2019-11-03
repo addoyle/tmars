@@ -617,6 +617,10 @@ $title-font: 'Prototype', sans-serif;
       vertical-align: middle;
     }
   }
+
+  &.anyone {
+    box-shadow: 0 0 0 .05em #C02B39;
+  }
 }
 
 .arrow {

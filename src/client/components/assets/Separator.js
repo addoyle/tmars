@@ -6,7 +6,11 @@ import React from 'react';
  * @prop number Card number to display on separator
  */
 export default function Separator(props) {
-  const binaryNum = (+props.number).toString(2);
+  let number = props.number;
+  if (isNaN(number)) {
+    number = +(number.substring(1));
+  }
+  const binaryNum = number.toString(2);
 
   return (
     <div className="separator">

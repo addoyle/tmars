@@ -39,7 +39,6 @@
     position: absolute;
     display: block;
     left: .55em;
-    bottom: 3em;
     height: 1.4em;
     width: 1.4em;
     text-align: center;
@@ -52,6 +51,13 @@
     &:after {
       font-size: .9em;
       line-height: 1;
+    }
+
+    &:not(:last-of-type){
+      bottom: 5em;
+    }
+    &:last-of-type {
+      bottom: 3em;
     }
 
     &.corporate {
