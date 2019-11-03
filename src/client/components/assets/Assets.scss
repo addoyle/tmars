@@ -316,6 +316,8 @@ $title-font: 'Prototype', sans-serif;
 .icon.steel { @include icon(url('./icons/steel.svg'), 30, 59%, .1, false, false); }
 .icon.venus { @include icon(url('./icons/venus.svg'), 199, 68%, .2, false, 50%, 60%); }
 .icon.floater { @include icon(url('./icons/floater.svg'), 50, 100%, .1, false, 50%, 80%); }
+.icon.any { @include icon(url('./icons/any.svg'), 330, 0%, 0, true, 99%, 60%); }
+.icon.all { @include icon(url('./icons/all.svg'), 330, 0%, 0, true, 99%, 101%, 15%); }
 .icon.fighter { @include icon(url('./icons/fighter.svg'), 26, 0%, .6, false, 30%); }
 .icon.marker { @include icon(#e06635, 48, 80%, .2, true, false); }
 .icon.player-1 { @include icon(hsl(0,80%,40%), 0, 80%, .2, true, false); }
