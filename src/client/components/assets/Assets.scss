@@ -314,6 +314,7 @@ $title-font: 'Prototype', sans-serif;
 .icon.titanium { @include icon(url('./icons/titanium.svg'), 26, 0%, .6, false); }
 .icon.heat { @include icon(url('./icons/heat.svg'), 13, 82%, .2, false, false); }
 .icon.steel { @include icon(url('./icons/steel.svg'), 30, 59%, .1, false, false); }
+.icon.venus { @include icon(url('./icons/venus.svg'), 199, 49%, .2, false, 50%, 60%); }
 .icon.fighter { @include icon(url('./icons/fighter.svg'), 26, 0%, .6, false, 30%); }
 .icon.marker { @include icon(#e06635, 48, 80%, .2, true, false); }
 .icon.player-1 { @include icon(hsl(0,80%,40%), 0, 80%, .2, true, false); }
