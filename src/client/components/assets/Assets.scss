@@ -197,7 +197,7 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
-  &.city {
+  &.city, &.blank-city {
     & > .outline-color {
       stroke: url('#city-border');
       fill: url('#city-gradient');

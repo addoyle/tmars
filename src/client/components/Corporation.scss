@@ -181,6 +181,114 @@ $title-font: 'Prototype', sans-serif;
         border-top: 1px solid red;
       }
     }
+
+    &.mons {
+      font-family: sans-serif;
+      font-size: .05em;
+      text-transform: lowercase;
+      margin: 0.7em .5em -6.3em;
+      text-align: center;
+      color: white;
+      background: #9c5b27;
+      width: 5.6em;
+      padding: .3em;
+      box-shadow: .3em .3em .3em rgba(0,0,0,.5);
+      position: relative;
+
+      &:before {
+        content: '';
+        display: block;
+        height: 2.5em;
+        background: #cb8726;
+        margin: .1em .1em 0;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 3em;
+        height: 3em;
+        transform: rotate(45deg);
+        top: 1.2em;
+        left: 1.1em;
+        border: .2em solid #9c5b27;
+        background: white;
+        clip-path: polygon(100% 0, 0% 0%, 0% 100%)
+      }
+    }
+
+    &.factorum {
+      font-family: sans-serif;
+      font-size: .06em;
+      text-transform: uppercase;
+      margin: 0.7em 1.2em 0;
+      text-align: center;
+      color: #bd5717;
+      width: 6.2em;
+      -webkit-text-stroke: 1px #563d1b;
+      font-weight: bolder;
+      letter-spacing: .1em;
+      text-shadow: .1em .1em .1em rgba(0,0,0,.5);
+
+      &:before {
+        content: '';
+        display: block;
+        background: #bd5717;
+        border: .05em solid #563d1b;
+        position: absolute;
+        top: 2.9em;
+        width: 6.17em;
+        height: 2em;
+        margin-left: .05em;
+        transform: perspective(1em) rotateX(-3deg);
+        box-shadow: .2em .2em .2em rgba(0,0,0,.5);
+      }
+
+      &:after {
+        content: '';
+        display: block;
+        background: #8d8d8d;
+        border: .05em solid #563d1b;
+        width: 6.17em;
+        height: .3em;
+        margin-top: .1em;
+        margin-left: .05em;
+        box-shadow: .2em .2em .2em rgba(0,0,0,.5);
+      }
+    }
+
+    &.philares {
+      font-family: Tahoma, sans-serif;
+      text-transform: uppercase;
+      margin: .2em .6em;
+      text-align: left;
+      -webkit-text-stroke: 1px white;
+      letter-spacing: .1em;
+      text-shadow: .1em .1em .1em rgba(0,0,0,.5);
+      font-weight: bold;
+      position: relative;
+
+      &:before {
+        content: 'A';
+        position: absolute;
+        color: #ba5230;
+        left: 2.88em;
+        text-shadow: none;
+      }
+
+      &:after {
+        content: '\2B24\2B24\2B24';
+        font-size: .4em;
+        position: absolute;
+        left: 5.5em;
+        top: 2.2em;
+        -webkit-text-stroke: 1px white;
+        text-shadow: .1em .1em .1em rgba(0,0,0,.5);
+        color: #777;
+        letter-spacing: 0;
+      }
+    }
   }
 
   .flavor {
