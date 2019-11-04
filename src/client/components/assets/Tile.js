@@ -34,6 +34,20 @@ const tiles = {
       <image href="/icons/city.svg" width="300" height="300" x="64" y="100" />
     </g>
   ),
+  'blank-city': props => (
+    <g>
+      <defs>
+        <radialGradient id="city-gradient" gradientUnits="userSpaceOnUse" cx="216.5" cy="250" r="193.5">
+          <stop offset="0" style={{stopColor: '#ddd'}}></stop>
+          <stop offset="1" style={{stopColor: '#999'}}></stop>
+        </radialGradient>
+        <linearGradient id="city-border" gradientUnits="userSpaceOnUse" x1="216.42" y1="238.226" x2="216.42" y2="456.34">
+          <stop offset="0" style={{stopColor: '#ccc'}}></stop>
+          <stop offset="1" style={{stopColor: '#333'}}></stop>
+        </linearGradient>
+      </defs>
+    </g>
+  ),
   greenery: props => (
     <g>
       <defs>
@@ -102,7 +116,7 @@ export default function Tile(props) {
   if (props.clickable) { classes.push('clickable', `clickable-${props.clickable}`); }
 
   return (
-    <svg viewBox="12 -12 443.012 524" className={classes.join(' ')} data-icon={props.icon}>
+    <svg viewBox="12 -12 443.012 524" className={classes.join(' ')} data-icon={props.icon} style={props.style}>
       <path className="base" d="M 216.5 4 L 428.999 127 L 428.999 373 L 216.5 496 L 4.001 373 L 4.001 127 Z" />
       <path className="outline-color" d="M 216.5 26 L 410 138 L 410 362 L 216.5 474 L 23 362 L 23 138 Z" />
 
