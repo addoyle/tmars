@@ -106,7 +106,7 @@ const tiles = {
  * @prop asterisk  Boolean, true to show an asterisk, otherwise false
  */
 export default function Tile(props) {
-  var key = props.name;
+  var key = props.name.trim();
   if (props.name === 'city capital') {
     key = 'city';
   }

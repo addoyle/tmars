@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './Field.scss';
-import { Tile, Resource, Param } from '../assets/Assets'
-import Tharsis from './Tharsis';
+import { Tile, Resource, Param, MegaCredit } from '../assets/Assets'
+import Tharsis from '../assets/boards/Tharsis';
+import Elysium from '../assets/boards/Elysium';
+import Hellas from '../assets/boards/Hellas';
 
 /**
  * Mars, i.e. the playing field
@@ -18,7 +20,9 @@ export default class Field extends Component {
   }
 
   componentDidMount() {
-    this.setState({ field: Tharsis });
+    // this.setState({ field: Elysium });
+    this.setState({ field: Hellas });
+    // this.setState({ field: Tharsis });
   }
 
   render() {
@@ -34,112 +38,114 @@ export default class Field extends Component {
     const renderResource = (resource, i) => {
       if (resource && resource[i]) {
         if (resource[i] === 'card') {
-          return (<Param name="card back" />);
+          return <Param name="card back" />;
         } else if (resource[i] === 'ocean') {
-          return (<Tile name="ocean" />);
+          return <Tile name="ocean" />;
+        } else if (resource[i].mc) {
+          return <MegaCredit value={resource[i].mc} />;
         } else {
-          return (<Resource name={resource[i]} />);
+          return <Resource name={resource[i]} />;
         }
       } else {
-        return (<Resource name="blank" />);
+        return <Resource name="blank" />;
       }
     };
 
-    if (field.length) {
-      field[0][0].clickable = 'city';
-      field[0][1].clickable = 'greenery';
-      field[0][2].clickable = 'special';
-      field[0][3].clickable = 'ocean';
-      field[0][4].clickable = 'capital';
-
-      field[1][1].name = 'ocean-placed';
-      field[1][1].type = 'ocean';
-
-      field[2][0].name = 'greenery-placed';
-      field[2][0].type = 'greenery';
-      field[2][0].player = 1;
-      field[2][1].name = 'greenery-placed';
-      field[2][1].type = 'greenery';
-      field[2][1].player = 2;
-      field[2][2].name = 'greenery-placed';
-      field[2][2].type = 'greenery';
-      field[2][2].player = 3;
-      field[2][3].name = 'greenery-placed';
-      field[2][3].type = 'greenery';
-      field[2][3].player = 4;
-      field[2][4].name = 'greenery-placed';
-      field[2][4].type = 'greenery';
-      field[2][4].player = 5;
-
-      field[3][0].name = 'city-placed';
-      field[3][0].type = 'city';
-      field[3][0].player = 1;
-      field[3][1].name = 'city-placed';
-      field[3][1].type = 'city';
-      field[3][1].player = 2;
-      field[3][2].name = 'city-placed';
-      field[3][2].type = 'city';
-      field[3][2].player = 3;
-      field[3][3].name = 'city-placed';
-      field[3][3].type = 'city';
-      field[3][3].player = 4;
-      field[3][4].name = 'city-placed';
-      field[3][4].type = 'city';
-      field[3][4].player = 5;
-      field[3][5].player = 1;
-      field[3][6].name = 'capital-placed';
-      field[3][6].type = 'city';
-      field[3][6].player = 1;
-
-      field[4][0].name = 'special-placed';
-      field[4][0].type = 'special';
-      field[4][0].icon = 'volcano';
-      field[4][0].player = 1;
-      field[4][1].name = 'special-placed';
-      field[4][1].type = 'special';
-      field[4][1].icon = 'mine';
-      field[4][1].player = 2;
-      field[4][2].name = 'special-placed';
-      field[4][2].type = 'special';
-      field[4][2].icon = 'restricted';
-      field[4][2].player = 3;
-      field[4][3].name = 'special-placed';
-      field[4][3].type = 'special';
-      field[4][3].icon = 'nuclear';
-      field[4][3].player = 4;
-      field[4][4].name = 'special-placed';
-      field[4][4].type = 'special';
-      field[4][4].icon = 'mohole';
-      field[4][4].player = 5;
-      field[4][5].name = 'special-placed';
-      field[4][5].type = 'special';
-      field[4][5].icon = 'factory';
-      field[4][5].player = 1;
-      field[4][6].name = 'special-placed';
-      field[4][6].type = 'special';
-      field[4][6].icon = 'euro';
-      field[4][6].player = 2;
-      field[4][7].name = 'special-placed';
-      field[4][7].type = 'special';
-      field[4][7].icon = 'mars';
-      field[4][7].player = 3;
-      field[4][8].name = 'special-placed';
-      field[4][8].type = 'special';
-      field[4][8].icon = 'animal';
-      field[4][8].player = 4;
-
-      field[5][0].clickable = 'city';
-      field[5][1].clickable = 'greenery';
-      field[5][2].clickable = 'special';
-      field[5][3].clickable = 'ocean';
-      field[5][4].clickable = 'capital';
-
-      field[8][0].clickable = 'city';
-      field[8][1].clickable = 'greenery';
-      field[8][2].clickable = 'special';
-      field[8][3].clickable = 'ocean';
-      field[8][4].clickable = 'capital';
-    }
+    // if (field.length) {
+    //   field[0][0].clickable = 'city';
+    //   field[0][1].clickable = 'greenery';
+    //   field[0][2].clickable = 'special';
+    //   field[0][3].clickable = 'ocean';
+    //   field[0][4].clickable = 'capital';
+    //
+    //   field[1][1].name = 'ocean-placed';
+    //   field[1][1].type = 'ocean';
+    //
+    //   field[2][0].name = 'greenery-placed';
+    //   field[2][0].type = 'greenery';
+    //   field[2][0].player = 1;
+    //   field[2][1].name = 'greenery-placed';
+    //   field[2][1].type = 'greenery';
+    //   field[2][1].player = 2;
+    //   field[2][2].name = 'greenery-placed';
+    //   field[2][2].type = 'greenery';
+    //   field[2][2].player = 3;
+    //   field[2][3].name = 'greenery-placed';
+    //   field[2][3].type = 'greenery';
+    //   field[2][3].player = 4;
+    //   field[2][4].name = 'greenery-placed';
+    //   field[2][4].type = 'greenery';
+    //   field[2][4].player = 5;
+    //
+    //   field[3][0].name = 'city-placed';
+    //   field[3][0].type = 'city';
+    //   field[3][0].player = 1;
+    //   field[3][1].name = 'city-placed';
+    //   field[3][1].type = 'city';
+    //   field[3][1].player = 2;
+    //   field[3][2].name = 'city-placed';
+    //   field[3][2].type = 'city';
+    //   field[3][2].player = 3;
+    //   field[3][3].name = 'city-placed';
+    //   field[3][3].type = 'city';
+    //   field[3][3].player = 4;
+    //   field[3][4].name = 'city-placed';
+    //   field[3][4].type = 'city';
+    //   field[3][4].player = 5;
+    //   field[3][5].player = 1;
+    //   field[3][6].name = 'capital-placed';
+    //   field[3][6].type = 'city';
+    //   field[3][6].player = 1;
+    //
+    //   field[4][0].name = 'special-placed';
+    //   field[4][0].type = 'special';
+    //   field[4][0].icon = 'volcano';
+    //   field[4][0].player = 1;
+    //   field[4][1].name = 'special-placed';
+    //   field[4][1].type = 'special';
+    //   field[4][1].icon = 'mine';
+    //   field[4][1].player = 2;
+    //   field[4][2].name = 'special-placed';
+    //   field[4][2].type = 'special';
+    //   field[4][2].icon = 'restricted';
+    //   field[4][2].player = 3;
+    //   field[4][3].name = 'special-placed';
+    //   field[4][3].type = 'special';
+    //   field[4][3].icon = 'nuclear';
+    //   field[4][3].player = 4;
+    //   field[4][4].name = 'special-placed';
+    //   field[4][4].type = 'special';
+    //   field[4][4].icon = 'mohole';
+    //   field[4][4].player = 5;
+    //   field[4][5].name = 'special-placed';
+    //   field[4][5].type = 'special';
+    //   field[4][5].icon = 'factory';
+    //   field[4][5].player = 1;
+    //   field[4][6].name = 'special-placed';
+    //   field[4][6].type = 'special';
+    //   field[4][6].icon = 'euro';
+    //   field[4][6].player = 2;
+    //   field[4][7].name = 'special-placed';
+    //   field[4][7].type = 'special';
+    //   field[4][7].icon = 'mars';
+    //   field[4][7].player = 3;
+    //   field[4][8].name = 'special-placed';
+    //   field[4][8].type = 'special';
+    //   field[4][8].icon = 'animal';
+    //   field[4][8].player = 4;
+    //
+    //   field[5][0].clickable = 'city';
+    //   field[5][1].clickable = 'greenery';
+    //   field[5][2].clickable = 'special';
+    //   field[5][3].clickable = 'ocean';
+    //   field[5][4].clickable = 'capital';
+    //
+    //   field[8][0].clickable = 'city';
+    //   field[8][1].clickable = 'greenery';
+    //   field[8][2].clickable = 'special';
+    //   field[8][3].clickable = 'ocean';
+    //   field[8][4].clickable = 'capital';
+    // }
 
     return (
       <div className="field">

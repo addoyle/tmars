@@ -37,7 +37,7 @@ export default [
     { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] }
   ],
   [
-    { resources: ['plant', 0, 'plant'], text: 'Arsia Mons' },
+    { resources: ['plant', 0, 'plant'], text: 'Arsia Mons', attrs: ['volcano'] },
     { resources: ['plant', 'plant'] },
     { resources: ['plant', 'plant'], attrs: ['noctis-city'], text: 'Noctis City' },
     { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] },

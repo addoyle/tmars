@@ -152,8 +152,8 @@ export default class Board extends Component {
             special: 0
           },
           corp: {
-            name: 'Mining Guild',
-            number: '004'
+            name: 'Mons Insurance',
+            number: 'X01'
           },
           passed: true
         },
