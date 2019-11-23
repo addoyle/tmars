@@ -38,7 +38,11 @@ class App extends Component {
         { name: 'Andy', player: 1, body: (<span> played <CardRef projectType="automated" card="018">Methane From Titan</CardRef>.</span>), system: true },
         { name: 'Andy', player: 1, body: (<span> played <CardRef projectType="event" card="039">Deimos Down</CardRef>.</span>), system: true },
         { name: 'Andy', player: 1, body: (<span> took <span className="strong">8</span> plants from <span className="strong player-2">Frank</span>!.</span>), system: true },
-        { name: 'Frank', player: 2, body: 'it\s fine. idgaf' }
+        { name: 'Frank', player: 2, body: 'it\s fine. idgaf' },
+        { name: 'Frank', player: 2, body: (<span> played <CardRef projectType="automated" card="120">Urbanized Area</CardRef>.</span>), system: true },
+        { name: 'Frank', player: 2, body: (<span> placed a <span className="strong">City</span>.</span>), system: true },
+        { name: 'Adrian', player: 5, body: (<span>'s <CardRef projectType="active" card="038">Rover Construction</CardRef> effect was activated.</span>), system: true },//'
+        { name: 'Frank', player: 2, body: (<span> played <CardRef projectType="active" card="187">Acquifer Pumping</CardRef>.</span>), system: true },
       ]
     };
   }

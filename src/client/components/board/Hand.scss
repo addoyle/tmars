@@ -1,19 +1,18 @@
 $title-font: 'Prototype', sans-serif;
-$hand-height: 280px;
+$hand-height: 40vh;
 
 .hand {
   position: fixed;
-  top: calc(100vh - #{$hand-height});
   bottom: 0;
   left: 0;
-  right: 250px;
-  height: $hand-height;
+  max-height: $hand-height;
   border-top: 4px solid #444;
-  background: rgba(187, 187, 187, .75);
+  background: rgba(187, 187, 187, .5);
   transition: top .3s ease;
   cursor: default;
   z-index: 2;
   user-select: none;
+  width: 100%;
 
   &.collapse {
     top: 100vh;
@@ -65,7 +64,7 @@ $hand-height: 280px;
     margin: 0;
     text-align: center;
     padding: 24px;
-    height: 100%;
+    max-height: calc(#{$hand-height} - 3px);
     overflow-y: auto;
 
     li {
@@ -73,7 +72,7 @@ $hand-height: 280px;
       margin: 2px;
       list-style-type: none;
       position: relative;
-      transition: background .5s ease;
+      transition: background-color .5s ease;
       opacity: 1;
       width: 150px;
       height: 210px;

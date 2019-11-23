@@ -29,41 +29,41 @@ export default class Board extends Component {
       players: [
         {
           name: 'Andy',
-          tr: 30,
+          tr: 20,
           resources: {
-            mc: 34,
-            st: 1,
-            ti: 2,
-            pl: 7,
+            mc: 57,
+            st: 0,
+            ti: 0,
+            pl: 0,
             po: 0,
-            he: 12
+            he: 0
           },
           production: {
-            mc: 11,
+            mc: -2,
             st: 0,
-            ti: 2,
-            pl: 3,
-            po: 1,
-            he: 4
+            ti: 0,
+            pl: 0,
+            po: 0,
+            he: 0
           },
           tags: {
-            building: 6,
-            space: 3,
-            power: 2,
-            science: 4,
-            jovian: 1,
-            earth: 1,
-            plant: 2,
-            microbe: 1,
+            building: 0,
+            space: 0,
+            power: 0,
+            science: 0,
+            jovian: 0,
+            earth: 0,
+            plant: 0,
+            microbe: 0,
             animal: 0,
-            city: 2,
+            city: 0,
             venus: 0,
-            event: 4
+            event: 0
           },
           tiles: {
-            city: 2,
-            greenery: 1,
-            special: 1
+            city: 0,
+            greenery: 0,
+            special: 0
           },
           corp: {
             name: 'CrediCor',
@@ -72,41 +72,41 @@ export default class Board extends Component {
         },
         {
           name: 'Frank',
-          tr: 32,
+          tr: 20,
           resources: {
-            mc: 44,
-            st: 4,
-            ti: 1,
-            pl: 2,
-            po: 4,
-            he: 1
+            mc: 40,
+            st: 0,
+            ti: 0,
+            pl: 0,
+            po: 0,
+            he: 0
           },
           production: {
-            mc: 12,
-            st: 2,
-            ti: 1,
-            pl: 6,
-            po: 4,
+            mc: -2,
+            st: 0,
+            ti: 0,
+            pl: 0,
+            po: 0,
             he: 0
           },
           tags: {
-            building: 4,
-            space: 6,
-            power: 3,
-            science: 3,
-            jovian: 4,
+            building: 0,
+            space: 0,
+            power: 0,
+            science: 0,
+            jovian: 0,
             earth: 0,
-            plant: 3,
+            plant: 0,
             microbe: 0,
-            animal: 1,
-            city: 4,
+            animal: 0,
+            city: 0,
             venus: 0,
-            event: 5
+            event: 0
           },
           tiles: {
-            city: 3,
-            greenery: 6,
-            special: 2
+            city: 0,
+            greenery: 0,
+            special: 0
           },
           corp: {
             name: 'Tharsis Republic',
@@ -115,39 +115,39 @@ export default class Board extends Component {
         },
         {
           name: 'Colin',
-          tr: 29,
+          tr: 20,
           resources: {
-            mc: 42,
-            st: 2,
-            ti: 5,
-            pl: 6,
-            po: 1,
-            he: 7
+            mc: 38,
+            st: 0,
+            ti: 0,
+            pl: 0,
+            po: 0,
+            he: 0
           },
           production: {
-            mc: 9,
-            st: 4,
-            ti: 2,
-            pl: 1,
-            po: 1,
-            he: 2
+            mc: 4,
+            st: 0,
+            ti: 0,
+            pl: 0,
+            po: 0,
+            he: 0
           },
           tags: {
-            building: 7,
-            space: 4,
-            power: 2,
-            science: 6,
+            building: 0,
+            space: 0,
+            power: 0,
+            science: 0,
             jovian: 0,
-            earth: 2,
-            plant: 1,
+            earth: 0,
+            plant: 0,
             microbe: 0,
             animal: 0,
-            city: 1,
+            city: 0,
             venus: 0,
-            event: 2
+            event: 0
           },
           tiles: {
-            city: 1,
+            city: 0,
             greenery: 0,
             special: 0
           },
@@ -159,41 +159,41 @@ export default class Board extends Component {
         },
         {
           name: 'Larissa',
-          tr: 37,
+          tr: 20,
           resources: {
-            mc: 35,
-            st: 10,
-            ti: 8,
-            pl: 9,
-            po: 2,
-            he: 2
+            mc: 23,
+            st: 0,
+            ti: 10,
+            pl: 0,
+            po: 0,
+            he: 0
           },
           production: {
-            mc: 13,
-            st: 4,
+            mc: -2,
+            st: 0,
             ti: 0,
-            pl: 4,
-            po: 2,
+            pl: 0,
+            po: 0,
             he: 0
           },
           tags: {
-            building: 6,
-            space: 3,
-            power: 3,
-            science: 4,
-            jovian: 1,
-            earth: 1,
-            plant: 2,
-            microbe: 2,
-            animal: 1,
-            city: 3,
+            building: 0,
+            space: 0,
+            power: 0,
+            science: 0,
+            jovian: 0,
+            earth: 0,
+            plant: 0,
+            microbe: 0,
+            animal: 0,
+            city: 0,
             venus: 0,
-            event: 2
+            event: 0
           },
           tiles: {
-            city: 2,
-            greenery: 3,
-            special: 3
+            city: 0,
+            greenery: 0,
+            special: 0
           },
           corp: {
             name: 'PhoboLog',
@@ -203,41 +203,41 @@ export default class Board extends Component {
         },
         {
           name: 'Adrian',
-          tr: 40,
+          tr: 20,
           resources: {
-            mc: 39,
-            st: 2,
-            ti: 3,
-            pl: 5,
-            po: 3,
-            he: 11
+            mc: 30,
+            st: 20,
+            ti: 0,
+            pl: 0,
+            po: 0,
+            he: 0
           },
           production: {
-            mc: 8,
-            st: 1,
-            ti: 1,
-            pl: 3,
-            po: 3,
-            he: 3
+            mc: -2,
+            st: 0,
+            ti: 0,
+            pl: 0,
+            po: 0,
+            he: 0
           },
           tags: {
-            building: 4,
-            space: 1,
-            power: 1,
-            science: 4,
-            jovian: 2,
-            earth: 1,
-            plant: 1,
+            building: 0,
+            space: 0,
+            power: 0,
+            science: 0,
+            jovian: 0,
+            earth: 0,
+            plant: 0,
             microbe: 0,
-            animal: 1,
-            city: 2,
+            animal: 0,
+            city: 0,
             venus: 0,
-            event: 6
+            event: 0
           },
           tiles: {
-            city: 2,
-            greenery: 4,
-            special: 1
+            city: 0,
+            greenery: 0,
+            special: 0
           },
           corp: {
             name: 'Interplanetary Cinematics',

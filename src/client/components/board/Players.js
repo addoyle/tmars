@@ -39,7 +39,7 @@ export default class Players extends Component {
       <div className="players">
         <ul>
         {this.props.players.map((player, i) => (
-          <li>
+          <li key={i}>
             <Player
               pid={i + 1}
               player={player}

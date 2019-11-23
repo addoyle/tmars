@@ -11,7 +11,7 @@ export default class Hand extends Component {
     super(props);
 
     this.state = {
-      collapse: true,
+      collapse: false,
       // cards: Array.from({length: 4}, () => Math.floor(Math.random() * 212) + 1),
       cards: ['X01', 'X02', 'X03', 'X04', 'X05', 'X06', 'X07', 'X08', 'X09', 'X10', 'X11', 'X12'],
       selectedCard: 0,
@@ -75,15 +75,13 @@ export default class Hand extends Component {
           <span>Hand</span>
         </button>
 
-        { !this.state.collapse ? (
-          <ul className="cards">
-            {this.state.cards.map(card => (
-              <li onClick={e => this.selectCard(card)} class={`card-selector ${this.state.showActiveCard && card === this.state.selectedCard ? 'selected' : ''}`}>
-                <CardPreview card={card} />
-              </li>
-            ))}
-          </ul>
-        ) : ''}
+        <ul className="cards">
+          {this.state.cards.map((card, i) => (
+            <li key={i} onClick={e => this.selectCard(card)} className={`card-selector ${this.state.showActiveCard && card === this.state.selectedCard ? 'selected' : ''}`}>
+              <CardPreview card={card} />
+            </li>
+          ))}
+        </ul>
 
         <div
             className={`active-card ${this.state.showActiveCard ? 'show' : ''}`}

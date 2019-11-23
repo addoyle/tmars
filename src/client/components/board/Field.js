@@ -20,9 +20,9 @@ export default class Field extends Component {
   }
 
   componentDidMount() {
-    // this.setState({ field: Elysium });
-    this.setState({ field: Hellas });
     // this.setState({ field: Tharsis });
+    this.setState({ field: Elysium });
+    // this.setState({ field: Hellas });
   }
 
   render() {
@@ -152,8 +152,9 @@ export default class Field extends Component {
         <div className="tiles">
           <div className="phobos row">
             <Tile
-                name={phobos.player ? 'city-placed' : 'blank'}
-                clickable={phobos.clickable ? 'city' : false}>
+              name={phobos.player ? 'city-placed' : 'blank'}
+              clickable={phobos.clickable ? 'city' : false}
+            >
               {phobos.player ? (<Tile name="city" />) : ''}
               {!phobos.player ? (
                 <div className="rewards">
@@ -170,8 +171,9 @@ export default class Field extends Component {
 
           <div className="ganymede row">
             <Tile
-                name={ganymede.player ? 'city-placed' : 'blank'}
-                clickable={ganymede.clickable ? 'city' : false}>
+              name={ganymede.player ? 'city-placed' : 'blank'}
+              clickable={ganymede.clickable ? 'city' : false}
+            >
               {ganymede.player ? (<Tile name="city" />) : ''}
               {!ganymede.player ? (
                 <div className="rewards">
@@ -187,12 +189,14 @@ export default class Field extends Component {
             <div className="dot">.</div>
           </div>
 
-          {field.map(row => (
-            <div className="row">
-              {row.map(tile => (
+          {field.map((row, r) => (
+            <div key={r} className="row">
+              {row.map((tile, i) => (
                 <Tile
-                    name={`${tile.name || (tile.attrs && tile.attrs.indexOf('reserved-ocean') >= 0 ? 'reserved-ocean' : 'blank')} ${tile.icon || ''}`}
-                    clickable={tile.clickable}>
+                  key={i}
+                  name={`${tile.name || (tile.attrs && tile.attrs.indexOf('reserved-ocean') >= 0 ? 'reserved-ocean' : 'blank')} ${tile.icon || ''}`}
+                  clickable={tile.clickable}
+                >
                   {tile.name ? (<Tile name={tile.type} icon={tile.icon} />) : ''}
                   {!tile.name ? (
                     <div className="rewards">

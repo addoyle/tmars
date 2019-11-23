@@ -5,23 +5,24 @@ $title-font: 'Prototype', sans-serif;
   background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
   border: 3px solid #444;
   position: fixed;
-  right: 282px;
-  bottom: 0;
+  right: 442px;
+  top: 0;
   cursor: initial;
   font-size: 14px;
   padding: 6px;
   height: 309px;
-  transition: height ease .5s;
+  transition: transform ease .5s;
 
   .header {
     background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
     border: 3px solid #444;
     padding: 9px 16px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-    margin-top: -50px;
-    margin-bottom: 6px;
-    border-bottom: none;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top: none;
+    position: absolute;
+    bottom: -44px;
+    width: 90%;
 
     .standard-project {
       padding-left: 1em;
@@ -29,7 +30,7 @@ $title-font: 'Prototype', sans-serif;
       margin: 0;
 
       &:after {
-        content: '\225a';
+        content: '\2259';
         font-size: 20px;
         line-height: .24;
         vertical-align: middle;
@@ -40,22 +41,20 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.collapse {
-    height: 0;
-
-    .row {
-      opacity: 0;
-    }
+    transform: translateY(-100%);
 
     .header .standard-project:after {
-      content: '\2259';
+      content: '\225a';
     }
   }
 
   .row {
     margin-right: -35px;
-    transition: opacity ease-out .5s;
 
     .resources > .mc {
+      font-size: 1.3em;
+    }
+    .resources.small {
       font-size: 1.3em;
     }
 

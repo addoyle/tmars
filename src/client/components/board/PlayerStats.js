@@ -29,7 +29,7 @@ export default class PlayerStats extends Component {
         <div className="flex gutter section">
 
           <div className="col-1 text-center">
-            <div class="resource-wrapper flex">
+            <div className="resource-wrapper flex">
               <div className="resources col-1 text-center">
                 <span>{this.props.player.resources.mc}</span>
               </div>
@@ -44,7 +44,7 @@ export default class PlayerStats extends Component {
               </div>
             </Production>
 
-            <div class="resource-wrapper flex">
+            <div className="resource-wrapper flex">
               <div className="resources col-1 text-center">
                 <span>{this.props.player.resources.pl}</span>
               </div>
@@ -61,7 +61,7 @@ export default class PlayerStats extends Component {
           </div>
 
           <div className="col-1 text-center">
-            <div class="resource-wrapper flex">
+            <div className="resource-wrapper flex">
               <div className="resources col-1 text-center">
                 <span>{this.props.player.resources.st}</span>
               </div>
@@ -76,7 +76,7 @@ export default class PlayerStats extends Component {
               </div>
             </Production>
 
-            <div class="resource-wrapper flex">
+            <div className="resource-wrapper flex">
               <div className="resources col-1 text-center">
                 <span>{this.props.player.resources.po}</span>
               </div>
@@ -93,7 +93,7 @@ export default class PlayerStats extends Component {
           </div>
 
           <div className="col-1 text-center">
-            <div class="resource-wrapper flex">
+            <div className="resource-wrapper flex">
               <div className="resources col-1 text-center">
                 <span>{this.props.player.resources.ti}</span>
               </div>
@@ -108,7 +108,7 @@ export default class PlayerStats extends Component {
               </div>
             </Production>
 
-            <div class="resource-wrapper flex">
+            <div className="resource-wrapper flex">
               <div className="resources col-1 text-center p-rel">
                 <span className="arrow transfer" />
                 <span>{this.props.player.resources.he}</span>
@@ -132,7 +132,7 @@ export default class PlayerStats extends Component {
 
         <div className="flex section">
           <div className="col-1 text-center">
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.building}</span>
               </div>
@@ -140,7 +140,7 @@ export default class PlayerStats extends Component {
                 <Tag name="building" />
               </div>
             </div>
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.jovian}</span>
               </div>
@@ -148,7 +148,7 @@ export default class PlayerStats extends Component {
                 <Tag name="jovian" />
               </div>
             </div>
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.animal}</span>
               </div>
@@ -159,7 +159,7 @@ export default class PlayerStats extends Component {
           </div>
 
           <div className="col-1 text-center">
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.space}</span>
               </div>
@@ -167,7 +167,7 @@ export default class PlayerStats extends Component {
                 <Tag name="space" />
               </div>
             </div>
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.earth}</span>
               </div>
@@ -175,7 +175,7 @@ export default class PlayerStats extends Component {
                 <Tag name="earth" />
               </div>
             </div>
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.city}</span>
               </div>
@@ -186,7 +186,7 @@ export default class PlayerStats extends Component {
           </div>
 
           <div className="col-1 text-center">
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.power}</span>
               </div>
@@ -194,7 +194,7 @@ export default class PlayerStats extends Component {
                 <Tag name="power" />
               </div>
             </div>
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.plant}</span>
               </div>
@@ -202,7 +202,7 @@ export default class PlayerStats extends Component {
                 <Tag name="plant" />
               </div>
             </div>
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.event}</span>
               </div>
@@ -213,7 +213,7 @@ export default class PlayerStats extends Component {
           </div>
 
           <div className="col-1 text-center">
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.science}</span>
               </div>
@@ -221,7 +221,7 @@ export default class PlayerStats extends Component {
                 <Tag name="science" />
               </div>
             </div>
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.microbe}</span>
               </div>
@@ -229,7 +229,7 @@ export default class PlayerStats extends Component {
                 <Tag name="microbe" />
               </div>
             </div>
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right">
                 <span>{this.props.player.tags.venus}</span>
               </div>
@@ -245,7 +245,7 @@ export default class PlayerStats extends Component {
 
         <div className="flex section">
           <div className="col-1 text-center">
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right middle">
                 <span>{this.props.player.tiles.city}</span>
               </div>
@@ -255,7 +255,7 @@ export default class PlayerStats extends Component {
             </div>
           </div>
           <div className="col-1 text-center">
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right middle">
                 <span>{this.props.player.tiles.greenery}</span>
               </div>
@@ -265,7 +265,7 @@ export default class PlayerStats extends Component {
             </div>
           </div>
           <div className="col-1 text-center">
-            <div class="flex">
+            <div className="flex">
               <div className="resources col-1 text-right middle">
                 <span>{this.props.player.tiles.special}</span>
               </div>

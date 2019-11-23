@@ -24,7 +24,7 @@ export default class Card extends Component {
     return (
       <div className={`card ${this.props.type || ''} ${this.props.landscape ? 'landscape' : ''} ${this.props.simple ? 'simple' : ''}`}>
         {this.props.children}
-        {this.props.set ? castArray(this.props.set).map(set => <div className={`set ${set}`} />) : ''}
+        {this.props.set ? castArray(this.props.set).map((set, i) => <div key={i} className={`set ${set}`} />) : ''}
       </div>
     );
   }

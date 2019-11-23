@@ -2,7 +2,7 @@ import React from 'react';
 import './Assets.scss';
 
 // Euro logo to display when no value is set
-const euro = (<span class="euro">&euro;</span>);
+const euro = (<span className="euro">&euro;</span>);
 
 /**
  * MegaCredit

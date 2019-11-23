@@ -30,7 +30,7 @@ export default class GlobalParameters extends Component {
             </div>
 
             {new Array(oxyMax).fill(undefined).map((v,i) => (
-              <span className="tick" style={{top: `${gauge(oxyMax, i, 0, true)}px`}} />
+              <span key={i} className="tick" style={{top: `${gauge(oxyMax, i, 0, true)}px`}} />
             ))}
           </div>
 
@@ -61,7 +61,7 @@ export default class GlobalParameters extends Component {
             </div>
 
             {new Array(tempMax / 2).fill(undefined).map((v,i) => (
-              <span className="tick" style={{top: `${gauge(tempMax, i * 2, 0, true)}px`}} />
+              <span key={i} className="tick" style={{top: `${gauge(tempMax, i * 2, 0, true)}px`}} />
             ))}
           </div>
         </div>

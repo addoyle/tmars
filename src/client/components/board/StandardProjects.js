@@ -10,7 +10,7 @@ export default class StandardProjects extends Component {
     super(props);
 
     this.state = {
-      collapse: false
+      collapse: true
     };
 
     this.toggleCollapse = this.toggleCollapse.bind(this);
@@ -57,8 +57,10 @@ export default class StandardProjects extends Component {
         </div>
 
         <div className="row flex middle">
-          <div className="resources middle">
+          <div className="resources middle small">
             <MegaCredit value="14" />
+            <span>OR 8</span>
+            <Resource name="heat" />
             <span className="arrow" />
           </div>
           <div className="resources middle text-center col-1">
@@ -79,8 +81,10 @@ export default class StandardProjects extends Component {
         </div>
 
         <div className="row flex middle">
-          <div className="resources middle">
+          <div className="resources middle small">
             <MegaCredit value="23" />
+            <span>OR 8</span>
+            <Resource name="plant" />
             <span className="arrow" />
           </div>
           <div className="resources middle text-center col-1">

@@ -13,7 +13,7 @@ module.exports = {
             }
           },
           {
-            test: /\.scss$/,
+            test: /\.(s)?css$/,
             use: [
               "style-loader",
               "css-loader",
@@ -49,6 +49,8 @@ module.exports = {
     ],
     devServer: {
         hot: true,
-        historyApiFallback: true
+        historyApiFallback: true,
+        contentBase: path.join(__dirname, 'public'),
+        port: 3000
     }
 };
