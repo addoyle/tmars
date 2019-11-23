@@ -8,14 +8,14 @@ $hand-height: 40vh;
   max-height: $hand-height;
   border-top: 4px solid #444;
   background: rgba(187, 187, 187, .5);
-  transition: top .3s ease;
+  transition: transform .5s ease;
   cursor: default;
   z-index: 2;
   user-select: none;
   width: 100%;
 
   &.collapse {
-    top: 100vh;
+    transform: translateY(100%);
   }
 
   .hand-btn {

@@ -12,6 +12,7 @@ export default class Hand extends Component {
 
     this.state = {
       collapse: true,
+      show: false,
       cards: Array.from({length: 17}, () => Math.floor(Math.random() * 212) + 1),
       selectedCard: 0
     };
@@ -40,11 +41,12 @@ export default class Hand extends Component {
   }
 
   cancelClick() {
-    this.setState({ selectedCard: 0 })
+    this.setState({ show: false });
+    setTimeout(() => this.setState({ selectedCard: null }), 1000);
   }
 
   selectCard(selectedCard) {
-    this.setState({ selectedCard });
+    this.setState({ selectedCard, show: true });
   }
 
   startDragging() {
