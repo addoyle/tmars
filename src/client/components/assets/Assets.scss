@@ -65,6 +65,10 @@ $title-font: 'Prototype', sans-serif;
     top: -.5em;
     right: -.5em;
   }
+
+  &.card.active .project .body {
+    padding: .25em;
+  }
 }
 
 .icon {

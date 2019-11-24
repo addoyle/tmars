@@ -5,12 +5,17 @@ import Players from './Players';
 import Log from './Log';
 import GlobalParameters from './GlobalParameters';
 import StandardProjects from './StandardProjects';
-import Hand from './Hand';
+import CardDrawer from './CardDrawer';
 
 export default class Board extends Component {
   board = React.createRef()
   log = React.createRef()
   field = React.createRef();
+  hand = React.createRef();
+  actives = React.createRef();
+  automateds = React.createRef();
+  events = React.createRef();
+  drawers = [this.hand, this.actives, this.automateds, this.events];
 
   constructor(props) {
     super(props);
@@ -306,7 +311,36 @@ export default class Board extends Component {
           ocean={this.state.params.ocean}
           generation={this.state.params.generation} />
         <StandardProjects />
-        <Hand />
+
+        <CardDrawer
+          cards={['X01', 'X02', 'X03', 'X04', 'X05', 'X06', 'X07', 'X08', 'X09', 'X10', 'X11', 'X12']}
+          type="hand"
+          ref={this.hand}
+          drawers={this.drawers}
+        />
+        <CardDrawer
+          cards={[
+            {card: '212', resources: { type: 'animal', value: 2 }}, 
+            {card: '035', resources: { type: 'microbe', value: 3 }},
+            {card: '028', resources: { type: 'fighter', value: 1 }}
+          ]} 
+          type="active"
+          ref={this.actives}
+          drawers={this.drawers}
+        />
+        <CardDrawer
+          cards={['165', '088', '211', '159']}
+          type="automated"
+          ref={this.automateds}
+          drawers={this.drawers}
+        />
+        <CardDrawer
+          cards={['161', '036']} 
+          type="event"
+          ref={this.events}
+          drawers={this.drawers}
+        />
+
         <Log log={this.props.log} ref={this.log} />
       </div>
     );

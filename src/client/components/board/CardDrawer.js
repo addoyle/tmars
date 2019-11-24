@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './Hand.scss';
+import './CardDrawer.scss';
 import { Param, Resource } from '../assets/Assets';
 import CardPreview from './CardPreview';
+import { isString, capitalize } from 'lodash';
 
 /**
  * Standard Projects pane
@@ -11,9 +12,7 @@ export default class Hand extends Component {
     super(props);
 
     this.state = {
-      collapse: false,
-      // cards: Array.from({length: 4}, () => Math.floor(Math.random() * 212) + 1),
-      cards: ['X01', 'X02', 'X03', 'X04', 'X05', 'X06', 'X07', 'X08', 'X09', 'X10', 'X11', 'X12'],
+      collapse: props.type !== 'hand',
       selectedCard: 0,
       showActiveCard: false
     };
@@ -38,6 +37,10 @@ export default class Hand extends Component {
   }
 
   toggleCollapse() {
+    if (this.state.collapse) {
+      this.props.drawers.filter(drawer => drawer.current !== this).forEach(drawer => drawer.current.setState({collapse: true}));
+    }
+
     this.setState({collapse: !this.state.collapse});
   }
 
@@ -66,19 +69,30 @@ export default class Hand extends Component {
   }
 
   render() {
+    const cards = this.props.cards.map(card => isString(card) ? { card } : card);
+
     return (
-      <div className={`hand ${this.state.collapse ? 'collapse' : ''}`} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
-        <button className="hand-btn" onClick={e => this.toggleCollapse()}>
-          <Param name="card back" />
-          <Param name="card back" />
-          <Param name="card back" />
-          <span>Hand</span>
+      <div className={`drawer ${this.state.collapse ? 'collapse' : ''}`} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
+        <button className={`drawer-btn ${this.props.type}`} onClick={e => this.toggleCollapse()}>
+          {this.props.type === 'hand' ? (
+            <>
+              <Param name="card back" />
+              <Param name="card back" />
+              <Param name="card back" />
+              <span>Hand</span>
+            </>
+          ) : (
+            <>
+              <Param name={`card ${this.props.type}`} />
+              <span>{capitalize(this.props.type)}</span>
+            </>
+          )}
         </button>
 
         <ul className="cards">
-          {this.state.cards.map((card, i) => (
-            <li key={i} onClick={e => this.selectCard(card)} className={`card-selector ${this.state.showActiveCard && card === this.state.selectedCard ? 'selected' : ''}`}>
-              <CardPreview card={card} />
+          {cards.map((card, i) => (
+            <li key={i} onClick={() => this.selectCard(card.card)} className={`card-selector ${this.state.showActiveCard && card.card === this.state.selectedCard ? 'selected' : ''}`}>
+              <CardPreview card={card.card} />
             </li>
           ))}
         </ul>

@@ -23,10 +23,10 @@ export default new Active({
     <div>
       <div className="center text-center">
         <div className="resources">
-          <Resource name="power" />
+          <MegaCredit value="12" />
+          <span className="sup">(<Resource name="titanium" />)</span>
           <span className="arrow" />
-          <MegaCredit value="1" />/
-          <Tile name="city" anyone asterisk />
+          <Tile name="ocean" />
         </div>
         <div className="description text-center">{top_desc}</div>
       </div>

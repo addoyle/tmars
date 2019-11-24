@@ -1,7 +1,7 @@
 $title-font: 'Prototype', sans-serif;
 $hand-height: 40vh;
 
-.hand {
+.drawer {
   position: fixed;
   bottom: 0;
   left: 0;
@@ -16,9 +16,10 @@ $hand-height: 40vh;
 
   &.collapse {
     transform: translateY(100%);
+    z-index: 3;
   }
 
-  .hand-btn {
+  .drawer-btn {
     display: block;
     font-size: 1.25em;
     padding: 8px 12px;
@@ -35,20 +36,37 @@ $hand-height: 40vh;
     outline: none;
     transition: border-color .3s ease, box-shadow .15s ease;
 
+    &.active {
+      left: 144px;
+    }
+    &.automated {
+      left: 275px;
+    }
+    &.event {
+      left: 448px;
+    }
+
+    .param {
+      box-shadow: 0 0 4px 1px rgba(0,0,0,.4);
+      margin-right: 8px;
+    }
+
     span {
       vertical-align: middle;
     }
 
-    .param {
-      box-shadow: 0 0 4px rgba(255,255,255,.4);
-      margin-right: -16px;
+    &.hand {
+      .param {
+        box-shadow: 0 0 4px rgba(255,255,255,.4);
+        margin-right: -16px;
 
-      &:first-of-type {
-        transform: rotateZ(-5deg);
-      }
-      &:last-of-type {
-        transform: rotateZ(5deg);
-        margin-right: 8px;
+        &:first-of-type {
+          transform: rotateZ(-5deg);
+        }
+        &:last-of-type {
+          transform: rotateZ(5deg);
+          margin-right: 8px;
+        }
       }
     }
 

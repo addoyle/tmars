@@ -14,6 +14,27 @@ export default function Param(props) {
       {props.tag ? (
         <Tag name={props.tag} />
       ) : ''}
+      {props.name.indexOf('card') >= 0 && props.name.match(/active|event|automated/) ? <>
+        <div className="mc" />
+        <div className="tags" />
+        <div className="project">
+          <div className="header">
+            <div className="restriction" />
+          </div>
+          <div className="title"></div>
+          {props.name.indexOf('active') >= 0 ? <div className="body top"></div> : null }
+          <div className="image">
+            {props.name.indexOf('active') >= 0 ? '💡' : null}
+            {props.name.indexOf('event') >= 0 ? '🔥' : null}
+            {props.name.indexOf('automated') >= 0 ? '⚙' : null}
+          </div>
+          <div className="separator">
+          </div>
+          <div className="body">
+            <div className="flavor"></div>
+          </div>
+        </div>
+      </> : null}
     </div>
   );
 }
