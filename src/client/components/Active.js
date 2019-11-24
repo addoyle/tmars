@@ -14,7 +14,7 @@ export default class Active extends Project {
         <div className="body top">
           {this.props.activeLayout}
         </div>
-        <Art art={this.props.emoji} />
+        <Art art={this.props.emoji} resources={this.props.resources} />
         <Separator number={this.props.number} />
         <div className="body">
           {this.props.layout}

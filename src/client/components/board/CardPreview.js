@@ -33,6 +33,8 @@ export default class CardPreview extends Component {
   }
 
   render() {
+    const resources = this.props.resources;
+
     if (this.props.show && (!this.state.card || (this.props.card && this.convertCard(this.state.card.props.number) !== this.convertCard(this.props.card)))) {
       this.loadCard();
     }
@@ -40,7 +42,7 @@ export default class CardPreview extends Component {
       this.hideCard();
     }
 
-    const card = this.state.card ? React.createElement(this.state.card.constructor, this.state.card.props) : (<div>Loading...</div>);
+    const card = this.state.card ? React.createElement(this.state.card.constructor, {...this.state.card.props, resources}) : (<div>Loading...</div>);
 
     return (
       <div className={`card-preview ${this.props.show && this.state.card ? 'show' : ''} ${this.props.simple ? 'simple' : ''}`}>

@@ -145,6 +145,7 @@ $title-font: 'Prototype', sans-serif;
 
   // Card art
   .image {
+    position: relative;
     display: flex;
     flex-grow: 1;
     background-color: #444;
@@ -155,5 +156,16 @@ $title-font: 'Prototype', sans-serif;
     font-family: "Noto Color Emoji", "Apple Color Emoji", "Segoe UI Emoji",
       Times, Symbola, Aegyptus, Code2000, Code2001, Code2002, Musica, serif,
       LastResort;
+    
+    .image-resources {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      font-size: .5em;
+      background-color: rgba(255,255,255,.5);
+      padding: .2em .4em;
+      border-radius: .2em;
+    }
   }
 }

@@ -335,7 +335,7 @@ export default class Board extends Component {
           drawers={this.drawers}
         />
         <CardDrawer
-          cards={['161', '036']} 
+          cards={[]} 
           type="event"
           ref={this.events}
           drawers={this.drawers}

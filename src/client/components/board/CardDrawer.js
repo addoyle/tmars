@@ -91,8 +91,8 @@ export default class Hand extends Component {
 
         <ul className="cards">
           {cards.map((card, i) => (
-            <li key={i} onClick={() => this.selectCard(card.card)} className={`card-selector ${this.state.showActiveCard && card.card === this.state.selectedCard ? 'selected' : ''}`}>
-              <CardPreview card={card.card} />
+            <li key={i} onClick={() => this.selectCard(card)} className={`card-selector ${this.state.showActiveCard && card.card === this.state.selectedCard ? 'selected' : ''}`}>
+              <CardPreview card={card.card} resources={card.resources} />
             </li>
           ))}
         </ul>
@@ -104,35 +104,39 @@ export default class Hand extends Component {
             onMouseUp={this.stopDragging}
             onMouseMove={this.drag}
             onMouseLeave={this.stopDragging}>
-          {this.state.selectedCard ? (<CardPreview card={this.state.selectedCard} />) : ''}
+          {this.state.selectedCard ? (<CardPreview {...this.state.selectedCard} />) : ''}
           <div className="footer">
-            <button>
-              <div className="flex">
-                <div className="resources middle">
-                  <Resource name="titanium" />
-                </div>
-                <span className="col-1 center middle">
-                  Use Resource
-                </span>
-                <div className="pill middle">
-                  <span>0/2</span>
-                </div>
-              </div>
-            </button>
-
-            <div className="flex gutter">
-              <button className="primary col-1 disabled">
+            {['active', 'hand'].indexOf(this.props.type) >= 0 ? (
+              <button>
                 <div className="flex">
                   <div className="resources middle">
-                    <Param name="card back" />
+                    <Resource name="titanium" />
                   </div>
-                  <span className="center middle">
-                    Play Card
+                  <span className="col-1 center middle">
+                    Use Resource
                   </span>
+                  <div className="pill middle">
+                    <span>0/2</span>
+                  </div>
                 </div>
               </button>
+            ) : null}
+
+            <div className="flex gutter">
+              {this.props.type === 'hand' ? (
+                <button className="primary col-1 disabled">
+                  <div className="flex">
+                    <div className="resources middle">
+                      <Param name="card back" />
+                    </div>
+                    <span className="center middle">
+                      Play Card
+                    </span>
+                  </div>
+                </button>
+              ) : null}
               <button className="text-center col-1" onClick={e => this.cancelClick()}>
-                Cancel
+                {['active', 'hand'].indexOf(this.props.type) >= 0 ? 'Cancel' : 'Close'}
               </button>
             </div>
 

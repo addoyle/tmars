@@ -1,11 +1,12 @@
 $title-font: 'Prototype', sans-serif;
-$hand-height: 40vh;
+$hand-height: 45vh;
 
 .drawer {
   position: fixed;
   bottom: 0;
   left: 0;
   max-height: $hand-height;
+  min-height: 20vh;
   border-top: 4px solid #444;
   background: rgba(187, 187, 187, .5);
   transition: transform .5s ease;
@@ -81,7 +82,7 @@ $hand-height: 40vh;
   .cards {
     margin: 0;
     text-align: center;
-    padding: 24px;
+    padding: 24px 12px 48px;
     max-height: calc(#{$hand-height} - 3px);
     overflow-y: auto;
 
@@ -139,8 +140,9 @@ $hand-height: 40vh;
     border: 4px solid #444;
     z-index: 2;
     border-radius: 24px;
-    left: calc(50vw - 300px/2 - 12px);
-    top: calc(50vh - 420px/2 - 12px);
+    left: 50vw;
+    top: 50vh;
+    transform: translate(-50%, -50%);
 
     &.show {
       opacity: 1;
