@@ -1,16 +1,14 @@
 .card-ref {
   cursor: pointer;
+  text-decoration: underline dashed;
 
   &.active {
-    color: blue;
-    border-bottom: 2px dotted blue;
+    color: hsl(200,80%,60%);
   }
   &.automated {
-    color: green;
-    border-bottom: 2px dotted green;
+    color: hsl(120,50%,50%);
   }
   &.event {
-    color: red;
-    border-bottom: 2px dotted red;
+    color: hsl(20,80%,50%);
   }
 }

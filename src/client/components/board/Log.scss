@@ -12,6 +12,7 @@
   cursor: initial;
   border: 3px solid #333;
   border-radius: 8px;
+  z-index: 2;
 
   .msgs {
     font-family: sans-serif;
@@ -24,18 +25,23 @@
       line-height: 1.2;
 
       &.system {
-        font-style: italic;
-        background-color: rgba(255,255,255,.1);
+        background-color: rgba(255,255,255,.3);
+        border: 1px solid #888;
+        font-size: .9em;
+        margin: 4px;
+        border-radius: 10px;
+        padding: 4px 8px;
       }
 
       .player-1 { color: hsl(0,80%,40%); }
-      .player-2 { color: hsl(240,80%,70%); }
+      .player-2 { color: hsl(240,80%,60%); }
       .player-3 { color: hsl(120,80%,40%); }
       .player-4 { color: hsl(60,80%,40%); }
-      .player-5 { color: hsl(0,0%,55%); }
+      .player-5 { color: hsl(0,0%,65%); }
 
       .card-preview {
-        margin-left: -320px;
+        margin-left: -330px;
+        z-index: 1;
       }
     }
 
@@ -44,7 +50,7 @@
       padding: 0;
 
       &:after {
-        content: '\2b9f';
+        content: '\2b07';
       }
     }
   }
@@ -65,7 +71,7 @@
       outline: none;
 
       &:hover, &:active, &:focus {
-        background-color: rgba(255,255,255,.05);
+        background-color: rgba(255,255,255,.1);
       }
     }
   }

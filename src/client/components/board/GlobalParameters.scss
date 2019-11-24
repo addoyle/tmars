@@ -32,7 +32,7 @@ $title-font: 'Prototype', sans-serif;
   }
 
   .temp-wrapper, .oxy-wrapper {
-    height: 340px;
+    height: 280px;
     border: 1px solid black;
     border-radius: 10px;
     text-align: center;
@@ -70,7 +70,7 @@ $title-font: 'Prototype', sans-serif;
         position: absolute;
         border-top: 1px solid white;
         color: white;
-        font-size: 16px;
+        font-size: 14px;
         top: 0;
         z-index: 2;
       }
@@ -88,11 +88,17 @@ $title-font: 'Prototype', sans-serif;
       }
 
       > .production {
-        font-size: 17px;
+        font-size: 15px;
+        min-height: unset;
+        padding: .1em;
+
+        .icon {
+          border: none;
+        }
       }
 
       > .tile {
-        font-size: 30px;
+        font-size: 21px;
         margin-right: -2px;
       }
 
@@ -172,8 +178,11 @@ $title-font: 'Prototype', sans-serif;
 
       &:after {
         right: 0;
-        padding-right: 38px;
+        padding-right: 29px;
         padding-left: 0;
+      }
+      &.heat:after {
+        padding-right: 31px;
       }
     }
   }

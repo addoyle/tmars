@@ -9,22 +9,20 @@ import Hand from './Hand';
 
 export default class Board extends Component {
   board = React.createRef()
+  log = React.createRef()
+  field = React.createRef();
 
   constructor(props) {
     super(props);
-
-    this.startDragging = this.startDragging.bind(this);
-    this.stopDragging = this.stopDragging.bind(this);
-    this.drag = this.drag.bind(this);
 
     this.state = {
       turn: 2,
       dragging: false,
       params: {
-        temp: -14,
-        oxygen: 10,
-        ocean: 2,
-        generation: 4
+        temp: -30,
+        oxygen: 0,
+        ocean: 9,
+        generation: 1
       },
       players: [
         {
@@ -260,17 +258,27 @@ export default class Board extends Component {
     } else if (document.attachEvent) {
       document.attachEvent('onmouseout', mouseleave);
     }
+
+    // Handle key shortcuts
+    const keydown = (e) => {
+      if (navigator.userAgent.indexOf('Mac OS X' >= 0) && e.metaKey || e.ctrlKey) {
+        // e.preventDefault();
+
+        // TODO: Handle some stuff
+      }
+
+      this.log.current.msg.current.focus();
+    };
+    if (document.addEventListener) {
+      document.addEventListener('keydown', keydown, false);
+    } else if (document.attachEvent) {
+      document.attachEvent('onkeydown', keydown);
+    }
   }
 
-  startDragging() {
-    this.setState({dragging: true});
-  }
-
-  stopDragging(e) {
-    this.setState({dragging: false});
-  }
-
-  drag(e) {
+  startDragging = () => this.setState({dragging: true});
+  stopDragging = () => this.setState({dragging: false});
+  drag = (e) => {
     if (this.state.dragging) {
       window.scrollTo(window.scrollX - e.movementX, window.scrollY - e.movementY);
     }
@@ -291,7 +299,7 @@ export default class Board extends Component {
           onMouseMove={this.drag}
           ref={this.board}>
         <Players players={this.state.players} turn={this.state.turn} />
-        <Field />
+        <Field ref={this.field} />
         <GlobalParameters
           temperature={this.state.params.temp}
           oxygen={this.state.params.oxygen}
@@ -299,7 +307,7 @@ export default class Board extends Component {
           generation={this.state.params.generation} />
         <StandardProjects />
         <Hand />
-        <Log log={this.props.log} />
+        <Log log={this.props.log} ref={this.log} />
       </div>
     );
   }

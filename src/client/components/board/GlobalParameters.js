@@ -7,7 +7,7 @@ import { Tile, Param, Production, Resource } from '../assets/Assets';
  */
 export default class GlobalParameters extends Component {
   render() {
-    const gaugeHeight = 329;
+    const gaugeHeight = 269;
     const gauge = (max, value, offset = 0, inv = false) => Math.abs((value * gaugeHeight / max) + offset - (inv ? gaugeHeight : 0));
     const tempMax = 38;
     const oxyMax = 14
@@ -40,7 +40,7 @@ export default class GlobalParameters extends Component {
               <span>{`${this.props.temperature > 0 ? '+' : ''}${this.props.temperature}°C`}</span>
             </div>
 
-            <div className={`bonus ${this.props.temperature >= -24 ? 'met' : ''}`} style={{top: `${gauge(tempMax, -24 + 30, 0, true)}px`}} data-content="-24">
+            <div className={`bonus heat ${this.props.temperature >= -24 ? 'met' : ''}`} style={{top: `${gauge(tempMax, -24 + 30, 0, true)}px`}} data-content="-24">
               <Production>
                 <div className="flex">
                   <Resource name="heat" />
@@ -48,7 +48,7 @@ export default class GlobalParameters extends Component {
               </Production>
             </div>
 
-            <div className={`bonus ${this.props.temperature >= -20 ? 'met' : ''}`} style={{top: `${gauge(tempMax, -20 + 30, 0, true)}px`}} data-content="-20">
+            <div className={`bonus heat ${this.props.temperature >= -20 ? 'met' : ''}`} style={{top: `${gauge(tempMax, -20 + 30, 0, true)}px`}} data-content="-20">
               <Production>
                 <div className="flex">
                   <Resource name="heat" />
