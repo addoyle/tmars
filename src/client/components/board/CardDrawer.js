@@ -17,10 +17,6 @@ export default class Hand extends Component {
       showActiveCard: false
     };
 
-    this.startDragging = this.startDragging.bind(this);
-    this.stopDragging = this.stopDragging.bind(this);
-    this.drag = this.drag.bind(this);
-
     // Handle if dragging leaves the browser window
     const mouseleave = (e) => {
       e = e ? e : window.event;
@@ -37,11 +33,20 @@ export default class Hand extends Component {
   }
 
   toggleCollapse() {
+    // close other drawers
     if (this.state.collapse) {
-      this.props.drawers.filter(drawer => drawer.current !== this).forEach(drawer => drawer.current.setState({collapse: true}));
+      this.props.drawers
+        .filter(drawer => drawer.current !== this)
+        .forEach(drawer => drawer.current.setState({collapse: true}));
     }
 
-    this.setState({collapse: !this.state.collapse});
+    this.setState({
+      collapse: !this.state.collapse,
+
+      // also close card popup
+      showActiveCard: false,
+      selectedCard: 0
+    });
   }
 
   cancelClick() {
@@ -53,15 +58,9 @@ export default class Hand extends Component {
     this.setState({ selectedCard, showActiveCard: true });
   }
 
-  startDragging() {
-    this.setState({dragging: true});
-  }
-
-  stopDragging(e) {
-    this.setState({dragging: false});
-  }
-
-  drag(e) {
+  startDragging = () => this.setState({dragging: true});
+  stopDragging = () => this.setState({dragging: false});
+  drag = (e) => {
     if (this.state.dragging) {
       this.refs.selectedCard.style.left = (this.refs.selectedCard.offsetLeft + e.movementX) + 'px';
       this.refs.selectedCard.style.top = (this.refs.selectedCard.offsetTop + e.movementY) + 'px';
