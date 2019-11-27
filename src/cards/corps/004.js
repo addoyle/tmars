@@ -61,7 +61,7 @@ export default new Corporation({
               <Resource name="steel" />/<Resource name="titanium" /> :&nbsp;
             </div>
             <Production>
-              <div class="flex">
+              <div className="flex">
                 <Resource name="steel" />
               </div>
             </Production>

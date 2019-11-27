@@ -6,16 +6,24 @@ import Log from './Log';
 import GlobalParameters from './GlobalParameters';
 import StandardProjects from './StandardProjects';
 import CardDrawer from './CardDrawer';
+import { Param } from '../assets/Assets';
 
+const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
+  'CapsLock', 'PageUp', 'PageDown', 'Home', 'End', 'Insert', 'NumLock', 'Meta', 'Pause', 'ScrollLock', 'Escape',
+  'ContextMenu', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12']);
 export default class Board extends Component {
   board = React.createRef()
   log = React.createRef()
   field = React.createRef();
-  hand = React.createRef();
-  actives = React.createRef();
-  automateds = React.createRef();
-  events = React.createRef();
-  drawers = [this.hand, this.actives, this.automateds, this.events];
+  params = React.createRef();
+  standardProjects = React.createRef();
+  players = React.createRef();
+
+  handDrawer = React.createRef();
+  activeDrawer = React.createRef();
+  automatedDrawer = React.createRef();
+  eventDrawer = React.createRef();
+  drawers = [this.handDrawer, this.activeDrawer, this.automatedDrawer, this.eventDrawer];
 
   constructor(props) {
     super(props);
@@ -23,6 +31,7 @@ export default class Board extends Component {
     this.state = {
       turn: 2,
       dragging: false,
+      highlights: false,
       params: {
         temp: -30,
         oxygen: 0,
@@ -157,8 +166,7 @@ export default class Board extends Component {
           corp: {
             name: 'Mons Insurance',
             number: 'X01'
-          },
-          passed: true
+          }
         },
         {
           name: 'Larissa',
@@ -251,34 +259,45 @@ export default class Board extends Component {
     };
 
     // Handle if dragging leaves the browser window
-    const mouseleave = (e) => {
+    document.addEventListener('mouseout', e => {
       e = e ? e : window.event;
       const from = e.relatedTarget || e.toElement;
       if (!from || from.nodeName === 'HTML') {
         this.setState({dragging: false});
       }
-    };
-    if (document.addEventListener) {
-      document.addEventListener('mouseout', mouseleave, false);
-    } else if (document.attachEvent) {
-      document.attachEvent('onmouseout', mouseleave);
-    }
+    }, false);
 
-    // Handle key shortcuts
-    const keydown = (e) => {
+    // Handle keydown shortcuts
+    document.addEventListener('keydown', e => {
       if (navigator.userAgent.indexOf('Mac OS X' >= 0) && e.metaKey || e.ctrlKey) {
-        // e.preventDefault();
+        this.setState({ highlights: true });
 
-        // TODO: Handle some stuff
+        // Hide/show hand
+        if (e.key === 'h') { e.preventDefault(); this.handDrawer.current.toggleCollapse(); }
+        // Hide/show Actives
+        if (e.key === 'a') { e.preventDefault(); this.activeDrawer.current.toggleCollapse(); }
+        // Hide/show Automated
+        if (e.key === 'u') { e.preventDefault(); this.automatedDrawer.current.toggleCollapse(); }
+        // Hide/show Events
+        if (e.key === 'e') { e.preventDefault(); this.eventDrawer.current.toggleCollapse(); }
+        // Hide/show Standard Projects
+        if (e.key === 'p') { e.preventDefault(); this.standardProjects.current.toggleCollapse(); }
+        // Hide/show players
+        if (+e.key >= 1 && +e.key <= this.state.players.length) { e.preventDefault(); this.players.current.toggleStats(+e.key - 1)(); }
+
+        // Unfocus chat
+        if (e.key !== 'Control') {
+          this.log.current.msg.current.blur();
+        }
       }
+      // If a letter is pressed, grab focus to chat
+      else if (!nonFocusingKeys.has(e.key))  {
+        this.log.current.msg.current.focus();
+      }
+    }, false);
 
-      this.log.current.msg.current.focus();
-    };
-    if (document.addEventListener) {
-      document.addEventListener('keydown', keydown, false);
-    } else if (document.attachEvent) {
-      document.attachEvent('onkeydown', keydown);
-    }
+    // Handle keyup
+    document.addEventListener('keyup', () => this.setState({ highlights: false }));
   }
 
   startDragging = () => this.setState({dragging: true});
@@ -298,24 +317,31 @@ export default class Board extends Component {
   render() {
     // TODO: figure out onMouseMove outside of browser range
     return (
-      <div className={`board ${this.state.dragging ? 'dragging' : ''}`}
+      <div className={`board ${this.state.dragging ? 'dragging' : ''} ${this.state.highlights ? 'highlights': ''}`}
           onMouseDown={this.startDragging}
           onMouseUp={this.stopDragging}
           onMouseMove={this.drag}
           ref={this.board}>
-        <Players players={this.state.players} turn={this.state.turn} />
+        <Players players={this.state.players} turn={this.state.turn} ref={this.players} />
         <Field ref={this.field} />
         <GlobalParameters
           temperature={this.state.params.temp}
           oxygen={this.state.params.oxygen}
           ocean={this.state.params.ocean}
-          generation={this.state.params.generation} />
-        <StandardProjects />
+          generation={this.state.params.generation}
+          ref={this.params} />
+        <StandardProjects ref={this.standardProjects} />
 
         <CardDrawer
           cards={['X01', 'X02', 'X03', 'X04', 'X05', 'X06', 'X07', 'X08', 'X09', 'X10', 'X11', 'X12']}
           type="hand"
-          ref={this.hand}
+          tab={<>
+            <Param name="card back" />
+            <Param name="card back" />
+            <Param name="card back" />
+            <span><span className="highlight">H</span>and</span>
+          </>}
+          ref={this.handDrawer}
           drawers={this.drawers}
         />
         <CardDrawer
@@ -325,19 +351,31 @@ export default class Board extends Component {
             {card: '028', resources: { type: 'fighter', value: 1 }}
           ]} 
           type="active"
-          ref={this.actives}
+          tab={<>
+            <Param name="card active" />
+            <span><span className="highlight">A</span>ctive</span>
+          </>}
+          ref={this.activeDrawer}
           drawers={this.drawers}
         />
         <CardDrawer
           cards={['165', '088', '211', '159']}
           type="automated"
-          ref={this.automateds}
+          tab={<>
+            <Param name="card automated" />
+            <span>A<span className="highlight">u</span>tomated</span>
+          </>}
+          ref={this.automatedDrawer}
           drawers={this.drawers}
         />
         <CardDrawer
           cards={[]} 
           type="event"
-          ref={this.events}
+          tab={<>
+            <Param name="card event" />
+            <span><span className="highlight">E</span>vent</span>
+          </>}
+          ref={this.eventDrawer}
           drawers={this.drawers}
         />
 

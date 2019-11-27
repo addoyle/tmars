@@ -5,12 +5,11 @@ $title-font: 'Prototype', sans-serif;
   background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
   border: 3px solid #444;
   position: fixed;
-  right: 442px;
+  right: 452px;
   top: 0;
   cursor: initial;
   font-size: 14px;
   padding: 6px;
-  height: 309px;
   transition: transform ease .5s;
 
   .header {
@@ -22,7 +21,9 @@ $title-font: 'Prototype', sans-serif;
     border-top: none;
     position: absolute;
     bottom: -44px;
-    width: 90%;
+    width: 188px;
+    left: 50%;
+    transform: translateX(-50%);
 
     .standard-project {
       padding-left: 1em;
@@ -67,7 +68,7 @@ $title-font: 'Prototype', sans-serif;
       font-size: 1em;
     }
 
-    &.city {
+    & > .city {
       .tile {
         margin-right: -4px;
       }

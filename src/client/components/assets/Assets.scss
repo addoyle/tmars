@@ -66,8 +66,14 @@ $title-font: 'Prototype', sans-serif;
     right: -.5em;
   }
 
-  &.card.active .project .body {
-    padding: .25em;
+  &.card .project .body {
+    padding: .3em;
+
+    .flavor {
+      border-top-width: 1px;
+      border-top-color: #999;
+      padding: 0
+    }
   }
 }
 

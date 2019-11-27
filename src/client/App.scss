@@ -100,6 +100,7 @@ p {
 .valign-top { vertical-align: top; }
 .m-top { margin-top: 1em; }
 .m-bottom { margin-bottom: 1em; }
+.m-right { margin-right: .2em; }
 .p-rel { position: relative; }
 .gutter > * {
 	margin-left: .5em;
@@ -109,4 +110,8 @@ p {
 }
 .sans-serif {
 	font-family: sans-serif;
+}
+
+.highlights .highlight {
+	text-decoration: underline;
 }

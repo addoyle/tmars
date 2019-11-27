@@ -52,7 +52,7 @@ export default new Corporation({
               <Tag name="jovian" anyone /> :&nbsp;
             </div>
             <Production>
-              <div class="flex">
+              <div className="flex">
                 <MegaCredit value="1" />
               </div>
             </Production>

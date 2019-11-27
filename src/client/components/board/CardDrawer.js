@@ -73,19 +73,7 @@ export default class Hand extends Component {
     return (
       <div className={`drawer ${this.state.collapse ? 'collapse' : ''}`} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
         <button className={`drawer-btn ${this.props.type}`} onClick={e => this.toggleCollapse()}>
-          {this.props.type === 'hand' ? (
-            <>
-              <Param name="card back" />
-              <Param name="card back" />
-              <Param name="card back" />
-              <span>Hand</span>
-            </>
-          ) : (
-            <>
-              <Param name={`card ${this.props.type}`} />
-              <span>{capitalize(this.props.type)}</span>
-            </>
-          )}
+          {this.props.tab}
         </button>
 
         <ul className="cards">

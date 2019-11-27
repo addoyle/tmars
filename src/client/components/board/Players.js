@@ -15,24 +15,17 @@ export default class Players extends Component {
       showStats: false,
       pid: 1
     }
-
-    this.toggleStats = this.toggleStats.bind(this);
-    this.closeClick = this.closeClick.bind(this);
   }
 
   // Open/close player pane
-  toggleStats(player, i) {
-    return e => this.setState({
-      statPlayer: player,
-      showStats: !this.state.showStats || this.state.statPlayer !== player,
-      pid: i + 1
-    });
-  }
+  toggleStats = i => () => this.setState({
+    statPlayer: this.props.players[i],
+    showStats: !this.state.showStats || this.state.statPlayer !== this.props.players[i],
+    pid: i + 1
+  });
 
   // Close the pane
-  closeClick() {
-    this.setState({showStats: false});
-  }
+  closeClick = () => this.setState({showStats: false});
 
   render() {
     return (
@@ -44,7 +37,7 @@ export default class Players extends Component {
               pid={i + 1}
               player={player}
               turn={i + 1 === +this.props.turn}
-              onClick={this.toggleStats(player, i)} />
+              onClick={this.toggleStats(i)} />
           </li>
         ))}
         </ul>

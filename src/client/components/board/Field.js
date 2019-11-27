@@ -20,8 +20,8 @@ export default class Field extends Component {
   }
 
   componentDidMount() {
-    // this.setState({ field: Tharsis });
-    this.setState({ field: Elysium });
+    this.setState({ field: Tharsis });
+    // this.setState({ field: Elysium });
     // this.setState({ field: Hellas });
   }
 
