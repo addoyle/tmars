@@ -2,34 +2,29 @@ import React, { Component } from 'react';
 import './CardDrawer.scss';
 import { Param, Resource } from '../assets/Assets';
 import CardPreview from './CardPreview';
-import { isString, capitalize } from 'lodash';
+import { isString } from 'lodash';
 
 /**
- * Standard Projects pane
+ * Card drawer
  */
-export default class Hand extends Component {
+export default class CardDrawer extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      collapse: props.type !== 'hand',
+      collapse: props.collapse || props.collapse === undefined,
       selectedCard: 0,
       showActiveCard: false
     };
 
     // Handle if dragging leaves the browser window
-    const mouseleave = (e) => {
+    document.addEventListener('mouseout', (e) => {
       e = e ? e : window.event;
       const from = e.relatedTarget || e.toElement;
       if (!from || from.nodeName === 'HTML') {
         this.setState({dragging: false});
       }
-    };
-    if (document.addEventListener) {
-      document.addEventListener('mouseout', mouseleave, false);
-    } else if (document.attachEvent) {
-      document.attachEvent('onmouseout', mouseleave);
-    }
+    }, false);
   }
 
   toggleCollapse() {

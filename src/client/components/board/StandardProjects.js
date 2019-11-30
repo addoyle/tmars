@@ -75,23 +75,27 @@ export default class StandardProjects extends Component {
 
           <div className="row">
             <div className="cell">
-              <div className="resources middle text-right">
+              <div className="resources middle text-right p-rel stack-bottom">
                 <span>8</span>
                 <Resource name="heat" />
-                <span>OR</span>
+              </div>
+              <div className="resources middle text-right p-rel">
+                <span className="sub small">OR</span>
                 <MegaCredit value="14" />
               </div>
             </div>
-            <div className="cell">
+            <div className="cell middle">
               <div className="resources middle">
                 <span className="arrow" />
               </div>
             </div>
-            <div className="flex">
-              <div className="resources middle text-center col-1">
-                <Param name="temperature" />
+            <div className="cell middle">
+              <div className="flex">
+                <div className="resources middle text-center col-1">
+                  <Param name="temperature" />
+                </div>
+                <button className="standard-project middle">Asteroid</button>
               </div>
-              <button className="standard-project middle">Asteroid</button>
             </div>
           </div>
 
@@ -116,23 +120,27 @@ export default class StandardProjects extends Component {
 
           <div className="row">
             <div className="cell">
-              <div className="resources middle text-right">
+              <div className="resources middle text-right p-rel stack-bottom">
                 <span>8</span>
                 <Resource name="plant" />
-                <span>OR</span>
+              </div>
+              <div className="resources middle text-right p-rel">
+                <span className="sub small">OR</span>
                 <MegaCredit value="23" />
               </div>
             </div>
-            <div className="cell">
+            <div className="cell middle">
               <div className="resources middle">
                 <span className="arrow" />
               </div>
             </div>
-            <div className="flex">
-              <div className="resources middle text-center col-1">
-                <Tile name="greenery" />
+            <div className="cell middle">
+              <div className="flex">
+                <div className="resources middle text-center col-1">
+                  <Tile name="greenery" />
+                </div>
+                <button className="standard-project middle">Greenery</button>
               </div>
-              <button className="standard-project middle">Greenery</button>
             </div>
           </div>
 

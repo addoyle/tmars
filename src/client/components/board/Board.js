@@ -341,6 +341,7 @@ export default class Board extends Component {
             <Param name="card back" />
             <span><span className="highlight">H</span>and</span>
           </>}
+          collapse={false}
           ref={this.handDrawer}
           drawers={this.drawers}
         />

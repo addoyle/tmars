@@ -453,6 +453,12 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 }
+.table, .row, .cell {
+  & > .middle {
+    vertical-align: middle;
+    align-self: unset;
+  }
+}
 
 .resources {
   font-size: 2em;
