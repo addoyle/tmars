@@ -11,8 +11,8 @@ export default class Players extends Component {
     super(props);
 
     this.state = {
-      statPlayer: { resources: {}, production: {}, tags: {}, tiles: {}},
-      showStats: false,
+      statPlayer: props.players[0],
+      showStats: true,
       pid: 1
     }
   }

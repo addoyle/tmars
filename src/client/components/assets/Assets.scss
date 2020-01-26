@@ -67,12 +67,12 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.card .project .body {
-    padding: .3em;
+    padding: 3em;
 
     .flavor {
       border-top-width: 1px;
       border-top-color: #999;
-      padding: 0
+      padding: 0;
     }
   }
 }
@@ -649,7 +649,8 @@ $title-font: 'Prototype', sans-serif;
 }
 
 .points {
-  background: url('./icons/pts.svg') no-repeat center/contain;
+  background: url('./icons/pts.svg') no-repeat center;
+  background-size: contain;
   font-family: $title-font;
   display: inline-block;
   width: 1.7em;
@@ -657,7 +658,8 @@ $title-font: 'Prototype', sans-serif;
   text-align: center;
 
   &.o {
-    background: url('./icons/pts-o.svg') no-repeat center/contain;
+    background: url('./icons/pts-o.svg') no-repeat center;
+    background-size: contain;
   }
 
   > .value {
