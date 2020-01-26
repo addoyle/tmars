@@ -84,7 +84,7 @@ $title-font: 'Prototype', sans-serif;
       background-color: #aaa;
 
       &.met {
-        filter: grayscale(.9);
+        opacity: .25;
       }
 
       > .production {
@@ -125,7 +125,7 @@ $title-font: 'Prototype', sans-serif;
       left: 0;
       height: 0;
       width: 100%;
-      border-top: 1px solid rgba(255,255,255,.1);
+      border-top: 1px solid rgba(255,255,255,.2);
     }
   }
 

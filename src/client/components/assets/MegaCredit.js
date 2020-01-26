@@ -1,5 +1,6 @@
 import React from 'react';
 import './Assets.scss';
+import classNames from 'classnames';
 
 // Euro logo to display when no value is set
 const euro = (<span className="euro">&euro;</span>);
@@ -12,6 +13,6 @@ const euro = (<span className="euro">&euro;</span>);
  */
 export default function MegaCredit(props) {
   return (
-    <div className={`mc ${props.anyone ? 'anyone' : ''}`}><span className="value">{props.value === undefined ? euro : props.value}</span></div>
+    <div className={classNames('mc', { anyone: props.anyone })}><span className="value">{props.value === undefined ? euro : props.value}</span></div>
   );
 }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Log.scss';
 import ScrollToBottom from 'react-scroll-to-bottom';
+import classNames from 'classnames';
 
 /**
  * The chat log/game history
@@ -39,8 +40,8 @@ export default class Log extends Component {
       <div className="log" onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
         <ScrollToBottom className="msgs" followButtonClassName="follow-button">
           {this.state.log.map((msg, i) => (
-            <div key={i} className={`msg ${msg.system ? 'system' : ''}`}>
-              <span className={`strong player-${msg.player}`}>{msg.name}</span>{msg.system ? '' : ': '}{msg.body}
+            <div key={i} className={classNames('msg', { system: msg.system })}>
+              <span className={classNames('strong', `player-${msg.player}`)}>{msg.name}</span>{msg.system ? '' : ': '}{msg.body}
             </div>
           ))}
         </ScrollToBottom>

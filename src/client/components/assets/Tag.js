@@ -1,5 +1,6 @@
 import React from 'react';
 import './Assets.scss';
+import classNames from 'classnames';
 
 /**
  * Tag
@@ -9,6 +10,6 @@ import './Assets.scss';
  */
 export default function Tag(props) {
   return (
-    <div className={`icon tag ${props.name} ${props.anyone ? 'anyone' : ''}`} />
+    <div className={classNames('icon', 'tag', props.name, { anyone: props.anyone })} />
   );
 }

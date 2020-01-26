@@ -7,6 +7,7 @@ import GlobalParameters from './GlobalParameters';
 import StandardProjects from './StandardProjects';
 import CardDrawer from './CardDrawer';
 import { Param } from '../assets/Assets';
+import classNames from 'classnames';
 
 const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
   'CapsLock', 'PageUp', 'PageDown', 'Home', 'End', 'Insert', 'NumLock', 'Meta', 'Pause', 'ScrollLock', 'Escape',
@@ -317,7 +318,7 @@ export default class Board extends Component {
   render() {
     // TODO: figure out onMouseMove outside of browser range
     return (
-      <div className={`board ${this.state.dragging ? 'dragging' : ''} ${this.state.highlights ? 'highlights': ''}`}
+      <div className={classNames('board', { dragging: this.state.dragging, highlights: this.state.highlights })}
           onMouseDown={this.startDragging}
           onMouseUp={this.stopDragging}
           onMouseMove={this.drag}

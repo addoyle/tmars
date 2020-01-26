@@ -1,5 +1,6 @@
 import React from 'react';
 import './Assets.scss';
+import classNames from 'classnames';
 
 /**
  * Resource
@@ -9,6 +10,6 @@ import './Assets.scss';
  */
 export default function Resource(props) {
   return (
-    <div className={`icon resource ${props.name} ${props.anyone ? 'anyone' : ''}`} />
+    <div className={classNames('icon', 'resource', props.name, { anyone: props.anyone })} />
   );
 }

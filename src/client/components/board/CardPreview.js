@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './CardPreview.scss'
+import classNames from 'classnames';
 
 /**
  * Displays a card as a popup
@@ -45,7 +46,7 @@ export default class CardPreview extends Component {
     const card = this.state.card ? React.createElement(this.state.card.constructor, {...this.state.card.props, resources}) : (<div>Loading...</div>);
 
     return (
-      <div className={`card-preview ${this.props.show && this.state.card ? 'show' : ''} ${this.props.simple ? 'simple' : ''}`}>
+      <div className={classNames('card-preview', { show: this.props.show && this.state.card, simple: this.props.simple })}>
         {card}
       </div>
     );

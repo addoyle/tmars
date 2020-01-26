@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './StandardProjects.scss';
 import { Param, MegaCredit, Tile, Resource, Production } from '../assets/Assets';
+import classNames from 'classnames';
 
 /**
  * Standard Projects pane
@@ -22,7 +23,7 @@ export default class StandardProjects extends Component {
 
   render() {
     return (
-      <div className={`standard-projects ${this.state.collapse ? 'collapse' : ''}`} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
+      <div className={classNames('standard-projects', { collapse: this.state.collapse})} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
         <div className="header text-center">
           <button className="standard-project" onClick={this.toggleCollapse}>
             Standard <span className="highlight">P</span>rojects

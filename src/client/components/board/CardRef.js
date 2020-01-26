@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './CardRef.scss';
 import CardPreview from './CardPreview';
 import HoverIntent from '../util/HoverIntent';
+import classNames from 'classnames';
 
 /**
  * Shows a card popup on hover
@@ -24,7 +25,7 @@ export default class CardRef extends Component {
   render() {
     return (
       <HoverIntent timeout={300} onMouseOver={this.onMouseOver.bind(this)} onMouseOut={this.onMouseOut.bind(this)}>
-        <span className={`card-ref ${this.props.projectType || ''}`} ref="ref">
+        <span className={classNames('card-ref', this.props.projectType)} ref="ref">
           {this.props.children}
           <CardPreview card={this.props.card} show={this.state.shown} type={this.props.type} ref="preview" />
         </span>

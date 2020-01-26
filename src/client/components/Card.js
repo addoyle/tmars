@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { castArray } from 'lodash';
 import './Card.scss';
+import classNames from 'classnames';
 
 /**
  * Base level Card class
@@ -22,9 +23,9 @@ export default class Card extends Component {
 
   render() {
     return (
-      <div className={`card ${this.props.type || ''} ${this.props.landscape ? 'landscape' : ''} ${this.props.simple ? 'simple' : ''}`}>
+      <div className={classNames('card', this.props.type, { landscape: this.props.landscape, simple: this.props.simple })}>
         {this.props.children}
-        {this.props.set ? castArray(this.props.set).map((set, i) => <div key={i} className={`set ${set}`} />) : ''}
+        {this.props.set ? castArray(this.props.set).map((set, i) => <div key={i} className={classNames('set', set)} />) : ''}
       </div>
     );
   }

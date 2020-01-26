@@ -3,6 +3,7 @@ import './CardDrawer.scss';
 import { Param, Resource } from '../assets/Assets';
 import CardPreview from './CardPreview';
 import { isString } from 'lodash';
+import classNames from 'classnames';
 
 /**
  * Card drawer
@@ -66,21 +67,21 @@ export default class CardDrawer extends Component {
     const cards = this.props.cards.map(card => isString(card) ? { card } : card);
 
     return (
-      <div className={`drawer ${this.state.collapse ? 'collapse' : ''}`} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
-        <button className={`drawer-btn ${this.props.type}`} onClick={e => this.toggleCollapse()}>
+      <div className={classNames('drawer', { collapse: this.state.collapse })} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
+        <button className={classNames('drawer-btn', this.props.type)} onClick={() => this.toggleCollapse()}>
           {this.props.tab}
         </button>
 
         <ul className="cards">
-          {cards.map((card, i) => (
-            <li key={i} onClick={() => this.selectCard(card)} className={`card-selector ${this.state.showActiveCard && card.card === this.state.selectedCard ? 'selected' : ''}`}>
+          {cards.map((card, i) =>
+            <li key={i} onClick={() => this.selectCard(card)} className={classNames('card-selector', { selected: this.state.showActiveCard && card.card === this.state.selectedCard.card })}>
               <CardPreview card={card.card} resources={card.resources} />
             </li>
-          ))}
+          )}
         </ul>
 
         <div
-            className={`active-card ${this.state.showActiveCard ? 'show' : ''}`}
+            className={classNames('active-card', { show: this.state.showActiveCard})}
             ref="selectedCard"
             onMouseDown={this.startDragging}
             onMouseUp={this.stopDragging}
@@ -88,7 +89,7 @@ export default class CardDrawer extends Component {
             onMouseLeave={this.stopDragging}>
           {this.state.selectedCard ? (<CardPreview {...this.state.selectedCard} />) : ''}
           <div className="footer">
-            {['active', 'hand'].indexOf(this.props.type) >= 0 ? (
+            {['active', 'hand'].indexOf(this.props.type) >= 0 ?
               <button>
                 <div className="flex">
                   <div className="resources middle">
@@ -102,10 +103,10 @@ export default class CardDrawer extends Component {
                   </div>
                 </div>
               </button>
-            ) : null}
+            : null}
 
             <div className="flex gutter">
-              {this.props.type === 'hand' ? (
+              {this.props.type === 'hand' ?
                 <button className="primary col-1 disabled">
                   <div className="flex">
                     <div className="resources middle">
@@ -116,12 +117,11 @@ export default class CardDrawer extends Component {
                     </span>
                   </div>
                 </button>
-              ) : null}
+              : null}
               <button className="text-center col-1" onClick={e => this.cancelClick()}>
                 {['active', 'hand'].indexOf(this.props.type) >= 0 ? 'Cancel' : 'Close'}
               </button>
             </div>
-
           </div>
         </div>
       </div>

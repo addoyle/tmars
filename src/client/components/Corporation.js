@@ -2,6 +2,7 @@ import React from 'react';
 import './Corporation.scss';
 import Card from './Card';
 import { Tag } from './assets/Assets';
+import classNames from 'classnames';
 
 /**
  * Corporation cards
@@ -19,7 +20,7 @@ export default class Corporation extends Card {
           <div className="tag-shelf">
             {this.props.tags.map((tag, i) => (<div key={i} />))}
           </div>
-          <div style={this.props.titleStyle} className={`title ${this.props.titleClass || ''}`}>{this.props.title}</div>
+          <div style={this.props.titleStyle} className={classNames('title', this.props.titleClass)}>{this.props.title}</div>
           <div className="body">
             {this.props.layout}
           </div>

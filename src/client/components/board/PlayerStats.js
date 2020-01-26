@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './PlayerStats.scss';
 import CardRef from './CardRef';
 import { Tag, Tile, MegaCredit, Resource, Production } from '../assets/Assets';
+import classNames from 'classnames';
 
 /**
  * Player Stats pane
@@ -11,7 +12,7 @@ import { Tag, Tile, MegaCredit, Resource, Production } from '../assets/Assets';
 export default class PlayerStats extends Component {
   render() {
     return (
-      <div className={`player-stats ${this.props.show ? 'show' : ''} player-${this.props.pid}`} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
+      <div className={classNames('player-stats', `player-${this.props.pid}`, { show: this.props.show })} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
         {/* Corp title */}
         <div className="title-corp text-center m-top m-bottom">
           {this.props.player.corp ? (
