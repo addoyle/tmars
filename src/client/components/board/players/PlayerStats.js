@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './PlayerStats.scss';
-import CardRef from './CardRef';
-import { Tag, Tile, MegaCredit, Resource, Production } from '../assets/Assets';
+import CardRef from '../CardRef';
+import { Tag, Tile, MegaCredit, Resource, Production } from '../../assets/Assets';
 import classNames from 'classnames';
 
 /**

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Board.scss';
 import Field from './Field';
-import Players from './Players';
+import Players from './players/Players';
 import Log from './Log';
 import GlobalParameters from './params/GlobalParameters';
 import StandardProjects from './StandardProjects';
