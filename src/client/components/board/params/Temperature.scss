@@ -1,0 +1,30 @@
+.temp-wrapper {
+  margin-left: 3px;
+  margin-right: 7px;
+
+  .param {
+    margin: 5px;
+  }
+
+  .temp-gauge {
+    background-image: linear-gradient(to top, rgb(37,203,247),rgb(113,43,133),rgb(229,34,28));
+
+    span {
+      padding-left: 24px;
+      left: 0;
+    }
+  }
+
+  .bonus {
+    left: 23px;
+
+    &:after {
+      right: 0;
+      padding-right: 29px;
+      padding-left: 0;
+    }
+    &.heat:after {
+      padding-right: 31px;
+    }
+  }
+}

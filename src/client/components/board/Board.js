@@ -3,7 +3,7 @@ import './Board.scss';
 import Field from './Field';
 import Players from './Players';
 import Log from './Log';
-import GlobalParameters from './GlobalParameters';
+import GlobalParameters from './params/GlobalParameters';
 import StandardProjects from './StandardProjects';
 import CardDrawer from './CardDrawer';
 import { Param } from '../assets/Assets';

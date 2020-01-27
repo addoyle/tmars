@@ -1,0 +1,20 @@
+$title-font: 'Prototype', sans-serif;
+
+.ocean-param {
+  margin-right: -4px;
+  margin-top: -8px;
+  transition: filter .3s ease;
+  font-size: 64px;
+
+  &.maxed {
+    opacity: .25;
+  }
+
+  .ocean-num {
+    font-family: $title-font;
+    font-size: 150px;
+    color: #FFEF00;
+    text-align: center;
+    margin: 180px 0;
+  }
+}

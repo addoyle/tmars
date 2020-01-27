@@ -12,25 +12,6 @@ $title-font: 'Prototype', sans-serif;
     margin: 0 6px 2px;
   }
 
-  .ocean-param {
-    margin-right: -4px;
-    margin-top: -8px;
-    transition: filter .3s ease;
-    font-size: 64px;
-
-    &.maxed {
-      opacity: .25;
-    }
-
-    .ocean-num {
-      font-family: $title-font;
-      font-size: 150px;
-      color: #FFEF00;
-      text-align: center;
-      margin: 180px 0;
-    }
-  }
-
   .temp-wrapper, .oxy-wrapper {
     height: 280px;
     border: 1px solid black;
@@ -126,64 +107,6 @@ $title-font: 'Prototype', sans-serif;
       height: 0;
       width: 100%;
       border-top: 1px solid rgba(255,255,255,.2);
-    }
-  }
-
-  .oxy-wrapper {
-    margin-left: 8px;
-    margin-right: 2px;
-
-    .param {
-      margin: 10px 1px;
-    }
-
-    .oxy-gauge {
-      background-image: linear-gradient(to top, rgba(0,0,0,.1),rgba(180,140,94,1),rgba(147,207,244,1));
-
-      span {
-        padding-right: 24px;
-        right: 0;
-      }
-    }
-
-    .bonus {
-      right: 23px;
-
-      &:after {
-        padding-left: 8px;
-        padding-right: 1px;
-      }
-    }
-  }
-
-  .temp-wrapper {
-    margin-left: 3px;
-    margin-right: 7px;
-
-    .param {
-      margin: 5px;
-    }
-
-    .temp-gauge {
-      background-image: linear-gradient(to top, rgb(37,203,247),rgb(113,43,133),rgb(229,34,28));
-
-      span {
-        padding-left: 24px;
-        left: 0;
-      }
-    }
-
-    .bonus {
-      left: 23px;
-
-      &:after {
-        right: 0;
-        padding-right: 29px;
-        padding-left: 0;
-      }
-      &.heat:after {
-        padding-right: 31px;
-      }
     }
   }
 }
