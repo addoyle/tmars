@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Players.scss';
 import Player from './Player';
 import PlayerStats from './PlayerStats';
+import classNames from 'classnames';
 
 /**
  * Shows a list of players on the top left
@@ -30,16 +31,19 @@ export default class Players extends Component {
   render() {
     return (
       <div className="players">
+        <div className={classNames('player-selector', `player-${this.state.pid}`, { active: this.state.pid === +this.props.turn })} />
+
         <ul>
-        {this.props.players.map((player, i) => (
-          <li key={i}>
-            <Player
-              pid={i + 1}
-              player={player}
-              turn={i + 1 === +this.props.turn}
-              onClick={this.toggleStats(i)} />
-          </li>
-        ))}
+          {this.props.players.map((player, i) => (
+            <li key={i}>
+              <Player
+                pid={i + 1}
+                player={player}
+                turn={i + 1 === +this.props.turn}
+                onClick={this.toggleStats(i)}
+              />
+            </li>
+          ))}
         </ul>
 
         <PlayerStats
@@ -47,7 +51,7 @@ export default class Players extends Component {
           pid={this.state.pid}
           show={this.state.showStats}
           closeClick={this.closeClick}
-          />
+        />
       </div>
     );
   }

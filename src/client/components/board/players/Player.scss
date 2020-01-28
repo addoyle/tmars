@@ -12,6 +12,7 @@ $title-font: 'Prototype', sans-serif;
   cursor: pointer;
   box-shadow: none;
   pointer-events: auto;
+  height: 32px;
 
   &:hover {
     box-shadow: 0 0 0 4px #666;
