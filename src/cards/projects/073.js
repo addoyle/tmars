@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Tag, Param, VictoryPoint, Resource } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When you play a science tag, including this, you may discard a card from hand to draw a card.';

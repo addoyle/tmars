@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Resource, Param, Tile } from '../../client/components/assets/Assets';
 
 const desc = 'Raise temperature 2 steps and place 2 ocean tiles. Remove up to 6 plants from any player.';

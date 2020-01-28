@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Param, Resource, Tile, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Place an ocean tile and draw 2 cards. Gain 5 plants, or add 4 animals to ANOTHER card.';

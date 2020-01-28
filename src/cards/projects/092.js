@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Production, Resource, MegaCredit, VictoryPoint, Tag } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your titanium production 2 steps and your M€ production 2 steps. 1 VP per Jovian tag you have.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { MegaCredit, Resource, Tile } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Spend 8 M€ to place 1 ocean tile. STEEL MAY BE USED as if you were playing a building card.';

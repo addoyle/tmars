@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Resource, MegaCredit, VictoryPoint, Production } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Spend 1 steel to gain 5 M€';

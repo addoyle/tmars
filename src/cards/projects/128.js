@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Tag, Resource, VictoryPoint, Tile } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When you play an animal or a plant tag (including these 2), add an animal to this card.';

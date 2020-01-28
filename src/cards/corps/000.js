@@ -1,5 +1,5 @@
 import React from 'react';
-import Corporation from '../../client/components/Corporation';
+import Corporation from '../../client/components/cards/Corporation';
 import { MegaCredit, Param, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'You start with 42 M€. INSTEAD OF PARTICIPATING IN THE FIRST RESEARCH PHASE, DRAW 10 CARDS FOR FREE.';

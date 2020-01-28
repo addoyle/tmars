@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Production, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires a Jovian tag. Increase your heat production and energy production 3 steps each.';

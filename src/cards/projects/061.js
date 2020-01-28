@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Production, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Requires that you have steel production. Decrease any steel production 1 step and increase your own 1 step.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Production, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your heat production 1 step and gain 3 heat.';

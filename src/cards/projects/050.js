@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Remove up to 2 animals or 5 plants from any player.';

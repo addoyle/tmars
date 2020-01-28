@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 
 const desc = 'USE A CARD ACTION THAT HAS ALREADY BEEN USED THIS GENERATION';
 

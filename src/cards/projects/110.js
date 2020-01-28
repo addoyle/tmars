@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Production, MegaCredit } from '../../client/components/assets/Assets';
 
 const top_desc = 'ACTION: LOOK AT THE TOP CARD AND EITHER BUY IT OR DISCARD IT';

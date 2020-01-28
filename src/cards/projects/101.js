@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Param, Resource } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Spend 4 energy to gain 1 steel and increase oxygen 1 step.';

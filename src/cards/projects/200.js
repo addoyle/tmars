@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Tile, Production, Resource, MegaCredit } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: Each time a city tile is placed, including this, increase your M€ production 1 step.';

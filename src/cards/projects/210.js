@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Param, Tag, Resource } from '../../client/components/assets/Assets';
 
 const top_desc = (<span>Action: Reveal and place a SPACE OR BUILDING card here from hand, and place 2 resources on it, OR double the resources on a card here.<br />Effect: Cards here may be played as if from hand with its cost reduced by the number of resources on it.</span>);

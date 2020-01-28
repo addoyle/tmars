@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Param, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Requires that you have 2 Party Leaders. Gain 1 TR.';

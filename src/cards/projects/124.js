@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { MegaCredit, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Steel up to 2 steel, or 3 M€ from any other player.';

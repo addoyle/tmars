@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Resource, Param } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Add 1 microbe to this card, or remove 2 microbes to raise temperature 1 step.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Param, Production, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Draw 2 cards.';

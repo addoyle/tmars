@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Tile, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Gain 1 plant for each city tile in play.';

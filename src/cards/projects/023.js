@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Resource, Tile } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When anyone places an ocean tile, gain 2 plants.';

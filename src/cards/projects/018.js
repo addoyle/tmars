@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Resource, Production, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 2% oxygen. Increase your heat production 2 steps and your plant production 2 steps.';

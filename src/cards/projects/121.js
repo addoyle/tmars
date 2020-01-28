@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { MegaCredit, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Remove up to 3 titanium from any player, or 4 steel, or 7 M€.';

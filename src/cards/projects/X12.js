@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Tile, VictoryPoint, Tag } from '../../client/components/assets/Assets';
 
 const desc = 'Place a city tile IN SPACE, outside and separate from the planet.';

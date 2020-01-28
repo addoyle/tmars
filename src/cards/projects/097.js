@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Tile, Param, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Place this tile and raise temperature 2 steps.';

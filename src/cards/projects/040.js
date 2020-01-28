@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Resource, Production, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your titanium production 2 steps.';

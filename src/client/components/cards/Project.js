@@ -1,9 +1,8 @@
 import React from 'react';
 import './Project.scss';
 import Card from './Card';
-import Tag from './assets/Tag';
-import MegaCredit from './assets/MegaCredit';
-import Restriction from './assets/Restriction';
+import { Tag, MegaCredit } from '../assets/Assets';
+import Restriction from '../assets/Restriction';
 import { cloneDeep } from 'lodash';
 
 /**

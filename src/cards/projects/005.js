@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Resource, MegaCredit, Tag, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Oxygen must be 6% or less. 3 VPs if you have one or more science resources here.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Resource, MegaCredit, Production } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Spend 2X M€ to gain X energy, or decrease energy production 1 step to gain 8 M€.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { MegaCredit, Tag } from '../../client/components/assets/Assets';
 
 const desc = 'Gain 1 M€ for each event EVER PLAYED by all players.';

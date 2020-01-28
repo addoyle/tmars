@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Resource, MegaCredit, Tile, Tag, VictoryPoint } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Pay 12 M€ to place an ocean tile. TITANIUM MAY BE USED as if playing a space card.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Param, Tile, VictoryPoint } from '../../client/components/assets/Assets';
 import Restriction from '../../client/components/assets/Restriction';
 

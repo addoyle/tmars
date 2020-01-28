@@ -1,7 +1,7 @@
 import React from 'react';
 import './Corporation.scss';
 import Card from './Card';
-import { Tag } from './assets/Assets';
+import { Tag } from '../assets/Assets';
 import classNames from 'classnames';
 
 /**

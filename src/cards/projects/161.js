@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Tile, Param } from '../../client/components/assets/Assets';
 
 const desc = 'Place 1 ocean tile and draw 1 card.';

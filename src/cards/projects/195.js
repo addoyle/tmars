@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { MegaCredit, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'The next card you play this generation costs 8 M€ less.';

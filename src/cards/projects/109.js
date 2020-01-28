@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Tag, MegaCredit } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: After you play an event card, you gain 3 M€.';

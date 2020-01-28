@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Production, MegaCredit, Tile, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your M€ production 5 steps. 1 VP for every 3rd city in play.';

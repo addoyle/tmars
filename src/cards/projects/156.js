@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { MegaCredit } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: After you pay for a standard project, except selling patents, you gain 3 M€.';

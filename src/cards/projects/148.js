@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Production, Resource, Tag } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 6% oxygen. Increase your plant production 1 step for each plant tag you have.';

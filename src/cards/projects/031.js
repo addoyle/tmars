@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Resource, MegaCredit, Tag } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When you play a space event, you gain 3 M€ and 3 heat.';

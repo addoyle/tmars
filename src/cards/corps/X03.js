@@ -1,5 +1,5 @@
 import React from 'react';
-import Corporation from '../../client/components/Corporation';
+import Corporation from '../../client/components/cards/Corporation';
 import { MegaCredit, Resource, Tile } from '../../client/components/assets/Assets';
 
 const desc = 'You start with 47 M€. As your first action, place a greenery tile and raise the oxygen 1 step.';

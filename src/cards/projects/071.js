@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Resource, MegaCredit } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: Each titanium you have is worth 1€ extra. Each steel you have is worth 1 M€ extra.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Tag, Resource, Param, VictoryPoint } from '../../client/components/assets/Assets';
 
 const top_desc = 'When you play a science tag, including this, either add a science resource to this card, or remove a science resource from this card to draw a card.';

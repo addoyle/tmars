@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { VictoryPoint, Resource, Production } from '../../client/components/assets/Assets';
 
 const desc = 'Requires that you have titanium production. Decrease any titanium production 1 step and increase your own 1 step.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Param } from '../../client/components/assets/Assets';
 
 const desc = 'Draw 2 cards.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Production, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 2 science tags. Increase your energy production 3 steps.';

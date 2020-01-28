@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { Resource, Param } from '../../client/components/assets/Assets';
 
 const top_desc = 'Action: Spend 1 energy to draw a card.';

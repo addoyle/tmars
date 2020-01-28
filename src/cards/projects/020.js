@@ -1,5 +1,5 @@
 import React from 'react';
-import Active from '../../client/components/Active';
+import Active from '../../client/components/cards/Active';
 import { MegaCredit, Tile } from '../../client/components/assets/Assets';
 
 const top_desc = 'Effect: When you play a card, you pay 1 M€ less for it.';

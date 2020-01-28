@@ -1,5 +1,5 @@
 import React from 'react';
-import Corporation from '../../client/components/Corporation';
+import Corporation from '../../client/components/cards/Corporation';
 import { MegaCredit, Resource, Production } from '../../client/components/assets/Assets';
 
 const desc = 'You start with 48 M€. Increase your M€ production 4 steps. ALL OPPONENTS DECREASE THEIR M€ PRODUCTION 2 STEPS. THIS DOES NOT TRIGGER THE EFFECT BELOW.';

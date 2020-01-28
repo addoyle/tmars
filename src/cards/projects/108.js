@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Production, MegaCredit, Resource, Tile, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 12% oxygen. Decrease your energy production 1 step and increase your M€ production 4 steps. Gain 2 plants and place a city tile.';

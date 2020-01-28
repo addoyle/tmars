@@ -1,8 +1,8 @@
 import React from 'react';
 import './Event.scss';
 import Project from './Project';
-import Art from './assets/Art';
-import Separator from './assets/Separator';
+import Art from '../assets/Art';
+import Separator from '../assets/Separator';
 
 /**
  * Event cards

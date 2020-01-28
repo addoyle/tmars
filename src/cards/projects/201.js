@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Production, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Decrease any energy production 1 step and increase your own 1 step.';

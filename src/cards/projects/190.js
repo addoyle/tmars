@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Spend 5 heat to either gain 4 plants, or to add 2 animals to ANOTHER card.';

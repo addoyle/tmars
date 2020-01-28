@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Production, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Add 2 microbes to ANOTHER card. Increase your heat production 3 steps and your plant production 1 step.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Resource, Tag, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Raise your TR 1 step for each Jovian tag you have, including this.';

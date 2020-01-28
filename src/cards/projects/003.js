@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/Automated';
+import Automated from '../../client/components/cards/Automated';
 import { Resource, Param, Production } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your energy production 1 step. Increase temperature 1 step.';

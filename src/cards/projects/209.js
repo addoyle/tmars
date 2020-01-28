@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/Event';
+import Event from '../../client/components/cards/Event';
 import { Param, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Increase temperature 1 step. Remove up to 2 plants from any player.';
