@@ -14,7 +14,7 @@ export default class CardPreview extends Component {
     }
   }
 
-  convertCard(num) {
+  normalize(num) {
     return isNaN(num) ? num : num.toString().padStart(3, '0');
   }
 
@@ -23,7 +23,7 @@ export default class CardPreview extends Component {
    */
   loadCard() {
     if (this.props.card) {
-      Promise.all([require(`../../../cards/${this.props.type}s/${this.convertCard(this.props.card)}`)]).then(res => {
+      Promise.all([require(`../../../cards/${this.props.type}s/${this.normalize(this.props.card)}`)]).then(res => {
         this.setState({ card: res[0].default });
       });
     }
@@ -36,7 +36,7 @@ export default class CardPreview extends Component {
   render() {
     const resources = this.props.resources;
 
-    if (this.props.show && (!this.state.card || (this.props.card && this.convertCard(this.state.card.props.number) !== this.convertCard(this.props.card)))) {
+    if (this.props.show && (!this.state.card || (this.props.card && this.normalize(this.state.card.props.number) !== this.normalize(this.props.card)))) {
       this.loadCard();
     }
     if (this.state.card && !this.props.show) {

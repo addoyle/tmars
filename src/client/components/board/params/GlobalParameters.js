@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
 import './GlobalParameters.scss';
 import classNames from 'classnames';
 import Ocean from './Ocean';
@@ -8,23 +9,23 @@ import Temperature from './Temperature';
 /**
  * Shows the global parameters
  */
+@inject('boardStore')
+@observer
 export default class GlobalParameters extends Component {
   render() {
-    const tempMax = 38;
-    const oxyMax = 14
 
     return (
       <div className="global-params">
-        <div className={classNames('points', { o : this.props.generation % 5 !== 0 })}>
-          <span className="value">{this.props.generation}</span>
+        <div className={classNames('points', { o : this.props.boardStore.params.generation % 5 !== 0 })}>
+          <span className="value">{this.props.boardStore.params.generation}</span>
         </div>
 
         <div className="flex">
-          <Oxygen value={this.props.oxygen} max={oxyMax} />
-          <Temperature value={this.props.temperature} max={tempMax} />
+          <Oxygen max={14} />
+          <Temperature max={38} />
         </div>
 
-        <Ocean value={this.props.ocean} />
+        <Ocean />
       </div>
     );
   }

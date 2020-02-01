@@ -24,8 +24,15 @@
       padding: .3em;
       line-height: 1.2;
 
+      .log-inline {
+        display: inline;
+        *:first-child {
+          display: inline;
+        }
+      }
+
       &.system {
-        background-color: rgba(255,255,255,.3);
+        background-color: rgba(255,255,255,.2);
         border: 1px solid #888;
         font-size: .9em;
         margin: 4px;
@@ -42,6 +49,20 @@
       .card-preview {
         margin-left: -330px;
         z-index: 1;
+      }
+
+      h1 { font-size: 2.5em; }
+      h2 { font-size: 2em; }
+      h3 { font-size: 1.75em; }
+      h4 { font-size: 1.5em; }
+      h5 { font-size: 1.25em; }
+      h6 { font-size: 1.125em; }
+      a {
+        color: #1264ac;
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
 

@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
 import './Log.scss';
+import CardRef from './CardRef';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import classNames from 'classnames';
+import Markdown from 'react-markdown';
+import { isPlainObject } from 'lodash';
 
 /**
  * The chat log/game history
  */
+@inject('logStore', 'boardStore')
+@observer
 export default class Log extends Component {
   msg = React.createRef()
 
@@ -13,8 +19,7 @@ export default class Log extends Component {
     super(props);
 
     this.state = {
-      msg: '',
-      log: props.log
+      msg: ''
     };
 
     document.addEventListener('keydown', e => {
@@ -23,25 +28,43 @@ export default class Log extends Component {
 
         if (this.state.msg) {
           // TODO: Send to server
-          this.setState({ log: this.state.log.concat({
-            name: 'Andy',
+          props.logStore.log.push({
             player: 1,
             body: this.state.msg
-          }), msg: '' });
+          });
+          this.setState({ msg: '' });
         }
       }
     });
   }
 
+  componentDidMount() {
+    this.props.logStore.fetchLogs();
+  }
+
   onChange = () => this.setState({ msg: this.msg.current.value });
+
+  renderMsgBody(body) {
+    return (Array.isArray(body) ? body : [body]).map((msg, i) => {
+      if (isPlainObject(msg)) {
+        if (msg.player) {
+          return <span key={i} className={`strong player-${msg.player}`}>Frank</span>;
+        } else {
+          return <CardRef key={i} type={Object.keys(msg)[0]} card={Object.values(msg)[0]} />
+        }
+      } else {
+        return <Markdown key={i} className="log-inline" source={msg} plugins={[require('remark-external-links')]} />;
+      }
+    });
+  }
 
   render() {
     return (
       <div className="log" onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
         <ScrollToBottom className="msgs" followButtonClassName="follow-button">
-          {this.state.log.map((msg, i) => (
+          {this.props.logStore.log.map((msg, i) => (
             <div key={i} className={classNames('msg', { system: msg.system })}>
-              <span className={classNames('strong', `player-${msg.player}`)}>{msg.name}</span>{msg.system ? '' : ': '}{msg.body}
+              <span className={classNames('strong', `player-${msg.player}`)}>{this.props.boardStore.players[msg.player - 1].name}</span>{msg.system ? '' : ': '}{this.renderMsgBody(msg.body)}
             </div>
           ))}
         </ScrollToBottom>

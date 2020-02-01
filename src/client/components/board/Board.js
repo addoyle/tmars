@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { observer, inject } from 'mobx-react';
 import './Board.scss';
 import Field from './Field';
 import Players from './players/Players';
@@ -12,6 +13,9 @@ import classNames from 'classnames';
 const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
   'CapsLock', 'PageUp', 'PageDown', 'Home', 'End', 'Insert', 'NumLock', 'Meta', 'Pause', 'ScrollLock', 'Escape',
   'ContextMenu', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12']);
+
+@inject('boardStore')
+@observer
 export default class Board extends Component {
   board = React.createRef()
   log = React.createRef()
@@ -30,233 +34,8 @@ export default class Board extends Component {
     super(props);
 
     this.state = {
-      turn: 2,
       dragging: false,
-      highlights: false,
-      params: {
-        temp: -30,
-        oxygen: 0,
-        ocean: 9,
-        generation: 1
-      },
-      players: [
-        {
-          name: 'Andy',
-          tr: 20,
-          resources: {
-            mc: 57,
-            st: 0,
-            ti: 0,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          production: {
-            mc: -2,
-            st: 0,
-            ti: 0,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          tags: {
-            building: 0,
-            space: 0,
-            power: 0,
-            science: 0,
-            jovian: 0,
-            earth: 0,
-            plant: 0,
-            microbe: 0,
-            animal: 0,
-            city: 0,
-            venus: 0,
-            event: 0
-          },
-          tiles: {
-            city: 0,
-            greenery: 0,
-            special: 0
-          },
-          corp: {
-            name: 'CrediCor',
-            number: '001'
-          }
-        },
-        {
-          name: 'Frank',
-          tr: 20,
-          resources: {
-            mc: 40,
-            st: 0,
-            ti: 0,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          production: {
-            mc: -2,
-            st: 0,
-            ti: 0,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          tags: {
-            building: 0,
-            space: 0,
-            power: 0,
-            science: 0,
-            jovian: 0,
-            earth: 0,
-            plant: 0,
-            microbe: 0,
-            animal: 0,
-            city: 0,
-            venus: 0,
-            event: 0
-          },
-          tiles: {
-            city: 0,
-            greenery: 0,
-            special: 0
-          },
-          corp: {
-            name: 'Tharsis Republic',
-            number: '008'
-          }
-        },
-        {
-          name: 'Colin',
-          tr: 20,
-          resources: {
-            mc: 38,
-            st: 0,
-            ti: 0,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          production: {
-            mc: 4,
-            st: 0,
-            ti: 0,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          tags: {
-            building: 0,
-            space: 0,
-            power: 0,
-            science: 0,
-            jovian: 0,
-            earth: 0,
-            plant: 0,
-            microbe: 0,
-            animal: 0,
-            city: 0,
-            venus: 0,
-            event: 0
-          },
-          tiles: {
-            city: 0,
-            greenery: 0,
-            special: 0
-          },
-          corp: {
-            name: 'Mons Insurance',
-            number: 'X01'
-          }
-        },
-        {
-          name: 'Larissa',
-          tr: 20,
-          resources: {
-            mc: 23,
-            st: 0,
-            ti: 10,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          production: {
-            mc: -2,
-            st: 0,
-            ti: 0,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          tags: {
-            building: 0,
-            space: 0,
-            power: 0,
-            science: 0,
-            jovian: 0,
-            earth: 0,
-            plant: 0,
-            microbe: 0,
-            animal: 0,
-            city: 0,
-            venus: 0,
-            event: 0
-          },
-          tiles: {
-            city: 0,
-            greenery: 0,
-            special: 0
-          },
-          corp: {
-            name: 'PhoboLog',
-            number: '007'
-          },
-          startingPlayer: true
-        },
-        {
-          name: 'Adrian',
-          tr: 20,
-          resources: {
-            mc: 30,
-            st: 20,
-            ti: 0,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          production: {
-            mc: -2,
-            st: 0,
-            ti: 0,
-            pl: 0,
-            po: 0,
-            he: 0
-          },
-          tags: {
-            building: 0,
-            space: 0,
-            power: 0,
-            science: 0,
-            jovian: 0,
-            earth: 0,
-            plant: 0,
-            microbe: 0,
-            animal: 0,
-            city: 0,
-            venus: 0,
-            event: 0
-          },
-          tiles: {
-            city: 0,
-            greenery: 0,
-            special: 0
-          },
-          corp: {
-            name: 'Interplanetary Cinematics',
-            number: '005'
-          }
-        }
-      ]
+      highlights: false
     };
 
     // Handle if dragging leaves the browser window
@@ -284,7 +63,7 @@ export default class Board extends Component {
         // Hide/show Standard Projects
         if (e.key === 'p') { e.preventDefault(); this.standardProjects.current.toggleCollapse(); }
         // Hide/show players
-        if (+e.key >= 1 && +e.key <= this.state.players.length) { e.preventDefault(); this.players.current.toggleStats(+e.key - 1)(); }
+        if (+e.key >= 1 && +e.key <= this.props.boardStore.players.length) { e.preventDefault(); this.players.current.toggleStats(+e.key - 1)(); }
 
         // Unfocus chat
         if (e.key !== 'Control') {
@@ -323,14 +102,9 @@ export default class Board extends Component {
           onMouseUp={this.stopDragging}
           onMouseMove={this.drag}
           ref={this.board}>
-        <Players players={this.state.players} turn={this.state.turn} ref={this.players} />
+        <Players ref={this.players} />
         <Field ref={this.field} />
-        <GlobalParameters
-          temperature={this.state.params.temp}
-          oxygen={this.state.params.oxygen}
-          ocean={this.state.params.ocean}
-          generation={this.state.params.generation}
-          ref={this.params} />
+        <GlobalParameters ref={this.params} />
         <StandardProjects ref={this.standardProjects} />
 
         <CardDrawer
@@ -381,7 +155,7 @@ export default class Board extends Component {
           drawers={this.drawers}
         />
 
-        <Log log={this.props.log} ref={this.log} />
+        <Log ref={this.log} />
       </div>
     );
   }

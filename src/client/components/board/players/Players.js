@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { inject, observer} from 'mobx-react';
 import './Players.scss';
 import Player from './Player';
 import PlayerStats from './PlayerStats';
@@ -7,12 +8,14 @@ import classNames from 'classnames';
 /**
  * Shows a list of players on the top left
  */
+@inject('boardStore')
+@observer
 export default class Players extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      statPlayer: props.players[0],
+      statPlayer: props.boardStore.players[0],
       showStats: true,
       pid: 1
     }
@@ -20,8 +23,8 @@ export default class Players extends Component {
 
   // Open/close player pane
   toggleStats = i => () => this.setState({
-    statPlayer: this.props.players[i],
-    showStats: !this.state.showStats || this.state.statPlayer !== this.props.players[i],
+    statPlayer: this.props.boardStore.players[i],
+    showStats: !this.state.showStats || this.state.statPlayer !== this.props.boardStore.players[i],
     pid: i + 1
   });
 
@@ -31,15 +34,15 @@ export default class Players extends Component {
   render() {
     return (
       <div className="players">
-        <div className={classNames('player-selector', `player-${this.state.pid}`, { active: this.state.pid === +this.props.turn })} />
+        <div className={classNames('player-selector', `player-${this.state.pid}`, { active: this.state.pid === +this.props.boardStore.turn })} />
 
         <ul>
-          {this.props.players.map((player, i) => (
+          {this.props.boardStore.players.map((player, i) => (
             <li key={i}>
               <Player
                 pid={i + 1}
                 player={player}
-                turn={i + 1 === +this.props.turn}
+                turn={i + 1 === +this.props.boardStore.turn}
                 onClick={this.toggleStats(i)}
               />
             </li>

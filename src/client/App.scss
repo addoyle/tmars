@@ -74,7 +74,7 @@ p {
 .text-left { text-align: left; }
 .text-right { text-align: right; }
 .float-right { float: right; }
-.strong { font-weight: bold; }
+strong, .strong { font-weight: bold; }
 .center:not(.flex) {
   margin-left: auto;
   margin-right: auto;

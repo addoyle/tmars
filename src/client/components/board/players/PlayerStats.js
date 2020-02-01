@@ -18,9 +18,7 @@ export default class PlayerStats extends Component {
         {/* Corp title */}
         <div className="title-corp text-center m-top m-bottom">
           {this.props.player.corp ? (
-            <CardRef type="corp" card={this.props.player.corp.number}>
-              {this.props.player.corp.name}
-            </CardRef>
+            <CardRef type="corp" card={this.props.player.corp.number} />
           ) : ''}
           <div className="close" onClick={this.props.closeClick}>&times;</div>
         </div>
