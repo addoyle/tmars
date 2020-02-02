@@ -4,5 +4,6 @@ const router = Router();
 
 router.get('/log', LogController.getAll);
 router.post('/log', LogController.postLog);
+router.get('/log/stream', LogController.stream);
 
 export default router;

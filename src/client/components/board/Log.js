@@ -6,6 +6,7 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import classNames from 'classnames';
 import Markdown from 'react-markdown';
 import { isPlainObject } from 'lodash';
+import { subscribe } from '../../util/api';
 
 /**
  * The chat log/game history
@@ -27,8 +28,7 @@ export default class Log extends Component {
         e.preventDefault();
 
         if (this.state.msg) {
-          // TODO: Send to server
-          props.logStore.log.push({
+          props.logStore.postLog({
             player: 1,
             body: this.state.msg
           });
@@ -40,6 +40,9 @@ export default class Log extends Component {
 
   componentDidMount() {
     this.props.logStore.fetchLogs();
+    this.eventSource = subscribe('log/stream', log => {
+      this.props.logStore.log.push(log);
+    });
   }
 
   onChange = () => this.setState({ msg: this.msg.current.value });

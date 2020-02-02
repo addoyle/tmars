@@ -10,4 +10,9 @@ export default class Log {
             this.log = res;
         });
     }
+
+    @action
+    postLog(log) {
+        API('log', 'POST', log).then(() => {});
+    }
 }
