@@ -7,7 +7,7 @@ import LogService from '../services/log.service';
  * @param {*} res 
  */
 export function getAll(req, res) {
-    res.send(LogService.log);
+  res.send(LogService.log);
 }
 
 /**
@@ -17,8 +17,8 @@ export function getAll(req, res) {
  * @param {*} res 
  */
 export function postLog(req, res) {
-    LogService.pushLog(req.body);
-    res.sendStatus(200);
+  LogService.pushLog(req.body);
+  res.sendStatus(200);
 }
 
 /**
@@ -28,15 +28,15 @@ export function postLog(req, res) {
  * @param {*} res 
  */
 export function stream(req, res) {
-    res.setHeader('Connection', 'keep-alive')
-    res.setHeader('Cache-Control', 'no-cache');
-    res.setHeader('Content-Type', 'text/event-stream');
-    res.flushHeaders();
+  res.setHeader('Connection', 'keep-alive')
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.flushHeaders();
 
-    LogService.addListener(res);
+  LogService.addListener(res);
 
-    res.on('close', () => {
-        LogService.dropListener(res);
-        res.end();
-    });
+  res.on('close', () => {
+    LogService.dropListener(res);
+    res.end();
+  });
 }
