@@ -19,7 +19,9 @@ export default new Corporation({
     lineHeight: .8
   },
   starting: {
-    mc: 42,
+    resources: {
+      mc: 42,
+    },
     production: {
       heat: 3
     }

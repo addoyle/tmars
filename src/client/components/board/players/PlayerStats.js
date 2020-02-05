@@ -11,22 +11,23 @@ import Tiles from './Tiles';
  *
  * Shows player's resources, tags, cards played, etc.
  */
-export default class PlayerStats extends Component {
-  render() {
-    return (
-      <div className={classNames('player-stats', `player-${this.props.pid}`, { show: this.props.show })} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
-        {/* Corp title */}
-        <div className="title-corp text-center m-top m-bottom">
-          {this.props.player.corp ? (
-            <CardRef type="corp" card={this.props.player.corp.number} />
-          ) : ''}
-          <div className="close" onClick={this.props.closeClick}>&times;</div>
-        </div>
-
-        <Resources resources={this.props.player.resources} production={this.props.player.production} />
-        <Tags tags={this.props.player.tags} />
-        <Tiles tiles={this.props.player.tiles} />
+export default function PlayerStats(props) {
+  return (
+    <div
+      className={classNames('player-stats', `player-${props.pid}`, { show: props.show })}
+      onMouseDown={e => e.stopPropagation()}
+      onMouseMove={e => e.stopPropagation()}
+    >
+      <div className="title-corp text-center m-top m-bottom">
+        {props.player.corp ? (
+          <CardRef type="corp" card={props.player.corp.number} />
+        ) : ''}
+        <div className="close" onClick={props.closeClick}>&times;</div>
       </div>
-    );
-  }
+
+      <Resources resources={props.player.resources} production={props.player.production} />
+      <Tags tags={props.player.tags} />
+      <Tiles tiles={props.player.tiles} />
+    </div>
+  );
 }

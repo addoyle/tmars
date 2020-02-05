@@ -10,7 +10,9 @@ export default new Corporation({
   title: 'Splice',
   titleClass: 'splice',
   starting: {
-    mc: 44
+    resources: {
+      mc: 44
+    }
   },
   firstAction: game => {},
   tags: ['microbe'],

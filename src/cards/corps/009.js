@@ -19,7 +19,9 @@ export default new Corporation({
     paddingLeft: '.4em'
   },
   starting: {
-    mc: 48,
+    resources: {
+      mc: 48,
+    },
     production: {
       power: 1
     }

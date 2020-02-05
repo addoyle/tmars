@@ -10,8 +10,8 @@ export default new Corporation({
   title: 'United Nations Mars Initiative',
   titleClass: 'unmi',
   starting: {
-    mc: 30,
     resources: {
+      mc: 30,
       steel: 20
     }
   },

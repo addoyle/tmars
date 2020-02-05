@@ -1,3 +1,7 @@
+import GameService from '../services/game.service';
+import Player from '../models/player.model';
+
+
 const players = [
   {
     name: 'Andy',
@@ -217,6 +221,14 @@ const players = [
   }
 ];
 
+// FIXME: Temporary
+GameService.players.push(new Player('Andy'));
+GameService.players.push(new Player('Frank'));
+GameService.players.push(new Player('Colin'));
+GameService.players.push(new Player('Larissa'));
+GameService.players.push(new Player('Adrian'));
+GameService.players[0].corp = '001';
+
 /**
  * Get players
  * 
@@ -224,7 +236,7 @@ const players = [
  * @param {*} res 
  */
 export function getPlayers(req, res) {
-  res.send(players);
+  res.send(GameService.players);
 }
 
 /**

@@ -22,8 +22,10 @@ export default new Corporation({
     padding: '1em 0 0'
   },
   starting: {
-    mc: 40,
-    steel: 10
+    resources: {
+      mc: 40,
+      steel: 10
+    }
   },
   firstAction: game => {},
   tags: [],

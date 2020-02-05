@@ -92,6 +92,7 @@ export default class Board extends Component {
     window.scrollTo(
       (this.board.current.scrollWidth - window.innerWidth) / 2,
       (this.board.current.scrollHeight - window.innerHeight) / 2);
+    this.props.boardStore.getPlayers();
   }
 
   render() {

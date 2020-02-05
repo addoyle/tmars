@@ -10,8 +10,8 @@ export default new Corporation({
   title: 'Ecoline',
   titleClass: 'ecoline',
   starting: {
-    mc: 36,
     resources: {
+      mc: 36,
       plant: 3
     },
     production: {

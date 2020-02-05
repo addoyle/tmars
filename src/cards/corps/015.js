@@ -22,7 +22,9 @@ export default new Corporation({
     padding: '.3em'
   },
   starting: {
-    mc: 38,
+    resources: {
+      mc: 38,
+    },
     production: {
       steel: 1
     }

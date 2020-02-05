@@ -10,8 +10,9 @@ export default new Corporation({
   title: 'Philares',
   titleClass: 'philares',
   starting: {
-    mc: 47,
-    tile: 'greenery'
+    resources: {
+      mc: 47,
+    }
   },
   tags: ['building'],
   set: 'promo',

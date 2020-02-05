@@ -19,7 +19,9 @@ export default new Corporation({
     width: '6em'
   },
   starting: {
-    mc: 40
+    resources: {
+      mc: 40
+    }
   },
   firstAction: game => {},
   tags: ['building'],

@@ -65,7 +65,7 @@ export default class Log extends Component {
     return (
       <div className="log" onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
         <ScrollToBottom className="msgs" followButtonClassName="follow-button">
-          {this.props.logStore.log.map((msg, i) => (
+          {this.props.boardStore.players && this.props.boardStore.players.length && this.props.logStore.log.map((msg, i) => (
             <div key={i} className={classNames('msg', { system: msg.system })}>
               <span className={classNames('strong', `player-${msg.player}`)}>{this.props.boardStore.players[msg.player - 1].name}</span>{msg.system ? '' : ': '}{this.renderMsgBody(msg.body)}
             </div>

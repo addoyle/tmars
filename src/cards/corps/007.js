@@ -20,8 +20,8 @@ export default new Corporation({
     borderRadius: '.4em'
   },
   starting: {
-    mc: 23,
     resources: {
+      mc: 23,
       titanium: 10
     }
   },

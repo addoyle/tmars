@@ -20,8 +20,8 @@ export default new Corporation({
     textShadow: '.07em .07em 0 black'
   },
   starting: {
-    mc: 30,
     resources: {
+      mc: 30,
       steel: 5
     },
     production: {

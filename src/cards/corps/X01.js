@@ -10,7 +10,9 @@ export default new Corporation({
   title: 'Mons Insurance',
   titleClass: 'mons',
   starting: {
-    mc: 48,
+    resources: {
+      mc: 48,
+    },
     production: {
       mc: 4
     }

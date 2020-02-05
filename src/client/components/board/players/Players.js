@@ -32,7 +32,7 @@ export default class Players extends Component {
   closeClick = () => this.setState({showStats: false});
 
   render() {
-    return (
+    return this.props.boardStore.players.length ? (
       <div className="players">
         <div className={classNames('player-selector', `player-${this.state.pid}`, { active: this.state.pid === +this.props.boardStore.turn })} />
 
@@ -56,6 +56,6 @@ export default class Players extends Component {
           closeClick={this.closeClick}
         />
       </div>
-    );
+    ) : null;
   }
 }

@@ -1,4 +1,5 @@
 import { observable, action } from 'mobx';
+import { API } from '../util/api';
 
 export default class Board {
   @observable params = {
@@ -13,6 +14,9 @@ export default class Board {
 
   @action
   getPlayers() {
-    
+    API('players').then(res => {
+      console.log(res);
+      this.players = res;
+    });
   }
-}
+} 

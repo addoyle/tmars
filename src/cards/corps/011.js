@@ -17,7 +17,9 @@ export default new Corporation({
     letterSpacing: '.2em'
   },
   starting: {
-    mc: 60
+    resource: {
+      mc: 60
+    }
   },
   tags: ['earth'],
   set: 'corporate',

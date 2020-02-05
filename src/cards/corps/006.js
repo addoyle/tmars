@@ -16,7 +16,9 @@ export default new Corporation({
     fontFamily: 'serif'
   },
   starting: {
-    mc: 45
+    resources: {
+      mc: 45
+    }
   },
   firstAction: game => {},
   tags: ['science'],

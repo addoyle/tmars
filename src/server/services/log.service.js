@@ -1,54 +1,42 @@
-import Service from './Service';
+import Service, { sse, push } from './Service';
+import Log from '../models/log.model.js';
 
+@sse
 class LogService {
   log = [
-    { player: 1, body: 'this is cool' },
-    { player: 1, body: [' played ', {project: '032'}, '.'], system: true },
-    { player: 1, body: ' placed a **City**.', system: true },
-    { player: 5, body: ['\'s ', {project: '038'}, ' effect was activated.'], system: true },
-    { player: 1, body: ' bought a **City** standard project.', system: true },
-    { player: 1, body: ' placed a **City**.', system: true },
-    { player: 5, body: ['\'s ', {project: '038'}, ' effect was activated.'], system: true },
-    { player: 3, body: 'andy you suck at this game' },
-    { player: 2, body: ' claimed the **Builder** milestone.', system: true },
-    { player: 2, body: ' skipped.', system: true },
-    { player: 3, body: ' passed.', system: true },
-    { player: 4, body: ' funded the **Banker** award.', system: true },
-    { player: 4, body: ' converted heat to **Raise Temperature**.', system: true },
-    { player: 2, body: 'suck it colin' },
-    { player: 5, body: 'colin is a sucktion cup' },
-    { player: 2, body: 'stfu adrian and play your turn' },
-    { player: 5, body: ' converted plants to place a **Greenery** and **Raise Oxygen**.', system: true },
-    { player: 5, body: ' placed a **Greenery**.', system: true },
-    { player: 5, body: [' used an action on ', {project: '033'}, ' to add one **Microbe** resource to this card.'], system: true },
-    { player: 1, body: [' played ', {project: '018'}, '.'], system: true },
-    { player: 1, body: [' played ', {project: '039'}, '.'], system: true },
-    { player: 1, body: [' took **8** plants from ', {player: 2}, '!'], system: true },
-    { player: 2, body: 'it\s fine. idgaf' },
-    { player: 2, body: [' played ', {project: '120'}, '.'], system: true },
-    { player: 2, body: ' placed a **City**.', system: true },
-    { player: 5, body: ['\'s ', {project: '038'}, ' effect was activated.'], system: true },
-    { player: 2, body: [' played ', {project: '187'}, '.'], system: true },
+    new Log(1, 'this is cool', false),
+    new Log(1, [' played ', {project: '032'}, '.']),
+    new Log(1, ' placed a **City**.'),
+    new Log(5, ['\'s ', {project: '038'}, ' effect was activated.']),
+    new Log(1, ' bought a **City** standard project.'),
+    new Log(1, ' placed a **City**.'),
+    new Log(5, ['\'s ', {project: '038'}, ' effect was activated.']),
+    new Log(3, 'andy you suck at this game', false),
+    new Log(2, ' claimed the **Builder** milestone.'),
+    new Log(2, ' skipped.'),
+    new Log(3, ' passed.'),
+    new Log(4, ' funded the **Banker** award.'),
+    new Log(4, ' converted heat to **Raise Temperature**.'),
+    new Log(2, 'suck it colin', false),
+    new Log(5, 'colin is a sucktion cup', false),
+    new Log(2, 'stfu adrian and play your turn', false),
+    new Log(5, ' converted plants to place a **Greenery** and **Raise Oxygen**.'),
+    new Log(5, ' placed a **Greenery**.'),
+    new Log(5, [' used an action on ', {project: '033'}, ' to add one **Microbe** resource to this card.']),
+    new Log(1, [' played ', {project: '018'}, '.']),
+    new Log(1, [' played ', {project: '039'}, '.']),
+    new Log(1, [' took **8** plants from ', {player: 2}, '!']),
+    new Log(2, 'it\s fine. idgaf', false),
+    new Log(2, [' played ', {project: '120'}, '.']),
+    new Log(2, ' placed a **City**.'),
+    new Log(5, ['\'s ', {project: '038'}, ' effect was activated.']),
+    new Log(2, [' played ', {project: '187'}, '.'])
   ];
-  listeners = [];
 
+  @push
   pushLog(log) {
     this.log.push(log);
-    this.listeners.forEach(listener => {
-      listener.write(`data: ${JSON.stringify(log)}\n\n`);
-    });
-  }
-
-  addListener(listener) {
-    this.listeners.push(listener);
-  }
-
-  dropListener(listener) {
-    const i = this.listeners.indexOf(listener);
-    if (i >= 0) {
-      this.listeners.splice(i, 1);
-    }
   }
 }
 
-export default Service(LogService);
+export default Service(LogService, { sse: true });

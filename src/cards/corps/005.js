@@ -16,8 +16,8 @@ export default new Corporation({
     borderBottom: '.3em solid red'
   },
   starting: {
-    mc: 30,
     resources: {
+      mc: 30,
       steel: 20
     }
   },

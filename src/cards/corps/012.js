@@ -20,7 +20,9 @@ export default new Corporation({
     borderRadius: '100%'
   },
   starting: {
-    mc: 60
+    resources: {
+      mc: 60
+    }
   },
   tags: ['jovian'],
   set: 'corporate',

@@ -10,7 +10,9 @@ export default new Corporation({
   title: 'Factorum',
   titleClass: 'factorum',
   starting: {
-    mc: 37,
+    resources: {
+      mc: 37,
+    },
     production: {
       steel: 1
     }

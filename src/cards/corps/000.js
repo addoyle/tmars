@@ -11,7 +11,9 @@ export default new Corporation({
     margin: '.8em auto',
   },
   starting: {
-    mc: 42,
+    resources: {
+      mc: 42,
+    },
     cards: 10
   },
   tags: [],

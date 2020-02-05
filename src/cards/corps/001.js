@@ -10,7 +10,9 @@ export default new Corporation({
   title: 'CrediCor',
   titleClass: 'credicor',
   starting: {
-    mc: 57
+    resources: {
+      mc: 57
+    }
   },
   tags: [],
   desc,
