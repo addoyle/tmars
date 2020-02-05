@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, Resource, MegaCredit, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires -6°C or warmer. Increase your plant production 1 step and your M€ production 2 steps.';

@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, MegaCredit, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 2 cities in play. Increase your M€ production 1 step.';

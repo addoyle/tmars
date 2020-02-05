@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Tile, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When any city tile is placed, add an animal to this card.';
+const activeDesc = 'Effect: When any city tile is placed, add an animal to this card.';
 const desc = 'Add 1 animal to this card. 1 VP per 2 animals here.';
 
 export default new Active({
@@ -10,7 +10,7 @@ export default new Active({
   title: 'Pets',
   cost: 10,
   tags: ['earth', 'animal'],
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'It wouldn\'t be the same without them',
   clientAction: game => {},
@@ -28,7 +28,7 @@ export default new Active({
           ANIMALS MAY NOT BE REMOVED FROM THIS CARD
         </div>
       </div>
-      <div className="description text-center m-top">{top_desc}</div>
+      <div className="description text-center m-top">{activeDesc}</div>
     </div>
   ),
   layout: (

@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Tag, Resource, Production, MegaCredit } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When you play a space card, you pay 2 M€ less for it.';
+const activeDesc = 'Effect: When you play a space card, you pay 2 M€ less for it.';
 const desc = 'Requires 4 science tags. Increase your energy production 4 steps.';
 
 export default new Active({
@@ -15,7 +15,7 @@ export default new Active({
     value: 4,
     tag: 'science'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Tapping trhe very fabric of space',
   clientAction: game => {},
@@ -26,7 +26,7 @@ export default new Active({
       <div className="resources text-center">
         <Tag name="space" />:<MegaCredit value="-2" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

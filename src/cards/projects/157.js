@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Add 1 microbe to this card, or remove 3 microbes to increase your TR 1 step.';
+const activeDesc = 'Action: Add 1 microbe to this card, or remove 3 microbes to increase your TR 1 step.';
 const desc = 'Add 3 microbes to this card.';
 
 export default new Active({
@@ -10,7 +10,7 @@ export default new Active({
   title: 'Nitrite Reducing Bacteria',
   cost: 11,
   tags: ['microbe'],
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Making use of the nitrites in the ground to release nitrogen into the atmosphere',
   clientAction: game => {},
@@ -41,7 +41,7 @@ export default new Active({
           </div>
         </div>
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

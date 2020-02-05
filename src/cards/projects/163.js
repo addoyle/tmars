@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/cards/Event';
+import Event from '../Event';
 import { Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Raise your TR 1 step and gain 4 plants. Add 3 microbes to ANOTHER card and 2 animals to ANOTHER card.';

@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 8 heat to increase your terraform rating 1 step.';
+const activeDesc = 'Action: Spend 8 heat to increase your terraform rating 1 step.';
 const desc = 'Requires 0°C or warmer.';
 
 export default new Active({
@@ -15,7 +15,7 @@ export default new Active({
     value: 0,
     param: 'temperature'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'In charge of establishing comfortable temperatures',
   clientAction: game => {},
@@ -29,7 +29,7 @@ export default new Active({
         <span className="arrow" />
         <Resource name="tr" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

@@ -80,4 +80,37 @@
       }
     }
   }
+
+  &.automated {
+    .project {
+      box-shadow: 0 0 0 .01em #34A027;
+  
+      .title, .separator {
+        background:
+          linear-gradient(to right, #003D22 0%, #009F3E 20%, #BACB00 40%, #BACB00 60%, #009F3E 80%, #003D22 100%);
+      }
+    }
+  }
+
+  &.active {
+    .project {
+      box-shadow: 0 0 0 .01em #0082cc;
+  
+      .title, .separator {
+        background:
+          linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
+      }
+    }
+  }
+
+  &.event {
+    .project {
+      box-shadow: 0 0 0 .01em #e66d1c;
+  
+      .title, .separator {
+        background:
+          linear-gradient(to right, #a22722 0%, #f8ad06 15%, #e12021 25%, #f3a40b 35%, #f7d335 60%, #e31f21 80%, #ffcd3e 90%, #d82221 100%);
+      }
+    }
+  }
 }

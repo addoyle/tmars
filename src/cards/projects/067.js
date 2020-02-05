@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, Resource, Tile } from '../../client/components/assets/Assets';
 
 const desc = 'Place this tile on an area with a steel or titanium placement bonus. Increase your production of that resource 1 step.';

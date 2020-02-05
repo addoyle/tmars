@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, MegaCredit, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: Your steel resources are worth 1 M€ extra.';
+const activeDesc = 'Effect: Your steel resources are worth 1 M€ extra.';
 
 export default new Active({
   number: 'X10',
@@ -10,7 +10,7 @@ export default new Active({
   cost: 10,
   tags: ['building'],
   set: 'promo',
-  top_desc,
+  activeDesc,
   flavor: 'Silicon-based plastics for everyday use. Made from Martian regolith',
   clientAction: game => {},
   serverAction: game => {},
@@ -21,7 +21,7 @@ export default new Active({
       <div className="resources text-center">
         <Resource name="steel" />: <span>+</span><MegaCredit value="1" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

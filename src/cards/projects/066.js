@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/cards/Event';
+import Event from '../Event';
 
 const desc = 'PLACE YOUR MARKER ON A NON-RESERVED AREA. ONLY YOU MAY PLACE A TILE HERE';
 

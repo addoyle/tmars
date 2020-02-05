@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, Tile, Production, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When you place a greenery tile, add an animal to this card.';
+const activeDesc = 'Effect: When you place a greenery tile, add an animal to this card.';
 const desc = 'Requires 8% oxygen. Add 1 animal to this card. Decrease any plant production 1 step. 1 VP per 2 animals on this card.';
 
 export default new Active({
@@ -14,7 +14,7 @@ export default new Active({
     value: 8,
     param: 'oxygen'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Inhabiting the green hills of Mars',
   clientAction: game => {},
@@ -25,7 +25,7 @@ export default new Active({
       <div className="resources text-center">
         <Tile name="greenery" />:<Resource name="animal" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

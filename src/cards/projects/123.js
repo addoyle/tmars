@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Production, Resource, MegaCredit, Tile } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 7 M€ to increase your steel production 1 step.';
+const activeDesc = 'Action: Spend 7 M€ to increase your steel production 1 step.';
 const desc = 'Place this tile ADJACENT TO A CITY TILE.';
 
 export default new Active({
@@ -11,7 +11,7 @@ export default new Active({
   cost: 4,
   tags: ['building'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Assigned to heavy industry, this area is not the nicest place on Mars',
   clientAction: game => {},
@@ -28,7 +28,7 @@ export default new Active({
           </div>
         </Production>
       </div>
-      <div className="description">{top_desc}</div>
+      <div className="description">{activeDesc}</div>
     </div>
   ),
   layout: (

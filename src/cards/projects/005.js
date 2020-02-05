@@ -1,9 +1,9 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, MegaCredit, Tag, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Oxygen must be 6% or less. 3 VPs if you have one or more science resources here.';
-const top_desc = 'Action: Spend 1 M€ to reveal and discard the top card of the draw deck. If that card has a microbe tag, add a science resource here.';
+const activeDesc = 'Action: Spend 1 M€ to reveal and discard the top card of the draw deck. If that card has a microbe tag, add a science resource here.';
 
 export default new Active({
   number: 5,
@@ -16,7 +16,7 @@ export default new Active({
     param: 'oxygen'
   },
   desc,
-  top_desc,
+  activeDesc,
   flavor: 'Finding native life-forms would be the greatest discovery in history, so let\'s find out!',
   clientEffect: game => {
     game.drawCard()
@@ -44,7 +44,7 @@ export default new Active({
           <Tag name="microbe" />*:
             <Resource name="science" />
         </div>
-        <div className="description text-center">{top_desc}</div>
+        <div className="description text-center">{activeDesc}</div>
       </div>
     </div>
   ),

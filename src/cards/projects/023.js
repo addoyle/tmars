@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, Tile } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When anyone places an ocean tile, gain 2 plants.';
+const activeDesc = 'Effect: When anyone places an ocean tile, gain 2 plants.';
 const desc = 'It must be -12°C or colder to play. Gain 1 plant.';
 
 export default new Active({
@@ -16,7 +16,7 @@ export default new Active({
     param: 'temperature'
   },
   desc,
-  top_desc,
+  activeDesc,
   flavor: 'Suitable for freezing temperatures',
   clientAction: game => {},
   serverAction: game => {},
@@ -28,7 +28,7 @@ export default new Active({
         <Resource name="plant" />
         <Resource name="plant" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

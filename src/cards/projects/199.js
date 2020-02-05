@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Param, MegaCredit, Tile } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 2 M€ to draw a card.';
+const activeDesc = 'Action: Spend 2 M€ to draw a card.';
 const desc = 'Place this tile.';
 
 export default new Active({
@@ -11,7 +11,7 @@ export default new Active({
   cost: 11,
   tags: ['science'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'A place to conduct secret research, preventing the wrong people from getting in. Or out',
   clientAction: game => {},
@@ -24,7 +24,7 @@ export default new Active({
         <span className="arrow" />
         <Param name="card back" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

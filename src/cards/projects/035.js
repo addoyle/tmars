@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Remove 1 microbe from any card to add 1 to this card.';
+const activeDesc = 'Action: Remove 1 microbe from any card to add 1 to this card.';
 const desc = 'Requires 4% oxygen. 1 VP per 2 microbes on this card.';
 
 export default new Active({
@@ -14,7 +14,7 @@ export default new Active({
     value: 4,
     param: 'oxygen'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Although an important part of many ecosystems, ants can also be detrimental to their organisms',
   clientAction: game => {},
@@ -27,7 +27,7 @@ export default new Active({
         <span className="arrow" />
         <Resource name="microbe" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

@@ -1,15 +1,15 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { MegaCredit, Resource, Tile } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 8 M€ to place 1 ocean tile. STEEL MAY BE USED as if you were playing a building card.';
+const activeDesc = 'Action: Spend 8 M€ to place 1 ocean tile. STEEL MAY BE USED as if you were playing a building card.';
 
 export default new Active({
   number: 187,
   title: 'Aquifer Pumping',
   cost: 18,
   tags: ['building'],
-  top_desc,
+  activeDesc,
   flavor: 'Underground water reservoirs may be tapped in a controlled manner, to safely build up oceans to the desired level',
   clientAction: game => {},
   serverAction: game => {},
@@ -22,7 +22,7 @@ export default new Active({
         <span className="arrow" />
         <Tile name="ocean" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

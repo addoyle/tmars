@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/cards/Event';
+import Event from '../Event';
 import { Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Raise your terraform rating 2 steps.';

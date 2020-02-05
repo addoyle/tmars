@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Tag, MegaCredit, Production, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Gain 1 M€ per science tag you have.';
+const activeDesc = 'Action: Gain 1 M€ per science tag you have.';
 const desc = 'Decrease your M€ production 2 steps.';
 
 export default new Active({
@@ -11,7 +11,7 @@ export default new Active({
   cost: 14,
   tags: ['earth', 'space'],
   set: 'promo',
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Debris in low Earth orbit is a steadily growing hazard for space traffic',
   clientAction: game => {},
@@ -24,7 +24,7 @@ export default new Active({
         <span className="arrow" />
         <MegaCredit value="1" />/<Tag name="science" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

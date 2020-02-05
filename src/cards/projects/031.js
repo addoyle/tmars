@@ -1,15 +1,15 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, MegaCredit, Tag } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When you play a space event, you gain 3 M€ and 3 heat.';
+const activeDesc = 'Effect: When you play a space event, you gain 3 M€ and 3 heat.';
 
 export default new Active({
   number: 31,
   title: 'Optimal Aerobraking',
   cost: 7,
   tags: ['space'],
-  top_desc,
+  activeDesc,
   flavor: 'Perfecting the art of ballistical and material analysis can increase efficiency and save money',
   clientAction: game => {},
   serverAction: game => {},
@@ -24,7 +24,7 @@ export default new Active({
         <Resource name="heat" />
         <Resource name="heat" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

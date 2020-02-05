@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, MegaCredit } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend any amount of energy to gain that amount of M€.';
+const activeDesc = 'Action: Spend any amount of energy to gain that amount of M€.';
 
 export default new Active({
   number: 194,
@@ -10,7 +10,7 @@ export default new Active({
   cost: 4,
   tags: ['power', 'building'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   flavor: 'Efficiency through flexibility',
   clientAction: game => {},
   serverAction: game => {},
@@ -23,7 +23,7 @@ export default new Active({
         <span className="arrow" />
         <MegaCredit value="X" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

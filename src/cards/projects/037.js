@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/cards/Event';
+import Event from '../Event';
 import { Resource, Param, Tag, Production } from '../../client/components/assets/Assets';
 
 const desc = 'Raise terraform rating 2 steps and temperature 1 step. Increase your plant production 1 step or 4 steps if you have 3 plant tags.';

@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, MegaCredit, Production } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 2X M€ to gain X energy, or decrease energy production 1 step to gain 8 M€.';
+const activeDesc = 'Action: Spend 2X M€ to gain X energy, or decrease energy production 1 step to gain 8 M€.';
 
 export default new Active({
   number: 'X03',
@@ -10,7 +10,7 @@ export default new Active({
   cost: 3,
   tags: ['power'],
   set: 'promo',
-  top_desc,
+  activeDesc,
   flavor: 'Coordinating the supply and demand of energy gives you a flexible position',
   clientAction: game => {},
   serverAction: game => {},
@@ -49,7 +49,7 @@ export default new Active({
           </div>
         </div>
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

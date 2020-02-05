@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Tile, Production, Resource, MegaCredit } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: Each time a city tile is placed, including this, increase your M€ production 1 step.';
+const activeDesc = 'Effect: Each time a city tile is placed, including this, increase your M€ production 1 step.';
 const desc = 'Decrease your energy production 1 step and decrease your M€ production 2 steps. Place a city tile.';
 
 export default new Active({
@@ -10,7 +10,7 @@ export default new Active({
   title: 'Immigrant City',
   cost: 13,
   tags: ['city', 'building'],
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Taking care of immigrants is costly, but will begin to pay off when they start working for you in the growing society',
   clientAction: game => {},
@@ -30,7 +30,7 @@ export default new Active({
           </Production>
         </div>
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

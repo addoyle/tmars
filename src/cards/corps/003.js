@@ -1,5 +1,5 @@
 import React from 'react';
-import Corporation from '../../client/components/cards/Corporation';
+import Corporation from '../Corporation';
 import { MegaCredit, Resource, Tile, Production } from '../../client/components/assets/Assets';
 
 const desc = 'You start with 3 heat production and 42 M€.';

@@ -1,15 +1,15 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Param, Resource } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 4 energy to gain 1 titanium and increase oxygen 1 step.';
+const activeDesc = 'Action: Spend 4 energy to gain 1 titanium and increase oxygen 1 step.';
 
 export default new Active({
   number: 104,
   title: 'Ore Processor',
   cost: 13,
   tags: ['building'],
-  top_desc,
+  activeDesc,
   flavor: 'Processing ore',
   clientAction: game => {},
   serverAction: game => {},
@@ -23,7 +23,7 @@ export default new Active({
         <Resource name="titanium" />
         <Param name="oxygen" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires a plant tag, a microbe tag, and an animal tag.';

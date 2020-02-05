@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, MegaCredit, Tag, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
+const activeDesc = 'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
 const desc = 'Add 1 floater for every Earth tag you have, including this.';
 
 export default new Active({
@@ -11,7 +11,7 @@ export default new Active({
   cost: 13,
   tags: ['jovian', 'earth'],
   set: 'promo',
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
   clientAction: game => {},
@@ -28,7 +28,7 @@ export default new Active({
         <Resource name="floater" />
         <span>*(max 5)</span>
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

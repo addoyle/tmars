@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { MegaCredit } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: After you pay for a standard project, except selling patents, you gain 3 M€.';
+const activeDesc = 'Effect: After you pay for a standard project, except selling patents, you gain 3 M€.';
 
 export default new Active({
   number: 156,
@@ -10,7 +10,7 @@ export default new Active({
   cost: 6,
   tags: ['science'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   flavor: 'Standard solutions honed to perfection',
   clientAction: game => {},
   serverAction: game => {},
@@ -20,7 +20,7 @@ export default new Active({
       <div className="resources text-center">
         <span className="standard-project">Standard projects</span>:<MegaCredit value="3" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

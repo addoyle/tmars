@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 6 energy to add a science resource to this card.';
+const activeDesc = 'Action: Spend 6 energy to add a science resource to this card.';
 const desc = '2 VP for each science resource on this card.';
 
 export default new Active({
@@ -11,7 +11,7 @@ export default new Active({
   cost: 12,
   tags: ['science', 'building'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'This used to cause blackouts before the invention of supercapacitors',
   clientAction: game => {},
@@ -25,7 +25,7 @@ export default new Active({
         <span className="arrow" />
         <Resource name="science" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

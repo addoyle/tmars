@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, Resource, Tile } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your heat production 4 steps. Place this tile ON AN AREA RESERVED FOR OCEAN.';

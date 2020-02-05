@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, MegaCredit, VictoryPoint, Production } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 1 steel to gain 5 M€';
+const activeDesc = 'Action: Spend 1 steel to gain 5 M€';
 const desc = 'Increase your titanium production 1 step.';
 
 export default new Active({
@@ -11,7 +11,7 @@ export default new Active({
   cost: 27,
   tags: ['space', 'building'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'An ultra-strong cable car up to geo-stationary orbit, enabling reasonable export costs',
   clientAction: game => {},
@@ -28,7 +28,7 @@ export default new Active({
           <span className="arrow" />
           <MegaCredit value="5" />
         </div>
-        <div className="description text-center">{top_desc}</div>
+        <div className="description text-center">{activeDesc}</div>
       </div>
     </div>
   ),

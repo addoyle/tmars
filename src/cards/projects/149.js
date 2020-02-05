@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/cards/Event';
+import Event from '../Event';
 
 const desc = 'ADD 1 RESOURCE TO A CARD WITH AT LEAST 1 RESOURCE ON IT';
 

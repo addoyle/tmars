@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, Param } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 3 energy to raise oxygen 1 step.';
+const activeDesc = 'Action: Spend 3 energy to raise oxygen 1 step.';
 const desc = 'Requires 2 ocean tiles.';
 
 export default new Active({
@@ -14,7 +14,7 @@ export default new Active({
     value: 2,
     tile: 'ocean'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Electrolysis of water yields oxygen and hydrogen, both very useful gases',
   clientAction: game => {},
@@ -29,7 +29,7 @@ export default new Active({
         <span className="arrow" />
         <Param name="oxygen" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

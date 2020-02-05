@@ -1,4 +1,3 @@
-import React from 'react';
 import './Assets.scss';
 import MegaCredit from './MegaCredit';
 import Param from './Param';

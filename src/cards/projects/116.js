@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, MegaCredit, Resource, Tile, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires -6°C or warmer. Place 1 ocean tile ON AN AREA NOT RESERVED FOR OCEAN.';

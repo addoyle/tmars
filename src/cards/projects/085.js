@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, Resource, MegaCredit, Tile, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Decrease your energy production 1 step and increase your M€ production 4 steps. Place this tile. 1 VP PER ADJACENT CITY TILE.';

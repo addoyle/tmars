@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/cards/Event';
+import Event from '../Event';
 import { Param, Tile } from '../../client/components/assets/Assets';
 import Restriction from '../../client/components/assets/Restriction';
 

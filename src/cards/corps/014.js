@@ -1,5 +1,5 @@
 import React from 'react';
-import Corporation from '../../client/components/cards/Corporation';
+import Corporation from '../Corporation';
 import { MegaCredit, Resource, Tag, Param } from '../../client/components/assets/Assets';
 
 const desc = 'You start with 44 M€. As your first action, reveal cards until you have revealed a microbe tag. Take that card into hand, and discard the rest.';

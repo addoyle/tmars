@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Param, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Draw 1 card.';

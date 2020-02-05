@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Tile, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 0°C or warmer. Place 2 ocean tiles.';

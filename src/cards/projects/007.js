@@ -1,15 +1,15 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, MegaCredit, Tile } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 1 energy to gain 1 M€ for each city tile ON MARS';
+const activeDesc = 'Action: Spend 1 energy to gain 1 M€ for each city tile ON MARS';
 
 export default new Active({
   number: 7,
   title: 'Martian Rails',
   cost: 13,
   tags: ['building'],
-  top_desc,
+  activeDesc,
   flavor: 'Fast and cheap transportation for goods and guys',
   clientEffect: game => {},
   serverEffect: game => {},
@@ -23,7 +23,7 @@ export default new Active({
           <MegaCredit value="1" />/
           <Tile name="city" anyone />*
         </div>
-        <div className="description text-center">{top_desc}</div>
+        <div className="description text-center">{activeDesc}</div>
       </div>
     </div>
   ),

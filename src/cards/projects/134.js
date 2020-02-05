@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Gain 1 plant or add 2 microbes to ANOTHER card.';
+const activeDesc = 'Action: Gain 1 plant or add 2 microbes to ANOTHER card.';
 const desc = 'It must be -10°C or colder.';
 
 export default new Active({
@@ -15,7 +15,7 @@ export default new Active({
     value: -10,
     param: 'temperature'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Adapted strains able to form symbiotic relationships with other organisms',
   clientAction: game => {},
@@ -46,7 +46,7 @@ export default new Active({
           </div>
         </div>
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, MegaCredit, Tile, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 5% oxygen. Increase your M€ production 1 step for each city tile ON MARS.';

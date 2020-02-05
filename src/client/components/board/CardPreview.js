@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './CardPreview.scss'
 import classNames from 'classnames';
+import ProjectLayout from '../cards/ProjectLayout';
+import CorporationLayout from '../cards/CorporationLayout';
 
 /**
  * Displays a card as a popup
@@ -33,21 +35,34 @@ export default class CardPreview extends Component {
     setTimeout(() => this.setState({ card: null }), 1000);
   }
 
+  renderCard() {
+    if (!this.state.card) {
+      return <div>Loading...</div>;
+    }
+
+    const type = this.state.card.constructor.name.toLowerCase();
+
+    switch(type) {
+      case 'corporation':
+        return <CorporationLayout {...this.state.card} type={type} />;
+      default:
+        return <ProjectLayout {...this.state.card} type={type} />;
+    }
+  }
+
   render() {
     const resources = this.props.resources;
 
-    if (this.props.show && (!this.state.card || (this.props.card && this.normalize(this.state.card.props.number) !== this.normalize(this.props.card)))) {
+    if (this.props.show && (!this.state.card || (this.props.card && this.normalize(this.state.card.number) !== this.normalize(this.props.card)))) {
       this.loadCard();
     }
     if (this.state.card && !this.props.show) {
       this.hideCard();
     }
 
-    const card = this.state.card ? React.createElement(this.state.card.constructor, {...this.state.card.props, resources}) : (<div>Loading...</div>);
-
     return (
       <div className={classNames('card-preview', { show: this.props.show && this.state.card, simple: this.props.simple })}>
-        {card}
+        {this.renderCard()}
       </div>
     );
   }

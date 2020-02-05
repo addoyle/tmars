@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Tag, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When you play an animal, plant, or microbe tag, including this, add a microbe to this card.';
+const activeDesc = 'Effect: When you play an animal, plant, or microbe tag, including this, add a microbe to this card.';
 const desc = 'Requires 3% oxygen. 1 VP per 3 microbes on this card.';
 
 export default new Active({
@@ -14,7 +14,7 @@ export default new Active({
     value: 3,
     param: 'oxygen'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Decomposing dead organisms is essential to making sustainable soil',
   clientAction: game => {},
@@ -25,7 +25,7 @@ export default new Active({
       <div className="resources">
         <Tag name="animal" />/<Tag name="plant" />/<Tag name="microbe" />:<Resource name="microbe" />
       </div>
-      <div className="description">{top_desc}</div>
+      <div className="description">{activeDesc}</div>
     </div>
   ),
   layout: (

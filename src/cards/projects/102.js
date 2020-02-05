@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, Resource, Tag } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your energy production 1 step for each power tag you have, including this.';

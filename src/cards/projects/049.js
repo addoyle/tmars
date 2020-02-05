@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Add 1 microbe to this card.';
+const activeDesc = 'Action: Add 1 microbe to this card.';
 const desc = '1 VP per 4 microbes on this card.';
 
 export default new Active({
@@ -11,7 +11,7 @@ export default new Active({
   cost: 4,
   tags: ['microbe'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'These microscopic creatures can survive freezing, boiling, drying out, heavy radiation, and brute force',
   clientAction: game => {},
@@ -23,7 +23,7 @@ export default new Active({
         <span className="arrow" />
         <Resource name="microbe" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

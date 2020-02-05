@@ -1,15 +1,15 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, Production, MegaCredit } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 7 M€ to increase your energy production 1 step.';
+const activeDesc = 'Action: Spend 7 M€ to increase your energy production 1 step.';
 
 export default new Active({
   number: 76,
   title: 'Space Mirrors',
   cost: 3,
   tags: ['power', 'space'],
-  top_desc,
+  activeDesc,
   flavor: 'Ultrathin mirrors reflecting sunlight down to receivers on the surface',
   clientAction: game => {},
   serverAction: game => {},
@@ -25,7 +25,7 @@ export default new Active({
           </div>
         </Production>
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

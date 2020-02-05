@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Resource, Production, Tile } from '../../client/components/assets/Assets';
 
 const desc = 'Place a city tile. Decrease your energy production 2 steps and increase your steel production 2 steps.';

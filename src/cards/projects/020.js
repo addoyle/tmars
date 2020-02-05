@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { MegaCredit, Tile } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When you play a card, you pay 1 M€ less for it.';
+const activeDesc = 'Effect: When you play a card, you pay 1 M€ less for it.';
 const desc = 'Place a city tile NEXT TO NO OTHER TILE.';
 
 export default new Active({
@@ -20,7 +20,7 @@ export default new Active({
       <div className="resources text-center">
         :<MegaCredit value="-1" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Tag, Tile, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Place a city tile ON THE RESERVED AREA. 1 VP per Jovian tag you have.';

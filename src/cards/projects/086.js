@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, Tag } from '../../client/components/assets/Assets';
 
 const desc = 'Duplicate only the production box of one of your building cards.';

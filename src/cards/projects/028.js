@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 1 titanium to add 1 fighter resource to this card.';
+const activeDesc = 'Action: Spend 1 titanium to add 1 fighter resource to this card.';
 const desc = '1 VP for each fighter resource on this card.';
 
 export default new Active({
@@ -11,7 +11,7 @@ export default new Active({
   cost: 12,
   tags: ['space'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Keeping the peace by force',
   clientAction: game => {},
@@ -24,7 +24,7 @@ export default new Active({
         <span className="arrow" />
         <Resource name="fighter" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

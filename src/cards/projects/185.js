@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Tag, Resource, Param, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'When you play a science tag, including this, either add a science resource to this card, or remove a science resource from this card to draw a card.';
+const activeDesc = 'When you play a science tag, including this, either add a science resource to this card, or remove a science resource from this card to draw a card.';
 const desc = 'Requires 2 ocean tiles.';
 
 export default new Active({
@@ -11,7 +11,7 @@ export default new Active({
   cost: 10,
   tags: ['science', 'earth', 'building'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'The scientific elite, assembled on the top of Olympus Mons, the highest spot in the solar system',
   clientAction: game => {},
@@ -27,7 +27,7 @@ export default new Active({
         <span>+</span>
         <Param name="card back" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

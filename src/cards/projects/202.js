@@ -1,15 +1,15 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Production, Resource, MegaCredit } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 10 M€ to increase your heat production 2 steps.';
+const activeDesc = 'Action: Spend 10 M€ to increase your heat production 2 steps.';
 
 export default new Active({
   number: 202,
   title: 'Underground Detonations',
   cost: 6,
   tags: ['building'],
-  top_desc,
+  activeDesc,
   flavor: 'Radiation from the nuclear blast is shielded, but over time, we are still getting the heat',
   clientAction: game => {},
   serverAction: game => {},
@@ -30,7 +30,7 @@ export default new Active({
           </Production>
         </div>
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

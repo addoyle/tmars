@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/cards/Event';
+import Event from '../Event';
 import { Tile } from '../../client/components/assets/Assets';
 
 const desc = 'Requires +2°C or warmer. Place 1 ocean tile.';

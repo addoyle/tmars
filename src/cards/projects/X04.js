@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, Param, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend any amount of energy to draw the same number of cards. TAKE 1 INTO HAND AND DISCARD THE REST.';
+const activeDesc = 'Action: Spend any amount of energy to draw the same number of cards. TAKE 1 INTO HAND AND DISCARD THE REST.';
 
 export default new Active({
   number: 'X04',
@@ -10,7 +10,7 @@ export default new Active({
   cost: 17,
   tags: ['science', 'building'],
   set: 'promo',
-  top_desc,
+  activeDesc,
   flavor: 'Expensive equipment and highly educated researchers focusing on advanced projects',
   clientAction: game => {},
   serverAction: game => {},
@@ -25,7 +25,7 @@ export default new Active({
         <Param name="card back" />
         <span>*</span>
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

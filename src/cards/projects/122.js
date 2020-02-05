@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 3 ocean tiles and that you lose 1 plant. Increase your plant production 1 step.';

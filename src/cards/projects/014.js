@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, Param } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 1 energy to draw a card.';
+const activeDesc = 'Action: Spend 1 energy to draw a card.';
 
 export default new Active({
   number: 14,
@@ -10,7 +10,7 @@ export default new Active({
   cost: 11,
   tags: ['science', 'building'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   flavor: 'Ensuring a constant influx of ideas',
   clientAction: game => {},
   serverAction: game => {},
@@ -26,7 +26,7 @@ export default new Active({
           <span className="arrow" />
           <Param name="card back" />
         </div>
-        <div className="description text-center">{top_desc}</div>
+        <div className="description text-center">{activeDesc}</div>
       </div>
     </div>
   ),

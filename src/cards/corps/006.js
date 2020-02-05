@@ -1,5 +1,5 @@
 import React from 'react';
-import Corporation from '../../client/components/cards/Corporation';
+import Corporation from '../Corporation';
 import { MegaCredit, Tile, Param } from '../../client/components/assets/Assets';
 import Restriction from '../../client/components/assets/Restriction';
 

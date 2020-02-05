@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource } from '../../client/components/assets/Assets';
 
-const top_desc = 'OPPONENTS MAY NOT REMOVE YOUR';
+const activeDesc = 'OPPONENTS MAY NOT REMOVE YOUR';
 
 export default new Active({
   number: 173,
@@ -10,14 +10,14 @@ export default new Active({
   cost: 5,
   tags: [],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   flavor: 'The harsh environment is not the only threat to your ecological projects',
   clientAction: game => {},
   serverAction: game => {},
   emoji: '🏜',
   activeLayout: (
     <div className="text-center">
-      <div className="strong sans-serif m-top">{top_desc}</div>
+      <div className="strong sans-serif m-top">{activeDesc}</div>
       <div className="resources">
         <Resource name="plant" />
         <Resource name="animal" />

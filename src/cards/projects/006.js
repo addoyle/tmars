@@ -1,7 +1,7 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 
-const top_desc = 'ACTION: LOOK AT THE TOP CARD AND EITHER BUY IT OR DISCARD IT.';
+const activeDesc = 'ACTION: LOOK AT THE TOP CARD AND EITHER BUY IT OR DISCARD IT.';
 
 export default new Active({
   number: 6,
@@ -9,7 +9,7 @@ export default new Active({
   cost: 9,
   tags: ['science'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   flavor: 'When great minds meet, new ideas abound',
   clientEffect: game => {},
   serverEffect: game => {},
@@ -17,7 +17,7 @@ export default new Active({
   activeLayout: (
     <div className="flex middle">
       <div className="col-1 resources"><div className="arrow" /></div>
-      <div className="col-6"><strong>{top_desc}</strong></div>
+      <div className="col-6"><strong>{activeDesc}</strong></div>
     </div>
   ),
   layout: (

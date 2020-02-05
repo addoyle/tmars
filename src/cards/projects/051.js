@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { MegaCredit, Production, Tag, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your M€ production 1 step for each Earth tag you have.';

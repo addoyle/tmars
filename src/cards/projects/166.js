@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Tag, MegaCredit, Production, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When you play a space card, you pay 2 M€ less for it.';
+const activeDesc = 'Effect: When you play a space card, you pay 2 M€ less for it.';
 const desc = 'Requires 5% oxygen. Decrease your energy production 1 step and increase your M€ production 2 steps.';
 
 export default new Active({
@@ -14,7 +14,7 @@ export default new Active({
     value: 5,
     param: 'oxygen'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Aided by low gravity going up, and by the increasing atmosphere when gliding down for landing',
   clientAction: game => {},
@@ -26,7 +26,7 @@ export default new Active({
       <div className="resources text-center">
         <Tag name="space" />:<MegaCredit value="-2" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

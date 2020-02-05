@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, Resource, MegaCredit } from '../../client/components/assets/Assets';
 
 const desc = 'Decrease your heat production any number of steps and increase your M€ production the same number of steps';

@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Param, Production, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Draw 2 cards.';
+const activeDesc = 'Action: Draw 2 cards.';
 const desc = 'Requires 3 science tags to play. Decrease your energy production 1 step.';
 
 export default new Active({
@@ -15,7 +15,7 @@ export default new Active({
     value: 3,
     tag: 'science'
   },
-  top_desc,
+  activeDesc,
   flavor: '"42"',
   clientAction: game => {},
   serverAction: game => {},
@@ -28,7 +28,7 @@ export default new Active({
         <Param name="card back" />
         <Param name="card back" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

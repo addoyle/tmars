@@ -1,15 +1,15 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, Production } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Decrease your Energy production 1 step to increase your terraform rating 1 step.';
+const activeDesc = 'Action: Decrease your Energy production 1 step to increase your terraform rating 1 step.';
 
 export default new Active({
   number: 15,
   title: 'Equatorial Magnetizer',
   cost: 11,
   tags: ['building'],
-  top_desc,
+  activeDesc,
   flavor: 'Super-conducting wires enircling the globe to create a magnetic field',
   clientAction: game => {},
   serverAction: game => {},
@@ -28,7 +28,7 @@ export default new Active({
         <span className="arrow" />
         <Resource name="tr" />
       </span>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

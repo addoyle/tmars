@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Tile } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 2 science tags. Place a greenery tile and raise oxygen 1 step.';

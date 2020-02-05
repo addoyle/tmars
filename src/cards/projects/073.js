@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Tag, Param, VictoryPoint, Resource } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When you play a science tag, including this, you may discard a card from hand to draw a card.';
+const activeDesc = 'Effect: When you play a science tag, including this, you may discard a card from hand to draw a card.';
 
 export default new Active({
   number: 73,
@@ -10,7 +10,7 @@ export default new Active({
   cost: 8,
   tags: ['science', 'building'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   flavor: 'A major step towards understanding Mars',
   clientAction: game => {},
   serverAction: game => {},
@@ -23,7 +23,7 @@ export default new Active({
         <Resource name="blank" />
         +<Param name="card back" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

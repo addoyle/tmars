@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Remove 1 animal from any card and add it to this card.';
+const activeDesc = 'Action: Remove 1 animal from any card and add it to this card.';
 const desc = 'Requires 11% oxygen. 1 VP per animal on this card.';
 
 export default new Active({
@@ -14,7 +14,7 @@ export default new Active({
     value: 11,
     param: 'oxygen'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Lions and tigers and bears, oh my',
   clientAction: game => {},
@@ -27,7 +27,7 @@ export default new Active({
         <span className="arrow" />
         <Resource name="animal" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

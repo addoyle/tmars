@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { VictoryPoint, Tag, MegaCredit } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When you play a space card, you pay 2 M€ less for it.';
+const activeDesc = 'Effect: When you play a space card, you pay 2 M€ less for it.';
 
 export default new Active({
   number: 25,
@@ -10,7 +10,7 @@ export default new Active({
   cost: 10,
   tags: ['space'],
   set: 'corporate',
-  top_desc,
+  activeDesc,
   flavor: 'Buy it today at www.fryxgames.se',
   clientAction: game => {},
   serverAction: game => {},
@@ -22,7 +22,7 @@ export default new Active({
         <Tag name="space" />:
         <MegaCredit value="-2" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, MegaCredit, Tag } from '../../client/components/assets/Assets';
 
 const desc = 'Increase your M€ production 3 steps.';

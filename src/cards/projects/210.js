@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Param, Tag, Resource } from '../../client/components/assets/Assets';
 
-const top_desc = (<span>Action: Reveal and place a SPACE OR BUILDING card here from hand, and place 2 resources on it, OR double the resources on a card here.<br />Effect: Cards here may be played as if from hand with its cost reduced by the number of resources on it.</span>);
+const activeDesc = (<span>Action: Reveal and place a SPACE OR BUILDING card here from hand, and place 2 resources on it, OR double the resources on a card here.<br />Effect: Cards here may be played as if from hand with its cost reduced by the number of resources on it.</span>);
 const desc = 'Requires 2 science tags.';
 
 export default new Active({
@@ -15,7 +15,7 @@ export default new Active({
     value: 2,
     tag: 'science'
   },
-  top_desc,
+  activeDesc,
   flavor: '...self-replicating, self-replicating, self-replicating...',
   clientAction: game => {},
   serverAction: game => {},
@@ -50,7 +50,7 @@ export default new Active({
         </span>
         <span>x2</span>
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

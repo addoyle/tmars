@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { MegaCredit, VictoryPoint } from '../../client/components/assets/Assets';
 
-const top_desc = 'Effect: When you play a card, you pay 2 M€ less for it.';
+const activeDesc = 'Effect: When you play a card, you pay 2 M€ less for it.';
 const desc = 'Requires 7 science tags.';
 
 export default new Active({
@@ -15,7 +15,7 @@ export default new Active({
     value: 7,
     tag: 'science'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'Finally successful, anti-gravity will revolutionize everything, from households to industry and space travel',
   clientAction: game => {},
@@ -27,7 +27,7 @@ export default new Active({
       <div className="resources text-center">
         :<MegaCredit value="-2" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

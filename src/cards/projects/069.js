@@ -1,8 +1,8 @@
 import React from 'react';
-import Active from '../../client/components/cards/Active';
+import Active from '../Active';
 import { Resource, Production, VictoryPoint, MegaCredit } from '../../client/components/assets/Assets';
 
-const top_desc = 'Action: Spend 1 plant or 1 steel to gain 7 M€.';
+const activeDesc = 'Action: Spend 1 plant or 1 steel to gain 7 M€.';
 const desc = 'Oxygen must be 8% or less. Decrease your energy production 1 step.';
 
 export default new Active({
@@ -16,7 +16,7 @@ export default new Active({
     value: 8,
     param: 'oxygen'
   },
-  top_desc,
+  activeDesc,
   desc,
   flavor: 'A 200 km long acceleration ramp up the side of Pavonis Mons, hurtling export goods into space',
   clientAction: game => {},
@@ -32,7 +32,7 @@ export default new Active({
         <span className="arrow" />
         <MegaCredit value="7" />
       </div>
-      <div className="description text-center">{top_desc}</div>
+      <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (

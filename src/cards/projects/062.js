@@ -1,5 +1,5 @@
 import React from 'react';
-import Event from '../../client/components/cards/Event';
+import Event from '../Event';
 import { Resource } from '../../client/components/assets/Assets';
 
 const desc = 'Gain 5 steel.';

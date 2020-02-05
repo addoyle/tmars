@@ -1,5 +1,5 @@
 import React from 'react';
-import Automated from '../../client/components/cards/Automated';
+import Automated from '../Automated';
 import { Production, MegaCredit, Resource, VictoryPoint } from '../../client/components/assets/Assets';
 
 const desc = 'Requires 3 or less ocean tiles.';
