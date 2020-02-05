@@ -26,7 +26,7 @@ export default new Corporation({
       mc: 38,
     },
     production: {
-      steel: 1
+      st: 1
     }
   },
   tags: ['microbe', 'building'],

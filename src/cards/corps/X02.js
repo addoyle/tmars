@@ -14,7 +14,7 @@ export default new Corporation({
       mc: 37,
     },
     production: {
-      steel: 1
+      st: 1
     }
   },
   tags: ['power', 'building'],

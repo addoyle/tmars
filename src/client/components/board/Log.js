@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import Markdown from 'react-markdown';
 import { isPlainObject } from 'lodash';
 import { subscribe } from '../../util/api';
+import { Tile, Param, Resource, Tag, MegaCredit } from '../assets/Assets';
 
 /**
  * The chat log/game history
@@ -52,8 +53,20 @@ export default class Log extends Component {
       if (isPlainObject(msg)) {
         if (msg.player) {
           return <span key={i} className={`strong player-${msg.player}`}>Frank</span>;
+        } else if (msg.tile) {
+          return <Tile key={i} name={msg.tile} />;
+        } else if (msg.param) {
+          return <Param key={i} name={msg.param} />;
+        } else if (msg.standardProject) {
+          return <span key={i} className="standard-project">{msg.standardProject}</span>;
+        } else if (msg.resource) {
+          return <Resource key={i} name={msg.resource} />;
+        } else if (msg.tag) {
+          return <Tag key={i} name={msg.tag} />;
+        } else if (msg.megaCredit !== undefined) {
+          return <MegaCredit key={i} value={msg.megaCredit} />;
         } else {
-          return <CardRef key={i} type={Object.keys(msg)[0]} card={Object.values(msg)[0]} />
+          return <CardRef key={i} type={Object.keys(msg)[0]} card={Object.values(msg)[0]} />;
         }
       } else {
         return <Markdown key={i} className="log-inline" source={msg} plugins={[require('remark-external-links')]} />;

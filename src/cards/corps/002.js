@@ -12,10 +12,10 @@ export default new Corporation({
   starting: {
     resources: {
       mc: 36,
-      plant: 3
+      pl: 3
     },
     production: {
-      plant: 2
+      pl: 2
     }
   },
   tags: ['plant'],

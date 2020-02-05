@@ -10,7 +10,7 @@ import classNames from 'classnames';
 export default function(props) {
   return (
     <CardComponent type="corp" set={props.set} landscape>
-      <div className="tags">{props.tags.map(tag => ( <Tag key={tag} name={tag} /> ))}</div>
+      <div className="tags">{props.tags.map((tag, i) => ( <Tag key={i} name={tag} /> ))}</div>
       <div className="corp-body">
         <div className="tag-shelf">
           {props.tags.map((tag, i) => (<div key={i} />))}

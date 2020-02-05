@@ -13,7 +13,7 @@ export default new Corporation({
     textTransform: 'uppercase',
     fontFamily: 'monospace',
     color: 'red',
-    '-webkit-text-stroke': '.03em #ccc',
+    WebkitTextSTroke: '.03em #ccc',
     margin: '.8em .3em .1em',
     fontWeight: 'bold',
     transform: 'scale(1.3,1)',
@@ -22,10 +22,10 @@ export default new Corporation({
   starting: {
     resources: {
       mc: 30,
-      steel: 5
+      st: 5
     },
     production: {
-      steel: 1
+      st: 1
     }
   },
   tags: ['building', 'building'],

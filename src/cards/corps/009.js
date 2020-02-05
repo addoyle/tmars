@@ -23,7 +23,7 @@ export default new Corporation({
       mc: 48,
     },
     production: {
-      power: 1
+      po: 1
     }
   },
   tags: ['power'],

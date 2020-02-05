@@ -22,7 +22,7 @@ export default new Corporation({
   starting: {
     resources: {
       mc: 23,
-      titanium: 10
+      ti: 10
     }
   },
   tags: ['space'],

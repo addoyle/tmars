@@ -24,6 +24,11 @@
       padding: .3em;
       line-height: 1.2;
 
+      .standard-project {
+        color: black;
+        padding: 0 .5em;
+      }
+
       .log-inline {
         display: inline;
         *:first-child {
@@ -40,8 +45,8 @@
         padding: 4px 8px;
       }
 
-      .player-1 { color: hsl(0,80%,40%); }
-      .player-2 { color: hsl(240,80%,60%); }
+      .player-1 { color: hsl(0,80%,60%); }
+      .player-2 { color: hsl(240,80%,70%); }
       .player-3 { color: hsl(120,80%,40%); }
       .player-4 { color: hsl(60,80%,40%); }
       .player-5 { color: hsl(0,0%,65%); }

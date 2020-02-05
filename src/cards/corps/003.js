@@ -23,7 +23,7 @@ export default new Corporation({
       mc: 42,
     },
     production: {
-      heat: 3
+      he: 3
     }
   },
   tags: ['space'],

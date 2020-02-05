@@ -4,6 +4,8 @@ import Player from '../models/player.model.js';
 @sse
 class GameService {
   players = [];
+  turn = 0;
+  startingPlayer = 0;
 
   @push
   addPlayer(name) {

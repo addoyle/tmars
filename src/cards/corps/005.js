@@ -18,7 +18,7 @@ export default new Corporation({
   starting: {
     resources: {
       mc: 30,
-      steel: 20
+      st: 20
     }
   },
   tags: ['building'],

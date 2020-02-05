@@ -78,7 +78,7 @@ export default function ProjectLayout(props) {
   return (
     <CardLayout type={props.type} set={props.set}>
       <MegaCredit value={props.cost} />
-      <div className="tags">{props.tags.map(tag => ( <Tag key={tag} name={tag} /> ))}</div>
+      <div className="tags">{props.tags.map((tag, i) => ( <Tag key={i} name={tag} /> ))}</div>
       <div className="project">
         <div className="header">
           <Restriction values={restriction} max={props.restriction && props.restriction.max} />

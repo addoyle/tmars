@@ -46,7 +46,7 @@ export default class Player {
     automated: [],
     event: [],
     prelude: []
-  }
+  };
 
   constructor(name) {
     this.name = name;
@@ -54,7 +54,7 @@ export default class Player {
 
   set corp(corp) {
     this._corp = corp;
-    const corpCard = require(`../../cards/corps/${corp}`);
+    const corpCard = require(`../../cards/corps/${corp}`).default;
 
     Object.assign(this.resources, corpCard.starting.resources || {});
     Object.assign(this.production, corpCard.starting.production || {})

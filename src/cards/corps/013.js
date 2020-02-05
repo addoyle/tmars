@@ -24,7 +24,7 @@ export default new Corporation({
   starting: {
     resources: {
       mc: 40,
-      steel: 10
+      st: 10
     }
   },
   firstAction: game => {},

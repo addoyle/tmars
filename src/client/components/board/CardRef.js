@@ -12,8 +12,6 @@ export default class CardRef extends Component {
     super(props);
     
     this.state = { shown: false };
-
-    this.card = require(`../../../cards/${this.props.type}s/${this.normalize(this.props.card)}`).default;
   }
 
   normalize(num) {
@@ -29,10 +27,12 @@ export default class CardRef extends Component {
   }
 
   render() {
+    const card = require(`../../../cards/${this.props.type}s/${this.normalize(this.props.card)}`).default;
+
     return (
       <HoverIntent timeout={300} onMouseOver={this.onMouseOver.bind(this)} onMouseOut={this.onMouseOut.bind(this)}>
-        <span className={classNames('card-ref', this.card.constructor.name.toLowerCase())} ref="ref">
-          {this.card.title}
+        <span className={classNames('card-ref', card.constructor.name.toLowerCase())} ref="ref">
+          {card.title}
           <CardPreview card={this.props.card} show={this.state.shown} type={this.props.type} ref="preview" />
         </span>
       </HoverIntent>

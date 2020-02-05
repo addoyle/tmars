@@ -15,7 +15,6 @@ export default class Players extends Component {
     super(props);
 
     this.state = {
-      statPlayer: props.boardStore.players[0],
       showStats: true,
       pid: 1
     }
@@ -32,9 +31,12 @@ export default class Players extends Component {
   closeClick = () => this.setState({showStats: false});
 
   render() {
+    // TODO fix once user sessions are set up
+    this.state.statPlayer = this.state.statPlayer || this.props.boardStore.players[0];
+
     return this.props.boardStore.players.length ? (
       <div className="players">
-        <div className={classNames('player-selector', `player-${this.state.pid}`, { active: this.state.pid === +this.props.boardStore.turn })} />
+        <div className={classNames('player-selector', `player-${this.state.pid}`, { active: this.state.pid === +this.props.boardStore.turn, hidden: !this.state.showStats })} />
 
         <ul>
           {this.props.boardStore.players.map((player, i) => (

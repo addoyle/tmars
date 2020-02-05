@@ -15,7 +15,6 @@ export default class Board {
   @action
   getPlayers() {
     API('players').then(res => {
-      console.log(res);
       this.players = res;
     });
   }
