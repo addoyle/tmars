@@ -36,6 +36,17 @@ export default function Param(props) {
           </div>
         </div>
       </> : null}
+      {props.name.indexOf('corp') >= 0 ? <>
+        <div className="tags" />
+        <div className="corp-body">
+          <div className="tag-shelf" />
+          <div className="title"></div>
+          {props.name.indexOf('active') >= 0 ? <div className="body top"></div> : null }
+          <div className="body">
+            <div className="flavor"></div>
+          </div>
+        </div>
+      </> : null}
     </div>
   );
 }

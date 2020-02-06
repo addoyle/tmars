@@ -66,8 +66,10 @@ $title-font: 'Prototype', sans-serif;
     right: -.5em;
   }
 
-  &.card .project .body {
-    padding: 3em;
+  &.card {
+    .body {
+      padding: 3em;
+    }
 
     .flavor {
       border-top-width: 1px;

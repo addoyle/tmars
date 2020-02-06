@@ -19,8 +19,8 @@ export default function PlayerStats(props) {
       onMouseMove={e => e.stopPropagation()}
     >
       <div className="title-corp text-center m-top m-bottom">
-        {props.player._corp ? (
-          <CardRef type="corp" card={props.player._corp} />
+        {props.player.corp ? (
+          <CardRef type="corp" card={props.player.corp} />
         ) : ''}
         <div className="close" onClick={props.closeClick}>&times;</div>
       </div>

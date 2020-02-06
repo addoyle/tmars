@@ -3,7 +3,7 @@
  */
 export default class Player {
   name;
-  _corp;
+  corp;
   tr = 20;
   resources = {
     mc: 0,
@@ -52,15 +52,11 @@ export default class Player {
     this.name = name;
   }
 
-  set corp(corp) {
-    this._corp = corp;
+  set corporation(corp) {
+    this.corp = corp;
     const corpCard = require(`../../cards/corps/${corp}`).default;
 
     Object.assign(this.resources, corpCard.starting.resources || {});
     Object.assign(this.production, corpCard.starting.production || {})
-  }
-
-  get corp() {
-    return this._corp;
   }
 }

@@ -10,7 +10,7 @@ export default function CardLayout(props) {
   return (
     <div className={classNames('card', props.type, { landscape: props.landscape, simple: props.simple })}>
       {props.children}
-      {props.set ? castArray(props.set).map((set, i) => <div key={i} className={classNames('set', set)} />) : ''}
+      {props.set && props.set !== 'base' ? castArray(props.set).map((set, i) => <div key={i} className={classNames('set', set)} />) : ''}
     </div>
   );
 }

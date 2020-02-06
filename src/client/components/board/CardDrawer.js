@@ -75,7 +75,7 @@ export default class CardDrawer extends Component {
         <ul className="cards">
           {cards.map((card, i) =>
             <li key={i} onClick={() => this.selectCard(card)} className={classNames('card-selector', { selected: this.state.showActiveCard && card.card === this.state.selectedCard.card })}>
-              <CardPreview card={card.card} resources={card.resources} />
+              <CardPreview card={card.card} resources={card.resources} type={this.props.type === 'corp' ? 'corp' : undefined} />
             </li>
           )}
         </ul>
@@ -87,7 +87,7 @@ export default class CardDrawer extends Component {
             onMouseUp={this.stopDragging}
             onMouseMove={this.drag}
             onMouseLeave={this.stopDragging}>
-          {this.state.selectedCard ? (<CardPreview {...this.state.selectedCard} />) : ''}
+          {this.state.selectedCard ? (<CardPreview {...this.state.selectedCard} type={this.props.type === 'corp' ? 'corp' : undefined} />) : ''}
           <div className="footer">
             {['active', 'hand'].indexOf(this.props.type) >= 0 ?
               <button>

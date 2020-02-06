@@ -28,7 +28,8 @@ export default class Board extends Component {
   activeDrawer = React.createRef();
   automatedDrawer = React.createRef();
   eventDrawer = React.createRef();
-  drawers = [this.handDrawer, this.activeDrawer, this.automatedDrawer, this.eventDrawer];
+  corpDrawer = React.createRef();
+  drawers = [this.handDrawer, this.activeDrawer, this.automatedDrawer, this.eventDrawer, this.corpDrawer];
 
   constructor(props) {
     super(props);
@@ -60,6 +61,8 @@ export default class Board extends Component {
         if (e.key === 'u') { e.preventDefault(); this.automatedDrawer.current.toggleCollapse(); }
         // Hide/show Events
         if (e.key === 'e') { e.preventDefault(); this.eventDrawer.current.toggleCollapse(); }
+        // Hide/show Corp
+        if (e.key === 'r') { e.preventDefault(); this.corpDrawer.current.toggleCollapse(); }
         // Hide/show Standard Projects
         if (e.key === 'p') { e.preventDefault(); this.standardProjects.current.toggleCollapse(); }
         // Hide/show players
@@ -96,7 +99,6 @@ export default class Board extends Component {
   }
 
   render() {
-    // TODO: figure out onMouseMove outside of browser range
     return (
       <div className={classNames('board', { dragging: this.state.dragging, highlights: this.state.highlights })}
           onMouseDown={this.startDragging}
@@ -153,6 +155,16 @@ export default class Board extends Component {
             <span><span className="highlight">E</span>vent</span>
           </>}
           ref={this.eventDrawer}
+          drawers={this.drawers}
+        />
+        <CardDrawer
+          cards={this.props.boardStore.players.length ? [this.props.boardStore.players[0].corp] : []}
+          type="corp"
+          tab={<>
+            <Param name="card corp landscape" />
+            <span>Co<span className="highlight">r</span>poration</span>
+          </>}
+          ref={this.corpDrawer}
           drawers={this.drawers}
         />
 

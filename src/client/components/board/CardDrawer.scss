@@ -1,5 +1,5 @@
 $title-font: 'Prototype', sans-serif;
-$hand-height: 45vh;
+$hand-height: 33vh;
 
 .drawer {
   position: fixed;
@@ -27,6 +27,7 @@ $hand-height: 45vh;
     position: absolute;
     left: 16px;
     top: -51px;
+    height: 47px;
     cursor: pointer;
     border: 3px solid #444;
     border-bottom: none;
@@ -46,10 +47,17 @@ $hand-height: 45vh;
     &.event {
       left: 448px;
     }
+    &.corp {
+      left: 573px;
+    }
 
     .param {
       box-shadow: 0 0 4px 1px rgba(0,0,0,.4);
       margin-right: 8px;
+
+      &.corp:before {
+        font-size: 1pt;
+      }
     }
 
     & > span {

@@ -7,11 +7,11 @@ GameService.players.push(new Player('Frank'));
 GameService.players.push(new Player('Colin'));
 GameService.players.push(new Player('Larissa'));
 GameService.players.push(new Player('Adrian'));
-GameService.players[0].corp = '001';
-GameService.players[1].corp = '010';
-GameService.players[2].corp = '009';
-GameService.players[3].corp = 'X02';
-GameService.players[4].corp = '004';
+GameService.players[0].corporation = '001';
+GameService.players[1].corporation = '010';
+GameService.players[2].corporation = '009';
+GameService.players[3].corporation = 'X02';
+GameService.players[4].corporation = '004';
 
 /**
  * Get players
