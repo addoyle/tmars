@@ -42,7 +42,7 @@ export default class Log extends Component {
   componentDidMount() {
     this.props.logStore.fetchLogs();
     this.eventSource = subscribe('log/stream', log => {
-      this.props.logStore.log.push(log);
+      this.props.logStore.log = this.props.logStore.log.concat(log);
     });
   }
 

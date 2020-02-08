@@ -1,3 +1,5 @@
+import { toPlainObject } from 'lodash';
+
 export function sse(Class) {
   return (...args) => {
     const newClass = new Class(...args);
@@ -16,12 +18,13 @@ export function sse(Class) {
 }
 
 export function push(target, name, descriptor) {
-  // console.log(target, name, descriptor);
-  // console.log(arguments);
+  const func = descriptor.value;
 
-  // target.listeners.forEach(listener => {
-  //   listener.write(`data: ${JSON.stringify(log)}\n\n`);
-  // });
+  descriptor.value = function(...args) {
+    func.apply(this, args);
+
+    this.listeners.forEach(listener => listener.write(`data: ${JSON.stringify(args)}\n\n`))
+  };
 
   return descriptor;
 }
