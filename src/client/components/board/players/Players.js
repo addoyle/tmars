@@ -32,7 +32,7 @@ export default class Players extends Component {
 
   render() {
     // TODO fix once user sessions are set up
-    this.state.statPlayer = this.state.statPlayer || this.props.boardStore.players[0];
+    this.state.statPlayer = this.state.statPlayer || (this.props.boardStore.players.length && this.props.boardStore.players[0]);
 
     return this.props.boardStore.players.length ? (
       <div className="players">

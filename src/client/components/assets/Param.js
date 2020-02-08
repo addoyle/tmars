@@ -40,9 +40,19 @@ export default function Param(props) {
         <div className="tags" />
         <div className="corp-body">
           <div className="tag-shelf" />
-          <div className="title"></div>
-          {props.name.indexOf('active') >= 0 ? <div className="body top"></div> : null }
           <div className="body">
+            <div className="flex gutter">
+              <div className="col-1">---</div>
+              <div className="col-1 middle">
+                <div className="effect">
+                  <div className="effect-title" style={{
+                    width: '95%',
+                    height: '4em',
+                    marginBottom: '4em'
+                  }} />
+                </div>
+              </div>
+            </div>
             <div className="flavor"></div>
           </div>
         </div>
