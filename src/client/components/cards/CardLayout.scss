@@ -75,8 +75,32 @@
       height: 1.2em;
 
       &:after {
-        font-size: .55em;
         content: '\2B24';
+        font-size: .55em;
+      }
+    }
+
+    &.prelude {
+      background-image: linear-gradient(#F6B4D0, #D9167F, #5A1C4A);
+      border: .05em solid black;
+      border-radius: .5em 0 0 .5em/.3em 0 0 .3em;
+      box-shadow: 0 0 0 .1em white;
+      transform: perspective(2em) rotatey(-30deg);
+      height: 1em;
+
+      &:after {
+        content: '<';
+        display: block;
+        margin: 0 auto;
+        color: #fff;
+        background-image: linear-gradient(#B40D67, #E32D85, #F6B3CE);
+        width: 65%;
+        height: 70%;
+        text-shadow: none;
+        line-height: .7;
+        font-weight: bold;
+        margin-top: .15em;
+        margin-left: .3em;
       }
     }
   }

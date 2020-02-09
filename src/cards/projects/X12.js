@@ -14,7 +14,7 @@ export default new Automated({
   flavor: 'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
   clientAction: game => {},
   serverAction: game => {},
-  vp: 1,
+  vp: 2,
   emoji: '🍩',
   layout: (
     <div className="flex">
