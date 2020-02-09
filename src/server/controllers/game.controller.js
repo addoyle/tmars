@@ -2,16 +2,17 @@ import GameService from '../services/game.service';
 import Player from '../models/player.model';
 
 // FIXME: Temporary
-GameService.players.push(new Player('Andy'));
-GameService.players.push(new Player('Frank'));
-GameService.players.push(new Player('Colin'));
-GameService.players.push(new Player('Larissa'));
-GameService.players.push(new Player('Adrian'));
-GameService.players[0].corporation = '001';
-GameService.players[1].corporation = '010';
-GameService.players[2].corporation = '009';
-GameService.players[3].corporation = 'X02';
-GameService.players[4].corporation = '004';
+GameService.game.players.push(new Player('Andy'));
+GameService.game.players.push(new Player('Frank'));
+GameService.game.players.push(new Player('Colin'));
+GameService.game.players.push(new Player('Larissa'));
+GameService.game.players.push(new Player('Adrian'));
+GameService.game.players[0].corporation = '001';
+GameService.game.players[1].corporation = '010';
+GameService.game.players[2].corporation = '009';
+GameService.game.players[3].corporation = 'X02';
+GameService.game.players[4].corporation = '004';
+
 
 /**
  * Get players
@@ -20,7 +21,7 @@ GameService.players[4].corporation = '004';
  * @param {*} res 
  */
 export function getPlayers(req, res) {
-  res.send(GameService.players);
+  res.send(GameService.game.players);
 }
 
 /**
@@ -32,33 +33,15 @@ export function getPlayers(req, res) {
 export function playCard(req, res) {
   // TODO
 
-  log.push(req.body);
-
-  listeners.forEach(listener => {
-    listener.write(`data: ${JSON.stringify(req.body)}\n\n`);
-  })
-
   res.sendStatus(200);
 }
 
 /**
- * Stream the log feed
+ * Stream the game actions
  * 
  * @param {*} req 
  * @param {*} res 
  */
 export function stream(req, res) {
-  res.setHeader('Connection', 'keep-alive')
-  res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.flushHeaders();
-
-  listeners.push(res);
-
-  res.on('close', () => {
-    if (listeners.indexOf(res >= 0)) {
-      listeners.splice(listeners.indexOf(res), 1);
-    }
-    res.end();
-  });
+  GameService.stream(req, res);
 }

@@ -111,7 +111,7 @@ export default class Board extends Component {
         <StandardProjects ref={this.standardProjects} />
 
         <CardDrawer
-          cards={['X01', 'X02', 'X03', 'X04', 'X05', 'X06', 'X07', 'X08', 'X09', 'X10', 'X11', 'X12']}
+          cards={['P36', 'P37', 'P38', 'P39', 'P40', 'P41', 'P42']}
           type="hand"
           tab={<>
             <Param name="card back" />

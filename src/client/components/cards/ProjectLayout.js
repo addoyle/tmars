@@ -84,7 +84,7 @@ export default function ProjectLayout(props) {
           <Restriction values={restriction} max={props.restriction && props.restriction.max} />
         </div>
         <div className="title">{props.title}</div>
-        {props.constructor.name ? <div className="body top">{props.activeLayout}</div> : null}
+        {props.type === 'active' ? <div className="body top">{props.activeLayout}</div> : null}
         <Art art={props.emoji} resources={props.resources} />
         <Separator number={props.number} />
         <div className="body">

@@ -1,15 +1,13 @@
 import Service, { sse, push } from './Service';
-import Player from '../models/player.model.js';
+import Game from '../models/game.model.js';
 
 @sse
 class GameService {
-  players = [];
-  turn = 0;
-  startingPlayer = 0;
+  game = new Game();
 
   @push
   addPlayer(name) {
-    this.players.push(new Player(name));
+    this.game.players.push(new Player(name));
   }
 }
 

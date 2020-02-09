@@ -12,6 +12,19 @@ export function sse(Class) {
         newClass.listeners.splice(i, 1);
       }
     }
+    newClass.stream = (req, res) => {
+      res.setHeader('Connection', 'keep-alive')
+      res.setHeader('Cache-Control', 'no-cache');
+      res.setHeader('Content-Type', 'text/event-stream');
+      res.flushHeaders();
+
+      newClass.addListener(res);
+
+      res.on('close', () => {
+        newClass.dropListener(res);
+        res.end();
+      });
+    }
 
     return newClass;
   }

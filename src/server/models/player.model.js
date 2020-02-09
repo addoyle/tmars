@@ -42,6 +42,7 @@ export default class Player {
   };
   cards = {
     hand: [],
+    draft: [],
     active: [],
     automated: [],
     event: [],

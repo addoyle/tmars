@@ -38,23 +38,23 @@
 
     &.player-1 {
       top: 0;
-      background-color: hsl(0,80%,40%);
+      background-color: hsla(0,80%,40%,.6);
     }
     &.player-2 {
       top: calc(1 * 36px);
-      background-color: hsl(240,80%,40%);
+      background-color: hsla(240,80%,40%,.6);
     }
     &.player-3 {
       top: calc(2 * 36px);
-      background-color: hsl(120,80%,30%);
+      background-color: hsla(120,80%,30%,.6);
     }
     &.player-4 {
       top: calc(3 * 36px);
-      background-color: hsl(60,80%,40%);
+      background-color: hsla(60,80%,40%,.6);
     }
     &.player-5 {
       top: calc(4 * 36px);
-      background-color: hsl(0,0%,35%);
+      background-color: hsla(0,0%,35%,.6);
     }
   }
 }

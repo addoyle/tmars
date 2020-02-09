@@ -28,15 +28,5 @@ export function postLog(req, res) {
  * @param {*} res 
  */
 export function stream(req, res) {
-  res.setHeader('Connection', 'keep-alive')
-  res.setHeader('Cache-Control', 'no-cache');
-  res.setHeader('Content-Type', 'text/event-stream');
-  res.flushHeaders();
-
-  LogService.addListener(res);
-
-  res.on('close', () => {
-    LogService.dropListener(res);
-    res.end();
-  });
+  LogService.stream(req, res);
 }
