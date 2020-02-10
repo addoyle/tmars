@@ -137,4 +137,15 @@
       }
     }
   }
+
+  &.prelude {
+    .project {
+      box-shadow: 0 0 0 .01em #9B9CA0;
+  
+      .title, .separator {
+        background:
+        linear-gradient(to right, #79277C 0%, #B0448F 20%, #e085c2 40%, #e085c2 60%, #B0448F 80%, #79277C 100%);
+      }
+    }
+  }
 }

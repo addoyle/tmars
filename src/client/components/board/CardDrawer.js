@@ -65,6 +65,13 @@ export default class CardDrawer extends Component {
 
   render() {
     const cards = this.props.cards.map(card => isString(card) ? { card } : card);
+    let cardType = 'project';
+    if (this.props.type === 'corp') {
+      cardType = 'corp';
+    }
+    if (this.props.type === 'prelude') {
+      cardType = 'prelude';
+    }
 
     return (
       <div className={classNames('drawer', { collapse: this.state.collapse })} onMouseDown={e => e.stopPropagation()} onMouseMove={e => e.stopPropagation()}>
@@ -74,8 +81,15 @@ export default class CardDrawer extends Component {
 
         <ul className="cards">
           {cards.map((card, i) =>
-            <li key={i} onClick={() => this.selectCard(card)} className={classNames('card-selector', { selected: this.state.showActiveCard && card.card === this.state.selectedCard.card })}>
-              <CardPreview card={card.card} resources={card.resources} type={this.props.type === 'corp' ? 'corp' : undefined} />
+            <li
+              key={i}
+              onClick={() => this.selectCard(card)}
+              className={classNames('card-selector', {
+                selected: this.state.showActiveCard && card.card === this.state.selectedCard.card,
+                landscape: cardType === 'prelude'
+              })}
+            >
+              <CardPreview card={card.card} resources={card.resources} type={cardType} />
             </li>
           )}
         </ul>
@@ -87,7 +101,7 @@ export default class CardDrawer extends Component {
             onMouseUp={this.stopDragging}
             onMouseMove={this.drag}
             onMouseLeave={this.stopDragging}>
-          {this.state.selectedCard ? (<CardPreview {...this.state.selectedCard} type={this.props.type === 'corp' ? 'corp' : undefined} />) : ''}
+          {this.state.selectedCard ? (<CardPreview {...this.state.selectedCard} type={cardType} />) : ''}
           <div className="footer">
             {['active', 'hand'].indexOf(this.props.type) >= 0 ?
               <button>

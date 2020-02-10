@@ -50,12 +50,15 @@ $hand-height: 33vh;
     &.corp {
       left: 573px;
     }
+    &.prelude {
+      left: 757px;
+    }
 
     .param {
       box-shadow: 0 0 4px 1px rgba(0,0,0,.4);
       margin-right: 8px;
 
-      &.corp:before {
+      &.corp:before, &.prelude :before {
         font-size: 1pt;
       }
     }
@@ -105,6 +108,11 @@ $hand-height: 33vh;
       height: 210px;
       background: transparent;
       border-radius: 5px;
+
+      &.landscape {
+        width: 210px;
+        height: 150px;
+      }
 
       &.selected {
         background: rgba(0,0,0,.25);

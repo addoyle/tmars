@@ -39,14 +39,12 @@ export default class CardPreview extends Component {
     if (!this.state.card) {
       return <div>Loading...</div>;
     }
-
-    const type = this.state.card.constructor.name.toLowerCase();
-
-    switch(type) {
+console.log(this.state.card);
+    switch(this.props.type) {
       case 'corporation':
-        return <CorporationLayout {...this.state.card} type={type} />;
+        return <CorporationLayout {...this.state.card} type="corp" />;
       default:
-        return <ProjectLayout {...this.state.card} type={type} />;
+        return <ProjectLayout {...this.state.card} type={this.state.card.constructor.name.toLowerCase()} />;
     }
   }
 

@@ -76,12 +76,16 @@ export default function ProjectLayout(props) {
   }
 
   return (
-    <CardLayout type={props.type} set={props.set}>
-      <MegaCredit value={props.cost} />
+    <CardLayout type={props.type} set={props.set} landscape={props.type === 'prelude'}>
+      {props.type !== 'prelude' ? (
+        <MegaCredit value={props.cost} />
+      ) : null}
       <div className="tags">{props.tags.map((tag, i) => ( <Tag key={i} name={tag} /> ))}</div>
       <div className="project">
         <div className="header">
-          <Restriction values={restriction} max={props.restriction && props.restriction.max} />
+          {props.type !== 'prelude' ? (
+            <Restriction values={restriction} max={props.restriction && props.restriction.max} />
+          ) : null}
         </div>
         <div className="title">{props.title}</div>
         {props.type === 'active' ? <div className="body top">{props.activeLayout}</div> : null}

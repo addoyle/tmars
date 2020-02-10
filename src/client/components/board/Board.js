@@ -29,7 +29,8 @@ export default class Board extends Component {
   automatedDrawer = React.createRef();
   eventDrawer = React.createRef();
   corpDrawer = React.createRef();
-  drawers = [this.handDrawer, this.activeDrawer, this.automatedDrawer, this.eventDrawer, this.corpDrawer];
+  preludeDrawer = React.createRef();
+  drawers = [this.handDrawer, this.activeDrawer, this.automatedDrawer, this.eventDrawer, this.corpDrawer, this.preludeDrawer];
 
   constructor(props) {
     super(props);
@@ -165,6 +166,16 @@ export default class Board extends Component {
             <span>Co<span className="highlight">r</span>poration</span>
           </>}
           ref={this.corpDrawer}
+          drawers={this.drawers}
+        />
+        <CardDrawer
+          cards={['P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08']}
+          type="prelude"
+          tab={<>
+            <Param name="card prelude landscape" />
+            <span>Prel<span className="highlight">u</span>des</span>
+          </>}
+          ref={this.preludeDrawer}
           drawers={this.drawers}
         />
 

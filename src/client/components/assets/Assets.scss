@@ -67,6 +67,10 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.card {
+    .title, .separator {
+      height: 3em;
+    }
+    
     .body {
       padding: 3em;
     }
