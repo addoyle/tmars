@@ -169,7 +169,7 @@ export default class Board extends Component {
           drawers={this.drawers}
         />
         <CardDrawer
-          cards={['P01', 'P02', 'P03', 'P04', 'P05', 'P06', 'P07', 'P08']}
+          cards={['P33', 'P34', 'P35']}
           type="prelude"
           tab={<>
             <Param name="card prelude landscape" />

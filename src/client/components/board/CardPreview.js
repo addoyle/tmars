@@ -39,7 +39,7 @@ export default class CardPreview extends Component {
     if (!this.state.card) {
       return <div>Loading...</div>;
     }
-console.log(this.state.card);
+
     switch(this.props.type) {
       case 'corporation':
         return <CorporationLayout {...this.state.card} type="corp" />;
