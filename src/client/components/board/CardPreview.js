@@ -41,7 +41,7 @@ export default class CardPreview extends Component {
     }
 
     switch(this.props.type) {
-      case 'corporation':
+      case 'corp':
         return <CorporationLayout {...this.state.card} type="corp" />;
       default:
         return <ProjectLayout {...this.state.card} type={this.state.card.constructor.name.toLowerCase()} />;

@@ -12,7 +12,7 @@ export default class Game {
   constructor() {
     console.log('Initializing TMars...');
 
-    // Load cards
+    // Load projets
     this.deck = fs.readdirSync(`${__dirname}/../../cards/projects`)
       .map(f => require(`../../cards/projects/${f}`));
     console.log(`${this.deck.length} projects loaded`);
@@ -23,9 +23,8 @@ export default class Game {
     console.log(`${this.corps.length} corps loaded`);
 
     // Load preludes
-    // TODO
-    // this.preludes = fs.readdirSync(`${__dirname}/../../cards/preludes`)
-    //   .map(f => require(`../../cards/preludes/${f}`));
+    this.preludes = fs.readdirSync(`${__dirname}/../../cards/preludes`)
+      .map(f => require(`../../cards/preludes/${f}`));
     console.log(`${this.preludes.length} preludes loaded`);
   }
 }

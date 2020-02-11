@@ -8,6 +8,7 @@ export default new Prelude({
   number: 'P01',
   title: 'Allied Bank',
   tags: ['earth'],
+  set: 'prelude',
   desc,
   flavor: 'Putting people\'s savings to good use',
   emoji: '🏦',

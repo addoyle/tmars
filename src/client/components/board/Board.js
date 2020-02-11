@@ -159,7 +159,8 @@ export default class Board extends Component {
           drawers={this.drawers}
         />
         <CardDrawer
-          cards={this.props.boardStore.players.length ? [this.props.boardStore.players[0].corp] : []}
+          //cards={this.props.boardStore.players.length ? [this.props.boardStore.players[0].corp] : []}
+          cards={['P01']}
           type="corp"
           tab={<>
             <Param name="card corp landscape" />
