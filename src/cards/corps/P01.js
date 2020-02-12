@@ -18,6 +18,7 @@ export default new Corporation({
     }
   },
   tags: ['building'],
+  set: 'prelude',
   desc,
   effectDesc,
   flavor: 'Asian contractor Mars Wall took an early lead in the construction of colonies and industries on Mars, making them a power to be reckoned with',
