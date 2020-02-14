@@ -1,6 +1,6 @@
 import React from 'react';
 import Corporation from '../Corporation';
-import { MegaCredit, Tag, Resource, Param, Production } from '../../client/components/assets/Assets';
+import { MegaCredit, Resource, Production } from '../../client/components/assets/Assets';
 
 const desc = 'You start with 47 M€.';
 const effectDesc = 'Action: Spend 4 M€ to increase (one of) your LOWEST PRODUCTION 1 step.';

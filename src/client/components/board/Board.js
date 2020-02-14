@@ -160,7 +160,7 @@ export default class Board extends Component {
         />
         <CardDrawer
           //cards={this.props.boardStore.players.length ? [this.props.boardStore.players[0].corp] : []}
-          cards={['P03']}
+          cards={['P05']}
           type="corp"
           tab={<>
             <Param name="card corp landscape" />

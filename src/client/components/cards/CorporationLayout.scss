@@ -376,21 +376,35 @@ $title-font: 'Prototype', sans-serif;
       line-height: 2;
       position: relative;
       margin: .8em 3em .6em;
-      background-color: #ccc;
+      background: linear-gradient(
+        transparent 0%,
+        transparent 15%,
+        #ccc 15%,
+        #ccc 32.5%,
+        transparent 32.5%,
+        transparent 41.25%,
+        #ccc 41.25%,
+        #ccc 58.75%,
+        transparent 58.75%,
+        transparent 67.5%,
+        #ccc 67.5%,
+        #ccc 85%,
+        transparent 85%,
+        transparent 100%);
       padding: 0 .5em;
       transform: scale(1.4,1);
 
       &:before {
         content: '';
-        height: 6em;
-        width: 6em;
+        height: 5.5em;
+        width: 5.5em;
         background-color: #ccc;
         display: block;
         position: absolute;
         z-index: -1;
         border-radius: 50%;
         transform: scale(.72, 1);
-        top: -.9em;
+        top: -.75em;
         left: 1.3em;
       }
 
@@ -399,7 +413,7 @@ $title-font: 'Prototype', sans-serif;
         position: absolute;
         letter-spacing: .52em;
         left: 0;
-        top: 1.2em;
+        top: 1.25em;
         transform: scale(.77, 1);
         font-size: 1.5em;
         display: block;
@@ -408,6 +422,91 @@ $title-font: 'Prototype', sans-serif;
         padding: 0;
         line-height: .2;
         width: 5.8em;
+      }
+    }
+
+    &.valley-trust {
+      background-color: transparent;
+      filter: drop-shadow(.2em .2em .2em rgba(0, 0, 0, 0.5));
+      position: relative;
+      width: 5em;
+      height: 3.7em;
+      margin: .5em .8em;
+
+      &:before {
+        content: 'VALLEY TRUST';
+        font-family: sans-serif;
+        font-weight: bold;
+        text-align: left;
+        text-transform: uppercase;
+        text-shadow: 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.5);
+        position: absolute;
+        letter-spacing: .1em;
+        padding-left: 1.75em;
+        left: 0;
+        top: 0;
+        clip-path: polygon(0 25%, 10% 0, 100% 0, 85% 100%, 0 100%);
+        background-color: white;
+        width: 100%;
+        height: 100%;
+        color: #31407E;
+      }
+
+      &:after {
+        content: '\0015\2022';
+        line-height: .5;
+        letter-spacing: .09em;
+        position: absolute;
+        font-size: 2.5em;
+        text-align: left;
+        left: 0;
+        top: 0;
+        background-color: #31407E;
+        color: #fff;
+        width: 100%;
+        height: 100%;
+        clip-path: polygon(0 25%, 10% 0, 30% 0, 30% 60%, 3% 60%, 3% 94%, 26% 94%, 26% 60%, 30% 60%, 30% 100%, 0 100%);
+      }
+    }
+
+    &.vitor {
+      background-color: transparent;
+      filter: drop-shadow(0.4em 0.2em 0.15em rgba(0, 0, 0, 0.5));
+      position: relative;
+      width: 6em;
+      height: 2.25em;
+      margin: .5em 2.2em;
+      text-align: left;
+
+      &:before, &:after {
+        content: 'ViTOR';
+        position: absolute;
+        font-family: Georgia, 'Times New Roman', Times, serif;
+        font-weight: bold;
+        font-size: 1.35em;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        padding: 0 .1em;
+        transform: scale(1.5, 1);
+        border-width: .04em;
+        border-style: solid;
+        border-left-color: rgba(0,0,0,.2);
+        border-bottom-color: rgba(0,0,0,.2);
+        border-right-color: rgba(255,255,255,.2);
+        border-top-color: rgba(255,255,255,.2);
+      }
+
+      &:before {
+        background-color: #D36C57;
+        color: white;
+        clip-path: polygon(0 0, 87% 0, 100% 50%, 87% 100%, 87% 0, 84% 0, 84% 100%, 81% 100%, 81% 0, 78% 0, 78% 100%, 0 100%);
+      }
+      &:after {
+        background-color: white;
+        color: black;
+        clip-path: polygon(57% 0, 78% 0, 78% 100%, 43% 100%);
       }
     }
   }
@@ -474,6 +573,20 @@ $title-font: 'Prototype', sans-serif;
         background:
           linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
       }
+    }
+
+    .award-title {
+      font-size: .8em;
+      display: inline-block;
+      text-align: center;
+      font-family: $title-font;
+      text-transform: uppercase;
+      letter-spacing: .3em;
+      box-shadow: 0 .2em 0 0 rgba(0,0,0,.2) inset, 0 .1em 0 0 rgba(255,255,255,.5) inset, 0 -.2em .1em 0 rgba(255,255,255,.3) inset;
+      border: .1em solid #999;
+      padding: .1em 1em;
+      background:
+        linear-gradient(#DC885C, #D07455);
     }
   }
 }

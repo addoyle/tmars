@@ -70,7 +70,7 @@ $title-font: 'Prototype', sans-serif;
     .title, .separator {
       height: 3em;
     }
-    
+
     .body {
       padding: 3em;
     }
@@ -546,6 +546,11 @@ $title-font: 'Prototype', sans-serif;
 
   .production {
     font-size: 1em;
+  }
+
+  .vp {
+    font-size: 1.75em;
+    display: inline-flex;
   }
 }
 
