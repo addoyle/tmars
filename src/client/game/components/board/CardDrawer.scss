@@ -1,0 +1,148 @@
+$title-font: 'Prototype', sans-serif;
+$hand-height: 33vh;
+
+.drawer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  max-height: $hand-height;
+  min-height: 20vh;
+  border-top: 4px solid #444;
+  background: rgba(187, 187, 187, .5);
+  transition: transform .5s ease;
+  cursor: default;
+  z-index: 2;
+  user-select: none;
+  width: 100vw;
+
+  &.collapse {
+    transform: translateY(100%);
+    z-index: 3;
+  }
+
+  .drawer-btn {
+    display: block;
+    font-size: 1.25em;
+    padding: 8px 12px;
+    position: absolute;
+    left: 16px;
+    top: -51px;
+    height: 47px;
+    cursor: pointer;
+    border: 3px solid #444;
+    border-bottom: none;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+    font-family: $title-font;
+    outline: none;
+    transition: border-color .3s ease, box-shadow .15s ease;
+
+    &.active {
+      left: 144px;
+    }
+    &.automated {
+      left: 275px;
+    }
+    &.event {
+      left: 448px;
+    }
+    &.corp {
+      left: 573px;
+    }
+    &.prelude {
+      left: 757px;
+    }
+
+    .param {
+      box-shadow: 0 0 4px 1px rgba(0,0,0,.4);
+      margin-right: 8px;
+
+      &.corp:before, &.prelude :before {
+        font-size: 1pt;
+      }
+    }
+
+    & > span {
+      vertical-align: middle;
+    }
+
+    &.hand {
+      .param {
+        box-shadow: 0 0 4px rgba(255,255,255,.4);
+        margin-right: -16px;
+
+        &:first-of-type {
+          transform: rotateZ(-5deg);
+        }
+        &:last-of-type {
+          transform: rotateZ(5deg);
+          margin-right: 8px;
+        }
+      }
+    }
+
+    &:hover {
+      border-color: #888;
+    }
+    &:active {
+      box-shadow: 0 0 24px rgba(0,0,0,.5) inset;
+    }
+  }
+
+  .cards {
+    margin: 0;
+    text-align: center;
+    padding: 24px 24px 48px;
+    max-height: calc(#{$hand-height} - 3px);
+    overflow-y: auto;
+
+    li {
+      display: inline-block;
+      margin: 2px;
+      list-style-type: none;
+      position: relative;
+      transition: background-color .5s ease;
+      opacity: 1;
+      width: 150px;
+      height: 210px;
+      background: transparent;
+      border-radius: 5px;
+
+      &.landscape {
+        width: 210px;
+        height: 150px;
+      }
+
+      &.selected {
+        background: rgba(0,0,0,.25);
+
+        .card-preview {
+          cursor: default;
+          opacity: 0;
+        }
+      }
+
+      .card-preview {
+        position: static;
+        pointer-events: auto;
+        user-select: none;
+        cursor: pointer;
+        margin: 0;
+        transition: opacity .5s ease;
+
+        > .card {
+          font-size: 150px;
+          box-shadow: none;
+          transition: box-shadow .15s ease, transform .3s ease;
+
+          &:hover {
+            box-shadow: 0 0 0 4px #444, 0 0 10px 4px rgba(0,0,0,.5);
+            transform: scale(1.2);
+            z-index: 2;
+          }
+        }
+      }
+    }
+  }
+}

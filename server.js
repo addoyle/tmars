@@ -11,7 +11,9 @@ app.use(BodyParser.urlencoded({ extended: true }));
 app.use(BodyParser.json());
 
 // Assign routes
-app.get('/', (req, res) => res.sendFile(path.join(__dirname + '/public/index.html')));
+app.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname + '/public/index.html'))
+);
 app.use('/api', routes);
 
 // Define static paths
@@ -19,4 +21,6 @@ app.use(Express.static('public'));
 app.use(Express.static('dist'));
 
 // Start the server
-app.listen(config.port,  () => console.log(`Server started on port ${config.port}`));
+app.listen(config.port, () =>
+  console.log(`Server started on port ${config.port}`)
+);

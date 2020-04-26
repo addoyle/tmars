@@ -1,0 +1,125 @@
+$title-font: 'Prototype', sans-serif;
+
+.standard-projects {
+  font-family: $title-font;
+  background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+  border: 3px solid #444;
+  position: fixed;
+  right: 452px;
+  top: 0;
+  cursor: initial;
+  font-size: 14px;
+  padding: 6px;
+  transition: transform ease .5s;
+
+  .header {
+    background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+    border: 3px solid #444;
+    padding: 9px 16px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    border-top: none;
+    position: absolute;
+    bottom: -44px;
+    width: 188px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .standard-project {
+      padding-left: 1em;
+      position: relative;
+      margin: 0;
+
+      &:after {
+        content: '\2259';
+        font-size: 20px;
+        line-height: .24;
+        vertical-align: middle;
+        margin-left: .1em;
+        font-weight: bold;
+      }
+    }
+  }
+
+  &.collapse {
+    transform: translateY(-100%);
+
+    .header .standard-project:after {
+      content: '\225a';
+    }
+  }
+
+  .row {
+    margin-right: -35px;
+    height: 51px;
+
+    .resources > .mc {
+      font-size: 1.3em;
+    }
+    .resources.small {
+      font-size: 1.3em;
+    }
+
+    .x {
+      margin-right: -.5em;
+      font-family: $title-font;
+      text-shadow: 0 0 3px rgba(255,255,255,.7);
+      position: relative;
+      z-index: 2;
+      font-size: 1em;
+    }
+
+    & > .city {
+      .tile {
+        margin-right: -4px;
+      }
+      .production {
+        font-size: .7em;
+      }
+      button.standard-project {
+        min-width: 64px;
+      }
+    }
+
+    .stack-bottom {
+      z-index: 0;
+      margin-bottom: -25px;
+      margin-right: 22px;
+      font-size: 1.9em;
+    }
+  }
+
+  button.standard-project {
+    position: relative;
+    cursor: pointer;
+    min-width: 88px;
+    transition: background-color .3s ease, border-color .3s ease;
+    margin-left: .5em;
+
+    &:hover {
+      background: #edb94a;
+      border-color: #f7f255;
+    }
+    &:active {
+      outline: none;
+      background: #d59915;
+      border-color: #dbd40a;
+    }
+    &:focus {
+      outline: none;
+    }
+
+    &:before {
+      content: '';
+      position: absolute;
+      display: block;
+      top: -5px;
+      left: -5px;
+      bottom: -5px;
+      right: -5px;
+      background: repeating-linear-gradient(90deg, #444 0%, #eee 25%, #444 50%);
+      z-index: -1;
+      border-radius: 1.1em;
+    }
+  }
+}

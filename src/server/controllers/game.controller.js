@@ -13,12 +13,11 @@ GameService.game.players[2].corporation = '009';
 GameService.game.players[3].corporation = 'X02';
 GameService.game.players[4].corporation = '004';
 
-
 /**
  * Get players
- * 
- * @param {*} req 
- * @param {*} res 
+ *
+ * @param {*} req
+ * @param {*} res
  */
 export function getPlayers(req, res) {
   res.send(GameService.game.players);
@@ -26,9 +25,9 @@ export function getPlayers(req, res) {
 
 /**
  * Post a log
- * 
- * @param {*} req 
- * @param {*} res 
+ *
+ * @param {*} req
+ * @param {*} res
  */
 export function playCard(req, res) {
   // TODO
@@ -38,10 +37,20 @@ export function playCard(req, res) {
 
 /**
  * Stream the game actions
- * 
- * @param {*} req 
- * @param {*} res 
+ *
+ * @param {*} req
+ * @param {*} res
  */
 export function stream(req, res) {
   GameService.stream(req, res);
+}
+
+/**
+ * Get all the card numbers
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function getAllCardNumbers(req, res) {
+  res.send(GameService.getAllCardNumbers());
 }

@@ -3,6 +3,7 @@ import Log from '../models/log.model.js';
 
 @sse
 class LogService {
+  // prettier-ignore
   log = [
     new Log(1, 'this is cool', false),
     new Log(1, [' played ', {project: '032'}, '.']),
@@ -26,7 +27,7 @@ class LogService {
     new Log(1, [' played ', {project: '018'}, '.']),
     new Log(1, [' played ', {project: '039'}, '.']),
     new Log(1, [' took **8** ', {resource: 'plant'}, ' from ', {player: 2}, '!']),
-    new Log(2, 'it\s fine. idgaf', false),
+    new Log(2, 'it\'s fine. idgaf', false),
     new Log(2, [' played ', {project: '120'}, '.']),
     new Log(2, [' placed a ', {tile: 'city'}, ' **City**.']),
     new Log(5, ['\'s ', {project: '038'}, ' effect was activated and received 2 ', {megaCredit: null}, '.']),
@@ -35,6 +36,7 @@ class LogService {
 
   @push
   pushLog(log) {
+    console.log(this);
     this.log.push(log);
   }
 }

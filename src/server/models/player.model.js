@@ -55,9 +55,9 @@ export default class Player {
 
   set corporation(corp) {
     this.corp = corp;
-    const corpCard = require(`../../cards/corps/${corp}`).default;
+    const corpCard = require(`../../cards/corp/${corp}`).default;
 
     Object.assign(this.resources, corpCard.starting.resources || {});
-    Object.assign(this.production, corpCard.starting.production || {})
+    Object.assign(this.production, corpCard.starting.production || {});
   }
 }

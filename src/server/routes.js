@@ -8,4 +8,5 @@ router.post('/log', LogController.postLog);
 router.get('/log/stream', LogController.stream);
 
 router.get('/players', GameController.getPlayers);
+router.get('/card-numbers', GameController.getAllCardNumbers);
 export default router;

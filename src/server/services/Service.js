@@ -1,5 +1,3 @@
-import { toPlainObject } from 'lodash';
-
 export function sse(Class) {
   return (...args) => {
     const newClass = new Class(...args);
@@ -11,9 +9,9 @@ export function sse(Class) {
       if (i >= 0) {
         newClass.listeners.splice(i, 1);
       }
-    }
+    };
     newClass.stream = (req, res) => {
-      res.setHeader('Connection', 'keep-alive')
+      res.setHeader('Connection', 'keep-alive');
       res.setHeader('Cache-Control', 'no-cache');
       res.setHeader('Content-Type', 'text/event-stream');
       res.flushHeaders();
@@ -24,25 +22,27 @@ export function sse(Class) {
         newClass.dropListener(res);
         res.end();
       });
-    }
+    };
 
     return newClass;
-  }
+  };
 }
 
 export function push(target, name, descriptor) {
   const func = descriptor.value;
 
-  descriptor.value = function(...args) {
+  descriptor.value = (...args) => {
     func.apply(this, args);
 
-    this.listeners.forEach(listener => listener.write(`data: ${JSON.stringify(args)}\n\n`))
+    this.listeners.forEach(listener =>
+      listener.write(`data: ${JSON.stringify(args)}\n\n`)
+    );
   };
 
   return descriptor;
 }
 
-export default function(type) {
+export default function Service(type) {
   if (!type.instance) {
     type.instance = new type();
   }

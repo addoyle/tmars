@@ -1,0 +1,14 @@
+$title-font: 'Prototype', sans-serif;
+
+.global-params {
+  position: fixed;
+  right: 300px;
+  top: 12px;
+  cursor: initial;
+  user-select: none;
+
+  .points {
+    font-size: 28px;
+    margin: 0 6px 2px;
+  }
+}
