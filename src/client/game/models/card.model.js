@@ -1,5 +1,5 @@
 import { API } from '../../util/api';
-import { observable, action, toJS } from 'mobx';
+import { observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
 
 class Card {

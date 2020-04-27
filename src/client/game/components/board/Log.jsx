@@ -21,7 +21,6 @@ const Log = forwardRef((props, ref) => {
   // Attach events
   useEffect(() => {
     const keydown = e => {
-      console.log('got a key', e.key, e.shiftKey, msg);
       if (e.key === 'Enter' && !e.shiftKey) {
         e.preventDefault();
 

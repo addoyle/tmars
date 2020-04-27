@@ -10,24 +10,10 @@ import ProjectLayout from '../cards/ProjectLayout';
  * Displays a card as a popup
  */
 const CardPreview = props => {
-  // const normalize = props.cardStore.normalize;
   const card = props.cardStore.get(props.type, props.card);
 
   // TODO
   // const resources = props.resources;
-
-  // Show card
-  // if (
-  //   props.show &&
-  //   (!card || (props.card && normalize(card.number) !== normalize(props.card)))
-  // ) {
-  //   setCard(props.cardStore.get(props.type, props.card));
-  // }
-
-  // Hide card
-  // if (card && !props.show) {
-  //   setTimeout(() => setCard(null), 1000);
-  // }
 
   return (
     <div
