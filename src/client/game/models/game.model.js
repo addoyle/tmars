@@ -14,15 +14,13 @@ class Game {
 
   // Switch drawers
   @action
-  switchDrawer(drawer) {
+  switchDrawer(drawer, e) {
+    e && e.preventDefault();
+
     this.activeCard.show = false;
 
     // Clicking on the same drawer, show none
-    if (this.drawer === drawer) {
-      this.drawer = null;
-    } else {
-      this.drawer = drawer;
-    }
+    this.drawer = this.drawer === drawer ? null : drawer;
   }
 
   // Active card, shown in a popup

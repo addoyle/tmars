@@ -13,7 +13,6 @@ class Card {
     };
 
     API('card-numbers').then(res => {
-      console.log(res);
       loadCards('corp', res.corporation);
       loadCards('project', res.project);
       loadCards('prelude', res.prelude);

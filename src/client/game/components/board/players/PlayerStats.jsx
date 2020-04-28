@@ -24,7 +24,7 @@ const PlayerStats = props => {
         onMouseMove={e => e.stopPropagation()}
       >
         <div className="title-corp text-center m-top m-bottom">
-          {player.corp ? <CardRef type="corp" card={player.corp} /> : ''}
+          {player.corp ? <CardRef type="corporation" card={player.corp} /> : ''}
           <div
             className="close"
             onClick={() => (props.gameStore.playerStats.show = false)}

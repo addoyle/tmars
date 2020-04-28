@@ -19,7 +19,6 @@ const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLef
 
 const Board = props => {
   const [dragging, setDragging] = useState(false);
-  const [highlights, setHighlights] = useState(false);
 
   const boardContainer = useRef(null);
   const logRef = useRef(null);
@@ -36,66 +35,14 @@ const Board = props => {
 
     // Handle keydown shortcuts
     const keydown = e => {
-      if (
-        (navigator.userAgent.indexOf('Mac OS X' >= 0) && e.metaKey) ||
-        e.ctrlKey
-      ) {
-        setHighlights(true);
-
-        // Hide/show hand
-        if (e.key === 'h') {
-          e.preventDefault();
-          this.handDrawer.current.toggleCollapse();
-        }
-        // Hide/show Actives
-        if (e.key === 'a') {
-          e.preventDefault();
-          this.activeDrawer.current.toggleCollapse();
-        }
-        // Hide/show Automated
-        if (e.key === 'u') {
-          e.preventDefault();
-          this.automatedDrawer.current.toggleCollapse();
-        }
-        // Hide/show Events
-        if (e.key === 'e') {
-          e.preventDefault();
-          this.eventDrawer.current.toggleCollapse();
-        }
-        // Hide/show Corp
-        if (e.key === 'r') {
-          e.preventDefault();
-          this.corpDrawer.current.toggleCollapse();
-        }
-        // Hide/show Standard Projects
-        if (e.key === 'p') {
-          e.preventDefault();
-          this.standardProjects.current.toggleCollapse();
-        }
-        // Hide/show players
-        if (+e.key >= 1 && +e.key <= this.props.boardStore.players.length) {
-          e.preventDefault();
-          this.players.current.toggleStats(+e.key - 1)();
-        }
-
-        // Unfocus chat
-        if (e.key !== 'Control') {
-          this.log.current.msg.current.blur();
-        }
-      }
-      // If a letter is pressed, grab focus to chat
-      else if (!nonFocusingKeys.has(e.key)) {
+      if (!nonFocusingKeys.has(e.key)) {
         logRef.current.focus();
       }
     };
 
-    // Handle keyup
-    const keyup = () => setHighlights(false);
-
     // Attach events
     document.addEventListener('mouseout', mouseout, false);
     document.addEventListener('keydown', keydown, false);
-    document.addEventListener('keyup', keyup);
 
     // Start in middle
     window.scrollTo(
@@ -110,16 +57,12 @@ const Board = props => {
     return () => {
       document.removeEventListener('mouseout', mouseout, false);
       document.removeEventListener('keydown', keydown, false);
-      document.removeEventListener('keyup', keyup, false);
     };
   }, []);
 
   return (
     <div
-      className={classNames('board', {
-        dragging: dragging,
-        highlights: highlights
-      })}
+      className={classNames('board', { dragging: dragging })}
       onMouseDown={() => setDragging(true)}
       onMouseUp={() => setDragging(false)}
       onMouseMove={e => {
@@ -145,9 +88,7 @@ const Board = props => {
             <Param name="card back" />
             <Param name="card back" />
             <Param name="card back" />
-            <span>
-              <span className="highlight">H</span>and
-            </span>
+            <span>Hand</span>
           </>
         }
       />
@@ -161,9 +102,7 @@ const Board = props => {
         tab={
           <>
             <Param name="card active" />
-            <span>
-              <span className="highlight">A</span>ctive
-            </span>
+            <span>Active</span>
           </>
         }
       />
@@ -173,9 +112,7 @@ const Board = props => {
         tab={
           <>
             <Param name="card automated" />
-            <span>
-              A<span className="highlight">u</span>tomated
-            </span>
+            <span>Automated</span>
           </>
         }
       />
@@ -185,9 +122,7 @@ const Board = props => {
         tab={
           <>
             <Param name="card event" />
-            <span>
-              <span className="highlight">E</span>vent
-            </span>
+            <span>Event</span>
           </>
         }
       />
@@ -198,9 +133,7 @@ const Board = props => {
         tab={
           <>
             <Param name="card corp landscape" />
-            <span>
-              Co<span className="highlight">r</span>poration
-            </span>
+            <span>Corporation</span>
           </>
         }
       />
@@ -210,9 +143,7 @@ const Board = props => {
         tab={
           <>
             <Param name="card prelude landscape" />
-            <span>
-              Prel<span className="highlight">u</span>des
-            </span>
+            <span>Preludes</span>
           </>
         }
       />
@@ -224,7 +155,8 @@ const Board = props => {
 
 Board.propTypes = {
   gameStore: PropTypes.shape({
-    getPlayers: PropTypes.func.isRequired
+    getPlayers: PropTypes.func.isRequired,
+    switchDrawer: PropTypes.func.isRequired
   })
 };
 
