@@ -8,12 +8,13 @@ class Card {
   constructor() {
     const loadCards = (type, cards) => {
       Promise.all(
-        cards.map(card => require(`../../../cards/${type}/${card}`))
+        cards.map(card => import(`../../../cards/${type}/${card}`))
       ).then(res => this.setCardsFromPromise(type, res));
     };
 
     API('card-numbers').then(res => {
-      loadCards('corp', res.corp);
+      console.log(res);
+      loadCards('corp', res.corporation);
       loadCards('project', res.project);
       loadCards('prelude', res.prelude);
     });
@@ -39,11 +40,7 @@ class Card {
 
   @computedFn
   get(type, card) {
-    if (this.cards[type]) {
-      return this.cards[type][this.normalize(card)];
-    }
-
-    return undefined;
+    return this.cards[type] && this.cards[type][this.normalize(card)];
   }
 }
 

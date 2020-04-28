@@ -2,17 +2,19 @@ import GameService from '../services/game.service';
 import Player from '../models/player.model';
 
 // FIXME: Temporary
-GameService.game.players.push(new Player('Andy'));
-GameService.game.players.push(new Player('Frank'));
-GameService.game.players.push(new Player('Colin'));
-GameService.game.players.push(new Player('Larissa'));
-GameService.game.players.push(new Player('Adrian'));
-for (var i = 0; i < GameService.game.players.length; i++) {
-  GameService.game.players[i].corporation = GameService.game.corps[i];
-  for (var j = 0; j < 10; j++) {
-    GameService.game.drawCard(i);
+setTimeout(() => {
+  GameService.game.players.push(new Player('Andy'));
+  GameService.game.players.push(new Player('Frank'));
+  GameService.game.players.push(new Player('Colin'));
+  GameService.game.players.push(new Player('Larissa'));
+  GameService.game.players.push(new Player('Adrian'));
+  for (var i = 0; i < GameService.game.players.length; i++) {
+    GameService.game.players[i].corporation = GameService.game.corps[i];
+    for (var j = 0; j < 10; j++) {
+      GameService.game.drawCard(i);
+    }
   }
-}
+}, 2000);
 
 /**
  * Get players

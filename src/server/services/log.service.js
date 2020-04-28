@@ -38,6 +38,8 @@ class LogService {
   pushLog(log) {
     console.log(this);
     this.log.push(log);
+
+    return this.log;
   }
 }
 

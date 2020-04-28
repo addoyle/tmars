@@ -94,7 +94,7 @@ const CardDrawer = props => {
         {cards.map((card, i) => (
           <li
             key={i}
-            onClick={() => gameStore.showActiveCard(card)}
+            onClick={() => gameStore.showActiveCard(card.card)}
             className={classNames('card-selector', {
               selected:
                 gameStore.activeCard.show &&
@@ -122,7 +122,7 @@ CardDrawer.propTypes = {
     drawer: PropTypes.string,
     switchDrawer: PropTypes.func,
     activeCard: PropTypes.shape({
-      card: PropTypes.number,
+      card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       show: PropTypes.bool
     }),
     showActiveCard: PropTypes.func

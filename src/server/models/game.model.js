@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { shuffle } from 'lodash';
+import { normalize } from '../util';
 
 export default class Game {
   deck = [];
@@ -10,32 +11,47 @@ export default class Game {
   turn = 0;
   startingPlayer = 0;
 
+  cards = {};
+
   constructor() {
     console.log('Initializing TMars...');
 
-    // Load projets
-    this.deck = shuffle(
-      fs
+    this.loadCards();
+  }
+
+  loadCards() {
+    return Promise.all([
+      // Load projects
+      ...fs
         .readdirSync(`${__dirname}/../../cards/project`)
-        .map(f => require(`../../cards/project/${f}`).default)
-    );
-    console.log(`${this.deck.length} projects loaded`);
+        .map(f => import(`../../cards/project/${f}`)),
 
-    // Load corps
-    this.corps = shuffle(
-      fs
+      // Load corps
+      ...fs
         .readdirSync(`${__dirname}/../../cards/corp`)
-        .map(f => require(`../../cards/corp/${f}`).default)
-    );
-    console.log(`${this.corps.length} corps loaded`);
+        .map(f => import(`../../cards/corp/${f}`)),
 
-    // Load preludes
-    this.preludes = shuffle(
-      fs
+      // Load preludes
+      ...fs
         .readdirSync(`${__dirname}/../../cards/prelude`)
-        .map(f => require(`../../cards/prelude/${f}`).default)
-    );
-    console.log(`${this.preludes.length} preludes loaded`);
+        .map(f => import(`../../cards/prelude/${f}`))
+    ]).then(res => {
+      this.cards = res
+        .map(card => card.default.default)
+        .reduce(
+          (cards, card) => {
+            cards[
+              Object.getPrototypeOf(Object.getPrototypeOf(card)).constructor
+                .name === 'Project'
+                ? 'project'
+                : card.constructor.name.toLowerCase()
+            ][normalize(card.number)] = card;
+
+            return cards;
+          },
+          { project: {}, corporation: {}, prelude: {} }
+        );
+    });
   }
 
   drawCard(player) {
@@ -43,6 +59,7 @@ export default class Game {
       throw new Error('Invalid player');
     }
 
+    // Reshuffle draw deck
     if (this.deck.length === 0) {
       this.deck = shuffle(this.discard);
       this.discard = [];

@@ -56,7 +56,9 @@ export default class Player {
   set corporation(corp) {
     this.corp = corp;
 
-    Object.assign(this.resources, corp.starting.resources || {});
-    Object.assign(this.production, corp.starting.production || {});
+    if (corp && corp.starting) {
+      Object.assign(this.resources, corp.starting.resources || {});
+      Object.assign(this.production, corp.starting.production || {});
+    }
   }
 }

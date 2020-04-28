@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { inject } from 'mobx-react';
+import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 import './CardRef.scss';
 import CardPreview from './CardPreview';
@@ -14,21 +14,22 @@ const CardRef = props => {
 
   const card = props.cardStore.get(props.type, props.card);
 
-  return card ? (
+  return (
     <HoverIntent
       timeout={300}
       onMouseOver={() => setShown(true)}
       onMouseOut={() => setShown(false)}
     >
       <span
-        className={classNames('card-ref', card.constructor.name.toLowerCase())}
+        className={classNames(
+          'card-ref',
+          card && card.constructor.name.toLowerCase()
+        )}
       >
-        {card.title}
+        {card ? card.title : props.card}
         <CardPreview card={props.card} show={shown} type={props.type} />
       </span>
     </HoverIntent>
-  ) : (
-    <div />
   );
 };
 
@@ -44,4 +45,4 @@ CardRef.propTypes = {
   })
 };
 
-export default inject('cardStore')(CardRef);
+export default inject('cardStore')(observer(CardRef));
