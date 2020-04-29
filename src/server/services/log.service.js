@@ -36,10 +36,9 @@ class LogService {
 
   @push
   pushLog(log) {
-    console.log(this);
     this.log.push(log);
 
-    return this.log;
+    return log;
   }
 }
 

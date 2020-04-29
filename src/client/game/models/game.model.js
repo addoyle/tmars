@@ -26,13 +26,14 @@ class Game {
   // Active card, shown in a popup
   @observable activeCard = {
     show: false,
-    card: null
+    card: null,
+    type: null
   };
 
   // Show an active card
   @action
-  showActiveCard(card) {
-    this.activeCard = { ...this.activeCard, show: true, card };
+  showActiveCard(card, type) {
+    this.activeCard = { ...this.activeCard, show: true, card, type };
   }
 
   // Player stats popup

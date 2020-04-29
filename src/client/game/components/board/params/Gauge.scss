@@ -7,6 +7,7 @@ $title-font: 'Prototype', sans-serif;
   text-align: center;
   background: rgba(255,255,255,.3);
   position: relative;
+  box-shadow: 0 0 12px rgba(128,128,128,.5);
 
   > .param {
     position: absolute;
@@ -51,6 +52,7 @@ $title-font: 'Prototype', sans-serif;
     border: 1px solid black;
     padding: 2px;
     background-color: #aaa;
+    box-shadow: 0 0 12px rgba(128,128,128,.5);
 
     &.met {
       opacity: .25;

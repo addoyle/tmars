@@ -17,7 +17,7 @@ export function getAll(req, res) {
  * @param {*} res
  */
 export function postLog(req, res) {
-  LogService.pushLog(req.body);
+  LogService.pushLog({ ...req.body, system: false });
   res.sendStatus(200);
 }
 

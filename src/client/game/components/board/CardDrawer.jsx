@@ -10,61 +10,7 @@ import classNames from 'classnames';
  * Card drawer
  */
 const CardDrawer = props => {
-  // const [selectedCard, setSelectedCard] = useState(0);
-  // const [activeCardShown, setActiveCardShown] = useState(false);
-  // const [dragging, setDragging] = useState(false);
-
   const gameStore = props.gameStore;
-
-  // useEffect(() => {
-  //   // Handle if dragging leaves the browser window
-
-  //   const mouseout = e => {
-  //     e = e ? e : window.event;
-  //     const from = e.relatedTarget || e.toElement;
-  //     if (!from || from.nodeName === 'HTML') {
-  //       this.setState({ dragging: false });
-  //     }
-  //   };
-  //   document.addEventListener('mouseout', mouseout, false);
-  // });
-
-  // toggleCollapse() {
-  //   // close other drawers
-  //   if (this.state.collapse) {
-  //     this.props.drawers
-  //       .filter((drawer) => drawer.current !== this)
-  //       .forEach((drawer) => drawer.current.setState({ collapse: true }));
-  //   }
-
-  //   this.setState({
-  //     collapse: !this.state.collapse,
-
-  //     // also close card popup
-  //     showActiveCard: false,
-  //     selectedCard: 0
-  //   });
-  // }
-
-  // cancelClick() {
-  //   this.setState({ showActiveCard: false });
-  //   setTimeout(() => this.setState({ selectedCard: 0 }), 500);
-  // }
-
-  // selectCard(selectedCard) {
-  //   this.setState({ selectedCard, showActiveCard: true });
-  // }
-
-  // startDragging = () => this.setState({ dragging: true });
-  // stopDragging = () => this.setState({ dragging: false });
-  // drag = e => {
-  //   if (this.state.dragging) {
-  //     this.refs.selectedCard.style.left =
-  //       this.refs.selectedCard.offsetLeft + e.movementX + 'px';
-  //     this.refs.selectedCard.style.top =
-  //       this.refs.selectedCard.offsetTop + e.movementY + 'px';
-  //   }
-  // };
 
   const cards = props.cards.map(card => (isString(card) ? { card } : card));
   let cardType = 'project';
@@ -94,11 +40,12 @@ const CardDrawer = props => {
         {cards.map((card, i) => (
           <li
             key={i}
-            onClick={() => gameStore.showActiveCard(card.card)}
+            onClick={() => gameStore.showActiveCard(card.card, cardType)}
             className={classNames('card-selector', {
               selected:
                 gameStore.activeCard.show &&
-                card.card === gameStore.activeCard.card,
+                card.card === gameStore.activeCard.card &&
+                cardType === gameStore.activeCard.type,
               landscape: cardType === 'prelude'
             })}
           >
@@ -123,6 +70,7 @@ CardDrawer.propTypes = {
     switchDrawer: PropTypes.func,
     activeCard: PropTypes.shape({
       card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      type: PropTypes.string,
       show: PropTypes.bool
     }),
     showActiveCard: PropTypes.func

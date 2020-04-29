@@ -53,7 +53,7 @@
   "scripts": {
     "start": "webpack-dev-server --config webpack.config.js",
     "start:server": "npm-run-all --parallel watch:server watch:build",
-    "watch:server": "BABEL_ENV=server nodemon --exec babel-node server.js --watch ./dist",
+    "watch:server": "BABEL_ENV=server nodemon --exec babel-node server.js --watch ./src/server",
     "watch:build": "webpack --watch --mode=development",
     "clean": "rm -rf ./dist"
   },

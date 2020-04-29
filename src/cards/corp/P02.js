@@ -21,7 +21,7 @@ export default new Corporation({
       mc: 38
     },
     production: {
-      ti: 3
+      ti: 1
     }
   },
   tags: ['earth', 'space'],

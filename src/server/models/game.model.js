@@ -16,7 +16,11 @@ export default class Game {
   constructor() {
     console.log('Initializing TMars...');
 
-    this.loadCards();
+    this.loadCards().then(() => {
+      this.deck = shuffle(this.cards.project);
+      this.corps = shuffle(this.cards.corporation);
+      this.preludes = shuffle(this.cards.prelude);
+    });
   }
 
   loadCards() {

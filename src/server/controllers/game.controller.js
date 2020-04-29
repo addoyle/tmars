@@ -23,7 +23,20 @@ setTimeout(() => {
  * @param {*} res
  */
 export function getPlayers(req, res) {
-  res.send(GameService.game.players);
+  res.send(
+    GameService.game.players.map(player => ({
+      ...player,
+      corp: player.corp.number,
+      cards: {
+        hand: player.cards.hand.map(card => card.number),
+        draft: player.cards.draft.map(card => card.number),
+        active: player.cards.active.map(card => card.number),
+        automated: player.cards.automated.map(card => card.number),
+        event: player.cards.event.map(card => card.number),
+        prelude: player.cards.prelude.map(card => card.number)
+      }
+    }))
+  );
 }
 
 /**

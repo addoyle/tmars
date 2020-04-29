@@ -1,28 +1,44 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import CardPreview from './CardPreview';
 import { Resource, Param } from '../assets/Assets';
 import classnames from 'classnames';
+import './ActiveCard.scss';
 
 const ActiveCard = props => {
+  const activeCard = props.gameStore.activeCard;
+
+  const containerRef = useRef(null);
+
+  const [dragging, setDragging] = useState(false);
+
   return (
     <div
       className={classnames('active-card', {
-        show: this.state.showActiveCard
+        show: activeCard.show
       })}
-      ref="selectedCard"
-      onMouseDown={this.startDragging}
-      onMouseUp={this.stopDragging}
-      onMouseMove={this.drag}
-      onMouseLeave={this.stopDragging}
+      onMouseDown={() => setDragging(true)}
+      onMouseUp={() => setDragging(false)}
+      onMouseMove={e => {
+        if (dragging) {
+          e.stopPropagation();
+          containerRef.current.style.left =
+            containerRef.current.offsetLeft + e.movementX + 'px';
+          containerRef.current.style.top =
+            containerRef.current.offsetTop + e.movementY + 'px';
+        }
+      }}
+      onMouseLeave={() => setDragging(false)}
+      ref={containerRef}
     >
-      {this.state.selectedCard ? (
-        <CardPreview {...this.state.selectedCard} type={cardType} />
+      {activeCard.card ? (
+        <CardPreview card={activeCard.card} type={activeCard.type} />
       ) : (
         ''
       )}
       <div className="footer">
-        {['active', 'hand'].indexOf(this.props.type) >= 0 ? (
+        {['active', 'hand'].indexOf(activeCard.type) >= 0 ? (
           <button>
             <div className="flex">
               <div className="resources middle">
@@ -37,7 +53,7 @@ const ActiveCard = props => {
         ) : null}
 
         <div className="flex gutter">
-          {this.props.type === 'hand' ? (
+          {activeCard.type === 'hand' ? (
             <button className="primary col-1 disabled">
               <div className="flex">
                 <div className="resources middle">
@@ -49,9 +65,9 @@ const ActiveCard = props => {
           ) : null}
           <button
             className="text-center col-1"
-            onClick={e => this.cancelClick()}
+            onClick={() => (activeCard.show = false)}
           >
-            {['active', 'hand'].indexOf(this.props.type) >= 0
+            {['active', 'hand'].indexOf(activeCard.type) >= 0
               ? 'Cancel'
               : 'Close'}
           </button>
@@ -59,6 +75,17 @@ const ActiveCard = props => {
       </div>
     </div>
   );
+};
+
+ActiveCard.propTypes = {
+  gameStore: PropTypes.shape({
+    activeCard: PropTypes.shape({
+      show: PropTypes.bool,
+      card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      type: PropTypes.string,
+      resources: PropTypes.object
+    }).isRequired
+  }).isRequired
 };
 
 export default inject('gameStore')(observer(ActiveCard));

@@ -31,11 +31,11 @@ export function sse(Class) {
 export function push(target, name, descriptor) {
   const func = descriptor.value;
 
-  descriptor.value = (...args) => {
-    func.apply(this, args);
+  descriptor.value = function (...args) {
+    const response = func.apply(this, args);
 
     this.listeners.forEach(listener =>
-      listener.write(`data: ${JSON.stringify(args)}\n\n`)
+      listener.write(`data: ${JSON.stringify(response)}\n\n`)
     );
   };
 

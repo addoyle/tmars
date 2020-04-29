@@ -16,7 +16,6 @@ import { Tile, Param, Resource, Tag, MegaCredit } from '../assets/Assets';
 const Log = forwardRef((props, ref) => {
   const { logStore, gameStore } = props;
   const [msg, setMsg] = useState('');
-  // let eventSource;
 
   // Attach events
   useEffect(() => {
@@ -42,12 +41,12 @@ const Log = forwardRef((props, ref) => {
 
   // Init
   useEffect(() => {
-    props.logStore.fetchLogs();
+    logStore.fetchLogs();
 
     // TODO: handle if eventSource disconnects
-    subscribe('log/stream', log => {
-      props.logStore.log.push(log);
-    });
+    let eventSource = subscribe('log/stream', log => logStore.log.push(log));
+
+    return () => eventSource.close();
   }, []);
 
   return (

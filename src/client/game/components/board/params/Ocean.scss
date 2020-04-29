@@ -6,6 +6,10 @@ $title-font: 'Prototype', sans-serif;
   transition: filter .3s ease;
   font-size: 64px;
 
+  .tile {
+    filter: drop-shadow(0 0 12px rgba(128,128,128,.5));
+  }
+
   &.maxed {
     opacity: .25;
   }
