@@ -39,6 +39,10 @@ const Board = props => {
       if (!nonFocusingKeys.has(e.key)) {
         logRef.current.focus();
       }
+
+      if (e.key === 'Escape') {
+        props.gameStore.activeCard.show = false;
+      }
     };
 
     // Attach events
@@ -157,7 +161,10 @@ const Board = props => {
 Board.propTypes = {
   gameStore: PropTypes.shape({
     getPlayers: PropTypes.func.isRequired,
-    switchDrawer: PropTypes.func.isRequired
+    switchDrawer: PropTypes.func.isRequired,
+    activeCard: PropTypes.shape({
+      show: PropTypes.bool
+    })
   })
 };
 

@@ -17,8 +17,6 @@ class Game {
   switchDrawer(drawer, e) {
     e && e.preventDefault();
 
-    this.activeCard.show = false;
-
     // Clicking on the same drawer, show none
     this.drawer = this.drawer === drawer ? null : drawer;
   }
