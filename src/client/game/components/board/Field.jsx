@@ -78,7 +78,7 @@ const Field = props => {
             </div>
           ))}
 
-        {field.map((row, r) => (
+        {field.board.map((row, r) => (
           <div key={r} className="row">
             {row.map((tile, i) => (
               <Tile
@@ -138,7 +138,9 @@ const tilePropType = PropTypes.shape({
 
 Field.propTypes = {
   gameStore: PropTypes.shape({
-    field: PropTypes.arrayOf(PropTypes.arrayOf(tilePropType)),
+    field: PropTypes.shape({
+      board: PropTypes.arrayOf(PropTypes.arrayOf(tilePropType))
+    }),
     detachedCities: PropTypes.objectOf(tilePropType),
     sets: PropTypes.arrayOf(PropTypes.string)
   })

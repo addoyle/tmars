@@ -12,16 +12,46 @@ const Resources = props => {
 
   const playerBoard = [
     [
-      { megacredit: { resource: resources.mc, production: production.mc } },
-      { plant: { resource: resources.pl, production: production.pl } }
+      {
+        megacredit: {
+          resource: resources.megacredit,
+          production: production.megacredit
+        }
+      },
+      {
+        plant: {
+          resource: resources.plant,
+          production: production.plant
+        }
+      }
     ],
     [
-      { steel: { resource: resources.st, production: production.st } },
-      { power: { resource: resources.po, production: production.po } }
+      {
+        steel: {
+          resource: resources.steel,
+          production: production.steel
+        }
+      },
+      {
+        power: {
+          resource: resources.power,
+          production: production.power
+        }
+      }
     ],
     [
-      { titanium: { resource: resources.ti, production: production.ti } },
-      { heat: { resource: resources.he, production: production.he } }
+      {
+        titanium: {
+          resource: resources.titanium,
+          production: production.titanium
+        }
+      },
+      {
+        heat: {
+          resource: resources.heat,
+          production: production.heat
+        }
+      }
     ]
   ];
 
@@ -74,20 +104,20 @@ const Resources = props => {
 
 Resources.propTypes = {
   resources: PropTypes.shape({
-    mc: PropTypes.number,
-    st: PropTypes.number,
-    ti: PropTypes.number,
-    pl: PropTypes.number,
-    po: PropTypes.number,
-    he: PropTypes.number
+    megacredit: PropTypes.number,
+    steel: PropTypes.number,
+    titanium: PropTypes.number,
+    plant: PropTypes.number,
+    power: PropTypes.number,
+    heat: PropTypes.number
   }),
   production: PropTypes.shape({
-    mc: PropTypes.number,
-    st: PropTypes.number,
-    ti: PropTypes.number,
-    pl: PropTypes.number,
-    po: PropTypes.number,
-    he: PropTypes.number
+    megacredit: PropTypes.number,
+    steel: PropTypes.number,
+    titanium: PropTypes.number,
+    plant: PropTypes.number,
+    power: PropTypes.number,
+    heat: PropTypes.number
   })
 };
 

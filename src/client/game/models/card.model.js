@@ -8,7 +8,7 @@ class Card {
   constructor() {
     const loadCards = (type, cards) => {
       Promise.all(
-        cards.map(card => import(`../../../cards/${type}/${card}`))
+        cards.map(card => import(`../../../shared/cards/${type}/${card}`))
       ).then(res => this.setCardsFromPromise(type, res));
     };
 

@@ -1,6 +1,7 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 
-const GreeneryTile = () => (
+const GreeneryTile = props => (
   <g>
     <defs>
       <radialGradient
@@ -41,13 +42,25 @@ const GreeneryTile = () => (
       className="tree"
       d="M 106.112 296 C 115.457 250.824 119.006 148.444 90.908 153.748 C 84.068 162.733 27.831 186.879 5.78 143.566 C -2.281 127.73 6.799 102.669 38.167 98.879 C 30.993 23.433 92.486 28.075 98.894 44.559 C 105.054 -36.118 220.307 10.213 203.207 101.926 C 238.623 113.201 234.695 188.044 144.835 163.26 C 135.179 194.181 147.111 278.917 159.137 293.82 L 106.112 296 Z"
     ></path>
-    <g className="oxygen">
-      <text x="290" y="160">
-        +
-      </text>
-      <image href="/icons/oxygen.svg" width="140" height="140" x="355" y="60" />
-    </g>
+    {!props.noOxygen ? (
+      <g className="oxygen">
+        <text x="290" y="160">
+          +
+        </text>
+        <image
+          href="/icons/oxygen.svg"
+          width="140"
+          height="140"
+          x="355"
+          y="60"
+        />
+      </g>
+    ) : null}
   </g>
 );
+
+GreeneryTile.propTypes = {
+  noOxygen: PropTypes.bool
+};
 
 export default GreeneryTile;

@@ -24,21 +24,23 @@ export default class Game {
   }
 
   loadCards() {
+    const CARD_DIR = `${__dirname}/../../shared/cards`;
+
     return Promise.all([
       // Load projects
       ...fs
-        .readdirSync(`${__dirname}/../../cards/project`)
-        .map(f => import(`../../cards/project/${f}`)),
+        .readdirSync(`${CARD_DIR}/project`)
+        .map(f => import(`${CARD_DIR}/project/${f}`)),
 
       // Load corps
       ...fs
-        .readdirSync(`${__dirname}/../../cards/corp`)
-        .map(f => import(`../../cards/corp/${f}`)),
+        .readdirSync(`${CARD_DIR}/corp`)
+        .map(f => import(`${CARD_DIR}/corp/${f}`)),
 
       // Load preludes
       ...fs
-        .readdirSync(`${__dirname}/../../cards/prelude`)
-        .map(f => import(`../../cards/prelude/${f}`))
+        .readdirSync(`${CARD_DIR}/prelude`)
+        .map(f => import(`${CARD_DIR}/prelude/${f}`))
     ]).then(res => {
       this.cards = res
         .map(card => card.default.default)

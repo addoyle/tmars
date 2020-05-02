@@ -6,20 +6,20 @@ export default class Player {
   corp;
   tr = 20;
   resources = {
-    mc: 0,
-    st: 0,
-    ti: 0,
-    pl: 0,
-    po: 0,
-    he: 0
+    megacredit: 0,
+    steel: 0,
+    titanium: 0,
+    plant: 0,
+    power: 0,
+    heat: 0
   };
   production = {
-    mc: 0,
-    st: 0,
-    ti: 0,
-    pl: 0,
-    po: 0,
-    he: 0
+    megacredit: 0,
+    steel: 0,
+    titanium: 0,
+    plant: 0,
+    power: 0,
+    heat: 0
   };
   tags = {
     building: 0,

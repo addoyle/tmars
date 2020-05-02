@@ -101,6 +101,8 @@ strong, .strong { font-weight: bold; }
 .m-top { margin-top: 1em; }
 .m-bottom { margin-bottom: 1em; }
 .m-right { margin-right: .2em; }
+.p-top { padding-top: 1em; }
+.p-bottom { padding-top: 1em }
 .p-rel { position: relative; }
 .gutter > * {
 	margin-left: .5em;
@@ -110,8 +112,4 @@ strong, .strong { font-weight: bold; }
 }
 .sans-serif {
 	font-family: sans-serif;
-}
-
-.highlights .highlight {
-	text-decoration: underline;
 }

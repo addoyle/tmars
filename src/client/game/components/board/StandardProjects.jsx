@@ -28,11 +28,11 @@ const StandardProjects = () => {
           className="standard-project"
           onClick={() => setCollapse(!collapse)}
         >
-          Standard <span className="highlight">P</span>rojects
+          Standard Projects
         </button>
       </div>
 
-      <div className="table row">
+      <div className="table">
         <div className="row">
           <div className="cell">
             <div className="resources middle text-right m-right">

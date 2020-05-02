@@ -24,6 +24,10 @@ $title-font: 'Prototype', sans-serif;
     pointer-events: auto;
     user-select: none;
     cursor: move;
+
+    .card {
+      transition: height .5s ease, width .5s ease
+    }
   }
 
   .footer {

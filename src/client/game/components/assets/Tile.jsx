@@ -17,9 +17,10 @@ const tiles = (type, props) => {
     case 'blank-city':
       return <CityTile noIcon />;
     case 'greenery':
-      return <GreeneryTile />;
+      return <GreeneryTile {...props} />;
     case 'special':
       return <SpecialTile {...props} />;
+    case 'any':
     case 'blank':
     default:
       return <g />;
@@ -87,6 +88,7 @@ Tile.propTypes = {
   anyone: PropTypes.bool,
   asterisk: PropTypes.bool,
   style: PropTypes.object,
+  noOxygen: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node)

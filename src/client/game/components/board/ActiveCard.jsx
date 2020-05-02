@@ -6,11 +6,18 @@ import { Resource, Param } from '../assets/Assets';
 import classnames from 'classnames';
 import './ActiveCard.scss';
 
+/**
+ * Component for showing currently selected card
+ *
+ * @component
+ */
 const ActiveCard = props => {
   const activeCard = props.gameStore.activeCard;
 
+  // Ref for container, used in dragging
   const containerRef = useRef(null);
 
+  // State for dragging
   const [dragging, setDragging] = useState(false);
 
   return (
@@ -22,6 +29,7 @@ const ActiveCard = props => {
       onMouseUp={() => setDragging(false)}
       onMouseMove={e => {
         if (dragging) {
+          // Move card where mouse moves
           e.stopPropagation();
           containerRef.current.style.left =
             containerRef.current.offsetLeft + e.movementX + 'px';
@@ -34,9 +42,7 @@ const ActiveCard = props => {
     >
       {activeCard.card ? (
         <CardPreview card={activeCard.card} type={activeCard.type} />
-      ) : (
-        ''
-      )}
+      ) : null}
       <div className="footer">
         {['active', 'hand'].indexOf(activeCard.type) >= 0 ? (
           <button>

@@ -49,43 +49,46 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
-  .row {
+  .table {
     margin-right: -35px;
-    height: 51px;
+    
+    .row {
+      height: 51px;
 
-    .resources > .mc {
-      font-size: 1.3em;
-    }
-    .resources.small {
-      font-size: 1.3em;
-    }
-
-    .x {
-      margin-right: -.5em;
-      font-family: $title-font;
-      text-shadow: 0 0 3px rgba(255,255,255,.7);
-      position: relative;
-      z-index: 2;
-      font-size: 1em;
-    }
-
-    & > .city {
-      .tile {
-        margin-right: -4px;
+      .resources > .mc {
+        font-size: 1.3em;
       }
-      .production {
-        font-size: .7em;
+      .resources.small {
+        font-size: 1.3em;
       }
-      button.standard-project {
-        min-width: 64px;
-      }
-    }
 
-    .stack-bottom {
-      z-index: 0;
-      margin-bottom: -25px;
-      margin-right: 22px;
-      font-size: 1.9em;
+      .x {
+        margin-right: -.5em;
+        font-family: $title-font;
+        text-shadow: 0 0 3px rgba(255,255,255,.7);
+        position: relative;
+        z-index: 2;
+        font-size: 1em;
+      }
+
+      & > .city {
+        .tile {
+          margin-right: -4px;
+        }
+        .production {
+          font-size: .7em;
+        }
+        button.standard-project {
+          min-width: 64px;
+        }
+      }
+
+      .stack-bottom {
+        z-index: 0;
+        margin-bottom: -25px;
+        margin-right: 22px;
+        font-size: 1.9em;
+      }
     }
   }
 

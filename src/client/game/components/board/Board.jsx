@@ -12,6 +12,7 @@ import CardDrawer from './CardDrawer';
 import { Param } from '../assets/Assets';
 import classNames from 'classnames';
 import ActiveCard from './ActiveCard';
+import MilestoneAward from './MilestoneAward';
 
 // prettier-ignore
 const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
@@ -80,9 +81,10 @@ const Board = props => {
       }}
       ref={boardContainer}
     >
-      <Players />
       <Field />
+      <Players />
       <GlobalParameters />
+      <MilestoneAward />
       <StandardProjects />
       <ActiveCard />
       <CardDrawer

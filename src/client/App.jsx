@@ -5,7 +5,7 @@ import LogModel from './game/models/log.model';
 import GameModel from './game/models/game.model';
 import CardModel from './game/models/card.model';
 import { Provider } from 'mobx-react';
-import Tharsis from './game/components/assets/boards/Tharsis';
+import Tharsis from '../shared/boards/Tharsis';
 
 const logStore = new LogModel();
 const gameStore = new GameModel({ field: Tharsis });
