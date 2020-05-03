@@ -38,11 +38,11 @@ $arrowSize: 12px;
   }
   &.left:before {
     top: calc(50% - #{$arrowSize / 2});
-    left: -$arrowSize / 2;
+    right: -$arrowSize / 2;
   }
   &.right:before {
     top: calc(50% - #{$arrowSize / 2});
-    right: -$arrowSize / 2;
+    left: -$arrowSize / 2;
   }
 
   &.left-edge:before {

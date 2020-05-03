@@ -152,7 +152,7 @@ const Tharsis = {
         player.tiles.city + player.tiles.greenery + player.tiles.special,
       icon: (
         <Tile name="blank-city capital" noIcon>
-          <span>X</span>
+          <div className="icon-text">X</div>
         </Tile>
       ),
       description: 'Own the most tiles in play'

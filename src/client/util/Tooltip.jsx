@@ -6,13 +6,11 @@ import './Tooltip.scss';
 
 const Tooltip = ({ msg, direction, children }) => {
   const [shown, setShown] = useState(false);
-  const [left, setLeft] = useState(0);
-  const [top, setTop] = useState(0);
+  const [style, setStyle] = useState({});
   const tooltipRef = useRef(null);
 
   const positionTooltip = target => {
-    let left = 0,
-      top = 0;
+    let left, top, right, bottom;
 
     if (direction === 'bottom') {
       top = target.offsetTop + target.offsetHeight + 12;
@@ -20,10 +18,29 @@ const Tooltip = ({ msg, direction, children }) => {
         target.offsetLeft +
         target.offsetWidth / 2 -
         tooltipRef.current.offsetWidth / 2;
+    } else if (direction === 'left') {
+      top =
+        target.offsetTop +
+        target.offsetHeight / 2 -
+        tooltipRef.current.offsetHeight / 2;
+      right = target.offsetWidth + 12;
     }
 
-    setTop(top);
-    setLeft(left);
+    const style = {};
+    if (left) {
+      style.left = `${left}px`;
+    }
+    if (top) {
+      style.top = `${top}px`;
+    }
+    if (right) {
+      style.right = `${right}px`;
+    }
+    if (bottom) {
+      style.bottom = `${bottom}px`;
+    }
+
+    setStyle(style);
   };
 
   return (
@@ -41,13 +58,14 @@ const Tooltip = ({ msg, direction, children }) => {
       <div
         className={classnames('tooltip', direction, {
           shown,
-          'left-edge': left < 8,
-          'top-edge': top < 8
+          'left-edge':
+            tooltipRef.current &&
+            tooltipRef.current.getBoundingClientRect().left < 8,
+          'top-edge':
+            tooltipRef.current &&
+            tooltipRef.current.getBoundingClientRect().top < 8
         })}
-        style={{
-          left: Math.max(left, 8),
-          top: Math.max(top, 8)
-        }}
+        style={style}
         ref={tooltipRef}
       >
         {msg}

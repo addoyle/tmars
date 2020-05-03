@@ -13,6 +13,7 @@ import { Param } from '../assets/Assets';
 import classNames from 'classnames';
 import ActiveCard from './ActiveCard';
 import MilestoneAward from './MilestoneAward';
+import Settings from './Settings';
 
 // prettier-ignore
 const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
@@ -87,6 +88,7 @@ const Board = props => {
       <MilestoneAward />
       <StandardProjects />
       <ActiveCard />
+      <Settings />
       <CardDrawer
         cards={['P36', 'P37', 'P38', 'P39', 'P40', 'P41', 'P42']}
         type="hand"

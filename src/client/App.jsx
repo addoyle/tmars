@@ -5,6 +5,8 @@ import LogModel from './game/models/log.model';
 import GameModel from './game/models/game.model';
 import CardModel from './game/models/card.model';
 import { Provider } from 'mobx-react';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faCog, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Tharsis from '../shared/boards/Tharsis';
 
 const logStore = new LogModel();
@@ -13,6 +15,10 @@ const cardStore = new CardModel();
 
 // Don't reset scroll on refresh
 history.scrollRestoration = 'manual';
+
+// Load up icons
+library.add(faCog);
+library.add(faArrowLeft);
 
 /**
  * TMars entry point
