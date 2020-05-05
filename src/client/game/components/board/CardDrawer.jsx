@@ -37,9 +37,9 @@ const CardDrawer = props => {
       </button>
 
       <ul className="cards">
-        {cards.map((card, i) => (
+        {cards.map(card => (
           <li
-            key={i}
+            key={`card-${card.card}`}
             onClick={() => gameStore.showActiveCard(card.card, cardType)}
             className={classNames('card-selector', {
               selected:

@@ -73,7 +73,7 @@ const Log = forwardRef((props, ref) => {
                           key={i}
                           className={`strong player-${body.player}`}
                         >
-                          Frank
+                          {gameStore.players[body.player - 1].name}
                         </span>
                       );
                     } else if (body.tile) {

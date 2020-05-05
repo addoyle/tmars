@@ -1,34 +1,19 @@
 import React from 'react';
-import './App.scss';
-import Board from './game/components/board/Board';
-import LogModel from './game/models/log.model';
-import GameModel from './game/models/game.model';
-import CardModel from './game/models/card.model';
-import { Provider } from 'mobx-react';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCog, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import Tharsis from '../shared/boards/Tharsis';
-
-const logStore = new LogModel();
-const gameStore = new GameModel({ field: Tharsis });
-const cardStore = new CardModel();
-
-// Don't reset scroll on refresh
-history.scrollRestoration = 'manual';
-
-// Load up icons
-library.add(faCog);
-library.add(faArrowLeft);
+import { BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import Lobby from './lobby/Lobby';
+import Game from './game/Game';
 
 /**
  * TMars entry point
  */
 const App = () => (
-  <div className="App">
-    <Provider {...{ logStore, gameStore, cardStore }}>
-      <Board />
-    </Provider>
-  </div>
+  <BrowserRouter>
+    <Switch>
+      <Route exact path="/" component={Lobby} />
+      <Route path="/game/:id" component={Game} />
+    </Switch>
+  </BrowserRouter>
 );
 
 export default App;

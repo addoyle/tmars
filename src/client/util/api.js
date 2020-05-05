@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 const API_URL =
   typeof window === 'undefined' || process.env.NODE_ENV === 'test'
     ? process.env.BASE_URL || `http://localhost:${process.env.PORT}/api`
-    : 'api';
+    : '/api';
 
 export function API(
   endpoint,

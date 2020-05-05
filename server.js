@@ -10,15 +10,15 @@ const app = new Express();
 app.use(BodyParser.urlencoded({ extended: true }));
 app.use(BodyParser.json());
 
-// Assign routes
-app.get('/', (req, res) =>
-  res.sendFile(path.join(__dirname + '/public/index.html'))
-);
-app.use('/api', routes);
-
 // Define static paths
 app.use(Express.static('public'));
 app.use(Express.static('dist'));
+
+// Assign routes
+app.use('/api', routes);
+app.get(['*'], (req, res) =>
+  res.sendFile(path.join(__dirname + '/public/index.html'))
+);
 
 // Start the server
 app.listen(config.port, () =>
