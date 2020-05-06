@@ -3,9 +3,8 @@ $title-font: 'Prototype', sans-serif;
 .active-card {
   position: fixed;
   opacity: 0;
-  pointer-events: none;
-  transition: opacity .5s ease;
-  background-color: rgba(0,0,0,.75);
+  transition: opacity 0.5s ease;
+  background-color: rgba(0, 0, 0, 0.75);
   padding: 16px;
   border: 4px solid #444;
   z-index: 2;
@@ -13,20 +12,24 @@ $title-font: 'Prototype', sans-serif;
   left: 50vw;
   top: 50vh;
   transform: translate(-50%, -50%);
+  pointer-events: none;
 
   &.show {
     opacity: 1;
     pointer-events: auto;
+
+    .card-preview {
+      pointer-events: auto;
+    }
   }
 
   .card-preview {
     position: static;
-    pointer-events: auto;
     user-select: none;
     cursor: move;
 
     .card {
-      transition: height .5s ease, width .5s ease
+      transition: height 0.5s ease, width 0.5s ease;
     }
   }
 
@@ -38,10 +41,17 @@ $title-font: 'Prototype', sans-serif;
       width: 100%;
       padding: 2px;
       border: 1px solid #ccc;
-      background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+      background: linear-gradient(
+        135deg,
+        #444 0%,
+        #eee 25%,
+        #bbb 50%,
+        #bbb 75%,
+        #eee 100%
+      );
       border-top-right-radius: 10px;
       cursor: pointer;
-      transition: box-shadow .15s ease;
+      transition: box-shadow 0.15s ease;
       font-family: $title-font;
       font-size: 1.25em;
       height: 38px;
@@ -56,7 +66,7 @@ $title-font: 'Prototype', sans-serif;
       .pill {
         padding: 4px 12px;
         margin-right: 4px;
-        background-color: rgba(0,0,0,.75);
+        background-color: rgba(0, 0, 0, 0.75);
         color: #eee;
         border-radius: 18px;
         font-size: 12px;
@@ -68,14 +78,14 @@ $title-font: 'Prototype', sans-serif;
 
       &.disabled {
         color: #666;
-        text-shadow: 1px 1px 0 rgba(255,255,255,.2);
+        text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
       }
 
       &:hover {
         box-shadow: 0 0 0 4px #666;
       }
       &:active {
-        box-shadow: 0 0 0 4px #666, 0 0 12px rgba(0,0,0,.5) inset;
+        box-shadow: 0 0 0 4px #666, 0 0 12px rgba(0, 0, 0, 0.5) inset;
       }
     }
   }

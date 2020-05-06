@@ -7,7 +7,7 @@ class Game {
   }
 
   // Sets, or expansions, that are enabled in this game
-  @observable sets = ['corporate', 'prelude'];
+  @observable sets = ['corporate', 'prelude', 'venus'];
 
   // Active drawer, or falsey to show none
   @observable drawer = 'hand';

@@ -7,6 +7,7 @@ $title-font: 'Prototype', sans-serif;
   left: 0;
   background: #000 url('../assets/texture/bg.png');
   cursor: grab;
+  overflow: hidden;
 
   &.dragging {
     cursor: grabbing;

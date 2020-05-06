@@ -25,7 +25,7 @@ const ActiveCard = props => {
       className={classnames('active-card', {
         show: activeCard.show
       })}
-      onMouseDown={() => setDragging(true)}
+      onMouseDown={() => setDragging(activeCard.show)}
       onMouseUp={() => setDragging(false)}
       onMouseMove={e => {
         if (dragging) {

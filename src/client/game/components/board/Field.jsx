@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import './Field.scss';
+import classnames from 'classnames';
 import { Tile, Resource, Param, MegaCredit } from '../assets/Assets';
 
 // NOTE:
@@ -40,7 +41,7 @@ const Field = props => {
   };
 
   return (
-    <div className="field">
+    <div className={classnames('field', { venus: hasVenus })}>
       <div className="tiles">
         {Object.keys(detachedCities)
           .filter(city => hasVenus || detachedCities[city].set !== 'venus')
@@ -70,11 +71,11 @@ const Field = props => {
                 )}
                 {detachedCities[city].player ? (
                   <Resource name={`player-${detachedCities[city].player}`} />
-                ) : (
-                  ''
-                )}
+                ) : null}
               </Tile>
-              {city === 'ganymede' ? <div className="dot">.</div> : null}
+              {['ganymede', 'luna', 'dawn'].indexOf(city) >= 0 ? (
+                <div className="dot">.</div>
+              ) : null}
             </div>
           ))}
 

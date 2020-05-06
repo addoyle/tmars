@@ -5,12 +5,25 @@ $title-font: 'Prototype', sans-serif;
   height: 994px;
   background: url('/icons/mars_bg.jpg') center no-repeat;
   background-size: contain;
-  border: 7px solid #8B5E36;
+  border: 7px solid #8b5e36;
   border-radius: 100%;
   text-align: center;
   margin: 50vh auto;
-  box-shadow: 0 0 100px rgba(255,255,255,.7);
+  box-shadow: 0 0 100px rgba(255, 255, 255, 0.7);
   user-select: none;
+  position: relative;
+
+  &.venus:after {
+    content: '';
+    display: block;
+    width: 1200px;
+    height: 1200px;
+    background: url('/icons/venus_bg.png') top no-repeat;
+    margin: 100px calc(994px / 2 - 1200px / 2) 0;
+    border-radius: 100%;
+    border: 7px solid #ecede6;
+    box-shadow: 0 0 100px rgba(255, 255, 255, 0.8);
+  }
 
   .tiles {
     margin: 64px -152px 0 -143px;
@@ -25,7 +38,7 @@ $title-font: 'Prototype', sans-serif;
         position: absolute;
         top: 10px;
         left: 120px;
-        background: url('../assets/texture/phobos.png') center no-repeat;
+        background: url('../assets/texture/phobos.png') top center no-repeat;
         background-size: contain;
         padding: 10px 0 10px 20px;
         height: initial;
@@ -35,7 +48,11 @@ $title-font: 'Prototype', sans-serif;
         position: absolute;
         top: 200px;
         left: 0;
-        background: radial-gradient(ellipse at center, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 60%);
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 0) 60%
+        );
         width: 144px;
         height: 144px;
         padding-left: 10px;
@@ -53,7 +70,8 @@ $title-font: 'Prototype', sans-serif;
           color: white;
           font-size: 25px;
 
-          &:before, &:after {
+          &:before,
+          &:after {
             content: '';
             border-bottom: 2px solid #ccc;
             height: 0;
@@ -83,42 +101,138 @@ $title-font: 'Prototype', sans-serif;
           top: 130px;
           left: -20px;
           border-radius: 100%;
-          box-shadow: 0 0 15px rgba(255,255,255,.6);
-          filter: grayscale(.4);
+          box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+          filter: grayscale(0.4);
+        }
+      }
+
+      &.maxwell {
+        position: absolute;
+        bottom: -220px;
+        left: 780px;
+      }
+
+      &.stratopolis {
+        position: absolute;
+        bottom: -165px;
+        left: 560px;
+      }
+
+      &.luna {
+        position: absolute;
+        bottom: -80px;
+        left: 240px;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 0) 60%
+        );
+        width: 144px;
+        height: 144px;
+        padding-left: 10px;
+
+        .text {
+          width: 300px;
+          margin-left: 65px;
         }
 
-        // &:after {
-        //   content: '';
-        //   display: block;
-        //   transform: rotate(45deg);
-        //   height: 82px;
-        //   width: 82px;
-        //   position: absolute;
-        //   top: 64px;
-        //   left: 30px;
-        //   border-style: solid;
-        //   border-color: #ccc;
-        //   border-width: 0 2px 2px 0;
-        // }
+        .dot {
+          position: absolute;
+          top: 20px;
+          left: -11px;
+          color: transparent;
+          width: 14px;
+          height: 14px;
+          background-color: #ddd;
+          border-radius: 100%;
+          box-shadow: 4px -4px 4px -2px rgba(0, 0, 0, 0.9) inset;
+
+          &:before,
+          &:after {
+            content: '';
+            border-bottom: 2px solid #ccc;
+            height: 0;
+            width: 72px;
+            display: block;
+            position: absolute;
+            top: -10px;
+          }
+          &:before {
+            left: 15px;
+            top: -2px;
+            transform: rotate(-25deg);
+          }
+          &:after {
+            left: -14px;
+            top: 48px;
+            transform: rotate(-95deg);
+          }
+        }
+
+        &:before {
+          content: '';
+          display: block;
+          background: url('../assets/icons/earth.svg') center no-repeat;
+          background-size: contain;
+          height: 40px;
+          width: 40px;
+          position: absolute;
+          top: 45px;
+          left: -50px;
+          border-radius: 100%;
+          box-shadow: 0 0 15px rgba(255, 255, 255, 0.6),
+            8px -8px 6px rgba(0, 0, 0, 0.9) inset;
+          filter: grayscale(0.4);
+        }
+      }
+
+      &.dawn {
+        position: absolute;
       }
 
       > .tile {
         font-size: 144px;
         margin: 0 -13.5px;
 
-        &.ocean-placed foreignObject { background-image: url('../assets/texture/ocean.png'); }
-        &.city-placed foreignObject { background-image: url('../assets/texture/city.png'); }
-        &.greenery-placed foreignObject { background-image: url('../assets/texture/greenery.png'); }
-        &.capital-placed foreignObject { background-image: url('../assets/texture/capital.png'); }
-        &.special-placed.mine foreignObject { background-image: url('../assets/texture/mine.png'); }
-        &.special-placed.restricted foreignObject { background-image: url('../assets/texture/restricted.png'); }
-        &.special-placed.nuclear foreignObject { background-image: url('../assets/texture/nuclear.png'); }
-        &.special-placed.mohole foreignObject { background-image: url('../assets/texture/mohole.png'); }
-        &.special-placed.factory foreignObject { background-image: url('../assets/texture/factory.png'); }
-        &.special-placed.volcano foreignObject { background-image: url('../assets/texture/volcano.png'); }
-        &.special-placed.euro foreignObject { background-image: url('../assets/texture/euro.png'); }
-        &.special-placed.mars foreignObject { background-image: url('../assets/texture/mars.png'); }
-        &.special-placed.animal foreignObject { background-image: url('../assets/texture/animal.png'); }
+        &.ocean-placed foreignObject {
+          background-image: url('../assets/texture/ocean.png');
+        }
+        &.city-placed foreignObject {
+          background-image: url('../assets/texture/city.png');
+        }
+        &.greenery-placed foreignObject {
+          background-image: url('../assets/texture/greenery.png');
+        }
+        &.capital-placed foreignObject {
+          background-image: url('../assets/texture/capital.png');
+        }
+        &.special-placed.mine foreignObject {
+          background-image: url('../assets/texture/mine.png');
+        }
+        &.special-placed.restricted foreignObject {
+          background-image: url('../assets/texture/restricted.png');
+        }
+        &.special-placed.nuclear foreignObject {
+          background-image: url('../assets/texture/nuclear.png');
+        }
+        &.special-placed.mohole foreignObject {
+          background-image: url('../assets/texture/mohole.png');
+        }
+        &.special-placed.factory foreignObject {
+          background-image: url('../assets/texture/factory.png');
+        }
+        &.special-placed.volcano foreignObject {
+          background-image: url('../assets/texture/volcano.png');
+        }
+        &.special-placed.euro foreignObject {
+          background-image: url('../assets/texture/euro.png');
+        }
+        &.special-placed.mars foreignObject {
+          background-image: url('../assets/texture/mars.png');
+        }
+        &.special-placed.animal foreignObject {
+          background-image: url('../assets/texture/animal.png');
+        }
 
         foreignObject {
           background-size: contain;
@@ -129,7 +243,7 @@ $title-font: 'Prototype', sans-serif;
             padding-top: 25px;
 
             > .resource {
-              opacity: .85;
+              opacity: 0.85;
               font-size: 120px;
             }
 
