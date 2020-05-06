@@ -188,6 +188,50 @@ $title-font: 'Prototype', sans-serif;
 
       &.dawn {
         position: absolute;
+        left: 950px;
+        bottom: -90px;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 0) 60%
+        );
+        width: 144px;
+        height: 144px;
+        padding-left: 10px;
+
+        .dot {
+          position: absolute;
+          top: -30px;
+          left: 65px;
+          color: transparent;
+          width: 14px;
+          height: 14px;
+          background-color: #594f49;
+          border-radius: 100%;
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.6),
+            4px -4px 4px -2px rgba(0, 0, 0, 0.9) inset;
+
+          &:before,
+          &:after {
+            content: '';
+            border-bottom: 2px solid #ccc;
+            height: 0;
+            width: 72px;
+            display: block;
+            position: absolute;
+            top: -10px;
+          }
+          &:before {
+            left: 0;
+            top: 47px;
+            transform: rotate(215deg);
+          }
+          &:after {
+            right: 0;
+            top: 47px;
+            transform: rotate(145deg);
+          }
+        }
       }
 
       > .tile {
