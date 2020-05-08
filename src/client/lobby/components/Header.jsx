@@ -8,9 +8,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles(theme => ({
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    fontFamily: 'Prototype',
+    letterSpacing: '.2em',
+    textShadow: '.1em .25em .15em rgba(0,0,0,.4)'
+  },
+  google: {
+    fontFamily: 'Roboto, sans-serif',
+    backgroundColor: '#4285f4',
+    borderRadius: 3,
+    boxShadow: '0 1px 1px rgba(0,0,0,.4)',
+    paddingRight: theme.spacing(2),
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 14,
+    textDecoration: 'none',
+    '&:before': {
+      content: "''",
+      marginRight: theme.spacing(1),
+      display: 'inline-block',
+      height: '46px',
+      width: '46px',
+      margin: -3,
+      background: "url('./icons/google.svg') center no-repeat",
+      verticalAlign: 'middle'
+    }
   }
 }));
 
@@ -19,7 +43,7 @@ const Header = props => {
 
   return (
     <>
-      <AppBar>
+      <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             TERRAFORMING MARS
@@ -29,11 +53,12 @@ const Header = props => {
               <FontAwesomeIcon icon="user-circle" />
             </IconButton>
           ) : (
-            <div>SIGN IN WITH GOOGLE</div>
+            <a href="#" className={classes.google}>
+              Sign in with Google
+            </a>
           )}
         </Toolbar>
       </AppBar>
-      <Toolbar />
     </>
   );
 };

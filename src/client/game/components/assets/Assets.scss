@@ -307,6 +307,15 @@ $title-font: 'Prototype', sans-serif;
 }
 
 .icon.resource {
+  position: relative;
+  
+  .icon {
+    position: absolute;
+    font-size: .7em;
+    top: -.5em;
+    right: -.5em;
+  }
+
   &.tr {
     font-size: 1.3em;
     width: 1.4em;

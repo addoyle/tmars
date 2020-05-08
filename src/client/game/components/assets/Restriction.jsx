@@ -17,6 +17,8 @@ function renderRestriction(restriction) {
     return <Tag name={restriction.tag} anyone={restriction.anyone} />;
   } else if (restriction.param) {
     return <Param name={restriction.param} />;
+  } else if (restriction.resource) {
+    return <Resource name={restriction.resource} />;
   } else if (restriction.production) {
     return (
       <Production>

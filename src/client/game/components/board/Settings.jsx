@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 import classnames from 'classnames';
 import './Settings.scss';
 import { inject, observer } from 'mobx-react';
 import PropTypes from 'prop-types';
-import Tooltip from '../../../util/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const Settings = ({ gameStore }) => {
   const [shown, setShown] = useState(false);
@@ -16,16 +17,16 @@ const Settings = ({ gameStore }) => {
       onMouseMove={e => e.stopPropagation()}
     >
       <div className={classnames('settings', { shown })}>
-        <a href="/" className="row">
+        <Link to="/" className="row">
           <div className="icon">
             <FontAwesomeIcon icon="arrow-left" fixedWidth />
           </div>
           <div className="label">Back to Lobby</div>
-        </a>
+        </Link>
       </div>
 
       <div className="control" onClick={() => setShown(!shown)}>
-        <Tooltip msg="Settings" direction="left">
+        <Tooltip arrow title="Settings" placement="left">
           <span>
             <FontAwesomeIcon icon="cog" />
           </span>

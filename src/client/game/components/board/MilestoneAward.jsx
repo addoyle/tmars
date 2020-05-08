@@ -2,16 +2,41 @@ import React, { useState } from 'react';
 import { PropTypes } from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import './MilestoneAward.scss';
-import { MegaCredit, VictoryPoint } from '../assets/Assets';
+import { MegaCredit, VictoryPoint, Resource, Tag } from '../assets/Assets';
 import classNames from 'classnames';
-import Tooltip from '../../../util/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
+import { toJS } from 'mobx';
 
 /**
  * Milestone/Awards pane
  */
 const MilestoneAward = props => {
   const [collapse, setCollapse] = useState(true);
-  const { milestones, awards } = props.gameStore.field;
+  const milestones = toJS(props.gameStore.field.milestones);
+  const awards = toJS(props.gameStore.field.awards);
+
+  // Add in new Venus Next awards/milestones
+  if (props.gameStore.sets.indexOf('venus') > 0) {
+    milestones.push({
+      name: 'Hoverlord',
+      getValue: player =>
+        player.cards.active
+          .concat([player.corp])
+          .filter(card => card.resources.type === 'floater')
+          .reduce((sum, card) => sum + card.resources, 0),
+      icon: <Resource name="floater" />,
+      requirement: 7,
+      description: 'Have at least 7 floater resources on cards',
+      color: '#226695',
+      highlight: 'rgba(103,155,203,1)'
+    });
+    awards.push({
+      name: 'Venuphile',
+      getValue: player => player.tags.venus,
+      icon: <Tag name="venus" />,
+      description: 'Have the most venus tags in play'
+    });
+  }
 
   return (
     <div
@@ -31,17 +56,17 @@ const MilestoneAward = props => {
       <div>
         <div className="flex gutter center section-header">
           <div className="text-right resources col-1 middle">
-            <Tooltip msg="1st claim">
+            <Tooltip arrow title="1st claim">
               <span>
                 <MegaCredit value="8" />
               </span>
             </Tooltip>
-            <Tooltip msg="2nd claim">
+            <Tooltip arrow title="2nd claim">
               <span>
                 <MegaCredit value="8" />
               </span>
             </Tooltip>
-            <Tooltip msg="3rd claim">
+            <Tooltip arrow title="3rd claim">
               <span>
                 <MegaCredit value="8" />
               </span>
@@ -53,7 +78,7 @@ const MilestoneAward = props => {
             </div>
           </div>
           <div className="col-1 middle">
-            <Tooltip msg="Claimer's prize">
+            <Tooltip arrow title="Claimer's prize">
               <div className="inline-block">
                 <VictoryPoint>
                   <span className="point big">5</span>
@@ -63,9 +88,13 @@ const MilestoneAward = props => {
           </div>
         </div>
         <div className="flex gutter">
-          {milestones.map(milestone => (
+          {milestones.map((milestone, i) => (
             <div className="col-1" key={milestone.name}>
-              <Tooltip msg={milestone.description}>
+              <Tooltip
+                arrow
+                title={milestone.description}
+                placement={i === 0 ? 'bottom-start' : 'bottom'}
+              >
                 <div className="milestone">
                   <div className="milestone-icon inline-flex">
                     <div className="requirement middle">
@@ -118,17 +147,17 @@ const MilestoneAward = props => {
       <div className="m-top p-top">
         <div className="flex gutter center section-header">
           <div className="text-right resources col-1 middle">
-            <Tooltip msg="1st funder">
+            <Tooltip arrow title="1st funder">
               <span>
                 <MegaCredit value="8" />
               </span>
             </Tooltip>
-            <Tooltip msg="2nd funder">
+            <Tooltip arrow title="2nd funder">
               <span>
                 <MegaCredit value="14" />
               </span>
             </Tooltip>
-            <Tooltip msg="3rd funder">
+            <Tooltip arrow title="3rd funder">
               <span>
                 <MegaCredit value="20" />
               </span>
@@ -140,14 +169,14 @@ const MilestoneAward = props => {
             </div>
           </div>
           <div className="col-1 middle">
-            <Tooltip msg="Winner">
+            <Tooltip arrow title="Winner">
               <div className="inline-block">
                 <VictoryPoint>
                   <span className="point big">5</span>
                 </VictoryPoint>
               </div>
             </Tooltip>
-            <Tooltip msg="Contender">
+            <Tooltip arrow title="Contender">
               <div className="inline-block">
                 <VictoryPoint>
                   <span className="point big">2</span>
@@ -157,9 +186,13 @@ const MilestoneAward = props => {
           </div>
         </div>
         <div className="flex gutter m-top">
-          {awards.map(award => (
+          {awards.map((award, i) => (
             <div className="col-1" key={award.name}>
-              <Tooltip msg={award.description}>
+              <Tooltip
+                arrow
+                title={award.description}
+                placement={i === 0 ? 'bottom-start' : 'bottom'}
+              >
                 <div className="award">
                   <div className="award-img">{award.icon}</div>
                   <div className="label">{award.name}</div>
@@ -175,6 +208,7 @@ const MilestoneAward = props => {
 
 MilestoneAward.propTypes = {
   gameStore: PropTypes.shape({
+    sets: PropTypes.arrayOf(PropTypes.string),
     field: PropTypes.shape({
       milestones: PropTypes.arrayOf(
         PropTypes.shape({

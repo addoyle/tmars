@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { Route, Switch } from 'react-router-dom';
 import Lobby from './lobby/Lobby';
 import Game from './game/Game';
+import './App.scss';
 
 /**
  * TMars entry point
