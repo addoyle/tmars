@@ -2,7 +2,14 @@ $title-font: 'Prototype', sans-serif;
 
 .milestone-awards {
   font-family: $title-font;
-  background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+  background: linear-gradient(
+    135deg,
+    #444 0%,
+    #eee 25%,
+    #bbb 50%,
+    #bbb 75%,
+    #eee 100%
+  );
   border: 3px solid #444;
   position: fixed;
   left: 0;
@@ -10,7 +17,7 @@ $title-font: 'Prototype', sans-serif;
   cursor: initial;
   font-size: 14px;
   padding: 6px;
-  transition: transform ease .5s;
+  transition: transform ease 0.5s;
 
   .gutter > * {
     margin-left: 1em;
@@ -19,13 +26,21 @@ $title-font: 'Prototype', sans-serif;
       margin-left: inherit;
     }
   }
-  
-  &, * {
+
+  &,
+  * {
     cursor: default;
   }
 
   .header {
-    background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+    background: linear-gradient(
+      135deg,
+      #444 0%,
+      #eee 25%,
+      #bbb 50%,
+      #bbb 75%,
+      #eee 100%
+    );
     border: 3px solid #444;
     padding: 9px 16px;
     border-bottom-left-radius: 30px;
@@ -41,15 +56,15 @@ $title-font: 'Prototype', sans-serif;
       padding-left: 1em;
       position: relative;
       margin: 0;
-      font-size: .9em;
-      letter-spacing: .1em;
+      font-size: 0.9em;
+      letter-spacing: 0.1em;
 
       &:after {
         content: '\2259';
         font-size: 20px;
-        line-height: .24;
+        line-height: 0.24;
         vertical-align: middle;
-        margin-left: .1em;
+        margin-left: 0.1em;
         font-weight: bold;
       }
     }
@@ -62,8 +77,8 @@ $title-font: 'Prototype', sans-serif;
 
     .vp {
       font-size: 2.8em;
-      margin-right: .2em;
-      margin-top: .1em;
+      margin-right: 0.2em;
+      margin-top: 0.1em;
     }
   }
 
@@ -71,26 +86,28 @@ $title-font: 'Prototype', sans-serif;
     display: block;
     text-align: center;
     min-width: 135px;
-    filter: drop-shadow(4px 4px 4px rgba(0,0,0,.5));
+    filter: drop-shadow(4px 4px 4px rgba(0, 0, 0, 0.5));
     transition: opacity 1s ease, filter 1s ease;
     user-select: none;
 
-    &:not(.disabled), &:not(.disabled) * {
+    &:not(.disabled),
+    &:not(.disabled) * {
       cursor: pointer;
     }
 
     &.disabled {
-      filter: grayscale(.9);
-      opacity: .5;
+      filter: grayscale(0.9);
+      opacity: 0.5;
     }
-    
+
     .milestone-icon {
       position: relative;
       height: 60px;
       overflow: visible;
-      margin-bottom: -.5em;
+      margin-bottom: -0.5em;
 
-      .requirement, .tm {
+      .requirement,
+      .tm {
         width: 2em;
 
         svg {
@@ -110,7 +127,6 @@ $title-font: 'Prototype', sans-serif;
         }
       }
 
-
       &:before {
         content: '';
         position: absolute;
@@ -120,19 +136,26 @@ $title-font: 'Prototype', sans-serif;
         right: 0;
         height: 20px;
         border: 1px solid black;
-        background: repeating-linear-gradient(-60deg, #f7b152 0%, #fcf1a2 18%, #f9bc52 21%, #fcf1a2 24%, #e19a2e 33%);
+        background: repeating-linear-gradient(
+          -60deg,
+          #f7b152 0%,
+          #fcf1a2 18%,
+          #f9bc52 21%,
+          #fcf1a2 24%,
+          #e19a2e 33%
+        );
         z-index: -1;
       }
     }
-    
+
     .label {
       text-transform: uppercase;
-      letter-spacing: .2em;
+      letter-spacing: 0.2em;
       width: 100%;
-      padding: .2em 0 .2em .2em;
+      padding: 0.2em 0 0.2em 0.2em;
       margin: 2px;
       position: relative;
-      transition: outline .3s ease;
+      transition: outline 0.3s ease;
       outline: 2px solid transparent;
 
       &:after {
@@ -149,10 +172,10 @@ $title-font: 'Prototype', sans-serif;
     }
 
     &:not(.disabled):hover .label {
-      outline: 2px solid rgba(255,255,255,.2);
+      outline: 2px solid rgba(255, 255, 255, 0.2);
     }
     &:not(.disabled):active .label {
-      outline: 2px solid rgba(0,0,0,.2);
+      outline: 2px solid rgba(0, 0, 0, 0.2);
     }
   }
 
@@ -163,15 +186,16 @@ $title-font: 'Prototype', sans-serif;
     transition: opacity 1s ease, filter 1s ease;
     user-select: none;
 
-    &:not(.disabled), &:not(.disabled) * {
+    &:not(.disabled),
+    &:not(.disabled) * {
       cursor: pointer;
     }
 
     &.disabled {
-      filter: grayscale(.9);
-      opacity: .5;
+      filter: grayscale(0.9);
+      opacity: 0.5;
     }
-    
+
     .award-img {
       display: inline-flex;
       position: relative;
@@ -204,24 +228,32 @@ $title-font: 'Prototype', sans-serif;
         margin: -3px;
         background: linear-gradient(#e1a537, #f5e839, #e1a537);
         z-index: -1;
-        box-shadow: 4px 4px 4px rgba(0,0,0,.5);
+        box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
       }
     }
-    
+
     .label {
       font-style: italic;
       font-family: 'Monotype Corsiva', serif;
       font-size: 1.4em;
-      letter-spacing: .15em;
+      letter-spacing: 0.15em;
       width: 100%;
-      padding: .2em 0 .2em .2em;
-      margin-top: .75em;
+      padding: 0.2em 0 0.2em 0.2em;
+      margin-top: 0.75em;
       position: relative;
-      transition: border-color .3s ease;
+      transition: border-color 0.3s ease;
       border: 2px solid #c78c33;
       height: 30px;
       border-radius: 15px;
-      background: linear-gradient(120deg, #f7b152 0%, #f7b152 40%, #fcf1a2 50%, #f9bc52 60%, #f6ec71 75%, #cb7f29 100%);
+      background: linear-gradient(
+        120deg,
+        #f7b152 0%,
+        #f7b152 40%,
+        #fcf1a2 50%,
+        #f9bc52 60%,
+        #f6ec71 75%,
+        #cb7f29 100%
+      );
 
       &:after {
         content: '';
@@ -256,18 +288,26 @@ $title-font: 'Prototype', sans-serif;
   .milestone-award {
     display: inline-block;
     font-size: 18px;
-    padding: .2em .2em .1em;
-    margin-bottom: .1em;
-    margin-top: .2em;
+    padding: 0.2em 0.2em 0.1em;
+    margin-bottom: 0.1em;
+    margin-top: 0.2em;
     text-align: center;
     text-transform: uppercase;
     font-family: $title-font;
     position: relative;
     cursor: pointer;
-    transition: border-color .3s ease, box-shadow .3s ease;
-    letter-spacing: .4em;
-    background: linear-gradient(135deg, #ffce99 0%, #ffce99 5%,#ef7e2e 15%, #ef7e2e 85%, #ffce99 95%, #ffce99 100%);
-    box-shadow: 0 10px 10px rgba(0,0,0,.2) inset;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    letter-spacing: 0.4em;
+    background: linear-gradient(
+      135deg,
+      #ffce99 0%,
+      #ffce99 5%,
+      #ef7e2e 15%,
+      #ef7e2e 85%,
+      #ffce99 95%,
+      #ffce99 100%
+    );
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.2) inset;
     color: #30231a;
     border: 2px solid #e27d39;
     cursor: pointer;
@@ -275,24 +315,23 @@ $title-font: 'Prototype', sans-serif;
     min-width: 182px;
 
     span {
-      margin-right: -.4em;
+      margin-right: -0.4em;
     }
 
     &.btn {
       &:hover {
         border-color: #eba77a;
-        box-shadow: 0 10px 10px rgba(0,0,0,.1) inset;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1) inset;
       }
       &:active {
         outline: none;
         border-color: #b1571b;
-        box-shadow: 0 10px 10px rgba(0,0,0,.4) inset;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.4) inset;
       }
       &:focus {
         outline: none;
       }
     }
-
 
     &:before {
       content: '';
@@ -302,7 +341,7 @@ $title-font: 'Prototype', sans-serif;
       left: -4px;
       bottom: -4px;
       right: -4px;
-      background: linear-gradient(0deg,  #eee 0%, #444 100%);
+      background: linear-gradient(0deg, #eee 0%, #444 100%);
       z-index: -1;
       border-radius: 50% 50% 0 0 / 20% 20% 0 0;
     }

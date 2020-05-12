@@ -5,8 +5,6 @@
       <stop offset="0" style="stop-color: rgb(86, 168, 0);"/>
       <stop offset="1" style="stop-color: rgba(86, 168, 0, 0);"/>
     </radialGradient>
-    <bx:guide x="100" y="100" angle="0"/>
-    <bx:guide x="100" y="100" angle="90"/>
   </defs>
   <circle style="fill: url(#gradient-1);" cx="100" cy="100" r="83.603" bx:origin="0.50116 0.508331"/>
   <ellipse style="stroke-width: 4px; stroke: rgb(0, 0, 0);" cx="280.186" cy="205.23" rx="11" ry="18" transform="matrix(0.970296, -0.241922, 0.241922, 0.970296, -271.310059, -38.346386)" bx:origin="2.619336 1.023191"/>

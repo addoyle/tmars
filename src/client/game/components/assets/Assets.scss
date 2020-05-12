@@ -1,21 +1,40 @@
 $title-font: 'Prototype', sans-serif;
 
-@mixin icon($img, $hue, $sat, $tint, $bg:true, $l:50%, $bgsize:85%, $gstop:60%) {
-
-  background: linear-gradient(hsl($hue,$sat,if($l,$l,45%)) $gstop, hsl($hue,$sat,22%));
+@mixin icon(
+  $img,
+  $hue,
+  $sat,
+  $tint,
+  $bg: true,
+  $l: 50%,
+  $bgsize: 85%,
+  $gstop: 60%
+) {
+  background: linear-gradient(
+    hsl($hue, $sat, if($l, $l, 45%)) $gstop,
+    hsl($hue, $sat, 22%)
+  );
 
   &:before {
     @if $bg {
       @if ($l) {
         background: $img no-repeat center/$bgsize,
-          radial-gradient(ellipse at center,hsla($hue,$sat,$l + 26%,1) 0%,hsla($hue,$sat,$l,1) 100%);
+          radial-gradient(
+            ellipse at center,
+            hsla($hue, $sat, $l + 26%, 1) 0%,
+            hsla($hue, $sat, $l, 1) 100%
+          );
       } @else {
         background: $img no-repeat center/$bgsize;
       }
     } @else {
-      background: radial-gradient(ellipse at center,hsla($hue,$sat,if($l,$l + 26%,66%),1) 0%,hsla($hue,$sat,if($l,$l,50%),1) 100%);
+      background: radial-gradient(
+        ellipse at center,
+        hsla($hue, $sat, if($l, $l + 26%, 66%), 1) 0%,
+        hsla($hue, $sat, if($l, $l, 50%), 1) 100%
+      );
     }
-    box-shadow: 0 -2.47em 0 -2em hsla($hue,$sat,6%,$tint) inset;
+    box-shadow: 0 -2.47em 0 -2em hsla($hue, $sat, 6%, $tint) inset;
   }
   &:after {
     @if not $bg {
@@ -24,11 +43,13 @@ $title-font: 'Prototype', sans-serif;
   }
 
   .simple & {
-    background: hsl($hue,$sat,if($l,$l,45%));
+    background: hsl($hue, $sat, if($l, $l, 45%));
   }
 }
 
-.icon, .mc, .param {
+.icon,
+.mc,
+.param {
   width: 1.01em;
   height: 1.01em;
   display: inline-flex;
@@ -38,17 +59,17 @@ $title-font: 'Prototype', sans-serif;
   vertical-align: text-bottom;
 
   &.temperature {
-    margin-top: -.3em;
-    margin-bottom: -.3em;
+    margin-top: -0.3em;
+    margin-bottom: -0.3em;
     height: 1.7em;
-    width: .499em;
+    width: 0.499em;
   }
 
   &.card {
     font-size: 1em;
     height: 1.4em;
     vertical-align: middle;
-    border-radius: .1em;
+    border-radius: 0.1em;
 
     &.back {
       background: #171717 url('./texture/card-back.jpg') no-repeat center/75%;
@@ -61,13 +82,14 @@ $title-font: 'Prototype', sans-serif;
 
   .icon {
     position: absolute;
-    font-size: .7em;
-    top: -.5em;
-    right: -.5em;
+    font-size: 0.7em;
+    top: -0.5em;
+    right: -0.5em;
   }
 
   &.card {
-    .title, .separator {
+    .title,
+    .separator {
       height: 3em;
     }
 
@@ -86,19 +108,22 @@ $title-font: 'Prototype', sans-serif;
 .icon {
   position: relative;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     content: '';
     position: absolute;
-    width: .85em;
-    height: .85em;
-    top: .05em;
+    width: 0.85em;
+    height: 0.85em;
+    top: 0.05em;
   }
 }
 
-.icon.tag, .icon.vp {
+.icon.tag,
+.icon.vp {
   border-radius: 50%;
 
-  &:before, &:after {
+  &:before,
+  &:after {
     border-radius: 50%;
   }
 }
@@ -120,7 +145,7 @@ $title-font: 'Prototype', sans-serif;
   .outline-color {
     fill: none;
     stroke-width: 30px;
-    transition: stroke .2s ease;
+    transition: stroke 0.2s ease;
   }
 
   &.clickable {
@@ -131,47 +156,47 @@ $title-font: 'Prototype', sans-serif;
 
     &.clickable-city {
       .outline-color {
-        stroke: hsla(0,0%,67%,.5)!important;
+        stroke: hsla(0, 0%, 67%, 0.5) !important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(0,0%,67%,1)!important;
+        stroke: hsla(0, 0%, 67%, 1) !important;
       }
     }
     &.clickable-greenery {
       .outline-color {
-        stroke: hsla(100,60%,44%,.5)!important;
+        stroke: hsla(100, 60%, 44%, 0.5) !important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(100,60%,44%,1)!important;
+        stroke: hsla(100, 60%, 44%, 1) !important;
       }
     }
     &.clickable-ocean {
       .outline-color {
-        stroke: hsla(203,48%,40%,.5)!important;
+        stroke: hsla(203, 48%, 40%, 0.5) !important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(203,48%,40%,1)!important;
+        stroke: hsla(203, 48%, 40%, 1) !important;
       }
     }
     &.clickable-special {
       .outline-color {
-        stroke: hsla(23,52%,34%,.7)!important;
+        stroke: hsla(23, 52%, 34%, 0.7) !important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(23,52%,34%,1)!important;
+        stroke: hsla(23, 52%, 34%, 1) !important;
       }
     }
     &.clickable-capital {
       .outline-color {
-        stroke: hsla(0,0%,99%,.5)!important;
+        stroke: hsla(0, 0%, 99%, 0.5) !important;
       }
 
       .base:hover + .outline-color {
-        stroke: hsla(0,0%,99%,1)!important;
+        stroke: hsla(0, 0%, 99%, 1) !important;
       }
     }
   }
@@ -195,7 +220,7 @@ $title-font: 'Prototype', sans-serif;
 
   &.anyone {
     .base {
-      stroke: #C02B39;
+      stroke: #c02b39;
       stroke-width: 30px;
     }
   }
@@ -210,7 +235,7 @@ $title-font: 'Prototype', sans-serif;
       stroke-width: 5px;
       fill: url('#drip-gradient');
       stroke: rgb(22, 72, 124);
-      fill-opacity: .8;
+      fill-opacity: 0.8;
     }
 
     .waves {
@@ -218,7 +243,8 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
-  &.city, &.blank-city {
+  &.city,
+  &.blank-city {
     & > .outline-color {
       stroke: url('#city-border');
       fill: url('#city-gradient');
@@ -251,7 +277,7 @@ $title-font: 'Prototype', sans-serif;
 
   &.special {
     .outline-color {
-      stroke: #834B29;
+      stroke: #834b29;
       fill: url('#special-gradient');
     }
 
@@ -284,21 +310,23 @@ $title-font: 'Prototype', sans-serif;
   }
   &.special-placed {
     & > .outline-color {
-      stroke: #834B29;
+      stroke: #834b29;
     }
   }
   &.greenery-placed {
     & > .outline-color {
-      stroke: #59B22C;
+      stroke: #59b22c;
     }
   }
 }
 
-.icon.tag, .icon.resource, .icon.mc {
-  border: calc(.005em + 1px) solid #000;
+.icon.tag,
+.icon.resource,
+.icon.mc {
+  border: calc(0.005em + 1px) solid #000;
 
   &.anyone {
-    box-shadow: 0 0 0 calc(.05em + 1px) #C02B39;
+    box-shadow: 0 0 0 calc(0.05em + 1px) #c02b39;
   }
 
   &.blank {
@@ -308,89 +336,151 @@ $title-font: 'Prototype', sans-serif;
 
 .icon.resource {
   position: relative;
-  
+
   .icon {
     position: absolute;
-    font-size: .7em;
-    top: -.5em;
-    right: -.5em;
+    font-size: 0.7em;
+    top: -0.5em;
+    right: -0.5em;
   }
 
   &.tr {
     font-size: 1.3em;
     width: 1.4em;
 
-    &:before, &:after {
+    &:before,
+    &:after {
       content: '';
       position: absolute;
       width: 1.25em;
-      height: .85em;
-      top: .05em;
+      height: 0.85em;
+      top: 0.05em;
     }
   }
 }
 
-.icon.building { @include icon(url('./icons/building.svg'), 31, 37%, .2, true, false); }
-.icon.space { @include icon(url('./icons/space.svg'), 26, 0%, .6, false, 50%, 70%); }
-.icon.science { @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%); }
-.icon.earth { @include icon(url('./icons/earth.svg'), 330, 0%, .4, true, 60%, 101%, 10%); }
-.icon.city { @include icon(url('./icons/city.svg'), 330, 0%, .2, true, 80%); }
-.icon.animal { @include icon(url('./icons/animal.svg'), 103, 43%, .2, true, 35%); }
-.icon.event { @include icon(url('./icons/event.svg'), 53, 100%, .1); }
-.icon.jovian { @include icon(url('./icons/jovian.svg'), 330, 0%, .1, true, 60%, 101%, 15%); }
-.icon.microbe { @include icon(url('./icons/microbe.svg'), 67, 62%, .05); }
-.icon.power { @include icon(url('./icons/power.svg'), 307, 62%, .2, false, false); }
-.icon.plant { @include icon(url('./icons/plant.svg'), 95, 65%, .1); }
-.icon.titanium { @include icon(url('./icons/titanium.svg'), 26, 0%, .6, false); }
-.icon.heat { @include icon(url('./icons/heat.svg'), 13, 82%, .2, false, false); }
-.icon.steel { @include icon(url('./icons/steel.svg'), 30, 59%, .1, false, false); }
-.icon.venus { @include icon(url('./icons/venus.svg'), 199, 68%, .2, false, 50%, 60%); }
-.icon.floater { @include icon(url('./icons/floater.svg'), 50, 100%, .1, false, 50%, 80%); }
-.icon.any { @include icon(url('./icons/any.svg'), 330, 0%, 0, true, 99%, 60%); }
-.icon.all { @include icon(url('./icons/all.svg'), 330, 0%, 0, true, 99%, 101%, 15%); }
-.icon.fighter { @include icon(url('./icons/fighter.svg'), 26, 0%, .6, false, 30%); }
-.icon.marker { @include icon(#e06635, 48, 80%, .2, true, false); }
-.icon.player-1 { @include icon(hsl(0,80%,40%), 0, 80%, .2, true, false); }
-.icon.player-2 { @include icon(hsl(240,80%,40%), 240, 80%, .2, true, false); }
-.icon.player-3 { @include icon(hsl(120,80%,40%), 120, 80%, .2, true, false); }
-.icon.player-4 { @include icon(hsl(60,80%,40%), 60, 80%, .2, true, false); }
-.icon.player-5 { @include icon(hsl(0,0%,25%), 0, 0%, .2, true, 40%); }
+.icon.building {
+  @include icon(url('./icons/building.svg'), 31, 37%, 0.2, true, false);
+}
+.icon.space {
+  @include icon(url('./icons/space.svg'), 26, 0%, 0.6, false, 50%, 70%);
+}
+.icon.science {
+  @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%);
+}
+.icon.earth {
+  @include icon(url('./icons/earth.svg'), 330, 0%, 0.4, true, 60%, 101%, 10%);
+}
+.icon.city {
+  @include icon(url('./icons/city.svg'), 330, 0%, 0.2, true, 80%);
+}
+.icon.animal {
+  @include icon(url('./icons/animal.svg'), 103, 43%, 0.2, true, 35%);
+}
+.icon.event {
+  @include icon(url('./icons/event.svg'), 53, 100%, 0.1);
+}
+.icon.jovian {
+  @include icon(url('./icons/jovian.svg'), 330, 0%, 0.1, true, 60%, 101%, 15%);
+}
+.icon.microbe {
+  @include icon(url('./icons/microbe.svg'), 67, 62%, 0.05);
+}
+.icon.power {
+  @include icon(url('./icons/power.svg'), 307, 62%, 0.2, false, false);
+}
+.icon.plant {
+  @include icon(url('./icons/plant.svg'), 95, 65%, 0.1);
+}
+.icon.titanium {
+  @include icon(url('./icons/titanium.svg'), 26, 0%, 0.6, false);
+}
+.icon.heat {
+  @include icon(url('./icons/heat.svg'), 13, 82%, 0.2, false, false);
+}
+.icon.steel {
+  @include icon(url('./icons/steel.svg'), 30, 59%, 0.1, false, false);
+}
+.icon.venus {
+  @include icon(url('./icons/venus.svg'), 199, 68%, 0.2, false, 50%, 60%);
+}
+.icon.floater {
+  @include icon(url('./icons/floater.svg'), 50, 100%, 0.1, false, 50%, 80%);
+}
+.icon.any {
+  @include icon(url('./icons/any.svg'), 330, 0%, 0, true, 99%, 60%);
+}
+.icon.all {
+  @include icon(url('./icons/all.svg'), 330, 0%, 0, true, 99%, 101%, 15%);
+}
+.icon.fighter {
+  @include icon(url('./icons/fighter.svg'), 26, 0%, 0.6, false, 30%);
+}
+.icon.marker {
+  @include icon(#e06635, 48, 80%, 0.2, true, false);
+}
+.icon.player-1 {
+  @include icon(hsl(0, 80%, 40%), 0, 80%, 0.2, true, false);
+}
+.icon.player-2 {
+  @include icon(hsl(240, 80%, 40%), 240, 80%, 0.2, true, false);
+}
+.icon.player-3 {
+  @include icon(hsl(120, 80%, 40%), 120, 80%, 0.2, true, false);
+}
+.icon.player-4 {
+  @include icon(hsl(60, 80%, 40%), 60, 80%, 0.2, true, false);
+}
+.icon.player-5 {
+  @include icon(hsl(0, 0%, 25%), 0, 0%, 0.2, true, 40%);
+}
 
 .icon.tr {
   // @include icon(url('./icons/tr.svg'), 17, 90%, .1);
-  background: linear-gradient(hsl(28,94%,65%) 60%, hsl(28,94%,65%));
+  background: linear-gradient(hsl(28, 94%, 65%) 60%, hsl(28, 94%, 65%));
   &:before {
     background: url('./icons/tr.svg') no-repeat center/85%,
-      radial-gradient(ellipse at center,hsla(36,93%,58%,1) 0%,hsla(17,82%,49%,1) 100%);
-    box-shadow: 0 -2.47em 0 -2em hsla(36,67%,4%,.1) inset;
+      radial-gradient(
+        ellipse at center,
+        hsla(36, 93%, 58%, 1) 0%,
+        hsla(17, 82%, 49%, 1) 100%
+      );
+    box-shadow: 0 -2.47em 0 -2em hsla(36, 67%, 4%, 0.1) inset;
   }
 }
 
 .mc {
   background: url('./icons/mc.svg') no-repeat center/100%;
   font-family: $title-font;
+  position: relative;
 
   &.anyone {
-    background-color: #C02B39;
-    border: .07em solid #C02B39;
-    border-radius: .3em;
+    background-color: #c02b39;
+    border: 0.07em solid #c02b39;
+    border-radius: 0.3em;
     box-sizing: content-box;
     margin: 0;
   }
 
+  .icon {
+    position: absolute;
+    top: -0.5em;
+    right: -0.5em;
+  }
+
   .euro {
     font-weight: bold;
-    color: rgba(246,136,7,.6);
+    color: rgba(246, 136, 7, 0.6);
     font-size: 1em;
-    padding-right: .1em;
+    padding-right: 0.1em;
     vertical-align: text-top;
-    font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    -webkit-text-stroke: .03em rgba(246,136,7,.8);
+    font-family: 'Proxima Nova', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    -webkit-text-stroke: 0.03em rgba(246, 136, 7, 0.8);
     line-height: 1;
   }
 
   > .value {
-    font-size: .5em;
+    font-size: 0.5em;
     color: #222;
   }
 }
@@ -400,65 +490,80 @@ $title-font: 'Prototype', sans-serif;
   height: 1em;
   width: 1em;
   border-radius: 50%;
-  border: .02em solid #444;
+  border: 0.02em solid #444;
 }
 .temperature {
   background: url('./icons/temperature.svg') no-repeat center/100%;
 }
+.venus {
+  background: url('./icons/venusscale.svg') no-repeat center/100%;
+}
 
 .restriction {
-  font-size: .05em;
+  font-size: 0.05em;
   display: inline-block;
   height: 100%;
   background: linear-gradient(to right, #ee8209 0%, #f5f30a 50%, #ee8209 100%);
-  border: .05em solid black;
-  margin: .05em;
-  box-shadow: 0 0 0 .05em white;
-  margin-right: .1em;
+  border: 0.05em solid black;
+  margin: 0.05em;
+  box-shadow: 0 0 0 0.05em white;
+  margin-right: 0.1em;
   display: flex;
   flex-direction: row;
 
   span {
     font-family: $title-font;
     white-space: nowrap;
-    margin-right: .1em;
+    margin-right: 0.1em;
     line-height: 1.4;
 
-    .icon, .param, .tile {
+    .icon,
+    .param,
+    .tile {
       font-size: 1.5em;
-      margin-top: -.07em;
-      margin-left: .06em;
+      margin-top: -0.07em;
+      margin-left: 0.06em;
     }
 
     .param.temperature {
       font-size: 1.2em;
-      margin-top: -.22em;
+      margin-top: -0.22em;
+    }
+
+    .param.venus {
+      font-size: 2em;
+      margin-top: -0.17em;
     }
 
     &:first-of-type {
-      margin-left: .2em;
+      margin-left: 0.2em;
     }
     &:last-of-type {
-      margin-right: .3em;
+      margin-right: 0.3em;
     }
   }
 
   .production {
     background: #444;
-    padding: .3em;
-    font-size: .75em;
-    margin-top: -.2em;
+    padding: 0.3em;
+    font-size: 0.75em;
+    margin-top: -0.2em;
   }
 
   &.max {
-    background: linear-gradient(to right, #ee1918 0%, #f68807 50%, #ee1918 100%);
+    background: linear-gradient(
+      to right,
+      #ee1918 0%,
+      #f68807 50%,
+      #ee1918 100%
+    );
   }
 
   &:before {
     font-weight: bold;
     line-height: 1.2;
     content: '\00A6';
-    margin: 0 -.05em;
+    margin: 0 -0.05em;
   }
 }
 
@@ -473,7 +578,9 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 }
-.table, .row, .cell {
+.table,
+.row,
+.cell {
   & > .middle {
     vertical-align: middle;
     align-self: unset;
@@ -484,39 +591,39 @@ $title-font: 'Prototype', sans-serif;
   font-size: 2em;
   font-family: $title-font;
 
-  &.condense > *{
+  &.condense > * {
     margin: 0;
   }
 
   > * {
     vertical-align: middle;
-    margin: .1em;
+    margin: 0.1em;
 
     &.production .flex {
       margin: 0;
     }
 
     &.param.temperature {
-      margin-left: .1em;
-      margin-right: .1em;
-      margin-bottom: -.1em;
-      margin-top: -.1em;
+      margin-left: 0.1em;
+      margin-right: 0.1em;
+      margin-bottom: -0.1em;
+      margin-top: -0.1em;
     }
   }
 
   > .standard-project {
-    font-size: .5em;
+    font-size: 0.5em;
     width: 8em;
     word-break: break-word;
     display: inline-block;
-    line-height: .8;
-    padding: .3em 0;
+    line-height: 0.8;
+    padding: 0.3em 0;
   }
 
   > .restriction {
-    font-size: .7em;
+    font-size: 0.7em;
     height: 1.4em;
-    margin-top: .1em;
+    margin-top: 0.1em;
 
     * {
       margin: 0;
@@ -524,32 +631,36 @@ $title-font: 'Prototype', sans-serif;
   }
 
   > :not(:first-of-type):not(.icon):not(.mc):not(.tile):not(.param):not(.production) {
-    margin-top: .5em;
+    margin-top: 0.5em;
   }
 
   > span:not(.arrow):not(.standard-project):not(.sub):not(.sup) {
-    font-size: .7em;
+    font-size: 0.7em;
   }
 
   .param.oxygen {
     font-size: 1.4em;
   }
 
+  .param.venus {
+    width: 1.7em;
+  }
+
   .sup {
-    font-size: .6em;
+    font-size: 0.6em;
     vertical-align: super;
 
     > * {
-      margin-right: .1em;
+      margin-right: 0.1em;
     }
   }
 
   .sub {
-    font-size: .5em;
+    font-size: 0.5em;
     vertical-align: sub;
 
     > * {
-      margin-right: .1em;
+      margin-right: 0.1em;
     }
   }
 
@@ -571,7 +682,7 @@ $title-font: 'Prototype', sans-serif;
 .production {
   font-family: $title-font;
   background: linear-gradient(#555, #fff);
-  padding: .2em;
+  padding: 0.2em;
   position: relative;
   display: inline-block;
   font-size: 2em;
@@ -588,27 +699,28 @@ $title-font: 'Prototype', sans-serif;
     width: 1.25em;
   }
 
-  .icon, .mc {
-    margin: .1em;
+  .icon,
+  .mc {
+    margin: 0.1em;
 
     &.mc.anyone {
-      margin: .025em;
+      margin: 0.025em;
     }
   }
 
   span {
-    font-size: .7em;
+    font-size: 0.7em;
   }
 
   &:before {
     display: block;
-    content: '';;
+    content: '';
     position: absolute;
-    margin: .07em;
+    margin: 0.07em;
     background: url('./texture/production.svg') repeat top/.35em,
       linear-gradient(#805940, #a37144);
-    border-image: linear-gradient(#AC7542, #573925) 1;
-    border-width: .07em;
+    border-image: linear-gradient(#ac7542, #573925) 1;
+    border-width: 0.07em;
     border-style: solid;
     left: 0;
     right: 0;
@@ -619,33 +731,33 @@ $title-font: 'Prototype', sans-serif;
 
 .vp {
   color: black;
-  font-size: .8em;
+  font-size: 0.8em;
   font-family: $title-font;
   text-align: center;
-  line-height: .9;
+  line-height: 0.9;
   width: 1em;
   height: 1em;
   background: url('./icons/mars.svg') no-repeat center/105%;
   border-radius: 50%;
   position: relative;
   z-index: 1;
-  box-shadow: 0 -2.47em 0 -2em hsla(330,0%,6%,.3) inset;
-  border: .04em solid #666;
+  box-shadow: 0 -2.47em 0 -2em hsla(330, 0%, 6%, 0.3) inset;
+  border: 0.04em solid #666;
   display: flex;
   text-align: center;
 
   span {
-    font-size: .3em;
+    font-size: 0.3em;
     align-self: center;
     margin: 0 auto;
 
     &.point {
       font-size: 1.3em;
-      -webkit-text-stroke: .02em #F9B000;
+      -webkit-text-stroke: 0.02em #f9b000;
       vertical-align: middle;
 
       &.big {
-        font-size: .8em;
+        font-size: 0.8em;
       }
     }
 
@@ -660,13 +772,13 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.anyone {
-    box-shadow: 0 0 0 .05em #C02B39;
+    box-shadow: 0 0 0 0.05em #c02b39;
   }
 }
 
 .arrow {
   color: #d94c38;
-  -webkit-text-stroke: .05em darkred;
+  -webkit-text-stroke: 0.05em darkred;
 
   &:before {
     content: '\27A1';
@@ -688,9 +800,9 @@ $title-font: 'Prototype', sans-serif;
   }
 
   > .value {
-    font-size: .8em;
+    font-size: 0.8em;
     line-height: 2;
-    color: #A22A2E;
+    color: #a22a2e;
   }
 }
 
@@ -702,5 +814,5 @@ $title-font: 'Prototype', sans-serif;
   border: 2px solid #f5ee24;
   border-radius: 1em;
   box-shadow: 0 0 1px 1px black;
-  padding: 0 .2em
+  padding: 0 0.2em;
 }

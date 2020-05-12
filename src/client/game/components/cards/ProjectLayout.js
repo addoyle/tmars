@@ -27,8 +27,8 @@ const ProjectLayout = props => {
     // they're considered parameters. They're handled by the Tiles section
     if (res.param) {
       // Oxygen, shown as N%
-      if (res.param === 'oxygen') {
-        restriction.push({ text: res.value + '%' }, { param: 'oxygen' });
+      if (res.param === 'oxygen' || res.param === 'venus') {
+        restriction.push({ text: res.value + '%' }, { param: res.param });
       }
 
       // Temperature, shown as ±N°C
