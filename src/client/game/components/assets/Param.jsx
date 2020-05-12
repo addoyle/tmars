@@ -10,7 +10,7 @@ import classNames from 'classnames';
  * @prop tag  Tag of parameter (typically only used for name='card')
  */
 const Param = props => (
-  <div className={classNames('param', props.name)}>
+  <div className={classNames('param', props.name)} style={props.style}>
     {props.tag ? <Tag name={props.tag} /> : ''}
     {props.name.indexOf('card') >= 0 &&
     props.name.match(/active|event|automated|prelude/) ? (
@@ -71,7 +71,8 @@ const Param = props => (
 
 Param.propTypes = {
   name: PropTypes.string,
-  tag: PropTypes.string
+  tag: PropTypes.string,
+  style: PropTypes.object
 };
 
 export default Param;

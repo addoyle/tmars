@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Player.scss';
 import { Resource } from '../../assets/Assets';
-import classNames from 'classnames';
+import classnames from 'classnames';
 
 /**
  * A single player from the player list
  */
 const Player = props => (
   <div
-    className={classNames('player', {
+    className={classnames('player', {
       active: props.active,
       passed: props.player.passed
     })}
@@ -19,7 +19,7 @@ const Player = props => (
   >
     <Resource name={`player-${props.pid}`} />
     <div
-      className={classNames('points', {
+      className={classnames('points', {
         o: props.player.tr % 5 !== 0
       })}
     >

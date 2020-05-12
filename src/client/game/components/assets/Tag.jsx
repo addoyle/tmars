@@ -8,13 +8,14 @@ import classNames from 'classnames';
  * @prop name   Tag type (e.g. Science, space etc.)
  * @prop anyone Boolean, true affects anyone (red border), otherwise false
  */
-const Tag = ({ name, anyone }) => (
-  <div className={classNames('icon', 'tag', name, { anyone })} />
+const Tag = ({ name, anyone, style }) => (
+  <div className={classNames('icon', 'tag', name, { anyone })} style={style} />
 );
 
 Tag.propTypes = {
   name: PropTypes.string,
-  anyone: PropTypes.bool
+  anyone: PropTypes.bool,
+  style: PropTypes.object
 };
 
 export default Tag;

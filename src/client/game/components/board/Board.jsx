@@ -90,7 +90,7 @@ const Board = props => {
       <ActiveCard />
       <Settings />
       <CardDrawer
-        cards={['221', '222', '223', '224', '225', '226', '227', '228']}
+        cards={['229', '230', '231', '232']}
         type="hand"
         tab={
           <>
