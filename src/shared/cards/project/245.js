@@ -2,45 +2,40 @@ import React from 'react';
 import Automated from '../Automated';
 import {
   VictoryPoint,
-  Tag,
   Param
 } from '../../../client/game/components/assets/Assets';
 
-const desc = 'Draw 1 card, or draw 3 cards if you have at least 3 Venus tags.';
+const desc = 'Requires Venus, Earth, and Jovian tags. Draw 2 cards.';
 
 export default new Automated({
   number: 245,
-  title: 'IO Sulphur Reasearch',
-  cost: 17,
-  tags: ['science', 'jovian'],
+  title: 'Solarnet',
+  cost: 7,
+  tags: [],
   set: 'venus',
+  restriction: {
+    value: 1,
+    tag: ['venus', 'earth', 'jovian']
+  },
   desc,
-  flavor: 'Finding new uses for all the suphur coming out of the Venus venture',
+  flavor: 'Connecting the planets to the Cloud',
   clientAction: () => {},
   serverAction: () => {},
-  vp: 2,
-  emoji: '🔬',
+  vp: 1,
+  emoji: '💻',
   layout: (
-    <div className="m-top">
-      <div className="resources text-center">
-        <Param name="card back" />
-        <span> OR </span>
-        <Tag name="venus" style={{ marginRight: '-.5em', zIndex: 2 }} />
-        <Tag name="venus" style={{ marginRight: '-.5em', zIndex: 1 }} />
-        <Tag name="venus" />
-        <span>:</span>
-        <Param name="card back" style={{ marginRight: '-.5em' }} />
-        <Param
-          name="card back"
-          style={{ marginRight: '-.5em', marginTop: '-.25em' }}
-        />
-        <Param name="card back" />
-      </div>
+    <div>
       <div className="flex gutter">
-        <div className="description middle text-center">{desc}</div>
-        <div className="text-right bottom">
+        <div className="text-center middle">
+          <div className="resources">
+            <Param name="card back" />
+            <Param name="card back" />
+          </div>
+          <div className="description m-top">{desc}</div>
+        </div>
+        <div className="col-1 text-right bottom">
           <VictoryPoint>
-            <span className="big point">2</span>
+            <span className="big point">1</span>
           </VictoryPoint>
         </div>
       </div>

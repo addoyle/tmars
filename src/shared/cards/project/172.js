@@ -17,7 +17,7 @@ export default new Active({
   tags: ['earth', 'animal'],
   activeDesc,
   desc,
-  flavor: "It wouldn't be the same without them",
+  flavor: 'It wouldn’t be the same without them',
   clientAction: () => {},
   serverAction: () => {},
   emoji: '🐶️',

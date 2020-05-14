@@ -3,46 +3,49 @@ import Automated from '../Automated';
 import {
   VictoryPoint,
   Tag,
-  Param
+  MegaCredit,
+  Production,
+  Tile
 } from '../../../client/game/components/assets/Assets';
 
-const desc = 'Draw 1 card, or draw 3 cards if you have at least 3 Venus tags.';
+const desc =
+  'Increase your M€ production 1 step for each Earth tag you have, including this. Place a city tile ON THE RESERVED AREA.';
 
 export default new Automated({
   number: 236,
-  title: 'IO Sulphur Reasearch',
-  cost: 17,
-  tags: ['science', 'jovian'],
+  title: 'Luna Metropolis',
+  cost: 21,
+  tags: ['space', 'earth', 'city'],
   set: 'venus',
   desc,
-  flavor: 'Finding new uses for all the suphur coming out of the Venus venture',
+  flavor: 'The largest city on the Moon',
   clientAction: () => {},
   serverAction: () => {},
   vp: 2,
-  emoji: '🔬',
+  emoji: '🌃',
   layout: (
-    <div className="m-top">
-      <div className="resources text-center">
-        <Param name="card back" />
-        <span> OR </span>
-        <Tag name="venus" style={{ marginRight: '-.5em', zIndex: 2 }} />
-        <Tag name="venus" style={{ marginRight: '-.5em', zIndex: 1 }} />
-        <Tag name="venus" />
-        <span>:</span>
-        <Param name="card back" style={{ marginRight: '-.5em' }} />
-        <Param
-          name="card back"
-          style={{ marginRight: '-.5em', marginTop: '-.25em' }}
-        />
-        <Param name="card back" />
-      </div>
-      <div className="flex gutter">
-        <div className="description middle text-center">{desc}</div>
-        <div className="text-right bottom">
-          <VictoryPoint>
-            <span className="big point">2</span>
-          </VictoryPoint>
+    <div className="flex gutter">
+      <div>
+        <div className="flex gutter">
+          <div className="m-bottom">
+            <Production>
+              <div className="flex">
+                <MegaCredit value="1" />
+                <span>/</span>
+                <Tag name="earth" />
+              </div>
+            </Production>
+          </div>
+          <div className="resources">
+            <Tile name="city" asterisk />
+          </div>
         </div>
+        <div className="description middle text-center">{desc}</div>
+      </div>
+      <div className="text-right bottom">
+        <VictoryPoint>
+          <span className="big point">2</span>
+        </VictoryPoint>
       </div>
     </div>
   )

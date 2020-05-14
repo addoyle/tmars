@@ -15,7 +15,7 @@ export default new Automated({
   tags: ['jovian', 'space'],
   set: 'corporate',
   desc,
-  flavor: "You always wanted to be a warden, didn't you?",
+  flavor: 'You always wanted to be a warden, didn’t you?',
   clientAction: () => {},
   serverAction: () => {},
   vp: 2,

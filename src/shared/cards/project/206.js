@@ -11,7 +11,7 @@ export default new Event({
   cost: 4,
   tags: ['science', 'event'],
   desc,
-  flavor: "If it isn't feasible, then make it so",
+  flavor: 'If it isn’t feasible, then make it so',
   clientAction: () => {},
   serverAction: () => {},
   vp: -1,

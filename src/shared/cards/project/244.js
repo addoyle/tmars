@@ -1,49 +1,36 @@
 import React from 'react';
 import Automated from '../Automated';
 import {
-  VictoryPoint,
-  Tag,
-  Param
+  Production,
+  MegaCredit
 } from '../../../client/game/components/assets/Assets';
 
-const desc = 'Draw 1 card, or draw 3 cards if you have at least 3 Venus tags.';
+const desc =
+  'Requires Venus and Earth tag. Increase your M€ production 3 steps.';
 
 export default new Automated({
   number: 244,
-  title: 'IO Sulphur Reasearch',
-  cost: 17,
-  tags: ['science', 'jovian'],
+  title: 'Sister Planet Support',
+  cost: 7,
+  tags: ['venus', 'earth'],
   set: 'venus',
+  restriction: {
+    value: 1,
+    tag: ['venus', 'earth']
+  },
   desc,
-  flavor: 'Finding new uses for all the suphur coming out of the Venus venture',
+  flavor: 'Welcome to the 1G club',
   clientAction: () => {},
   serverAction: () => {},
-  vp: 2,
-  emoji: '🔬',
+  emoji: '🤝🏻',
   layout: (
-    <div className="m-top">
-      <div className="resources text-center">
-        <Param name="card back" />
-        <span> OR </span>
-        <Tag name="venus" style={{ marginRight: '-.5em', zIndex: 2 }} />
-        <Tag name="venus" style={{ marginRight: '-.5em', zIndex: 1 }} />
-        <Tag name="venus" />
-        <span>:</span>
-        <Param name="card back" style={{ marginRight: '-.5em' }} />
-        <Param
-          name="card back"
-          style={{ marginRight: '-.5em', marginTop: '-.25em' }}
-        />
-        <Param name="card back" />
-      </div>
-      <div className="flex gutter">
-        <div className="description middle text-center">{desc}</div>
-        <div className="text-right bottom">
-          <VictoryPoint>
-            <span className="big point">2</span>
-          </VictoryPoint>
+    <div className="text-center m-bottom">
+      <Production>
+        <div className="flex">
+          <MegaCredit value="3" />
         </div>
-      </div>
+      </Production>
+      <div className="description">{desc}</div>
     </div>
   )
 });

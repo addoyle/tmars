@@ -11,7 +11,7 @@ export default new Event({
   cost: 31,
   tags: ['space', 'event'],
   desc,
-  flavor: "We don't use that moon anyway",
+  flavor: 'We don’t use that moon anyway',
   clientAction: () => {},
   serverAction: () => {},
   emoji: '☄',

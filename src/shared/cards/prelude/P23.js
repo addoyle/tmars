@@ -14,7 +14,7 @@ export default new Prelude({
   tags: ['building'],
   set: 'prelude',
   desc,
-  flavor: "Making use of all the minerals you're digging up",
+  flavor: 'Making use of all the minerals you’re digging up',
   emoji: '🧱',
   layout: (
     <div className="flex gutter">

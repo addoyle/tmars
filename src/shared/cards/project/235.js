@@ -2,50 +2,55 @@ import React from 'react';
 import Active from '../Active';
 import {
   Resource,
-  VictoryPoint,
-  MegaCredit
+  MegaCredit,
+  Production
 } from '../../../client/game/components/assets/Assets';
 
-const activeDesc = 'Action: Spend 2 M€ to add 1 floater to ANY card.';
-const desc = 'Requires 2 science tags. 1 VP per 2 floaters on this card.';
+const activeDesc =
+  'Action: Add one floater to this card, or spend 1 floater here to raise your M€ production 1 step.';
 
 export default new Active({
   number: 235,
-  title: 'Floating Habs',
-  cost: 5,
+  title: 'Local Shading',
+  cost: 4,
   tags: ['venus'],
   set: 'venus',
-  restriction: {
-    value: 2,
-    tag: 'science'
-  },
   activeDesc,
-  desc,
-  flavor: 'Living in the clouds',
+  flavor: 'Providing temperate areas for rich costumers',
   clientAction: () => {},
   serverAction: () => {},
-  emoji: '🏡',
+  emoji: '⛱',
   activeLayout: (
     <div>
-      <div className="resources text-center">
-        <MegaCredit value="2" />
-        <span className="arrow" />
-        <Resource name="floater" />*
+      <div className="table center">
+        <div className="row">
+          <div className="cell" />
+          <div className="cell middle resources">
+            <span className="arrow" />
+          </div>
+          <div className="cell middle resources text-center">
+            <Resource name="floater" />
+          </div>
+        </div>
+        <div className="row">
+          <div className="cell middle resources">
+            <span>OR</span>
+            <Resource name="floater" />
+          </div>
+          <div className="cell middle resources">
+            <span className="arrow" />
+          </div>
+          <div className="cell middle resources text-center">
+            <Production>
+              <div className="flex">
+                <MegaCredit value="1" />
+              </div>
+            </Production>
+          </div>
+        </div>
       </div>
       <div className="description text-center">{activeDesc}</div>
     </div>
   ),
-  layout: (
-    <div className="flex gutter">
-      <div className="col-3 description middle text-center">{desc}</div>
-      <div className="col-1 bottom">
-        <VictoryPoint>
-          <span>
-            <span className="point">1</span>/2
-            <Resource name="animal" />
-          </span>
-        </VictoryPoint>
-      </div>
-    </div>
-  )
+  layout: <div />
 });

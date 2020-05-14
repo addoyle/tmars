@@ -9,7 +9,7 @@ export default new Prelude({
   tags: [],
   set: 'prelude',
   desc,
-  flavor: "He'll support you, but he wants something big with his name on it",
+  flavor: 'He’ll support you, but he wants something big with his name on it',
   emoji: '🧐',
   layout: (
     <div className="flex m-top m-bottom">

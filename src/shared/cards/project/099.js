@@ -16,7 +16,7 @@ export default new Automated({
   tags: ['space'],
   set: 'corporate',
   desc,
-  flavor: "Licensed by the 'government'",
+  flavor: 'Licensed by the ‘government’',
   clientAction: () => {},
   serverAction: () => {},
   emoji: '💶',

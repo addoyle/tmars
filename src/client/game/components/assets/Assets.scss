@@ -102,6 +102,10 @@ $title-font: 'Prototype', sans-serif;
       border-top-color: #999;
       padding: 0;
     }
+
+    &.anyone {
+      box-shadow: 0 0 0 0.1em #c02b39;
+    }
   }
 }
 
@@ -359,80 +363,34 @@ $title-font: 'Prototype', sans-serif;
   }
 }
 
-.icon.building {
-  @include icon(url('./icons/building.svg'), 31, 37%, 0.2, true, false);
-}
-.icon.space {
-  @include icon(url('./icons/space.svg'), 26, 0%, 0.6, false, 50%, 70%);
-}
-.icon.science {
-  @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%);
-}
-.icon.earth {
-  @include icon(url('./icons/earth.svg'), 330, 0%, 0.4, true, 60%, 101%, 10%);
-}
-.icon.city {
-  @include icon(url('./icons/city.svg'), 330, 0%, 0.2, true, 80%);
-}
-.icon.animal {
-  @include icon(url('./icons/animal.svg'), 103, 43%, 0.2, true, 35%);
-}
-.icon.event {
-  @include icon(url('./icons/event.svg'), 53, 100%, 0.1);
-}
-.icon.jovian {
-  @include icon(url('./icons/jovian.svg'), 330, 0%, 0.1, true, 60%, 101%, 15%);
-}
-.icon.microbe {
-  @include icon(url('./icons/microbe.svg'), 67, 62%, 0.05);
-}
-.icon.power {
-  @include icon(url('./icons/power.svg'), 307, 62%, 0.2, false, false);
-}
-.icon.plant {
-  @include icon(url('./icons/plant.svg'), 95, 65%, 0.1);
-}
-.icon.titanium {
-  @include icon(url('./icons/titanium.svg'), 26, 0%, 0.6, false);
-}
-.icon.heat {
-  @include icon(url('./icons/heat.svg'), 13, 82%, 0.2, false, false);
-}
-.icon.steel {
-  @include icon(url('./icons/steel.svg'), 30, 59%, 0.1, false, false);
-}
-.icon.venus {
-  @include icon(url('./icons/venus.svg'), 199, 68%, 0.2, false, 50%, 60%);
-}
-.icon.floater {
-  @include icon(url('./icons/floater.svg'), 50, 100%, 0.1, false, 50%, 80%);
-}
-.icon.any {
-  @include icon(url('./icons/any.svg'), 330, 0%, 0, true, 99%, 60%);
-}
-.icon.all {
-  @include icon(url('./icons/all.svg'), 330, 0%, 0, true, 99%, 101%, 15%);
-}
-.icon.fighter {
-  @include icon(url('./icons/fighter.svg'), 26, 0%, 0.6, false, 30%);
-}
-.icon.marker {
-  @include icon(#e06635, 48, 80%, 0.2, true, false);
-}
-.icon.player-1 {
-  @include icon(hsl(0, 80%, 40%), 0, 80%, 0.2, true, false);
-}
-.icon.player-2 {
-  @include icon(hsl(240, 80%, 40%), 240, 80%, 0.2, true, false);
-}
-.icon.player-3 {
-  @include icon(hsl(120, 80%, 40%), 120, 80%, 0.2, true, false);
-}
-.icon.player-4 {
-  @include icon(hsl(60, 80%, 40%), 60, 80%, 0.2, true, false);
-}
-.icon.player-5 {
-  @include icon(hsl(0, 0%, 25%), 0, 0%, 0.2, true, 40%);
+/* prettier-ignore */
+.icon {
+  &.building { @include icon(url('./icons/building.svg'), 31, 37%, 0.2, true, false); }
+  &.space { @include icon(url('./icons/space.svg'), 26, 0%, 0.6, false, 50%, 70%); }
+  &.science { @include icon(url('./icons/science.svg'), 42, 0%, 0, true, 99%); }
+  &.earth { @include icon(url('./icons/earth.svg'), 330, 0%, 0.4, true, 60%, 101%, 10%); }
+  &.city { @include icon(url('./icons/city.svg'), 330, 0%, 0.2, true, 80%); }
+  &.animal { @include icon(url('./icons/animal.svg'), 103, 43%, 0.2, true, 35%); }
+  &.event { @include icon(url('./icons/event.svg'), 53, 100%, 0.1); }
+  &.jovian { @include icon(url('./icons/jovian.svg'), 330, 0%, 0.1, true, 60%, 101%, 15%); }
+  &.microbe { @include icon(url('./icons/microbe.svg'), 67, 62%, 0.05); }
+  &.power { @include icon(url('./icons/power.svg'), 307, 62%, 0.2, false, false); }
+  &.plant { @include icon(url('./icons/plant.svg'), 95, 65%, 0.1); }
+  &.titanium { @include icon(url('./icons/titanium.svg'), 26, 0%, 0.6, false); }
+  &.heat { @include icon(url('./icons/heat.svg'), 13, 82%, 0.2, false, false); }
+  &.steel { @include icon(url('./icons/steel.svg'), 30, 59%, 0.1, false, false); }
+  &.venus { @include icon(url('./icons/venus.svg'), 199, 68%, 0.2, false, 50%, 60%); }
+  &.floater { @include icon(url('./icons/floater.svg'), 50, 100%, 0.1, false, 50%, 80%); }
+  &.any { @include icon(url('./icons/any.svg'), 330, 0%, 0, true, 99%, 60%); }
+  &.all { @include icon(url('./icons/all.svg'), 330, 0%, 0, true, 99%, 101%, 15%); }
+  &.fighter { @include icon(url('./icons/fighter.svg'), 26, 0%, 0.6, false, 30%); }
+  &.asteroid { @include icon(url('./icons/asteroid.svg'), 26, 0%, 0.6, false, 30%); }
+  &.marker { @include icon(#e06635, 48, 80%, 0.2, true, false); }
+  &.player-1 { @include icon(hsl(0, 80%, 40%), 0, 80%, 0.2, true, false); }
+  &.player-2 { @include icon(hsl(240, 80%, 40%), 240, 80%, 0.2, true, false); }
+  &.player-3 { @include icon(hsl(120, 80%, 40%), 120, 80%, 0.2, true, false); }
+  &.player-4 { @include icon(hsl(60, 80%, 40%), 60, 80%, 0.2, true, false); }
+  &.player-5 { @include icon(hsl(0, 0%, 25%), 0, 0%, 0.2, true, 40%); }
 }
 
 .icon.tr {

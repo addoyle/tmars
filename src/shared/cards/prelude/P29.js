@@ -14,7 +14,7 @@ export default new Prelude({
   tags: ['city', 'building'],
   set: 'prelude',
   desc,
-  flavor: "The investment was high, but it's paying off now",
+  flavor: 'The investment was high, but it’s paying off now',
   emoji: '🌇',
   layout: (
     <div className="flex gutter">

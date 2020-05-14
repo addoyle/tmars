@@ -13,7 +13,7 @@ export default new Prelude({
   tags: ['earth'],
   set: 'prelude',
   desc,
-  flavor: "Putting people's savings to good use",
+  flavor: 'Putting people’s savings to good use',
   emoji: '🏦',
   layout: (
     <div className="flex">

@@ -19,7 +19,7 @@ export default new Automated({
     param: 'oxygen'
   },
   desc,
-  flavor: "Milling about in the soil, 'processing' it",
+  flavor: 'Milling about in the soil, ‘processing’ it',
   clientAction: () => {},
   serverAction: () => {},
   emoji: '🐛',

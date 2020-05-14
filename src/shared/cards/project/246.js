@@ -1,39 +1,33 @@
 import React from 'react';
 import Event from '../Event';
-import {
-  Resource,
-  Param,
-  Tag
-} from '../../../client/game/components/assets/Assets';
+import { Param } from '../../../client/game/components/assets/Assets';
 
-const desc =
-  'Raise Venus 1 step. Add 1 floater to A VENUS CARD for each Jovian tag you have.';
+const desc = 'Venus must be 10% or lower. Raise Venus 2 steps.';
 
 export default new Event({
   number: 246,
-  title: 'Hydrogen To Venus',
-  cost: 11,
+  title: 'Spin-Inducing Asteroid',
+  cost: 16,
   tags: ['space', 'event'],
   set: 'venus',
+  restriction: {
+    value: 10,
+    param: 'venus',
+    max: true
+  },
   desc,
   flavor:
-    'Easily collected from the gas giants, hydrogen can increase floating power, or be converted to precious water',
+    'Smash a heavy asteroid at a slanting angle to increase Venus’ rotation, reducing day length',
   clientAction: () => {},
   serverAction: () => {},
-  emoji: '🌀',
+  emoji: '☄',
   layout: (
-    <div className="flex">
-      <div className="col-2 middle">
-        <div className="resources">
-          <Param name="venus" />
-        </div>
-        <div className="resources">
-          <Resource name="floater" tag="venus" />
-          <span>/</span>
-          <Tag name="jovian" />
-        </div>
+    <div className="text-center">
+      <div className="resources">
+        <Param name="venus" />
+        <Param name="venus" />
       </div>
-      <div className="col-3 middle description">{desc}</div>
+      <div className="description m-top m-bottom">{desc}</div>
     </div>
   )
 });

@@ -1,49 +1,41 @@
 import React from 'react';
 import Automated from '../Automated';
 import {
-  VictoryPoint,
-  Tag,
-  Param
+  Param,
+  Resource,
+  Production
 } from '../../../client/game/components/assets/Assets';
 
-const desc = 'Draw 1 card, or draw 3 cards if you have at least 3 Venus tags.';
+const desc = 'Raise Venus 2 steps. Increase your heat production 2 steps.';
 
 export default new Automated({
   number: 242,
-  title: 'IO Sulphur Reasearch',
-  cost: 17,
-  tags: ['science', 'jovian'],
+  title: 'Orbital Reflectors',
+  cost: 26,
+  tags: ['venus', 'space'],
   set: 'venus',
   desc,
-  flavor: 'Finding new uses for all the suphur coming out of the Venus venture',
+  flavor: 'Dual terraforming by redirecting sunlight from Venus to Mars',
   clientAction: () => {},
   serverAction: () => {},
-  vp: 2,
-  emoji: '🔬',
+  emoji: '🪞',
   layout: (
-    <div className="m-top">
-      <div className="resources text-center">
-        <Param name="card back" />
-        <span> OR </span>
-        <Tag name="venus" style={{ marginRight: '-.5em', zIndex: 2 }} />
-        <Tag name="venus" style={{ marginRight: '-.5em', zIndex: 1 }} />
-        <Tag name="venus" />
-        <span>:</span>
-        <Param name="card back" style={{ marginRight: '-.5em' }} />
-        <Param
-          name="card back"
-          style={{ marginRight: '-.5em', marginTop: '-.25em' }}
-        />
-        <Param name="card back" />
-      </div>
+    <div>
       <div className="flex gutter">
-        <div className="description middle text-center">{desc}</div>
-        <div className="text-right bottom">
-          <VictoryPoint>
-            <span className="big point">2</span>
-          </VictoryPoint>
+        <div className="col-1 resources middle text-center">
+          <Param name="venus" />
+          <Param name="venus" />
+        </div>
+        <div className="col-1 middle">
+          <Production>
+            <div className="flex">
+              <Resource name="heat" />
+              <Resource name="heat" />
+            </div>
+          </Production>
         </div>
       </div>
+      <div className="description text-center">{desc}</div>
     </div>
   )
 });

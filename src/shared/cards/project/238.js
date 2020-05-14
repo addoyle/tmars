@@ -3,47 +3,58 @@ import Active from '../Active';
 import {
   Resource,
   VictoryPoint,
-  MegaCredit
+  Production,
+  Tile
 } from '../../../client/game/components/assets/Assets';
 
-const activeDesc = 'Action: Spend 2 M€ to add 1 floater to ANY card.';
-const desc = 'Requires 2 science tags. 1 VP per 2 floaters on this card.';
+const activeDesc = 'Action: Add 1 resource to ANOTHER VENUS CARD.';
+const desc =
+  'Requires Venus 12%. Decrease your energy production 1 step. Place a city tile ON THE RESERVED AREA.';
 
 export default new Active({
   number: 238,
-  title: 'Floating Habs',
-  cost: 5,
-  tags: ['venus'],
+  title: 'Maxwell Base',
+  cost: 18,
+  tags: ['venus', 'city'],
   set: 'venus',
   restriction: {
-    value: 2,
-    tag: 'science'
+    value: 12,
+    param: 'venus'
   },
   activeDesc,
   desc,
-  flavor: 'Living in the clouds',
+  flavor:
+    'A much needed base of operations in the high mountains of the Ishtar continent',
   clientAction: () => {},
   serverAction: () => {},
-  emoji: '🏡',
+  vp: 3,
+  emoji: '🌆',
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <MegaCredit value="2" />
         <span className="arrow" />
-        <Resource name="floater" />*
+        <Resource name="any" tag="venus" />
       </div>
       <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (
     <div className="flex gutter">
-      <div className="col-3 description middle text-center">{desc}</div>
+      <div className="middle">
+        <Production>
+          <div className="flex">
+            <div>&ndash;</div>
+            <Resource name="power" />
+          </div>
+        </Production>
+        <div className="resources">
+          <Tile name="city" asterisk />
+        </div>
+      </div>
+      <div className="description middle">{desc}</div>
       <div className="col-1 bottom">
         <VictoryPoint>
-          <span>
-            <span className="point">1</span>/2
-            <Resource name="animal" />
-          </span>
+          <span className="big point">3</span>
         </VictoryPoint>
       </div>
     </div>

@@ -15,7 +15,7 @@ export default new Prelude({
   tags: [],
   set: 'prelude',
   desc,
-  flavor: "Meeting the needs of society is good, because it's your society",
+  flavor: 'Meeting the needs of society is good, because it’s your society',
   emoji: '🏘',
   layout: (
     <div className="flex gutter">
