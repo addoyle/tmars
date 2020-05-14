@@ -5,28 +5,28 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-const desc =
-  'Requires that you have at least 25 TR. Increase your M€ production 4 steps.';
+const desc = 'Requires 2 Venus tags. Increase your M€ production 2 steps.';
 
 export default new Automated({
-  number: 252,
-  title: 'Terraforming Contract',
-  cost: 8,
-  tags: ['earth'],
+  number: 255,
+  title: 'Venus Governor',
+  cost: 4,
+  tags: ['venus', 'venus'],
   set: 'venus',
   restriction: {
-    value: 25,
-    resource: 'tr'
+    value: 2,
+    tag: 'venus'
   },
   desc,
-  flavor: 'A lucrative deal for a proven terraformer',
+  flavor:
+    'Bringing order to the colonization and terraforming of Venus is a well-paid job',
   clientAction: () => {},
   serverAction: () => {},
-  emoji: '📜',
+  emoji: '👵',
   layout: (
     <div className="flex gutter m-top m-bottom">
       <Production>
-        <MegaCredit value="4" />
+        <MegaCredit value="2" />
       </Production>
       <div className="description middle">{desc}</div>
     </div>
