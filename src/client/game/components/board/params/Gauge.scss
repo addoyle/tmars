@@ -61,7 +61,7 @@ $title-font: 'Prototype', sans-serif;
     > .production {
       font-size: 15px;
       min-height: unset;
-      padding: .1em;
+      padding: .2em;
 
       .icon {
         border: none;
@@ -88,6 +88,10 @@ $title-font: 'Prototype', sans-serif;
       line-height: 1;
       text-align: center;
       width: 18px;
+    }
+
+    &.bonus-production:after {
+      padding-right: 34px;
     }
   }
 

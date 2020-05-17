@@ -38,8 +38,9 @@ const Gauge = props => {
       {props.bonuses.map((bonus, i) => (
         <div
           key={i}
-          className={classNames('bonus', bonus.production, {
-            met: props.value >= bonus.threshold
+          className={classNames('bonus', {
+            met: props.value >= bonus.threshold,
+            'bonus-production': bonus.production
           })}
           style={{
             top: `${calc(bonus.threshold, 0, true)}px`
@@ -56,6 +57,8 @@ const Gauge = props => {
             <Tile name={bonus.tile} />
           ) : bonus.param ? (
             <Param name={bonus.param} />
+          ) : bonus.resource ? (
+            <Resource name={bonus.resource} />
           ) : null}
         </div>
       ))}

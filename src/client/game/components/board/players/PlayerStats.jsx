@@ -37,7 +37,10 @@ const PlayerStats = props => {
           resources={player.resources}
           production={player.production}
         />
-        <Tags tags={player.tags} />
+        <Tags
+          tags={player.tags}
+          venus={props.gameStore.sets.includes('venus')}
+        />
         <Tiles tiles={player.tiles} />
       </div>
     )
@@ -56,7 +59,8 @@ PlayerStats.propTypes = {
       }),
       show: PropTypes.bool,
       pid: PropTypes.number
-    })
+    }),
+    sets: PropTypes.arrayOf(PropTypes.string)
   })
 };
 

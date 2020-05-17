@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { observer, inject } from 'mobx-react';
 import './StandardProjects.scss';
 import {
   Param,
@@ -12,7 +14,7 @@ import classNames from 'classnames';
 /**
  * Standard Projects pane
  */
-const StandardProjects = () => {
+const StandardProjects = props => {
   const [collapse, setCollapse] = useState(true);
 
   // TODO: reduce duplication
@@ -170,9 +172,36 @@ const StandardProjects = () => {
             <button className="standard-project middle">City</button>
           </div>
         </div>
+
+        {props.gameStore.sets.includes('venus') ? (
+          <div className="row">
+            <div className="cell">
+              <div className="resources middle text-right">
+                <MegaCredit value="15" />
+              </div>
+            </div>
+            <div className="cell">
+              <div className="resources middle">
+                <span className="arrow" />
+              </div>
+            </div>
+            <div className="flex">
+              <div className="resources middle text-center col-1">
+                <Param name="venus" />
+              </div>
+              <button className="standard-project middle">Air Scrapping</button>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );
 };
 
-export default StandardProjects;
+StandardProjects.propTypes = {
+  gameStore: PropTypes.shape({
+    sets: PropTypes.arrayOf(PropTypes.string)
+  })
+};
+
+export default inject('gameStore')(observer(StandardProjects));

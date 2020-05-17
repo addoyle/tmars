@@ -15,7 +15,8 @@ const Separator = props => {
 
   return (
     <div className="separator">
-      {'0'.repeat(8 - binaryNum.length) + binaryNum}
+      {(binaryNum.length < 8 ? '0'.repeat(8 - binaryNum.length) : '') +
+        binaryNum}
       <div className="number">
         {'0'.repeat(3 - props.number.toString().length) + props.number}
       </div>

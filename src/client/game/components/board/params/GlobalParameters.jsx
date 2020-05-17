@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import Ocean from './Ocean';
 import Oxygen from './Oxygen';
 import Temperature from './Temperature';
+import Venus from './Venus';
 
 /**
  * Shows the global parameters
@@ -20,6 +21,7 @@ const GlobalParameters = props => {
       </div>
 
       <div className="flex">
+        {props.gameStore.sets.includes('venus') ? <Venus /> : null}
         <Oxygen />
         <Temperature />
       </div>
@@ -33,7 +35,8 @@ GlobalParameters.propTypes = {
   gameStore: PropTypes.shape({
     params: PropTypes.shape({
       generation: PropTypes.number
-    })
+    }),
+    sets: PropTypes.arrayOf(PropTypes.string)
   })
 };
 

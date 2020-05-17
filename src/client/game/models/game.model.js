@@ -46,7 +46,8 @@ class Game {
     temp: -30,
     oxygen: 0,
     ocean: 9,
-    generation: 1
+    generation: 1,
+    venus: 0
   };
 
   // The field (tiles)

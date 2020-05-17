@@ -15,26 +15,26 @@ const Param = props => (
     style={props.style}
   >
     {props.tag ? <Tag name={props.tag} /> : ''}
-    {props.name.indexOf('card') >= 0 &&
+    {props.name.includes('card') &&
     props.name.match(/active|event|automated|prelude/) ? (
       <>
-        {props.name.indexOf('prelude') === -1 ? <div className="mc" /> : null}
+        {!props.name.includes('prelude') ? <div className="mc" /> : null}
         <div className="tags" />
         <div className="project">
           <div className="header">
-            {props.name.indexOf('prelude') === -1 ? (
+            {!props.name.includes('prelude') ? (
               <div className="restriction" />
             ) : null}
           </div>
           <div className="title"></div>
-          {props.name.indexOf('active') >= 0 ? (
+          {props.name.includes('active') ? (
             <div className="body top"></div>
           ) : null}
           <div className="image">
-            {props.name.indexOf('active') >= 0 ? '💡' : null}
-            {props.name.indexOf('event') >= 0 ? '🔥' : null}
-            {props.name.indexOf('automated') >= 0 ? '⚙' : null}
-            {props.name.indexOf('prelude') >= 0 ? '💰' : null}
+            {props.name.includes('active') ? '💡' : null}
+            {props.name.includes('event') ? '🔥' : null}
+            {props.name.includes('automated') ? '⚙' : null}
+            {props.name.includes('prelude') ? '💰' : null}
           </div>
           <div className="separator"></div>
           <div className="body">
@@ -43,7 +43,7 @@ const Param = props => (
         </div>
       </>
     ) : null}
-    {props.name.indexOf('corp') >= 0 ? (
+    {props.name.includes('corp') ? (
       <>
         <div className="tags" />
         <div className="corp-body">

@@ -44,7 +44,7 @@ const ActiveCard = props => {
         <CardPreview card={activeCard.card} type={activeCard.type} />
       ) : null}
       <div className="footer">
-        {['active', 'hand'].indexOf(activeCard.type) >= 0 ? (
+        {['active', 'hand'].includes(activeCard.type) ? (
           <button>
             <div className="flex">
               <div className="resources middle">
@@ -73,9 +73,7 @@ const ActiveCard = props => {
             className="text-center col-1"
             onClick={() => (activeCard.show = false)}
           >
-            {['active', 'hand'].indexOf(activeCard.type) >= 0
-              ? 'Cancel'
-              : 'Close'}
+            {['active', 'hand'].includes(activeCard.type) ? 'Cancel' : 'Close'}
           </button>
         </div>
       </div>

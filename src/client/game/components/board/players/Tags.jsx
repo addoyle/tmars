@@ -40,7 +40,7 @@ const Tags = props => {
               const key = Object.keys(tag)[0];
               const val = tag[key];
 
-              return (
+              return props.venus || key !== 'venus' ? (
                 <div className="flex" key={j}>
                   <div className="resources col-1 text-right">
                     <span>{val}</span>
@@ -49,7 +49,7 @@ const Tags = props => {
                     <Tag name={key} />
                   </div>
                 </div>
-              );
+              ) : null;
             })}
           </div>
         ))}
@@ -72,7 +72,8 @@ Tags.propTypes = {
     city: PropTypes.number,
     event: PropTypes.number,
     venus: PropTypes.number
-  })
+  }),
+  venus: PropTypes.bool
 };
 
 export default Tags;

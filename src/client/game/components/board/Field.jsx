@@ -15,7 +15,7 @@ import { Tile, Resource, Param, MegaCredit } from '../assets/Assets';
  */
 const Field = props => {
   const { field, detachedCities } = props.gameStore;
-  const hasVenus = props.gameStore.sets.indexOf('venus') > 0;
+  const hasVenus = props.gameStore.sets.includes('venus');
 
   /**
    * Renders a resource on a space
@@ -73,7 +73,7 @@ const Field = props => {
                   <Resource name={`player-${detachedCities[city].player}`} />
                 ) : null}
               </Tile>
-              {['ganymede', 'luna', 'dawn'].indexOf(city) >= 0 ? (
+              {['ganymede', 'luna', 'dawn'].includes(city) ? (
                 <div className="dot">.</div>
               ) : null}
             </div>
@@ -86,7 +86,7 @@ const Field = props => {
                 key={i}
                 name={`${
                   tile.name ||
-                  (tile.attrs && tile.attrs.indexOf('reserved-ocean') >= 0
+                  (tile.attrs && tile.attrs.includes('reserved-ocean')
                     ? 'reserved-ocean'
                     : 'blank')
                 } ${tile.icon || ''}`}
@@ -106,7 +106,7 @@ const Field = props => {
                     <div className="resources">
                       {renderResource(tile.resources, 3)}
                     </div>
-                    {tile.attrs && tile.attrs.indexOf('noctis-city') >= 0 ? (
+                    {tile.attrs && tile.attrs.includes('noctis-city') ? (
                       <img className="city" src="/icons/city.svg" />
                     ) : (
                       ''

@@ -31,7 +31,7 @@ export default new Active({
       game
         .reveal(card)
         .then(card => {
-          if (card.tags.indexOf('microbe') >= 0) {
+          if (card.tags.includes('microbe')) {
             this.resources = (this.resources || 0) + 1;
           }
         })

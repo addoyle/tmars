@@ -16,7 +16,7 @@ const MilestoneAward = props => {
   const awards = toJS(props.gameStore.field.awards);
 
   // Add in new Venus Next awards/milestones
-  if (props.gameStore.sets.indexOf('venus') > 0) {
+  if (props.gameStore.sets.includes('venus')) {
     milestones.push({
       name: 'Hoverlord',
       getValue: player =>
