@@ -10,6 +10,9 @@ class GameService {
     this.game.players.push(new Player(name));
   }
 
+  @push
+  playCard(card) {}
+
   getAllCardNumbers() {
     return Object.keys(this.game.cards).reduce(
       (cards, type) => ({

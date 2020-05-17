@@ -28,8 +28,6 @@ export function getPlayers(req, res) {
       ...player,
       corp: player.corp.number,
       cards: {
-        hand: player.cards.hand.map(card => card.number),
-        draft: player.cards.draft.map(card => card.number),
         active: player.cards.active.map(card => card.number),
         automated: player.cards.automated.map(card => card.number),
         event: player.cards.event.map(card => card.number),
@@ -40,13 +38,38 @@ export function getPlayers(req, res) {
 }
 
 /**
+ * Get active player
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function getPlayer(req, res) {
+  const player = GameService.game.players[0];
+
+  res.send({
+    ...player,
+    corp: player.corp.number,
+    cards: {
+      hand: player.cards.hand.map(card => card.number),
+      draft: player.cards.draft.map(card => card.number),
+      active: player.cards.active.map(card => card.number),
+      automated: player.cards.automated.map(card => card.number),
+      event: player.cards.event.map(card => card.number),
+      prelude: player.cards.prelude.map(card => card.number)
+    }
+  });
+}
+
+/**
  * Post a log
  *
  * @param {*} req
  * @param {*} res
  */
 export function playCard(req, res) {
-  // TODO
+  console.log(req.body);
+
+  // GameService.playCard(req)
 
   res.sendStatus(200);
 }

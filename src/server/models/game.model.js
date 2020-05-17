@@ -57,6 +57,9 @@ export default class Game {
           },
           { project: {}, corporation: {}, prelude: {} }
         );
+
+      // Cards should no longer ever be changed
+      Object.freeze(this.cards);
     });
   }
 

@@ -59,6 +59,7 @@ const Board = props => {
 
     // Load the players
     props.gameStore.getPlayers();
+    props.gameStore.getPlayer();
 
     // Cleanup
     return () => {
@@ -91,19 +92,22 @@ const Board = props => {
       <Settings />
       <CardDrawer
         cards={[
-          '249',
-          '250',
-          '251',
-          '252',
-          '253',
-          '254',
-          '255',
-          '256',
-          '257',
-          '258',
-          '259',
-          '260',
-          '261'
+          '001',
+          '002',
+          '003',
+          '004',
+          '005',
+          '006',
+          '007',
+          '008',
+          '009',
+          '010',
+          '011',
+          '012',
+          '013',
+          '014',
+          '015',
+          '016'
         ]}
         type="hand"
         tab={
@@ -114,6 +118,7 @@ const Board = props => {
             <span>Hand</span>
           </>
         }
+        mode="play"
       />
       <CardDrawer
         cards={[
@@ -128,6 +133,7 @@ const Board = props => {
             <span>Active</span>
           </>
         }
+        mode="action"
       />
       <CardDrawer
         cards={['165', '088', '211', '159']}
@@ -179,11 +185,16 @@ const Board = props => {
 Board.propTypes = {
   gameStore: PropTypes.shape({
     getPlayers: PropTypes.func.isRequired,
+    getPlayer: PropTypes.func.isRequired,
     switchDrawer: PropTypes.func.isRequired,
     activeCard: PropTypes.shape({
       show: PropTypes.bool
-    })
+    }),
+    playCard: PropTypes.func
+  }),
+  cardStore: PropTypes.shape({
+    get: PropTypes.func
   })
 };
 
-export default inject('gameStore')(observer(Board));
+export default inject('gameStore', 'cardStore')(observer(Board));

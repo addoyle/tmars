@@ -59,6 +59,7 @@ export default class Player {
     if (corp && corp.starting) {
       Object.assign(this.resources, corp.starting.resources || {});
       Object.assign(this.production, corp.starting.production || {});
+      (corp.tags || []).forEach(tag => this.tags[tag]++);
     }
   }
 }

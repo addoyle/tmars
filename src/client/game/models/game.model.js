@@ -25,13 +25,24 @@ class Game {
   @observable activeCard = {
     show: false,
     card: null,
-    type: null
+    type: null,
+    mode: null,
+    steel: 0,
+    titanium: 0
   };
 
   // Show an active card
   @action
-  showActiveCard(card, type) {
-    this.activeCard = { ...this.activeCard, show: true, card, type };
+  showActiveCard(card, type, mode) {
+    this.activeCard = {
+      ...this.activeCard,
+      show: true,
+      card,
+      type,
+      mode,
+      steel: 0,
+      titanium: 0
+    };
   }
 
   // Player stats popup
@@ -82,6 +93,7 @@ class Game {
 
   // Players
   @observable players = [];
+  @observable player;
 
   @action
   getPlayers() {
@@ -91,8 +103,20 @@ class Game {
   }
 
   @action
+  getPlayer() {
+    API('player').then(res => {
+      this.player = res;
+    });
+  }
+
+  @action
   showPlayerStats(pid, player) {
     this.playerStats = { ...this.playerStats, show: true, pid, player };
+  }
+
+  @action
+  playCard(card, opts) {
+    API('play', 'POST', { ...opts, card });
   }
 }
 
