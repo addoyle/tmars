@@ -12,7 +12,7 @@ setTimeout(() => {
     new Player('Larissa'),
     new Player('Adrian')
   ];
-  game.players.forEach((player, i) => (player.corporation = game.corps[i]));
+  game.players.forEach(player => game.setCorp(player));
   for (var j = 0; j < 10; j++) {
     game.players.forEach(player => game.drawCard(player));
   }
@@ -27,7 +27,7 @@ setTimeout(() => {
     new Player('Stan'),
     new Player('Carl')
   ];
-  game.players.forEach((player, i) => (player.corporation = game.corps[i]));
+  game.players.forEach(player => game.setCorp(player));
   for (var j = 0; j < 10; j++) {
     game.players.forEach(player => game.drawCard(player));
   }

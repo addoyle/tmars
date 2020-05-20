@@ -29,9 +29,9 @@ const Game = () => {
   useEffect(() => {
     logStore.fetchLogs();
 
-    let eventSource = subscribe(`game/${gameId()}/stream`, game => {
-      console.log(game);
-    });
+    let eventSource = subscribe(`game/${gameId()}/stream`, game =>
+      gameStore.update(game)
+    );
 
     return () => eventSource.close();
   }, []);

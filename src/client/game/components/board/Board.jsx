@@ -14,7 +14,6 @@ import classNames from 'classnames';
 import ActiveCard from './ActiveCard';
 import MilestoneAward from './MilestoneAward';
 import Settings from './Settings';
-import Player from './players/Player';
 
 // prettier-ignore
 const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
@@ -105,11 +104,7 @@ const Board = props => {
         mode="play"
       />
       <CardDrawer
-        cards={[
-          { card: '212', resources: { type: 'animal', value: 2 } },
-          { card: '035', resources: { type: 'microbe', value: 3 } },
-          { card: '028', resources: { type: 'fighter', value: 1 } }
-        ]}
+        cards={props.gameStore.player?.cards.active || []}
         type="active"
         tab={
           <>
@@ -120,7 +115,7 @@ const Board = props => {
         mode="action"
       />
       <CardDrawer
-        cards={['165', '088', '211', '159']}
+        cards={props.gameStore.player?.cards.automated || []}
         type="automated"
         tab={
           <>
@@ -130,7 +125,7 @@ const Board = props => {
         }
       />
       <CardDrawer
-        cards={[]}
+        cards={props.gameStore.player?.cards.event || []}
         type="event"
         tab={
           <>
@@ -140,8 +135,9 @@ const Board = props => {
         }
       />
       <CardDrawer
-        //cards={this.props.boardStore.players.length ? [this.props.boardStore.players[0].corp] : []}
-        cards={['P05']}
+        cards={
+          props.gameStore.player?.corp ? [props.gameStore.player.corp] : []
+        }
         type="corp"
         tab={
           <>
@@ -151,7 +147,7 @@ const Board = props => {
         }
       />
       <CardDrawer
-        cards={['P33', 'P34', 'P35']}
+        cards={props.gameStore.player?.cards.prelude || []}
         type="prelude"
         tab={
           <>
@@ -174,7 +170,17 @@ Board.propTypes = {
     activeCard: PropTypes.shape({
       show: PropTypes.bool
     }),
-    playCard: PropTypes.func
+    playCard: PropTypes.func,
+    player: PropTypes.shape({
+      corp: PropTypes.string,
+      cards: PropTypes.shape({
+        hand: PropTypes.arrayOf(PropTypes.string),
+        automated: PropTypes.arrayOf(PropTypes.string),
+        active: PropTypes.arrayOf(PropTypes.string),
+        event: PropTypes.arrayOf(PropTypes.string),
+        prelude: PropTypes.arrayOf(PropTypes.string)
+      })
+    })
   }),
   cardStore: PropTypes.shape({
     get: PropTypes.func

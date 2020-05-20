@@ -14,7 +14,8 @@ import Tiles from './Tiles';
  * Shows player's resources, tags, cards played, etc.
  */
 const PlayerStats = props => {
-  const { player, pid, show } = props.gameStore.playerStats;
+  const { pid, show } = props.gameStore.playerStats;
+  const player = props.gameStore.players[pid - 1];
 
   return (
     player && (
@@ -50,16 +51,18 @@ const PlayerStats = props => {
 PlayerStats.propTypes = {
   gameStore: PropTypes.shape({
     playerStats: PropTypes.shape({
-      player: PropTypes.shape({
+      show: PropTypes.bool,
+      pid: PropTypes.number
+    }),
+    players: PropTypes.arrayOf(
+      PropTypes.shape({
         resources: PropTypes.object,
         production: PropTypes.production,
         tags: PropTypes.object,
         tiles: PropTypes.object,
         corp: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
-      }),
-      show: PropTypes.bool,
-      pid: PropTypes.number
-    }),
+      })
+    ),
     sets: PropTypes.arrayOf(PropTypes.string)
   })
 };

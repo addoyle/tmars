@@ -71,6 +71,10 @@ $title-font: 'Prototype', sans-serif;
     vertical-align: middle;
     border-radius: 0.1em;
 
+    &.landscape {
+      height: 1em;
+    }
+
     &.back {
       background: #171717 url('./texture/card-back.jpg') no-repeat center/75%;
     }

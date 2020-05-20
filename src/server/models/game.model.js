@@ -36,12 +36,13 @@ class Game {
     venus: 0
   };
 
-  cards = {};
+  cardStore;
 
   constructor(cardStore) {
     this.deck = shuffle(Object.keys(cardStore.project));
     this.corps = shuffle(Object.keys(cardStore.corporation));
     this.preludes = shuffle(Object.keys(cardStore.prelude));
+    this.cardStore = cardStore;
   }
 
   drawCard(player) {
@@ -52,6 +53,14 @@ class Game {
     }
 
     player.cards.hand.push(this.deck.shift());
+  }
+
+  setCorp(player) {
+    player.corp = this.corps.shift();
+    const corp = this.cardStore.corporation[player.corp];
+    Object.assign(player.resources, corp.starting.resources || {});
+    Object.assign(player.production, corp.starting.production || {});
+    (corp.tags || []).forEach(tag => player.tags[tag]++);
   }
 
   param(param, player) {

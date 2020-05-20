@@ -123,7 +123,10 @@ ProjectLayout.propTypes = {
   restriction: PropTypes.shape({
     max: PropTypes.bool,
     param: PropTypes.string,
-    tag: PropTypes.string,
+    tag: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string)
+    ]),
     resource: PropTypes.string,
     tile: PropTypes.string,
     production: PropTypes.string,

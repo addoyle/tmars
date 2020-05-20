@@ -89,12 +89,15 @@ class GameService {
     player.resources.megacredit -= playedCard.cost;
 
     // Set tags if card is not event
-    if (cardType !== 'event') {
+    if (cardType === 'event') {
+      player.tags.event++;
+    } else {
       playedCard.tags.forEach(tag => player.tags[tag]++);
     }
 
-    // Put played card on player
+    // Put card in appropriate drawer, and remove from hand
     player.cards[cardType].push(card.card);
+    player.cards.hand = player.cards.hand.filter(c => c !== card.card);
 
     // Perform card's action
     if (playedCard.serverAction) {

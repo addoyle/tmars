@@ -48,8 +48,7 @@ class Game {
   // Player stats popup
   @observable playerStats = {
     show: false,
-    pid: 1,
-    player: null
+    pid: 1
   };
 
   // Global params
@@ -113,6 +112,13 @@ class Game {
   @action
   playCard(card, opts) {
     API(`game/${gameId()}/play-card`, 'POST', { ...opts, card });
+  }
+
+  @action
+  update(game) {
+    this.params = game.params;
+    this.players = game.players;
+    this.player = game.players[0];
   }
 }
 

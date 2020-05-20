@@ -98,12 +98,13 @@ const ActiveCard = props => {
           {activeCard.mode === 'play' ? (
             <button
               className="primary text-center col-1"
-              onClick={() =>
+              onClick={() => {
                 props.gameStore.playCard(activeCard.card, {
                   steel: activeCard.steel,
                   titanium: activeCard.titanium
-                })
-              }
+                });
+                activeCard.show = false;
+              }}
             >
               <div className="flex">
                 <div className="resources middle">
@@ -125,7 +126,7 @@ const ActiveCard = props => {
             className="text-center col-1"
             onClick={() => (activeCard.show = false)}
           >
-            {['active', 'hand'].includes(activeCard.type) ? 'Cancel' : 'Close'}
+            {activeCard.mode ? 'Cancel' : 'Close'}
           </button>
         </div>
       </div>
