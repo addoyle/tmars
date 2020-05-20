@@ -21,10 +21,9 @@ export default new Automated({
     game.activePlayer.production('power', 1);
     game.temperature(1, game.activePlayer);
   },
-  serverAction: game => {
-    // TODO: pseudo code
-    game.activePlayer.production('power', 1);
-    game.temperature(1, game.activePlayer);
+  serverAction: (player, game) => {
+    player.production.power++;
+    game.param('temp', player);
   },
   emoji: '☕',
   layout: (

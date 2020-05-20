@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './Game.scss';
 import Board from './components/board/Board';
 import LogModel from './models/log.model';
@@ -8,6 +8,7 @@ import { Provider } from 'mobx-react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faCog, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Tharsis from '../../shared/boards/Tharsis';
+import { subscribe, gameId } from '../util/api';
 
 const logStore = new LogModel();
 const gameStore = new GameModel({ field: Tharsis });
@@ -23,12 +24,25 @@ library.add(faArrowLeft);
 /**
  * TMars entry point
  */
-const Game = () => (
-  <div className="tmars">
-    <Provider {...{ logStore, gameStore, cardStore }}>
-      <Board />
-    </Provider>
-  </div>
-);
+const Game = () => {
+  // Subscribe to game
+  useEffect(() => {
+    logStore.fetchLogs();
+
+    let eventSource = subscribe(`game/${gameId()}/stream`, game => {
+      console.log(game);
+    });
+
+    return () => eventSource.close();
+  }, []);
+
+  return (
+    <div className="tmars">
+      <Provider {...{ logStore, gameStore, cardStore }}>
+        <Board />
+      </Provider>
+    </div>
+  );
+};
 
 export default Game;

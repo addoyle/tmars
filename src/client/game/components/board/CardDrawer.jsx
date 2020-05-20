@@ -20,7 +20,6 @@ const CardDrawer = props => {
   if (props.type === 'prelude') {
     cardType = 'prelude';
   }
-
   return (
     <div
       className={classNames('drawer', {

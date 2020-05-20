@@ -1,5 +1,5 @@
 import { observable, action } from 'mobx';
-import { API } from '../../util/api';
+import { API, gameId } from '../../util/api';
 
 class Game {
   constructor(props) {
@@ -97,16 +97,12 @@ class Game {
 
   @action
   getPlayers() {
-    API('players').then(res => {
-      this.players = res;
-    });
+    API(`game/${gameId()}/players`).then(res => (this.players = res));
   }
 
   @action
   getPlayer() {
-    API('player').then(res => {
-      this.player = res;
-    });
+    API(`game/${gameId()}/player`).then(res => (this.player = res));
   }
 
   @action
@@ -116,7 +112,7 @@ class Game {
 
   @action
   playCard(card, opts) {
-    API('play', 'POST', { ...opts, card });
+    API(`game/${gameId()}/play-card`, 'POST', { ...opts, card });
   }
 }
 

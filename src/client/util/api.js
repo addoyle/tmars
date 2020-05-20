@@ -29,3 +29,7 @@ export function subscribe(endpoint, callback) {
   evSrc.onmessage = e => callback(JSON.parse(e.data));
   return evSrc;
 }
+
+export function gameId() {
+  return location.pathname.split('/').slice(-1).pop();
+}

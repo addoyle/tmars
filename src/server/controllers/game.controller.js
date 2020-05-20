@@ -1,19 +1,38 @@
 import GameService from '../services/game.service';
-import Player from '../models/player.model';
 
 // FIXME: Temporary
+import Game from '../models/game.model';
+import Player from '../models/player.model';
 setTimeout(() => {
-  GameService.game.players.push(new Player('Andy'));
-  GameService.game.players.push(new Player('Frank'));
-  GameService.game.players.push(new Player('Colin'));
-  GameService.game.players.push(new Player('Larissa'));
-  GameService.game.players.push(new Player('Adrian'));
-  for (var i = 0; i < GameService.game.players.length; i++) {
-    GameService.game.players[i].corporation = GameService.game.corps[i];
-    for (var j = 0; j < 10; j++) {
-      GameService.game.drawCard(i);
-    }
+  const game = new Game(GameService.cardStore);
+  game.players = [
+    new Player('Andy'),
+    new Player('Frank'),
+    new Player('Colin'),
+    new Player('Larissa'),
+    new Player('Adrian')
+  ];
+  game.players.forEach((player, i) => (player.corporation = game.corps[i]));
+  for (var j = 0; j < 10; j++) {
+    game.players.forEach(player => game.drawCard(player));
   }
+
+  GameService.games['123'] = game;
+}, 2000);
+setTimeout(() => {
+  const game = new Game(GameService.cardStore);
+  game.players = [
+    new Player('Jim'),
+    new Player('Bob'),
+    new Player('Stan'),
+    new Player('Carl')
+  ];
+  game.players.forEach((player, i) => (player.corporation = game.corps[i]));
+  for (var j = 0; j < 10; j++) {
+    game.players.forEach(player => game.drawCard(player));
+  }
+
+  GameService.games['1234'] = game;
 }, 2000);
 
 /**
@@ -23,15 +42,18 @@ setTimeout(() => {
  * @param {*} res
  */
 export function getPlayers(req, res) {
+  if (!GameService.games[req.params.id]) {
+    return res.sendStatus(404);
+  }
+
   res.send(
-    GameService.game.players.map(player => ({
+    GameService.games[req.params.id].players.map(player => ({
       ...player,
-      corp: player.corp.number,
       cards: {
-        active: player.cards.active.map(card => card.number),
-        automated: player.cards.automated.map(card => card.number),
-        event: player.cards.event.map(card => card.number),
-        prelude: player.cards.prelude.map(card => card.number)
+        active: player.cards.active,
+        automated: player.cards.automated,
+        event: player.cards.event,
+        prelude: player.cards.prelude
       }
     }))
   );
@@ -44,20 +66,11 @@ export function getPlayers(req, res) {
  * @param {*} res
  */
 export function getPlayer(req, res) {
-  const player = GameService.game.players[0];
+  if (!GameService.games[req.params.id]) {
+    return res.sendStatus(404);
+  }
 
-  res.send({
-    ...player,
-    corp: player.corp.number,
-    cards: {
-      hand: player.cards.hand.map(card => card.number),
-      draft: player.cards.draft.map(card => card.number),
-      active: player.cards.active.map(card => card.number),
-      automated: player.cards.automated.map(card => card.number),
-      event: player.cards.event.map(card => card.number),
-      prelude: player.cards.prelude.map(card => card.number)
-    }
-  });
+  res.send(GameService.games[req.params.id].players[0]);
 }
 
 /**
@@ -67,11 +80,8 @@ export function getPlayer(req, res) {
  * @param {*} res
  */
 export function playCard(req, res) {
-  console.log(req.body);
-
-  // GameService.playCard(req)
-
-  res.sendStatus(200);
+  GameService.playCard(`${req.params.id}`, req.body, res);
+  res.send(200);
 }
 
 /**
@@ -81,6 +91,10 @@ export function playCard(req, res) {
  * @param {*} res
  */
 export function stream(req, res) {
+  if (!GameService.games[req.params.id]) {
+    return res.sendStatus(404);
+  }
+
   GameService.stream(req, res);
 }
 

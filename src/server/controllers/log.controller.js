@@ -7,7 +7,7 @@ import LogService from '../services/log.service';
  * @param {*} res
  */
 export function getAll(req, res) {
-  res.send(LogService.log);
+  res.send(LogService.log[req.params.id]);
 }
 
 /**
@@ -17,7 +17,11 @@ export function getAll(req, res) {
  * @param {*} res
  */
 export function postLog(req, res) {
-  LogService.pushLog({ ...req.body, system: false });
+  LogService.pushLog(
+    req.params.id,
+    { ...req.body, system: false },
+    req.params.id
+  );
   res.sendStatus(200);
 }
 

@@ -18,7 +18,7 @@ export default new Corporation({
     textTransform: 'uppercase',
     fontFamily: 'monospace',
     color: 'red',
-    WebkitTextSTroke: '.03em #ccc',
+    '-webkit-text-stroke': '.03em #ccc',
     margin: '.8em .3em .1em',
     fontWeight: 'bold',
     transform: 'scale(1.3,1)',

@@ -24,7 +24,11 @@ export default new Automated({
   desc,
   flavor: 'A spacious area for a great city',
   clientAction: () => {},
-  serverAction: () => {},
+  serverAction: player => {
+    player.resources.plant += 3;
+    player.production.power--;
+    player.production.megacredit += 3;
+  },
   emoji: '🕌',
   vp: 1,
   layout: (

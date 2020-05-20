@@ -4,7 +4,7 @@ import Log from '../models/log.model.js';
 @sse
 class LogService {
   // prettier-ignore
-  log = [
+  log = {'123': [
     new Log(1, 'this is cool', false),
     new Log(1, [' played ', {project: '032'}, '.']),
     new Log(1, [' placed a ', {tile: 'city'}, ' **City**.']),
@@ -32,11 +32,14 @@ class LogService {
     new Log(2, [' placed a ', {tile: 'city'}, ' **City**.']),
     new Log(5, ['\'s ', {project: '038'}, ' effect was activated and received 2 ', {megaCredit: null}, '.']),
     new Log(2, [' played ', {project: '187'}, '.'])
-  ];
+  ], '1234':[]};
 
   @push
-  pushLog(log) {
-    this.log.push(log);
+  pushLog(id, log) {
+    if (!this.log[id]) {
+      this.log[id] = [];
+    }
+    this.log[id].push(log);
 
     return log;
   }

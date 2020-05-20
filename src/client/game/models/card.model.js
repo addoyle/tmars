@@ -12,7 +12,7 @@ class Card {
       ).then(res => this.setCardsFromPromise(type, res));
     };
 
-    API('card-numbers').then(res => {
+    API('game/card-numbers').then(res => {
       loadCards('corp', res.corporation);
       loadCards('project', res.project);
       loadCards('prelude', res.prelude);

@@ -14,6 +14,7 @@ import classNames from 'classnames';
 import ActiveCard from './ActiveCard';
 import MilestoneAward from './MilestoneAward';
 import Settings from './Settings';
+import Player from './players/Player';
 
 // prettier-ignore
 const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
@@ -91,24 +92,7 @@ const Board = props => {
       <ActiveCard />
       <Settings />
       <CardDrawer
-        cards={[
-          '001',
-          '002',
-          '003',
-          '004',
-          '005',
-          '006',
-          '007',
-          '008',
-          '009',
-          '010',
-          '011',
-          '012',
-          '013',
-          '014',
-          '015',
-          '016'
-        ]}
+        cards={props.gameStore.player?.cards.hand || []}
         type="hand"
         tab={
           <>

@@ -96,7 +96,15 @@ const ActiveCard = props => {
         ) : null}
         <div className="flex gutter">
           {activeCard.mode === 'play' ? (
-            <button className="primary text-center col-1">
+            <button
+              className="primary text-center col-1"
+              onClick={() =>
+                props.gameStore.playCard(activeCard.card, {
+                  steel: activeCard.steel,
+                  titanium: activeCard.titanium
+                })
+              }
+            >
               <div className="flex">
                 <div className="resources middle">
                   <Param name="card back" />
@@ -136,6 +144,7 @@ ActiveCard.propTypes = {
       steel: PropTypes.number,
       titanium: PropTypes.number
     }).isRequired,
+    playCard: PropTypes.func,
     player: PropTypes.shape({
       resources: PropTypes.shape({
         steel: PropTypes.number,

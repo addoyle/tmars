@@ -7,7 +7,7 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import classNames from 'classnames';
 import Markdown from 'react-markdown';
 import { isPlainObject } from 'lodash';
-import { subscribe } from '../../../util/api';
+import { subscribe, gameId } from '../../../util/api';
 import { Tile, Param, Resource, Tag, MegaCredit } from '../assets/Assets';
 
 /**
@@ -43,8 +43,9 @@ const Log = forwardRef((props, ref) => {
   useEffect(() => {
     logStore.fetchLogs();
 
-    // TODO: handle if eventSource disconnects
-    let eventSource = subscribe('log/stream', log => logStore.log.push(log));
+    let eventSource = subscribe(`log/${gameId()}/stream`, log =>
+      logStore.log.push(log)
+    );
 
     return () => eventSource.close();
   }, []);
@@ -56,9 +57,8 @@ const Log = forwardRef((props, ref) => {
       onMouseMove={e => e.stopPropagation()}
     >
       <ScrollToBottom className="msgs" followButtonClassName="follow-button">
-        {gameStore.players &&
-          gameStore.players.length &&
-          logStore.log.map((msg, i) => (
+        {gameStore.players?.length &&
+          logStore.log?.map((msg, i) => (
             <div key={i} className={classNames('msg', { system: msg.system })}>
               <span className={classNames('strong', `player-${msg.player}`)}>
                 {gameStore.players[msg.player - 1].name}
