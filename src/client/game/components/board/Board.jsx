@@ -9,11 +9,12 @@ import Log from './Log';
 import GlobalParameters from './params/GlobalParameters';
 import StandardProjects from './StandardProjects';
 import CardDrawer from './CardDrawer';
-import { Param } from '../assets/Assets';
+import { Param, MegaCredit } from '../assets/Assets';
 import classNames from 'classnames';
 import ActiveCard from './ActiveCard';
 import MilestoneAward from './MilestoneAward';
 import Settings from './Settings';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 // prettier-ignore
 const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
@@ -101,7 +102,12 @@ const Board = props => {
             <span>Hand</span>
           </>
         }
-        mode="play"
+        mode={
+          props.gameStore.player?.cards.buy.length ||
+          props.gameStore.player?.cards.draft.length
+            ? null
+            : 'play'
+        }
       />
       <CardDrawer
         cards={props.gameStore.player?.cards.active || []}
@@ -145,6 +151,7 @@ const Board = props => {
             <span>Corporation</span>
           </>
         }
+        mode="action"
       />
       <CardDrawer
         cards={props.gameStore.player?.cards.prelude || []}
@@ -156,6 +163,38 @@ const Board = props => {
           </>
         }
       />
+      {props.gameStore.player?.cards.buy.length ||
+      props.gameStore.player?.cards.draft.length ? (
+        <CardDrawer
+          cards={props.gameStore.player.cards.buy}
+          type="buy"
+          tab={
+            <>
+              <MegaCredit />
+              <span>Buy</span>
+            </>
+          }
+          mode="buy"
+        />
+      ) : null}
+      {props.gameStore.player?.cards.draft.length ? (
+        <CardDrawer
+          cards={props.gameStore.player.cards.draft}
+          type="draft"
+          tab={
+            <>
+              <FontAwesomeIcon
+                fixedWidth
+                icon={`arrow-alt-circle-${
+                  ['left', 'right'][props.gameStore.params.generation % 2]
+                }`}
+              />
+              <span>Draft</span>
+            </>
+          }
+          mode="draft"
+        />
+      ) : null}
 
       <Log ref={logRef} />
     </div>
@@ -171,6 +210,9 @@ Board.propTypes = {
       show: PropTypes.bool
     }),
     playCard: PropTypes.func,
+    params: PropTypes.shape({
+      generation: PropTypes.number
+    }),
     player: PropTypes.shape({
       corp: PropTypes.string,
       cards: PropTypes.shape({
@@ -178,7 +220,9 @@ Board.propTypes = {
         automated: PropTypes.arrayOf(PropTypes.string),
         active: PropTypes.arrayOf(PropTypes.string),
         event: PropTypes.arrayOf(PropTypes.string),
-        prelude: PropTypes.arrayOf(PropTypes.string)
+        prelude: PropTypes.arrayOf(PropTypes.string),
+        draft: PropTypes.arrayOf(PropTypes.string),
+        buy: PropTypes.arrayOf(PropTypes.string)
       })
     })
   }),

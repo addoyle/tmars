@@ -54,6 +54,34 @@ const ActiveCard = props => {
         <CardPreview card={activeCard.card} type={activeCard.type} />
       ) : null}
       <div className="footer">
+        {activeCard.mode === 'draft' ? (
+          <button className="text-center">
+            <div className="flex">
+              <div className="center middle">Draft</div>
+            </div>
+          </button>
+        ) : null}
+
+        {activeCard.mode === 'buy' ? (
+          <button
+            className="text-center"
+            onClick={() => {
+              props.gameStore.buyCard(activeCard.card);
+              activeCard.show = false;
+            }}
+          >
+            <div className="flex">
+              <div className="resources middle">
+                <Param name="card back" />
+              </div>
+              <div className="center middle">Buy</div>
+              <div className="resources middle">
+                <MegaCredit value={3} />
+              </div>
+            </div>
+          </button>
+        ) : null}
+
         {activeCard.mode === 'play' && card.tags.includes('building') ? (
           <button
             className="text-center"
@@ -73,6 +101,7 @@ const ActiveCard = props => {
             </div>
           </button>
         ) : null}
+
         {activeCard.mode === 'play' && card.tags.includes('space') ? (
           <button
             className="text-center"
@@ -94,6 +123,7 @@ const ActiveCard = props => {
             </div>
           </button>
         ) : null}
+
         <div className="flex gutter">
           {activeCard.mode === 'play' ? (
             <button
@@ -146,6 +176,7 @@ ActiveCard.propTypes = {
       titanium: PropTypes.number
     }).isRequired,
     playCard: PropTypes.func,
+    buyCard: PropTypes.func,
     player: PropTypes.shape({
       resources: PropTypes.shape({
         steel: PropTypes.number,

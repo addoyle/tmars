@@ -45,14 +45,14 @@ class Game {
     this.cardStore = cardStore;
   }
 
-  drawCard(player) {
+  drawCard(player, pile = 'hand') {
     // Reshuffle draw deck
     if (this.deck.length === 0) {
       this.deck = shuffle(this.discard);
       this.discard = [];
     }
 
-    player.cards.hand.push(this.deck.shift());
+    player.cards[pile].push(this.deck.shift());
   }
 
   setCorp(player) {

@@ -114,6 +114,26 @@ class GameService {
     return strippedGame;
   }
 
+  @push
+  buyCard(id, card, res) {
+    const game = this.games[id];
+
+    if (!game) {
+      res.status(404).send('Game not found');
+      return;
+    }
+
+    const player = game.players[0];
+    player.resources.megacredit -= 3;
+
+    player.cards.hand.push(card.card);
+    player.cards.buy = player.cards.buy.filter(c => c !== card.card);
+
+    // eslint-disable-next-line no-unused-vars
+    const { deck, discard, corps, preludes, ...strippedGame } = game;
+    return strippedGame;
+  }
+
   getAllCardNumbers() {
     return Object.keys(this.cardStore).reduce(
       (cards, type) => ({

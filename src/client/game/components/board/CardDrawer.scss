@@ -20,6 +20,22 @@ $hand-height: 33vh;
     z-index: 3;
   }
 
+  .button-box {
+    position: absolute;
+    top: 0;
+    right: 17px;
+    padding: 16px;
+    border-radius: 0 0 16px 16px;
+    border: 3px solid rgba(0,0,0,.5);
+    border-top: none;
+    background-color: rgba(0,0,0,.2);
+    z-index: 2;
+
+    button {
+      padding: 8px;
+    }
+  }
+
   .drawer-btn {
     display: block;
     font-size: 1.25em;
@@ -53,6 +69,12 @@ $hand-height: 33vh;
     &.prelude {
       left: 757px;
     }
+    &.buy {
+      left: 916px;
+    }
+    &.draft {
+      left: 1033px;
+    }
 
     .param {
       box-shadow: 0 0 4px 1px rgba(0,0,0,.4);
@@ -61,6 +83,18 @@ $hand-height: 33vh;
       &.corp:before, &.prelude :before {
         font-size: 1pt;
       }
+    }
+
+    > .mc {
+      font-size: 1.4em;
+      margin-right: 8px;
+      filter: drop-shadow(0 0 4px rgba(0,0,0,.4));
+      vertical-align: middle;
+    }
+
+    > svg[class*="fa-"] {
+      vertical-align: middle;
+      margin-right: 8px;
     }
 
     & > span {

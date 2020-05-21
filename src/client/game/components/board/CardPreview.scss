@@ -11,8 +11,8 @@
   font-family: initial;
   z-index: 1000;
 
-  .card {
-    box-shadow: 0 .05em .1em rgba(0,0,0,.7);
+  > .card {
+    font-size: #{'min(30vh, 300px)'};
   }
 
   &.show {

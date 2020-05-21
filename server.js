@@ -4,8 +4,8 @@ import config from './src/server/config';
 import BodyParser from 'body-parser';
 
 // Import routes
-import log from './src/server/routes/log.routes';
-import game from './src/server/routes/game.routes';
+import logRoutes from './src/server/routes/log.routes';
+import gameRoutes from './src/server/routes/game.routes';
 
 const app = new Express();
 
@@ -18,8 +18,8 @@ app.use(Express.static('public'));
 app.use(Express.static('dist'));
 
 // Assign routes
-app.use('/api/log', log);
-app.use('/api/game', game);
+app.use('/api/log', logRoutes);
+app.use('/api/game', gameRoutes);
 
 // Everything else, defer to React router
 app.get(['*'], (req, res) =>

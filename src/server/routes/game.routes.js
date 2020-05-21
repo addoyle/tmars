@@ -9,6 +9,7 @@ const router = Router();
 router.get('/:id/player', GameController.getPlayer);
 router.get('/:id/players', GameController.getPlayers);
 router.post('/:id/play-card', GameController.playCard);
+router.post('/:id/buy-card', GameController.buyCard);
 router.get('/:id/stream', GameController.stream);
 
 router.get('/card-numbers', GameController.getAllCardNumbers);

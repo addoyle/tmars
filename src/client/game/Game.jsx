@@ -6,7 +6,13 @@ import GameModel from './models/game.model';
 import CardModel from './models/card.model';
 import { Provider } from 'mobx-react';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCog, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCog,
+  faArrowLeft,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight,
+  faCheck
+} from '@fortawesome/free-solid-svg-icons';
 import Tharsis from '../../shared/boards/Tharsis';
 import { subscribe, gameId } from '../util/api';
 
@@ -20,6 +26,9 @@ history.scrollRestoration = 'manual';
 // Load up icons
 library.add(faCog);
 library.add(faArrowLeft);
+library.add(faArrowAltCircleLeft);
+library.add(faArrowAltCircleRight);
+library.add(faCheck);
 
 /**
  * TMars entry point

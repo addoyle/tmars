@@ -14,7 +14,7 @@ setTimeout(() => {
   ];
   game.players.forEach(player => game.setCorp(player));
   for (var j = 0; j < 10; j++) {
-    game.players.forEach(player => game.drawCard(player));
+    game.players.forEach(player => game.drawCard(player, 'buy'));
   }
 
   GameService.games['123'] = game;
@@ -29,7 +29,7 @@ setTimeout(() => {
   ];
   game.players.forEach(player => game.setCorp(player));
   for (var j = 0; j < 10; j++) {
-    game.players.forEach(player => game.drawCard(player));
+    game.players.forEach(player => game.drawCard(player, 'buy'));
   }
 
   GameService.games['1234'] = game;
@@ -74,13 +74,24 @@ export function getPlayer(req, res) {
 }
 
 /**
- * Post a log
+ * Play a card
  *
  * @param {*} req
  * @param {*} res
  */
 export function playCard(req, res) {
   GameService.playCard(`${req.params.id}`, req.body, res);
+  res.send(200);
+}
+
+/**
+ * Buy a card
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function buyCard(req, res) {
+  GameService.buyCard(`${req.params.id}`, req.body, res);
   res.send(200);
 }
 

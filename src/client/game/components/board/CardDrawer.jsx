@@ -5,6 +5,7 @@ import './CardDrawer.scss';
 import CardPreview from './CardPreview';
 import { isString } from 'lodash';
 import classNames from 'classnames';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 /**
  * Card drawer
@@ -34,6 +35,15 @@ const CardDrawer = props => {
       >
         {props.tab}
       </button>
+
+      {props.mode === 'buy' ? (
+        <div className="button-box">
+          <button className="primary">
+            <FontAwesomeIcon icon="check" fixedWidth />
+            Done
+          </button>
+        </div>
+      ) : null}
 
       <ul className="cards">
         {cards.map(card => (
@@ -66,7 +76,7 @@ CardDrawer.propTypes = {
   tab: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   type: PropTypes.string,
   cards: PropTypes.array,
-  mode: PropTypes.oneOf(['play', 'action']),
+  mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft']),
   gameStore: PropTypes.shape({
     drawer: PropTypes.string,
     switchDrawer: PropTypes.func,

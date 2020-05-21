@@ -115,6 +115,11 @@ class Game {
   }
 
   @action
+  buyCard(card, opts) {
+    API(`game/${gameId()}/buy-card`, 'POST', { ...opts, card });
+  }
+
+  @action
   update(game) {
     this.params = game.params;
     this.players = game.players;

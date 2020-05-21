@@ -44,6 +44,7 @@ export default class Player {
     hand: [],
     draft: [],
     active: [],
+    buy: [],
     automated: [],
     event: [],
     prelude: []

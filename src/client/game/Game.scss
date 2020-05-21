@@ -1,3 +1,5 @@
+$title-font: 'Prototype', sans-serif;
+
 /*
 	 CSS Reset
 
@@ -109,3 +111,55 @@ table {
 	}
 }
 
+button {
+	padding: 2px;
+	border: 1px solid #ccc;
+	background: linear-gradient(
+		135deg,
+		#444 0%,
+		#eee 25%,
+		#bbb 50%,
+		#bbb 75%,
+		#eee 100%
+	);
+	border-top-right-radius: 10px;
+	cursor: pointer;
+	transition: box-shadow 0.15s ease;
+	font-family: $title-font;
+	font-size: 1.25em;
+	height: 38px;
+	outline: none;
+	line-height: 1;
+
+	&.primary {
+		border-width: 2px;
+	}
+
+	.pill {
+		padding: 4px 12px;
+		margin-right: 4px;
+		background-color: rgba(0, 0, 0, 0.75);
+		color: #eee;
+		border-radius: 18px;
+		font-size: 12px;
+	}
+
+	.resources {
+		font-size: 1em;
+		.mc {
+			font-size: 1.3em;
+		}
+	}
+
+	&.disabled {
+		color: #666;
+		text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+	}
+
+	&:hover {
+		box-shadow: 0 0 0 4px #666;
+	}
+	&:active {
+		box-shadow: 0 0 0 4px #666, 0 0 12px rgba(0, 0, 0, 0.5) inset;
+	}
+}
