@@ -47,7 +47,8 @@ export default class Player {
     buy: [],
     automated: [],
     event: [],
-    prelude: []
+    prelude: [],
+    onDec: []
   };
 
   constructor(name) {

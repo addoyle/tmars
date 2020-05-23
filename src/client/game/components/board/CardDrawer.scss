@@ -18,26 +18,64 @@ $hand-height: 33vh;
   &.collapse {
     transform: translateY(100%);
     z-index: 3;
+
+    .button-box, .on-deck {
+      pointer-events: none;
+      opacity: 0;
+    }
   }
 
   .button-box {
     position: absolute;
-    top: 0;
-    right: 17px;
+    top: -4px;
+    transform: translateY(-100%);
+    right: 48px;
     padding: 16px;
-    border-radius: 0 0 16px 16px;
-    border: 3px solid rgba(0,0,0,.5);
-    border-top: none;
-    background-color: rgba(0,0,0,.2);
+    border-radius: 16px 16px 0 0;
+    border: 3px solid #444;
+    border-bottom: none;
+    background: rgba(187, 187, 187, .5);
     z-index: 2;
+    opacity: 1;
+    transition: opacity .5s ease;
 
     button {
       padding: 8px;
+
+      .x {
+        position: relative;
+        text-shadow: 0 0 3px rgba(255,255,255,.7);
+        font-size: 1.2em;
+        margin-right: -10px;
+        z-index: 2;
+      }
+    }
+  }
+
+  .on-deck {
+    display: flex;
+    flex-direction: column-reverse;
+    filter: drop-shadow(0 0 4px rgba(255,255,255,.4));
+    position: absolute;
+    top: -4px;
+    left: 56px;
+    transform: translateY(-100%);
+    opacity: 1;
+    transition: opacity .5s ease;
+
+    > div {
+      margin-bottom: 8px;
+
+      .param.card {
+        box-shadow: 0 0 2px rgba(255,255,255,.4);
+        margin-right: -.5em;
+        font-size: 1.5em;
+      }
     }
   }
 
   .drawer-btn {
-    display: block;
+    display: flex;
     font-size: 1.25em;
     padding: 8px 12px;
     position: absolute;
@@ -53,6 +91,10 @@ $hand-height: 33vh;
     font-family: $title-font;
     outline: none;
     transition: border-color .3s ease, box-shadow .15s ease;
+
+    > * {
+      align-self: center;
+    }
 
     &.active {
       left: 144px;

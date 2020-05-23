@@ -70,13 +70,8 @@ class GameService {
 */
 
   @push
-  playCard(id, card, res) {
+  playCard(id, card) {
     const game = this.games[id];
-
-    if (!game) {
-      res.status(404).send('Game not found');
-      return;
-    }
 
     const player = game.players[0];
     const playedCard = this.cardStore.project[card.card];
@@ -109,19 +104,12 @@ class GameService {
     // console.log(game);
     // const player = game.players[0];
 
-    // eslint-disable-next-line no-unused-vars
-    const { deck, discard, corps, preludes, ...strippedGame } = game;
-    return strippedGame;
+    return game.export();
   }
 
   @push
-  buyCard(id, card, res) {
+  buyCard(id, card) {
     const game = this.games[id];
-
-    if (!game) {
-      res.status(404).send('Game not found');
-      return;
-    }
 
     const player = game.players[0];
     player.resources.megacredit -= 3;
@@ -129,9 +117,39 @@ class GameService {
     player.cards.hand.push(card.card);
     player.cards.buy = player.cards.buy.filter(c => c !== card.card);
 
-    // eslint-disable-next-line no-unused-vars
-    const { deck, discard, corps, preludes, ...strippedGame } = game;
-    return strippedGame;
+    return game.export();
+  }
+
+  @push
+  discardUnbought(id) {
+    const game = this.games[id];
+
+    const player = game.players[0];
+    game.cards.discard.concat(player.cards.buy);
+    player.cards.buy = [];
+
+    return game.export();
+  }
+
+  @push
+  draftCard(id, card) {
+    const game = this.games[id];
+
+    const player = game.players[0];
+
+    player.cards.buy.push(card.card);
+
+    // Send draft cards to next player
+    game.players[1].cards.onDeck.push(
+      player.cards.draft.filter(c => c !== card.card)
+    );
+
+    // Grab the next set on deck
+    if (player.cards.onDeck.length) {
+      player.cards.draft = player.cards.onDeck.shift();
+    }
+
+    return game.export();
   }
 
   getAllCardNumbers() {

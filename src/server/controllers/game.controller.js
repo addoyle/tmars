@@ -13,9 +13,23 @@ setTimeout(() => {
     new Player('Adrian')
   ];
   game.players.forEach(player => game.setCorp(player));
-  for (var j = 0; j < 10; j++) {
+  for (let j = 0; j < 10; j++) {
     game.players.forEach(player => game.drawCard(player, 'buy'));
   }
+  for (let j = 0; j < 4; j++) {
+    game.players.forEach(player => game.drawCard(player, 'draft'));
+  }
+  game.players.forEach(player => {
+    player.cards.onDeck = [
+      [
+        game.cards.deck.shift(),
+        game.cards.deck.shift(),
+        game.cards.deck.shift()
+      ],
+      [game.cards.deck.shift(), game.cards.deck.shift()],
+      [game.cards.deck.shift()]
+    ];
+  });
 
   GameService.games['123'] = game;
 }, 2000);
@@ -28,7 +42,7 @@ setTimeout(() => {
     new Player('Carl')
   ];
   game.players.forEach(player => game.setCorp(player));
-  for (var j = 0; j < 10; j++) {
+  for (let j = 0; j < 10; j++) {
     game.players.forEach(player => game.drawCard(player, 'buy'));
   }
 
@@ -81,7 +95,7 @@ export function getPlayer(req, res) {
  */
 export function playCard(req, res) {
   GameService.playCard(`${req.params.id}`, req.body, res);
-  res.send(200);
+  res.sendStatus(200);
 }
 
 /**
@@ -92,7 +106,29 @@ export function playCard(req, res) {
  */
 export function buyCard(req, res) {
   GameService.buyCard(`${req.params.id}`, req.body, res);
-  res.send(200);
+  res.sendStatus(200);
+}
+
+/**
+ * Draft a card
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function draftCard(req, res) {
+  GameService.draftCard(`${req.params.id}`, req.body, res);
+  res.sendStatus(200);
+}
+
+/**
+ * Discard unbought cards
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function discardUnbought(req, res) {
+  GameService.discardUnbought(`${req.params.id}`, res);
+  res.sendStatus(200);
 }
 
 /**

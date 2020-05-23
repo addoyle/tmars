@@ -5,7 +5,7 @@ import './CardDrawer.scss';
 import CardPreview from './CardPreview';
 import { isString } from 'lodash';
 import classNames from 'classnames';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Param } from '../assets/Assets';
 
 /**
  * Card drawer
@@ -21,6 +21,7 @@ const CardDrawer = props => {
   if (props.type === 'prelude') {
     cardType = 'prelude';
   }
+
   return (
     <div
       className={classNames('drawer', {
@@ -29,19 +30,40 @@ const CardDrawer = props => {
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
     >
-      <button
+      <div
         className={classNames('drawer-btn', props.type)}
         onClick={() => gameStore.switchDrawer(props.type)}
       >
         {props.tab}
-      </button>
+      </div>
 
       {props.mode === 'buy' ? (
         <div className="button-box">
-          <button className="primary">
-            <FontAwesomeIcon icon="check" fixedWidth />
-            Done
+          <button
+            className="primary flex gutter"
+            onClick={() => {
+              gameStore.switchDrawer('hand');
+              gameStore.discardUnbought();
+            }}
+          >
+            <div className="resources middle">
+              <span className="x">X</span>
+              <Param name="card back" />
+            </div>
+            <span className="middle">Discard the rest</span>
           </button>
+        </div>
+      ) : null}
+
+      {props.mode === 'draft' ? (
+        <div className="on-deck">
+          {gameStore.player?.cards.onDeck.map((row, i) => (
+            <div className="" key={i}>
+              {[...Array(row.length)].map((n, j) => (
+                <Param key={j} name="card back" />
+              ))}
+            </div>
+          ))}
         </div>
       ) : null}
 
@@ -80,12 +102,18 @@ CardDrawer.propTypes = {
   gameStore: PropTypes.shape({
     drawer: PropTypes.string,
     switchDrawer: PropTypes.func,
+    player: PropTypes.shape({
+      cards: PropTypes.shape({
+        onDeck: PropTypes.arrayOf(PropTypes.array)
+      })
+    }),
     activeCard: PropTypes.shape({
       card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       type: PropTypes.string,
       show: PropTypes.bool
     }),
-    showActiveCard: PropTypes.func
+    showActiveCard: PropTypes.func,
+    discardUnbought: PropTypes.func
   })
 };
 

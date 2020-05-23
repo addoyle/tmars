@@ -120,6 +120,16 @@ class Game {
   }
 
   @action
+  draftCard(card, opts) {
+    API(`game/${gameId()}/draft-card`, 'POST', { ...opts, card });
+  }
+
+  @action
+  discardUnbought() {
+    API(`game/${gameId()}/discard-unbought`, 'POST');
+  }
+
+  @action
   update(game) {
     this.params = game.params;
     this.players = game.players;

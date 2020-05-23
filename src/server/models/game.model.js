@@ -21,10 +21,12 @@ const paramStats = {
 };
 
 class Game {
-  deck = [];
-  discard = [];
-  corps = [];
-  preludes = [];
+  cards = {
+    deck: [],
+    discard: [],
+    corps: [],
+    preludes: []
+  };
   players = [];
   turn = 0;
   startingPlayer = 0;
@@ -38,31 +40,49 @@ class Game {
 
   cardStore;
 
+  /**
+   * Constructor
+   * @param {CardModel} cardStore
+   */
   constructor(cardStore) {
-    this.deck = shuffle(Object.keys(cardStore.project));
-    this.corps = shuffle(Object.keys(cardStore.corporation));
-    this.preludes = shuffle(Object.keys(cardStore.prelude));
+    this.cards.deck = shuffle(Object.keys(cardStore.project));
+    this.cards.corps = shuffle(Object.keys(cardStore.corporation));
+    this.cards.preludes = shuffle(Object.keys(cardStore.prelude));
     this.cardStore = cardStore;
   }
 
+  /**
+   * Draw a card for a player
+   * @param {Player} player
+   * @param {string} pile
+   */
   drawCard(player, pile = 'hand') {
     // Reshuffle draw deck
-    if (this.deck.length === 0) {
-      this.deck = shuffle(this.discard);
-      this.discard = [];
+    if (this.cards.deck.length === 0) {
+      this.cards.deck = shuffle(this.cards.discard);
+      this.cards.discard = [];
     }
 
-    player.cards[pile].push(this.deck.shift());
+    player.cards[pile].push(this.cards.deck.shift());
   }
 
+  /**
+   * Set the corp on a player
+   * @param {Player} player
+   */
   setCorp(player) {
-    player.corp = this.corps.shift();
+    player.corp = this.cards.corps.shift();
     const corp = this.cardStore.corporation[player.corp];
     Object.assign(player.resources, corp.starting.resources || {});
     Object.assign(player.production, corp.starting.production || {});
     (corp.tags || []).forEach(tag => player.tags[tag]++);
   }
 
+  /**
+   * Bump up the param and give the player the rewards
+   * @param {string} param
+   * @param {Player} player
+   */
   param(param, player) {
     if (
       paramStats[param] !== undefined &&
@@ -73,6 +93,12 @@ class Game {
       this.params[param] += paramStats[param].step || 1;
       player.tr++;
     }
+  }
+
+  export() {
+    // eslint-disable-next-line no-unused-vars
+    const { cards, ...strippedGame } = this;
+    return strippedGame;
   }
 }
 

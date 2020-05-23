@@ -13,7 +13,7 @@ export default new Corporation({
     textTransform: 'uppercase',
     margin: '1em auto .5em',
     color: 'orange',
-    '-webkit-text-stroke': '.04em #000',
+    WebkitTextStroke: '.04em #000',
     fontFamily: 'Papyrus, fantasy',
     letterSpacing: '.2em'
   },

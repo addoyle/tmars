@@ -52,6 +52,11 @@ $title-font: 'Prototype', sans-serif;
     top: 50%;
     transform: translateX(50%) translateY(-50%) rotate(-90deg);
 
+    .btn {
+      height: auto;
+      line-height: normal;
+    }
+
     .milestone-award {
       padding-left: 1em;
       position: relative;

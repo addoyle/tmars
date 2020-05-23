@@ -15,7 +15,7 @@ export default new Automated({
   number: 92,
   title: 'Io Mining Industries',
   cost: 11,
-  tags: ['science', 'space', 'power'],
+  tags: ['jovian', 'space'],
   set: 'corporate',
   desc,
   flavor: 'Supplying fuel and valuable minerals',

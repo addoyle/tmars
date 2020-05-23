@@ -17,7 +17,7 @@ export default new Automated({
     'Square kilometers of extra sunlight reflected down to a receiving power plant',
   clientAction: () => {},
   serverAction: () => {},
-  emoji: '🔘',
+  emoji: '🪞',
   layout: (
     <div className="text-center">
       <Production>
