@@ -95,13 +95,8 @@ class Game {
   @observable player;
 
   @action
-  getPlayers() {
-    API(`game/${gameId()}/players`).then(res => (this.players = res));
-  }
-
-  @action
-  getPlayer() {
-    API(`game/${gameId()}/player`).then(res => (this.player = res));
+  getGame(player) {
+    API(`game/${gameId()}?player=${player}`).then(res => this.update(res));
   }
 
   @action
@@ -133,7 +128,10 @@ class Game {
   update(game) {
     this.params = game.params;
     this.players = game.players;
-    this.player = game.players[0];
+    this.player =
+      game.players[
+        new URLSearchParams(window.location.search).get('player') - 1
+      ];
   }
 }
 

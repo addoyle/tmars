@@ -34,12 +34,19 @@ library.add(faCheck);
  * TMars entry point
  */
 const Game = () => {
-  // Subscribe to game
+  // Subscribe to the game
   useEffect(() => {
     logStore.fetchLogs();
 
-    let eventSource = subscribe(`game/${gameId()}/stream`, game =>
-      gameStore.update(game)
+    const player = new URLSearchParams(window.location.search).get('player');
+
+    // Get the current game
+    gameStore.getGame(player);
+
+    // Subscribe for updates
+    let eventSource = subscribe(
+      `game/${gameId()}/stream?player=${player}`,
+      game => gameStore.update(game)
     );
 
     return () => eventSource.close();

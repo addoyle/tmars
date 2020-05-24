@@ -21,6 +21,9 @@ export function sse(Class) {
       res.setHeader('Content-Type', 'text/event-stream');
       res.flushHeaders();
 
+      // Pass any parameters in via the query property
+      newClass.query = req.query;
+
       newClass.addListener(res, req.params.id);
 
       res.on('close', () => {

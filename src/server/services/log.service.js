@@ -3,6 +3,8 @@ import Log from '../models/log.model.js';
 
 @sse
 class LogService {
+  query;
+
   // prettier-ignore
   log = {'123': [
     new Log(1, 'this is cool', false),

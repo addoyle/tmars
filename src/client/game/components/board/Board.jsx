@@ -58,10 +58,6 @@ const Board = props => {
       (boardContainer.current.scrollHeight - window.innerHeight) / 2
     );
 
-    // Load the players
-    props.gameStore.getPlayers();
-    props.gameStore.getPlayer();
-
     // Cleanup
     return () => {
       document.removeEventListener('mouseout', mouseout, false);
@@ -203,8 +199,7 @@ const Board = props => {
 
 Board.propTypes = {
   gameStore: PropTypes.shape({
-    getPlayers: PropTypes.func.isRequired,
-    getPlayer: PropTypes.func.isRequired,
+    getGame: PropTypes.func.isRequired,
     switchDrawer: PropTypes.func.isRequired,
     activeCard: PropTypes.shape({
       show: PropTypes.bool

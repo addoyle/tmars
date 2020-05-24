@@ -97,7 +97,7 @@ class Game {
 
   export() {
     // eslint-disable-next-line no-unused-vars
-    const { cards, ...strippedGame } = this;
+    const { cards, cardStore, ...strippedGame } = this;
     return strippedGame;
   }
 }

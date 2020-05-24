@@ -55,36 +55,31 @@ setTimeout(() => {
  * @param {*} req
  * @param {*} res
  */
-export function getPlayers(req, res) {
+export function getGame(req, res) {
   if (!GameService.games[req.params.id]) {
     return res.sendStatus(404);
   }
 
-  res.send(
-    GameService.games[req.params.id].players.map(player => ({
+  const game = GameService.games[req.params.id];
+
+  // TODO: Temporary, to be replaced by actual auth
+  const activePlayer = req.query.player;
+
+  res.send({
+    ...game.export(),
+    players: game.players.map((player, i) => ({
       ...player,
-      cards: {
-        active: player.cards.active,
-        automated: player.cards.automated,
-        event: player.cards.event,
-        prelude: player.cards.prelude
-      }
+      cards:
+        i === activePlayer - 1
+          ? player.cards
+          : {
+              active: player.cards.active,
+              automated: player.cards.automated,
+              event: player.cards.event,
+              prelude: player.cards.prelude
+            }
     }))
-  );
-}
-
-/**
- * Get active player
- *
- * @param {*} req
- * @param {*} res
- */
-export function getPlayer(req, res) {
-  if (!GameService.games[req.params.id]) {
-    return res.sendStatus(404);
-  }
-
-  res.send(GameService.games[req.params.id].players[0]);
+  });
 }
 
 /**

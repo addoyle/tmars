@@ -4,9 +4,9 @@ import shortid from 'shortid';
 
 @sse
 class GameService {
-  // game = new Game();
   cardStore = new CardStore();
   games = {};
+  query;
 
   // @push
   // addPlayer(name) {
@@ -73,7 +73,7 @@ class GameService {
   playCard(id, card) {
     const game = this.games[id];
 
-    const player = game.players[0];
+    const player = this.getPlayer(game);
     const playedCard = this.cardStore.project[card.card];
     const cardType = playedCard.constructor.name.toLowerCase();
 
@@ -111,7 +111,7 @@ class GameService {
   buyCard(id, card) {
     const game = this.games[id];
 
-    const player = game.players[0];
+    const player = this.getPlayer(game);
     player.resources.megacredit -= 3;
 
     player.cards.hand.push(card.card);
@@ -124,7 +124,7 @@ class GameService {
   discardUnbought(id) {
     const game = this.games[id];
 
-    const player = game.players[0];
+    const player = this.getPlayer(game);
     game.cards.discard.concat(player.cards.buy);
     player.cards.buy = [];
 
@@ -135,7 +135,7 @@ class GameService {
   draftCard(id, card) {
     const game = this.games[id];
 
-    const player = game.players[0];
+    const player = this.getPlayer(game);
 
     player.cards.buy.push(card.card);
 
@@ -160,6 +160,10 @@ class GameService {
       }),
       {}
     );
+  }
+
+  getPlayer(game) {
+    return game.players[this.query.player - 1];
   }
 }
 

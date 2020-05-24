@@ -15,13 +15,12 @@ const validate = (req, res, next) => {
   }
 };
 
-router.get('/:id/player', validate, GameController.getPlayer);
-router.get('/:id/players', validate, GameController.getPlayers);
+router.get('/card-numbers', GameController.getAllCardNumbers);
+router.get('/:id', validate, GameController.getGame);
 router.post('/:id/play-card', validate, GameController.playCard);
 router.post('/:id/buy-card', validate, GameController.buyCard);
 router.post('/:id/draft-card', validate, GameController.draftCard);
 router.post('/:id/discard-unbought', validate, GameController.discardUnbought);
 router.get('/:id/stream', validate, GameController.stream);
-router.get('/card-numbers', GameController.getAllCardNumbers);
 
 export default router;

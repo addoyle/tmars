@@ -17,6 +17,8 @@ const Log = forwardRef((props, ref) => {
   const { logStore, gameStore } = props;
   const [msg, setMsg] = useState('');
 
+  const playerNum = new URLSearchParams(window.location.search).get('player');
+
   // Attach events
   useEffect(() => {
     const keydown = e => {
@@ -25,7 +27,7 @@ const Log = forwardRef((props, ref) => {
 
         if (msg) {
           props.logStore.postLog({
-            player: 1,
+            player: playerNum,
             body: msg
           });
           setMsg('');
