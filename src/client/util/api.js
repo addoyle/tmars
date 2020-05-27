@@ -2,7 +2,7 @@ import fetch from 'isomorphic-fetch';
 
 const API_URL =
   typeof window === 'undefined' || process.env.NODE_ENV === 'test'
-    ? process.env.BASE_URL || `http://localhost:${process.env.PORT}/api`
+    ? process.env.BASE_URL || `https://localhost:${process.env.PORT}/api`
     : '/api';
 
 export function API(
@@ -25,7 +25,9 @@ export function API(
 }
 
 export function subscribe(endpoint, callback) {
-  const evSrc = new EventSource(`${API_URL}/${endpoint}`);
+  const evSrc = new EventSource(`${API_URL}/${endpoint}`, {
+    withCredentials: true
+  });
   evSrc.onmessage = e => callback(JSON.parse(e.data));
   return evSrc;
 }

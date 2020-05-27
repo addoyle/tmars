@@ -10,7 +10,7 @@ class Game {
   @observable sets = ['corporate', 'promo', 'prelude', 'venus'];
 
   // Active drawer, or falsey to show none
-  @observable drawer = 'hand';
+  @observable drawer = 'buy';
 
   // Switch drawers
   @action

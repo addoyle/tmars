@@ -1,4 +1,5 @@
 $title-font: 'Prototype', sans-serif;
+$aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
 
 .card.corp {
   .tags {
@@ -507,6 +508,59 @@ $title-font: 'Prototype', sans-serif;
         background-color: white;
         color: black;
         clip-path: polygon(57% 0, 78% 0, 78% 100%, 43% 100%);
+      }
+    }
+
+    &.aphrodite {
+      text-transform: uppercase;
+      font-family: $aphrodite-font;
+      background: linear-gradient(to top, #ea6017 0%, #f7e819 16%, #ea6017 33%, #f7e819 60%, #ea6017 100%);
+      -webkit-text-stroke: .06em #1f1e23;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: .11em;
+      letter-spacing: .05em;
+      filter: drop-shadow(.1em .1em .1em rgba(0,0,0,.4));
+
+      &:before {
+        content: '♀';
+        display: block;
+        font-family: monospace;
+        text-align: center;
+        font-size: 2em;
+        padding-left: .17em;
+        margin-bottom: -.23em;
+      }
+    }
+
+    &.manutech {
+      font-family: Impact, Charcoal, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .3em;
+      transform: scaleX(1.5);
+      color: #e40513;
+      margin-left: -1.5em;
+      margin-top: 1em;
+      filter: drop-shadow(.1em .1em .1em rgba(0,0,0,.4));
+      position: relative;
+      
+      &:before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-top: 1em solid transparent;
+        border-left: 2em solid #e40513;
+        border-bottom: 1em solid transparent;
+      }
+
+      &:after {
+        content: 'MA';
+        color: #fff;
+        position: absolute;
+        left: 0;
+        top: 0;
       }
     }
   }

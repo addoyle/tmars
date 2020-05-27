@@ -27,7 +27,7 @@ const Log = forwardRef((props, ref) => {
 
         if (msg) {
           props.logStore.postLog({
-            player: playerNum,
+            player: +playerNum,
             body: msg
           });
           setMsg('');
@@ -45,9 +45,10 @@ const Log = forwardRef((props, ref) => {
   useEffect(() => {
     logStore.fetchLogs();
 
-    let eventSource = subscribe(`log/${gameId()}/stream`, log =>
-      logStore.log.push(log)
-    );
+    let eventSource = subscribe(`log/${gameId()}/stream`, log => {
+      console.log('GOT A LOG');
+      logStore.log.push(log);
+    });
 
     return () => eventSource.close();
   }, []);

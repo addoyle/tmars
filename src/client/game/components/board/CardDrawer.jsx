@@ -79,7 +79,7 @@ const CardDrawer = props => {
                 gameStore.activeCard.show &&
                 card.card === gameStore.activeCard.card &&
                 cardType === gameStore.activeCard.type,
-              landscape: cardType === 'prelude'
+              landscape: cardType === 'prelude' || cardType === 'corp'
             })}
           >
             <CardPreview

@@ -138,7 +138,8 @@ const Board = props => {
       />
       <CardDrawer
         cards={
-          props.gameStore.player?.corp ? [props.gameStore.player.corp] : []
+          // props.gameStore.player?.corp ? [props.gameStore.player.corp] : []
+          ['013', '014', '015', '016', '017']
         }
         type="corp"
         tab={

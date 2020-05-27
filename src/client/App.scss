@@ -1,4 +1,16 @@
 @font-face {
   font-family: Prototype;
-  src: url('./game/components/assets/fonts/Prototype.ttf');
+  src: url('./game/components/assets/fonts/Prototype.ttf') format('truetype'),
+       url('./game/components/assets/fonts/Prototype.woff2') format('woff2'),
+       url('./game/components/assets/fonts/Prototype.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Blippo;
+  src: url('./game/components/assets/fonts/Blippo.ttf') format('truetype'),
+       url('./game/components/assets/fonts/Blippo.woff2') format('woff2'),
+       url('./game/components/assets/fonts/Blippo.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }

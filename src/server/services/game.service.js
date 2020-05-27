@@ -99,12 +99,7 @@ class GameService {
       playedCard.serverAction(player, game);
     }
 
-    // res.send(player.cards);
-
-    // console.log(game);
-    // const player = game.players[0];
-
-    return game.export();
+    return this.export(game);
   }
 
   @push
@@ -117,7 +112,7 @@ class GameService {
     player.cards.hand.push(card.card);
     player.cards.buy = player.cards.buy.filter(c => c !== card.card);
 
-    return game.export();
+    return this.export(game);
   }
 
   @push
@@ -128,7 +123,7 @@ class GameService {
     game.cards.discard.concat(player.cards.buy);
     player.cards.buy = [];
 
-    return game.export();
+    return this.export(game);
   }
 
   @push
@@ -149,7 +144,7 @@ class GameService {
       player.cards.draft = player.cards.onDeck.shift();
     }
 
-    return game.export();
+    return this.export(game);
   }
 
   getAllCardNumbers() {
@@ -164,6 +159,10 @@ class GameService {
 
   getPlayer(game) {
     return game.players[this.query.player - 1];
+  }
+
+  export(game) {
+    return game.export(this.query.player);
   }
 }
 

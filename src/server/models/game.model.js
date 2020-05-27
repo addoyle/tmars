@@ -95,10 +95,24 @@ class Game {
     }
   }
 
-  export() {
+  export(activePlayer) {
     // eslint-disable-next-line no-unused-vars
     const { cards, cardStore, ...strippedGame } = this;
-    return strippedGame;
+    return {
+      ...strippedGame,
+      players: strippedGame.players.map((player, i) => ({
+        ...player,
+        cards:
+          i === activePlayer - 1
+            ? player.cards
+            : {
+                active: player.cards.active,
+                automated: player.cards.automated,
+                event: player.cards.event,
+                prelude: player.cards.prelude
+              }
+      }))
+    };
   }
 }
 

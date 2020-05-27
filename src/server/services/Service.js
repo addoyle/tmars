@@ -41,9 +41,10 @@ export function push(target, name, descriptor) {
   descriptor.value = function (...args) {
     const response = func.apply(this, args);
 
-    this.listeners[args[0]].forEach(listener =>
-      listener.write(`data: ${JSON.stringify(response)}\n\n`)
-    );
+    this.listeners[args[0]].forEach(listener => {
+      listener.write(`data: ${JSON.stringify(response)}\n\n`);
+      listener.flush();
+    });
   };
 
   return descriptor;

@@ -65,21 +65,7 @@ export function getGame(req, res) {
   // TODO: Temporary, to be replaced by actual auth
   const activePlayer = req.query.player;
 
-  res.send({
-    ...game.export(),
-    players: game.players.map((player, i) => ({
-      ...player,
-      cards:
-        i === activePlayer - 1
-          ? player.cards
-          : {
-              active: player.cards.active,
-              automated: player.cards.automated,
-              event: player.cards.event,
-              prelude: player.cards.prelude
-            }
-    }))
-  });
+  res.send(game.export(activePlayer));
 }
 
 /**

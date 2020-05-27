@@ -459,6 +459,10 @@ $title-font: 'Prototype', sans-serif;
 }
 .venus {
   background: url('./icons/venusscale.svg') no-repeat center/100%;
+
+  &.anyone {
+    filter: drop-shadow(0 0 2px #c02b39);
+  }
 }
 
 .restriction {

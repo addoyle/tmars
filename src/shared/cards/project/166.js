@@ -29,7 +29,7 @@ export default new Active({
   clientAction: () => {},
   serverAction: () => {},
   vp: 1,
-  emoji: '🛩',
+  emoji: '🚌',
   activeLayout: (
     <div>
       <div className="resources text-center">
