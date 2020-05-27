@@ -541,7 +541,8 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       transform: scaleX(1.5);
       color: #e40513;
       margin-left: -1.5em;
-      margin-top: 1em;
+      margin-top: 1.3em;
+      margin-bottom: .3em;
       filter: drop-shadow(.1em .1em .1em rgba(0,0,0,.4));
       position: relative;
       
@@ -550,16 +551,18 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         position: absolute;
         width: 0;
         height: 0;
-        border-top: 1em solid transparent;
-        border-left: 2em solid #e40513;
-        border-bottom: 1em solid transparent;
+        border-top: 1.8em solid transparent;
+        border-left: 1.88em solid #e40513;
+        border-bottom: 1.8em solid transparent;
+        top: -1.3em;
+        left: 3.91em;
       }
 
       &:after {
         content: 'MA';
         color: #fff;
         position: absolute;
-        left: 0;
+        left: 3.86em;
         top: 0;
       }
     }
