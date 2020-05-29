@@ -65,16 +65,16 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
     text-align: center;
 
     &.credicor {
-      font-size: .12em;
+      font-size: .14em;
       text-transform: lowercase;
       color: #fff;
       -webkit-text-stroke: .04em #000;
       font-family: Helvetica, sans-serif;
       letter-spacing: .1em;
-      margin: .3em 0 .3em 3.5em;
-      text-shadow: .1em .1em .3em rgba(0,0,0,.5);
+      margin: .3em 0 .3em 2.9em;
+      filter: drop-shadow(.1em .1em .1em rgba(0,0,0,.5));
       padding: .2em;
-      border: .05em solid purple;
+      border: .05em solid #582077;
       border-left: none;
       position: relative;
       width: 5em;
@@ -82,15 +82,25 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       &:before {
         position: absolute;
         content: '€';
-        background: purple;
+        background: #582077;
         -webkit-text-stroke: 0;
-        border: .05em solid purple;
-        padding: .2em;
+        border: .05em solid #582077;
+        padding: 1.5em 1.5em .4em .4em;
         height: 1em;
         width: 1em;
-        top: -.05em;
-        left: -1.6em;
+        top: -.1em;
+        left: -3.3em;
         text-shadow: none;
+        font-size: .5em;
+      }
+      
+      &:after {
+        content: '🜚';
+        font-size: 1.8em;
+        position: absolute;
+        -webkit-text-stroke: 0;
+        left: -.9em;
+        top: -.1em;
       }
     }
 
@@ -101,6 +111,7 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       -webkit-text-stroke: .05em #000;
       letter-spacing: .2em;
       margin: .4em;
+      filter: drop-shadow(.2em .2em .2em rgba(0, 0, 0, 0.5));
 
       &:before {
         content: '';
@@ -123,10 +134,264 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       }
     }
 
+    &.helion {
+      font-size: .11em;
+      text-transform: lowercase;
+      color: #222;
+      letter-spacing: .2em;
+      margin: .5em auto 1.4em;
+      padding-left: 1em;
+      font-weight: bold;
+      box-shadow: 0 .1em 0 #222, 0 .4em 0 yellow, 0 .5em 0 #222;
+      line-height: 0.8;
+      position: relative;
+      width: 60%;
+      filter: drop-shadow(.2em .2em .2em rgba(0, 0, 0, 0.5));
+
+      &:before {
+        content: 'H';
+        text-transform: uppercase;
+        font-size: 2.5em;
+        font-family: sans-serif;
+        -webkit-text-stroke: .05em #222;
+        position: absolute;
+        width: 1em;
+        height: 1em;
+        left: -.75em;
+        top: -.17em;
+        background: yellow;
+        border-radius: 50%;
+        border: .05em solid #222;
+        line-height: 1.02;
+        text-align: center;
+        box-shadow: -0.02em -0.02em 0 #dc772d inset;
+        letter-spacing: 0;
+      }
+
+      &:after {
+        content: '►';
+        color: yellow;
+        position: absolute;
+        right: -1em;
+        top: .23em;
+        font-size: 1.6em;
+        -webkit-text-stroke: .07em #222;
+      }
+    }
+
+    &.mining-guild {
+      display: flex;
+      font-size: .08em;
+      font-family: "Sutro", monospace;
+      color: red;
+      -webkit-text-stroke: .02em #ccc;
+      margin: .3em .3em -.3em;
+      font-weight: bold;
+      text-shadow: .07em .07em 0 black;
+      text-align: left;
+      line-height: 1.2;
+      width: 10em;
+
+      &:before {
+        content: '➚';
+        display: inline-block;
+        -webkit-text-stroke: .01em #fff;
+        color: #000;
+        font-size: 4em;
+        width: .7em;
+        height: .75em;
+        background: red;
+        border-radius: 50%;
+        border: .01em solid #fff;
+        box-shadow: 0.02em 0.02em 0 #000;
+        line-height: .6;
+        padding-left: .05em;
+        margin: -.1em .1em 0 0;
+      }
+    }
+
+    &.interplanetary {
+      font-size: .05em;
+      text-transform: uppercase;
+      margin: 2em 1em 0;
+      width: 11em;
+      line-height: 5.2;
+      letter-spacing: .1em;
+
+      &:before {
+        display: block;
+        content: '⬤ ⬤';
+        width: 90%;
+        line-height: 1;
+        margin: 0 auto -2em;
+        background-color: red;
+        font-size: 3.5em;
+        padding: .05em 0;
+        letter-spacing: 0;
+        -webkit-text-stroke: .066em #777;
+        box-shadow: .1em .1em .1em rgba(0,0,0,.5);
+      }
+
+      &:after {
+        display: block;
+        content: 'ꖜ ꖼ ◀';
+        color: yellow;
+        font-size: 2.5em;
+        font-weight: bold;
+        line-height: 1;
+        margin-top: -2.5em;
+        margin-left: .05em;
+        letter-spacing: .2em;
+        white-space: nowrap;
+        -webkit-text-stroke: .04em black;
+        text-shadow: 0.05em 0.05em 0 #777, 0.05em 0.05em 0 #777, 0.05em -0.05em 0 #777, -0.05em 0.05em 0 #777, -0.05em -0.05em 0 #777;
+      }
+    }
+
+    &.inventrix {
+      font-size: .12em;
+      text-transform: uppercase;
+      margin-top: .5em;
+      font-family: sans-serif;
+      letter-spacing: .1em;
+      text-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.5);
+
+      &:before {
+        content: 'X=';
+        display: inline-block;
+        text-align: left;
+        width: .7em;
+        background: linear-gradient(to top, #3f5483, #66bce9);
+        font-size: 2em;
+        letter-spacing: -.62em;
+        vertical-align: middle;
+        margin-right: .2em;
+        margin-top: -.1em;
+        text-shadow: 0 0 .1em rgba(255,255,255,.3);
+        box-shadow: 0.075em 0.075em 0.075em rgba(0, 0, 0, 0.7), 0 0 0.1em rgba(0,0,0,.5) inset;
+      }
+    }
+
+    &.phobolog {
+      font-size: .1em;
+      text-transform: uppercase;
+      margin: .75em auto;
+      letter-spacing: .3em;
+      background: indigo;
+      color: transparent;
+      display: inline-block;
+      padding: .3em .18em .3em .3em;
+      border-radius: .4em;
+      filter: drop-shadow(.1em .1em .1em rgba(0, 0, 0, 0.7));
+      position: relative;
+
+      &:before {
+        content: 'PHOB \00a0 LOG';
+        color: white;
+        position: absolute;
+        left: .3em;
+        top: .3em;
+        text-align: left;
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        left: 2.85em;
+        top: -.25em;
+        border-radius: 50%;
+        height: 2em;
+        width: 2em;
+        border: .05em solid black;
+        background: radial-gradient(circle at 33.33333% 50%, transparent, transparent 40%, black 41%, black 43%, white 45%);
+      }
+    }
+
+    &.tharsis {
+      font-size: .07em;
+      font-family: Impact, Charcoal, sans-serif;
+      text-transform: uppercase;
+      margin: .2em 1.7em -4.7em;
+      transform: scale(1.5,1);
+      letter-spacing: .1em;
+      display: inline-block;
+      width: 6em;
+      position: relative;
+
+      &:before {
+        content: '\00a0⯅';
+        font-size: 3em;
+        display: block;
+        margin: 0 auto .1em;
+        width: 1em;
+        height: 1em;
+        background: linear-gradient(to top, #fcbd75, #f2a53d 5%, #f2a53d 50%, #d1522a 100%);
+        border-left-color: #f3b53a;
+        border-top-color: #f3b53a;
+        border-right-color: #d14732;
+        border-bottom-color: #d14732;
+        border-radius: .075em;
+        border-style: solid;
+        border-width: .1em;
+        transform: scale(.66667,1);
+        text-align: left;
+        letter-spacing: -.25em;
+        line-height: .8;
+        box-shadow: .1em .1em .1em rgba(0,0,0,.6);
+      }
+
+      &:after {
+        content: '▲▲▲';
+        position: absolute;
+        transform: scale(0.66667, 1) rotate(120deg) scaleX(1.1);
+        letter-spacing: -.3em;
+        font-size: 1.0625em;
+        left: 2.375em;
+        top: 1.55em;
+      }
+    }
+
+    &.thorgate {
+      font-size: .1em;
+      text-transform: uppercase;
+      margin: 1em auto 0;
+      text-shadow: .1em .1em .3em rgba(0,0,0,.5);
+      letter-spacing: .5em;
+      display: inline-block;
+      padding-left: .4em;
+      position: relative;
+
+      &:before {
+        content: '[]';
+        display: inline-block;
+        color: darkred;
+        font-size: 1.5em;
+        width: 2em;
+        height: 1em;
+        transform: scaleX(2.5);
+        background: radial-gradient(circle at 41.75%, darkblue, darkblue 17%, black 18%, black 19%, transparent 20%);
+        -webkit-text-stroke: .02em black;
+        vertical-align: sub;
+        margin-left: .3em;
+      }
+      &:after {
+        content: '🗲';
+        display: block;
+        position: absolute;
+        -webkit-text-stroke: .03em #000;
+        color: #fff;
+        font-size: 1.5em;
+        transform: scaleX(-1) rotate(110deg);
+        top: .2em;
+        left: .5em;
+      }
+    }
+
     &.unmi {
       font-size: .05em;
       text-transform: uppercase;
-      margin: 0.3em 1em -12.5em 1.8em;
+      margin: 0.3em 1em -11.5em 1.8em;
       padding: 1em;
       background: dodgerblue;
       color: white;
@@ -134,7 +399,7 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       font-family: sans-serif;
       text-align: center;
       text-justify: distribute;
-      box-shadow: .3em .5em .5em rgba(0,0,0,.5);
+      filter: drop-shadow(.3em .5em .5em rgba(0,0,0,.5));
       position: relative;
 
       &:before {
@@ -142,7 +407,7 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         font-size: 18em;
         display: block;
         text-align: center;
-        margin: -.15em -.2em -.5em;
+        margin: -.15em -.2em -.55em;
       }
 
       &:after {
@@ -543,7 +808,7 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       margin-left: -1.5em;
       margin-top: 1.3em;
       margin-bottom: .3em;
-      filter: drop-shadow(.1em .1em .1em rgba(0,0,0,.4));
+      filter: drop-shadow(.1em .1em .1em rgba(0,0,0,.5));
       position: relative;
       
       &:before {
@@ -564,6 +829,102 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         position: absolute;
         left: 3.86em;
         top: 0;
+      }
+    }
+
+    &.viron {
+      display: block;
+      width: 3.5em;
+      text-transform: uppercase;
+      font-size: .15em;
+      margin: .9em 0 -1.1em .2em;
+      filter: drop-shadow(.05em .05em .05em rgba(0,0,0,.5));
+      font-family: 'Dodge', sans-serif;
+      background: linear-gradient(to top, #777 0%, #000 50%, #999 50%, #000 100%);
+      -webkit-text-stroke: .02em #fff;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.1;
+
+      &::first-letter {
+        font-size: 1.3em;
+        vertical-align: sub;
+      }
+
+      &:after {
+        content: '⚙';
+        font-size: 3em;
+        display: block;
+        text-align: center;
+        clip-path: polygon(0 0, 100% 0, 100% 60%, 0 60%);
+        color: #333;
+        -webkit-text-fill-color: #333;
+        margin-top: -1.03em;
+      }
+    }
+
+    &.celestic {
+      font-family: 'Britannic', sans-serif;
+      text-transform: uppercase;
+      text-align: left;
+      position: relative;
+      filter: drop-shadow(.1em .05em .1em rgba(0,0,0,.5));
+      font-size: .15em;
+      margin: .4em 0 -.2em .3em;
+    
+      &:before, &:after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        border-radius: 100% 0 0 100%/50% 0 0 50%;
+      }
+
+      &:before {
+        background: linear-gradient(to right, #fffdfe, #f1aa62);
+        height: 1.6em;
+        width: .8em;
+        left: -.1em;
+        top: -.3em;
+      }
+      &:after {
+        background: linear-gradient(to right, #f8fefe, #04ade5);
+        height: 2em;
+        width: 1em;
+        left: .57em;
+        top: -.5em;
+      }
+    }
+
+    &.msi {
+      text-transform: uppercase;
+      font-size: .08em;
+      color: #fff;
+      text-shadow: .03em .03em 0 #000;
+      filter: drop-shadow(.2em .2em .2em rgba(0,0,0,.5));
+      position: relative;
+
+      &:before {
+        content: 'MSI';
+        display: inline-block;
+        border-radius: 50%;
+        border: .1em solid #fff;
+        background: radial-gradient(#039fe0, #26236b 60%);
+        font-size: 1.8em;
+        width: 2em;
+        height: 2em;
+        box-shadow: .01em .01em 0 #000;
+        margin: 0 .4em -.2em -.5em;
+        line-height: 2.5;
+      }
+      
+      &:after {
+        content: '★';
+        position: absolute;
+        font-size: 1.3em;
+        left: 1.3em;
+        top: .2em;
+        text-shadow: 0 0 0.3em rgba(255,255,255,.7);
       }
     }
   }
@@ -630,6 +991,10 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         background:
           linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
       }
+    }
+
+    .vp {
+      font-size: 5em;
     }
 
     .award-title {

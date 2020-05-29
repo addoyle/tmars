@@ -12,13 +12,7 @@ const effectDesc = 'Effect: Each time you play an event, you gain 2 M€.';
 export default new Corporation({
   number: 5,
   title: 'Interplanetary Cinematics',
-  titleStyle: {
-    fontSize: '.05em',
-    textTransform: 'uppercase',
-    margin: '2em auto 1.5em',
-    transform: 'scale(1.4,1)',
-    borderBottom: '.3em solid red'
-  },
+  titleClass: 'interplanetary',
   starting: {
     resources: {
       megacredit: 30,
@@ -32,7 +26,7 @@ export default new Corporation({
     "Finding funding where nations struggled, IC initiated the colonization of Mars by turning the process into a soap opera infused with plenty of advertising. With the media's attention and a head start in colonization, IC sets out to terraform.",
   layout: (
     <div className="flex gutter">
-      <div className="col-1 middle">
+      <div className="col-1 bottom">
         <div className="flex">
           <div className="resources middle center">
             <span>20</span>

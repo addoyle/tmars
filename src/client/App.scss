@@ -14,3 +14,27 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: Dodge;
+  src: url('./game/components/assets/fonts/Dodge.ttf') format('truetype'),
+       url('./game/components/assets/fonts/Dodge.woff2') format('woff2'),
+       url('./game/components/assets/fonts/Dodge.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Britannic;
+  src: url('./game/components/assets/fonts/Britannic.ttf') format('truetype'),
+       url('./game/components/assets/fonts/Britannic.woff2') format('woff2'),
+       url('./game/components/assets/fonts/Britannic.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Sutro;
+  src: url('./game/components/assets/fonts/Sutro.ttf') format('truetype'),
+       url('./game/components/assets/fonts/Sutro.woff2') format('woff2'),
+       url('./game/components/assets/fonts/Sutro.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

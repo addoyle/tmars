@@ -84,7 +84,7 @@ $title-font: 'Prototype', sans-serif;
 .param {
   position: relative;
 
-  .icon {
+  .icon, .icon.resource {
     position: absolute;
     font-size: 0.7em;
     top: -0.5em;
@@ -493,7 +493,7 @@ $title-font: 'Prototype', sans-serif;
 
     .param.temperature {
       font-size: 1.2em;
-      margin-top: -0.22em;
+      margin-top: -0.25em;
     }
 
     .param.venus {
@@ -590,6 +590,10 @@ $title-font: 'Prototype', sans-serif;
     font-size: 0.7em;
     height: 1.4em;
     margin-top: 0.1em;
+
+    span .param.venus {
+      font-size: 1.2em;
+    }
 
     * {
       margin: 0;

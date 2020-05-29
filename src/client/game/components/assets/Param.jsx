@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tag from './Tag';
 import classNames from 'classnames';
+import { Resource } from './Assets';
 
 /**
  * TR parameter
@@ -15,6 +16,7 @@ const Param = props => (
     style={props.style}
   >
     {props.tag ? <Tag name={props.tag} /> : ''}
+    {props.resource ? <Resource name={props.resource} /> : ''}
     {props.name.includes('card') &&
     props.name.match(/active|event|automated|prelude/) ? (
       <>
@@ -75,6 +77,7 @@ const Param = props => (
 Param.propTypes = {
   name: PropTypes.string,
   tag: PropTypes.string,
+  resource: PropTypes.string,
   style: PropTypes.object,
   anyone: PropTypes.bool
 };

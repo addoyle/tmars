@@ -13,16 +13,7 @@ const effectDesc =
 export default new Corporation({
   number: 3,
   title: 'Helion',
-  titleStyle: {
-    fontSize: '.11em',
-    textTransform: 'lowercase',
-    color: '#222',
-    letterSpacing: '.2em',
-    margin: '.5em .3em 1em',
-    fontWeight: 'bold',
-    boxShadow: '0 .1em 0 black, 0 .4em 0 yellow, 0 .5em 0 black',
-    lineHeight: 0.8
-  },
+  titleClass: 'helion',
   starting: {
     resources: {
       megacredit: 42
@@ -38,7 +29,7 @@ export default new Corporation({
     'Developers of ultra-light solar sails, Helion now turns to the terraforming of Mars and other worlds. It promises to be a rewarding business, as Helion has already made a working model of a soletta, focusing sunlight down to the frozen planet.',
   layout: (
     <div className="flex gutter">
-      <div className="col-1 middle">
+      <div className="col-1 bottom">
         <div className="flex">
           <Production>
             <div className="flex">

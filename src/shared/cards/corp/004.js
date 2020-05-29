@@ -13,17 +13,7 @@ const effectDesc =
 export default new Corporation({
   number: 4,
   title: 'Mining Guild',
-  titleStyle: {
-    fontSize: '.11em',
-    textTransform: 'uppercase',
-    fontFamily: 'monospace',
-    color: 'red',
-    WebkitTextStroke: '.03em #ccc',
-    margin: '.8em .3em .1em',
-    fontWeight: 'bold',
-    transform: 'scale(1.3,1)',
-    textShadow: '.07em .07em 0 black'
-  },
+  titleClass: 'mining-guild',
   starting: {
     resources: {
       megacredit: 30,

@@ -10,7 +10,7 @@ class GameModel {
       sets: ['corporate', 'promo', 'prelude', 'venus'],
       started: true,
       board: 'Tharsis',
-      drafting: true,
+      draft: true,
       wgt: true,
       generation: 4,
       max: 5,
@@ -22,7 +22,7 @@ class GameModel {
       sets: ['corporate', 'promo'],
       started: false,
       board: 'Hellas',
-      drafting: true,
+      draft: true,
       wgt: false,
       max: 5,
       players: 2
@@ -33,7 +33,7 @@ class GameModel {
       sets: ['corporate', 'promo', 'prelude'],
       started: false,
       board: 'Elysium',
-      drafting: false,
+      draft: false,
       wgt: true,
       max: 5,
       players: 5

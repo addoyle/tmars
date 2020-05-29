@@ -14,16 +14,7 @@ const effectDesc =
 export default new Corporation({
   number: 9,
   title: 'ThorGate',
-  titleStyle: {
-    fontSize: '.1em',
-    textTransform: 'uppercase',
-    margin: '.6em auto',
-    textShadow: '.1em .1em .3em rgba(0,0,0,.5)',
-    borderLeft: '.5em solid red',
-    letterSpacing: '.5em',
-    display: 'inline-block',
-    paddingLeft: '.4em'
-  },
+  titleClass: 'thorgate',
   starting: {
     resources: {
       megacredit: 48
@@ -41,7 +32,7 @@ export default new Corporation({
     <div className="flex gutter">
       <div className="col-2 middle">
         <div className="flex">
-          <div className="middle center">
+          <div className="bottom center">
             <Production>
               <div className="flex">
                 <Resource name="power" />

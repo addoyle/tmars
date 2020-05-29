@@ -14,12 +14,7 @@ const effectDesc =
 export default new Corporation({
   number: 6,
   title: 'Inventrix',
-  titleStyle: {
-    fontSize: '.12em',
-    textTransform: 'uppercase',
-    margin: '.5em',
-    fontFamily: 'serif'
-  },
+  titleClass: 'inventrix',
   starting: {
     resources: {
       megacredit: 45
@@ -50,17 +45,20 @@ export default new Corporation({
         <div className="effect">
           <div className="effect-title">Effect</div>
           <div className="flex center">
-            <div className="resources">
-              <Restriction
-                values={[
-                  { param: 'temperature' },
-                  { param: 'oxygen' },
-                  { tile: 'ocean' }
-                ]}
-              />
+            <div className="flex" style={{ marginTop: '.2em' }}>
+              <div className="resources middle">
+                <Restriction
+                  values={[
+                    { param: 'temperature' },
+                    { param: 'oxygen' },
+                    { tile: 'ocean' }
+                  ]}
+                />
+              </div>
+              <div className="resources middle">: +/- 2</div>
             </div>
           </div>
-          <div className="description">{effectDesc}</div>
+          <div className="description m-top">{effectDesc}</div>
         </div>
       </div>
     </div>

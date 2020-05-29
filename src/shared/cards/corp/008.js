@@ -14,16 +14,7 @@ const effectDesc =
 export default new Corporation({
   number: 8,
   title: 'Tharsis Republic',
-  titleStyle: {
-    fontSize: '.07em',
-    textTransform: 'uppercase',
-    margin: '.5em 1.7em -2.2em',
-    borderTop: '1em solid orange',
-    transform: 'scale(1.2,1)',
-    letterSpacing: '.1em',
-    display: 'inline-block',
-    width: '6em'
-  },
+  titleClass: 'tharsis',
   starting: {
     resources: {
       megacredit: 40
@@ -37,7 +28,7 @@ export default new Corporation({
     'With the first big city came a social community that could not be controlled by the corporations. Determined to have an elected leader, workers and staff from all corporations formed Tharsis Republic.',
   layout: (
     <div className="flex gutter">
-      <div className="col-1 bottom m-bottom">
+      <div className="col-1 bottom">
         <div className="flex">
           <div className="resources middle center">
             <MegaCredit value="40" />
@@ -51,19 +42,26 @@ export default new Corporation({
       <div className="col-1 middle">
         <div className="effect">
           <div className="effect-title">Effect</div>
-          <div className="flex" style={{ marginBottom: '-.5em' }}>
-            <div className="resources">
-              <Tile name="city" anyone asterisk /> :&nbsp;
-            </div>
-            <Production>
-              <div className="flex">
-                <MegaCredit value="1" />
+          <div className="table center">
+            <div className="row">
+              <div className="cell middle resources">
+                <Tile name="city" anyone asterisk /> :
               </div>
-            </Production>
-          </div>
-          <div className="flex" style={{ marginBottom: '-.5em' }}>
-            <div className="resources">
-              <Tile name="city" /> : <MegaCredit value="3" />
+              <div className="cell middle text-center">
+                <Production>
+                  <div className="flex">
+                    <MegaCredit value="1" />
+                  </div>
+                </Production>
+              </div>
+            </div>
+            <div className="row">
+              <div className="cell middle resources">
+                <Tile name="city" /> :
+              </div>
+              <div className="cell middle resources text-center">
+                <MegaCredit value="3" />
+              </div>
             </div>
           </div>
           <div className="description">{effectDesc}</div>

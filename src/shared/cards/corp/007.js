@@ -11,17 +11,7 @@ const effectDesc = 'Effect: Your titanium resources are each worth 1 M€ extra.
 export default new Corporation({
   number: 7,
   title: 'PhoboLog',
-  titleStyle: {
-    fontSize: '.11em',
-    textTransform: 'uppercase',
-    margin: '.5em auto',
-    letterSpacing: '.2em',
-    background: 'indigo',
-    color: 'white',
-    display: 'inline-block',
-    padding: '.1em .1em .05em .3em',
-    borderRadius: '.4em'
-  },
+  titleClass: 'phobolog',
   starting: {
     resources: {
       megacredit: 23,
