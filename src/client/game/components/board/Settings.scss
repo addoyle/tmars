@@ -9,6 +9,10 @@ $title-font: 'Prototype', sans-serif;
 
   &.shift {
     bottom: calc(33vh + 8px);
+
+    &.empty {
+      bottom: calc(20vh + 8px);
+    }
   }
 
   .control {

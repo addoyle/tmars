@@ -113,11 +113,12 @@ const ActiveCard = props => {
               </div>
             </button>
           ) : null}
+
           {activeCard.mode === 'buy' ? (
             <button
               className="text-center col-1"
               onClick={() => {
-                props.gameStore.buyCard(activeCard.card);
+                props.gameStore.toggleSelectCard(activeCard.card, 'buy');
                 activeCard.show = false;
               }}
             >
@@ -125,13 +126,35 @@ const ActiveCard = props => {
                 <div className="resources middle">
                   <Param name="card back" />
                 </div>
-                <div className="center middle">Buy</div>
-                <div className="resources middle">
-                  <MegaCredit value={3} />
+                <div className="center middle">
+                  {activeCard.card.select ? 'Unselect' : 'Select'}
                 </div>
               </div>
             </button>
           ) : null}
+
+          {activeCard.mode === 'select' ? (
+            <button
+              className="text-center col-1"
+              onClick={() => {
+                props.gameStore.toggleSelectCard(
+                  activeCard.card,
+                  activeCard.type
+                );
+                activeCard.show = false;
+              }}
+            >
+              <div className="flex">
+                <div className="resources middle">
+                  <Param name="card back" />
+                </div>
+                <div className="center middle">
+                  {activeCard.card.select ? 'Unselect' : 'Select'}
+                </div>
+              </div>
+            </button>
+          ) : null}
+
           {activeCard.mode === 'play' ? (
             <button
               className="primary text-center col-1"
@@ -175,15 +198,19 @@ ActiveCard.propTypes = {
   gameStore: PropTypes.shape({
     activeCard: PropTypes.shape({
       show: PropTypes.bool,
-      card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      card: PropTypes.shape({
+        card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+        select: PropTypes.bool,
+        resources: PropTypes.objectOf(PropTypes.number)
+      }),
       type: PropTypes.string,
       resources: PropTypes.object,
-      mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft']),
+      mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft', 'select']),
       steel: PropTypes.number,
       titanium: PropTypes.number
     }).isRequired,
     playCard: PropTypes.func,
-    buyCard: PropTypes.func,
+    toggleSelectCard: PropTypes.func,
     draftCard: PropTypes.func,
     player: PropTypes.shape({
       resources: PropTypes.shape({

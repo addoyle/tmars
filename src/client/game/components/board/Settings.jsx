@@ -12,7 +12,12 @@ const Settings = ({ gameStore }) => {
 
   return (
     <div
-      className={classnames('settings-wrapper', { shift: gameStore.drawer })}
+      className={classnames('settings-wrapper', {
+        shift: gameStore.drawer,
+        empty:
+          gameStore.drawer !== null &&
+          !gameStore.player?.cards[gameStore.drawer].length
+      })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
     >
@@ -38,7 +43,10 @@ const Settings = ({ gameStore }) => {
 
 Settings.propTypes = {
   gameStore: PropTypes.shape({
-    drawer: PropTypes.string
+    drawer: PropTypes.string,
+    player: PropTypes.shape({
+      cards: PropTypes.objectOf(PropTypes.array)
+    })
   })
 };
 

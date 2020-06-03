@@ -719,9 +719,9 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       }
 
       &:after {
-        content: '\0015\2022';
+        content: '\00a0\2022';
         line-height: .5;
-        letter-spacing: .09em;
+        letter-spacing: .11em;
         position: absolute;
         font-size: 2.5em;
         text-align: left;

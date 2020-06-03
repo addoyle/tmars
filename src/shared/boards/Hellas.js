@@ -10,7 +10,7 @@ import {
  * Hellas Board
  */
 const Hellas = {
-  board: [
+  field: [
     [
       { resources: [0, 0, 'plant', 'plant'], attrs: ['reserved-ocean'] },
       { resources: ['plant', 'plant'] },

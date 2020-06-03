@@ -18,9 +18,13 @@ const validate = (req, res, next) => {
 router.get('/card-numbers', GameController.getAllCardNumbers);
 router.get('/:id', validate, GameController.getGame);
 router.post('/:id/play-card', validate, GameController.playCard);
-router.post('/:id/buy-card', validate, GameController.buyCard);
+router.post(
+  '/:id/toggle-select-card',
+  validate,
+  GameController.toggleSelectCard
+);
 router.post('/:id/draft-card', validate, GameController.draftCard);
-router.post('/:id/discard-unbought', validate, GameController.discardUnbought);
+router.post('/:id/buy-selected', validate, GameController.buySelectedCards);
 router.get('/:id/stream', validate, GameController.stream);
 
 export default router;

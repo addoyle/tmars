@@ -1,0 +1,92 @@
+$title-font: 'Prototype', sans-serif;
+
+.drawers {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+
+  .tabs {
+    width: 100vw;
+
+    .drawer-btn {
+      display: inline-flex;
+      font-size: 1.25em;
+      padding: 8px 12px;
+      margin-left: 16px;
+      height: 47px;
+      cursor: pointer;
+      border: 3px solid #444;
+      border-bottom: none;
+      border-top-left-radius: 16px;
+      border-top-right-radius: 16px;
+      background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+      font-family: $title-font;
+      outline: none;
+      transition: border-color .3s ease, box-shadow .15s ease, margin .5s ease;
+      vertical-align: bottom;
+      position: relative;
+      z-index: 3;
+  
+      &.open {
+        margin-bottom: 33vh;
+
+        &.empty {
+          margin-bottom: 20vh;
+        }
+      }
+
+      > * {
+        align-self: center;
+      }
+  
+      .param {
+        box-shadow: 0 0 4px 1px rgba(0,0,0,.4);
+        margin-right: 8px;
+  
+        &.corp:before, &.prelude :before {
+          font-size: 1pt;
+        }
+      }
+  
+      > .mc {
+        font-size: 1.4em;
+        margin-right: 8px;
+        filter: drop-shadow(0 0 4px rgba(0,0,0,.4));
+        vertical-align: middle;
+      }
+  
+      > svg[class*="fa-"] {
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+  
+      & > span {
+        vertical-align: middle;
+      }
+  
+      .hand {
+        width: 37px;
+
+        .param {
+          box-shadow: 0 0 4px rgba(255,255,255,.4);
+          margin-right: -16px;
+  
+          &:first-of-type {
+            transform: rotateZ(-5deg);
+          }
+          &:last-of-type {
+            transform: rotateZ(5deg);
+            margin-right: 8px;
+          }
+        }
+      }
+  
+      &:hover {
+        border-color: #888;
+      }
+      &:active {
+        box-shadow: 0 0 24px rgba(0,0,0,.5) inset;
+      }
+    }
+  }
+}

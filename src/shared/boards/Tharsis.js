@@ -12,7 +12,7 @@ import {
  * Tharsis Board
  */
 const Tharsis = {
-  board: [
+  field: [
     [
       { resources: [0, 0, 'steel', 'steel'] },
       { resources: ['steel', 'steel'], attrs: ['reserved-ocean'] },

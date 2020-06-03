@@ -3,7 +3,6 @@
  */
 export default class Player {
   name;
-  corp;
   tr = 20;
   resources = {
     megacredit: 0,
@@ -47,9 +46,11 @@ export default class Player {
     buy: [],
     automated: [],
     event: [],
+    corp: [],
     prelude: [],
     onDec: []
   };
+  phase = '';
 
   constructor(name) {
     this.name = name;

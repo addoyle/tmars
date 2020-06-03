@@ -42,7 +42,7 @@ export default new Active({
         <VictoryPoint>
           <span>
             <span className="point">1</span>/2
-            <Resource name="animal" />
+            <Resource name="floater" />
           </span>
         </VictoryPoint>
       </div>

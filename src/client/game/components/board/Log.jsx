@@ -45,10 +45,9 @@ const Log = forwardRef((props, ref) => {
   useEffect(() => {
     logStore.fetchLogs();
 
-    let eventSource = subscribe(`log/${gameId()}/stream`, log => {
-      console.log('GOT A LOG');
-      logStore.log.push(log);
-    });
+    let eventSource = subscribe(`log/${gameId()}/stream`, log =>
+      logStore.log.push(log)
+    );
 
     return () => eventSource.close();
   }, []);
@@ -63,9 +62,11 @@ const Log = forwardRef((props, ref) => {
         {gameStore.players?.length &&
           logStore.log?.map((msg, i) => (
             <div key={i} className={classNames('msg', { system: msg.system })}>
-              <span className={classNames('strong', `player-${msg.player}`)}>
-                {gameStore.players[msg.player - 1].name}
-              </span>
+              {msg.player ? (
+                <span className={classNames('strong', `player-${msg.player}`)}>
+                  {gameStore.players[msg.player - 1].name}
+                </span>
+              ) : null}
               {msg.system ? '' : ': '}
               {(Array.isArray(msg.body) ? msg.body : [msg.body]).map(
                 (body, i) => {
@@ -101,6 +102,16 @@ const Log = forwardRef((props, ref) => {
                           key={i}
                           type={Object.keys(body)[0]}
                           card={Object.values(body)[0]}
+                          onClick={() => {
+                            const num = Object.values(body)[0];
+                            if (num.toLowerCase() === 'corporation') {
+                              gameStore.switchDrawer('corp');
+                            } else if (num.toLowerCase() === 'preludes') {
+                              gameStore.switchDrawer('prelude');
+                            } else if (num.toLowerCase() === 'starting hand') {
+                              gameStore.switchDrawer('buy');
+                            }
+                          }}
                         />
                       );
                     }
@@ -138,7 +149,8 @@ Log.propTypes = {
     log: PropTypes.array
   }),
   gameStore: PropTypes.shape({
-    players: PropTypes.array
+    players: PropTypes.array,
+    switchDrawer: PropTypes.func
   })
 };
 

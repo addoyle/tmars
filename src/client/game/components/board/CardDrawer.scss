@@ -2,11 +2,10 @@ $title-font: 'Prototype', sans-serif;
 $hand-height: 33vh;
 
 .drawer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   left: 0;
-  max-height: $hand-height;
-  min-height: 20vh;
+  height: $hand-height;
   border-top: 4px solid #444;
   background: rgba(187, 187, 187, .5);
   transition: transform .5s ease;
@@ -14,6 +13,10 @@ $hand-height: 33vh;
   z-index: 2;
   user-select: none;
   width: 100vw;
+
+  &.empty {
+    height: 20vh;
+  }
 
   &.collapse {
     transform: translateY(100%);
@@ -27,17 +30,18 @@ $hand-height: 33vh;
 
   .button-box {
     position: absolute;
-    top: -4px;
-    transform: translateY(-100%);
-    right: 48px;
+    top: -67px;
+    transform: translate(-50%, -100%);
+    left: 50vw;
     padding: 16px;
-    border-radius: 16px 16px 0 0;
+    border-radius: 16px;
     border: 3px solid #444;
-    border-bottom: none;
     background: rgba(187, 187, 187, .5);
     z-index: 2;
     opacity: 1;
     transition: opacity .5s ease;
+    box-shadow: 8px 8px 8px rgba(0,0,0,.2);
+    overflow: hidden;
 
     button {
       padding: 8px;
@@ -49,6 +53,23 @@ $hand-height: 33vh;
         margin-right: -10px;
         margin-left: -3px;
         z-index: 2;
+      }
+    }
+
+    .error {
+      text-align: center;
+      font-family: sans-serif;
+      background-color: rgba(0,0,0,.75);
+      color: #ddd;
+      margin-bottom: 16px;
+      padding: 4px;
+      border-radius: 8px;
+      height: 24px;
+      margin-top: -40px;
+      transition: margin-top .5s ease;
+
+      &.show {
+        margin-top: 0;
       }
     }
   }
@@ -72,98 +93,6 @@ $hand-height: 33vh;
         margin-right: -.5em;
         font-size: 1.5em;
       }
-    }
-  }
-
-  .drawer-btn {
-    display: flex;
-    font-size: 1.25em;
-    padding: 8px 12px;
-    position: absolute;
-    left: 16px;
-    top: -51px;
-    height: 47px;
-    cursor: pointer;
-    border: 3px solid #444;
-    border-bottom: none;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
-    font-family: $title-font;
-    outline: none;
-    transition: border-color .3s ease, box-shadow .15s ease;
-
-    > * {
-      align-self: center;
-    }
-
-    &.active {
-      left: 144px;
-    }
-    &.automated {
-      left: 275px;
-    }
-    &.event {
-      left: 448px;
-    }
-    &.corp {
-      left: 573px;
-    }
-    &.prelude {
-      left: 757px;
-    }
-    &.buy {
-      left: 916px;
-    }
-    &.draft {
-      left: 1033px;
-    }
-
-    .param {
-      box-shadow: 0 0 4px 1px rgba(0,0,0,.4);
-      margin-right: 8px;
-
-      &.corp:before, &.prelude :before {
-        font-size: 1pt;
-      }
-    }
-
-    > .mc {
-      font-size: 1.4em;
-      margin-right: 8px;
-      filter: drop-shadow(0 0 4px rgba(0,0,0,.4));
-      vertical-align: middle;
-    }
-
-    > svg[class*="fa-"] {
-      vertical-align: middle;
-      margin-right: 8px;
-    }
-
-    & > span {
-      vertical-align: middle;
-    }
-
-    &.hand {
-      .param {
-        box-shadow: 0 0 4px rgba(255,255,255,.4);
-        margin-right: -16px;
-
-        &:first-of-type {
-          transform: rotateZ(-5deg);
-        }
-        &:last-of-type {
-          transform: rotateZ(5deg);
-          margin-right: 8px;
-        }
-      }
-    }
-
-    &:hover {
-      border-color: #888;
-    }
-    &:active {
-      box-shadow: 0 0 24px rgba(0,0,0,.5) inset;
     }
   }
 
@@ -210,13 +139,17 @@ $hand-height: 33vh;
 
         > .card {
           font-size: 150px;
-          box-shadow: none;
           transition: box-shadow .15s ease, transform .3s ease;
 
           &:hover {
             box-shadow: 0 0 0 4px #444, 0 0 10px 4px rgba(0,0,0,.5);
             transform: scale(1.2);
             z-index: 2;
+
+            & ~ .card-resources {
+              z-index: 2;
+              transform: translate(-50%, -50%) scale(1.2);
+            }
           }
         }
       }

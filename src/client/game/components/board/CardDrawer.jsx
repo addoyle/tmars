@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import './CardDrawer.scss';
 import CardPreview from './CardPreview';
-import { isString } from 'lodash';
 import classNames from 'classnames';
-import { Param } from '../assets/Assets';
+import { Param, MegaCredit } from '../assets/Assets';
+import classnames from 'classnames';
 
 /**
  * Card drawer
@@ -13,7 +13,6 @@ import { Param } from '../assets/Assets';
 const CardDrawer = props => {
   const gameStore = props.gameStore;
 
-  const cards = props.cards.map(card => (isString(card) ? { card } : card));
   let cardType = 'project';
   if (props.type === 'corp') {
     cardType = 'corp';
@@ -22,35 +21,62 @@ const CardDrawer = props => {
     cardType = 'prelude';
   }
 
+  const cards = props.gameStore.player?.cards[props.type] || [];
+  const numSelected = props.gameStore.player?.cards[props.type].filter(
+    card => card.select
+  ).length;
+
   return (
     <div
       className={classNames('drawer', {
-        collapse: gameStore.drawer !== props.type
+        collapse: props.collapse,
+        empty: !cards.length
       })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
     >
-      <div
-        className={classNames('drawer-btn', props.type)}
-        onClick={() => gameStore.switchDrawer(props.type)}
-      >
-        {props.tab}
-      </div>
-
       {props.mode === 'buy' ? (
         <div className="button-box">
           <button
             className="primary flex gutter"
             onClick={() => {
               gameStore.switchDrawer('hand');
-              gameStore.discardUnbought();
+              gameStore.buySelectedCards();
             }}
           >
             <div className="resources middle">
-              <span className="x">X</span>
               <Param name="card back" />
             </div>
-            <span className="middle">Discard the rest</span>
+            <span className="middle">Buy {numSelected} Cards</span>
+            <div className="resources middle">
+              <MegaCredit value={numSelected * 3} />
+            </div>
+          </button>
+        </div>
+      ) : null}
+
+      {props.mode === 'select' ? (
+        <div className="button-box">
+          <div
+            className={classnames('error', {
+              show: numSelected > props.max || numSelected < props.min
+            })}
+          >
+            {props.min === props.max
+              ? `Pick ${props.min}`
+              : `Pick between ${props.min} and ${props.max}`}
+          </div>
+          <button
+            className="primary flex gutter"
+            onClick={() => {
+              gameStore.confirmSelection(props.type);
+            }}
+            disabled={numSelected > props.max || numSelected < props.min}
+          >
+            <div className="resources middle">
+              <Param name="card back" />
+            </div>
+            <span className="middle">Confirm</span>
           </button>
         </div>
       ) : null}
@@ -71,9 +97,7 @@ const CardDrawer = props => {
         {cards.map(card => (
           <li
             key={`card-${card.card}`}
-            onClick={() =>
-              gameStore.showActiveCard(card.card, cardType, props.mode)
-            }
+            onClick={() => gameStore.showActiveCard(card, cardType, props.mode)}
             className={classNames('card-selector', {
               selected:
                 gameStore.activeCard.show &&
@@ -83,7 +107,7 @@ const CardDrawer = props => {
             })}
           >
             <CardPreview
-              card={card.card}
+              card={card}
               resources={card.resources}
               type={cardType}
             />
@@ -94,11 +118,19 @@ const CardDrawer = props => {
   );
 };
 
+CardDrawer.defaultProps = {
+  min: Number.NEGATIVE_INFINITY,
+  max: Number.POSITIVE_INFINITY
+};
+
 CardDrawer.propTypes = {
   tab: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   type: PropTypes.string,
   cards: PropTypes.array,
-  mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft']),
+  mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft', 'select']),
+  collapse: PropTypes.bool,
+  min: PropTypes.number,
+  max: PropTypes.number,
   gameStore: PropTypes.shape({
     drawer: PropTypes.string,
     switchDrawer: PropTypes.func,
@@ -108,12 +140,16 @@ CardDrawer.propTypes = {
       })
     }),
     activeCard: PropTypes.shape({
-      card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      card: PropTypes.shape({
+        card: PropTypes.string,
+        select: PropTypes.bool,
+        resources: PropTypes.objectOf(PropTypes.number)
+      }),
       type: PropTypes.string,
       show: PropTypes.bool
     }),
     showActiveCard: PropTypes.func,
-    discardUnbought: PropTypes.func
+    buySelectedCards: PropTypes.func
   })
 };
 

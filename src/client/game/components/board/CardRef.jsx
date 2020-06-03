@@ -23,8 +23,9 @@ const CardRef = props => {
       <span
         className={classNames(
           'card-ref',
-          card && card.constructor.name.toLowerCase()
+          (card && card.constructor.name.toLowerCase()) || props.type
         )}
+        onClick={props.onClick || (() => {})}
       >
         {card ? card.title : props.card}
         <CardPreview card={props.card} show={shown} type={props.type} />
@@ -38,8 +39,9 @@ CardRef.defaultProps = {
 };
 
 CardRef.propTypes = {
-  card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   type: PropTypes.string.isRequired,
+  onClick: PropTypes.func,
   cardStore: PropTypes.shape({
     get: PropTypes.func.isRequired
   })

@@ -2,24 +2,11 @@ import { observable, action } from 'mobx';
 import { API, gameId } from '../../util/api';
 
 class Game {
-  constructor(props) {
-    this.field = props.field;
-  }
-
   // Sets, or expansions, that are enabled in this game
-  @observable sets = ['corporate', 'promo', 'prelude', 'venus'];
+  @observable sets = [];
 
   // Active drawer, or falsey to show none
   @observable drawer = 'buy';
-
-  // Switch drawers
-  @action
-  switchDrawer(drawer, e) {
-    e && e.preventDefault();
-
-    // Clicking on the same drawer, show none
-    this.drawer = this.drawer === drawer ? null : drawer;
-  }
 
   // Active card, shown in a popup
   @observable activeCard = {
@@ -30,20 +17,6 @@ class Game {
     steel: 0,
     titanium: 0
   };
-
-  // Show an active card
-  @action
-  showActiveCard(card, type, mode) {
-    this.activeCard = {
-      ...this.activeCard,
-      show: true,
-      card,
-      type,
-      mode,
-      steel: 0,
-      titanium: 0
-    };
-  }
 
   // Player stats popup
   @observable playerStats = {
@@ -88,11 +61,78 @@ class Game {
   };
 
   // Current player's turn
-  @observable turn = 4;
+  @observable turn;
 
   // Players
   @observable players = [];
   @observable player;
+
+  @observable phase;
+
+  constructor(props) {
+    this.field = props.field;
+  }
+
+  /**
+   * Switch drawers. If the drawer is already open, close. Null will also close the active drawer.
+   *
+   * @param {string} drawer Drawer to show, or null to hide
+   * @param {Event} e Original DOM event
+   */
+  @action
+  switchDrawer(drawer, e) {
+    e && e.preventDefault();
+
+    // Clicking on the same drawer, show none
+    this.drawer = this.drawer === drawer ? null : drawer;
+  }
+
+  /**
+   * Show an active card. Note that "active" here does not correspond to Active, or blue, cards. It's referring
+   * to the card that is currently displayed.
+   *
+   * Mode refers to the buttons that are displayed. Available modes:
+   * - null: [Cancel]
+   * - play: [Play, Use Steel, Use Titanium, Cancel]
+   * - action: [Action 1, Action 2, ..., Cancel]
+   * - buy: [Buy, Cancel]
+   * - draft: [Draft, Cancel]
+   *
+   * @param {string} card Card number to show
+   * @param {string} type Card type, one of [project, corp, prelude]
+   * @param {string} mode Play mode
+   */
+  @action
+  showActiveCard(card, type, mode) {
+    this.activeCard = {
+      ...this.activeCard,
+      show: true,
+      card,
+      type,
+      mode,
+      steel: 0,
+      titanium: 0
+    };
+  }
+
+  /**
+   * Update the game
+   *
+   * @param {Object} game The game object to update
+   */
+  @action
+  update(game) {
+    this.params = game.params;
+    this.players = game.players;
+    this.player =
+      game.players[
+        new URLSearchParams(window.location.search).get('player') - 1
+      ];
+    this.sets = game.sets;
+    this.phase = game.phase;
+    this.turn = game.turn;
+    this.startingPlayer = game.startingPlayer;
+  }
 
   @action
   getGame(player) {
@@ -110,8 +150,8 @@ class Game {
   }
 
   @action
-  buyCard(card, opts) {
-    API(`game/${gameId()}/buy-card`, 'POST', { ...opts, card });
+  toggleSelectCard(card, type, opts) {
+    API(`game/${gameId()}/toggle-select-card`, 'POST', { ...opts, card, type });
   }
 
   @action
@@ -120,18 +160,8 @@ class Game {
   }
 
   @action
-  discardUnbought() {
-    API(`game/${gameId()}/discard-unbought`, 'POST');
-  }
-
-  @action
-  update(game) {
-    this.params = game.params;
-    this.players = game.players;
-    this.player =
-      game.players[
-        new URLSearchParams(window.location.search).get('player') - 1
-      ];
+  buySelectedCards() {
+    API(`game/${gameId()}/buy-selected`, 'POST');
   }
 }
 

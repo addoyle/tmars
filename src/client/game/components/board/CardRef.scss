@@ -12,9 +12,14 @@
     color: hsl(20,80%,50%);
   }
   &.corp {
-    color: hsl(0,0%,70%);
+    color: hsl(40,100%,60%);
   }
   &.prelude {
     color: hsl(300,80%,60%);
+  }
+  &.project {
+    display: inline;
+    border: none;
+    color: hsl(0,0%,60%);
   }
 }

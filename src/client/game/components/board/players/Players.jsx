@@ -9,15 +9,8 @@ import classNames from 'classnames';
 /**
  * Shows a list of players on the top left
  */
-const Players = props => {
-  const gameStore = props.gameStore;
-
-  // TODO fix once user sessions are set up
-  // this.state.statPlayer =
-  //   this.state.statPlayer ||
-  //   (props.gameStore.players.length && props.gameStore.players[0]);
-
-  return gameStore.players.length ? (
+const Players = ({ gameStore }) =>
+  gameStore.players.length ? (
     <div className="players">
       <div
         className={classNames(
@@ -37,6 +30,7 @@ const Players = props => {
               pid={i + 1}
               player={player}
               active={i + 1 === +gameStore.turn}
+              starting={i + 1 === +gameStore.startingPlayer}
               onClick={() =>
                 gameStore.playerStats.show &&
                 gameStore.playerStats.pid === i + 1
@@ -51,14 +45,14 @@ const Players = props => {
       <PlayerStats />
     </div>
   ) : null;
-};
 
 Players.propTypes = {
   gameStore: PropTypes.shape({
     players: PropTypes.array,
     playerStats: PlayerStats.propTypes,
     showPlayerStats: PropTypes.func,
-    turn: PropTypes.number
+    turn: PropTypes.number,
+    startingPlayer: PropTypes.number
   })
 };
 

@@ -15,8 +15,33 @@
     font-size: #{'min(33vh, 300px)'};
   }
 
+  &.select > .card {
+    box-shadow: 0 0 0 0.01em #d65914 inset;
+    background-color: #fee00b;
+
+    &.prelude {
+      box-shadow: 0 0 0 0.01em #79277c inset;
+      background-color: #cb3499;
+    }
+  }
+
   &.show {
     opacity: 1;
+  }
+
+  > .card-resources {
+    position: absolute;
+    font-size: 2em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    padding: .1em;
+    border: .05em solid #444;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: .2em;
+    transition: transform .3s ease;
+    pointer-events: none;
   }
 
   // Simplify for the cards in the hand, for better performance

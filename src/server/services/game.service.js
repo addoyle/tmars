@@ -17,58 +17,6 @@ class GameService {
     this.games[id] = game;
   }
 
-  /*
-{
-    "name": "Andy",
-    "corp": {
-    },
-    "tr": 20,
-    "resources": {
-        "megacredit": 36,
-        "steel": 0,
-        "titanium": 0,
-        "plant": 3,
-        "power": 0,
-        "heat": 0
-    },
-    "production": {
-        "megacredit": 0,
-        "steel": 0,
-        "titanium": 0,
-        "plant": 2,
-        "power": 0,
-        "heat": 0
-    },
-    "tags": {
-        "building": 0,
-        "space": 0,
-        "power": 0,
-        "science": 0,
-        "jovian": 0,
-        "earth": 0,
-        "plant": 1,
-        "microbe": 0,
-        "animal": 0,
-        "city": 0,
-        "venus": 0,
-        "event": 0
-    },
-    "tiles": {
-        "city": 0,
-        "greenery": 0,
-        "special": 0
-    },
-    "cards": {
-        "hand": [],
-        "draft": [],
-        "active": [],
-        "automated": [],
-        "event": [],
-        "prelude": []
-    }
-}
-*/
-
   @push
   playCard(id, card) {
     const game = this.games[id];
@@ -103,25 +51,53 @@ class GameService {
   }
 
   @push
-  buyCard(id, card) {
+  toggleSelectCard(id, card, type) {
     const game = this.games[id];
-
     const player = this.getPlayer(game);
-    player.resources.megacredit -= 3;
 
-    player.cards.hand.push(card.card);
-    player.cards.buy = player.cards.buy.filter(c => c !== card.card);
+    player.cards[type] = player.cards[type].map(c =>
+      card.card === c.card ? { ...c, select: !card.select } : c
+    );
 
     return this.export(game);
   }
 
   @push
-  discardUnbought(id) {
+  buySelectedCards(id) {
     const game = this.games[id];
-
     const player = this.getPlayer(game);
-    game.cards.discard.concat(player.cards.buy);
+    const cost = player.cards.buy.filter(card => card.select).length * 3;
+
+    if (player.resources.mc < cost) {
+      // TODO: Handle error
+    }
+
+    // Pay for the cards
+    player.resources.megacredit -= cost;
+
+    // Move bought cards into hand
+    player.cards.hand = player.cards.hand.concat(
+      player.cards.buy
+        .filter(card => card.select)
+        .map(card => ({ card: card.card }))
+    );
+
+    // Move unbought cards into discard pile
+    game.cards.discard = game.cards.discard.concat(
+      player.cards.buy
+        .filter(card => !card.select)
+        .map(card => ({ card: card.card }))
+    );
+
+    // Clear out buy cards
     player.cards.buy = [];
+
+    // Check if all players have finished, then move to the next phase
+    if (game.players.every(player => player.cards.buy.length === 0)) {
+      game.phase = 'action';
+    }
+
+    // console.log(game.params.generation, this.getDraftTargetPlayer(game));
 
     return this.export(game);
   }
@@ -135,9 +111,10 @@ class GameService {
     player.cards.buy.push(card.card);
 
     // Send draft cards to next player
-    game.players[1].cards.onDeck.push(
-      player.cards.draft.filter(c => c !== card.card)
-    );
+    console.log(this.getDraftTargetPlayer);
+    // this.getDraftTargetPlayer(game).cards.onDeck.push(
+    //   player.cards.draft.filter(c => c !== card.card)
+    // );
 
     // Grab the next set on deck
     if (player.cards.onDeck.length) {
@@ -159,6 +136,17 @@ class GameService {
 
   getPlayer(game) {
     return game.players[this.query.player - 1];
+  }
+
+  getDraftTargetPlayer(game) {
+    let p = this.query.player + (game.params.generation % 2 ? -1 : 1);
+    if (p < 0) {
+      p = game.players.length - 1;
+    } else if (p >= game.players.length) {
+      p = 0;
+    }
+
+    return game.players[p];
   }
 
   export(game) {

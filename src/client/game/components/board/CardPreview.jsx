@@ -5,12 +5,14 @@ import './CardPreview.scss';
 import classNames from 'classnames';
 import CorporationLayout from '../cards/CorporationLayout';
 import ProjectLayout from '../cards/ProjectLayout';
+import { isString } from 'lodash';
 
 /**
  * Displays a card as a popup
  */
 const CardPreview = props => {
-  const card = props.cardStore.get(props.type, props.card);
+  const card = isString(props.card) ? { card: props.card } : props.card;
+  const cardObj = props.cardStore.get(props.type, card.card);
 
   // TODO
   // const resources = props.resources;
@@ -18,16 +20,20 @@ const CardPreview = props => {
   return (
     <div
       className={classNames('card-preview', {
-        show: props.show && card,
-        simple: props.simple
+        show: props.show && cardObj,
+        simple: props.simple,
+        select: card.select
       })}
     >
-      {!card ? (
+      {!cardObj ? (
         <div>Loading...</div>
       ) : props.type === 'corp' ? (
-        <CorporationLayout {...card} type="corp" />
+        <CorporationLayout {...cardObj} type="corp" />
       ) : (
-        <ProjectLayout {...card} type={card.constructor.name.toLowerCase()} />
+        <ProjectLayout
+          {...cardObj}
+          type={cardObj.constructor.name.toLowerCase()}
+        />
       )}
     </div>
   );
@@ -39,7 +45,14 @@ CardPreview.defaultProps = {
 };
 
 CardPreview.propTypes = {
-  card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  card: PropTypes.oneOfType([
+    PropTypes.shape({
+      card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      select: PropTypes.bool,
+      resources: PropTypes.objectOf(PropTypes.number)
+    }),
+    PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+  ]).isRequired,
   type: PropTypes.string.isRequired,
   show: PropTypes.bool,
   simple: PropTypes.bool,

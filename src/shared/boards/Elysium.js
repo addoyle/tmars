@@ -12,7 +12,7 @@ import {
  * Elysium Board
  */
 const Elysium = {
-  board: [
+  field: [
     [
       { attrs: ['reserved-ocean'] },
       { resources: ['titanium'], attrs: ['reserved-ocean'] },

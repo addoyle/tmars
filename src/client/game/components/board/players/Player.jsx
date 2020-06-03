@@ -26,13 +26,14 @@ const Player = props => (
       <span className="value">{props.player.tr}</span>
     </div>
     <span>{props.player.name}</span>
-    {/* TODO: Figure out where starting player is stored */}
-    {/* {props.player.startingPlayer ? <span className="starting-player" /> : null} */}
+
+    {props.starting ? <span className="starting-player" /> : null}
   </div>
 );
 
 Player.propTypes = {
   active: PropTypes.bool,
+  starting: PropTypes.bool,
   player: PropTypes.shape({
     passed: PropTypes.bool,
     name: PropTypes.string.isRequired,

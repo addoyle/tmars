@@ -1,6 +1,7 @@
 import { API } from '../../util/api';
 import { observable, action } from 'mobx';
 import { computedFn } from 'mobx-utils';
+import { isString } from 'lodash';
 
 class Card {
   @observable cards = {};
@@ -39,7 +40,9 @@ class Card {
 
   @computedFn
   get(type, card) {
-    return this.cards[type] && this.cards[type][this.normalize(card)];
+    const cardObj = isString(card) ? { card } : card;
+
+    return this.cards[type] && this.cards[type][this.normalize(cardObj.card)];
   }
 }
 

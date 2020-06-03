@@ -17,7 +17,7 @@ export default new Event({
   flavor: 'We have a better use for those resources',
   clientAction: () => {},
   serverAction: () => {},
-  emoji: '🏎️',
+  emoji: '🏴‍☠️',
   layout: (
     <div className="text-center">
       <div className="flex gutter">

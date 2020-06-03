@@ -12,24 +12,10 @@ setTimeout(() => {
     new Player('Larissa'),
     new Player('Adrian')
   ];
-  game.players.forEach(player => game.setCorp(player));
-  for (let j = 0; j < 10; j++) {
-    game.players.forEach(player => game.drawCard(player, 'buy'));
-  }
-  for (let j = 0; j < 4; j++) {
-    game.players.forEach(player => game.drawCard(player, 'draft'));
-  }
-  game.players.forEach(player => {
-    player.cards.onDeck = [
-      [
-        game.cards.deck.shift(),
-        game.cards.deck.shift(),
-        game.cards.deck.shift()
-      ],
-      [game.cards.deck.shift(), game.cards.deck.shift()],
-      [game.cards.deck.shift()]
-    ];
-  });
+  game.board = 'Tharsis';
+  game.sets = ['corporate', 'promo', 'prelude', 'venus'];
+
+  game.init();
 
   GameService.games['123'] = game;
 }, 2000);
@@ -41,10 +27,10 @@ setTimeout(() => {
     new Player('Stan'),
     new Player('Carl')
   ];
-  game.players.forEach(player => game.setCorp(player));
-  for (let j = 0; j < 10; j++) {
-    game.players.forEach(player => game.drawCard(player, 'buy'));
-  }
+  game.board = 'Elysium';
+  game.sets = ['corporate', 'promo'];
+
+  game.init();
 
   GameService.games['1234'] = game;
 }, 2000);
@@ -85,8 +71,13 @@ export function playCard(req, res) {
  * @param {*} req
  * @param {*} res
  */
-export function buyCard(req, res) {
-  GameService.buyCard(`${req.params.id}`, req.body, res);
+export function toggleSelectCard(req, res) {
+  GameService.toggleSelectCard(
+    `${req.params.id}`,
+    req.body.card,
+    req.body.type,
+    res
+  );
   res.sendStatus(200);
 }
 
@@ -107,8 +98,8 @@ export function draftCard(req, res) {
  * @param {*} req
  * @param {*} res
  */
-export function discardUnbought(req, res) {
-  GameService.discardUnbought(`${req.params.id}`, res);
+export function buySelectedCards(req, res) {
+  GameService.buySelectedCards(`${req.params.id}`, res);
   res.sendStatus(200);
 }
 

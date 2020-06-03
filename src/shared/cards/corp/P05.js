@@ -39,11 +39,13 @@ export default new Corporation({
       <div className="col-1 middle">
         <div className="effect">
           <div className="effect-title">Effect</div>
-          <div className="resources">
+          <div className="flex">
             <VictoryPoint>
               <span className="big point">?</span>
             </VictoryPoint>
-            * : <MegaCredit value="3" />
+            <div className="resources">
+              * : <MegaCredit value="3" />
+            </div>
           </div>
           <div className="description">{effectDesc}</div>
         </div>

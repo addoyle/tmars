@@ -38,6 +38,7 @@ $title-font: 'Prototype', sans-serif;
     text-overflow: ellipsis;
     white-space: nowrap;
     position: relative;
+    min-height: calc(1em + 2px);
 
     .close {
       position: absolute;
