@@ -13,6 +13,10 @@ export default new Prelude({
   flavor:
     'Your early terraforming work for UNMI is taken into account by the Terraforming Committee',
   emoji: '🤝',
+  serverAction: (player, game) => {
+    player.tr += 3;
+    game.drawCard(player);
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-2 middle text-center">

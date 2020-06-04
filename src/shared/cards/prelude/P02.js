@@ -18,7 +18,14 @@ export default new Prelude({
   desc,
   flavor:
     'The high pressure of an underground aquifer can be used for energy production when the water is released',
-  emoji: '💧',
+  emoji: '💦',
+  serverAction: (player, game) => {
+    player.production.power += 2;
+    player.resources.megacredit -= 3;
+
+    // TODO: Place ocean
+    game.param('ocean', player);
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-center middle">
@@ -36,7 +43,7 @@ export default new Prelude({
       </div>
       <div className="col-1 middle">
         <div className="resources">
-          <MegaCredit value="3" />
+          <MegaCredit value="-3" />
         </div>
       </div>
       <div className="description col-3 middle">{desc}</div>

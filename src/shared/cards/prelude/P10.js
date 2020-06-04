@@ -15,6 +15,11 @@ export default new Prelude({
   desc,
   flavor: 'I had no idea that you could actually do that',
   emoji: '♻️',
+  serverAction: player => {
+    player.production.plant++;
+
+    // TODO: Play card from hand, ignoring requirements
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-center middle">

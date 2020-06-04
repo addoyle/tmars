@@ -14,6 +14,12 @@ export default new Prelude({
   flavor:
     'Nothing spurs new ecological advances like having a biological testing ground',
   emoji: '🌳',
+  serverAction: (player, game) => {
+    // TODO: Place greenery
+    // TODO: Reveal cards until 2 plants
+
+    game.param('oxygen', player);
+  },
   layout: (
     <div className="flex gutter m-bottom">
       <div className="col-1 middle">

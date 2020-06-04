@@ -7,7 +7,7 @@ import {
 } from '../../../client/game/components/assets/Assets';
 
 const desc =
-  'Draw 3 ards, and increase your M€ production 1 step. After being played, when you perform an action, the wild-tag is any tag of your choice.';
+  'Draw 3 cards, and increase your M€ production 1 step. After being played, when you perform an action, the wild-tag is any tag of your choice.';
 
 export default new Prelude({
   number: 'P28',
@@ -17,6 +17,12 @@ export default new Prelude({
   desc,
   flavor: 'Having the right conncections for every scientific problem',
   emoji: '💻',
+  serverAction: (player, game) => {
+    game.drawCard(player);
+    game.drawCard(player);
+    game.drawCard(player);
+    player.production.megacredit++;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

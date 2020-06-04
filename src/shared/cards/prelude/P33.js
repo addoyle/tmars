@@ -12,6 +12,11 @@ export default new Prelude({
   desc,
   flavor: 'Allowing you to speed up your colonization',
   emoji: '🪂',
+  serverAction: player => {
+    player.resources.titanium += 3;
+    player.resources.steel += 8;
+    player.resources.plant += 3;
+  },
   layout: (
     <div className="flex gutter m-bottom">
       <div className="col-1 middle text-center">

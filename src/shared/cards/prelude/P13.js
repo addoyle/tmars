@@ -16,6 +16,10 @@ export default new Prelude({
   desc,
   flavor: 'The big moons of Jupiter are great for mining',
   emoji: '🌖',
+  serverAction: player => {
+    player.production.titanium += 2;
+    player.resources.megacredit -= 5;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

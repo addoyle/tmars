@@ -16,6 +16,10 @@ export default new Prelude({
   flavor:
     'If your outgo exceeds your income, your upkeep will be your downfall',
   emoji: '💸',
+  serverAction: player => {
+    player.production.megacredit -= 2;
+    player.resources.megacredit += 30;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

@@ -12,6 +12,11 @@ export default new Prelude({
   desc,
   flavor: 'Metal delivery. Without brakes',
   emoji: '☄',
+  serverAction: (player, game) => {
+    game.param('temperature', player);
+    player.resources.titanium += 4;
+    player.resources.steel += 4;
+  },
   layout: (
     <div className="flex m-top m-bottom">
       <div className="col-1 middle text-center">

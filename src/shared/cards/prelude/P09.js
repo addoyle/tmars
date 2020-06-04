@@ -17,6 +17,11 @@ export default new Prelude({
   flavor:
     'The first Martians wrote their story of civilization shortly after the terraforming announcement',
   emoji: '⛺',
+  serverAction: player => {
+    // TODO: place city
+
+    player.production.plant++;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-right middle">

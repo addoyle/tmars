@@ -17,6 +17,12 @@ export default new Prelude({
   desc,
   flavor: 'Meeting the needs of society is good, because it’s your society',
   emoji: '🏘',
+  serverAction: player => {
+    player.production.megacredit--;
+    player.production.plant++;
+    player.production.power++;
+    player.production.heat++;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-2 middle text-center">

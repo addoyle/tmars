@@ -5,24 +5,39 @@ import Hellas from '../../shared/boards/Hellas';
 import Elysium from '../../shared/boards/Elysium';
 import Log from './log.model';
 import { startCase } from 'lodash';
+import LogService from '../services/log.service';
 
 const paramStats = {
-  temp: {
+  temperature: {
     start: -30,
     max: 8,
-    step: 2
+    step: 2,
+    rewards: {
+      [-24]: player => player.production.heat++,
+      [-20]: player => player.production.heat++,
+      // TODO: place an ocean
+      0: (player, game) => game.param('ocean', player)
+    }
   },
   oxygen: {
-    max: 14
+    max: 14,
+    rewards: {
+      8: (player, game) => game.param('temperature', player)
+    }
   },
   venus: {
     max: 30,
-    step: 2
+    step: 2,
+    rewards: {
+      8: (player, game) => game.drawCard(player),
+      16: player => player.tr++
+    }
   },
   ocean: {
     max: 0,
     step: -1,
-    start: 9
+    start: 9,
+    rewards: {}
   }
 };
 
@@ -33,7 +48,7 @@ class Game {
   turn = 0;
   startingPlayer = 0;
   params = {
-    temp: -30,
+    temperature: -30,
     oxygen: 0,
     ocean: 9,
     generation: 1,
@@ -74,16 +89,20 @@ class Game {
     // Show welcome message
     this.log.push(new Log(0, 'Welcome to Terraforming Mars!'));
 
+    // Assign the player numbers
+    this.players.forEach((player, i) => (player.num = i + 1));
+
     // Filter out non-used cards and shuffle decks
     this.cards.deck = shuffle(
       Object.values(this.cardStore.project)
-        .filter(
-          card =>
-            !card.set ||
+        .filter(card => {
+          const answer =
+            card.set === 'base' ||
             (Array.isArray(card.set) ? card.set : [card.set]).every(set =>
               this.sets.includes(set)
-            )
-        )
+            );
+          return answer;
+        })
         .map(card => ({ card: normalize(card.number) }))
     );
     this.cards.corps = shuffle(
@@ -91,7 +110,7 @@ class Game {
         .filter(
           corp =>
             corp.number !== '000' &&
-            (!corp.set ||
+            (corp.set === 'base' ||
               (Array.isArray(corp.set) ? corp.set : [corp.set]).every(set =>
                 this.sets.includes(set)
               ))
@@ -143,9 +162,15 @@ class Game {
     startLog.body.push('.');
     this.log.push(startLog);
 
+    // Choose starting player
+    this.startingPlayer = Math.floor(Math.random() * this.players.length) + 1;
+    this.log.push(
+      new Log(this.startingPlayer, ' will be your starting player!')
+    );
+
     // Deal out corps
     for (let i = 0; i < 2; i++) {
-      this.players.forEach(player =>
+      this.forEachPlayerOrder(player =>
         player.cards.corp.push(this.cards.corps.shift())
       );
     }
@@ -154,12 +179,12 @@ class Game {
 
     // Deal out starting projects
     for (let i = 0; i < 10; i++) {
-      this.players.forEach(player => this.drawCard(player, 'buy'));
+      this.forEachPlayerOrder(player => this.drawCard(player, 'buy'));
     }
 
     // Deal out preludes
     for (let i = 0; i < 4; i++) {
-      this.players.forEach(player =>
+      this.forEachPlayerOrder(player =>
         player.cards.prelude.push(this.cards.preludes.shift())
       );
     }
@@ -170,14 +195,6 @@ class Game {
     } else {
       this.players.forEach(player => (player.tr = 20));
     }
-
-    // Choose starting player
-    this.startingPlayer = Math.floor(Math.random() * this.players.length) + 1;
-
-    // Log the starting player
-    this.log.push(
-      new Log(this.startingPlayer, ' will be your starting player!')
-    );
   }
 
   /**
@@ -200,16 +217,32 @@ class Game {
    * Set the corp on a player
    * @param {Player} player
    */
-  setCorp(player, corp) {
-    player.cards.corp = [corp];
-    const corpCard = this.cardStore.corporation[corp];
-    Object.assign(player.resources, corpCard.starting.resources || {});
-    Object.assign(player.production, corpCard.starting.production || {});
+  applyCorp(player) {
+    const corp = this.cardStore.corporation[player.cards.corp[0]];
+    Object.assign(player.resources, corp.starting.resources || {});
+    Object.assign(player.production, corp.starting.production || {});
     (corp.tags || []).forEach(tag => player.tags[tag]++);
   }
 
   /**
+   * Add a prelude to a player
+   *
+   * @param {Player} player
+   * @param {object} prelude
+   */
+  applyPreludes(player) {
+    player.cards.prelude.forEach(card => {
+      const prelude = this.cardStore.prelude[card.card];
+      (prelude.tags || []).forEach(tag => player.tags[tag]++);
+
+      // Perform prelude specific actions
+      prelude.serverAction(player, this);
+    });
+  }
+
+  /**
    * Bump up the param and give the player the rewards
+   *
    * @param {string} param
    * @param {Player} player
    */
@@ -222,6 +255,20 @@ class Game {
     ) {
       this.params[param] += paramStats[param].step || 1;
       player.tr++;
+
+      // Handle rewards if a param reaches a certain threshold
+      const rewardAction = paramStats[param].rewards[this.params[param]];
+      if (rewardAction) {
+        LogService.pushLog(
+          this.id,
+          new Log(player.num, [
+            ' got a reward from raising ',
+            { param },
+            ` ${startCase(param)}!`
+          ])
+        );
+        rewardAction(player, this);
+      }
     }
   }
 

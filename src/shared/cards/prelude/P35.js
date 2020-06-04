@@ -14,6 +14,10 @@ export default new Prelude({
   flavor:
     'The Western Alliance Space Agency has a lot of leverage, now at your disposal',
   emoji: '🛰️',
+  serverAction: player => {
+    player.resources.titanium += 6;
+    // TODO: Reveal up to 2 space cards
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-2 middle text-center">

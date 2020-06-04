@@ -22,13 +22,13 @@ class Game {
 
   // Player stats popup
   @observable playerStats = {
-    show: false,
-    pid: 1
+    show: true,
+    pid: +PLAYER_NUM
   };
 
   // Global params
   @observable params = {
-    temp: -30,
+    temperature: -30,
     oxygen: 0,
     ocean: 9,
     generation: 1,

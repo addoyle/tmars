@@ -62,6 +62,7 @@ const CardDrawer = props => {
             onClick={() => {
               gameStore.switchDrawer('hand');
               gameStore.buySelectedCards();
+              gameStore.activeCard.show = false;
             }}
             disabled={gameStore.player?.cards.corp.length !== 1}
           >
@@ -91,6 +92,7 @@ const CardDrawer = props => {
             className="primary flex gutter"
             onClick={() => {
               gameStore.confirmSelection(props.type);
+              gameStore.activeCard.show = false;
             }}
             disabled={numSelected > props.max || numSelected < props.min}
           >

@@ -33,23 +33,25 @@ setTimeout(() => {
     }
   });
 
+  game.players[3].cards.prelude = [{ card: 'P15' }, { card: 'P19' }];
+
   GameService.registerGame(game, '123');
 }, 1000);
-setTimeout(() => {
-  const game = new Game(GameService.cardStore);
-  game.players = [
-    new Player('Jim'),
-    new Player('Bob'),
-    new Player('Stan'),
-    new Player('Carl')
-  ];
-  game.board = 'Elysium';
-  game.sets = ['corporate', 'promo'];
+// setTimeout(() => {
+//   const game = new Game(GameService.cardStore);
+//   game.players = [
+//     new Player('Jim'),
+//     new Player('Bob'),
+//     new Player('Stan'),
+//     new Player('Carl')
+//   ];
+//   game.board = 'Elysium';
+//   game.sets = ['corporate', 'promo'];
 
-  game.init();
+//   game.init();
 
-  GameService.registerGame(game, '1234');
-}, 1000);
+//   GameService.registerGame(game, '1234');
+// }, 1000);
 
 /**
  * Get the current state of the game (should only be used on page load)

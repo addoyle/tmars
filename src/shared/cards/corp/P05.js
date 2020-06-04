@@ -39,7 +39,7 @@ export default new Corporation({
       <div className="col-1 middle">
         <div className="effect">
           <div className="effect-title">Effect</div>
-          <div className="flex">
+          <div className="flex center">
             <VictoryPoint>
               <span className="big point">?</span>
             </VictoryPoint>

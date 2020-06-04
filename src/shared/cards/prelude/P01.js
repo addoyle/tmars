@@ -15,6 +15,10 @@ export default new Prelude({
   desc,
   flavor: 'Putting people’s savings to good use',
   emoji: '🏦',
+  serverAction: player => {
+    player.resources.megacredit += 3;
+    player.production.megacredit += 4;
+  },
   layout: (
     <div className="flex">
       <div className="col-1 text-center middle">

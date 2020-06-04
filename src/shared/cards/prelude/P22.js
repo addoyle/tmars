@@ -15,6 +15,10 @@ export default new Prelude({
   desc,
   flavor: 'Getting down to the heat of the mantle',
   emoji: '♨',
+  serverAction: player => {
+    player.production.heat += 3;
+    player.resources.heat += 3;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

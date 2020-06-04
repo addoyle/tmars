@@ -17,6 +17,11 @@ export default new Prelude({
   desc,
   flavor: 'Allowing a steady growth of the Martian society',
   emoji: '🏭',
+  serverAction: player => {
+    player.production.power++;
+    player.production.steel++;
+    player.resources.megacredit += 6;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

@@ -12,6 +12,11 @@ export default new Prelude({
   desc,
   flavor: 'You found a big one!',
   emoji: '🌊️',
+  serverAction: (player, game) => {
+    // TODO: Place 2 oceans
+    game.param('ocean', player);
+    game.param('ocean', player);
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-center middle">

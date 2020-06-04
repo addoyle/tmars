@@ -11,6 +11,9 @@ export default new Prelude({
   desc,
   flavor: 'He’ll support you, but he wants something big with his name on it',
   emoji: '🧐',
+  serverAction: () => {
+    // TODO: Play card from hand, reducing cost by 25
+  },
   layout: (
     <div className="flex m-top m-bottom">
       <div className="col-1" />

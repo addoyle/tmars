@@ -3,6 +3,7 @@
  */
 export default class Player {
   name;
+  num;
   tr = 20;
   resources = {
     megacredit: 0,

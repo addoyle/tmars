@@ -11,7 +11,7 @@ const Temperature = props => (
     min={-30}
     max={8}
     step={2}
-    value={props.gameStore.params.temp}
+    value={props.gameStore.params.temperature}
     renderValue={val => `${val > 0 ? '+' : ''}${val}°C`}
     icon={<Param name="temperature" />}
     bonuses={[
@@ -25,7 +25,7 @@ const Temperature = props => (
 Temperature.propTypes = {
   gameStore: PropTypes.shape({
     params: PropTypes.shape({
-      temp: PropTypes.number
+      temperature: PropTypes.number
     })
   }).isRequired
 };

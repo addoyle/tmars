@@ -17,6 +17,12 @@ export default new Prelude({
   flavor:
     'Bioengineering is of the utmost importance on Mars, and you just got a head start',
   emoji: '🥼',
+  serverAction: (player, game) => {
+    player.production.plant++;
+    game.drawCard(player);
+    game.drawCard(player);
+    game.drawCard(player);
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-center middle">

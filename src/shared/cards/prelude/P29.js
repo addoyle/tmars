@@ -16,6 +16,10 @@ export default new Prelude({
   desc,
   flavor: 'The investment was high, but it’s paying off now',
   emoji: '🌇',
+  serverAction: player => {
+    // TODO: place a city
+    player.production.megacredit += 2;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

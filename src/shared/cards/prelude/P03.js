@@ -16,6 +16,11 @@ export default new Prelude({
   desc,
   flavor: 'Organic production of fuels and fertilizers',
   emoji: '💩',
+  serverAction: player => {
+    player.production.plant++;
+    player.production.power++;
+    player.resources.plant += 2;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-center middle">

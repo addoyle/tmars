@@ -17,6 +17,10 @@ export default new Prelude({
   desc,
   flavor: 'The greening of the red planet has begun',
   emoji: '🏡',
+  serverAction: player => {
+    player.production.megacredit--;
+    player.production.plant += 2;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-2 text-center middle">

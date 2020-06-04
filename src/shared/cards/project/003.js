@@ -23,7 +23,7 @@ export default new Automated({
   },
   serverAction: (player, game) => {
     player.production.power++;
-    game.param('temp', player);
+    game.param('temperature', player);
   },
   emoji: '☕',
   layout: (

@@ -247,7 +247,6 @@ class GameService {
 
     // Everybody's done, reveal corps and preludes and move into the action phase
     const logs = [];
-    const preludeLogs = [];
     game.forEachPlayerOrder((player, i) => {
       logs.push(
         new Log(i + 1, [
@@ -256,21 +255,25 @@ class GameService {
           ` and bought ${player.cards.hand.length} projects.`
         ])
       );
-      preludeLogs.push(
+    });
+    LogService.pushLog(game.id, logs);
+    game.forEachPlayerOrder((player, i) => {
+      LogService.pushLog(
+        game.id,
         new Log(i + 1, [
           ' is starting the game with ',
           { prelude: player.cards.prelude[0].card },
           ' and ',
           { prelude: player.cards.prelude[1].card },
-          ' preludes.'
+          '.'
         ])
       );
+
+      // Apply corp tags, starting resources, and starting actions
+
+      // Apply prelude tags, resources, and actions
+      game.applyPreludes(player);
     });
-    LogService.pushLog(game.id, logs.concat(preludeLogs));
-
-    // Apply corp tags, starting resources, and starting actions
-
-    // Apply prelude tags, resources, and actions
 
     game.beginActionPhase();
   }

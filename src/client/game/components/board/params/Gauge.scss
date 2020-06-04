@@ -39,6 +39,7 @@ $title-font: 'Prototype', sans-serif;
       font-family: $title-font;
       position: absolute;
       border-top: 1px solid white;
+      -webkit-text-stroke: 1px #444;
       color: white;
       font-size: 14px;
       top: 0;

@@ -16,6 +16,10 @@ export default new Prelude({
   flavor:
     'Materials arrive to Earth orbit from all around the solar system, to be assembled into interplanetary vessels',
   emoji: '🏗️',
+  serverAction: player => {
+    player.production.titanium++;
+    player.resources.titanium += 4;
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">
