@@ -127,7 +127,7 @@ const ActiveCard = props => {
                   <Param name="card back" />
                 </div>
                 <div className="center middle">
-                  {activeCard.card.select ? 'Unselect' : 'Select'}
+                  {activeCard.card.select ? 'Deselect' : 'Select'}
                 </div>
               </div>
             </button>
@@ -149,7 +149,7 @@ const ActiveCard = props => {
                   <Param name="card back" />
                 </div>
                 <div className="center middle">
-                  {activeCard.card.select ? 'Unselect' : 'Select'}
+                  {activeCard.card.select ? 'Deselect' : 'Select'}
                 </div>
               </div>
             </button>

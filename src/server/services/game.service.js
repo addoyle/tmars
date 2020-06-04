@@ -1,27 +1,63 @@
 import Service, { sse, push } from './Service';
 import CardStore from '../models/card.model';
+import LogService from './log.service';
+import Log from '../models/log.model';
 import shortid from 'shortid';
 
+/**
+ * Push filter to prevent other player's cards to be shared with other players
+ *
+ * @param {*} game The game
+ * @param {*} listener Client
+ */
+const gameFilter = (game, listener) => ({
+  ...game,
+  players: game.players.map((player, i) => ({
+    ...player,
+    cards:
+      i === listener.req.query.player - 1
+        ? player.cards
+        : {
+            active: player.cards.active,
+            automated: player.cards.automated,
+            event: player.cards.event
+          }
+  }))
+});
+
+/**
+ * Game service, handles all actions related to playing a TMars game
+ */
 @sse
 class GameService {
   cardStore = new CardStore();
   games = {};
-  query;
 
-  // @push
-  // addPlayer(name) {
-  //   this.game.players.push(new Player(name));
-  // }
-
-  createGame(game, id = shortid.generate()) {
+  /**
+   * Registers a created game
+   *
+   * @param {Game} game Game to register
+   * @param {string} id Game ID, or blank to generate a new one
+   * @returns Game ID
+   */
+  registerGame(game, id = shortid.generate()) {
     this.games[id] = game;
+    game.id = id;
+
+    return id;
   }
 
-  @push
-  playCard(id, card) {
+  /**
+   * Play a card
+   *
+   * @param {string} id Game
+   * @param {object} card Card to be played
+   * @returns Game status
+   */
+  @push(gameFilter)
+  playCard(id, playerNum, card) {
     const game = this.games[id];
-
-    const player = this.getPlayer(game);
+    const player = this.getPlayer(game, playerNum);
     const playedCard = this.cardStore.project[card.card];
     const cardType = playedCard.constructor.name.toLowerCase();
 
@@ -50,10 +86,18 @@ class GameService {
     return this.export(game);
   }
 
-  @push
-  toggleSelectCard(id, card, type) {
+  /**
+   * Toggles selection of a card
+   *
+   * @param {string} id Game ID
+   * @param {object} card Card to toggle
+   * @param {string} type Card type. One of [project, corp, prelude]
+   * @returns Game status
+   */
+  @push(gameFilter)
+  toggleSelectCard(id, playerNum, card, type) {
     const game = this.games[id];
-    const player = this.getPlayer(game);
+    const player = this.getPlayer(game, playerNum);
 
     player.cards[type] = player.cards[type].map(c =>
       card.card === c.card ? { ...c, select: !card.select } : c
@@ -62,10 +106,16 @@ class GameService {
     return this.export(game);
   }
 
-  @push
-  buySelectedCards(id) {
+  /**
+   * Buys all cards selected and discards unselected
+   *
+   * @param {string} id Game ID
+   * @returns Game status
+   */
+  @push(gameFilter)
+  buySelectedCards(id, playerNum) {
     const game = this.games[id];
-    const player = this.getPlayer(game);
+    const player = this.getPlayer(game, playerNum);
     const cost = player.cards.buy.filter(card => card.select).length * 3;
 
     if (player.resources.mc < cost) {
@@ -73,7 +123,9 @@ class GameService {
     }
 
     // Pay for the cards
-    player.resources.megacredit -= cost;
+    if (game.phase !== 'start') {
+      player.resources.megacredit -= cost;
+    }
 
     // Move bought cards into hand
     player.cards.hand = player.cards.hand.concat(
@@ -92,9 +144,8 @@ class GameService {
     // Clear out buy cards
     player.cards.buy = [];
 
-    // Check if all players have finished, then move to the next phase
-    if (game.players.every(player => player.cards.buy.length === 0)) {
-      game.phase = 'action';
+    if (game.phase === 'start') {
+      this.checkStartPhaseDone(game);
     }
 
     // console.log(game.params.generation, this.getDraftTargetPlayer(game));
@@ -102,11 +153,17 @@ class GameService {
     return this.export(game);
   }
 
-  @push
-  draftCard(id, card) {
+  /**
+   * Draft a card and send the rest to the next player
+   *
+   * @param {string} id Game ID
+   * @param {object} card Card to draft
+   * @returns Game status
+   */
+  @push(gameFilter)
+  draftCard(id, playerNum, card) {
     const game = this.games[id];
-
-    const player = this.getPlayer(game);
+    const player = this.getPlayer(game, playerNum);
 
     player.cards.buy.push(card.card);
 
@@ -124,6 +181,37 @@ class GameService {
     return this.export(game);
   }
 
+  /**
+   * Confirm the selection of a set of cards
+   *
+   * @param {string} id Game ID
+   * @param {string} type Card type
+   */
+  @push(gameFilter)
+  confirmSelection(id, playerNum, type) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+
+    player.cards[type] = player.cards[type]
+      .filter(card => card.select)
+      .map(card => ({ ...card, select: false }));
+
+    if (game.phase === 'start') {
+      this.checkStartPhaseDone(game);
+    }
+
+    return this.export(game);
+  }
+
+  /******************
+   * Helper Methods *
+   ******************/
+
+  /**
+   * Get the entire list of cards for the client
+   *
+   * @returns List of card numbers
+   */
   getAllCardNumbers() {
     return Object.keys(this.cardStore).reduce(
       (cards, type) => ({
@@ -134,10 +222,75 @@ class GameService {
     );
   }
 
-  getPlayer(game) {
-    return game.players[this.query.player - 1];
+  /**
+   * Check if the start phase is complete, i.e. all players have bought their cards, selected their
+   * corps, and chosen their preludes (if applicable). If it's done, it will move to the action phase
+   */
+  checkStartPhaseDone(game) {
+    // Return if any players still haven't confirmed their corp
+    if (game.players.some(player => player.cards.corp.length !== 1)) {
+      return;
+    }
+
+    // Return if any players still haven't confirmed their preludes
+    if (
+      game.sets.includes('prelude') &&
+      game.players.some(player => player.cards.prelude.length !== 2)
+    ) {
+      return;
+    }
+
+    // Return if any players still haven't confirmed their cards
+    if (game.players.some(player => player.cards.buy.length > 0)) {
+      return;
+    }
+
+    // Everybody's done, reveal corps and preludes and move into the action phase
+    const logs = [];
+    const preludeLogs = [];
+    game.forEachPlayerOrder((player, i) => {
+      logs.push(
+        new Log(i + 1, [
+          ' is representing ',
+          { corp: player.cards.corp[0].card },
+          ` and bought ${player.cards.hand.length} projects.`
+        ])
+      );
+      preludeLogs.push(
+        new Log(i + 1, [
+          ' is starting the game with ',
+          { prelude: player.cards.prelude[0].card },
+          ' and ',
+          { prelude: player.cards.prelude[1].card },
+          ' preludes.'
+        ])
+      );
+    });
+    LogService.pushLog(game.id, logs.concat(preludeLogs));
+
+    // Apply corp tags, starting resources, and starting actions
+
+    // Apply prelude tags, resources, and actions
+
+    game.beginActionPhase();
   }
 
+  /**
+   * Helper method to get the player that performed an action
+   *
+   * @param {Game} game The game
+   * @returns Player that performed the action
+   */
+  getPlayer(game, player) {
+    return game.players[player - 1];
+  }
+
+  /**
+   * Helper method to get the next player who you draft to
+   *
+   * @param {Game} game The game
+   * @returns The next player
+   */
   getDraftTargetPlayer(game) {
     let p = this.query.player + (game.params.generation % 2 ? -1 : 1);
     if (p < 0) {
@@ -149,8 +302,13 @@ class GameService {
     return game.players[p];
   }
 
+  /**
+   * Helper method to do some common reductions to the game before sending it to clients.
+   * @see Game.export
+   * @param {Game} game The game
+   */
   export(game) {
-    return game.export(this.query.player);
+    return game.export();
   }
 }
 

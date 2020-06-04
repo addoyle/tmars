@@ -37,11 +37,12 @@ class LogService {
   // new Log(2, [' played ', {project: '187'}, '.'])
   // ], '1234':[]};
 
-  @push
-  pushLog(id, log) {
-    GameService.games[id].log.push(log);
+  @push()
+  pushLog(id, logs) {
+    logs = Array.isArray(logs) ? logs : [logs]
+    GameService.games[id].log = GameService.games[id].log.concat(logs);
 
-    return log;
+    return logs;
   }
 }
 

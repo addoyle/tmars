@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Param, MegaCredit } from '../assets/Assets';
 import classnames from 'classnames';
 
-const CardDrawers = props => {
+const CardDrawers = ({ gameStore }) => {
   const drawers = [
     {
       type: 'hand',
@@ -22,8 +22,8 @@ const CardDrawers = props => {
         </>
       ),
       mode:
-        props.gameStore.phase === 'action' &&
-        props.gameStore.turn ===
+        gameStore.phase === 'action' &&
+        gameStore.turn ===
           new URLSearchParams(window.location.search).get('player')
           ? 'play'
           : null
@@ -36,7 +36,7 @@ const CardDrawers = props => {
           <span>Active</span>
         </>
       ),
-      mode: props.gameStore.phase === 'action' ? 'action' : null
+      mode: gameStore.phase === 'action' ? 'action' : null
     },
     {
       type: 'automated',
@@ -65,9 +65,10 @@ const CardDrawers = props => {
         </>
       ),
       mode:
-        props.gameStore.phase === 'action'
+        gameStore.phase === 'action'
           ? 'action'
-          : props.gameStore.phase === 'start'
+          : gameStore.phase === 'start' &&
+            gameStore.player?.cards.corp.length !== 1
           ? 'select'
           : null,
       max: 1,
@@ -81,8 +82,12 @@ const CardDrawers = props => {
           <span>Preludes</span>
         </>
       ),
-      mode: props.gameStore.phase === 'start' ? 'select' : null,
-      hidden: !props.gameStore.sets.includes('prelude'),
+      mode:
+        gameStore.phase === 'start' &&
+        gameStore.player?.cards.prelude.length !== 2
+          ? 'select'
+          : null,
+      hidden: !gameStore.sets.includes('prelude'),
       max: 2,
       min: 2
     },
@@ -95,9 +100,7 @@ const CardDrawers = props => {
         </>
       ),
       mode: 'buy',
-      hidden:
-        props.gameStore.phase !== 'draft' &&
-        !props.gameStore.player?.cards.buy.length
+      hidden: gameStore.phase !== 'draft' && !gameStore.player?.cards.buy.length
     },
     {
       type: 'draft',
@@ -106,14 +109,14 @@ const CardDrawers = props => {
           <FontAwesomeIcon
             fixedWidth
             icon={`arrow-alt-circle-${
-              ['left', 'right'][props.gameStore.params.generation % 2]
+              ['left', 'right'][gameStore.params.generation % 2]
             }`}
           />
           <span>Draft</span>
         </>
       ),
       mode: 'draft',
-      hidden: props.gameStore.phase !== 'draft'
+      hidden: gameStore.phase !== 'draft'
     }
   ];
 
@@ -126,10 +129,10 @@ const CardDrawers = props => {
             <div
               key={`drawer-tab-${drawer.type}`}
               className={classnames('drawer-btn', {
-                open: props.gameStore.drawer === drawer.type,
-                empty: !props.gameStore.player?.cards[drawer.type]?.length
+                open: gameStore.drawer === drawer.type,
+                empty: !gameStore.player?.cards[drawer.type]?.length
               })}
-              onClick={() => props.gameStore.switchDrawer(drawer.type)}
+              onClick={() => gameStore.switchDrawer(drawer.type)}
             >
               {drawer.tab}
             </div>
@@ -140,7 +143,7 @@ const CardDrawers = props => {
         .map(drawer => (
           <CardDrawer
             key={`drawer-${drawer.type}`}
-            collapse={props.gameStore.drawer !== drawer.type}
+            collapse={gameStore.drawer !== drawer.type}
             {...drawer}
           />
         ))}

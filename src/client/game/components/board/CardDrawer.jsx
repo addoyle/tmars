@@ -12,6 +12,7 @@ import classnames from 'classnames';
  */
 const CardDrawer = props => {
   const gameStore = props.gameStore;
+  const cardStore = props.cardStore;
 
   let cardType = 'project';
   if (props.type === 'corp') {
@@ -21,8 +22,8 @@ const CardDrawer = props => {
     cardType = 'prelude';
   }
 
-  const cards = props.gameStore.player?.cards[props.type] || [];
-  const numSelected = props.gameStore.player?.cards[props.type].filter(
+  const cards = gameStore.player?.cards[props.type] || [];
+  const numSelected = gameStore.player?.cards[props.type].filter(
     card => card.select
   ).length;
 
@@ -37,12 +38,32 @@ const CardDrawer = props => {
     >
       {props.mode === 'buy' ? (
         <div className="button-box">
+          <div
+            className={classnames('error', {
+              show:
+                gameStore.player?.cards.corp.length !== 1 ||
+                !(
+                  numSelected * 3 <= gameStore.player?.resources.megacredit ||
+                  (gameStore.phase === 'start' &&
+                    numSelected * 3 <=
+                      cardStore.get(
+                        'corp',
+                        gameStore.player?.cards.corp[0].card
+                      )?.starting.resources.megacredit)
+                )
+            })}
+          >
+            {gameStore.player?.cards.corp.length !== 1
+              ? 'Select a corporation first'
+              : "Can't afford this"}
+          </div>
           <button
             className="primary flex gutter"
             onClick={() => {
               gameStore.switchDrawer('hand');
               gameStore.buySelectedCards();
             }}
+            disabled={gameStore.player?.cards.corp.length !== 1}
           >
             <div className="resources middle">
               <Param name="card back" />
@@ -101,7 +122,7 @@ const CardDrawer = props => {
             className={classNames('card-selector', {
               selected:
                 gameStore.activeCard.show &&
-                card.card === gameStore.activeCard.card &&
+                card.card === gameStore.activeCard.card.card &&
                 cardType === gameStore.activeCard.type,
               landscape: cardType === 'prelude' || cardType === 'corp'
             })}
@@ -134,6 +155,7 @@ CardDrawer.propTypes = {
   gameStore: PropTypes.shape({
     drawer: PropTypes.string,
     switchDrawer: PropTypes.func,
+    phase: PropTypes.string,
     player: PropTypes.shape({
       cards: PropTypes.shape({
         onDeck: PropTypes.arrayOf(PropTypes.array)
@@ -149,8 +171,12 @@ CardDrawer.propTypes = {
       show: PropTypes.bool
     }),
     showActiveCard: PropTypes.func,
-    buySelectedCards: PropTypes.func
+    buySelectedCards: PropTypes.func,
+    confirmSelection: PropTypes.func
+  }),
+  cardStore: PropTypes.shape({
+    get: PropTypes.func
   })
 };
 
-export default inject('gameStore')(observer(CardDrawer));
+export default inject('gameStore', 'cardStore')(observer(CardDrawer));

@@ -27,12 +27,7 @@ const paramStats = {
 };
 
 class Game {
-  cards = {
-    deck: [],
-    discard: [],
-    corps: [],
-    preludes: []
-  };
+  id;
   sets = [];
   players = [];
   turn = 0;
@@ -56,6 +51,12 @@ class Game {
 
   log = [];
 
+  cards = {
+    deck: [],
+    discard: [],
+    corps: [],
+    preludes: []
+  };
   cardStore;
 
   /**
@@ -128,7 +129,10 @@ class Game {
     );
 
     // Show helpful message log
-    const startLog = new Log(0, ['Please select 1 ', { corp: 'Corporation' }]);
+    const startLog = new Log(0, [
+      'Please select 1 ',
+      { corporation: 'Corporation' }
+    ]);
     if (this.sets.includes('prelude')) {
       startLog.body.push(', 2 ');
       startLog.body.push({ prelude: 'Preludes' });
@@ -221,23 +225,25 @@ class Game {
     }
   }
 
-  export(activePlayer) {
+  beginActionPhase() {
+    this.phase = 'action';
+    this.turn = this.startingPlayer;
+  }
+
+  forEachPlayerOrder(func) {
+    for (
+      let i = this.startingPlayer - 1, start = true;
+      start || i !== this.startingPlayer - 1;
+      i = i >= this.players.length - 1 ? 0 : i + 1, start = false
+    ) {
+      func(this.players[i], i);
+    }
+  }
+
+  export() {
     // eslint-disable-next-line no-unused-vars
-    const { cards, cardStore, ...strippedGame } = this;
-    return {
-      ...strippedGame,
-      players: strippedGame.players.map((player, i) => ({
-        ...player,
-        cards:
-          i === activePlayer - 1
-            ? player.cards
-            : {
-                active: player.cards.active,
-                automated: player.cards.automated,
-                event: player.cards.event
-              }
-      }))
-    };
+    const { cards, cardStore, log, ...strippedGame } = this;
+    return strippedGame;
   }
 }
 

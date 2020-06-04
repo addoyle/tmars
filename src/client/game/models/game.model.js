@@ -1,12 +1,14 @@
 import { observable, action } from 'mobx';
 import { API, gameId } from '../../util/api';
 
+const PLAYER_NUM = new URLSearchParams(window.location.search).get('player');
+
 class Game {
   // Sets, or expansions, that are enabled in this game
   @observable sets = [];
 
   // Active drawer, or falsey to show none
-  @observable drawer = 'buy';
+  @observable drawer = 'corp';
 
   // Active card, shown in a popup
   @observable activeCard = {
@@ -124,10 +126,7 @@ class Game {
   update(game) {
     this.params = game.params;
     this.players = game.players;
-    this.player =
-      game.players[
-        new URLSearchParams(window.location.search).get('player') - 1
-      ];
+    this.player = game.players[PLAYER_NUM - 1];
     this.sets = game.sets;
     this.phase = game.phase;
     this.turn = game.turn;
@@ -146,22 +145,42 @@ class Game {
 
   @action
   playCard(card, opts) {
-    API(`game/${gameId()}/play-card`, 'POST', { ...opts, card });
+    API(`game/${gameId()}/play-card`, 'POST', {
+      ...opts,
+      card,
+      player: PLAYER_NUM
+    });
   }
 
   @action
   toggleSelectCard(card, type, opts) {
-    API(`game/${gameId()}/toggle-select-card`, 'POST', { ...opts, card, type });
+    API(`game/${gameId()}/toggle-select-card`, 'POST', {
+      ...opts,
+      card,
+      type,
+      player: PLAYER_NUM
+    });
   }
 
   @action
   draftCard(card, opts) {
-    API(`game/${gameId()}/draft-card`, 'POST', { ...opts, card });
+    API(`game/${gameId()}/draft-card`, 'POST', {
+      ...opts,
+      card,
+      player: PLAYER_NUM
+    });
   }
 
   @action
   buySelectedCards() {
-    API(`game/${gameId()}/buy-selected`, 'POST');
+    API(`game/${gameId()}/buy-selected`, 'POST', { player: PLAYER_NUM });
+  }
+
+  @action
+  confirmSelection(type) {
+    API(`game/${gameId()}/confirm-selection/${type}`, 'POST', {
+      player: PLAYER_NUM
+    });
   }
 }
 

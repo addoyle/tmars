@@ -36,18 +36,26 @@ export function sse(Class) {
   };
 }
 
-export function push(target, name, descriptor) {
-  const func = descriptor.value;
-  descriptor.value = function (...args) {
-    const response = func.apply(this, args);
+export function push(
+  mapper = function (res) {
+    return res;
+  }
+) {
+  return function (target, name, descriptor) {
+    const func = descriptor.value;
+    descriptor.value = function (...args) {
+      const response = func.apply(this, args);
 
-    this.listeners[args[0]].forEach(listener => {
-      listener.write(`data: ${JSON.stringify(response)}\n\n`);
-      listener.flush();
-    });
+      this.listeners[args[0]].forEach((listener, i) => {
+        listener.write(
+          `data: ${JSON.stringify(mapper(response, listener, i))}\n\n`
+        );
+        listener.flush();
+      });
+    };
+
+    return descriptor;
   };
-
-  return descriptor;
 }
 
 export default function Service(type) {

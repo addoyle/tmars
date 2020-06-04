@@ -18,7 +18,7 @@ export default new Corporation({
     letterSpacing: '.2em'
   },
   starting: {
-    resource: {
+    resources: {
       megacredit: 60
     }
   },

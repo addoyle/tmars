@@ -45,8 +45,9 @@ const Log = forwardRef((props, ref) => {
   useEffect(() => {
     logStore.fetchLogs();
 
-    let eventSource = subscribe(`log/${gameId()}/stream`, log =>
-      logStore.log.push(log)
+    let eventSource = subscribe(
+      `log/${gameId()}/stream`,
+      log => (logStore.log = logStore.log.concat(log))
     );
 
     return () => eventSource.close();

@@ -37,7 +37,7 @@ const tiles = (type, props) => {
  * @prop asterisk  Boolean, true to show an asterisk, otherwise false
  */
 const Tile = props => {
-  var key = props.name.trim();
+  let key = props.name.trim();
   if (props.name === 'city capital') {
     key = 'city';
   }

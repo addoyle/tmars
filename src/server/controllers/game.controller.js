@@ -1,6 +1,6 @@
 import GameService from '../services/game.service';
 
-// FIXME: Temporary
+// FIXME: Temporary games
 import Game from '../models/game.model';
 import Player from '../models/player.model';
 setTimeout(() => {
@@ -17,8 +17,24 @@ setTimeout(() => {
 
   game.init();
 
-  GameService.games['123'] = game;
-}, 2000);
+  // Pick cards for people
+  game.players.forEach((player, i) => {
+    if (i > 0) {
+      player.cards.corp = [player.cards.corp[0]];
+      player.cards.prelude = [player.cards.prelude[0], player.cards.prelude[1]];
+      player.cards.hand = [
+        player.cards.buy[0],
+        player.cards.buy[1],
+        player.cards.buy[2],
+        player.cards.buy[3],
+        player.cards.buy[4]
+      ];
+      player.cards.buy = [];
+    }
+  });
+
+  GameService.registerGame(game, '123');
+}, 1000);
 setTimeout(() => {
   const game = new Game(GameService.cardStore);
   game.players = [
@@ -32,11 +48,11 @@ setTimeout(() => {
 
   game.init();
 
-  GameService.games['1234'] = game;
-}, 2000);
+  GameService.registerGame(game, '1234');
+}, 1000);
 
 /**
- * Get players
+ * Get the current state of the game (should only be used on page load)
  *
  * @param {*} req
  * @param {*} res
@@ -61,12 +77,12 @@ export function getGame(req, res) {
  * @param {*} res
  */
 export function playCard(req, res) {
-  GameService.playCard(`${req.params.id}`, req.body, res);
+  GameService.playCard(`${req.params.id}`, req.body.player, req.body, res);
   res.sendStatus(200);
 }
 
 /**
- * Buy a card
+ * Toggle the selection of a card
  *
  * @param {*} req
  * @param {*} res
@@ -74,6 +90,7 @@ export function playCard(req, res) {
 export function toggleSelectCard(req, res) {
   GameService.toggleSelectCard(
     `${req.params.id}`,
+    req.body.player,
     req.body.card,
     req.body.type,
     res
@@ -88,18 +105,34 @@ export function toggleSelectCard(req, res) {
  * @param {*} res
  */
 export function draftCard(req, res) {
-  GameService.draftCard(`${req.params.id}`, req.body, res);
+  GameService.draftCard(`${req.params.id}`, req.body.player, req.body, res);
   res.sendStatus(200);
 }
 
 /**
- * Discard unbought cards
+ * Buy selected cards
  *
  * @param {*} req
  * @param {*} res
  */
 export function buySelectedCards(req, res) {
-  GameService.buySelectedCards(`${req.params.id}`, res);
+  GameService.buySelectedCards(`${req.params.id}`, req.body.player, res);
+  res.sendStatus(200);
+}
+
+/**
+ * Confirm a card selection
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function confirmSelection(req, res) {
+  GameService.confirmSelection(
+    `${req.params.id}`,
+    req.body.player,
+    req.params.type,
+    res
+  );
   res.sendStatus(200);
 }
 

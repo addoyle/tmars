@@ -25,6 +25,11 @@ router.post(
 );
 router.post('/:id/draft-card', validate, GameController.draftCard);
 router.post('/:id/buy-selected', validate, GameController.buySelectedCards);
+router.post(
+  '/:id/confirm-selection/:type',
+  validate,
+  GameController.confirmSelection
+);
 router.get('/:id/stream', validate, GameController.stream);
 
 export default router;

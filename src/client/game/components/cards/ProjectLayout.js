@@ -65,7 +65,7 @@ const ProjectLayout = props => {
         }
 
         // Render the restrictions
-        for (var i = 0; i < res.value; i++) {
+        for (let i = 0; i < res.value; i++) {
           res[key].forEach(item =>
             restriction.push({ [key]: item, anyone: res.anyone })
           );

@@ -42,6 +42,7 @@ $hand-height: 33vh;
     transition: opacity .5s ease;
     box-shadow: 8px 8px 8px rgba(0,0,0,.2);
     overflow: hidden;
+    text-align: center;
 
     button {
       padding: 8px;
@@ -59,17 +60,19 @@ $hand-height: 33vh;
     .error {
       text-align: center;
       font-family: sans-serif;
-      background-color: rgba(0,0,0,.75);
+      background-color: rgba(128,0,0,.75);
       color: #ddd;
       margin-bottom: 16px;
       padding: 4px;
       border-radius: 8px;
       height: 24px;
       margin-top: -40px;
-      transition: margin-top .5s ease;
+      opacity: 0;
+      transition: margin-top .5s ease, opacity .5s ease;
 
       &.show {
         margin-top: 0;
+        opacity: 1;
       }
     }
   }

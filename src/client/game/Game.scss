@@ -151,15 +151,16 @@ button {
 		}
 	}
 
-	&.disabled {
+	&.disabled, &:disabled {
 		color: #666;
 		text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.2);
+		cursor: not-allowed;
 	}
 
-	&:hover {
+	&:hover:not(:disabled):not(.disabled) {
 		box-shadow: 0 0 0 4px #666;
 	}
-	&:active {
+	&:active:not(:disabled):not(.disabled) {
 		box-shadow: 0 0 0 4px #666, 0 0 12px rgba(0, 0, 0, 0.5) inset;
 	}
 }
