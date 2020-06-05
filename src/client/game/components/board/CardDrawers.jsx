@@ -117,6 +117,17 @@ const CardDrawers = ({ gameStore }) => {
       ),
       mode: 'draft',
       hidden: gameStore.phase !== 'draft'
+    },
+    {
+      type: 'reveal',
+      tab: (
+        <>
+          <Param name="card back" />
+          <span>Revealed Cards</span>
+        </>
+      ),
+      hidden: !gameStore.player?.cards.reveal.length,
+      closable: true
     }
   ];
 

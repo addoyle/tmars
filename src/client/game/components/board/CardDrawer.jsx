@@ -174,7 +174,8 @@ CardDrawer.propTypes = {
     }),
     showActiveCard: PropTypes.func,
     buySelectedCards: PropTypes.func,
-    confirmSelection: PropTypes.func
+    confirmSelection: PropTypes.func,
+    confirmReveal: PropTypes.func
   }),
   cardStore: PropTypes.shape({
     get: PropTypes.func

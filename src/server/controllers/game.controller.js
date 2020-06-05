@@ -31,6 +31,7 @@ setTimeout(() => {
       ];
       player.cards.buy = [];
     }
+    player.cards.reveal = [{ card: '123' }];
   });
 
   game.players[3].cards.prelude = [{ card: 'P15' }, { card: 'P19' }];
@@ -135,6 +136,17 @@ export function confirmSelection(req, res) {
     req.params.type,
     res
   );
+  res.sendStatus(200);
+}
+
+/**
+ * Confirm a set of revealed cards, i.e. OK
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function confirmReveal(req, res) {
+  GameService.confirmReveal(`${req.params.id}`, req.body.player, res);
   res.sendStatus(200);
 }
 

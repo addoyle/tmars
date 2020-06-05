@@ -49,7 +49,8 @@ export default class Player {
     event: [],
     corp: [],
     prelude: [],
-    onDec: []
+    onDeck: [],
+    reveal: []
   };
   phase = '';
 

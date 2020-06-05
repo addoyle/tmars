@@ -12,8 +12,8 @@ import { toJS } from 'mobx';
  */
 const MilestoneAward = props => {
   const [collapse, setCollapse] = useState(true);
-  const milestones = toJS(props.gameStore.field.milestones);
-  const awards = toJS(props.gameStore.field.awards);
+  const milestones = toJS(props.gameStore.field.milestones) || [];
+  const awards = toJS(props.gameStore.field.awards) || [];
 
   // Add in new Venus Next awards/milestones
   if (props.gameStore.sets.includes('venus')) {
@@ -88,7 +88,7 @@ const MilestoneAward = props => {
           </div>
         </div>
         <div className="flex gutter">
-          {milestones.map((milestone, i) => (
+          {milestones?.map((milestone, i) => (
             <div className="col-1" key={milestone.name}>
               <Tooltip
                 arrow
@@ -186,7 +186,7 @@ const MilestoneAward = props => {
           </div>
         </div>
         <div className="flex gutter m-top">
-          {awards.map((award, i) => (
+          {awards?.map((award, i) => (
             <div className="col-1" key={award.name}>
               <Tooltip
                 arrow

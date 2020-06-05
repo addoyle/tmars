@@ -51,6 +51,7 @@ class GameService {
    * Play a card
    *
    * @param {string} id Game
+   * @param {number} playerNum Player number
    * @param {object} card Card to be played
    * @returns Game status
    */
@@ -90,6 +91,7 @@ class GameService {
    * Toggles selection of a card
    *
    * @param {string} id Game ID
+   * @param {number} playerNum Player number
    * @param {object} card Card to toggle
    * @param {string} type Card type. One of [project, corp, prelude]
    * @returns Game status
@@ -110,6 +112,7 @@ class GameService {
    * Buys all cards selected and discards unselected
    *
    * @param {string} id Game ID
+   * @param {number} playerNum Player number
    * @returns Game status
    */
   @push(gameFilter)
@@ -157,6 +160,7 @@ class GameService {
    * Draft a card and send the rest to the next player
    *
    * @param {string} id Game ID
+   * @param {number} playerNum Player number
    * @param {object} card Card to draft
    * @returns Game status
    */
@@ -185,6 +189,7 @@ class GameService {
    * Confirm the selection of a set of cards
    *
    * @param {string} id Game ID
+   * @param {number} playerNum Player number
    * @param {string} type Card type
    */
   @push(gameFilter)
@@ -199,6 +204,22 @@ class GameService {
     if (game.phase === 'start') {
       this.checkStartPhaseDone(game);
     }
+
+    return this.export(game);
+  }
+
+  /**
+   * Confirm the selection of a set of cards
+   *
+   * @param {string} id Game ID
+   * @param {number} playerNum Player number
+   */
+  @push(gameFilter)
+  confirmReveal(id, playerNum) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+
+    player.cards.reveal = [];
 
     return this.export(game);
   }

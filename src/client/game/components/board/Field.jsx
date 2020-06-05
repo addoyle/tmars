@@ -16,6 +16,7 @@ import { Tile, Resource, Param, MegaCredit } from '../assets/Assets';
 const Field = props => {
   const { field, detachedCities } = props.gameStore;
   const hasVenus = props.gameStore.sets.includes('venus');
+
   /**
    * Renders a resource on a space
    *
@@ -72,13 +73,13 @@ const Field = props => {
                   <Resource name={`player-${detachedCities[city].player}`} />
                 ) : null}
               </Tile>
-              {['ganymede', 'luna', 'dawn'].includes(city) ? (
+              {['ganymede', 'luna', 'dawn', 'torus'].includes(city) ? (
                 <div className="dot">.</div>
               ) : null}
             </div>
           ))}
 
-        {field.field.map((row, r) => (
+        {field.map((row, r) => (
           <div key={r} className="row">
             {row.map((tile, i) => (
               <Tile
@@ -138,9 +139,7 @@ const tilePropType = PropTypes.shape({
 
 Field.propTypes = {
   gameStore: PropTypes.shape({
-    field: PropTypes.shape({
-      field: PropTypes.arrayOf(PropTypes.arrayOf(tilePropType))
-    }),
+    field: PropTypes.arrayOf(PropTypes.arrayOf(tilePropType)),
     detachedCities: PropTypes.objectOf(tilePropType),
     sets: PropTypes.arrayOf(PropTypes.string)
   })

@@ -44,6 +44,10 @@ class Game {
     phobos: {
       label: 'Phobos Space Haven'
     },
+    torus: {
+      label: 'Stanford Torus',
+      set: 'promo'
+    },
     maxwell: {
       label: 'Maxwell Base',
       set: 'venus'
@@ -71,10 +75,6 @@ class Game {
 
   @observable phase;
 
-  constructor(props) {
-    this.field = props.field;
-  }
-
   /**
    * Switch drawers. If the drawer is already open, close. Null will also close the active drawer.
    *
@@ -84,6 +84,11 @@ class Game {
   @action
   switchDrawer(drawer, e) {
     e && e.preventDefault();
+
+    // Any other drawer is clicked, confirm revealed cards
+    if (this.drawer === 'reveal') {
+      this.confirmReveal();
+    }
 
     // Clicking on the same drawer, show none
     this.drawer = this.drawer === drawer ? null : drawer;
@@ -124,13 +129,18 @@ class Game {
    */
   @action
   update(game) {
-    this.params = game.params;
-    this.players = game.players;
+    // If there are cards revealed, show reveal drawer
+    if (
+      !this.player?.cards.reveal.length &&
+      game.players[PLAYER_NUM - 1].cards.reveal.length
+    ) {
+      this.switchDrawer('reveal');
+    }
+
+    // Update the game, which will fire off a UI change
+    Object.assign(this, game);
+
     this.player = game.players[PLAYER_NUM - 1];
-    this.sets = game.sets;
-    this.phase = game.phase;
-    this.turn = game.turn;
-    this.startingPlayer = game.startingPlayer;
   }
 
   @action
@@ -179,6 +189,13 @@ class Game {
   @action
   confirmSelection(type) {
     API(`game/${gameId()}/confirm-selection/${type}`, 'POST', {
+      player: PLAYER_NUM
+    });
+  }
+
+  @action
+  confirmReveal() {
+    API(`game/${gameId()}/confirm-reveal`, 'POST', {
       player: PLAYER_NUM
     });
   }

@@ -30,6 +30,7 @@ router.post(
   validate,
   GameController.confirmSelection
 );
+router.post('/:id/confirm-reveal', validate, GameController.confirmReveal);
 router.get('/:id/stream', validate, GameController.stream);
 
 export default router;

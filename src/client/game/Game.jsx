@@ -13,11 +13,10 @@ import {
   faArrowAltCircleRight,
   faCheck
 } from '@fortawesome/free-solid-svg-icons';
-import Tharsis from '../../shared/boards/Tharsis';
 import { subscribe, gameId } from '../util/api';
 
 const logStore = new LogModel();
-const gameStore = new GameModel({ field: Tharsis });
+const gameStore = new GameModel();
 const cardStore = new CardModel();
 
 // Don't reset scroll on refresh

@@ -106,6 +106,51 @@ $title-font: 'Prototype', sans-serif;
         }
       }
 
+      &.torus {
+        position: absolute;
+        top: 10px;
+        left: 1020px;
+        background: radial-gradient(
+          ellipse at center,
+          rgba(255, 255, 255, 1) 0%,
+          rgba(255, 255, 255, 0) 60%
+        );
+        width: 144px;
+        height: 144px;
+        padding-left: 10px;
+        
+        .dot {
+          position: absolute;
+          background: url('../assets/texture/torus.png') center no-repeat;
+          top: -29px;
+          left: -66px;
+          color: transparent;
+          width: 90px;
+          height: 90px;
+
+          &:before,
+          &:after {
+            content: '';
+            border-bottom: 2px solid #ccc;
+            height: 0;
+            width: 72px;
+            display: block;
+            position: absolute;
+            top: -10px;
+          }
+          &:before {
+            left: 70px;
+            top: 47px;
+            transform: rotate(-25deg);
+          }
+          &:after {
+            left: 41px;
+            top: 98px;
+            transform: rotate(-95deg);
+          }
+        }
+      }
+
       &.maxwell {
         position: absolute;
         bottom: -220px;
