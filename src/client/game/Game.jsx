@@ -11,7 +11,9 @@ import {
   faArrowLeft,
   faArrowAltCircleLeft,
   faArrowAltCircleRight,
-  faCheck
+  faThumbsUp,
+  faToggleOff,
+  faToggleOn
 } from '@fortawesome/free-solid-svg-icons';
 import { subscribe, gameId } from '../util/api';
 
@@ -27,7 +29,9 @@ library.add(faCog);
 library.add(faArrowLeft);
 library.add(faArrowAltCircleLeft);
 library.add(faArrowAltCircleRight);
-library.add(faCheck);
+library.add(faThumbsUp);
+library.add(faToggleOn);
+library.add(faToggleOff);
 
 /**
  * TMars entry point

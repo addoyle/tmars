@@ -20,7 +20,8 @@ const gameFilter = (game, listener) => ({
         : {
             active: player.cards.active,
             automated: player.cards.automated,
-            event: player.cards.event
+            event: player.cards.event,
+            corp: player.cards.corp
           }
   }))
 });
@@ -201,25 +202,17 @@ class GameService {
       .filter(card => card.select)
       .map(card => ({ ...card, select: false }));
 
+    // Beginner corp, move all BUY cards to hand
+    if (type === 'corp' && player.cards.corp[0].card === '000') {
+      player.cards.hand = player.cards.buy.map(card => ({
+        card: card.card
+      }));
+      player.cards.buy = [];
+    }
+
     if (game.phase === 'start') {
       this.checkStartPhaseDone(game);
     }
-
-    return this.export(game);
-  }
-
-  /**
-   * Confirm the selection of a set of cards
-   *
-   * @param {string} id Game ID
-   * @param {number} playerNum Player number
-   */
-  @push(gameFilter)
-  confirmReveal(id, playerNum) {
-    const game = this.games[id];
-    const player = this.getPlayer(game, playerNum);
-
-    player.cards.reveal = [];
 
     return this.export(game);
   }
@@ -266,7 +259,7 @@ class GameService {
       return;
     }
 
-    // Everybody's done, reveal corps and preludes and move into the action phase
+    // Everybody's done, reveal corps
     const logs = [];
     game.forEachPlayerOrder((player, i) => {
       logs.push(
@@ -278,6 +271,8 @@ class GameService {
       );
     });
     LogService.pushLog(game.id, logs);
+
+    // Reveal preludes
     game.forEachPlayerOrder((player, i) => {
       LogService.pushLog(
         game.id,
@@ -291,9 +286,13 @@ class GameService {
       );
 
       // Apply corp tags, starting resources, and starting actions
+      game.applyCorp(player);
 
       // Apply prelude tags, resources, and actions
       game.applyPreludes(player);
+
+      // Buy the cards they've selected
+      player.resources.megacredit -= player.cards.hand.length * 3;
     });
 
     game.beginActionPhase();

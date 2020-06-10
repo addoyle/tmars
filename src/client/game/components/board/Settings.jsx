@@ -28,6 +28,21 @@ const Settings = ({ gameStore }) => {
           </div>
           <div className="label">Back to Lobby</div>
         </Link>
+
+        <div
+          className="row a"
+          onClick={() =>
+            (gameStore.settings.simple = !gameStore.settings.simple)
+          }
+        >
+          <div className="icon">
+            <FontAwesomeIcon
+              icon={gameStore.settings.simple ? 'toggle-on' : 'toggle-off'}
+              fixedWidth
+            />
+          </div>
+          <div className="label">Simple Graphics</div>
+        </div>
       </div>
 
       <div className="control" onClick={() => setShown(!shown)}>
@@ -46,6 +61,9 @@ Settings.propTypes = {
     drawer: PropTypes.string,
     player: PropTypes.shape({
       cards: PropTypes.objectOf(PropTypes.array)
+    }),
+    settings: PropTypes.shape({
+      simple: PropTypes.bool
     })
   })
 };

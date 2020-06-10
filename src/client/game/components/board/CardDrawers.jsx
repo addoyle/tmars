@@ -122,11 +122,11 @@ const CardDrawers = ({ gameStore }) => {
       type: 'reveal',
       tab: (
         <>
-          <Param name="card back" />
-          <span>Revealed Cards</span>
+          <FontAwesomeIcon icon="thumbs-up" />
+          <span>Ok</span>
         </>
       ),
-      hidden: !gameStore.player?.cards.reveal.length,
+      hidden: !gameStore.player?.cards.reveal?.length,
       closable: true
     }
   ];
@@ -134,30 +134,27 @@ const CardDrawers = ({ gameStore }) => {
   return (
     <div className="drawers">
       <div className="tabs">
-        {drawers
-          .filter(drawer => !drawer.hidden)
-          .map(drawer => (
-            <div
-              key={`drawer-tab-${drawer.type}`}
-              className={classnames('drawer-btn', {
-                open: gameStore.drawer === drawer.type,
-                empty: !gameStore.player?.cards[drawer.type]?.length
-              })}
-              onClick={() => gameStore.switchDrawer(drawer.type)}
-            >
-              {drawer.tab}
-            </div>
-          ))}
-      </div>
-      {drawers
-        .filter(drawer => !drawer.hidden)
-        .map(drawer => (
-          <CardDrawer
-            key={`drawer-${drawer.type}`}
-            collapse={gameStore.drawer !== drawer.type}
-            {...drawer}
-          />
+        {drawers.map(drawer => (
+          <div
+            key={`drawer-tab-${drawer.type}`}
+            className={classnames('drawer-btn', {
+              open: gameStore.drawer === drawer.type,
+              empty: !gameStore.player?.cards[drawer.type]?.length,
+              hidden: drawer.hidden
+            })}
+            onClick={() => gameStore.switchDrawer(drawer.type)}
+          >
+            {drawer.tab}
+          </div>
         ))}
+      </div>
+      {drawers.map(drawer => (
+        <CardDrawer
+          key={`drawer-${drawer.type}`}
+          collapse={gameStore.drawer !== drawer.type}
+          {...drawer}
+        />
+      ))}
     </div>
   );
 };

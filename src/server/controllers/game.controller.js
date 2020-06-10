@@ -21,20 +21,17 @@ setTimeout(() => {
   game.players.forEach((player, i) => {
     if (i > 0) {
       player.cards.corp = [player.cards.corp[0]];
-      player.cards.prelude = [player.cards.prelude[0], player.cards.prelude[1]];
-      player.cards.hand = [
-        player.cards.buy[0],
-        player.cards.buy[1],
-        player.cards.buy[2],
-        player.cards.buy[3],
-        player.cards.buy[4]
-      ];
-      player.cards.buy = [];
     }
-    player.cards.reveal = [{ card: '123' }];
+    player.cards.prelude = [player.cards.prelude[0], player.cards.prelude[1]];
+    player.cards.hand = [
+      player.cards.buy[0],
+      player.cards.buy[1],
+      player.cards.buy[2],
+      player.cards.buy[3],
+      player.cards.buy[4]
+    ];
+    player.cards.buy = [];
   });
-
-  game.players[3].cards.prelude = [{ card: 'P15' }, { card: 'P19' }];
 
   GameService.registerGame(game, '123');
 }, 1000);
@@ -67,10 +64,7 @@ export function getGame(req, res) {
 
   const game = GameService.games[req.params.id];
 
-  // TODO: Temporary, to be replaced by actual auth
-  const activePlayer = req.query.player;
-
-  res.send(game.export(activePlayer));
+  res.send(game.export());
 }
 
 /**
@@ -136,17 +130,6 @@ export function confirmSelection(req, res) {
     req.params.type,
     res
   );
-  res.sendStatus(200);
-}
-
-/**
- * Confirm a set of revealed cards, i.e. OK
- *
- * @param {*} req
- * @param {*} res
- */
-export function confirmReveal(req, res) {
-  GameService.confirmReveal(`${req.params.id}`, req.body.player, res);
   res.sendStatus(200);
 }
 

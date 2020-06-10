@@ -25,7 +25,9 @@ const PlayerStats = props => {
         onMouseMove={e => e.stopPropagation()}
       >
         <div className="title-corp text-center m-top m-bottom">
-          {player.corp ? <CardRef type="corp" card={player.corp} /> : null}
+          {player?.cards.corp?.length === 1 ? (
+            <CardRef type="corp" card={player.cards.corp[0].card} />
+          ) : null}
           <div
             className="close"
             onClick={() => (props.gameStore.playerStats.show = false)}
@@ -60,7 +62,9 @@ PlayerStats.propTypes = {
         production: PropTypes.production,
         tags: PropTypes.object,
         tiles: PropTypes.object,
-        corp: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+        cards: PropTypes.shape({
+          corp: PropTypes.arrayOf(PropTypes.shape({ card: PropTypes.string }))
+        })
       })
     ),
     sets: PropTypes.arrayOf(PropTypes.string)

@@ -19,6 +19,13 @@ export default new Prelude({
     // TODO: Reveal cards until 2 plants
 
     game.param('oxygen', player);
+    game.revealCards(
+      player,
+      card => card.tags.includes('plant'),
+      2,
+      'plant cards',
+      { tag: 'plant' }
+    );
   },
   layout: (
     <div className="flex gutter m-bottom">

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './CorporationLayout.scss';
-import CardComponent from './CardLayout';
+import CardLayout from './CardLayout';
 import { Tag } from '../assets/Assets';
 import classNames from 'classnames';
 
@@ -9,7 +9,7 @@ import classNames from 'classnames';
  * Corporation cards
  */
 const CorporationLayout = props => (
-  <CardComponent type="corp" set={props.set} landscape>
+  <CardLayout type="corp" set={props.set} landscape>
     <div className="tags">
       {props.tags.map((tag, i) => (
         <Tag key={i} name={tag} />
@@ -30,7 +30,7 @@ const CorporationLayout = props => (
       <div className="body">{props.layout}</div>
       <div className="flavor bottom">{props.flavor}</div>
     </div>
-  </CardComponent>
+  </CardLayout>
 );
 
 CorporationLayout.propTypes = {
@@ -40,7 +40,8 @@ CorporationLayout.propTypes = {
   set: PropTypes.string,
   tags: PropTypes.arrayOf(PropTypes.string),
   layout: PropTypes.node.isRequired,
-  flavor: PropTypes.string
+  flavor: PropTypes.string,
+  simple: PropTypes.bool
 };
 
 export default CorporationLayout;

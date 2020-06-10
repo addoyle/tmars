@@ -22,10 +22,22 @@ $title-font: 'Prototype', sans-serif;
       background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
       font-family: $title-font;
       outline: none;
-      transition: border-color .3s ease, box-shadow .15s ease, margin .5s ease;
+      transition: 
+        border-color .3s ease,
+        box-shadow .15s ease,
+        margin .5s ease,
+        opacity .5s ease;
       vertical-align: bottom;
       position: relative;
       z-index: 3;
+      opacity: 1;
+
+      &.hidden {
+        opacity: 0;
+        width: 0;
+        margin: 0;
+        padding: 0;
+      }
   
       &.open {
         margin-bottom: 33vh;

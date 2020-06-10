@@ -75,6 +75,8 @@ class Game {
 
   @observable phase;
 
+  @observable settings = {};
+
   /**
    * Switch drawers. If the drawer is already open, close. Null will also close the active drawer.
    *
@@ -85,13 +87,13 @@ class Game {
   switchDrawer(drawer, e) {
     e && e.preventDefault();
 
-    // Any other drawer is clicked, confirm revealed cards
-    if (this.drawer === 'reveal') {
-      this.confirmReveal();
-    }
-
     // Clicking on the same drawer, show none
     this.drawer = this.drawer === drawer ? null : drawer;
+
+    // Any other drawer is clicked, confirm revealed cards
+    if (this.drawer !== 'reveal') {
+      this.player.cards.reveal = [];
+    }
   }
 
   /**
@@ -122,6 +124,12 @@ class Game {
     };
   }
 
+  @action
+  revealCards(cards) {
+    this.player.cards.reveal = cards;
+    this.switchDrawer('reveal');
+  }
+
   /**
    * Update the game
    *
@@ -129,14 +137,6 @@ class Game {
    */
   @action
   update(game) {
-    // If there are cards revealed, show reveal drawer
-    if (
-      !this.player?.cards.reveal.length &&
-      game.players[PLAYER_NUM - 1].cards.reveal.length
-    ) {
-      this.switchDrawer('reveal');
-    }
-
     // Update the game, which will fire off a UI change
     Object.assign(this, game);
 
@@ -189,13 +189,6 @@ class Game {
   @action
   confirmSelection(type) {
     API(`game/${gameId()}/confirm-selection/${type}`, 'POST', {
-      player: PLAYER_NUM
-    });
-  }
-
-  @action
-  confirmReveal() {
-    API(`game/${gameId()}/confirm-reveal`, 'POST', {
       player: PLAYER_NUM
     });
   }

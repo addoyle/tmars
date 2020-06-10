@@ -74,6 +74,8 @@ class Game {
   };
   cardStore;
 
+  queue = [];
+
   /**
    * Constructor
    * @param {CardModel} cardStore
@@ -90,7 +92,7 @@ class Game {
     this.log.push(new Log(0, 'Welcome to Terraforming Mars!'));
 
     // Assign the player numbers
-    this.players.forEach((player, i) => (player.num = i + 1));
+    this.players.forEach((player, i) => (player.number = i + 1));
 
     // Filter out non-used cards and shuffle decks
     this.cards.deck = shuffle(
@@ -218,7 +220,7 @@ class Game {
    * @param {Player} player
    */
   applyCorp(player) {
-    const corp = this.cardStore.corporation[player.cards.corp[0]];
+    const corp = this.cardStore.corporation[player.cards.corp[0].card];
     Object.assign(player.resources, corp.starting.resources || {});
     Object.assign(player.production, corp.starting.production || {});
     (corp.tags || []).forEach(tag => player.tags[tag]++);
@@ -238,6 +240,50 @@ class Game {
       // Perform prelude specific actions
       prelude.serverAction(player, this);
     });
+  }
+
+  revealCards(player, revealFilter, size, label, icon) {
+    const revealed = [];
+    let keep = [];
+
+    // Draw cards until the number of matching cards reaches the expected size
+    while (
+      (keep = revealed
+        .map(card => this.cardStore.project[card.card])
+        .filter(revealFilter)
+        .map(card => ({
+          card: normalize(card.number)
+        }))).length < size
+    ) {
+      revealed.push(this.cards.deck.shift());
+    }
+
+    // Select the cards that will move to the hand
+    revealed.forEach(card => {
+      if (keep.map(({ card }) => card).includes(card.card)) {
+        card.select = true;
+      }
+    });
+
+    // Add the cards we were looking for to hand, and discard the rest
+    player.cards.hand = player.cards.hand.concat(keep);
+    this.cards.discard = this.cards.discard.concat(
+      revealed.filter(
+        ({ card }) => !keep.map(({ card }) => card).includes(card)
+      )
+    );
+
+    // Add a log for users to see revealed cards
+    LogService.pushLog(
+      this.id,
+      new Log(player.number, [
+        ` searched for ${size} `,
+        icon,
+        ` ${label} and has `,
+        { reveal: revealed },
+        '.'
+      ])
+    );
   }
 
   /**
@@ -261,7 +307,7 @@ class Game {
       if (rewardAction) {
         LogService.pushLog(
           this.id,
-          new Log(player.num, [
+          new Log(player.number, [
             ' got a reward from raising ',
             { param },
             ` ${startCase(param)}!`

@@ -21,7 +21,7 @@ const CardPreview = props => {
     <div
       className={classNames('card-preview', {
         show: props.show && cardObj,
-        simple: props.simple,
+        simple: props.gameStore.settings.simple,
         select: card.select
       })}
     >
@@ -55,11 +55,15 @@ CardPreview.propTypes = {
   ]).isRequired,
   type: PropTypes.string.isRequired,
   show: PropTypes.bool,
-  simple: PropTypes.bool,
   cardStore: PropTypes.shape({
     normalize: PropTypes.func.isRequired,
     get: PropTypes.func.isRequired
+  }),
+  gameStore: PropTypes.shape({
+    settings: PropTypes.shape({
+      simple: PropTypes.bool
+    })
   })
 };
 
-export default inject('cardStore')(observer(CardPreview));
+export default inject('cardStore', 'gameStore')(observer(CardPreview));

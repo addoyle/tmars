@@ -23,9 +23,7 @@ const CardDrawer = props => {
   }
 
   const cards = gameStore.player?.cards[props.type] || [];
-  const numSelected = gameStore.player?.cards[props.type].filter(
-    card => card.select
-  ).length;
+  const numSelected = cards.filter(card => card.select).length;
 
   return (
     <div

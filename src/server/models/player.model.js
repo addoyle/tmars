@@ -3,7 +3,7 @@
  */
 export default class Player {
   name;
-  num;
+  number;
   tr = 20;
   resources = {
     megacredit: 0,
@@ -49,8 +49,7 @@ export default class Player {
     event: [],
     corp: [],
     prelude: [],
-    onDeck: [],
-    reveal: []
+    onDeck: []
   };
   phase = '';
 

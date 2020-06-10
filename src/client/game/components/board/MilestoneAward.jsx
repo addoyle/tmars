@@ -5,18 +5,26 @@ import './MilestoneAward.scss';
 import { MegaCredit, VictoryPoint, Resource, Tag } from '../assets/Assets';
 import classNames from 'classnames';
 import Tooltip from '@material-ui/core/Tooltip';
-import { toJS } from 'mobx';
+import Tharsis from '../../../../shared/boards/Tharsis';
+import Hellas from '../../../../shared/boards/Hellas';
+import Elysium from '../../../../shared/boards/Elysium';
+
+const boards = {
+  Tharsis,
+  Hellas,
+  Elysium
+};
 
 /**
  * Milestone/Awards pane
  */
-const MilestoneAward = props => {
+const MilestoneAward = ({ gameStore }) => {
   const [collapse, setCollapse] = useState(true);
-  const milestones = toJS(props.gameStore.field.milestones) || [];
-  const awards = toJS(props.gameStore.field.awards) || [];
+  const milestones = boards[gameStore?.board]?.milestones.slice() || [];
+  const awards = boards[gameStore?.board]?.awards.slice() || [];
 
   // Add in new Venus Next awards/milestones
-  if (props.gameStore.sets.includes('venus')) {
+  if (gameStore.sets.includes('venus')) {
     milestones.push({
       name: 'Hoverlord',
       getValue: player =>
@@ -209,26 +217,17 @@ const MilestoneAward = props => {
 MilestoneAward.propTypes = {
   gameStore: PropTypes.shape({
     sets: PropTypes.arrayOf(PropTypes.string),
-    field: PropTypes.shape({
-      milestones: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string,
-          getValue: PropTypes.func,
-          icon: PropTypes.node,
-          requirement: PropTypes.number,
-          description: PropTypes.string,
-          label: PropTypes.string,
-          hue: PropTypes.number
-        })
-      ),
-      awards: PropTypes.arrayOf(
-        PropTypes.shape({
-          name: PropTypes.string,
-          icon: PropTypes.node,
-          description: PropTypes.string
-        })
-      )
-    })
+    board: PropTypes.string,
+    milestones: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string
+      })
+    ),
+    awards: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string
+      })
+    )
   })
 };
 

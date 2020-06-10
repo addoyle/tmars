@@ -15,8 +15,7 @@ export default new Corporation({
   titleClass: 'unmi',
   starting: {
     resources: {
-      megacredit: 30,
-      steel: 20
+      megacredit: 40
     }
   },
   tags: ['earth'],

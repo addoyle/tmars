@@ -97,6 +97,15 @@ const Log = forwardRef((props, ref) => {
                       return <Tag key={i} name={body.tag} />;
                     } else if (body.megaCredit !== undefined) {
                       return <MegaCredit key={i} value={body.megaCredit} />;
+                    } else if (body.reveal) {
+                      return (
+                        <CardRef
+                          key={i}
+                          type="project"
+                          card={`revealed ${body.reveal.length} cards`}
+                          onClick={() => gameStore.revealCards(body.reveal)}
+                        />
+                      );
                     } else {
                       return (
                         <CardRef
@@ -151,7 +160,8 @@ Log.propTypes = {
   }),
   gameStore: PropTypes.shape({
     players: PropTypes.array,
-    switchDrawer: PropTypes.func
+    switchDrawer: PropTypes.func,
+    revealCards: PropTypes.func
   })
 };
 
