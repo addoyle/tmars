@@ -45,6 +45,7 @@ $title-font: 'Prototype', sans-serif;
     transition: opacity 0.3s ease;
     margin-bottom: 16px;
     border-top-right-radius: 10px;
+    user-select: none;
 
     &.shown {
       opacity: 1;

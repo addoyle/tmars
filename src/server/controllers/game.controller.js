@@ -18,10 +18,8 @@ setTimeout(() => {
   game.init();
 
   // Pick cards for people
-  game.players.forEach((player, i) => {
-    if (i > 0) {
-      player.cards.corp = [player.cards.corp[0]];
-    }
+  game.players.forEach(player => {
+    player.cards.corp = [player.cards.corp[0]];
     player.cards.prelude = [player.cards.prelude[0], player.cards.prelude[1]];
     player.cards.hand = [
       player.cards.buy[0],
@@ -34,6 +32,9 @@ setTimeout(() => {
   });
 
   GameService.registerGame(game, '123');
+  setTimeout(() => {
+    GameService.checkStartPhaseDone(game);
+  }, 1000);
 }, 1000);
 // setTimeout(() => {
 //   const game = new Game(GameService.cardStore);
@@ -75,6 +76,22 @@ export function getGame(req, res) {
  */
 export function playCard(req, res) {
   GameService.playCard(`${req.params.id}`, req.body.player, req.body, res);
+  res.sendStatus(200);
+}
+
+/**
+ * Play a prelude
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function playPrelude(req, res) {
+  GameService.playPrelude(
+    `${req.params.id}`,
+    req.body.player,
+    req.body.card,
+    res
+  );
   res.sendStatus(200);
 }
 

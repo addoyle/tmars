@@ -30,6 +30,8 @@ const ActiveCard = props => {
     props.gameStore.player?.resources.titanium
   );
 
+  const myTurn = props.gameStore.turn === props.gameStore.player?.number;
+
   return (
     <div
       className={classnames('active-card', {
@@ -54,7 +56,10 @@ const ActiveCard = props => {
         <CardPreview card={activeCard.card} type={activeCard.type} />
       ) : null}
       <div className="footer">
-        {activeCard.mode === 'play' && card.tags.includes('building') ? (
+        {activeCard.mode === 'play' &&
+        myTurn &&
+        activeCard.type === 'project' &&
+        card.tags.includes('building') ? (
           <button
             className="text-center"
             onClick={() =>
@@ -74,7 +79,10 @@ const ActiveCard = props => {
           </button>
         ) : null}
 
-        {activeCard.mode === 'play' && card.tags.includes('space') ? (
+        {activeCard.mode === 'play' &&
+        myTurn &&
+        activeCard.type === 'project' &&
+        card.tags.includes('space') ? (
           <button
             className="text-center"
             onClick={() =>
@@ -155,32 +163,51 @@ const ActiveCard = props => {
             </button>
           ) : null}
 
-          {activeCard.mode === 'play' ? (
-            <button
-              className="primary text-center col-1"
-              onClick={() => {
-                props.gameStore.playCard(activeCard.card, {
-                  steel: activeCard.steel,
-                  titanium: activeCard.titanium
-                });
-                activeCard.show = false;
-              }}
-            >
-              <div className="flex">
-                <div className="resources middle">
-                  <Param name="card back" />
+          {activeCard.mode === 'play' && myTurn ? (
+            activeCard.type === 'prelude' ? (
+              <button
+                className="primary text-center col-1"
+                onClick={() => {
+                  props.gameStore.playPrelude(activeCard.card);
+                  activeCard.show = false;
+                }}
+              >
+                <div className="flex">
+                  <div className="resources middle">
+                    <Param name="card prelude landscape" />
+                  </div>
+                  <div className="center middle">Play</div>
                 </div>
-                <div className="center middle">Fund</div>
-                <div className="resources middle">
-                  <MegaCredit
-                    value={Math.max(
-                      0,
-                      card.cost - 2 * activeCard.steel - 3 * activeCard.titanium
-                    )}
-                  />
+              </button>
+            ) : (
+              <button
+                className="primary text-center col-1"
+                onClick={() => {
+                  props.gameStore.playCard(activeCard.card, {
+                    steel: activeCard.steel,
+                    titanium: activeCard.titanium
+                  });
+                  activeCard.show = false;
+                }}
+              >
+                <div className="flex">
+                  <div className="resources middle">
+                    <Param name="card back" />
+                  </div>
+                  <div className="center middle">Fund</div>
+                  <div className="resources middle">
+                    <MegaCredit
+                      value={Math.max(
+                        0,
+                        card.cost -
+                          2 * activeCard.steel -
+                          3 * activeCard.titanium
+                      )}
+                    />
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
+            )
           ) : null}
           <button
             className="text-center col-1"
@@ -210,8 +237,10 @@ ActiveCard.propTypes = {
       titanium: PropTypes.number
     }).isRequired,
     playCard: PropTypes.func,
+    playPrelude: PropTypes.func,
     toggleSelectCard: PropTypes.func,
     draftCard: PropTypes.func,
+    turn: PropTypes.number,
     player: PropTypes.shape({
       resources: PropTypes.shape({
         steel: PropTypes.number,

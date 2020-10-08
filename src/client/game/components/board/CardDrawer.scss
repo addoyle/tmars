@@ -156,6 +156,20 @@ $hand-height: 33vh;
           }
         }
       }
+
+      &.disabled {
+        filter: grayscale(75%);
+        opacity: .5;
+
+        .card-preview {
+          cursor: not-allowed;
+
+          > .card:hover {
+            box-shadow: none;
+            transform: none;
+          }
+        }
+      }
     }
   }
 }

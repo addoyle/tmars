@@ -18,6 +18,7 @@ const validate = (req, res, next) => {
 router.get('/card-numbers', GameController.getAllCardNumbers);
 router.get('/:id', validate, GameController.getGame);
 router.post('/:id/play-card', validate, GameController.playCard);
+router.post('/:id/play-prelude', validate, GameController.playPrelude);
 router.post(
   '/:id/toggle-select-card',
   validate,

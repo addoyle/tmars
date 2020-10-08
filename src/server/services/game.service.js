@@ -89,6 +89,44 @@ class GameService {
   }
 
   /**
+   * Play a prelude
+   *
+   * @param {string} id Game
+   * @param {number} playerNum Player number
+   * @param {object} card Prelude to be played
+   * @returns Game status
+   */
+  @push(gameFilter)
+  playPrelude(id, playerNum, card) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+    const playedCard = this.cardStore.prelude[card.card];
+
+    LogService.pushLog(
+      id,
+      new Log(playerNum, [
+        ' revealed their ',
+        { prelude: card.card },
+        ' prelude.'
+      ])
+    );
+
+    // Set tags
+    playedCard.tags.forEach(tag => player.tags[tag]++);
+
+    // Perform card's action
+    if (playedCard.serverAction) {
+      playedCard.serverAction(player, game);
+    }
+
+    player.cards.prelude.find(
+      prelude => prelude.card === card.card
+    ).disabled = true;
+
+    return this.export(game);
+  }
+
+  /**
    * Toggles selection of a card
    *
    * @param {string} id Game ID
@@ -270,32 +308,43 @@ class GameService {
         ])
       );
     });
+
+    if (game.sets.includes('prelude')) {
+      logs.push(
+        new Log(0, ['Please play your ', { prelude: 'Preludes' }, '.'])
+      );
+    }
+
     LogService.pushLog(game.id, logs);
 
     // Reveal preludes
-    game.forEachPlayerOrder((player, i) => {
-      LogService.pushLog(
-        game.id,
-        new Log(i + 1, [
-          ' is starting the game with ',
-          { prelude: player.cards.prelude[0].card },
-          ' and ',
-          { prelude: player.cards.prelude[1].card },
-          '.'
-        ])
-      );
+    game.forEachPlayerOrder(player => {
+      // LogService.pushLog(
+      //   game.id,
+      //   new Log(i + 1, [
+      //     ' is starting the game with ',
+      //     { prelude: player.cards.prelude[0].card },
+      //     ' and ',
+      //     { prelude: player.cards.prelude[1].card },
+      //     '.'
+      //   ])
+      // );
 
       // Apply corp tags, starting resources, and starting actions
       game.applyCorp(player);
 
-      // Apply prelude tags, resources, and actions
-      game.applyPreludes(player);
+      // // Apply prelude tags, resources, and actions
+      // game.applyPreludes(player);
 
       // Buy the cards they've selected
       player.resources.megacredit -= player.cards.hand.length * 3;
     });
 
-    game.beginActionPhase();
+    if (game.sets.includes('prelude')) {
+      game.beginPreludePhase();
+    } else {
+      game.beginActionPhase();
+    }
   }
 
   /**

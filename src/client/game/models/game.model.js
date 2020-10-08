@@ -140,7 +140,7 @@ class Game {
     // Update the game, which will fire off a UI change
     Object.assign(this, game);
 
-    this.player = game.players[PLAYER_NUM - 1];
+    this.player = game.players[+PLAYER_NUM - 1];
   }
 
   @action
@@ -158,7 +158,16 @@ class Game {
     API(`game/${gameId()}/play-card`, 'POST', {
       ...opts,
       card,
-      player: PLAYER_NUM
+      player: +PLAYER_NUM
+    });
+  }
+
+  @action
+  playPrelude(card, opts) {
+    API(`game/${gameId()}/play-prelude`, 'POST', {
+      ...opts,
+      card,
+      player: +PLAYER_NUM
     });
   }
 
@@ -168,7 +177,7 @@ class Game {
       ...opts,
       card,
       type,
-      player: PLAYER_NUM
+      player: +PLAYER_NUM
     });
   }
 
@@ -177,19 +186,19 @@ class Game {
     API(`game/${gameId()}/draft-card`, 'POST', {
       ...opts,
       card,
-      player: PLAYER_NUM
+      player: +PLAYER_NUM
     });
   }
 
   @action
   buySelectedCards() {
-    API(`game/${gameId()}/buy-selected`, 'POST', { player: PLAYER_NUM });
+    API(`game/${gameId()}/buy-selected`, 'POST', { player: +PLAYER_NUM });
   }
 
   @action
   confirmSelection(type) {
     API(`game/${gameId()}/confirm-selection/${type}`, 'POST', {
-      player: PLAYER_NUM
+      player: +PLAYER_NUM
     });
   }
 }

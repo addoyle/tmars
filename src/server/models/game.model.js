@@ -111,7 +111,7 @@ class Game {
       Object.values(this.cardStore.corporation)
         .filter(
           corp =>
-            corp.number !== '000' &&
+            +corp.number !== 0 &&
             (corp.set === 'base' ||
               (Array.isArray(corp.set) ? corp.set : [corp.set]).every(set =>
                 this.sets.includes(set)
@@ -242,24 +242,33 @@ class Game {
     });
   }
 
+  /**
+   * Draw and reveal cards until they match a particular filter
+   *
+   * @param {*} player Player who's drawing cards
+   * @param {*} revealFilter Filter for what to draw for
+   * @param {*} size How many cards needed to be found
+   * @param {*} label Label to be shown (for play log)
+   * @param {*} icon Icon to be shown (for play log)
+   */
   revealCards(player, revealFilter, size, label, icon) {
-    const revealed = [];
+    const reveal = [];
     let keep = [];
 
     // Draw cards until the number of matching cards reaches the expected size
     while (
-      (keep = revealed
+      (keep = reveal
         .map(card => this.cardStore.project[card.card])
         .filter(revealFilter)
         .map(card => ({
           card: normalize(card.number)
         }))).length < size
     ) {
-      revealed.push(this.cards.deck.shift());
+      reveal.push(this.cards.deck.shift());
     }
 
     // Select the cards that will move to the hand
-    revealed.forEach(card => {
+    reveal.forEach(card => {
       if (keep.map(({ card }) => card).includes(card.card)) {
         card.select = true;
       }
@@ -268,9 +277,7 @@ class Game {
     // Add the cards we were looking for to hand, and discard the rest
     player.cards.hand = player.cards.hand.concat(keep);
     this.cards.discard = this.cards.discard.concat(
-      revealed.filter(
-        ({ card }) => !keep.map(({ card }) => card).includes(card)
-      )
+      reveal.filter(({ card }) => !keep.map(({ card }) => card).includes(card))
     );
 
     // Add a log for users to see revealed cards
@@ -280,7 +287,7 @@ class Game {
         ` searched for ${size} `,
         icon,
         ` ${label} and has `,
-        { reveal: revealed },
+        { reveal },
         '.'
       ])
     );
@@ -318,11 +325,29 @@ class Game {
     }
   }
 
+  placeTile(tile, player, total = 1) {}
+
+  /**
+   * Switch to prelude phase, i.e. reveal preludes
+   */
+  beginPreludePhase() {
+    this.phase = 'prelude';
+    this.turn = this.startingPlayer;
+  }
+
+  /**
+   * Switch to action phase
+   */
   beginActionPhase() {
     this.phase = 'action';
     this.turn = this.startingPlayer;
   }
 
+  /**
+   * Perform an action in player order
+   *
+   * @param {Function} func Action to perform in player order
+   */
   forEachPlayerOrder(func) {
     for (
       let i = this.startingPlayer - 1, start = true;
@@ -333,6 +358,9 @@ class Game {
     }
   }
 
+  /**
+   * Converts the game model to be sent to the client
+   */
   export() {
     // eslint-disable-next-line no-unused-vars
     const { cards, cardStore, log, ...strippedGame } = this;

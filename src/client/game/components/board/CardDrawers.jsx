@@ -28,6 +28,7 @@ const CardDrawers = ({ gameStore }) => {
           ? 'play'
           : null
     },
+
     {
       type: 'active',
       tab: (
@@ -38,6 +39,7 @@ const CardDrawers = ({ gameStore }) => {
       ),
       mode: gameStore.phase === 'action' ? 'action' : null
     },
+
     {
       type: 'automated',
       tab: (
@@ -47,6 +49,7 @@ const CardDrawers = ({ gameStore }) => {
         </>
       )
     },
+
     {
       type: 'event',
       tab: (
@@ -56,6 +59,7 @@ const CardDrawers = ({ gameStore }) => {
         </>
       )
     },
+
     {
       type: 'corp',
       tab: (
@@ -74,6 +78,7 @@ const CardDrawers = ({ gameStore }) => {
       max: 1,
       min: 1
     },
+
     {
       type: 'prelude',
       tab: (
@@ -83,14 +88,17 @@ const CardDrawers = ({ gameStore }) => {
         </>
       ),
       mode:
-        gameStore.phase === 'start' &&
-        gameStore.player?.cards.prelude.length !== 2
+        gameStore.phase === 'prelude'
+          ? 'play'
+          : gameStore.phase === 'start' &&
+            gameStore.player?.cards.prelude.length !== 2
           ? 'select'
           : null,
       hidden: !gameStore.sets.includes('prelude'),
       max: 2,
       min: 2
     },
+
     {
       type: 'buy',
       tab: (
@@ -102,6 +110,7 @@ const CardDrawers = ({ gameStore }) => {
       mode: 'buy',
       hidden: gameStore.phase !== 'draft' && !gameStore.player?.cards.buy.length
     },
+
     {
       type: 'draft',
       tab: (
@@ -118,6 +127,7 @@ const CardDrawers = ({ gameStore }) => {
       mode: 'draft',
       hidden: gameStore.phase !== 'draft'
     },
+
     {
       type: 'reveal',
       tab: (

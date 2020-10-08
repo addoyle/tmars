@@ -23,8 +23,8 @@ export default new Prelude({
     player.production.power += 2;
     player.resources.megacredit -= 3;
 
-    // TODO: Place ocean
     game.param('ocean', player);
+    game.placeTile({ tile: 'ocean' }, player);
   },
   layout: (
     <div className="flex gutter">

@@ -51,9 +51,16 @@
       .player-4 { color: hsl(60,80%,40%); }
       .player-5 { color: hsl(0,0%,65%); }
 
-      .card-preview {
-        margin-right: 330px;
-        z-index: 1;
+      .card-ref {
+        .card-preview {
+          margin-left: -330px;
+          z-index: 1;
+          line-height: 1;
+        }
+        &.prelude .card-preview,
+        &.corporation .card-preview {
+          margin-left: -450px;
+        }
       }
 
       h1 { font-size: 2.5em; }
