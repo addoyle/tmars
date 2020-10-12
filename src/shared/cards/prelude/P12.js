@@ -14,10 +14,7 @@ export default new Prelude({
   flavor:
     'Nothing spurs new ecological advances like having a biological testing ground',
   emoji: '🌳',
-  serverAction: (player, game) => {
-    // TODO: Place greenery
-    // TODO: Reveal cards until 2 plants
-
+  serverAction: (player, game, postAction) => {
     game.param('oxygen', player);
     game.revealCards(
       player,
@@ -26,6 +23,7 @@ export default new Prelude({
       'plant cards',
       { tag: 'plant' }
     );
+    game.promptTile('greenery', player, postAction);
   },
   layout: (
     <div className="flex gutter m-bottom">

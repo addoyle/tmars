@@ -31,6 +31,8 @@ router.post(
   validate,
   GameController.confirmSelection
 );
+router.post('/:id/place-tile/:tileId', validate, GameController.placeTile);
+
 router.get('/:id/stream', validate, GameController.stream);
 
 export default router;

@@ -163,7 +163,9 @@ const ActiveCard = props => {
             </button>
           ) : null}
 
-          {activeCard.mode === 'play' && myTurn ? (
+          {activeCard.mode === 'play' &&
+          myTurn &&
+          !props.gameStore.playerStatus ? (
             activeCard.type === 'prelude' ? (
               <button
                 className="primary text-center col-1"
@@ -246,7 +248,8 @@ ActiveCard.propTypes = {
         steel: PropTypes.number,
         titanium: PropTypes.number
       })
-    })
+    }),
+    playerStatus: PropTypes.object
   }).isRequired,
   cardStore: PropTypes.shape({
     get: PropTypes.func

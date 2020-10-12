@@ -3,6 +3,7 @@ import CardStore from '../models/card.model';
 import LogService from './log.service';
 import Log from '../models/log.model';
 import shortid from 'shortid';
+import { isString } from 'lodash';
 
 /**
  * Push filter to prevent other player's cards to be shared with other players
@@ -102,6 +103,14 @@ class GameService {
     const player = this.getPlayer(game, playerNum);
     const playedCard = this.cardStore.prelude[card.card];
 
+    // Check to make sure the user can play this prelude
+    if (
+      !player.cards.prelude.filter(c => card.card === c.card).length ||
+      player.cards.prelude.filter(c => card.card === c.card)[0].disabled
+    ) {
+      return this.export(game);
+    }
+
     LogService.pushLog(
       id,
       new Log(playerNum, [
@@ -114,14 +123,27 @@ class GameService {
     // Set tags
     playedCard.tags.forEach(tag => player.tags[tag]++);
 
+    const postAction = () => {
+      // If both preludes have been played, advance to the next player
+      if (!player.cards.prelude.filter(prelude => !prelude.disabled).length) {
+        game.nextTurn();
+      }
+    };
+
     // Perform card's action
     if (playedCard.serverAction) {
-      playedCard.serverAction(player, game);
+      playedCard.serverAction(player, game, postAction);
     }
 
+    // Mark prelude as played
     player.cards.prelude.find(
       prelude => prelude.card === card.card
     ).disabled = true;
+
+    // If there's update to player status (i.e. placing a tile), do not perform the post action
+    if (!this.playerStatus) {
+      postAction();
+    }
 
     return this.export(game);
   }
@@ -255,6 +277,38 @@ class GameService {
     return this.export(game);
   }
 
+  /**
+   * Place a tile
+   *
+   * @param {string} id Game ID
+   * @param {number} tileId Tile id
+   */
+  @push(gameFilter)
+  placeTile(id, tileId) {
+    const game = this.games[id];
+    const player = game.playerStatus.player;
+    const tile = game.tileFromId(tileId);
+
+    // Set the tile
+    tile.name = `${
+      isString(game.playerStatus.tile) ? game.playerStatus.tile : 'special'
+    }-placed`;
+    tile.type = isString(game.playerStatus.tile)
+      ? game.playerStatus.tile
+      : 'special';
+
+    // Add a player marker
+    if (game.playerStatus.tile !== 'ocean') {
+      tile.player = player.number;
+    }
+
+    // TODO: Grab bonuses
+
+    game.playerStatus.done();
+
+    return this.export(game);
+  }
+
   /******************
    * Helper Methods *
    ******************/
@@ -319,22 +373,8 @@ class GameService {
 
     // Reveal preludes
     game.forEachPlayerOrder(player => {
-      // LogService.pushLog(
-      //   game.id,
-      //   new Log(i + 1, [
-      //     ' is starting the game with ',
-      //     { prelude: player.cards.prelude[0].card },
-      //     ' and ',
-      //     { prelude: player.cards.prelude[1].card },
-      //     '.'
-      //   ])
-      // );
-
       // Apply corp tags, starting resources, and starting actions
       game.applyCorp(player);
-
-      // // Apply prelude tags, resources, and actions
-      // game.applyPreludes(player);
 
       // Buy the cards they've selected
       player.resources.megacredit -= player.cards.hand.length * 3;

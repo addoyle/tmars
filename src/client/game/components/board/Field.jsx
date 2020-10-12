@@ -13,9 +13,9 @@ import { Tile, Resource, Param, MegaCredit } from '../assets/Assets';
 /**
  * Mars, i.e. the playing field
  */
-const Field = props => {
-  const { field, detachedCities } = props.gameStore;
-  const hasVenus = props.gameStore.sets.includes('venus');
+const Field = ({ gameStore }) => {
+  const hasVenus = gameStore.sets.includes('venus');
+  let id = 0;
 
   /**
    * Renders a resource on a space
@@ -43,16 +43,26 @@ const Field = props => {
   return (
     <div className={classnames('field', { venus: hasVenus })}>
       <div className="tiles">
-        {Object.keys(detachedCities)
-          .filter(city => hasVenus || detachedCities[city].set !== 'venus')
+        {Object.keys(gameStore.detachedCities)
+          .filter(
+            city => hasVenus || gameStore.detachedCities[city].set !== 'venus'
+          )
           .map((city, i) => (
             <div className={`${city} row`} key={i}>
               <Tile
-                name={detachedCities[city].player ? 'city-placed' : 'blank'}
-                clickable={detachedCities[city].clickable ? 'city' : false}
+                name={
+                  gameStore.detachedCities[city].player
+                    ? 'city-placed'
+                    : 'blank'
+                }
+                clickable={
+                  gameStore.detachedCities[city].clickable ? 'city' : undefined
+                }
               >
-                {detachedCities[city].player ? <Tile name="city" /> : ''}
-                {!detachedCities[city].player ? (
+                {gameStore.detachedCities[city].player ? (
+                  <Tile name="city" />
+                ) : null}
+                {!gameStore.detachedCities[city].player ? (
                   <div className="rewards">
                     <div className="resources">
                       <Resource name="blank" />
@@ -64,13 +74,15 @@ const Field = props => {
                       <Resource name="blank" />
                     </div>
                     <img className="city" src="/icons/city.svg" />
-                    <div className="text">{detachedCities[city].label}</div>
+                    <div className="text">
+                      {gameStore.detachedCities[city].label}
+                    </div>
                   </div>
-                ) : (
-                  ''
-                )}
-                {detachedCities[city].player ? (
-                  <Resource name={`player-${detachedCities[city].player}`} />
+                ) : null}
+                {gameStore.detachedCities[city].player ? (
+                  <Resource
+                    name={`player-${gameStore.detachedCities[city].player}`}
+                  />
                 ) : null}
               </Tile>
               {['ganymede', 'luna', 'dawn', 'torus'].includes(city) ? (
@@ -79,20 +91,27 @@ const Field = props => {
             </div>
           ))}
 
-        {field.map((row, r) => (
+        {gameStore.field.map((row, r) => (
           <div key={r} className="row">
             {row.map((tile, i) => (
               <Tile
                 key={i}
+                id={id++}
                 name={`${
                   tile.name ||
                   (tile.attrs && tile.attrs.includes('reserved-ocean')
                     ? 'reserved-ocean'
                     : 'blank')
-                } ${tile.icon || ''}`}
-                clickable={tile.clickable}
+                } ${tile.icon || null}`}
+                clickable={
+                  gameStore.playerStatus?.player.number ===
+                  gameStore.player?.number
+                    ? tile.clickable
+                    : undefined
+                }
+                onClick={() => gameStore.placeTile(tile)}
               >
-                {tile.name ? <Tile name={tile.type} icon={tile.icon} /> : ''}
+                {tile.name ? <Tile name={tile.type} icon={tile.icon} /> : null}
                 {!tile.name ? (
                   <div className="rewards">
                     <div className="resources">
@@ -108,14 +127,10 @@ const Field = props => {
                     </div>
                     {tile.attrs && tile.attrs.includes('noctis-city') ? (
                       <img className="city" src="/icons/city.svg" />
-                    ) : (
-                      ''
-                    )}
+                    ) : null}
                     {tile.text ? <div className="text">{tile.text}</div> : ''}
                   </div>
-                ) : (
-                  ''
-                )}
+                ) : null}
                 {tile.player ? <Resource name={`player-${tile.player}`} /> : ''}
               </Tile>
             ))}
@@ -130,7 +145,7 @@ const tilePropType = PropTypes.shape({
   name: PropTypes.string,
   type: PropTypes.string,
   icon: PropTypes.string,
-  clickable: PropTypes.bool,
+  clickable: PropTypes.string,
   attrs: PropTypes.arrayOf(PropTypes.string),
   text: PropTypes.string,
   player: PropTypes.number,
@@ -141,7 +156,16 @@ Field.propTypes = {
   gameStore: PropTypes.shape({
     field: PropTypes.arrayOf(PropTypes.arrayOf(tilePropType)),
     detachedCities: PropTypes.objectOf(tilePropType),
-    sets: PropTypes.arrayOf(PropTypes.string)
+    sets: PropTypes.arrayOf(PropTypes.string),
+    playerStatus: PropTypes.shape({
+      player: PropTypes.shape({
+        number: PropTypes.number
+      })
+    }),
+    player: PropTypes.shape({
+      number: PropTypes.number
+    }),
+    placeTile: PropTypes.func
   })
 };
 

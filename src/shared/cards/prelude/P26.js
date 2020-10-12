@@ -17,11 +17,9 @@ export default new Prelude({
   flavor:
     'The poles of Mars have an abundance of both water and carbon dioxide, ready for the taking',
   emoji: '💈',
-  serverAction: (player, game) => {
-    //TODO: place ocean
-
-    game.param('ocean', player);
+  serverAction: (player, game, postAction) => {
     player.production.heat += 2;
+    game.promptTile('ocean', player, postAction);
   },
   layout: (
     <div className="flex gutter">

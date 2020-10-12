@@ -6,7 +6,6 @@ import CardPreview from './CardPreview';
 import classNames from 'classnames';
 import { Param, MegaCredit } from '../assets/Assets';
 import classnames from 'classnames';
-import { toJS } from 'mobx';
 
 /**
  * Card drawer
@@ -116,33 +115,30 @@ const CardDrawer = props => {
       ) : null}
 
       <ul className="cards">
-        {cards.map(card => {
-          console.log(toJS(card));
-          return (
-            <li
-              key={`card-${card.card}`}
-              onClick={() =>
-                !card.disabled
-                  ? gameStore.showActiveCard(card, cardType, props.mode)
-                  : null
-              }
-              className={classNames('card-selector', {
-                selected:
-                  gameStore.activeCard.show &&
-                  card.card === gameStore.activeCard.card.card &&
-                  cardType === gameStore.activeCard.type,
-                disabled: card.disabled,
-                landscape: cardType === 'prelude' || cardType === 'corp'
-              })}
-            >
-              <CardPreview
-                card={card}
-                resources={card.resources}
-                type={cardType}
-              />
-            </li>
-          );
-        })}
+        {cards.map(card => (
+          <li
+            key={`card-${card.card}`}
+            onClick={() =>
+              !card.disabled
+                ? gameStore.showActiveCard(card, cardType, props.mode)
+                : null
+            }
+            className={classNames('card-selector', {
+              selected:
+                gameStore.activeCard.show &&
+                card.card === gameStore.activeCard.card.card &&
+                cardType === gameStore.activeCard.type,
+              disabled: card.disabled,
+              landscape: cardType === 'prelude' || cardType === 'corp'
+            })}
+          >
+            <CardPreview
+              card={card}
+              resources={card.resources}
+              type={cardType}
+            />
+          </li>
+        ))}
       </ul>
     </div>
   );

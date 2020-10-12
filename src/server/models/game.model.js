@@ -1,4 +1,4 @@
-import { shuffle } from 'lodash';
+import { shuffle, isString } from 'lodash';
 import { normalize } from '../util';
 import Tharsis from '../../shared/boards/Tharsis';
 import Hellas from '../../shared/boards/Hellas';
@@ -63,6 +63,7 @@ class Game {
   milestones = [];
   awards = [];
   phase = 'start';
+  playerStatus;
 
   log = [];
 
@@ -137,6 +138,10 @@ class Game {
         : Tharsis
     );
 
+    // Assign tile ids
+    let id = 0;
+    this.field.forEach(row => row.forEach(t => (t.id = id++)));
+
     // Tell the users which field they're playing on
     this.log.push(
       new Log(0, [
@@ -166,6 +171,8 @@ class Game {
 
     // Choose starting player
     this.startingPlayer = Math.floor(Math.random() * this.players.length) + 1;
+    // TODO: FOR TESTING, REMOVE
+    this.startingPlayer = 1;
     this.log.push(
       new Log(this.startingPlayer, ' will be your starting player!')
     );
@@ -185,10 +192,12 @@ class Game {
     }
 
     // Deal out preludes
-    for (let i = 0; i < 4; i++) {
-      this.forEachPlayerOrder(player =>
-        player.cards.prelude.push(this.cards.preludes.shift())
-      );
+    if (this.sets.includes('prelude')) {
+      for (let i = 0; i < 4; i++) {
+        this.forEachPlayerOrder(player =>
+          player.cards.prelude.push(this.cards.preludes.shift())
+        );
+      }
     }
 
     // Solo game, starts at TR 14
@@ -197,6 +206,13 @@ class Game {
     } else {
       this.players.forEach(player => (player.tr = 20));
     }
+
+    // TODO: FOR TESTING, REMOVE
+    this.players[0].cards.prelude = ['P14', 'P09'].map(card => ({ card }));
+    this.players[1].cards.prelude = ['P15', 'P16'].map(card => ({ card }));
+    this.players[2].cards.prelude = ['P17', 'P18'].map(card => ({ card }));
+    this.players[3].cards.prelude = ['P19', 'P20'].map(card => ({ card }));
+    this.players[4].cards.prelude = ['P21', 'P22'].map(card => ({ card }));
   }
 
   /**
@@ -325,7 +341,186 @@ class Game {
     }
   }
 
-  placeTile(tile, player, total = 1) {}
+  /**
+   * Prompt for a tile placement
+   *
+   * @param {string} tile Tile type to place (ocean, city, greenery, or {special: 'type'})
+   * @param {object} player Player placing the tile
+   * @param {func} callback Callback once the is placed
+   */
+  promptTile(tile, player, callback) {
+    const possibleTiles = this.findPossibleTiles(tile);
+    if (possibleTiles.length) {
+      possibleTiles.forEach(
+        t => (t.clickable = isString(tile) ? tile : 'special')
+      );
+
+      this.playerStatus = {
+        player,
+        tile,
+        done: () => {
+          // Raise params if necessary
+          if (tile === 'ocean') {
+            this.param('ocean', player);
+          } else if (tile === 'greenery') {
+            this.param('oxygen', player);
+          }
+
+          // Remove clickable
+          possibleTiles.forEach(t => (t.clickable = null));
+
+          // Player status is resolved
+          this.playerStatus = null;
+
+          callback && callback();
+        }
+      };
+    }
+  }
+
+  /**
+   * Get a tile from a tile id
+   *
+   * @param {number} id
+   */
+  tileFromId(id) {
+    let cur = +id;
+    let y = 0;
+
+    for (let s = 5, d = 1; cur > s; cur -= s, s += d, y++) {
+      if (s >= 9) {
+        d = -1;
+      }
+    }
+    return this.field[y][cur];
+  }
+
+  /**
+   * Find the possible locations for a tile type
+   *
+   * @param {string} tile Tile type (ocean, city, greenery, {special: 'type'})
+   * @param {object} player The player finding possible tiles
+   */
+  findPossibleTiles(tile, player) {
+    const self = this;
+
+    if (tile === 'ocean') {
+      return this.field
+        .map(row =>
+          row.filter(
+            // Reserved ocean spots, not occupied
+            cell => cell.attrs?.includes('reserved-ocean') && !cell.name
+          )
+        )
+        .flat();
+    } else if (tile === 'city') {
+      return this.field
+        .map(row =>
+          row.filter(
+            cell =>
+              // Not reserved
+              cell.attrs?.filter(attr => attr.indexOf('reserved') < 0) &&
+              // Not occupied
+              !cell.name &&
+              // Not adjacent to another city
+              !self.neighbors(cell).filter(neighbor => neighbor.type === 'city')
+                .length
+          )
+        )
+        .flat();
+    } else if (tile === 'greenery') {
+      // TODO
+      console.log(player);
+      return [];
+    } else if (!isString(tile)) {
+      // TODO special tiles
+      return [];
+    }
+  }
+
+  /**
+   * Return adjacent tiles
+   *
+   * @param {Tile} tile Tile to get neighbors of
+   */
+  neighbors(tile) {
+    let coords;
+    const neighbors = [];
+
+    // Get coords of tile
+    this.field.forEach((row, y) =>
+      row.forEach((cell, x) => {
+        if (cell === tile) {
+          coords = { x, y };
+        }
+      })
+    );
+
+    if (!coords) {
+      return neighbors;
+    }
+
+    const [x, y] = { ...coords };
+
+    // Grab top neighbors
+    if (y > 0) {
+      // Upper rows
+      if (this.field[y].length > this.field[y - 1].length) {
+        // Top left
+        if (x > 0) {
+          neighbors.push(this.field[y - 1][x - 1]);
+        }
+        // Top right
+        if (x < this.field[y].length - 1) {
+          neighbors.push(this.field[y - 1][x]);
+        }
+      }
+
+      // Lower rows
+      if (this.field[y].length < this.field[y - 1].length) {
+        // Top left
+        neighbors.push(this.field[y - 1][x]);
+        // Top right
+        neighbors.push(this.field[y - 1][x + 1]);
+      }
+    }
+
+    // Left
+    if (x > 0) {
+      neighbors.push(this.field[y][x - 1]);
+    }
+    // Right
+    if (x < this.field[y].length) {
+      neighbors.push(this.field[y][x + 1]);
+    }
+
+    // Grab bottom neighbors
+    if (y < this.field.length - 1) {
+      // Upper rows
+      if (this.field[y].length < this.field[y + 1].length) {
+        // Bottom left
+        neighbors.push(this.field[y + 1][x]);
+        // Bottom right
+        neighbors.push(this.field[y + 1][x + 1]);
+      }
+
+      // Lower rows
+      if (this.field[y].length > this.field[y + 1].length) {
+        // Bottom left
+        if (x > 0) {
+          neighbors.push(this.field[y + 1][x - 1]);
+        }
+        // Bottom right
+        if (x < this.field[y].length - 1) {
+          neighbors.push(this.field[y + 1][x]);
+        }
+      }
+    }
+
+    console.log(neighbors);
+
+    return neighbors;
+  }
 
   /**
    * Switch to prelude phase, i.e. reveal preludes
@@ -355,6 +550,13 @@ class Game {
       i = i >= this.players.length - 1 ? 0 : i + 1, start = false
     ) {
       func(this.players[i], i);
+    }
+  }
+
+  nextTurn() {
+    this.turn++;
+    if (this.turn > this.players.length) {
+      this.turn = 1;
     }
   }
 

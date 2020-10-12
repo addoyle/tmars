@@ -5,6 +5,7 @@ import CityTile from './tiles/CityTile';
 import GreeneryTile from './tiles/GreeneryTile';
 import SpecialTile from './tiles/SpecialTile';
 import classnames from 'classnames';
+import { inject, observer } from 'mobx-react';
 
 const tiles = (type, props) => {
   switch (type) {
@@ -37,10 +38,12 @@ const tiles = (type, props) => {
  * @prop asterisk  Boolean, true to show an asterisk, otherwise false
  */
 const Tile = props => {
-  let key = props.name.trim();
+  let key = props.name?.trim();
   if (props.name === 'city capital') {
     key = 'city';
   }
+
+  const gameStore = props.gameStore;
 
   return (
     <svg
@@ -56,6 +59,7 @@ const Tile = props => {
       <path
         className="base"
         d="M 216.5 4 L 428.999 127 L 428.999 373 L 216.5 496 L 4.001 373 L 4.001 127 Z"
+        onClick={() => gameStore.placeTile(props.id)}
       />
       <path
         className="outline-color"
@@ -67,24 +71,21 @@ const Tile = props => {
         <text x="360" y="240" className="asterisk">
           *
         </text>
-      ) : (
-        ''
-      )}
+      ) : null}
       {props.children ? (
         <foreignObject x="0" y="0" width="435" height="503">
           <div xmlns="http://www.w3.org/1999/xhtml">{props.children}</div>
         </foreignObject>
-      ) : (
-        ''
-      )}
+      ) : null}
     </svg>
   );
 };
 
 Tile.propTypes = {
   name: PropTypes.string,
+  id: PropTypes.number,
   icon: PropTypes.string,
-  clickable: PropTypes.bool,
+  clickable: PropTypes.string,
   anyone: PropTypes.bool,
   asterisk: PropTypes.bool,
   style: PropTypes.object,
@@ -92,7 +93,10 @@ Tile.propTypes = {
   children: PropTypes.oneOfType([
     PropTypes.node,
     PropTypes.arrayOf(PropTypes.node)
-  ])
+  ]),
+  gameStore: PropTypes.shape({
+    placeTile: PropTypes.func
+  })
 };
 
-export default Tile;
+export default inject('gameStore')(observer(Tile));

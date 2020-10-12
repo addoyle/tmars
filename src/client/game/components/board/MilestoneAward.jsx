@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PropTypes } from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import './MilestoneAward.scss';
@@ -19,7 +19,6 @@ const boards = {
  * Milestone/Awards pane
  */
 const MilestoneAward = ({ gameStore }) => {
-  const [collapse, setCollapse] = useState(true);
   const milestones = boards[gameStore?.board]?.milestones.slice() || [];
   const awards = boards[gameStore?.board]?.awards.slice() || [];
 
@@ -48,14 +47,16 @@ const MilestoneAward = ({ gameStore }) => {
 
   return (
     <div
-      className={classNames('milestone-awards', { collapse })}
+      className={classNames('milestone-awards', {
+        collapse: !gameStore.showMilestones
+      })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
     >
       <div className="header text-center">
         <button
           className="milestone-award btn"
-          onClick={() => setCollapse(!collapse)}
+          onClick={() => (gameStore.showMilestones = !gameStore.showMilestones)}
         >
           Milestones/Awards
         </button>
@@ -227,7 +228,8 @@ MilestoneAward.propTypes = {
       PropTypes.shape({
         name: PropTypes.string
       })
-    )
+    ),
+    showMilestones: PropTypes.bool
   })
 };
 

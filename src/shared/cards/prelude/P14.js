@@ -12,10 +12,10 @@ export default new Prelude({
   desc,
   flavor: 'You found a big one!',
   emoji: '🌊️',
-  serverAction: (player, game) => {
-    // TODO: Place 2 oceans
-    game.param('ocean', player);
-    game.param('ocean', player);
+  serverAction: (player, game, postAction) => {
+    game.promptTile('ocean', player, () =>
+      game.promptTile('ocean', player, postAction)
+    );
   },
   layout: (
     <div className="flex gutter">

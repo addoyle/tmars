@@ -173,3 +173,13 @@ export function stream(req, res) {
 export function getAllCardNumbers(req, res) {
   res.send(GameService.getAllCardNumbers());
 }
+
+/**
+ * Place a tile
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function placeTile(req, res) {
+  res.send(GameService.placeTile(`${req.params.id}`, req.params.tileId));
+}

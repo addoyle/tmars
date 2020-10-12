@@ -77,6 +77,9 @@ class Game {
 
   @observable settings = {};
 
+  @observable showMilestones = false;
+  @observable showStandardProjects = false;
+
   /**
    * Switch drawers. If the drawer is already open, close. Null will also close the active drawer.
    *
@@ -141,6 +144,16 @@ class Game {
     Object.assign(this, game);
 
     this.player = game.players[+PLAYER_NUM - 1];
+
+    // Handle updates when game state changes
+    if (this.playerStatus?.player.number === +PLAYER_NUM) {
+      // Placing a tile, hide UI components to focus on the field
+      if (this.playerStatus.tile) {
+        this.drawer = null;
+        this.playerStats.show = false;
+        this.activeCard.show = false;
+      }
+    }
   }
 
   @action
@@ -200,6 +213,11 @@ class Game {
     API(`game/${gameId()}/confirm-selection/${type}`, 'POST', {
       player: +PLAYER_NUM
     });
+  }
+
+  @action
+  placeTile(id) {
+    API(`game/${gameId()}/place-tile/${id}`, 'POST');
   }
 }
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import './StandardProjects.scss';
@@ -14,21 +14,23 @@ import classNames from 'classnames';
 /**
  * Standard Projects pane
  */
-const StandardProjects = props => {
-  const [collapse, setCollapse] = useState(true);
-
+const StandardProjects = ({ gameStore }) => {
   // TODO: reduce duplication
 
   return (
     <div
-      className={classNames('standard-projects', { collapse })}
+      className={classNames('standard-projects', {
+        collapse: !gameStore.showStandardProjects
+      })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
     >
       <div className="header text-center">
         <button
           className="standard-project"
-          onClick={() => setCollapse(!collapse)}
+          onClick={() =>
+            (gameStore.showStandardProjects = !gameStore.showStandardProjects)
+          }
         >
           Standard Projects
         </button>
@@ -173,7 +175,7 @@ const StandardProjects = props => {
           </div>
         </div>
 
-        {props.gameStore.sets.includes('venus') ? (
+        {gameStore.sets.includes('venus') ? (
           <div className="row">
             <div className="cell">
               <div className="resources middle text-right">
@@ -200,7 +202,8 @@ const StandardProjects = props => {
 
 StandardProjects.propTypes = {
   gameStore: PropTypes.shape({
-    sets: PropTypes.arrayOf(PropTypes.string)
+    sets: PropTypes.arrayOf(PropTypes.string),
+    showStandardProjects: PropTypes.bool
   })
 };
 
