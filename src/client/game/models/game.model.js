@@ -77,6 +77,8 @@ class Game {
 
   @observable settings = {};
 
+  // State of milestones and standard projects windows
+  // TODO: Move these into Players
   @observable showMilestones = false;
   @observable showStandardProjects = false;
 
@@ -144,16 +146,6 @@ class Game {
     Object.assign(this, game);
 
     this.player = game.players[+PLAYER_NUM - 1];
-
-    // Handle updates when game state changes
-    if (this.playerStatus?.player.number === +PLAYER_NUM) {
-      // Placing a tile, hide UI components to focus on the field
-      if (this.playerStatus.tile) {
-        this.drawer = null;
-        this.playerStats.show = false;
-        this.activeCard.show = false;
-      }
-    }
   }
 
   @action

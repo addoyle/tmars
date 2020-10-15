@@ -16,9 +16,9 @@ export default new Prelude({
   desc,
   flavor: 'The investment was high, but it’s paying off now',
   emoji: '🌇',
-  serverAction: (player, game, postAction) => {
+  serverAction: (player, game, done) => {
     player.production.megacredit += 2;
-    game.promptTile('city', player, postAction);
+    game.promptTile('city', player, done);
   },
   layout: (
     <div className="flex gutter">

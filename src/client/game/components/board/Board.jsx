@@ -65,7 +65,7 @@ const Board = props => {
 
   return (
     <div
-      className={classNames('board', { dragging: dragging })}
+      className={classNames('board', { dragging })}
       onMouseDown={() => setDragging(true)}
       onMouseUp={() => setDragging(false)}
       onMouseMove={e => {

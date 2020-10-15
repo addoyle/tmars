@@ -1,4 +1,4 @@
-import { shuffle, isString } from 'lodash';
+import { shuffle, isString, uniq } from 'lodash';
 import { normalize } from '../util';
 import Tharsis from '../../shared/boards/Tharsis';
 import Hellas from '../../shared/boards/Hellas';
@@ -172,7 +172,7 @@ class Game {
     // Choose starting player
     this.startingPlayer = Math.floor(Math.random() * this.players.length) + 1;
     // TODO: FOR TESTING, REMOVE
-    this.startingPlayer = 1;
+    // this.startingPlayer = 1;
     this.log.push(
       new Log(this.startingPlayer, ' will be your starting player!')
     );
@@ -208,8 +208,8 @@ class Game {
     }
 
     // TODO: FOR TESTING, REMOVE
-    this.players[0].cards.prelude = ['P14', 'P09'].map(card => ({ card }));
-    this.players[1].cards.prelude = ['P15', 'P16'].map(card => ({ card }));
+    this.players[0].cards.prelude = ['P12', 'P09'].map(card => ({ card }));
+    this.players[1].cards.prelude = ['P14', 'P16'].map(card => ({ card }));
     this.players[2].cards.prelude = ['P17', 'P18'].map(card => ({ card }));
     this.players[3].cards.prelude = ['P19', 'P20'].map(card => ({ card }));
     this.players[4].cards.prelude = ['P21', 'P22'].map(card => ({ card }));
@@ -349,12 +349,16 @@ class Game {
    * @param {func} callback Callback once the is placed
    */
   promptTile(tile, player, callback) {
-    const possibleTiles = this.findPossibleTiles(tile);
+    const possibleTiles = this.findPossibleTiles(tile, player);
     if (possibleTiles.length) {
       possibleTiles.forEach(
         t => (t.clickable = isString(tile) ? tile : 'special')
       );
 
+      // Hide card drawer
+      this.drawer = null;
+
+      // Set the player status
       this.playerStatus = {
         player,
         tile,
@@ -372,6 +376,9 @@ class Game {
           // Player status is resolved
           this.playerStatus = null;
 
+          // Show card drawer
+          this.drawer = 'prelude';
+
           callback && callback();
         }
       };
@@ -384,15 +391,24 @@ class Game {
    * @param {number} id
    */
   tileFromId(id) {
-    let cur = +id;
+    const coords = this.idToCoords(id);
+    return this.field[coords.y][coords.x];
+  }
+
+  /**
+   * Get the array coordinates of the id
+   * @param {number} id
+   */
+  idToCoords(id) {
+    let x = +id;
     let y = 0;
 
-    for (let s = 5, d = 1; cur > s; cur -= s, s += d, y++) {
+    for (let s = 5, d = 1; x >= s; x -= s, s += d, y++) {
       if (s >= 9) {
         d = -1;
       }
     }
-    return this.field[y][cur];
+    return { x, y };
   }
 
   /**
@@ -405,33 +421,42 @@ class Game {
     const self = this;
 
     if (tile === 'ocean') {
-      return this.field
-        .map(row =>
-          row.filter(
-            // Reserved ocean spots, not occupied
-            cell => cell.attrs?.includes('reserved-ocean') && !cell.name
-          )
-        )
-        .flat();
+      return this.field.flat().filter(
+        t =>
+          // Reserved ocean spots
+          t.attrs?.includes('reserved-ocean') &&
+          // Not occupied
+          !t.name
+      );
     } else if (tile === 'city') {
-      return this.field
-        .map(row =>
-          row.filter(
-            cell =>
-              // Not reserved
-              cell.attrs?.filter(attr => attr.indexOf('reserved') < 0) &&
-              // Not occupied
-              !cell.name &&
-              // Not adjacent to another city
-              !self.neighbors(cell).filter(neighbor => neighbor.type === 'city')
-                .length
-          )
-        )
-        .flat();
+      return this.field.flat().filter(
+        t =>
+          // Not reserved
+          !t.attrs?.filter(attr => attr.includes('reserved')).length &&
+          // Not occupied
+          !t.name &&
+          // Not adjacent to another city
+          !self.neighbors(t).filter(neighbor => neighbor.type === 'city').length
+      );
     } else if (tile === 'greenery') {
-      // TODO
-      console.log(player);
-      return [];
+      // Spaces adjacent to player's tiles
+      const adjacentSites = uniq(
+        this.field
+          .flat()
+          // Get board tiles owned by player
+          .filter(t => t.player === player.number)
+          // Get neighbors
+          .map(t => this.neighbors(t))
+          .flat()
+      );
+
+      return (adjacentSites.length ? adjacentSites : this.field.flat()).filter(
+        t =>
+          // Not reserved
+          !t.attrs?.filter(attr => attr.includes('reserved')).length &&
+          // Not occupied
+          !t.name
+      );
     } else if (!isString(tile)) {
       // TODO special tiles
       return [];
@@ -444,23 +469,8 @@ class Game {
    * @param {Tile} tile Tile to get neighbors of
    */
   neighbors(tile) {
-    let coords;
     const neighbors = [];
-
-    // Get coords of tile
-    this.field.forEach((row, y) =>
-      row.forEach((cell, x) => {
-        if (cell === tile) {
-          coords = { x, y };
-        }
-      })
-    );
-
-    if (!coords) {
-      return neighbors;
-    }
-
-    const [x, y] = { ...coords };
+    const { x, y } = { ...this.idToCoords(tile.id) };
 
     // Grab top neighbors
     if (y > 0) {
@@ -490,7 +500,7 @@ class Game {
       neighbors.push(this.field[y][x - 1]);
     }
     // Right
-    if (x < this.field[y].length) {
+    if (x < this.field[y].length - 1) {
       neighbors.push(this.field[y][x + 1]);
     }
 
@@ -516,8 +526,6 @@ class Game {
         }
       }
     }
-
-    console.log(neighbors);
 
     return neighbors;
   }

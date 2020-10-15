@@ -102,7 +102,7 @@ const Field = ({ gameStore }) => {
                   (tile.attrs && tile.attrs.includes('reserved-ocean')
                     ? 'reserved-ocean'
                     : 'blank')
-                } ${tile.icon || null}`}
+                } ${tile.icon || ''}`}
                 clickable={
                   gameStore.playerStatus?.player.number ===
                   gameStore.player?.number
@@ -125,7 +125,8 @@ const Field = ({ gameStore }) => {
                     <div className="resources">
                       {renderResource(tile.resources, 3)}
                     </div>
-                    {tile.attrs && tile.attrs.includes('noctis-city') ? (
+                    {tile.attrs &&
+                    tile.attrs.includes('reserved-noctis-city') ? (
                       <img className="city" src="/icons/city.svg" />
                     ) : null}
                     {tile.text ? <div className="text">{tile.text}</div> : ''}

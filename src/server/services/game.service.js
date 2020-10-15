@@ -123,7 +123,12 @@ class GameService {
     // Set tags
     playedCard.tags.forEach(tag => player.tags[tag]++);
 
-    const postAction = () => {
+    const done = () => {
+      // Mark prelude as played
+      player.cards.prelude.find(
+        prelude => prelude.card === card.card
+      ).disabled = true;
+
       // If both preludes have been played, advance to the next player
       if (!player.cards.prelude.filter(prelude => !prelude.disabled).length) {
         game.nextTurn();
@@ -132,17 +137,10 @@ class GameService {
 
     // Perform card's action
     if (playedCard.serverAction) {
-      playedCard.serverAction(player, game, postAction);
-    }
+      playedCard.serverAction(player, game, done);
 
-    // Mark prelude as played
-    player.cards.prelude.find(
-      prelude => prelude.card === card.card
-    ).disabled = true;
-
-    // If there's update to player status (i.e. placing a tile), do not perform the post action
-    if (!this.playerStatus) {
-      postAction();
+      // Server action didn't call done, call it now
+      playedCard.serverAction.length < 3 && done();
     }
 
     return this.export(game);
@@ -288,21 +286,42 @@ class GameService {
     const game = this.games[id];
     const player = game.playerStatus.player;
     const tile = game.tileFromId(tileId);
-
-    // Set the tile
-    tile.name = `${
-      isString(game.playerStatus.tile) ? game.playerStatus.tile : 'special'
-    }-placed`;
-    tile.type = isString(game.playerStatus.tile)
+    const tileString = isString(game.playerStatus.tile)
       ? game.playerStatus.tile
       : 'special';
+
+    // Set the tile
+    tile.name = `${tileString}-placed`;
+    tile.type = isString(game.playerStatus.tile)
+      ? game.playerStatus.tile
+      : game.playerStatus.tile.special;
 
     // Add a player marker
     if (game.playerStatus.tile !== 'ocean') {
       tile.player = player.number;
     }
 
+    LogService.pushLog(
+      game.id,
+      new Log(player.number, [
+        ` placed ${
+          game.playerStatus.tile === 'ocean'
+            ? 'an'
+            : !isString(game.playerStatus.tile)
+            ? 'the'
+            : 'a'
+        } ${
+          isString(game.playerStatus.tile)
+            ? game.playerStatus.tile
+            : game.playerStatus.tile.special
+        } `,
+        { tile: tileString },
+        ' tile.'
+      ])
+    );
+
     // TODO: Grab bonuses
+    // TODO: Trigger placement events
 
     game.playerStatus.done();
 

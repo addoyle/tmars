@@ -95,7 +95,8 @@ Tile.propTypes = {
     PropTypes.arrayOf(PropTypes.node)
   ]),
   gameStore: PropTypes.shape({
-    placeTile: PropTypes.func
+    placeTile: PropTypes.func,
+    dragging: PropTypes.bool
   })
 };
 

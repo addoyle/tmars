@@ -60,7 +60,7 @@ const Tharsis = {
       { resources: ['plant', 'plant'] },
       {
         resources: ['plant', 'plant'],
-        attrs: ['noctis-city'],
+        attrs: ['reserved-noctis-city'],
         text: 'Noctis City'
       },
       { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] },

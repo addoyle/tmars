@@ -12,9 +12,9 @@ export default new Prelude({
   desc,
   flavor: 'You found a big one!',
   emoji: '🌊️',
-  serverAction: (player, game, postAction) => {
+  serverAction: (player, game, done) => {
     game.promptTile('ocean', player, () =>
-      game.promptTile('ocean', player, postAction)
+      game.promptTile('ocean', player, done)
     );
   },
   layout: (
