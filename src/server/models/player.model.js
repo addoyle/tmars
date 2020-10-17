@@ -52,6 +52,8 @@ export default class Player {
     onDeck: []
   };
   phase = '';
+  ui = {};
+  modifiers = {};
 
   constructor(name) {
     this.name = name;

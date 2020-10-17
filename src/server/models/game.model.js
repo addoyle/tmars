@@ -355,8 +355,17 @@ class Game {
         t => (t.clickable = isString(tile) ? tile : 'special')
       );
 
-      // Hide card drawer
-      this.drawer = null;
+      // Hide UI components to allow easier access to board
+      player.ui = {
+        drawer: null,
+        playerStats: {
+          show: false,
+          pid: player.number
+        },
+        activeCard: { show: false },
+        showMilestones: false,
+        showStandardProjects: false
+      };
 
       // Set the player status
       this.playerStatus = {
@@ -376,8 +385,14 @@ class Game {
           // Player status is resolved
           this.playerStatus = null;
 
-          // Show card drawer
-          this.drawer = 'prelude';
+          // Show UI components
+          player.ui = {
+            drawer: 'prelude',
+            playerStats: {
+              show: true,
+              pid: player.number
+            }
+          };
 
           callback && callback();
         }

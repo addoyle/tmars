@@ -78,7 +78,6 @@ class Game {
   @observable settings = {};
 
   // State of milestones and standard projects windows
-  // TODO: Move these into Players
   @observable showMilestones = false;
   @observable showStandardProjects = false;
 
@@ -146,6 +145,9 @@ class Game {
     Object.assign(this, game);
 
     this.player = game.players[+PLAYER_NUM - 1];
+
+    // Update player specific UI states
+    Object.assign(this, this.player.ui);
   }
 
   @action
