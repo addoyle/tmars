@@ -301,6 +301,7 @@ class GameService {
       tile.player = player.number;
     }
 
+    // Log the placement
     LogService.pushLog(
       game.id,
       new Log(player.number, [
@@ -320,7 +321,26 @@ class GameService {
       ])
     );
 
-    // TODO: Grab bonuses
+    // Handle placement bonuses
+    (tile.resources || [])
+      .filter(r => r)
+      .forEach(r => {
+        // Resources on the space
+        if (r === 'card') {
+          game.drawCard(player);
+        } else if (r === 'ocean') {
+          game.promptTile('ocean', player);
+        } else if (r.megacredit) {
+          player.resources.megacredit += r.megacredit;
+        } else {
+          player.resources[r]++;
+        }
+      });
+
+    // Ocean adjacencies
+    player.resources.megacredit +=
+      game.neighbors(tile).filter(t => t.name === 'ocean-placed').length * 2;
+
     // TODO: Trigger placement events
 
     game.playerStatus.done();
