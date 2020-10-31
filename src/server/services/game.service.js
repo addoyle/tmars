@@ -403,9 +403,7 @@ class GameService {
     });
 
     if (game.sets.includes('prelude')) {
-      logs.push(
-        new Log(0, ['Please play your ', { prelude: 'Preludes' }, '.'])
-      );
+      logs.push(new Log(0, [{ prelude: 'PRELUDE PHASE' }]));
     }
 
     LogService.pushLog(game.id, logs);

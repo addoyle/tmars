@@ -107,21 +107,22 @@ const Log = forwardRef((props, ref) => {
                         />
                       );
                     } else {
+                      const type = Object.keys(body).filter(key =>
+                        ['corp', 'prelude', 'project'].includes(
+                          key.toLocaleLowerCase()
+                        )
+                      )[0];
+
                       return (
                         <CardRef
                           key={i}
-                          type={Object.keys(body)[0]}
-                          card={Object.values(body)[0]}
-                          onClick={() => {
-                            const num = Object.values(body)[0];
-                            if (num.toLowerCase() === 'corporation') {
-                              gameStore.switchDrawer('corp');
-                            } else if (num.toLowerCase() === 'preludes') {
-                              gameStore.switchDrawer('prelude');
-                            } else if (num.toLowerCase() === 'starting hand') {
-                              gameStore.switchDrawer('buy');
-                            }
-                          }}
+                          type={type}
+                          card={body[type]}
+                          onClick={() =>
+                            body.drawer
+                              ? gameStore.switchDrawer(body.drawer)
+                              : null
+                          }
                         />
                       );
                     }

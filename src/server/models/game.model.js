@@ -157,15 +157,15 @@ class Game {
     // Show helpful message log
     const startLog = new Log(0, [
       'Please select 1 ',
-      { corporation: 'Corporation' }
+      { corp: 'Corporation', drawer: 'corp' }
     ]);
     if (this.sets.includes('prelude')) {
       startLog.body.push(', 2 ');
-      startLog.body.push({ prelude: 'Preludes' });
+      startLog.body.push({ prelude: 'Preludes', drawer: 'prelude' });
       startLog.body.push(', ');
     }
     startLog.body.push('and buy cards for your ');
-    startLog.body.push({ project: 'starting hand' });
+    startLog.body.push({ project: 'starting hand', drawer: 'hand' });
     startLog.body.push('.');
     this.log.push(startLog);
 
@@ -551,6 +551,7 @@ class Game {
   beginPreludePhase() {
     this.phase = 'prelude';
     this.turn = this.startingPlayer;
+    this.players.forEach(player => (player.ui.drawer = 'prelude'));
   }
 
   /**
