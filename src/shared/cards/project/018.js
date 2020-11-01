@@ -21,8 +21,7 @@ export default new Automated({
   desc,
   flavor:
     "Using Titan's liquid methane as fuel will add carbon and heat to Mars",
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌥',
   layout: (
     <div className="flex gutter">

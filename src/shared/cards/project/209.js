@@ -13,8 +13,7 @@ export default new Event({
   set: 'promo',
   desc,
   flavor: 'I made that crater - can I name it?',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="flex m-bottom">

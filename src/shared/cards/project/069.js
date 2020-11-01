@@ -26,8 +26,7 @@ export default new Active({
   desc,
   flavor:
     'A 200 km long acceleration ramp up the side of Pavonis Mons, hurtling export goods into space',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🏸',
   activeLayout: (

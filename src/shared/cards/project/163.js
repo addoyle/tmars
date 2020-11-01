@@ -12,8 +12,7 @@ export default new Event({
   tags: ['earth', 'space', 'event'],
   desc,
   flavor: 'Providing nitrogen needed in the atmosphere and for biomass',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍾',
   layout: (
     <div className="text-center">

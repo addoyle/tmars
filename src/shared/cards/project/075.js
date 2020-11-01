@@ -15,8 +15,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'By aerobraking it we get its contents without the impact',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="text-center">

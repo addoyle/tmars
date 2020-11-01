@@ -13,8 +13,7 @@ export default new Event({
   desc,
   flavor:
     'Converting CO\u2082 into nanotube materials that support your hovering infrastructure',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🎈',
   layout: (
     <div className="flex">

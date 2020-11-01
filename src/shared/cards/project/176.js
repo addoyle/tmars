@@ -22,8 +22,7 @@ export default new Automated({
   desc,
   flavor:
     'Utilizing the uniquely dense and moist atmosphere in the canyons of Noctis Labyrinthus',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🚜',
   layout: (

@@ -12,8 +12,7 @@ export default new Event({
   tags: ['earth', 'space', 'event'],
   desc,
   flavor: 'A light-weight but expensive crucial element',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🎈',
   layout: (
     <div>

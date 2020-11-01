@@ -16,8 +16,7 @@ export default new Event({
   desc,
   flavor:
     'There are many who would work for us for almost no pay in exchange for a ticket to Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: -1,
   emoji: '👷',
   layout: (

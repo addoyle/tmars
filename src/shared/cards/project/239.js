@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Your wide-spread influence results in a World Government contract',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⚖',
   layout: (
     <div>

@@ -15,8 +15,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Influencing the people in power',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: -2,
   emoji: '👥',
   layout: (

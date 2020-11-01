@@ -18,8 +18,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Investing in social events can open up new opportunities',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌐',
   activeLayout: (
     <div className="flex middle">

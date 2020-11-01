@@ -16,8 +16,7 @@ export default new Automated({
   tags: ['jovian', 'space', 'city'],
   desc,
   flavor: 'Settling the biggest moon of the biggest planet',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌑',
   layout: (
     <div className="flex gutter">

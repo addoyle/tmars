@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Connecting the planets to the Cloud',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '💻',
   layout: (

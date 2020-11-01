@@ -22,12 +22,7 @@ export default new Automated({
   vp: 1,
   desc,
   flavor: 'Your hold on the titanium market tightens',
-  clientAction: game => {
-    // TODO: pseudo code
-    game.activePlayer.production('titanium', 1);
-    game.pickPlayer().then(player => player.production('titanium', -1));
-  },
-  serverAction: game => {
+  action: game => {
     // TODO: pseudo code
     game.activePlayer.production('titanium', 1);
     game.targetPlayer.production('titanium', -1);

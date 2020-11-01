@@ -16,8 +16,7 @@ export default new Event({
   desc,
   flavor:
     'Ammonia is a greenhouse gas, as well as being a convenient nitrogen source for organisms',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="flex gutter">

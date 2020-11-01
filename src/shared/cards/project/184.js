@@ -23,8 +23,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Providing meat, wood, leather, etc.',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🐄',
   activeLayout: (
     <div>

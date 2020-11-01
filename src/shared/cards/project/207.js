@@ -19,8 +19,7 @@ export default new Automated({
   desc,
   flavor:
     'Providing health care for the public can be lucrative, as well as noble',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🔬',
   layout: (

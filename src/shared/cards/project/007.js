@@ -16,8 +16,6 @@ export default new Active({
   tags: ['building'],
   activeDesc,
   flavor: 'Fast and cheap transportation for goods and guys',
-  clientEffect: () => {},
-  serverEffect: () => {},
   emoji: '🚝',
   activeLayout: (
     <div>

@@ -15,8 +15,7 @@ export default new Active({
   desc,
   flavor:
     'Making use of the nitrites in the ground to release nitrogen into the atmosphere',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦠️',
   activeLayout: (
     <div>

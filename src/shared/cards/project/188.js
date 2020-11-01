@@ -16,8 +16,7 @@ export default new Event({
   tags: ['event'],
   desc,
   flavor: 'Look out for tsunamis',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: -1,
   emoji: '🌊',
   layout: (

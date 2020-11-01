@@ -18,10 +18,10 @@ export default new Prelude({
   flavor:
     'Your acquisition of this company connects you to the whole metal market',
   emoji: '⚙',
-  serverAction: player => {
-    player.production.megacredit++;
-    player.production.steel++;
-    player.production.titanium++;
+  action: (player, game) => {
+    game.production(player, 'megacredit', 1);
+    game.production(player, 'steel', 1);
+    game.production(player, 'titanium', 1);
   },
   layout: (
     <div className="flex gutter">

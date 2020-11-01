@@ -16,12 +16,7 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Digging deep to find heat from the core',
-  clientAction: game => {
-    // TODO: pseudo code
-    game.activePlayer.production('power', 1);
-    game.temperature(1, game.activePlayer);
-  },
-  serverAction: (player, game) => {
+  action: (player, game) => {
     player.production.power++;
     game.param('temperature', player);
   },

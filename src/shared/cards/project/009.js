@@ -12,8 +12,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'What are those plants in our impact zone?',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="flex gutter m-top m-bottom">

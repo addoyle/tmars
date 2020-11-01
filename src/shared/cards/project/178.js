@@ -16,8 +16,7 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Utilizing temperature gradients for energy production',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: -1,
   emoji: '🔥',
   layout: (

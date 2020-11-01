@@ -20,8 +20,7 @@ export default new Automated({
   desc,
   flavor:
     'A wetland forest will create an ecosystem where new species can thrive',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌳',
   layout: (

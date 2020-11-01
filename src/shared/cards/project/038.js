@@ -15,8 +15,7 @@ export default new Active({
   tags: ['building'],
   activeDesc,
   flavor: 'Providing safe transport vehicles',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🚙',
   activeLayout: (

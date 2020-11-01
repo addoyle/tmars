@@ -15,8 +15,7 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Perhaps the most readily available energy source on Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '☀',
   layout: (

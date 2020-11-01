@@ -15,8 +15,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Willing to support your projects',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '💸',
   layout: (
     <div className="text-center">

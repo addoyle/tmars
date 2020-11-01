@@ -15,8 +15,8 @@ export default new Prelude({
   desc,
   flavor: 'Deep impact on Mars - before too many move there',
   emoji: '☄',
-  serverAction: (player, game) => {
-    player.resources.megacredit -= 5;
+  action: (player, game) => {
+    game.resources(player, 'megacredit', -5);
     game.param('temperature', player);
     game.param('temperature', player);
     game.param('temperature', player);

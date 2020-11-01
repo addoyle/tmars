@@ -22,8 +22,7 @@ export default new Automated({
   desc,
   flavor:
     'New synthetic fabrics, able to protect from cosmic radiation, are becoming high fashion',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '👨‍🚀',
   layout: (

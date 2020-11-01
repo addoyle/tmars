@@ -17,8 +17,8 @@ export default new Prelude({
   flavor:
     'Bioengineering is of the utmost importance on Mars, and you just got a head start',
   emoji: '🥼',
-  serverAction: (player, game) => {
-    player.production.plant++;
+  action: (player, game) => {
+    game.production(player, 'plant', 1);
     game.drawCard(player);
     game.drawCard(player);
     game.drawCard(player);

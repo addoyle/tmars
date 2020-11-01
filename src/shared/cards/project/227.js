@@ -23,8 +23,7 @@ export default new Automated({
   desc,
   flavor:
     'A safe place to get the ecosystem started, in the northern mountains, where conditions are only mildly hellish',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '⛰',
   layout: (

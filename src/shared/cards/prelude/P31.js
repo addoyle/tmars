@@ -17,11 +17,11 @@ export default new Prelude({
   desc,
   flavor: 'Meeting the needs of society is good, because it’s your society',
   emoji: '🏘',
-  serverAction: player => {
-    player.production.megacredit--;
-    player.production.plant++;
-    player.production.power++;
-    player.production.heat++;
+  action: (player, game) => {
+    game.production(player, 'megacredit', -1);
+    game.production(player, 'plant', 1);
+    game.production(player, 'power', 1);
+    game.production(player, 'heat', 1);
   },
   layout: (
     <div className="flex gutter">

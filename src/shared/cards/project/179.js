@@ -16,8 +16,7 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'There are many harmful elements to remove',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌱',
   layout: (

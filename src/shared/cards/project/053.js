@@ -18,8 +18,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Filling the Valles Marineris takes a lot of water',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🏊',
   layout: (

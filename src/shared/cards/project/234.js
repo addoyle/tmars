@@ -13,8 +13,7 @@ export default new Active({
   set: 'venus',
   activeDesc,
   flavor: 'Released in millions to remove unwanted gases',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌪',
   activeLayout: (
     <div>

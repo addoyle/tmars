@@ -20,8 +20,7 @@ export default new Automated({
   desc,
   flavor:
     'Space tourism was one of the most important sources of income for the space industry',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏨',
   layout: (
     <div className="flex m-top m-bottom">

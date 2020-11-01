@@ -12,8 +12,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Testing launch techniques, space hardware, and whatnot',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '💡',
   layout: (
     <div className="text-center">

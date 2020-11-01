@@ -13,8 +13,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'There are many unpopulated areas to crash it in',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="flex gutter m-top m-bottom">

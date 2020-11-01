@@ -15,10 +15,17 @@ export default new Prelude({
   desc,
   flavor: 'I had no idea that you could actually do that',
   emoji: '♻️',
-  serverAction: player => {
-    player.production.plant++;
-
-    // TODO: Play card from hand, ignoring requirements
+  action: (player, game, done) => {
+    game.production(player, 'plant', 1);
+    game.promptCard(
+      player,
+      card => {
+        // TODO figure out how to do requirements
+        console.log(card);
+        return true;
+      },
+      done
+    );
   },
   layout: (
     <div className="flex gutter">

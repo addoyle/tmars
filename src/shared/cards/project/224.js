@@ -21,8 +21,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Surviving even on the surface of Venus',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🧊',
   activeLayout: (
     <div>

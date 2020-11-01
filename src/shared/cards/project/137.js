@@ -17,8 +17,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'We see it as brotherhood',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '👨‍👨‍👦‍👦',
   layout: (
     <div className="text-center">

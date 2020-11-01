@@ -17,8 +17,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Constructing the corridors of power',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏛',
   layout: (
     <div>

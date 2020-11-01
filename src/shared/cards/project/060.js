@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Providing fruits, wood, and new habitats',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌲',
   layout: (

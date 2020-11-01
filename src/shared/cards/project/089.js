@@ -16,8 +16,7 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'The Martian ground is full of oxidizing agents',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏭',
   layout: (
     <div className="flex gutter">

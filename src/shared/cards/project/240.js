@@ -16,8 +16,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Removing the sulphuric acids',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏭',
   layout: (
     <div className="m-top m-bottom flex gutter">

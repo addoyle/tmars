@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'A lucrative deal for a proven terraformer',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '📜',
   layout: (
     <div className="flex gutter m-top m-bottom">

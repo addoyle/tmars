@@ -13,8 +13,7 @@ export default new Automated({
   desc,
   flavor:
     'By combining different competences, many projects may benefit in new ways',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '👩‍🔬',
   layout: <div className="text-center m-top m-bottom">{desc}</div>
 });

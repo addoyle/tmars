@@ -17,8 +17,7 @@ export default new Automated({
   tags: ['city', 'building'],
   desc,
   flavor: 'In Noctis Labyrinthus, where the mist is gray',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌆',
   layout: (
     <div>

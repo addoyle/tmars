@@ -21,8 +21,7 @@ export default new Active({
   desc,
   flavor:
     'With its low gravity, this Jovian ice moon is suitable for mass export of water.',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   clientActiveAction: () => {},
   serverActiveAction: () => {},
   vp: () => {},

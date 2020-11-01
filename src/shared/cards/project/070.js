@@ -15,8 +15,7 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'When export from Earth becomes easier, everything gets cheaper',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🌎',
   activeLayout: (

@@ -16,8 +16,7 @@ export default new Event({
   set: 'venus',
   desc,
   flavor: 'Directing it to an almost safe place',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="flex gutter">

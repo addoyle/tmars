@@ -13,8 +13,7 @@ export default new Automated({
   desc,
   flavor:
     'Drastically lowering the temperature to cause CO\u2082 to precipitate, reducing the greenhouse effect',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛱',
   layout: (
     <div className="m-top m-bottom">

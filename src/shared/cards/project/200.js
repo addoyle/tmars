@@ -21,8 +21,7 @@ export default new Active({
   desc,
   flavor:
     'Taking care of immigrants is costly, but will begin to pay off when they start working for you in the growing society',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌃',
   activeLayout: (
     <div>

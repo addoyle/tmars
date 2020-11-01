@@ -13,8 +13,7 @@ export default new Active({
   activeDesc,
   flavor:
     'Electrolysis of Martian soil yields both iron and oxygen, making it an important part of terraforming',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⚒',
   activeLayout: (
     <div>

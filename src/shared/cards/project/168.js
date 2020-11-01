@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'At last we have more useful winds',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌬',
   layout: (

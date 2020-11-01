@@ -11,8 +11,7 @@ export default new Automated({
   tags: ['plant', 'building'],
   desc,
   flavor: 'Places to conduct bio research and experiments',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏡',
   layout: (
     <div className="flex gutter">

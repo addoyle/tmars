@@ -12,8 +12,7 @@ export default new Event({
   tags: ['event'],
   desc,
   flavor: 'Life can benefit from local hot spots',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🔥',
   layout: (
     <div className="text-center">

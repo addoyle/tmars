@@ -18,8 +18,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Working for the biosphere and the atmosphere at the same time',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦠',
   activeLayout: (
     <div>

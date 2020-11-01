@@ -16,8 +16,7 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'The battles for Martian riches sometimes begin in a courtroom',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⚖',
   layout: (
     <div className="flex gutter">

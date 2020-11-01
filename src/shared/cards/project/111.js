@@ -12,8 +12,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Money and information are often interchangeable',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🤝🏻',
   layout: <div className="text-center m-bottom m-top">{desc}</div>
 });

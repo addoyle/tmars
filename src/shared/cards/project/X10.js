@@ -16,8 +16,7 @@ export default new Active({
   set: 'promo',
   activeDesc,
   flavor: 'Silicon-based plastics for everyday use. Made from Martian regolith',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '♻',
   activeLayout: (

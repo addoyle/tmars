@@ -23,8 +23,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Heavy genetic engineering is needed for this work',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦓',
   activeLayout: (
     <div className="text-center">

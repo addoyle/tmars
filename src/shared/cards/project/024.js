@@ -21,8 +21,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Lions and tigers and bears, oh my',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🐻',
   activeLayout: (
     <div>

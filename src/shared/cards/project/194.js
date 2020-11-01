@@ -16,8 +16,7 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Efficiency through flexibility',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🔌',
   activeLayout: (
     <div>

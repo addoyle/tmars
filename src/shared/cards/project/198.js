@@ -17,8 +17,7 @@ export default new Automated({
   tags: ['earth', 'space'],
   desc,
   flavor: 'The new world attracts ever more immigrants from the old',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🛬',
   layout: (
     <div className="flex gutter">

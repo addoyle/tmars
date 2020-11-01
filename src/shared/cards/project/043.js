@@ -16,8 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'Common minerals can be converted into carbon dioxide that increases the greenhouse effect',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌤',
   layout: (
     <div className="flex gutter">

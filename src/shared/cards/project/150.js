@@ -22,8 +22,7 @@ export default new Active({
   desc,
   flavor:
     'Finally successful, anti-gravity will revolutionize everything, from households to industry and space travel',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 3,
   emoji: '🕴',
   activeLayout: (

@@ -16,8 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'Certain aromatic compounds can absorb dangerous radiation without breaking',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🧬',
   layout: (
     <div className="text-center">

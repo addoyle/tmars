@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Burning wood is easy',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: -1,
   emoji: '🔥',
   layout: (

@@ -18,8 +18,7 @@ export default new Active({
   desc,
   flavor:
     'These microscopic creatures can survive freezing, boiling, drying out, heavy radiation, and brute force',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🐛',
   activeLayout: (
     <div>

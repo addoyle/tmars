@@ -20,8 +20,7 @@ export default new Automated({
   desc,
   flavor:
     'Bringing order to the colonization and terraforming of Venus is a well-paid job',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '👵',
   layout: (
     <div className="flex gutter m-top m-bottom">

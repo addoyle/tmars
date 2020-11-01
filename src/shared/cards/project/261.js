@@ -21,8 +21,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Starting the biosphere in earnest',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌵',
   layout: (

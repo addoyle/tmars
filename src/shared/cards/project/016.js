@@ -23,8 +23,7 @@ export default new Automated({
   },
   desc,
   flavor: 'A spacious area for a great city',
-  clientAction: () => {},
-  serverAction: player => {
+  action: player => {
     player.resources.plant += 3;
     player.production.power--;
     player.production.megacredit += 3;

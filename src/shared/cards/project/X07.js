@@ -22,8 +22,7 @@ export default new Active({
   desc,
   flavor:
     'Studying the natural alloys of the Mercurian ground has led to a breakthrough in materials science',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🔩',
   activeLayout: (
     <div>

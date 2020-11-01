@@ -22,8 +22,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Not very comfortable conditions yet, but what freedom!!',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🏙',
   layout: (

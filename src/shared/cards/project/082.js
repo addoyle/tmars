@@ -16,8 +16,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'You always wanted to be a warden, didn’t you?',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '👮',
   layout: (

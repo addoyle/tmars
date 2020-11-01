@@ -18,8 +18,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Utilizing heat production to attract tourists',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🏖',
   layout: (

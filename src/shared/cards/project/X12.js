@@ -17,8 +17,7 @@ export default new Automated({
   desc,
   flavor:
     'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🍩',
   layout: (

@@ -12,8 +12,8 @@ export default new Prelude({
   desc,
   flavor: 'From a rich benefactor with absolutely no hidden agenda',
   emoji: '💶',
-  serverAction: player => {
-    player.resources.megacredit += 21;
+  action: (player, game) => {
+    game.resources(player, 'megacredit', 21);
   },
   layout: (
     <div className="text-center">

@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Basic photosynthesizers in aqueous environments',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🧪',
   layout: (
     <div>

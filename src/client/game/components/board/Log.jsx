@@ -62,7 +62,14 @@ const Log = forwardRef((props, ref) => {
       <ScrollToBottom className="msgs" followButtonClassName="follow-button">
         {gameStore.players?.length &&
           logStore.log?.map((msg, i) => (
-            <div key={i} className={classNames('msg', { system: msg.system })}>
+            <div
+              key={i}
+              className={classNames(
+                'msg',
+                { system: msg.system },
+                msg.opts?.classNames || []
+              )}
+            >
               {msg.player ? (
                 <span className={classNames('strong', `player-${msg.player}`)}>
                   {gameStore.players[msg.player - 1].name}

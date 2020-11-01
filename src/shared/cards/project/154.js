@@ -19,8 +19,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'In charge of establishing comfortable temperatures',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '📝',
   activeLayout: (
     <div>

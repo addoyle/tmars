@@ -16,8 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'By generating a magnetic field, you can protect organisms from cosmic radiation',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🧲',
   layout: (
     <div className="text-center">

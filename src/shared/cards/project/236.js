@@ -19,8 +19,7 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'The largest city on the Moon',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🌃',
   layout: (

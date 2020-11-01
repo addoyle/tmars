@@ -17,8 +17,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Creating mutually beneficial conditions',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍄',
   activeLayout: (
     <div className="text-center">

@@ -13,8 +13,7 @@ export default new Active({
   activeDesc,
   flavor:
     'The harsh environment is not the only threat to your ecological projects',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏜',
   activeLayout: (
     <div className="text-center">

@@ -17,8 +17,7 @@ export default new Active({
   activeDesc,
   flavor:
     'The latest advances in metallurgy give you an edge in the competition',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🔩',
   activeLayout: (
     <div className="flex gutter">

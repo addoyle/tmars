@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Photosynthesizing bacteria specializing in extreme environments',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦠',
   layout: (
     <div className="flex">

@@ -11,8 +11,7 @@ export default new Event({
   desc,
   flavor:
     "Having the top man's attention, the involved people are sure to do their best",
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '👨🏻‍💼',
   layout: <div className="text-center m-bottom">{desc}</div>
 });

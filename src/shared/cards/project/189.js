@@ -16,8 +16,7 @@ export default new Automated({
   tags: ['power'],
   desc,
   flavor: 'Minimizing urban energy spending',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🔋',
   layout: (
     <div className="flex gutter m-bottom">

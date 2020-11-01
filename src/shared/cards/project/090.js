@@ -15,8 +15,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Through technical excellence you will unlock many wondrous things',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '‍🔬',
   layout: (

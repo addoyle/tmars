@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Letting natural processes do the work',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌊',
   layout: (

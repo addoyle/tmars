@@ -21,8 +21,7 @@ export default new Automated({
   desc,
   flavor:
     'The border between the northern plains and the southern highlands is rich in minerals. Control it, and you will control the global mining business',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛰',
   layout: (
     <div className="flex gutter">

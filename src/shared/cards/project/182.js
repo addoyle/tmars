@@ -19,8 +19,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'A city exclusively devoted to your corporation',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: -2,
   emoji: '🏙',
   layout: (

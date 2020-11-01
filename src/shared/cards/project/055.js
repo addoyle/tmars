@@ -22,8 +22,7 @@ export default new Automated({
   desc,
   flavor:
     'The newly formed oceans are very rich in minerals, perfect for food production',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌿',
   layout: (

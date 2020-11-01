@@ -16,8 +16,7 @@ export default new Event({
   },
   desc,
   flavor: 'I think we can both benefit from this arrangement',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🤝',
   layout: (
     <div className="text-center">

@@ -16,8 +16,7 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'Dual terraforming by redirecting sunlight from Venus to Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🪞',
   layout: (
     <div>

@@ -20,8 +20,7 @@ export default new Automated({
   desc,
   flavor:
     'A rotating city, creating 1G at the perimeter. Perfect for people returning to Earth or Venus',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛰',
   layout: (
     <div className="flex gutter">

@@ -18,8 +18,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Very unethical, very illegal, very lucrative',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: -1,
   emoji: '💻',
   layout: (

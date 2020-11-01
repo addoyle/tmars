@@ -18,8 +18,7 @@ export default new Event({
   desc,
   flavor:
     'Easily collected from the gas giants, hydrogen can increase floating power, or be converted to precious water',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌀',
   layout: (
     <div className="flex">

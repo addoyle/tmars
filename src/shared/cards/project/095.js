@@ -19,8 +19,7 @@ export default new Active({
   desc,
   flavor:
     'This used to cause blackouts before the invention of supercapacitors',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⚛️',
   activeLayout: (
     <div>

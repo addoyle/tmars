@@ -12,8 +12,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'We don’t use that moon anyway',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="flex gutter">

@@ -18,8 +18,7 @@ export default new Automated({
   desc,
   flavor:
     'The sprinkled dust absorbs heat from the sun. Must be renewed after each snowfall, though',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌫',
   layout: (
     <div className="flex">

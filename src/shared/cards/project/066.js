@@ -12,8 +12,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Acquiring strategic land areas',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🚩',
   layout: (
     <div className="flex gutter">

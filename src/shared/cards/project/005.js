@@ -26,7 +26,7 @@ export default new Active({
   activeDesc,
   flavor:
     "Finding native life-forms would be the greatest discovery in history, so let's find out!",
-  clientEffect: game => {
+  effect: game => {
     game.drawCard().then(card =>
       game
         .reveal(card)
@@ -38,7 +38,6 @@ export default new Active({
         .then(card => game.discard(card))
     );
   },
-  serverEffect: () => {},
   vp: () => this.resources * 3,
   emoji: '🔍',
   activeLayout: (

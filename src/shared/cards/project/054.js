@@ -22,8 +22,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Able to live in sparse conditions',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🐀',
   activeLayout: (
     <div>

@@ -15,8 +15,8 @@ export default new Prelude({
   desc,
   flavor: 'A solid base for your energy needs',
   emoji: '🔌',
-  serverAction: player => {
-    player.production.power += 3;
+  action: (player, game) => {
+    game.production(player, 'power', 3);
   },
   layout: (
     <div className="flex gutter">

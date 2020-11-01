@@ -21,8 +21,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Farming the thawed soil over the frozen bedrock',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🚜',
   layout: (

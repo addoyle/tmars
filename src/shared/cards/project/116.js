@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Landscaping is as natural as terraforming',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🦆',
   layout: (

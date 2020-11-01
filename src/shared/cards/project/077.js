@@ -14,8 +14,7 @@ export default new Automated({
   tags: ['science', 'space', 'power'],
   desc,
   flavor: 'Working those solar storms to your advantage',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '💨',
   layout: (
     <div className="flex gutter">

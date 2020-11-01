@@ -18,8 +18,7 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'A major step towards understanding Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🎓',
   activeLayout: (

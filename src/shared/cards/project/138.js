@@ -17,8 +17,7 @@ export default new Automated({
   desc,
   flavor:
     'It is not exactly environmentally friendly to just dig up the surface, but it can be profitable',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '👷',
   layout: (
     <div className="text-center">

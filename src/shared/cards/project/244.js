@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Welcome to the 1G club',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🤝🏻',
   layout: (
     <div className="text-center m-bottom">

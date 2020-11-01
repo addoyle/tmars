@@ -22,8 +22,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Converting it into useful materials',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦠',
   activeLayout: (
     <div>

@@ -12,8 +12,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Enhancing your production capacity',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🤖',
   layout: (
     <div className="m-bottom">

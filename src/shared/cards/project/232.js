@@ -16,8 +16,7 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'Finding new uses for all the suphur coming out of the Venus venture',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🔬',
   layout: (

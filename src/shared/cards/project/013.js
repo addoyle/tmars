@@ -20,8 +20,7 @@ export default new Active({
   desc,
   flavor:
     'An ultra-strong cable car up to geo-stationary orbit, enabling reasonable export costs',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   clientActiveAction: () => {},
   serverActiveAction: () => {},
   vp: 2,

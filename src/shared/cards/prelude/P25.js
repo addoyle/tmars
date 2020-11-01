@@ -16,9 +16,9 @@ export default new Prelude({
   flavor:
     'Materials arrive to Earth orbit from all around the solar system, to be assembled into interplanetary vessels',
   emoji: '🏗️',
-  serverAction: player => {
-    player.production.titanium++;
-    player.resources.titanium += 4;
+  action: (player, game) => {
+    game.resources(player, 'titanium', 4);
+    game.production(player, 'production', 1);
   },
   layout: (
     <div className="flex gutter">

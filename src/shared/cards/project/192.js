@@ -12,8 +12,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Engaging the scientific community in a field of your choice',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '👨‍🔬',
   layout: <div className="text-center sans-serif strong">{desc}</div>
 });

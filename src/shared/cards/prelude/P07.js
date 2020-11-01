@@ -17,9 +17,9 @@ export default new Prelude({
   desc,
   flavor: 'Growing flowers, bushes, and trees... but mainly potatoes...',
   emoji: '🥔',
-  serverAction: player => {
-    player.production.plant++;
-    player.production.megacredit += 2;
+  action: (player, game) => {
+    game.production(player, 'plant', 1);
+    game.production(player, 'megacredit', 2);
   },
   layout: (
     <div className="flex gutter">

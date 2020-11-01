@@ -16,8 +16,7 @@ export default new Event({
   },
   desc,
   flavor: 'To new horizons and an unknown galaxy',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🚀',
   layout: (
     <div className="flex">

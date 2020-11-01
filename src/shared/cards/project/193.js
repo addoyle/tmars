@@ -17,8 +17,7 @@ export default new Automated({
   desc,
   flavor:
     'By focusing on a limited area, helpful measures can be taken to improve local conditions for plant life',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌳',
   layout: (
     <div className="text-center">

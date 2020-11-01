@@ -16,8 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'Detonating obsolete nuclear weapons from Earth is an efficient method for raising the temperature',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: -2,
   emoji: '☢',
   layout: (

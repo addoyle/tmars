@@ -17,8 +17,7 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'Its unique components can be used on Mars as well',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌱',
   layout: (
     <div className="text-center">

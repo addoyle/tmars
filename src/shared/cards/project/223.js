@@ -16,8 +16,7 @@ export default new Active({
   desc,
   flavor:
     'Processing the atmosphere, sealing small packs of useful materials to the surface',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🎈',
   activeLayout: (
     <div>

@@ -23,8 +23,7 @@ export default new Automated({
   desc,
   flavor:
     'Creating a national park with original Martian landforms and environments',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🏜',
   layout: (

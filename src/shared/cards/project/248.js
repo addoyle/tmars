@@ -25,8 +25,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'A center of commerce in the cool clouds',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌥',
   activeLayout: (
     <div>

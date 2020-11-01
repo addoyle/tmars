@@ -17,8 +17,7 @@ export default new Active({
   set: 'venus',
   activeDesc,
   flavor: 'The Venus way to travel',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🎈',
   activeLayout: (
     <div>

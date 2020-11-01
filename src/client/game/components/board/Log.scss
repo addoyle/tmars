@@ -1,3 +1,5 @@
+$title-font: 'Prototype', sans-serif;
+
 .log {
   position: fixed;
   height: 50vh;
@@ -105,6 +107,20 @@
 
       &:hover, &:active, &:focus {
         background-color: rgba(255,255,255,.1);
+      }
+    }
+  }
+
+  .phase {
+    text-align: center;
+    text-transform: uppercase;
+    font-family: $title-font;
+
+    &.prelude {
+      background: linear-gradient(to right, #79277c 0%, #b0448f 20%, #e085c2 40%, #e085c2 60%, #b0448f 80%, #79277c 100%);
+
+      .card-ref {
+        color: black;
       }
     }
   }

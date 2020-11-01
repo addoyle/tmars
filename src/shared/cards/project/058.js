@@ -21,8 +21,7 @@ export default new Automated({
   desc,
   flavor:
     'Nuclear energy is safe, especially when located on a remote asteroid rich in radioactive elements',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🔫',
   layout: (

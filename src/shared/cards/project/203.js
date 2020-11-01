@@ -14,8 +14,7 @@ export default new Automated({
   tags: ['space'],
   desc,
   flavor: 'Huge ultra-thin mirrors focusing sunlight onto the red planet',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🔍',
   layout: (
     <div className="flex gutter">

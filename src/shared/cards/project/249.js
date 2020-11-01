@@ -23,8 +23,7 @@ export default new Active({
   desc,
   flavor:
     'Living in the thick air, nesting on man-made structures, far away from the furnace at ground level',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦅',
   activeLayout: (
     <div>

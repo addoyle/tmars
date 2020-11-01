@@ -18,8 +18,7 @@ export default new Event({
   desc,
   flavor:
     'Adding nitrogen to Mars will both thicken the atmosphere with N2 and provide fertilizer for plants',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="flex gutter">

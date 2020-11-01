@@ -18,8 +18,7 @@ export default new Active({
   activeDesc,
   flavor:
     'Investigating opportunities in wind patterns and atmospheric composition',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌀',
   activeLayout: (

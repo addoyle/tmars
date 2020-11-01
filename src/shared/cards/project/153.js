@@ -13,8 +13,7 @@ export default new Active({
   tags: ['science'],
   activeDesc,
   flavor: 'Pushing the limits of the possible',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🥽',
   activeLayout: (

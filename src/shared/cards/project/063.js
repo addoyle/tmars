@@ -12,8 +12,7 @@ export default new Event({
   tags: ['event'],
   desc,
   flavor: 'Ruthlessly excavating rich areas',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏗',
   layout: (
     <div className="flex gutter">

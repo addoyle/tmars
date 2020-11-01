@@ -19,8 +19,7 @@ export default new Active({
   desc,
   flavor:
     'Adapted strains able to form symbiotic relationships with other organisms',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍄️',
   activeLayout: (
     <div>

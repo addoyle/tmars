@@ -15,8 +15,7 @@ export default new Automated({
   set: 'prelude',
   desc,
   flavor: 'A tribute to those who inspired us to come',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🗽',
   layout: (

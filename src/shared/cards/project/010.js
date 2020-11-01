@@ -16,8 +16,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'Prepare to be cratered!',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="flex gutter m-top m-bottom">

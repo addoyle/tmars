@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Giving some wind protection for smaller species',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌳',
   layout: (
     <div className="m-bottom">

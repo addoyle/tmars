@@ -18,8 +18,7 @@ export default new Active({
   activeDesc,
   flavor:
     'Releasing aerosols that bind undesired gases, making them rain down to the surface',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌧',
   activeLayout: (
     <div>

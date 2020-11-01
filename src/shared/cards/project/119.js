@@ -17,8 +17,7 @@ export default new Automated({
   desc,
   flavor:
     'Tight seals to keep micron-sized dust out of buildings, vehicles and suits',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🗜️',
   layout: (

@@ -20,12 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Lessens solar influx, but enhances plant growth',
-  clientAction: game => {
-    game.activePlayer.production('plant', 2);
-    game.activePlayer.production('megacredit', -1);
-    game.pickPlayer().then(player => player.production('heat', -1));
-  },
-  serverAction: game => {
+  action: game => {
     game.activePlayer.production('plant', 2);
     game.activePlayer.production('megacredit', -1);
     game.targetPlayer.production('heat', -1);

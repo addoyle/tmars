@@ -23,8 +23,7 @@ export default new Automated({
   desc,
   flavor:
     'In a thin atmosphere, normal pressure can hold up a protective dome over the city.',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌇',
   layout: (
     <div className="flex">

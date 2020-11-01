@@ -13,8 +13,7 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Coordinating deliveries and homeworld support',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏙',
   activeLayout: (
     <div>

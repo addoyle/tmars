@@ -18,8 +18,7 @@ export default new Automated({
   set: 'promo',
   desc,
   flavor: 'Deuterium, diamonds, and delicacies',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '💶',
   layout: (

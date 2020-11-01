@@ -23,8 +23,7 @@ export default new Active({
   },
   activeDesc,
   flavor: '"42"',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🖥️',
   activeLayout: (

@@ -15,8 +15,7 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'Protecting a limited area from cosmic radiation',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🧲',
   layout: (
     <div className="text-center">

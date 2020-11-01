@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Specializing in extremely cold conditions',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦠',
   layout: (
     <div className="text-center">

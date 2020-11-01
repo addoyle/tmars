@@ -21,8 +21,7 @@ export default new Automated({
   desc,
   flavor:
     'Protected by the ice and the micro-environment it creates inside, making the ice darker',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '❄️',
   layout: (
     <div className="flex gutter m-bottom">

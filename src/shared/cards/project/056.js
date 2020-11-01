@@ -15,8 +15,7 @@ export default new Automated({
   desc,
   flavor:
     "Mars' main export industry also supplies the planet with construction materials",
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛏',
   layout: (
     <div className="flex gutter">

@@ -24,8 +24,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'A secluded area where a multitude of species develop an ecosystem',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏞️',
   activeLayout: (
     <div className="text-center">

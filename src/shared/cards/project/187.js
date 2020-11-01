@@ -17,8 +17,7 @@ export default new Active({
   activeDesc,
   flavor:
     'Underground water reservoirs may be tapped in a controlled manner, to safely build up oceans to the desired level',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌊',
   activeLayout: (
     <div>

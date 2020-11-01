@@ -12,8 +12,7 @@ export default new Active({
   tags: ['building'],
   activeDesc,
   flavor: 'Processing ore',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛏',
   activeLayout: (
     <div>

@@ -19,8 +19,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Supplying fuel and valuable minerals',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛏',
   layout: (
     <div className="flex gutter">

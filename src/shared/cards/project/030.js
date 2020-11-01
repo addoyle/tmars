@@ -16,8 +16,7 @@ export default new Automated({
   tags: ['earth', 'power'],
   desc,
   flavor: 'A huge energy beam. Difficult to collect, but who cares?',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌠',
   layout: (
     <div className="flex">

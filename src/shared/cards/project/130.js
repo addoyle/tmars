@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Milling about in the soil, ‘processing’ it',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🐛',
   layout: (
     <div className="text-center">

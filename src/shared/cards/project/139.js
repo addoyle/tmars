@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Well, see, first you need some waves...',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌊',
   layout: (

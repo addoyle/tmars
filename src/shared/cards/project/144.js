@@ -16,8 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'Titanium is useful to the space industry because of its great strength',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏗️',
   layout: (
     <div className="flex gutter">

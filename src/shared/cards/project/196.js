@@ -16,8 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'In a stationary orbit far from the planet, enabling very precise measurements',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🔭',
   layout: (

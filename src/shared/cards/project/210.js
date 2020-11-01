@@ -29,8 +29,7 @@ export default new Active({
   },
   activeDesc,
   flavor: '...self-replicating, self-replicating, self-replicating...',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🤖',
   activeLayout: (
     <div>

@@ -17,8 +17,8 @@ export default new Prelude({
   flavor:
     'The first Martians wrote their story of civilization shortly after the terraforming announcement',
   emoji: '⛺',
-  serverAction: (player, game, done) => {
-    player.production.plant++;
+  action: (player, game, done) => {
+    game.production(player, 'plant', 1);
     game.promptTile('city', player, done);
   },
   layout: (

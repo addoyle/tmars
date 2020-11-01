@@ -22,8 +22,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Living in the clouds',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏡',
   activeLayout: (
     <div>

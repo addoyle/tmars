@@ -15,8 +15,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Taking a loan to fund that urgent project',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '📉',
   layout: (
     <div className="text-center">

@@ -20,8 +20,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🏄',
   activeLayout: (

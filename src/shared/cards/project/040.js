@@ -15,8 +15,7 @@ export default new Automated({
   tags: ['jovian', 'space'],
   desc,
   flavor: 'Where gravity is low and rare minerals abound',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🌖',
   layout: (

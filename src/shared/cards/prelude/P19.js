@@ -12,10 +12,10 @@ export default new Prelude({
   desc,
   flavor: 'Metal delivery. Without brakes',
   emoji: '☄',
-  serverAction: (player, game) => {
+  action: (player, game) => {
     game.param('temperature', player);
-    player.resources.titanium += 4;
-    player.resources.steel += 4;
+    game.resources(player, 'titanium', 4);
+    game.resources(player, 'steel', 4);
   },
   layout: (
     <div className="flex m-top m-bottom">

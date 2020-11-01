@@ -16,8 +16,7 @@ export default new Active({
   activeDesc,
   flavor:
     'Super-conducting wires enircling the globe to create a magnetic field',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   clientActiveAction: () => {},
   serverActiveAction: () => {},
   emoji: '🧲',

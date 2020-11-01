@@ -15,9 +15,9 @@ export default new Prelude({
   desc,
   flavor: 'Your mettle is in your metal',
   emoji: '🏗️',
-  serverAction: player => {
-    player.production.steel += 2;
-    player.resources.steel += 4;
+  action: (player, game) => {
+    game.resources(player, 'steel', 4);
+    game.production(player, 'steel', 2);
   },
   layout: (
     <div className="flex gutter">

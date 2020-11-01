@@ -15,9 +15,9 @@ export default new Prelude({
   desc,
   flavor: 'A subcontractor providing energy and material for your projects',
   emoji: '🚚',
-  serverAction: player => {
-    player.production.power += 2;
-    player.resources.steel += 4;
+  action: (player, game) => {
+    game.resources(player, 'steel', 4);
+    game.production(player, 'power', 2);
   },
   layout: (
     <div className="flex gutter">

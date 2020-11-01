@@ -23,8 +23,7 @@ export default new Automated({
   desc,
   flavor:
     'Rolling around Mercury, always just before sunrise - time seems to stand still',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 3,
   emoji: '🌃',
   layout: (

@@ -22,8 +22,7 @@ export default new Automated({
   desc,
   flavor:
     "Scooping up hydrogen from Jupiter's upper atmosphere while aerobraking",
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🥄',
   layout: (

@@ -18,8 +18,7 @@ export default new Automated({
   desc,
   flavor:
     'It is easier to claim territories where you already have established activities',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🕳️',
   layout: (
     <div className="flex gutter">

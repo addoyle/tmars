@@ -18,8 +18,7 @@ export default new Automated({
   },
   desc,
   flavor: 'State of the art technology',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🔮',
   layout: (
     <div className="text-center">

@@ -12,8 +12,7 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Profiting on every spectacular story',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🎙',
   activeLayout: (
     <div>

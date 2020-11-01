@@ -17,8 +17,7 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'Allowing access to the harsh Venusian environment',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '👨‍🚀',
   layout: (
     <div className="flex gutter m-top m-bottom">

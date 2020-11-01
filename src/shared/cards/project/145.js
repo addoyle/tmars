@@ -21,8 +21,7 @@ export default new Automated({
   desc,
   flavor:
     'After finding ways to predict earthquakes, it was only a matter of time before it became feasible to exploit the enormous energies involved',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '😱',
   layout: (

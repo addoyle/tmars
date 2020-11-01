@@ -20,8 +20,7 @@ export default new Automated({
   desc,
   flavor:
     'The mountains on Venus’ nothern continent are full of interesting metals',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛏',
   layout: (
     <div className="flex gutter">

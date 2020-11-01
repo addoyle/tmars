@@ -15,8 +15,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Nobody will know who did it',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏴‍☠️',
   layout: (
     <div className="text-center">

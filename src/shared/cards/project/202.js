@@ -17,8 +17,7 @@ export default new Active({
   activeDesc,
   flavor:
     'Radiation from the nuclear blast is shielded, but over time, we are still getting the heat',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '💥',
   activeLayout: (
     <div>

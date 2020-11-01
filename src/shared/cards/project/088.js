@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Stabilizing the soil',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌾',
   layout: (
     <div className="m-bottom">

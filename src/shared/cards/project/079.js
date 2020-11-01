@@ -25,8 +25,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Tapping trhe very fabric of space',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌟',
   activeLayout: (
     <div>

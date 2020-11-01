@@ -18,8 +18,7 @@ export default new Active({
   activeDesc,
   flavor:
     'Expensive equipment and highly educated researchers focusing on advanced projects',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   VP: 1,
   emoji: '🔬',
   activeLayout: (

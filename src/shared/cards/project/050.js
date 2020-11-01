@@ -13,8 +13,7 @@ export default new Event({
   desc,
   flavor:
     'The virus is transient, changing from liquid to air-borne to blood transfusion',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦠',
   layout: (
     <div>

@@ -17,8 +17,7 @@ export default new Active({
   set: 'venus',
   activeDesc,
   flavor: 'Providing temperate areas for rich costumers',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛱',
   activeLayout: (
     <div>

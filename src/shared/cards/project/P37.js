@@ -19,8 +19,7 @@ export default new Automated({
   desc,
   flavor:
     'Giant lava tubes can provide protection for early settlements on Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🚇',
   layout: (
     <div className="flex gutter">

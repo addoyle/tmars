@@ -22,8 +22,7 @@ export default new Automated({
   desc,
   flavor:
     'At least we can have a decent food production allowing for rapid population increase',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🚜',
   layout: (

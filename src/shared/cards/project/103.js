@@ -13,8 +13,7 @@ export default new Active({
   activeDesc,
   flavor:
     'Turning the soil into steel and oxygen sounds good. It just takes a lot of energy',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🛠',
   activeLayout: (
     <div>

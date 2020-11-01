@@ -24,8 +24,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Inhabiting the green hills of Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦌️',
   activeLayout: (
     <div>

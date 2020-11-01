@@ -21,8 +21,7 @@ export default new Event({
   },
   desc,
   flavor: 'A spectacular sports event',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🏂',
   layout: (

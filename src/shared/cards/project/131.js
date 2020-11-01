@@ -22,8 +22,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Decomposing dead organisms is essential to making sustainable soil',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍄',
   activeLayout: (
     <div className="text-center">

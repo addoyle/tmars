@@ -17,8 +17,7 @@ export default new Active({
   set: 'venus',
   activeDesc,
   flavor: 'Connecting the atmospheric shuttles to the interplanetary flights',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🚏',
   activeLayout: (
     <div className="text-center">

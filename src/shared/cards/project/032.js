@@ -17,8 +17,7 @@ export default new Automated({
   desc,
   flavor:
     'Excavating is expensive, but given both protection and building materials',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🚇',
   layout: (
     <div className="flex">

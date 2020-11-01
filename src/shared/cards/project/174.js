@@ -17,8 +17,7 @@ export default new Automated({
   desc,
   flavor:
     'A fertile valley with higher air density and humidity, but in need of protection when the oceans rise',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏞',
   layout: (
     <div className="text-center">

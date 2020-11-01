@@ -11,8 +11,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'Bringing ice and other key supplies from the Jovian moon Europa',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '📦',
   layout: (
     <div className="text-center">

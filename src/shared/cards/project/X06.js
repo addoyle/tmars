@@ -16,7 +16,6 @@ export default new Event({
   set: 'promo',
   desc,
   flavor: 'See you in court',
-  clientAction: () => {},
   serverAction: () => {},
   vp: -1,
   emoji: '👨‍⚖️',

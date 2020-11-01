@@ -15,8 +15,7 @@ export default new Automated({
   desc,
   flavor:
     'Small, mass-produced windmills that convert some of the ever-present wind into heat',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '💨',
   layout: (
     <div className="flex gutter">

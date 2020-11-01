@@ -82,8 +82,8 @@ class GameService {
     player.cards.hand = player.cards.hand.filter(c => c !== card.card);
 
     // Perform card's action
-    if (playedCard.serverAction) {
-      playedCard.serverAction(player, game);
+    if (playedCard.action) {
+      playedCard.action(player, game);
     }
 
     return this.export(game);
@@ -136,11 +136,11 @@ class GameService {
     };
 
     // Perform card's action
-    if (playedCard.serverAction) {
-      playedCard.serverAction(player, game, done);
+    if (playedCard.action) {
+      playedCard.action(player, game, done);
 
       // Server action didn't call done, call it now
-      playedCard.serverAction.length < 3 && done();
+      playedCard.action.length < 3 && done();
     }
 
     return this.export(game);
@@ -403,7 +403,11 @@ class GameService {
     });
 
     if (game.sets.includes('prelude')) {
-      logs.push(new Log(0, [{ prelude: 'PRELUDE PHASE' }]));
+      logs.push(
+        new Log(0, [{ prelude: 'PRELUDE PHASE', drawer: 'prelude' }], true, {
+          classNames: ['phase', 'prelude']
+        })
+      );
     }
 
     LogService.pushLog(game.id, logs);

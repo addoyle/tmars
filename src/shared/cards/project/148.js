@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Pollinating flowers and spreading seeds',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🐞',
   layout: (
     <div className="text-center">

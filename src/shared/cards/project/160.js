@@ -20,8 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Dominating the energy market allows you to make hostile takovers',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🔋',
   layout: (
     <div className="flex gutter">

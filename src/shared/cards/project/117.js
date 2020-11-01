@@ -14,8 +14,7 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Utilizing heat from the core through the cracks in the crust',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '♨',
   layout: (
     <div className="text-center">

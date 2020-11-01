@@ -23,8 +23,7 @@ export default new Automated({
   desc,
   flavor:
     'With its ideal placement and all its facilities, this is the true capital of Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: () => {},
   emoji: '🏛',
   layout: (

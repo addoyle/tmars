@@ -12,8 +12,6 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'When great minds meet, new ideas abound',
-  clientEffect: () => {},
-  serverEffect: () => {},
   emoji: '🤔',
   activeLayout: (
     <div className="flex middle">

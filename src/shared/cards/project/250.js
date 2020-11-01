@@ -18,8 +18,7 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'We have too much of it anyway',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍯',
   layout: (
     <div className="flex">

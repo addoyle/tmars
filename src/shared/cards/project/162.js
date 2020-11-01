@@ -15,8 +15,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Greenhouse gases (GHGs) to retain the heat',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍾',
   layout: (
     <div className="text-center">

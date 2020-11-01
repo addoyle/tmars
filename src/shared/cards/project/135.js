@@ -16,8 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'Constructing functional, dynamic ecosystems requires many ingredients',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 3,
   emoji: '🏞',
   layout: (

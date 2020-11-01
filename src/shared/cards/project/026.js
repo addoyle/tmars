@@ -21,8 +21,7 @@ export default new Automated({
   },
   desc,
   flavor: 'A wonder of the world, doing wonders for the tourism business',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏞',
   layout: (
     <div>

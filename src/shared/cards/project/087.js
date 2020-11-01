@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Taking root in every crevice and patch of soil',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌱',
   layout: (
     <div className="m-bottom">

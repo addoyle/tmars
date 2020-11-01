@@ -15,8 +15,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'We have a better use for those resources',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏴‍☠️',
   layout: (
     <div className="text-center">

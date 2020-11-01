@@ -16,8 +16,7 @@ export default new Automated({
   tags: [],
   desc,
   flavor: 'Better insulation means lower energy spending',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🧥',
   layout: (
     <div className="text-center">

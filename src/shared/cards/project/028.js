@@ -18,8 +18,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Keeping the peace by force',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🚀',
   activeLayout: (
     <div>

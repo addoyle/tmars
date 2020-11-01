@@ -16,8 +16,7 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Simple but limited power supply',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛽',
   layout: (
     <div className="flex gutter">

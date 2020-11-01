@@ -209,7 +209,7 @@ class Game {
 
     // TODO: FOR TESTING, REMOVE
     this.players[0].cards.prelude = ['P12', 'P09'].map(card => ({ card }));
-    this.players[1].cards.prelude = ['P14', 'P16'].map(card => ({ card }));
+    this.players[1].cards.prelude = ['P14', 'P10'].map(card => ({ card }));
     this.players[2].cards.prelude = ['P17', 'P18'].map(card => ({ card }));
     this.players[3].cards.prelude = ['P19', 'P20'].map(card => ({ card }));
     this.players[4].cards.prelude = ['P21', 'P22'].map(card => ({ card }));
@@ -254,7 +254,7 @@ class Game {
       (prelude.tags || []).forEach(tag => player.tags[tag]++);
 
       // Perform prelude specific actions
-      prelude.serverAction(player, this);
+      prelude.action(player, this);
     });
   }
 
@@ -577,11 +577,29 @@ class Game {
     }
   }
 
+  /**
+   * Advance to the next turn
+   */
   nextTurn() {
     this.turn++;
     if (this.turn > this.players.length) {
       this.turn = 1;
     }
+  }
+
+  resources(player, resource, num) {
+    player.resources[resource] += num;
+    // TODO handle resource change
+  }
+
+  production(player, resource, num) {
+    player.production[resource] += num;
+    // TODO handle production change
+  }
+
+  tr(player, num) {
+    player.tr += num;
+    // TODO handle terraform change
   }
 
   /**

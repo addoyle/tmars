@@ -15,8 +15,7 @@ export default new Event({
   },
   desc,
   flavor: 'Thawing the subsurface',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '👨‍🔧',
   layout: (
     <div className="text-center">

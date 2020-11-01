@@ -25,8 +25,7 @@ export default new Active({
   desc,
   flavor:
     'A much needed base of operations in the high mountains of the Ishtar continent',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 3,
   emoji: '🌆',
   activeLayout: (

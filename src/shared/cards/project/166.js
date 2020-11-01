@@ -26,8 +26,7 @@ export default new Active({
   desc,
   flavor:
     'Aided by low gravity going up, and by the increasing atmosphere when gliding down for landing',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🚌',
   activeLayout: (

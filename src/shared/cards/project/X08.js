@@ -20,8 +20,7 @@ export default new Active({
   desc,
   flavor:
     'Debris in low Earth orbit is a steadily growing hazard for space traffic',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🛰',
   activeLayout: (

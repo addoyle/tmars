@@ -16,8 +16,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Have you tried the Venusian sulphur salmon?',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🥓',
   layout: (

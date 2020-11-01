@@ -15,9 +15,9 @@ export default new Prelude({
   desc,
   flavor: 'Numerous assets on Earth that support your Mars efforts',
   emoji: '💼',
-  serverAction: player => {
-    player.production.megacredit += 6;
-    player.resources.megacredit -= 6;
+  action: (player, game) => {
+    game.resources(player, 'megacredit', -6);
+    game.production(player, 'megacredit', 6);
   },
   layout: (
     <div className="flex gutter">

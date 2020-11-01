@@ -16,8 +16,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'Crash it. The bigger, the better',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '☄',
   layout: (
     <div className="text-center">

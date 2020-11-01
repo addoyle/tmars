@@ -17,8 +17,7 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'For the growing population',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🌽',
   layout: (

@@ -16,8 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'Fuel production and metal refining can be programmed into microorganisms',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦠️',
   layout: (
     <div className="flex gutter">

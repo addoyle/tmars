@@ -22,8 +22,7 @@ export default new Active({
   desc,
   flavor:
     'With engineered chitin carapace to withstand the corrosive environment',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🐞',
   activeLayout: (
     <div className="text-center">

@@ -17,8 +17,7 @@ export default new Automated({
   tags: ['space', 'city'],
   desc,
   flavor: 'The doorway to Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍄',
   vp: 3,
   layout: (

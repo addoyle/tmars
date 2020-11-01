@@ -21,8 +21,7 @@ export default new Active({
   desc,
   flavor:
     'Assigned to heavy industry, this area is not the nicest place on Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏭',
   activeLayout: (
     <div className="text-center">

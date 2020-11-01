@@ -18,8 +18,7 @@ export default new Active({
   desc,
   activeDesc,
   flavor: 'Suitable for freezing temperatures',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🥗',
   activeLayout: (
     <div>

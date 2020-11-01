@@ -18,8 +18,7 @@ export default new Automated({
   desc,
   flavor:
     'With its shallow gravity well, Mars is a good host for the space industry, and rockets need fuel',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '⛽',
   layout: (
     <div className="flex gutter">

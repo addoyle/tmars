@@ -12,8 +12,7 @@ export default new Active({
   tags: ['science', 'microbe'],
   activeDesc,
   flavor: 'Living on the rocks and excreting oxygen',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🦠',
   activeLayout: (
     <div>

@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Efficient soil makers',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🥦',
   layout: (
     <div className="text-center">

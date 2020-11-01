@@ -21,8 +21,7 @@ export default new Automated({
   desc,
   flavor:
     'Treating the smouldering Mercurian ground at sunset, collecting the separated molten metals',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌘',
   layout: (
     <div className="flex gutter">

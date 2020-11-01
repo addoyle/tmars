@@ -18,8 +18,7 @@ export default new Automated({
   desc,
   flavor:
     'When the population begins to soar, cities will eventually merge into large urban areas',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌃',
   layout: (
     <div className="flex gutter center">

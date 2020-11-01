@@ -14,8 +14,7 @@ export default new Automated({
   tags: ['plant'],
   desc,
   flavor: 'Suitable even for early terraforming',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍀',
   layout: (
     <div className="flex gutter m-top m-bottom">

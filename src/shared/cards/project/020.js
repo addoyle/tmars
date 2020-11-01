@@ -16,8 +16,7 @@ export default new Active({
   desc,
   flavor:
     "Using Titan's liquid methane as fuel will add carbon and heat to Mars",
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏢',
   activeLayout: (
     <div>

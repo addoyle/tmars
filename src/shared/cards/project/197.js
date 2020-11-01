@@ -17,8 +17,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Why stop at Mars?',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '🌘',
   layout: (

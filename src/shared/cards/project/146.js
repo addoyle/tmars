@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Specially made to thrive on the salty Martian rock',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🥦',
   layout: (
     <div className="text-center">

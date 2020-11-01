@@ -17,8 +17,7 @@ export default new Event({
   tags: ['earth', 'space', 'event'],
   desc,
   flavor: 'Huge delivery from Earth',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '📦',
   layout: (

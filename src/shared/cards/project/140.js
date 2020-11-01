@@ -17,8 +17,7 @@ export default new Event({
   desc,
   flavor:
     "Releasing tremendous lava flows from one of Mars' gargantuan volcanoes",
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🌋',
   layout: (
     <div className="text-center">

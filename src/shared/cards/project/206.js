@@ -12,8 +12,7 @@ export default new Event({
   tags: ['science', 'event'],
   desc,
   flavor: 'If it isn’t feasible, then make it so',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: -1,
   emoji: '📐',
   layout: (

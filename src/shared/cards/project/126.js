@@ -16,8 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'Synthesizing powerful greenhouse gases (GHGs), releasing them into the atmosphere',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🏭',
   layout: (
     <div className="flex gutter">

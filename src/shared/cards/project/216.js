@@ -19,8 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Examining the extreme environment at the lowest elevation on Venus',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '❄️',
   layout: (

@@ -12,8 +12,7 @@ export default new Event({
   set: 'venus',
   desc,
   flavor: 'There is some in the atmosphere, but not nearly enough',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🚒',
   layout: (
     <div className="text-center">

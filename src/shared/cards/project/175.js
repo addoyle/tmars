@@ -17,8 +17,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Coordinating orbital traffic',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🛰',
   layout: (
     <div className="text-center">

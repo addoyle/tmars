@@ -17,8 +17,7 @@ export default new Event({
   desc,
   flavor:
     'Less CO\u2082 on Venus and more on Mars helps terraform both planets',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍾',
   layout: (
     <div>

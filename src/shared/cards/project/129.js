@@ -21,8 +21,7 @@ export default new Automated({
   },
   desc,
   flavor: 'A relatively cheap way to travel between cities across the planet',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🎈',
   layout: (

@@ -22,8 +22,7 @@ export default new Active({
   desc,
   flavor:
     'Everybody loves penguins. And penguins love the new oceans and glaciers on Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🐧',
   activeLayout: (
     <div>

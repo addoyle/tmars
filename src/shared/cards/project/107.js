@@ -13,8 +13,7 @@ export default new Automated({
   desc,
   flavor:
     'Accessing information on past events for better planning of the future',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🗃️',
   layout: (
     <div className="m-bottom">

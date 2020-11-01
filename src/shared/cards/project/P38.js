@@ -20,8 +20,7 @@ export default new Event({
   },
   desc,
   flavor: 'A thorough investigation of the geology of Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🔦',
   vp: 1,
   layout: (

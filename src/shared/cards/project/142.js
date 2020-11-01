@@ -16,8 +16,7 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'Tunnels deep down to the molten magma, releasing heat and gases',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🕳',
   layout: (
     <div className="flex gutter">

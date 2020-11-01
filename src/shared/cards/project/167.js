@@ -14,8 +14,7 @@ export default new Event({
   tags: ['earth', 'space', 'event'],
   desc,
   flavor: 'Greenhouse gases (GHG) with improved effect',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🍾',
   layout: (
     <div className="text-center">

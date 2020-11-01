@@ -14,7 +14,7 @@ export default new Prelude({
   flavor:
     'Nothing spurs new ecological advances like having a biological testing ground',
   emoji: '🌳',
-  serverAction: (player, game, done) => {
+  action: (player, game, done) => {
     game.revealCards(
       player,
       card => card.tags.includes('plant'),

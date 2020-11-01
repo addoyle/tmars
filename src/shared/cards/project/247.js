@@ -17,8 +17,7 @@ export default new Automated({
   desc,
   flavor:
     'Allowing universities independence, but with an ‘incentive’ to help you',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🏫',
   layout: (

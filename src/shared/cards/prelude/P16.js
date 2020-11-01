@@ -16,8 +16,8 @@ export default new Prelude({
   desc,
   flavor: 'Exploring the most volcanic place in the solar system',
   emoji: '⛺',
-  serverAction: (player, game) => {
-    player.production.titanium++;
+  action: (player, game) => {
+    game.production(player, 'titanium', 1);
     game.drawCard(player);
   },
   layout: (

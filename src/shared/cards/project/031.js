@@ -17,8 +17,7 @@ export default new Active({
   activeDesc,
   flavor:
     'Perfecting the art of ballistical and material analysis can increase efficiency and save money',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🛸',
   activeLayout: (
     <div>

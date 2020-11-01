@@ -25,8 +25,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'E=mc². 1 kg = a LOT of energy',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🎆',
   activeLayout: (
     <div>

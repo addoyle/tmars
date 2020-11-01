@@ -15,8 +15,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Allowing easy access to the still quite harsh environment',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 2,
   emoji: '😷',
   layout: (

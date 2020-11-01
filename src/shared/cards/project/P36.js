@@ -16,8 +16,7 @@ export default new Automated({
   set: 'prelude',
   desc,
   flavor: 'Large scale 3D printing - on Mars',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   vp: 1,
   emoji: '🖨',
   layout: (

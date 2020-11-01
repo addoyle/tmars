@@ -12,8 +12,7 @@ export default new Event({
   desc,
   flavor:
     'Everybody seems to be more concerned with doing their best when inspectors are scheduled to arrive',
-  clientAction: () => {},
-  serverAction: () => {},
+  action: () => {},
   emoji: '🕵️',
   layout: <div className="m-top m-bottom text-center">{desc}</div>
 });
