@@ -113,7 +113,7 @@ class GameService {
 
     LogService.pushLog(
       id,
-      new Log(playerNum, [' revealed ', { prelude: card.card }])
+      new Log(playerNum, [' revealed ', { prelude: card.card }, '.'])
     );
 
     // Set tags

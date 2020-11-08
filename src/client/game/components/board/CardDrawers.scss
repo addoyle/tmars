@@ -75,6 +75,20 @@ $title-font: 'Prototype', sans-serif;
       & > span {
         vertical-align: middle;
       }
+
+      .card-count {
+        color: #333;
+        font-size: .7em;
+        margin-left: .25em;
+        vertical-align: middle;
+
+        &:before {
+          content: '(';
+        }
+        &:after {
+          content: ')';
+        }
+      }
   
       .hand {
         width: 37px;

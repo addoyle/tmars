@@ -9,6 +9,7 @@ import classnames from 'classnames';
 
 const CardDrawers = ({ gameStore }) => {
   const drawers = [
+    // Hand of cards
     {
       type: 'hand',
       tab: (
@@ -18,7 +19,14 @@ const CardDrawers = ({ gameStore }) => {
             <Param name="card back" />
             <Param name="card back" />
           </div>
-          <span>Hand</span>
+          <span>
+            Hand
+            {gameStore.player ? (
+              <span className="card-count">
+                {gameStore.player.cards.hand.length}
+              </span>
+            ) : null}
+          </span>
         </>
       ),
       mode:
@@ -29,37 +37,62 @@ const CardDrawers = ({ gameStore }) => {
           : null
     },
 
+    // Active (blue) cards
     {
       type: 'active',
       tab: (
         <>
           <Param name="card active" />
-          <span>Active</span>
+          <span>
+            Active
+            {gameStore.player ? (
+              <span className="card-count">
+                {gameStore.player.cards.active.length}
+              </span>
+            ) : null}
+          </span>
         </>
       ),
       mode: gameStore.phase === 'action' ? 'action' : null
     },
 
+    // Automated (green) cards
     {
       type: 'automated',
       tab: (
         <>
           <Param name="card automated" />
-          <span>Automated</span>
+          <span>
+            Automated
+            {gameStore.player ? (
+              <span className="card-count">
+                {gameStore.player.cards.automated.length}
+              </span>
+            ) : null}
+          </span>
         </>
       )
     },
 
+    // Event (red) cards
     {
       type: 'event',
       tab: (
         <>
           <Param name="card event" />
-          <span>Event</span>
+          <span>
+            Event
+            {gameStore.player ? (
+              <span className="card-count">
+                {gameStore.player.cards.event.length}
+              </span>
+            ) : null}
+          </span>
         </>
       )
     },
 
+    // Corporation
     {
       type: 'corp',
       tab: (
@@ -79,6 +112,7 @@ const CardDrawers = ({ gameStore }) => {
       min: 1
     },
 
+    // Preludes
     {
       type: 'prelude',
       tab: (
@@ -99,18 +133,27 @@ const CardDrawers = ({ gameStore }) => {
       min: 2
     },
 
+    // Cards available to buy
     {
       type: 'buy',
       tab: (
         <>
           <MegaCredit />
-          <span>Buy</span>
+          <span>
+            Buy
+            {gameStore.player ? (
+              <span className="card-count">
+                {gameStore.player.cards.buy.length}
+              </span>
+            ) : null}
+          </span>
         </>
       ),
       mode: 'buy',
       hidden: gameStore.phase !== 'draft' && !gameStore.player?.cards.buy.length
     },
 
+    // Cards to draft
     {
       type: 'draft',
       tab: (
@@ -121,19 +164,34 @@ const CardDrawers = ({ gameStore }) => {
               ['left', 'right'][gameStore.params.generation % 2]
             }`}
           />
-          <span>Draft</span>
+          <span>
+            Draft
+            {gameStore.player ? (
+              <span className="card-count">
+                {gameStore.player.cards.draft.length}
+              </span>
+            ) : null}
+          </span>
         </>
       ),
       mode: 'draft',
       hidden: gameStore.phase !== 'draft'
     },
 
+    // Cards revealed during a tag search
     {
       type: 'reveal',
       tab: (
         <>
           <FontAwesomeIcon icon="thumbs-up" />
-          <span>Ok</span>
+          <span>
+            Ok
+            {gameStore.player ? (
+              <span className="card-count">
+                {gameStore.player.cards.reveal?.length}
+              </span>
+            ) : null}
+          </span>
         </>
       ),
       hidden: !gameStore.player?.cards.reveal?.length,
@@ -206,6 +264,9 @@ CardDrawers.propTypes = {
           PropTypes.oneOfType([PropTypes.string, PropTypes.object])
         ),
         buy: PropTypes.arrayOf(
+          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        ),
+        reveal: PropTypes.arrayOf(
           PropTypes.oneOfType([PropTypes.string, PropTypes.object])
         )
       })
