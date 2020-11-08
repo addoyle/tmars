@@ -342,11 +342,23 @@ class Game {
   }
 
   /**
+   * Prompt for playing a card
+   *
+   * @param {object} player The player to prompt
+   * @param {func} callback Callback once the card is played
+   */
+  promptCard(player, callback) {
+    player.ui.drawer = 'hand';
+
+    callback && callback();
+  }
+
+  /**
    * Prompt for a tile placement
    *
    * @param {string} tile Tile type to place (ocean, city, greenery, or {special: 'type'})
    * @param {object} player Player placing the tile
-   * @param {func} callback Callback once the is placed
+   * @param {func} callback Callback once the tile is placed
    */
   promptTile(tile, player, callback) {
     const possibleTiles = this.findPossibleTiles(tile, player);
