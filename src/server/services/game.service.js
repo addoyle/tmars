@@ -58,17 +58,26 @@ class GameService {
    * @returns Game status
    */
   @push(gameFilter)
-  playCard(id, playerNum, card) {
+  playCard(id, playerNum, playParams) {
     const game = this.games[id];
+    const card = playParams.card;
     const player = this.getPlayer(game, playerNum);
     const playedCard = this.cardStore.project[card.card];
     const cardType = playedCard.constructor.name.toLowerCase();
 
     // TODO: Check if card is in hand
     // TODO: Check requirements
+    // TODO: Check if player can afford card
+    // TODO: Check if player can afford resources used
 
     // Decrease M€
+    // TODO: Calculate resource usage (steel, titanium, etc.)
     player.resources.megacredit -= playedCard.cost;
+
+    LogService.pushLog(
+      id,
+      new Log(playerNum, [' played ', { project: card.card }, '.'])
+    );
 
     // Set tags if card is not event
     if (cardType === 'event') {
@@ -77,14 +86,21 @@ class GameService {
       playedCard.tags.forEach(tag => player.tags[tag]++);
     }
 
-    // Put card in appropriate drawer, and remove from hand
-    player.cards[cardType].push(card.card);
-    player.cards.hand = player.cards.hand.filter(c => c !== card.card);
+    const done = () => {
+      // Put card in appropriate drawer, and remove from hand
+      player.cards[cardType].push(card.card);
+      player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
+    };
 
     // Perform card's action
     if (playedCard.action) {
-      playedCard.action(player, game);
+      playedCard.action(player, game, done);
+
+      // Server action didn't call done, call it now
+      playedCard.action.length < 3 && done();
     }
+
+    game.playerStatus?.done();
 
     return this.export(game);
   }
@@ -128,6 +144,20 @@ class GameService {
       // If both preludes have been played, advance to the next player
       if (!player.cards.prelude.filter(prelude => !prelude.disabled).length) {
         game.nextTurn();
+
+        // All preludes played, start action phase
+        if (
+          game.players.every(player =>
+            player.cards.prelude.every(prelude => prelude.disabled)
+          )
+        ) {
+          // Enable preludes
+          game.players.forEach(player =>
+            player.cards.prelude.forEach(prelude => (prelude.disabled = false))
+          );
+
+          game.beginActionPhase();
+        }
       }
     };
 
@@ -398,17 +428,8 @@ class GameService {
       );
     });
 
-    if (game.sets.includes('prelude')) {
-      logs.push(
-        new Log(0, [{ prelude: 'PRELUDE PHASE', drawer: 'prelude' }], true, {
-          classNames: ['phase', 'prelude']
-        })
-      );
-    }
-
     LogService.pushLog(game.id, logs);
 
-    // Reveal preludes
     game.forEachPlayerOrder(player => {
       // Apply corp tags, starting resources, and starting actions
       game.applyCorp(player);
@@ -417,6 +438,7 @@ class GameService {
       player.resources.megacredit -= player.cards.hand.length * 3;
     });
 
+    // Move to the next phase
     if (game.sets.includes('prelude')) {
       game.beginPreludePhase();
     } else {

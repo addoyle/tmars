@@ -30,9 +30,10 @@ const CardDrawers = ({ gameStore }) => {
         </>
       ),
       mode:
-        gameStore.phase === 'action' &&
-        gameStore.turn ===
-          new URLSearchParams(window.location.search).get('player')
+        (gameStore.phase === 'action' ||
+          (gameStore.phase === 'prelude' &&
+            gameStore.playerStatus?.modifiers)) &&
+        gameStore.turn === gameStore.player?.number
           ? 'play'
           : null
     },
@@ -239,6 +240,9 @@ CardDrawers.propTypes = {
     }),
     params: PropTypes.shape({
       generation: PropTypes.number
+    }),
+    playerStatus: PropTypes.shape({
+      modifiers: PropTypes.object
     }),
     player: PropTypes.shape({
       cards: PropTypes.shape({

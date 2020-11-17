@@ -123,5 +123,13 @@ $title-font: 'Prototype', sans-serif;
         color: black;
       }
     }
+
+    &.action {
+      background: linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
+
+      .card-ref {
+        color: black;
+      }
+    }
   }
 }

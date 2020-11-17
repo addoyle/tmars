@@ -243,22 +243,6 @@ class Game {
   }
 
   /**
-   * Add a prelude to a player
-   *
-   * @param {Player} player
-   * @param {object} prelude
-   */
-  applyPreludes(player) {
-    player.cards.prelude.forEach(card => {
-      const prelude = this.cardStore.prelude[card.card];
-      (prelude.tags || []).forEach(tag => player.tags[tag]++);
-
-      // Perform prelude specific actions
-      prelude.action(player, this);
-    });
-  }
-
-  /**
    * Draw and reveal cards until they match a particular filter
    *
    * @param {*} player Player who's drawing cards
@@ -348,9 +332,25 @@ class Game {
    * @param {func} callback Callback once the card is played
    */
   promptCard(player, callback) {
-    player.ui.drawer = 'hand';
+    player.ui = {
+      drawer: 'hand'
+    };
 
-    callback && callback();
+    this.playerStatus = {
+      player,
+      modifiers: {},
+      done: () => {
+        // Player status is resolved
+        this.playerStatus = null;
+
+        // Show UI components
+        player.ui = {
+          drawer: 'prelude'
+        };
+
+        callback && callback();
+      }
+    };
   }
 
   /**
@@ -561,6 +561,13 @@ class Game {
    * Switch to prelude phase, i.e. reveal preludes
    */
   beginPreludePhase() {
+    LogService.pushLog(
+      this.id,
+      new Log(0, [{ prelude: 'PRELUDE PHASE', drawer: 'prelude' }], true, {
+        classNames: ['phase', 'prelude']
+      })
+    );
+
     this.phase = 'prelude';
     this.turn = this.startingPlayer;
     this.players.forEach(player => (player.ui.drawer = 'prelude'));
@@ -570,8 +577,16 @@ class Game {
    * Switch to action phase
    */
   beginActionPhase() {
+    LogService.pushLog(
+      this.id,
+      new Log(0, [{ prelude: 'ACTION PHASE', drawer: 'hand' }], true, {
+        classNames: ['phase', 'action']
+      })
+    );
+
     this.phase = 'action';
     this.turn = this.startingPlayer;
+    this.players.forEach(player => (player.ui.drawer = 'hand'));
   }
 
   /**
@@ -593,6 +608,7 @@ class Game {
    * Advance to the next turn
    */
   nextTurn() {
+    // TODO: handle passes and skips
     this.turn++;
     if (this.turn > this.players.length) {
       this.turn = 1;
@@ -601,17 +617,17 @@ class Game {
 
   resources(player, resource, num) {
     player.resources[resource] += num;
-    // TODO handle resource change
+    // TODO fire resource change
   }
 
   production(player, resource, num) {
     player.production[resource] += num;
-    // TODO handle production change
+    // TODO fire production change
   }
 
   tr(player, num) {
     player.tr += num;
-    // TODO handle terraform change
+    // TODO fire terraform change
   }
 
   /**

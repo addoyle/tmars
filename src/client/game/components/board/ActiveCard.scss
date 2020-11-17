@@ -13,6 +13,7 @@ $title-font: 'Prototype', sans-serif;
   top: 35vh;
   transform: translate(-50%, -50%);
   pointer-events: none;
+  user-select: none;
 
   &.show {
     opacity: 1;

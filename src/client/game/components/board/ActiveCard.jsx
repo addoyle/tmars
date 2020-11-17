@@ -7,9 +7,7 @@ import './ActiveCard.scss';
 import { Param, MegaCredit, Resource } from '../assets/Assets';
 
 /**
- * Component for showing currently selected card
- *
- * @component
+ * Shows the currently selected card
  */
 const ActiveCard = props => {
   const activeCard = props.gameStore.activeCard;
@@ -37,23 +35,28 @@ const ActiveCard = props => {
       className={classnames('active-card', {
         show: activeCard.show
       })}
-      onMouseDown={() => setDragging(activeCard.show)}
-      onMouseUp={() => setDragging(false)}
-      onMouseMove={e => {
-        if (dragging) {
-          // Move card where mouse moves
-          e.stopPropagation();
-          containerRef.current.style.left =
-            containerRef.current.offsetLeft + e.movementX + 'px';
-          containerRef.current.style.top =
-            containerRef.current.offsetTop + e.movementY + 'px';
-        }
-      }}
-      onMouseLeave={() => setDragging(false)}
+      onMouseDown={e => e.stopPropagation()}
+      onMouseMove={e => e.stopPropagation()}
       ref={containerRef}
     >
       {activeCard.card ? (
-        <CardPreview card={activeCard.card} type={activeCard.type} />
+        <div
+          onMouseDown={() => setDragging(activeCard.show)}
+          onMouseUp={() => setDragging(false)}
+          onMouseMove={e => {
+            if (dragging) {
+              // Move card where mouse moves
+              e.stopPropagation();
+              containerRef.current.style.left =
+                containerRef.current.offsetLeft + e.movementX + 'px';
+              containerRef.current.style.top =
+                containerRef.current.offsetTop + e.movementY + 'px';
+            }
+          }}
+          onMouseLeave={() => setDragging(false)}
+        >
+          <CardPreview card={activeCard.card} type={activeCard.type} />
+        </div>
       ) : null}
       <div className="footer">
         {activeCard.mode === 'play' &&
@@ -165,7 +168,7 @@ const ActiveCard = props => {
 
           {activeCard.mode === 'play' &&
           myTurn &&
-          !props.gameStore.playerStatus ? (
+          !props.gameStore.playerStatus?.tile ? (
             activeCard.type === 'prelude' ? (
               <button
                 className="primary text-center col-1"
@@ -196,7 +199,7 @@ const ActiveCard = props => {
                   <div className="resources middle">
                     <Param name="card back" />
                   </div>
-                  <div className="center middle">Fund</div>
+                  <div className="center middle">Play</div>
                   <div className="resources middle">
                     <MegaCredit
                       value={Math.max(

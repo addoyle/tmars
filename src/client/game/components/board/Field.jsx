@@ -104,8 +104,9 @@ const Field = ({ gameStore }) => {
                     : 'blank')
                 } ${tile.icon || ''}`}
                 clickable={
+                  gameStore.playerStatus?.tile &&
                   gameStore.playerStatus?.player.number ===
-                  gameStore.player?.number
+                    gameStore.player?.number
                     ? tile.clickable
                     : undefined
                 }
