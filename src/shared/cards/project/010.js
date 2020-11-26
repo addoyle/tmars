@@ -16,7 +16,15 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'Prepare to be cratered!',
-  action: () => {},
+  action: (player, game, done) => {
+    game.param('temperature', player);
+    game.promptTile('ocean', player, () =>
+      game.promptPlayer(
+        targetPlayer => game.resources(targetPlayer, 'plant', -3),
+        done
+      )
+    );
+  },
   emoji: '☄',
   layout: (
     <div className="flex gutter m-top m-bottom">

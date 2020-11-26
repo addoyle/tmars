@@ -250,7 +250,8 @@ ActiveCard.propTypes = {
       resources: PropTypes.shape({
         steel: PropTypes.number,
         titanium: PropTypes.number
-      })
+      }),
+      number: PropTypes.number
     }),
     playerStatus: PropTypes.object
   }).isRequired,

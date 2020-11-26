@@ -7,8 +7,9 @@ import GameService from '../services/game.service';
  * @param {*} req
  * @param {*} res
  */
-export function getAll(req, res) {
-  res.send(GameService.games[req.params.id].log);
+export async function getAll(req, res) {
+  const game = await GameService.getGame(req.params.id);
+  res.send(game.log);
 }
 
 /**

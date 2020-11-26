@@ -67,7 +67,7 @@ const CardDrawer = props => {
             <div className="resources middle">
               <Param name="card back" />
             </div>
-            <span className="middle">Buy {numSelected} Cards</span>
+            <span className="middle">Comfirm {numSelected} Cards</span>
             <div className="resources middle">
               <MegaCredit value={numSelected * 3} />
             </div>
@@ -162,8 +162,12 @@ CardDrawer.propTypes = {
     switchDrawer: PropTypes.func,
     phase: PropTypes.string,
     player: PropTypes.shape({
+      resources: PropTypes.shape({
+        megacredit: PropTypes.number
+      }),
       cards: PropTypes.shape({
-        onDeck: PropTypes.arrayOf(PropTypes.array)
+        onDeck: PropTypes.arrayOf(PropTypes.array),
+        corp: PropTypes.array
       })
     }),
     activeCard: PropTypes.shape({

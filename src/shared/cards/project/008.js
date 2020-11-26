@@ -23,7 +23,11 @@ export default new Automated({
   desc,
   flavor:
     'With its ideal placement and all its facilities, this is the true capital of Mars',
-  action: () => {},
+  action: (game, player, done) => {
+    game.production(player, 'power', -2);
+    game.production(player, 'megacredit', 5);
+    game.promptTile('capital', player, done);
+  },
   vp: () => {},
   emoji: '🏛',
   layout: (

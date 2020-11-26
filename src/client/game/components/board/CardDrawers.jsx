@@ -273,7 +273,8 @@ CardDrawers.propTypes = {
         reveal: PropTypes.arrayOf(
           PropTypes.oneOfType([PropTypes.string, PropTypes.object])
         )
-      })
+      }),
+      number: PropTypes.number
     })
   })
 };

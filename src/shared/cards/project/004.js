@@ -20,10 +20,10 @@ export default new Automated({
   },
   desc,
   flavor: 'Lessens solar influx, but enhances plant growth',
-  action: game => {
-    game.activePlayer.production('plant', 2);
-    game.activePlayer.production('megacredit', -1);
-    game.targetPlayer.production('heat', -1);
+  action: (player, game) => {
+    game.production(player, 'megacredit', -1);
+    game.production(player, 'heat', -1);
+    game.production(player, 'plant', 2);
   },
   emoji: '⛅',
   layout: (

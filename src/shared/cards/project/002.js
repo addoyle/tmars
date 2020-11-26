@@ -22,10 +22,12 @@ export default new Automated({
   vp: 1,
   desc,
   flavor: 'Your hold on the titanium market tightens',
-  action: game => {
-    // TODO: pseudo code
-    game.activePlayer.production('titanium', 1);
-    game.targetPlayer.production('titanium', -1);
+  action: (player, game, done) => {
+    game.production(player, 'titanium', 1);
+    game.promptPlayer(
+      targetPlayer => game.production(targetPlayer, 'titanium', -1),
+      done
+    );
   },
   emoji: '🌘',
   layout: (

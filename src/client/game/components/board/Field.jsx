@@ -151,7 +151,8 @@ const tilePropType = PropTypes.shape({
   attrs: PropTypes.arrayOf(PropTypes.string),
   text: PropTypes.string,
   player: PropTypes.number,
-  set: PropTypes.string
+  set: PropTypes.string,
+  label: PropTypes.string
 });
 
 Field.propTypes = {
@@ -162,7 +163,8 @@ Field.propTypes = {
     playerStatus: PropTypes.shape({
       player: PropTypes.shape({
         number: PropTypes.number
-      })
+      }),
+      tile: PropTypes.oneOf([PropTypes.string, PropTypes.object])
     }),
     player: PropTypes.shape({
       number: PropTypes.number

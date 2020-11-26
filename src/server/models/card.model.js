@@ -30,7 +30,7 @@ export default class CardModel {
         corporation: this.corporation,
         prelude: this.prelude
       } = res
-        .map(card => card.default.default)
+        .map(card => card.default)
         .reduce(
           (cards, card) => {
             cards[

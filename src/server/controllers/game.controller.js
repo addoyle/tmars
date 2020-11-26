@@ -1,56 +1,56 @@
 import GameService from '../services/game.service';
 
 // FIXME: Temporary games
-import Game from '../models/game.model';
-import Player from '../models/player.model';
-setTimeout(() => {
-  const game = new Game(GameService.cardStore);
-  game.players = [
-    new Player('Andy'),
-    new Player('Frank'),
-    new Player('Colin'),
-    new Player('Larissa'),
-    new Player('Adrian')
-  ];
-  game.board = 'Tharsis';
-  game.sets = ['corporate', 'promo', 'prelude', 'venus'];
-
-  game.init();
-
-  // Pick cards for people
-  game.players.forEach(player => {
-    player.cards.corp = [player.cards.corp[0]];
-    player.cards.prelude = [player.cards.prelude[0], player.cards.prelude[1]];
-    player.cards.hand = [
-      player.cards.buy[0],
-      player.cards.buy[1],
-      player.cards.buy[2],
-      player.cards.buy[3],
-      player.cards.buy[4]
-    ];
-    player.cards.buy = [];
-  });
-
-  GameService.registerGame(game, '123');
-  setTimeout(() => {
-    GameService.checkStartPhaseDone(game);
-  }, 1000);
-}, 1000);
+// import Game from '../models/game.model';
+// import Player from '../models/player.model';
 // setTimeout(() => {
 //   const game = new Game(GameService.cardStore);
 //   game.players = [
-//     new Player('Jim'),
-//     new Player('Bob'),
-//     new Player('Stan'),
-//     new Player('Carl')
+//     new Player('Andy'),
+//     new Player('Frank'),
+//     new Player('Colin'),
+//     new Player('Larissa'),
+//     new Player('Adrian')
 //   ];
-//   game.board = 'Elysium';
-//   game.sets = ['corporate', 'promo'];
+//   game.board = 'Tharsis';
+//   game.sets = ['corporate', 'promo', 'prelude', 'venus'];
 
 //   game.init();
 
-//   GameService.registerGame(game, '1234');
+//   // Pick cards for people
+//   // game.players.forEach(player => {
+//   //   player.cards.corp = [player.cards.corp[0]];
+//   //   player.cards.prelude = [player.cards.prelude[0], player.cards.prelude[1]];
+//   //   player.cards.hand = [
+//   //     player.cards.buy[0],
+//   //     player.cards.buy[1],
+//   //     player.cards.buy[2],
+//   //     player.cards.buy[3],
+//   //     player.cards.buy[4]
+//   //   ];
+//   //   player.cards.buy = [];
+//   // });
+
+//   GameService.registerGame(game, '123');
+//   // setTimeout(() => {
+//   //   GameService.checkStartPhaseDone(game);
+//   // }, 1000);
 // }, 1000);
+// // setTimeout(() => {
+// //   const game = new Game(GameService.cardStore);
+// //   game.players = [
+// //     new Player('Jim'),
+// //     new Player('Bob'),
+// //     new Player('Stan'),
+// //     new Player('Carl')
+// //   ];
+// //   game.board = 'Elysium';
+// //   game.sets = ['corporate', 'promo'];
+
+// //   game.init();
+
+// //   GameService.registerGame(game, '1234');
+// // }, 1000);
 
 /**
  * Get the current state of the game (should only be used on page load)
@@ -58,14 +58,17 @@ setTimeout(() => {
  * @param {*} req
  * @param {*} res
  */
-export function getGame(req, res) {
-  if (!GameService.games[req.params.id]) {
+export async function getGame(req, res) {
+  const game = await GameService.getAndExportGame(
+    req.params.id,
+    req.query.player
+  );
+
+  if (!game) {
     return res.sendStatus(404);
   }
 
-  const game = GameService.games[req.params.id];
-
-  res.send(game.export());
+  res.send(game);
 }
 
 /**

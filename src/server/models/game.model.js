@@ -81,8 +81,12 @@ class Game {
    * Constructor
    * @param {CardModel} cardStore
    */
-  constructor(cardStore) {
+  constructor(cardStore, game) {
     this.cardStore = cardStore;
+
+    if (game) {
+      Object.assign(this, game);
+    }
   }
 
   /**
@@ -165,14 +169,12 @@ class Game {
       startLog.body.push(', ');
     }
     startLog.body.push('and buy cards for your ');
-    startLog.body.push({ project: 'starting hand', drawer: 'hand' });
+    startLog.body.push({ project: 'starting hand', drawer: 'buy' });
     startLog.body.push('.');
     this.log.push(startLog);
 
     // Choose starting player
     this.startingPlayer = Math.floor(Math.random() * this.players.length) + 1;
-    // TODO: FOR TESTING, REMOVE
-    // this.startingPlayer = 1;
     this.log.push(
       new Log(this.startingPlayer, ' will be your starting player!')
     );
@@ -206,13 +208,6 @@ class Game {
     } else {
       this.players.forEach(player => (player.tr = 20));
     }
-
-    // TODO: FOR TESTING, REMOVE
-    this.players[0].cards.prelude = ['P12', 'P09'].map(card => ({ card }));
-    this.players[1].cards.prelude = ['P14', 'P10'].map(card => ({ card }));
-    this.players[2].cards.prelude = ['P17', 'P18'].map(card => ({ card }));
-    this.players[3].cards.prelude = ['P19', 'P20'].map(card => ({ card }));
-    this.players[4].cards.prelude = ['P21', 'P22'].map(card => ({ card }));
   }
 
   /**

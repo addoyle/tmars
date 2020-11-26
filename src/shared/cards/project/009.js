@@ -12,7 +12,14 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'What are those plants in our impact zone?',
-  action: () => {},
+  action: (player, game, done) => {
+    game.param('temperature', player);
+    game.resources(player, 'titanium', 2);
+    game.promptPlayer(
+      targetPlayer => game.resources(targetPlayer, 'plant', -3),
+      done
+    );
+  },
   emoji: '☄',
   layout: (
     <div className="flex gutter m-top m-bottom">

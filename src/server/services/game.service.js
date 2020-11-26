@@ -2,8 +2,14 @@ import Service, { sse, push } from './Service';
 import CardStore from '../models/card.model';
 import LogService from './log.service';
 import Log from '../models/log.model';
+import Game from '../models/game.model';
 import shortid from 'shortid';
 import { isString } from 'lodash';
+import redis from 'redis';
+import { promisify } from 'util';
+
+const client = redis.createClient();
+const redisGet = promisify(client.get).bind(client);
 
 /**
  * Push filter to prevent other player's cards to be shared with other players
@@ -47,6 +53,32 @@ class GameService {
     game.id = id;
 
     return id;
+  }
+
+  /**
+   * Gets the current state of the game
+   *
+   * @param {*} id Game ID
+   */
+  async getGame(id) {
+    if (!this.games[id]) {
+      this.games[id] = new Game(this.cardStore, JSON.parse(await redisGet(id)));
+    }
+
+    return this.games[id];
+  }
+
+  /**
+   * Gets the current state of the game and converts to a format that can be exported to the UI
+   *
+   * @param {*} id Game ID
+   * @param {*} player Player number
+   */
+  async getAndExportGame(id, player) {
+    const game = await this.getGame(id);
+    return gameFilter(this.export(game), {
+      req: { query: { player } }
+    });
   }
 
   /**
@@ -479,6 +511,11 @@ class GameService {
    * @param {Game} game The game
    */
   export(game) {
+    // eslint-disable-next-line no-unused-vars
+    const { cardStore, ...gameNoStore } = game;
+
+    client.set(game.id, JSON.stringify(gameNoStore), () => {});
+
     return game.export();
   }
 }
