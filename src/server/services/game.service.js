@@ -52,6 +52,11 @@ class GameService {
     this.games[id] = game;
     game.id = id;
 
+    // eslint-disable-next-line no-unused-vars
+    const { cardStore, ...gameNoStore } = game;
+
+    client.set(id, JSON.stringify(gameNoStore), () => {});
+
     return id;
   }
 

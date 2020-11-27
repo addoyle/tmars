@@ -147,7 +147,7 @@ class Game {
     this.player = game.players[+PLAYER_NUM - 1];
 
     // Update player specific UI states
-    Object.assign(this, this.player.ui);
+    this.player.ui && Object.assign(this, this.player.ui);
   }
 
   @action

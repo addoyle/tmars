@@ -1,0 +1,1335 @@
+{
+  "sets": [
+    "corporate",
+    "promo",
+    "prelude",
+    "venus"
+  ],
+  "players": [
+    {
+      "name": "Andy",
+      "number": 1,
+      "tr": 20,
+      "resources": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "production": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "tags": {
+        "building": 0,
+        "space": 0,
+        "power": 0,
+        "science": 0,
+        "jovian": 0,
+        "earth": 0,
+        "plant": 0,
+        "microbe": 0,
+        "animal": 0,
+        "city": 0,
+        "venus": 0,
+        "event": 0
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [],
+        "draft": [],
+        "active": [],
+        "buy": [
+          { "card": "039" },
+          { "card": "107" },
+          { "card": "006" },
+          { "card": "050" },
+          { "card": "097" },
+          { "card": "213" },
+          { "card": "044" },
+          { "card": "126" },
+          { "card": "236" },
+          { "card": "057" }
+        ],
+        "automated": [],
+        "event": [],
+        "corp": [
+          { "card": "P02" },
+          { "card": "011" },
+          { "card": "000" }
+        ],
+        "prelude": [
+          { "card": "P04" },
+          { "card": "P14" },
+          { "card": "P08" },
+          { "card": "P28" }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {},
+      "modifiers": {}
+    },
+    {
+      "name": "Frank",
+      "number": 2,
+      "tr": 20,
+      "resources": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "production": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "tags": {
+        "building": 0,
+        "space": 0,
+        "power": 0,
+        "science": 0,
+        "jovian": 0,
+        "earth": 0,
+        "plant": 0,
+        "microbe": 0,
+        "animal": 0,
+        "city": 0,
+        "venus": 0,
+        "event": 0
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [],
+        "draft": [],
+        "active": [],
+        "buy": [
+          { "card": "230" },
+          { "card": "219" },
+          { "card": "036" },
+          { "card": "260" },
+          { "card": "P40" },
+          { "card": "173" },
+          { "card": "214" },
+          { "card": "001" },
+          { "card": "051" },
+          { "card": "145" }
+        ],
+        "automated": [],
+        "event": [],
+        "corp": [
+          { "card": "X01" },
+          { "card": "P03" },
+          { "card": "000" }
+        ],
+        "prelude": [
+          { "card": "P22" },
+          { "card": "P10" },
+          { "card": "P13" },
+          { "card": "P18" }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {},
+      "modifiers": {}
+    },
+    {
+      "name": "Colin",
+      "number": 3,
+      "tr": 20,
+      "resources": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "production": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "tags": {
+        "building": 0,
+        "space": 0,
+        "power": 0,
+        "science": 0,
+        "jovian": 0,
+        "earth": 0,
+        "plant": 0,
+        "microbe": 0,
+        "animal": 0,
+        "city": 0,
+        "venus": 0,
+        "event": 0
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [],
+        "draft": [],
+        "active": [],
+        "buy": [
+          { "card": "234" },
+          { "card": "096" },
+          { "card": "087" },
+          { "card": "002" },
+          { "card": "109" },
+          { "card": "140" },
+          { "card": "035" },
+          { "card": "199" },
+          { "card": "223" },
+          { "card": "094" }
+        ],
+        "automated": [],
+        "event": [],
+        "corp": [
+          { "card": "001" },
+          { "card": "020" },
+          { "card": "000" }
+        ],
+        "prelude": [
+          { "card": "P26" },
+          { "card": "P20" },
+          { "card": "P01" },
+          { "card": "P02" }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {},
+      "modifiers": {}
+    },
+    {
+      "name": "Larissa",
+      "number": 4,
+      "tr": 20,
+      "resources": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "production": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "tags": {
+        "building": 0,
+        "space": 0,
+        "power": 0,
+        "science": 0,
+        "jovian": 0,
+        "earth": 0,
+        "plant": 0,
+        "microbe": 0,
+        "animal": 0,
+        "city": 0,
+        "venus": 0,
+        "event": 0
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [],
+        "draft": [],
+        "active": [],
+        "buy": [
+          { "card": "175" },
+          { "card": "216" },
+          { "card": "237" },
+          { "card": "238" },
+          { "card": "227" },
+          { "card": "041" },
+          { "card": "206" },
+          { "card": "095" },
+          { "card": "026" },
+          { "card": "164" }
+        ],
+        "automated": [],
+        "event": [],
+        "corp": [
+          { "card": "015" },
+          { "card": "009" },
+          { "card": "000" }
+        ],
+        "prelude": [
+          { "card": "P05" },
+          { "card": "P29" },
+          { "card": "P30" },
+          { "card": "P25" }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {},
+      "modifiers": {}
+    },
+    {
+      "name": "Adrian",
+      "number": 5,
+      "tr": 20,
+      "resources": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "production": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "tags": {
+        "building": 0,
+        "space": 0,
+        "power": 0,
+        "science": 0,
+        "jovian": 0,
+        "earth": 0,
+        "plant": 0,
+        "microbe": 0,
+        "animal": 0,
+        "city": 0,
+        "venus": 0,
+        "event": 0
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [],
+        "draft": [],
+        "active": [],
+        "buy": [
+          { "card": "064" },
+          { "card": "217" },
+          { "card": "033" },
+          { "card": "161" },
+          { "card": "066" },
+          { "card": "243" },
+          { "card": "093" },
+          { "card": "184" },
+          { "card": "163" },
+          { "card": "225" }
+        ],
+        "automated": [],
+        "event": [],
+        "corp": [
+          { "card": "004" },
+          { "card": "019" },
+          { "card": "000" }
+        ],
+        "prelude": [
+          { "card": "P12" },
+          { "card": "P27" },
+          { "card": "P34" },
+          { "card": "P21" }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {},
+      "modifiers": {}
+    }
+  ],
+  "turn": 0,
+  "startingPlayer": 4,
+  "params": {
+    "temperature": -30,
+    "oxygen": 0,
+    "ocean": 9,
+    "generation": 1,
+    "venus": 0
+  },
+  "variants": {
+    "draft": false,
+    "wgt": false
+  },
+  "board": "Tharsis",
+  "field": [
+    [
+      {
+        "resources": [
+          0,
+          0,
+          "steel",
+          "steel"
+        ],
+        "id": 0
+      },
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 1
+      },
+      {
+        "id": 2
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 3
+      },
+      {
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 4
+      }
+    ],
+    [
+      {
+        "id": 5
+      },
+      {
+        "resources": [
+          "steel"
+        ],
+        "text": "Tharsis Tholus",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 6
+      },
+      {
+        "id": 7
+      },
+      {
+        "id": 8
+      },
+      {
+        "id": 9
+      },
+      {
+        "resources": [
+          "card",
+          "card"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 10
+      }
+    ],
+    [
+      {
+        "resources": [
+          "card"
+        ],
+        "text": "Ascraeus Mons",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 11
+      },
+      {
+        "id": 12
+      },
+      {
+        "id": 13
+      },
+      {
+        "id": 14
+      },
+      {
+        "id": 15
+      },
+      {
+        "id": 16
+      },
+      {
+        "resources": [
+          "steel"
+        ],
+        "id": 17
+      }
+    ],
+    [
+      {
+        "resources": [
+          "titanium",
+          "plant"
+        ],
+        "text": "Pavonis Mons",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 18
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 19
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 20
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 21
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 22
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 23
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 24
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 25
+      }
+    ],
+    [
+      {
+        "resources": [
+          "plant",
+          0,
+          "plant"
+        ],
+        "text": "Arsia Mons",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 26
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 27
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-noctis-city"
+        ],
+        "text": "Noctis City",
+        "id": 28
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 29
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 30
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 31
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 32
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 33
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 34
+      }
+    ],
+    [
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 35
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 36
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 37
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 38
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 39
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 40
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 41
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 42
+      }
+    ],
+    [
+      {
+        "id": 43
+      },
+      {
+        "id": 44
+      },
+      {
+        "id": 45
+      },
+      {
+        "id": 46
+      },
+      {
+        "id": 47
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 48
+      },
+      {
+        "id": 49
+      }
+    ],
+    [
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "id": 50
+      },
+      {
+        "id": 51
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "id": 52
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "id": 53
+      },
+      {
+        "id": 54
+      },
+      {
+        "resources": [
+          "titanium"
+        ],
+        "id": 55
+      }
+    ],
+    [
+      {
+        "resources": [
+          "steel"
+        ],
+        "id": 56
+      },
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "id": 57
+      },
+      {
+        "id": 58
+      },
+      {
+        "id": 59
+      },
+      {
+        "resources": [
+          "titanium",
+          "titanium"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 60
+      }
+    ]
+  ],
+  "milestones": [
+    {
+      "name": "Terraformer",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "tr"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 35,
+      "description": "Have a terraform rating of at least 35",
+      "color": "#e24e26",
+      "highlight": "rgba(255,165,0,.5)"
+    },
+    {
+      "name": "Mayor",
+      "icon": {
+        "type": {
+          "isMobxInjector": true,
+          "displayName": "inject-with-gameStore(Tile)",
+          "wrappedComponent": {
+            "compare": null,
+            "propTypes": {},
+            "displayName": "Tile"
+          }
+        },
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "city"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 3,
+      "description": "Own at least 3 city tiles",
+      "color": "#666",
+      "highlight": "rgba(255,255,255,.9)"
+    },
+    {
+      "name": "Gardener",
+      "icon": {
+        "type": {
+          "isMobxInjector": true,
+          "displayName": "inject-with-gameStore(Tile)",
+          "wrappedComponent": {
+            "compare": null,
+            "propTypes": {},
+            "displayName": "Tile"
+          }
+        },
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "greenery",
+          "noOxygen": true
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 3,
+      "description": "Own at least 3 greenery tiles",
+      "color": "#52af3c",
+      "highlight": "rgba(173,255,47,.5)"
+    },
+    {
+      "name": "Builder",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "building"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 8,
+      "description": "Have at least 8 building tags in play",
+      "color": "#805835",
+      "highlight": "rgba(185,153,121,.7)"
+    },
+    {
+      "name": "Planner",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "card back"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 16,
+      "description": "Have at least 16 cards in your hand when you claim this milestone",
+      "color": "#39557c",
+      "highlight": "rgba(135,206,235,.7)"
+    }
+  ],
+  "awards": [
+    {
+      "name": "Landlord",
+      "icon": {
+        "type": {
+          "isMobxInjector": true,
+          "displayName": "inject-with-gameStore(Tile)",
+          "wrappedComponent": {
+            "compare": null,
+            "propTypes": {},
+            "displayName": "Tile"
+          }
+        },
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "blank-city capital",
+          "noIcon": true,
+          "children": {
+            "type": "div",
+            "key": null,
+            "ref": null,
+            "props": {
+              "className": "icon-text",
+              "children": "X"
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Own the most tiles in play"
+    },
+    {
+      "name": "Banker",
+      "icon": {
+        "key": "banker",
+        "ref": null,
+        "props": {
+          "children": {
+            "type": "div",
+            "key": null,
+            "ref": null,
+            "props": {
+              "className": "flex",
+              "children": {
+                "key": null,
+                "ref": null,
+                "props": {},
+                "_owner": null,
+                "_store": {}
+              }
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Have the highest M€ production"
+    },
+    {
+      "name": "Scientist",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "science"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Have the most science tags in play"
+    },
+    {
+      "name": "Thermalist",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "heat"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Have the most heat resources"
+    },
+    {
+      "name": "Miner",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "children": [
+            {
+              "key": "miner-steel",
+              "ref": null,
+              "props": {
+                "name": "steel"
+              },
+              "_owner": null,
+              "_store": {}
+            },
+            {
+              "key": "miner-titanium",
+              "ref": null,
+              "props": {
+                "name": "titanium"
+              },
+              "_owner": null,
+              "_store": {}
+            }
+          ]
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Have the most steel and titanium resources"
+    }
+  ],
+  "phase": "start",
+  "log": [
+    {
+      "player": 0,
+      "body": "Welcome to Terraforming Mars!",
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "You are terraforming **Tharsis**, ",
+        "the land of volcanics!"
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "Please select 1 ",
+        {
+          "corp": "Corporation",
+          "drawer": "corp"
+        },
+        ", 2 ",
+        {
+          "prelude": "Preludes",
+          "drawer": "prelude"
+        },
+        ", ",
+        "and buy cards for your ",
+        {
+          "project": "starting hand",
+          "drawer": "buy"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": " will be your starting player!",
+      "system": true
+    }
+  ],
+  "cards": {
+    "deck": [
+      { "card": "203" },
+      { "card": "201" },
+      { "card": "102" },
+      { "card": "207" },
+      { "card": "135" },
+      { "card": "077" },
+      { "card": "208" },
+      { "card": "235" },
+      { "card": "040" },
+      { "card": "241" },
+      { "card": "080" },
+      { "card": "187" },
+      { "card": "147" },
+      { "card": "119" },
+      { "card": "014" },
+      { "card": "176" },
+      { "card": "252" },
+      { "card": "063" },
+      { "card": "031" },
+      { "card": "114" },
+      { "card": "131" },
+      { "card": "179" },
+      { "card": "204" },
+      { "card": "010" },
+      { "card": "045" },
+      { "card": "130" },
+      { "card": "105" },
+      { "card": "103" },
+      { "card": "202" },
+      { "card": "167" },
+      { "card": "091" },
+      { "card": "128" },
+      { "card": "081" },
+      { "card": "X02" },
+      { "card": "070" },
+      { "card": "032" },
+      { "card": "224" },
+      { "card": "129" },
+      { "card": "061" },
+      { "card": "075" },
+      { "card": "074" },
+      { "card": "182" },
+      { "card": "149" },
+      { "card": "062" },
+      { "card": "P37" },
+      { "card": "084" },
+      { "card": "X01" },
+      { "card": "181" },
+      { "card": "166" },
+      { "card": "197" },
+      { "card": "P39" },
+      { "card": "078" },
+      { "card": "037" },
+      { "card": "X07" },
+      { "card": "106" },
+      { "card": "055" },
+      { "card": "047" },
+      { "card": "198" },
+      { "card": "X05" },
+      { "card": "133" },
+      { "card": "231" },
+      { "card": "228" },
+      { "card": "142" },
+      { "card": "162" },
+      { "card": "248" },
+      { "card": "X03" },
+      { "card": "261" },
+      { "card": "136" },
+      { "card": "085" },
+      { "card": "138" },
+      { "card": "177" },
+      { "card": "141" },
+      { "card": "X10" },
+      { "card": "174" },
+      { "card": "212" },
+      { "card": "021" },
+      { "card": "086" },
+      { "card": "023" },
+      { "card": "058" },
+      { "card": "152" },
+      { "card": "180" },
+      { "card": "015" },
+      { "card": "122" },
+      { "card": "052" },
+      { "card": "144" },
+      { "card": "089" },
+      { "card": "046" },
+      { "card": "185" },
+      { "card": "101" },
+      { "card": "012" },
+      { "card": "071" },
+      { "card": "256" },
+      { "card": "249" },
+      { "card": "127" },
+      { "card": "132" },
+      { "card": "088" },
+      { "card": "016" },
+      { "card": "117" },
+      { "card": "073" },
+      { "card": "038" },
+      { "card": "P38" },
+      { "card": "251" },
+      { "card": "209" },
+      { "card": "253" },
+      { "card": "186" },
+      { "card": "218" },
+      { "card": "110" },
+      { "card": "168" },
+      { "card": "022" },
+      { "card": "190" },
+      { "card": "125" },
+      { "card": "165" },
+      { "card": "099" },
+      { "card": "098" },
+      { "card": "011" },
+      { "card": "007" },
+      { "card": "079" },
+      { "card": "151" },
+      { "card": "083" },
+      { "card": "171" },
+      { "card": "254" },
+      { "card": "205" },
+      { "card": "146" },
+      { "card": "246" },
+      { "card": "210" },
+      { "card": "003" },
+      { "card": "259" },
+      { "card": "258" },
+      { "card": "069" },
+      { "card": "255" },
+      { "card": "072" },
+      { "card": "P41" },
+      { "card": "215" },
+      { "card": "137" },
+      { "card": "195" },
+      { "card": "008" },
+      { "card": "247" },
+      { "card": "189" },
+      { "card": "019" },
+      { "card": "111" },
+      { "card": "024" },
+      { "card": "245" },
+      { "card": "123" },
+      { "card": "042" },
+      { "card": "115" },
+      { "card": "183" },
+      { "card": "X06" },
+      { "card": "005" },
+      { "card": "242" },
+      { "card": "018" },
+      { "card": "082" },
+      { "card": "120" },
+      { "card": "027" },
+      { "card": "150" },
+      { "card": "065" },
+      { "card": "092" },
+      { "card": "017" },
+      { "card": "043" },
+      { "card": "112" },
+      { "card": "233" },
+      { "card": "211" },
+      { "card": "188" },
+      { "card": "239" },
+      { "card": "257" },
+      { "card": "143" },
+      { "card": "200" },
+      { "card": "244" },
+      { "card": "192" },
+      { "card": "124" },
+      { "card": "068" },
+      { "card": "076" },
+      { "card": "034" },
+      { "card": "X11" },
+      { "card": "113" },
+      { "card": "108" },
+      { "card": "060" },
+      { "card": "049" },
+      { "card": "196" },
+      { "card": "194" },
+      { "card": "X04" },
+      { "card": "029" },
+      { "card": "232" },
+      { "card": "004" },
+      { "card": "121" },
+      { "card": "229" },
+      { "card": "222" },
+      { "card": "009" },
+      { "card": "191" },
+      { "card": "118" },
+      { "card": "158" },
+      { "card": "170" },
+      { "card": "013" },
+      { "card": "025" },
+      { "card": "226" },
+      { "card": "090" },
+      { "card": "067" },
+      { "card": "054" },
+      { "card": "116" },
+      { "card": "020" },
+      { "card": "220" },
+      { "card": "250" },
+      { "card": "240" },
+      { "card": "104" },
+      { "card": "P36" },
+      { "card": "172" },
+      { "card": "159" },
+      { "card": "059" },
+      { "card": "048" },
+      { "card": "139" },
+      { "card": "153" },
+      { "card": "134" },
+      { "card": "221" },
+      { "card": "056" },
+      { "card": "028" },
+      { "card": "178" },
+      { "card": "157" },
+      { "card": "155" },
+      { "card": "148" },
+      { "card": "154" },
+      { "card": "160" },
+      { "card": "X08" },
+      { "card": "156" },
+      { "card": "030" },
+      { "card": "193" },
+      { "card": "169" },
+      { "card": "P42" },
+      { "card": "X12" },
+      { "card": "053" },
+      { "card": "100" }
+    ],
+    "discard": [],
+    "corps": [
+      { "card": "007" },
+      { "card": "008" },
+      { "card": "013" },
+      { "card": "X02" },
+      { "card": "018" },
+      { "card": "014" },
+      { "card": "X03" },
+      { "card": "002" },
+      { "card": "017" },
+      { "card": "010" },
+      { "card": "P05" },
+      { "card": "016" },
+      { "card": "P01" },
+      { "card": "012" },
+      { "card": "003" },
+      { "card": "006" },
+      { "card": "P04" },
+      { "card": "005" }
+    ],
+    "preludes": [
+      { "card": "P33" },
+      { "card": "P31" },
+      { "card": "P35" },
+      { "card": "P15" },
+      { "card": "P16" },
+      { "card": "P19" },
+      { "card": "P09" },
+      { "card": "P24" },
+      { "card": "P06" },
+      { "card": "P11" },
+      { "card": "P23" },
+      { "card": "P07" },
+      { "card": "P03" },
+      { "card": "P32" },
+      { "card": "P17" }
+    ]
+  },
+  "queue": []
+}
