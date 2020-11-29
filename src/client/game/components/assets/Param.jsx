@@ -15,8 +15,8 @@ const Param = props => (
     className={classNames('param', props.name, { anyone: props.anyone })}
     style={props.style}
   >
-    {props.tag ? <Tag name={props.tag} /> : ''}
-    {props.resource ? <Resource name={props.resource} /> : ''}
+    {props.tag ? <Tag name={props.tag} /> : null}
+    {props.resource ? <Resource name={props.resource} /> : null}
     {props.name.includes('card') &&
     props.name.match(/active|event|automated|prelude/) ? (
       <>

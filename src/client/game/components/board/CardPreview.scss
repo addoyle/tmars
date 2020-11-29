@@ -13,16 +13,7 @@
 
   > .card {
     font-size: #{'min(33vh, 300px)'};
-  }
-
-  &.select > .card {
-    box-shadow: 0 0 0 0.01em #d65914 inset;
-    background-color: #fee00b;
-
-    &.prelude {
-      box-shadow: 0 0 0 0.01em #79277c inset;
-      background-color: #cb3499;
-    }
+    top: 0;
   }
 
   &.show {

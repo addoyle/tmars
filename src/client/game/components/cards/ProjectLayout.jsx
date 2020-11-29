@@ -34,7 +34,7 @@ const ProjectLayout = props => {
       // Temperature, shown as ±N°C
       else if (res.param === 'temperature') {
         restriction.push(
-          { text: (res.value > 0 ? '+' : '') + res.value + '°C' },
+          { text: (res.value > 0 ? '+' : null) + res.value + '°C' },
           { param: 'temperature' }
         );
       }
@@ -86,12 +86,6 @@ const ProjectLayout = props => {
       set={props.set}
       landscape={props.type === 'prelude'}
     >
-      {props.type !== 'prelude' ? <MegaCredit value={props.cost} /> : null}
-      <div className="tags">
-        {props.tags.map((tag, i) => (
-          <Tag key={i} name={tag} />
-        ))}
-      </div>
       <div className="project">
         <div className="header">
           {props.type !== 'prelude' ? (
@@ -111,6 +105,12 @@ const ProjectLayout = props => {
           {props.layout}
           <div className="flavor">{props.flavor}</div>
         </div>
+      </div>
+      {props.type !== 'prelude' ? <MegaCredit value={props.cost} /> : null}
+      <div className="tags">
+        {props.tags.map((tag, i) => (
+          <Tag key={i} name={tag} />
+        ))}
       </div>
     </CardLayout>
   );

@@ -4,6 +4,7 @@ $title-font: 'Prototype', sans-serif;
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 1;
 
   .tabs {
     width: 100vw;
@@ -42,8 +43,12 @@ $title-font: 'Prototype', sans-serif;
       &.open {
         margin-bottom: 33vh;
 
-        &.empty {
+        &.empty:not(.buy-mode) {
           margin-bottom: 20vh;
+        }
+
+        &.buy-mode {
+          margin-bottom: 66vh;
         }
       }
 

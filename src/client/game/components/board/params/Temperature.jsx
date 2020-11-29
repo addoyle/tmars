@@ -12,7 +12,7 @@ const Temperature = props => (
     max={8}
     step={2}
     value={props.gameStore.params.temperature}
-    renderValue={val => `${val > 0 ? '+' : ''}${val}°C`}
+    renderValue={val => `${val > 0 ? '+' : null}${val}°C`}
     icon={<Param name="temperature" />}
     bonuses={[
       { production: 'heat', threshold: -24, content: '-24' },

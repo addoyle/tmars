@@ -169,7 +169,7 @@ class Game {
       startLog.body.push(', ');
     }
     startLog.body.push('and buy cards for your ');
-    startLog.body.push({ project: 'starting hand', drawer: 'buy' });
+    startLog.body.push({ project: 'starting hand', drawer: 'hand' });
     startLog.body.push('.');
     this.log.push(startLog);
 

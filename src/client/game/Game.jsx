@@ -8,7 +8,10 @@ import { Provider } from 'mobx-react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   faCog,
+  faSearchPlus,
   faArrowLeft,
+  faChevronUp,
+  faChevronDown,
   faArrowAltCircleLeft,
   faArrowAltCircleRight,
   faThumbsUp,
@@ -26,7 +29,10 @@ history.scrollRestoration = 'manual';
 
 // Load up icons
 library.add(faCog);
+library.add(faSearchPlus);
 library.add(faArrowLeft);
+library.add(faChevronUp);
+library.add(faChevronDown);
 library.add(faArrowAltCircleLeft);
 library.add(faArrowAltCircleRight);
 library.add(faThumbsUp);

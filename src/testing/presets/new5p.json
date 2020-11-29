@@ -78,6 +78,13 @@
       },
       "phase": "",
       "ui": {},
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8
+      },
       "modifiers": {}
     },
     {
@@ -152,6 +159,13 @@
       },
       "phase": "",
       "ui": {},
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8
+      },
       "modifiers": {}
     },
     {
@@ -226,6 +240,13 @@
       },
       "phase": "",
       "ui": {},
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8
+      },
       "modifiers": {}
     },
     {
@@ -300,6 +321,13 @@
       },
       "phase": "",
       "ui": {},
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8
+      },
       "modifiers": {}
     },
     {
@@ -374,6 +402,13 @@
       },
       "phase": "",
       "ui": {},
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8
+      },
       "modifiers": {}
     }
   ],
@@ -1048,7 +1083,7 @@
         "and buy cards for your ",
         {
           "project": "starting hand",
-          "drawer": "buy"
+          "drawer": "hand"
         },
         "."
       ],

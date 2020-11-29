@@ -8,14 +8,14 @@ $hand-height: 33vh;
   height: $hand-height;
   border-top: 4px solid #444;
   background: rgba(187, 187, 187, .5);
-  transition: transform .5s ease;
+  transition: transform .5s ease, height .5s ease;
   cursor: default;
   z-index: 2;
   user-select: none;
   width: 100vw;
 
-  &.empty {
-    height: 20vh;
+  &.buy-mode {
+    height: #{$hand-height * 2};
   }
 
   &.collapse {
@@ -105,10 +105,24 @@ $hand-height: 33vh;
     padding: 24px 24px 48px;
     max-height: calc(#{$hand-height} - 3px);
     overflow-y: auto;
+    position: relative;
+
+    &.buy-mode {
+      background: rgba(0,0,0,.2);
+      opacity: 0;
+      padding: 0;
+      transition: height .3s ease, opacity .3s ease, padding-top .3s ease, padding-bottom .3s ease;
+
+      &.show {
+        height: #{$hand-height * 2};
+        opacity: 1;
+        padding: 24px 24px 48px;
+      }
+    }
 
     li {
       display: inline-block;
-      margin: 2px;
+      margin: 2px 2px 13px 2px;
       list-style-type: none;
       position: relative;
       transition: background-color .5s ease;
@@ -117,6 +131,22 @@ $hand-height: 33vh;
       height: 210px;
       background: transparent;
       border-radius: 5px;
+
+      // &:hover .zoom {
+      //   display: block;
+      // }
+      // .zoom {
+      //   position: absolute;
+      //   top: 0;
+      //   right: 0;
+      //   /* display: none; */
+      //   z-index: 1;
+      //   padding: .5em;
+      //   margin: .5em;
+      //   background: rgba(0,0,0,.6);
+      //   border-radius: 50%;
+      //   color: #fff;
+      // }
 
       &.landscape {
         width: 210px;
@@ -140,9 +170,14 @@ $hand-height: 33vh;
         margin: 0;
         transition: opacity .5s ease;
 
+        &.select > .card {
+          box-shadow: 0 0 0 0.02em #b81414;
+          top: -.075em;
+        }
+
         > .card {
           font-size: 150px;
-          transition: box-shadow .15s ease, transform .3s ease;
+          transition: box-shadow .15s ease, transform .3s ease, top .3s ease;
 
           &:hover {
             box-shadow: 0 0 0 4px #444, 0 0 10px 4px rgba(0,0,0,.5);
@@ -170,6 +205,42 @@ $hand-height: 33vh;
           }
         }
       }
+    }
+  }
+
+  .button-bar {
+    height: 0;
+    background: rgba(0, 0, 0, 0.4);
+    border: none;
+    transition: height .3s ease, opacity .3s ease;
+    opacity: 0;
+
+    .pill {
+      font-family: "Prototype", sans-serif;
+      text-transform: uppercase;
+      background: #fff1;
+      padding: .3em 1em;
+      border-radius: .5em;
+      color: #fff9;
+      min-width: 7em;
+
+      .section {
+        margin: .5em;
+      }
+
+      :first-child {
+        margin-left: 0;
+      }
+      :last-child {
+        margin-right: 0;
+      }
+    }
+
+    &.show {
+      height: 46px;
+      opacity: 1;
+      border-top: 4px solid #444;
+      border-bottom: 4px solid #444;
     }
   }
 }

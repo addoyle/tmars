@@ -4,7 +4,7 @@ import CardDrawer from './CardDrawer';
 import './CardDrawers.scss';
 import { observer, inject } from 'mobx-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Param, MegaCredit } from '../assets/Assets';
+import { Param } from '../assets/Assets';
 import classnames from 'classnames';
 
 const CardDrawers = ({ gameStore }) => {
@@ -29,6 +29,8 @@ const CardDrawers = ({ gameStore }) => {
           </span>
         </>
       ),
+      extraClasses: gameStore.phase !== 'draft' &&
+        gameStore.player?.cards.buy.length && ['buy-mode'],
       mode:
         (gameStore.phase === 'action' ||
           (gameStore.phase === 'prelude' &&
@@ -134,25 +136,25 @@ const CardDrawers = ({ gameStore }) => {
       min: 2
     },
 
-    // Cards available to buy
-    {
-      type: 'buy',
-      tab: (
-        <>
-          <MegaCredit />
-          <span>
-            Buy
-            {gameStore.player ? (
-              <span className="card-count">
-                {gameStore.player.cards.buy.length}
-              </span>
-            ) : null}
-          </span>
-        </>
-      ),
-      mode: 'buy',
-      hidden: gameStore.phase !== 'draft' && !gameStore.player?.cards.buy.length
-    },
+    // // Cards available to buy
+    // {
+    //   type: 'buy',
+    //   tab: (
+    //     <>
+    //       <MegaCredit />
+    //       <span>
+    //         Buy
+    //         {gameStore.player ? (
+    //           <span className="card-count">
+    //             {gameStore.player.cards.buy.length}
+    //           </span>
+    //         ) : null}
+    //       </span>
+    //     </>
+    //   ),
+    //   mode: 'buy',
+    //   hidden: gameStore.phase !== 'draft' && !gameStore.player?.cards.buy.length
+    // },
 
     // Cards to draft
     {
@@ -206,11 +208,15 @@ const CardDrawers = ({ gameStore }) => {
         {drawers.map(drawer => (
           <div
             key={`drawer-tab-${drawer.type}`}
-            className={classnames('drawer-btn', {
-              open: gameStore.drawer === drawer.type,
-              empty: !gameStore.player?.cards[drawer.type]?.length,
-              hidden: drawer.hidden
-            })}
+            className={classnames(
+              'drawer-btn',
+              ...(drawer.extraClasses || []),
+              {
+                open: gameStore.drawer === drawer.type,
+                empty: !gameStore.player?.cards[drawer.type]?.length,
+                hidden: drawer.hidden
+              }
+            )}
             onClick={() => gameStore.switchDrawer(drawer.type)}
           >
             {drawer.tab}

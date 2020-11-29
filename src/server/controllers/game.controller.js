@@ -142,15 +142,14 @@ export function placeTile(req, res) {
  * @param {*} res
  */
 export function loadPreset(req, res) {
-  console.log('In load preset');
-  console.log(req.query);
   if (req.query.preset) {
-    console.log('Loading preset into game ', req.params.id);
+    console.log('Loading preset into game', req.params.id);
 
     const presetGame = require(`../../testing/presets/${req.query.preset}.json`);
     presetGame.id = req.params.id;
 
     GameService.registerGame(presetGame, req.params.id);
+
     res.sendStatus(200);
   } else {
     res.sendStatus(400);

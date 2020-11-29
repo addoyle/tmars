@@ -11,7 +11,7 @@ import { Tag } from './Assets';
  */
 const Resource = ({ name, anyone, tag }) => (
   <div className={classNames('icon', 'resource', name, { anyone })}>
-    {tag ? <Tag name={tag} /> : ''}
+    {tag ? <Tag name={tag} /> : null}
   </div>
 );
 

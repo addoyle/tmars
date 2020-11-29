@@ -7,21 +7,23 @@ import classnames from 'classnames';
 /**
  * Base level Card class
  */
-const CardLayout = props => (
-  <div
-    className={classnames('card', props.type, {
-      landscape: props.landscape,
-      simple: props.simple
-    })}
-  >
-    {props.children}
-    {props.set && props.set !== 'base'
-      ? castArray(props.set).map((set, i) => (
-          <div key={i} className={classnames('set', set)} />
-        ))
-      : ''}
-  </div>
-);
+const CardLayout = props => {
+  return (
+    <div
+      className={classnames('card', props.type, {
+        landscape: props.landscape,
+        simple: props.simple
+      })}
+    >
+      {props.children}
+      {props.set && props.set !== 'base'
+        ? castArray(props.set).map((set, i) => (
+            <div key={i} className={classnames('set', set)} />
+          ))
+        : null}
+    </div>
+  );
+};
 
 CardLayout.propTypes = {
   type: PropTypes.string.isRequired,

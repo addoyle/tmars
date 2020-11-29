@@ -84,10 +84,9 @@ const Board = props => {
       <MilestoneAward />
       <StandardProjects />
       <ActiveCard />
+      <Log ref={logRef} />
       <CardDrawers />
       <Settings />
-
-      <Log ref={logRef} />
     </div>
   );
 };

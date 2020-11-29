@@ -130,10 +130,12 @@ const Field = ({ gameStore }) => {
                     tile.attrs.includes('reserved-noctis-city') ? (
                       <img className="city" src="/icons/city.svg" />
                     ) : null}
-                    {tile.text ? <div className="text">{tile.text}</div> : ''}
+                    {tile.text ? <div className="text">{tile.text}</div> : null}
                   </div>
                 ) : null}
-                {tile.player ? <Resource name={`player-${tile.player}`} /> : ''}
+                {tile.player ? (
+                  <Resource name={`player-${tile.player}`} />
+                ) : null}
               </Tile>
             ))}
           </div>

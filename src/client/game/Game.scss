@@ -71,6 +71,7 @@ table {
 	.text-right { text-align: right; }
 	.float-right { float: right; }
 	strong, .strong { font-weight: bold; }
+	em, .em { font-style: italic; }
 	.center:not(.flex) {
 		margin-left: auto;
 		margin-right: auto;
@@ -81,6 +82,7 @@ table {
 			justify-content: center;
 		}
 	}
+	.center-items { align-items: center; }
 	.inline-flex { display: inline-flex; }
 	.col-1 { flex: 1; }
 	.col-2 { flex: 2; }
