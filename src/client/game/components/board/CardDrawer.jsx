@@ -5,8 +5,8 @@ import './CardDrawer.scss';
 import CardPreview from './CardPreview';
 import classNames from 'classnames';
 import { Param, MegaCredit } from '../assets/Assets';
-import classnames from 'classnames';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import CardRef from './CardRef';
 
 /**
  * Card drawer
@@ -43,33 +43,6 @@ const CardDrawer = props => {
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
     >
-      {props.mode === 'select' ? (
-        <div className="button-box">
-          <div
-            className={classnames('error', {
-              show: numSelected > props.max || numSelected < props.min
-            })}
-          >
-            {props.min === props.max
-              ? `Pick ${props.min}`
-              : `Pick between ${props.min} and ${props.max}`}
-          </div>
-          <button
-            className="primary flex gutter"
-            onClick={() => {
-              gameStore.confirmSelection(props.type);
-              gameStore.activeCard.show = false;
-            }}
-            disabled={numSelected > props.max || numSelected < props.min}
-          >
-            <div className="resources middle">
-              <Param name="card back" />
-            </div>
-            <span className="middle">Confirm</span>
-          </button>
-        </div>
-      ) : null}
-
       {props.mode === 'draft' ? (
         <div className="on-deck">
           {gameStore.player?.cards.onDeck.map((row, i) => (
@@ -102,71 +75,96 @@ const CardDrawer = props => {
           : null}
       </ul>
 
-      <div
-        className={classNames('button-bar', 'flex', 'gutter', 'center', {
-          show: buyMode
-        })}
-      >
-        <div className="col-1">
-          <div className="resources">
-            {gameStore.player?.cards.corp.length === 1 ? (
-              <>
-                <MegaCredit value={0} />
-                <span>
-                  {
-                    cardStore.get('corp', gameStore.player?.cards.corp[0].card)
-                      ?.title
-                  }
+      {props.mode === 'select' || buyMode ? (
+        <div
+          className={classNames('button-bar flex gutter center center-items', {
+            'buy-mode': buyMode
+          })}
+        >
+          <div className="col-1" style={{ paddingLeft: '1em' }}>
+            <div className="resources">
+              {buyMode && gameStore.player?.cards.corp.length === 1 ? (
+                <>
+                  <MegaCredit
+                    value={
+                      cardStore.get(
+                        'corp',
+                        gameStore.player?.cards.corp[0].card
+                      )?.starting.resources.megacredit
+                    }
+                  />
+                  <CardRef
+                    type="corp"
+                    card={gameStore.player?.cards.corp[0].card}
+                  />
+                </>
+              ) : (
+                <em style={{ fontSize: '.5em', color: '#200a' }}>
+                  {buyMode
+                    ? 'No corporation yet'
+                    : props.min === props.max
+                    ? `Pick ${props.min}`
+                    : `Pick between ${props.min} and ${props.max}`}
+                </em>
+              )}
+            </div>
+          </div>
+          <div className="col-2 flex gutter center center-items">
+            {buyMode ? (
+              <div className="pill text-center">
+                <span className="section">
+                  <FontAwesomeIcon icon="chevron-up" />
                 </span>
-              </>
-            ) : (
-              <em style={{ fontSize: '.5em', color: '#000a' }}>
-                No corporation picked yet
-              </em>
-            )}
+                <span>For sale</span>
+              </div>
+            ) : null}
+            <button
+              className="primary flex gutter center"
+              onClick={() =>
+                buyMode
+                  ? gameStore.buySelectedCards()
+                  : gameStore.confirmSelection(props.type)
+              }
+              disabled={
+                buyMode
+                  ? gameStore.player?.cards.corp.length !== 1 ||
+                    !(
+                      numToBuy * gameStore.player?.rates.buy <=
+                        gameStore.player?.resources.megacredit ||
+                      (gameStore.phase === 'start' &&
+                        numToBuy * gameStore.player?.rates.buy <=
+                          cardStore.get(
+                            'corp',
+                            gameStore.player?.cards.corp[0].card
+                          )?.starting.resources.megacredit)
+                    )
+                  : numSelected > props.max || numSelected < props.min
+              }
+            >
+              <div className="resources middle">
+                <Param name="card back" />
+              </div>
+              <span className="middle col-1">
+                Comfirm {buyMode ? numToBuy : numSelected} Cards
+              </span>
+              {buyMode ? (
+                <div className="resources middle">
+                  <MegaCredit value={numToBuy * gameStore.player?.rates.buy} />
+                </div>
+              ) : null}
+            </button>
+            {buyMode ? (
+              <div className="pill text-center">
+                <span>Hand</span>
+                <span className="section">
+                  <FontAwesomeIcon icon="chevron-down" />
+                </span>
+              </div>
+            ) : null}
           </div>
+          <div className="col-1" />
         </div>
-        <div className="col-2 flex gutter center center-items">
-          <div className="pill text-center">
-            <span className="section">
-              <FontAwesomeIcon icon="chevron-up" />
-            </span>
-            <span>For sale</span>
-          </div>
-          <button
-            className="primary flex gutter"
-            onClick={() => {
-              gameStore.buySelectedCards();
-            }}
-            disabled={
-              gameStore.player?.cards.corp.length !== 1 ||
-              !(
-                numToBuy * gameStore.player?.rates.buy <=
-                  gameStore.player?.resources.megacredit ||
-                (gameStore.phase === 'start' &&
-                  numToBuy * gameStore.player?.rates.buy <=
-                    cardStore.get('corp', gameStore.player?.cards.corp[0].card)
-                      ?.starting.resources.megacredit)
-              )
-            }
-          >
-            <div className="resources middle">
-              <Param name="card back" />
-            </div>
-            <span className="middle">Comfirm {numToBuy} Cards</span>
-            <div className="resources middle">
-              <MegaCredit value={numToBuy * gameStore.player?.rates.buy} />
-            </div>
-          </button>
-          <div className="pill text-center">
-            <span>Hand</span>
-            <span className="section">
-              <FontAwesomeIcon icon="chevron-down" />
-            </span>
-          </div>
-        </div>
-        <div className="col-1" />
-      </div>
+      ) : null}
 
       <ul className="cards">
         {cards.map(card => (
@@ -174,7 +172,9 @@ const CardDrawer = props => {
             key={`card-${card.card}`}
             onClick={() =>
               !card.disabled
-                ? gameStore.showActiveCard(card, cardType, props.mode)
+                ? props.mode === 'select'
+                  ? gameStore.toggleSelectCard(card, cardType)
+                  : gameStore.showActiveCard(card, cardType, props.mode)
                 : null
             }
             className={classNames('card-selector', {

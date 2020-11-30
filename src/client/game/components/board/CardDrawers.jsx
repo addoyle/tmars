@@ -136,26 +136,6 @@ const CardDrawers = ({ gameStore }) => {
       min: 2
     },
 
-    // // Cards available to buy
-    // {
-    //   type: 'buy',
-    //   tab: (
-    //     <>
-    //       <MegaCredit />
-    //       <span>
-    //         Buy
-    //         {gameStore.player ? (
-    //           <span className="card-count">
-    //             {gameStore.player.cards.buy.length}
-    //           </span>
-    //         ) : null}
-    //       </span>
-    //     </>
-    //   ),
-    //   mode: 'buy',
-    //   hidden: gameStore.phase !== 'draft' && !gameStore.player?.cards.buy.length
-    // },
-
     // Cards to draft
     {
       type: 'draft',

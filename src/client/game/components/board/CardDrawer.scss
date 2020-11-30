@@ -14,6 +14,10 @@ $hand-height: 33vh;
   user-select: none;
   width: 100vw;
 
+  &.empty {
+    height: 20vh;
+  }
+
   &.buy-mode {
     height: #{$hand-height * 2};
   }
@@ -209,11 +213,20 @@ $hand-height: 33vh;
   }
 
   .button-bar {
-    height: 0;
+    height: 46px;
+    opacity: 1;
+    border-bottom: 4px solid #444;
     background: rgba(0, 0, 0, 0.4);
-    border: none;
-    transition: height .3s ease, opacity .3s ease;
-    opacity: 0;
+    margin-top: -1px;
+    
+    &.buy-mode {
+      border-top: 4px solid #444;
+      margin-top: 0;
+    }
+
+    button {
+      width: 60%;
+    }
 
     .pill {
       font-family: "Prototype", sans-serif;
@@ -222,7 +235,7 @@ $hand-height: 33vh;
       padding: .3em 1em;
       border-radius: .5em;
       color: #fff9;
-      min-width: 7em;
+      min-width: 8em;
 
       .section {
         margin: .5em;
@@ -234,13 +247,6 @@ $hand-height: 33vh;
       :last-child {
         margin-right: 0;
       }
-    }
-
-    &.show {
-      height: 46px;
-      opacity: 1;
-      border-top: 4px solid #444;
-      border-bottom: 4px solid #444;
     }
   }
 }
