@@ -81,6 +81,9 @@ table {
 		&.center {
 			justify-content: center;
 		}
+		&.right {
+			justify-content: flex-end;
+		}
 	}
 	.center-items { align-items: center; }
 	.inline-flex { display: inline-flex; }

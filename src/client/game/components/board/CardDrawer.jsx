@@ -75,7 +75,9 @@ const CardDrawer = props => {
           : null}
       </ul>
 
-      {props.mode === 'select' || buyMode ? (
+      {props.mode === 'select' ||
+      buyMode ||
+      (gameStore.phase === 'action' && props.type === 'hand') ? (
         <div
           className={classNames('button-bar flex gutter center center-items', {
             'buy-mode': buyMode
@@ -83,30 +85,32 @@ const CardDrawer = props => {
         >
           <div className="col-1" style={{ paddingLeft: '1em' }}>
             <div className="resources">
-              {buyMode && gameStore.player?.cards.corp.length === 1 ? (
-                <>
-                  <MegaCredit
-                    value={
-                      cardStore.get(
-                        'corp',
-                        gameStore.player?.cards.corp[0].card
-                      )?.starting.resources.megacredit
-                    }
-                  />
-                  <CardRef
-                    type="corp"
-                    card={gameStore.player?.cards.corp[0].card}
-                  />
-                </>
-              ) : (
-                <em style={{ fontSize: '.5em', color: '#200a' }}>
-                  {buyMode
-                    ? 'No corporation yet'
-                    : props.min === props.max
-                    ? `Pick ${props.min}`
-                    : `Pick between ${props.min} and ${props.max}`}
-                </em>
-              )}
+              {buyMode ? (
+                gameStore.player?.cards.corp.length === 1 ? (
+                  <>
+                    <MegaCredit
+                      value={
+                        cardStore.get(
+                          'corp',
+                          gameStore.player?.cards.corp[0].card
+                        )?.starting.resources.megacredit
+                      }
+                    />
+                    <CardRef
+                      type="corp"
+                      card={gameStore.player?.cards.corp[0].card}
+                    />
+                  </>
+                ) : (
+                  <em style={{ fontSize: '.5em', color: '#200a' }}>
+                    {buyMode
+                      ? 'No corporation yet'
+                      : props.min === props.max
+                      ? `Pick ${props.min}`
+                      : `Pick between ${props.min} and ${props.max}`}
+                  </em>
+                )
+              ) : null}
             </div>
           </div>
           <div className="col-2 flex gutter center center-items">
@@ -118,41 +122,45 @@ const CardDrawer = props => {
                 <span>For sale</span>
               </div>
             ) : null}
-            <button
-              className="primary flex gutter center"
-              onClick={() =>
-                buyMode
-                  ? gameStore.buySelectedCards()
-                  : gameStore.confirmSelection(props.type)
-              }
-              disabled={
-                buyMode
-                  ? gameStore.player?.cards.corp.length !== 1 ||
-                    !(
-                      numToBuy * gameStore.player?.rates.buy <=
-                        gameStore.player?.resources.megacredit ||
-                      (gameStore.phase === 'start' &&
+            {gameStore.phase !== 'action' ? (
+              <button
+                className="primary flex gutter center"
+                onClick={() =>
+                  buyMode
+                    ? gameStore.buySelectedCards()
+                    : gameStore.confirmSelection(props.type)
+                }
+                disabled={
+                  buyMode
+                    ? gameStore.player?.cards.corp.length !== 1 ||
+                      !(
                         numToBuy * gameStore.player?.rates.buy <=
-                          cardStore.get(
-                            'corp',
-                            gameStore.player?.cards.corp[0].card
-                          )?.starting.resources.megacredit)
-                    )
-                  : numSelected > props.max || numSelected < props.min
-              }
-            >
-              <div className="resources middle">
-                <Param name="card back" />
-              </div>
-              <span className="middle col-1">
-                Comfirm {buyMode ? numToBuy : numSelected} Cards
-              </span>
-              {buyMode ? (
+                          gameStore.player?.resources.megacredit ||
+                        (gameStore.phase === 'start' &&
+                          numToBuy * gameStore.player?.rates.buy <=
+                            cardStore.get(
+                              'corp',
+                              gameStore.player?.cards.corp[0].card
+                            )?.starting.resources.megacredit)
+                      )
+                    : numSelected > props.max || numSelected < props.min
+                }
+              >
                 <div className="resources middle">
-                  <MegaCredit value={numToBuy * gameStore.player?.rates.buy} />
+                  <Param name="card back" />
                 </div>
-              ) : null}
-            </button>
+                <span className="middle col-1">
+                  Comfirm {buyMode ? numToBuy : numSelected} Cards
+                </span>
+                {buyMode ? (
+                  <div className="resources middle">
+                    <MegaCredit
+                      value={numToBuy * gameStore.player?.rates.buy}
+                    />
+                  </div>
+                ) : null}
+              </button>
+            ) : null}
             {buyMode ? (
               <div className="pill text-center">
                 <span>Hand</span>
@@ -162,7 +170,30 @@ const CardDrawer = props => {
               </div>
             ) : null}
           </div>
-          <div className="col-1" />
+          <div
+            className="col-1 flex gutter right"
+            style={{ paddingRight: '.5em' }}
+          >
+            {gameStore.phase === 'action' ? (
+              gameStore.player.firstAction ? (
+                <button className="flex gutter center-items">
+                  <span className="col-1" />
+                  <span className="col-5">Pass</span>
+                  <span className="col-1">
+                    <FontAwesomeIcon icon="times-circle" />
+                  </span>
+                </button>
+              ) : (
+                <button className="flex gutter center-items">
+                  <span className="col-1" />
+                  <span className="col-5">Skip</span>
+                  <span className="col-1">
+                    <FontAwesomeIcon icon="forward" />
+                  </span>
+                </button>
+              )
+            ) : null}
+          </div>
         </div>
       ) : null}
 
@@ -227,7 +258,8 @@ CardDrawer.propTypes = {
       }),
       rates: PropTypes.shape({
         buy: PropTypes.number
-      })
+      }),
+      firstAction: PropTypes.bool
     }),
     activeCard: PropTypes.shape({
       card: PropTypes.shape({

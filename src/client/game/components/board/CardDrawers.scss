@@ -5,11 +5,13 @@ $title-font: 'Prototype', sans-serif;
   bottom: 0;
   left: 0;
   z-index: 1;
+  pointer-events: none;
 
   .tabs {
     width: 100vw;
 
     .drawer-btn {
+      pointer-events: all;
       display: inline-flex;
       font-size: 1.25em;
       padding: 8px 12px;
@@ -41,14 +43,14 @@ $title-font: 'Prototype', sans-serif;
       }
   
       &.open {
-        margin-bottom: 33vh;
+        margin-bottom: 40vh;
 
         &.empty:not(.buy-mode) {
           margin-bottom: 20vh;
         }
 
         &.buy-mode {
-          margin-bottom: 66vh;
+          margin-bottom: 80vh;
         }
       }
 

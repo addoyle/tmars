@@ -1,5 +1,5 @@
 $title-font: 'Prototype', sans-serif;
-$hand-height: 33vh;
+$hand-height: 40vh;
 
 .drawer {
   position: absolute;
@@ -13,6 +13,7 @@ $hand-height: 33vh;
   z-index: 2;
   user-select: none;
   width: 100vw;
+  pointer-events: all;
 
   &.empty {
     height: 20vh;
@@ -26,58 +27,9 @@ $hand-height: 33vh;
     transform: translateY(100%);
     z-index: 3;
 
-    .button-box, .on-deck {
+    .on-deck {
       pointer-events: none;
       opacity: 0;
-    }
-  }
-
-  .button-box {
-    position: absolute;
-    top: -67px;
-    transform: translate(-50%, -100%);
-    left: 50vw;
-    padding: 16px;
-    border-radius: 16px;
-    border: 3px solid #444;
-    background: rgba(187, 187, 187, .5);
-    z-index: 2;
-    opacity: 1;
-    transition: opacity .5s ease;
-    box-shadow: 8px 8px 8px rgba(0,0,0,.2);
-    overflow: hidden;
-    text-align: center;
-
-    button {
-      padding: 8px;
-
-      .x {
-        position: relative;
-        text-shadow: 0 0 3px rgba(255,255,255,.7);
-        font-size: 1.2em;
-        margin-right: -10px;
-        margin-left: -3px;
-        z-index: 2;
-      }
-    }
-
-    .error {
-      text-align: center;
-      font-family: sans-serif;
-      background-color: rgba(128,0,0,.75);
-      color: #ddd;
-      margin-bottom: 16px;
-      padding: 4px;
-      border-radius: 8px;
-      height: 24px;
-      margin-top: -40px;
-      opacity: 0;
-      transition: margin-top .5s ease, opacity .5s ease;
-
-      &.show {
-        margin-top: 0;
-        opacity: 1;
-      }
     }
   }
 
@@ -135,22 +87,6 @@ $hand-height: 33vh;
       height: 210px;
       background: transparent;
       border-radius: 5px;
-
-      // &:hover .zoom {
-      //   display: block;
-      // }
-      // .zoom {
-      //   position: absolute;
-      //   top: 0;
-      //   right: 0;
-      //   /* display: none; */
-      //   z-index: 1;
-      //   padding: .5em;
-      //   margin: .5em;
-      //   background: rgba(0,0,0,.6);
-      //   border-radius: 50%;
-      //   color: #fff;
-      // }
 
       &.landscape {
         width: 210px;
@@ -218,6 +154,10 @@ $hand-height: 33vh;
     border-bottom: 4px solid #444;
     background: rgba(0, 0, 0, 0.4);
     margin-top: -1px;
+
+    & ~ .cards {
+      max-height: calc(#{$hand-height} - 46px - 3px);
+    }
     
     &.buy-mode {
       border-top: 4px solid #444;

@@ -7,9 +7,10 @@ $title-font: 'Prototype', sans-serif;
   transition: bottom 0.5s ease;
   text-align: right;
   pointer-events: none;
+  z-index: 2;
 
   &.shift {
-    bottom: calc(33vh + 8px);
+    bottom: calc(40vh + 8px);
 
     &.empty {
       bottom: calc(20vh + 8px);

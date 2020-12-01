@@ -581,6 +581,7 @@ class Game {
 
     this.phase = 'action';
     this.turn = this.startingPlayer;
+    this.players[this.turn].firstAction = true;
     this.players.forEach(player => (player.ui.drawer = 'hand'));
   }
 

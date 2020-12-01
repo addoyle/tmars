@@ -7,14 +7,15 @@ import CardModel from './models/card.model';
 import { Provider } from 'mobx-react';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
-  faCog,
-  faSearchPlus,
+  faArrowAltCircleLeft,
+  faArrowAltCircleRight,
   faArrowLeft,
   faChevronUp,
   faChevronDown,
-  faArrowAltCircleLeft,
-  faArrowAltCircleRight,
+  faCog,
+  faForward,
   faThumbsUp,
+  faTimesCircle,
   faToggleOff,
   faToggleOn
 } from '@fortawesome/free-solid-svg-icons';
@@ -28,14 +29,15 @@ const cardStore = new CardModel();
 history.scrollRestoration = 'manual';
 
 // Load up icons
-library.add(faCog);
-library.add(faSearchPlus);
+library.add(faArrowAltCircleLeft);
+library.add(faArrowAltCircleRight);
 library.add(faArrowLeft);
 library.add(faChevronUp);
 library.add(faChevronDown);
-library.add(faArrowAltCircleLeft);
-library.add(faArrowAltCircleRight);
+library.add(faCog);
+library.add(faForward);
 library.add(faThumbsUp);
+library.add(faTimesCircle);
 library.add(faToggleOn);
 library.add(faToggleOff);
 

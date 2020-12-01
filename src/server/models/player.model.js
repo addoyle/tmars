@@ -60,6 +60,7 @@ export default class Player {
     plant: 8, // Plants to place a greenery
     heat: 8 // Heat to raise temperature
   };
+  firstAction;
   modifiers = {};
 
   constructor(name) {
