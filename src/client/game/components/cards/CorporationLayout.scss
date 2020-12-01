@@ -3,10 +3,10 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
 
 .card.corp {
   .tags {
-    margin-right: .34em;
+    margin-right: 0.34em;
     padding-right: 0;
-    padding-top: .11em;
-    padding-left: .28em;
+    padding-top: 0.11em;
+    padding-left: 0.28em;
     z-index: 1;
   }
 
@@ -15,66 +15,75 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: .9em;
-    font-size: .035em;
+    top: 0.9em;
+    font-size: 0.035em;
     font-family: $title-font;
-    background: #FDBC2D;
-    padding: .03em 1em .09em;
+    background: #fdbc2d;
+    padding: 0.03em 1em 0.09em;
     border: 1px solid black;
-    letter-spacing: .2em;
+    letter-spacing: 0.2em;
     border-bottom-left-radius: 1.5em 3em;
     border-bottom-right-radius: 1.5em 3em;
-    box-shadow: 0 .1em .05em rgba(255,255,255,.5) inset, 0 -.1em .05em hsla(41,98%,8%,.5) inset;
+    box-shadow: 0 0.1em 0.05em rgba(255, 255, 255, 0.5) inset,
+      0 -0.1em 0.05em hsla(41, 98%, 8%, 0.5) inset;
     z-index: 1;
   }
 }
 
 .corp-body {
-  border-radius: .08em;
+  border-radius: 0.08em;
   height: 100%;
   width: 100%;
   display: flex;
   flex-flow: column;
-  border: .003em solid black;
-  box-shadow: 0 0 0 .016em #999, 0 0 0 .019em #000;
-  background: repeating-linear-gradient(0, #ddd, #fff 15%, #fff 25%, #ddd 40%, #ddd 55%);
+  border: 0.003em solid black;
+  box-shadow: 0 0 0 0.016em #999, 0 0 0 0.019em #000;
+  background: repeating-linear-gradient(
+    0,
+    #ddd,
+    #fff 15%,
+    #fff 25%,
+    #ddd 40%,
+    #ddd 55%
+  );
   overflow: hidden;
   position: relative;
-  padding-top: .03em;
+  padding-top: 0.03em;
 
   .tag-shelf {
-    background: url('../assets/texture/tag-shelf.svg') no-repeat top left/2.4em 1.1em;
+    background: url('../assets/texture/tag-shelf.svg') no-repeat top left/2.4em
+      1.1em;
     position: absolute;
-    top: -.1em;
+    top: -0.1em;
     right: 0;
-    min-width: .5em;
+    min-width: 0.5em;
     height: 1.1em;
-    font-size: .15em;
-    padding-right: .3em;
+    font-size: 0.15em;
+    padding-right: 0.3em;
 
     div {
       font-size: 1.1em;
-      width: .89em;
+      width: 0.89em;
       display: inline-block;
     }
   }
 
   .title {
     font-family: $title-font;
-    font-size: .1em;
+    font-size: 0.1em;
     text-align: center;
 
     &.credicor {
-      font-size: .14em;
+      font-size: 0.14em;
       text-transform: lowercase;
       color: #fff;
-      -webkit-text-stroke: .04em #000;
+      -webkit-text-stroke: 0.04em #000;
       font-family: Helvetica, sans-serif;
-      letter-spacing: .1em;
-      margin: .3em 0 .3em 2.9em;
-      filter: drop-shadow(.1em .1em .1em rgba(0,0,0,.5));
-      padding: .2em;
-      border: .05em solid #582077;
+      letter-spacing: 0.1em;
+      margin: 0.3em 0 0.3em 2.9em;
+      filter: drop-shadow(0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5));
+      padding: 0.2em;
+      border: 0.05em solid #582077;
       border-left: none;
       position: relative;
       width: 5em;
@@ -84,84 +93,84 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         content: '€';
         background: #582077;
         -webkit-text-stroke: 0;
-        border: .05em solid #582077;
-        padding: 1.5em 1.5em .4em .4em;
+        border: 0.05em solid #582077;
+        padding: 1.5em 1.5em 0.4em 0.4em;
         height: 1em;
         width: 1em;
-        top: -.1em;
+        top: -0.1em;
         left: -3.3em;
         text-shadow: none;
-        font-size: .5em;
+        font-size: 0.5em;
       }
-      
+
       &:after {
         content: '🜚';
         font-size: 1.8em;
         position: absolute;
         -webkit-text-stroke: 0;
-        left: -.9em;
-        top: -.1em;
+        left: -0.9em;
+        top: -0.1em;
       }
     }
 
     &.ecoline {
-      font-size: .11em;
+      font-size: 0.11em;
       text-transform: uppercase;
       color: #72d22d;
-      -webkit-text-stroke: .05em #000;
-      letter-spacing: .2em;
-      margin: .4em;
-      filter: drop-shadow(.2em .2em .2em rgba(0, 0, 0, 0.5));
+      -webkit-text-stroke: 0.05em #000;
+      letter-spacing: 0.2em;
+      margin: 0.4em;
+      filter: drop-shadow(0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5));
 
       &:before {
         content: '';
         border-radius: 0 50% / 50% 100%;
         display: inline-block;
         background: #72d22d;
-        border: .05em solid #000;
+        border: 0.05em solid #000;
         height: 1em;
         width: 2em;
-        margin-right: .2em;
+        margin-right: 0.2em;
       }
 
       &:after {
         content: 'EVOLVING YOUR WORLD';
         -webkit-text-stroke: 0;
-        letter-spacing: .73em;
-        font-size: .3em;
+        letter-spacing: 0.73em;
+        font-size: 0.3em;
         color: #000;
         display: block;
       }
     }
 
     &.helion {
-      font-size: .11em;
+      font-size: 0.11em;
       text-transform: lowercase;
       color: #222;
-      letter-spacing: .2em;
-      margin: .5em auto 1.4em;
+      letter-spacing: 0.2em;
+      margin: 0.5em auto 1.4em;
       padding-left: 1em;
       font-weight: bold;
-      box-shadow: 0 .1em 0 #222, 0 .4em 0 yellow, 0 .5em 0 #222;
+      box-shadow: 0 0.1em 0 #222, 0 0.4em 0 yellow, 0 0.5em 0 #222;
       line-height: 0.8;
       position: relative;
       width: 60%;
-      filter: drop-shadow(.2em .2em .2em rgba(0, 0, 0, 0.5));
+      filter: drop-shadow(0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5));
 
       &:before {
         content: 'H';
         text-transform: uppercase;
         font-size: 2.5em;
         font-family: sans-serif;
-        -webkit-text-stroke: .05em #222;
+        -webkit-text-stroke: 0.05em #222;
         position: absolute;
         width: 1em;
         height: 1em;
-        left: -.75em;
-        top: -.17em;
+        left: -0.75em;
+        top: -0.17em;
         background: yellow;
         border-radius: 50%;
-        border: .05em solid #222;
+        border: 0.05em solid #222;
         line-height: 1.02;
         text-align: center;
         box-shadow: -0.02em -0.02em 0 #dc772d inset;
@@ -173,21 +182,21 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         color: yellow;
         position: absolute;
         right: -1em;
-        top: .23em;
+        top: 0.23em;
         font-size: 1.6em;
-        -webkit-text-stroke: .07em #222;
+        -webkit-text-stroke: 0.07em #222;
       }
     }
 
     &.mining-guild {
       display: flex;
-      font-size: .08em;
-      font-family: "Sutro", monospace;
+      font-size: 0.08em;
+      font-family: 'Sutro', monospace;
       color: red;
-      -webkit-text-stroke: .02em #ccc;
-      margin: .3em .3em -.3em;
+      -webkit-text-stroke: 0.02em #ccc;
+      margin: 0.3em 0.3em -0.3em;
       font-weight: bold;
-      text-shadow: .07em .07em 0 black;
+      text-shadow: 0.07em 0.07em 0 black;
       text-align: left;
       line-height: 1.2;
       width: 10em;
@@ -195,28 +204,28 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       &:before {
         content: '➚';
         display: inline-block;
-        -webkit-text-stroke: .01em #fff;
+        -webkit-text-stroke: 0.01em #fff;
         color: #000;
         font-size: 4em;
-        width: .7em;
-        height: .75em;
+        width: 0.7em;
+        height: 0.75em;
         background: red;
         border-radius: 50%;
-        border: .01em solid #fff;
+        border: 0.01em solid #fff;
         box-shadow: 0.02em 0.02em 0 #000;
-        line-height: .6;
-        padding-left: .05em;
-        margin: -.1em .1em 0 0;
+        line-height: 0.6;
+        padding-left: 0.05em;
+        margin: -0.1em 0.1em 0 0;
       }
     }
 
     &.interplanetary {
-      font-size: .05em;
+      font-size: 0.05em;
       text-transform: uppercase;
       margin: 2em 1em 0;
       width: 11em;
       line-height: 5.2;
-      letter-spacing: .1em;
+      letter-spacing: 0.1em;
 
       &:before {
         display: block;
@@ -226,10 +235,10 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         margin: 0 auto -2em;
         background-color: red;
         font-size: 3.5em;
-        padding: .05em 0;
+        padding: 0.05em 0;
         letter-spacing: 0;
-        -webkit-text-stroke: .066em #777;
-        box-shadow: .1em .1em .1em rgba(0,0,0,.5);
+        -webkit-text-stroke: 0.066em #777;
+        box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5);
       }
 
       &:after {
@@ -240,57 +249,59 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         font-weight: bold;
         line-height: 1;
         margin-top: -2.5em;
-        margin-left: .05em;
-        letter-spacing: .2em;
+        margin-left: 0.05em;
+        letter-spacing: 0.2em;
         white-space: nowrap;
-        -webkit-text-stroke: .04em black;
-        text-shadow: 0.05em 0.05em 0 #777, 0.05em 0.05em 0 #777, 0.05em -0.05em 0 #777, -0.05em 0.05em 0 #777, -0.05em -0.05em 0 #777;
+        -webkit-text-stroke: 0.04em black;
+        text-shadow: 0.05em 0.05em 0 #777, 0.05em 0.05em 0 #777,
+          0.05em -0.05em 0 #777, -0.05em 0.05em 0 #777, -0.05em -0.05em 0 #777;
       }
     }
 
     &.inventrix {
-      font-size: .12em;
+      font-size: 0.12em;
       text-transform: uppercase;
-      margin-top: .5em;
+      margin-top: 0.5em;
       font-family: sans-serif;
-      letter-spacing: .1em;
+      letter-spacing: 0.1em;
       text-shadow: 0.1em 0.1em 0.2em rgba(0, 0, 0, 0.5);
 
       &:before {
         content: 'X=';
         display: inline-block;
         text-align: left;
-        width: .7em;
+        width: 0.7em;
         background: linear-gradient(to top, #3f5483, #66bce9);
         font-size: 2em;
-        letter-spacing: -.62em;
+        letter-spacing: -0.62em;
         vertical-align: middle;
-        margin-right: .2em;
-        margin-top: -.1em;
-        text-shadow: 0 0 .1em rgba(255,255,255,.3);
-        box-shadow: 0.075em 0.075em 0.075em rgba(0, 0, 0, 0.7), 0 0 0.1em rgba(0,0,0,.5) inset;
+        margin-right: 0.2em;
+        margin-top: -0.1em;
+        text-shadow: 0 0 0.1em rgba(255, 255, 255, 0.3);
+        box-shadow: 0.075em 0.075em 0.075em rgba(0, 0, 0, 0.7),
+          0 0 0.1em rgba(0, 0, 0, 0.5) inset;
       }
     }
 
     &.phobolog {
-      font-size: .1em;
+      font-size: 0.1em;
       text-transform: uppercase;
-      margin: .75em auto;
-      letter-spacing: .3em;
+      margin: 0.75em auto;
+      letter-spacing: 0.3em;
       background: indigo;
       color: transparent;
       display: inline-block;
-      padding: .3em .18em .3em .3em;
-      border-radius: .4em;
-      filter: drop-shadow(.1em .1em .1em rgba(0, 0, 0, 0.7));
+      padding: 0.3em 0.18em 0.3em 0.3em;
+      border-radius: 0.4em;
+      filter: drop-shadow(0.1em 0.1em 0.1em rgba(0, 0, 0, 0.7));
       position: relative;
 
       &:before {
         content: 'PHOB \00a0 LOG';
         color: white;
         position: absolute;
-        left: .3em;
-        top: .3em;
+        left: 0.3em;
+        top: 0.3em;
         text-align: left;
       }
 
@@ -299,22 +310,29 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         position: absolute;
         display: block;
         left: 2.85em;
-        top: -.25em;
+        top: -0.25em;
         border-radius: 50%;
         height: 2em;
         width: 2em;
-        border: .05em solid black;
-        background: radial-gradient(circle at 33.33333% 50%, transparent, transparent 40%, black 41%, black 43%, white 45%);
+        border: 0.05em solid black;
+        background: radial-gradient(
+          circle at 33.33333% 50%,
+          transparent,
+          transparent 40%,
+          black 41%,
+          black 43%,
+          white 45%
+        );
       }
     }
 
     &.tharsis {
-      font-size: .07em;
+      font-size: 0.07em;
       font-family: Impact, Charcoal, sans-serif;
       text-transform: uppercase;
-      margin: .2em 1.7em -4.7em;
-      transform: scale(1.5,1);
-      letter-spacing: .1em;
+      margin: 0.2em 1.7em -4.7em;
+      transform: scale(1.5, 1);
+      letter-spacing: 0.1em;
       display: inline-block;
       width: 6em;
       position: relative;
@@ -323,29 +341,35 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         content: '\00a0⯅';
         font-size: 3em;
         display: block;
-        margin: 0 auto .1em;
+        margin: 0 auto 0.1em;
         width: 1em;
         height: 1em;
-        background: linear-gradient(to top, #fcbd75, #f2a53d 5%, #f2a53d 50%, #d1522a 100%);
+        background: linear-gradient(
+          to top,
+          #fcbd75,
+          #f2a53d 5%,
+          #f2a53d 50%,
+          #d1522a 100%
+        );
         border-left-color: #f3b53a;
         border-top-color: #f3b53a;
         border-right-color: #d14732;
         border-bottom-color: #d14732;
-        border-radius: .075em;
+        border-radius: 0.075em;
         border-style: solid;
-        border-width: .1em;
-        transform: scale(.66667,1);
+        border-width: 0.1em;
+        transform: scale(0.66667, 1);
         text-align: left;
-        letter-spacing: -.25em;
-        line-height: .8;
-        box-shadow: .1em .1em .1em rgba(0,0,0,.6);
+        letter-spacing: -0.25em;
+        line-height: 0.8;
+        box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.6);
       }
 
       &:after {
         content: '▲▲▲';
         position: absolute;
         transform: scale(0.66667, 1) rotate(120deg) scaleX(1.1);
-        letter-spacing: -.3em;
+        letter-spacing: -0.3em;
         font-size: 1.0625em;
         left: 2.375em;
         top: 1.55em;
@@ -353,13 +377,13 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
     }
 
     &.thorgate {
-      font-size: .1em;
+      font-size: 0.1em;
       text-transform: uppercase;
       margin: 1em auto 0;
-      text-shadow: .1em .1em .3em rgba(0,0,0,.5);
-      letter-spacing: .5em;
+      text-shadow: 0.1em 0.1em 0.3em rgba(0, 0, 0, 0.5);
+      letter-spacing: 0.5em;
       display: inline-block;
-      padding-left: .4em;
+      padding-left: 0.4em;
       position: relative;
 
       &:before {
@@ -370,26 +394,33 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         width: 2em;
         height: 1em;
         transform: scaleX(2.5);
-        background: radial-gradient(circle at 41.75%, darkblue, darkblue 17%, black 18%, black 19%, transparent 20%);
-        -webkit-text-stroke: .02em black;
+        background: radial-gradient(
+          circle at 41.75%,
+          darkblue,
+          darkblue 17%,
+          black 18%,
+          black 19%,
+          transparent 20%
+        );
+        -webkit-text-stroke: 0.02em black;
         vertical-align: sub;
-        margin-left: .3em;
+        margin-left: 0.3em;
       }
       &:after {
         content: '🗲';
         display: block;
         position: absolute;
-        -webkit-text-stroke: .03em #000;
+        -webkit-text-stroke: 0.03em #000;
         color: #fff;
         font-size: 1.5em;
         transform: scaleX(-1) rotate(110deg);
-        top: .2em;
-        left: .5em;
+        top: 0.2em;
+        left: 0.5em;
       }
     }
 
     &.unmi {
-      font-size: .05em;
+      font-size: 0.05em;
       text-transform: uppercase;
       margin: 0.3em 1em -11.5em 1.8em;
       padding: 1em;
@@ -399,7 +430,7 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       font-family: sans-serif;
       text-align: center;
       text-justify: distribute;
-      filter: drop-shadow(.3em .5em .5em rgba(0,0,0,.5));
+      filter: drop-shadow(0.3em 0.5em 0.5em rgba(0, 0, 0, 0.5));
       position: relative;
 
       &:before {
@@ -407,27 +438,27 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         font-size: 18em;
         display: block;
         text-align: center;
-        margin: -.15em -.2em -.55em;
+        margin: -0.15em -0.2em -0.55em;
       }
 
       &:after {
         content: '';
         position: absolute;
         left: 0;
-        bottom: -.7em;
-        border-bottom: .7em solid transparent;
+        bottom: -0.7em;
+        border-bottom: 0.7em solid transparent;
         border-left: 3.5em solid dodgerblue;
         border-right: 3.5em solid dodgerblue;
       }
     }
 
     &.splice {
-      font-size: .13em;
+      font-size: 0.13em;
       text-transform: uppercase;
-      margin: .3em 0 -.6em .4em;
+      margin: 0.3em 0 -0.6em 0.4em;
       text-align: center;
       background: white;
-      box-shadow: .2em .2em .2em rgba(0,0,0,.5);
+      box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5);
       width: 3.5em;
       position: relative;
 
@@ -442,7 +473,7 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       &:after {
         content: 'TACTICAL GENOMICS';
         font-family: monospace;
-        font-size: .34em;
+        font-size: 0.34em;
         display: block;
         border-top: 1px solid red;
       }
@@ -450,15 +481,15 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
 
     &.mons {
       font-family: sans-serif;
-      font-size: .05em;
+      font-size: 0.05em;
       text-transform: lowercase;
-      margin: 0.7em .5em -6.3em;
+      margin: 0.7em 0.5em -6.3em;
       text-align: center;
       color: white;
       background: #9c5b27;
       width: 5.6em;
-      padding: .3em;
-      box-shadow: .3em .3em .3em rgba(0,0,0,.5);
+      padding: 0.3em;
+      box-shadow: 0.3em 0.3em 0.3em rgba(0, 0, 0, 0.5);
       position: relative;
 
       &:before {
@@ -466,7 +497,7 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         display: block;
         height: 2.5em;
         background: #cb8726;
-        margin: .1em .1em 0;
+        margin: 0.1em 0.1em 0;
       }
 
       &:after {
@@ -478,15 +509,15 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         transform: rotate(45deg);
         top: 1.2em;
         left: 1.1em;
-        border: .2em solid #9c5b27;
+        border: 0.2em solid #9c5b27;
         background: white;
-        clip-path: polygon(100% 0, 0% 0%, 0% 100%)
+        clip-path: polygon(100% 0, 0% 0%, 0% 100%);
       }
     }
 
     &.factorum {
       font-family: sans-serif;
-      font-size: .06em;
+      font-size: 0.06em;
       text-transform: uppercase;
       margin: 0.7em 1.2em 0;
       text-align: center;
@@ -494,44 +525,44 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       width: 6.2em;
       -webkit-text-stroke: 1px #563d1b;
       font-weight: bolder;
-      letter-spacing: .1em;
-      text-shadow: .1em .1em .1em rgba(0,0,0,.5);
+      letter-spacing: 0.1em;
+      text-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5);
 
       &:before {
         content: '';
         display: block;
         background: #bd5717;
-        border: .05em solid #563d1b;
+        border: 0.05em solid #563d1b;
         position: absolute;
         top: 2.9em;
         width: 6.17em;
         height: 2em;
-        margin-left: .05em;
+        margin-left: 0.05em;
         transform: perspective(1em) rotateX(-3deg);
-        box-shadow: .2em .2em .2em rgba(0,0,0,.5);
+        box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5);
       }
 
       &:after {
         content: '';
         display: block;
         background: #8d8d8d;
-        border: .05em solid #563d1b;
+        border: 0.05em solid #563d1b;
         width: 6.17em;
-        height: .3em;
-        margin-top: .1em;
-        margin-left: .05em;
-        box-shadow: .2em .2em .2em rgba(0,0,0,.5);
+        height: 0.3em;
+        margin-top: 0.1em;
+        margin-left: 0.05em;
+        box-shadow: 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5);
       }
     }
 
     &.philares {
       font-family: Tahoma, sans-serif;
       text-transform: uppercase;
-      margin: .2em .6em;
+      margin: 0.2em 0.6em;
       text-align: left;
       -webkit-text-stroke: 1px white;
-      letter-spacing: .1em;
-      text-shadow: .1em .1em .1em rgba(0,0,0,.5);
+      letter-spacing: 0.1em;
+      text-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5);
       font-weight: bold;
       position: relative;
 
@@ -545,12 +576,12 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
 
       &:after {
         content: '\2B24\2B24\2B24';
-        font-size: .4em;
+        font-size: 0.4em;
         position: absolute;
         left: 5.5em;
         top: 2.2em;
         -webkit-text-stroke: 1px white;
-        text-shadow: .1em .1em .1em rgba(0,0,0,.5);
+        text-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5);
         color: #777;
         letter-spacing: 0;
       }
@@ -558,19 +589,19 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
 
     &.cheung-shing-mars {
       width: 7em;
-      margin: .4em auto;
+      margin: 0.4em auto;
       position: relative;
       z-index: 0;
       text-shadow: 0.1em 0 0 white, -0.1em 0 0 white;
-      -webkit-text-stroke: .04em white;
+      -webkit-text-stroke: 0.04em white;
 
       &:before {
         content: '';
         position: absolute;
-        left: .5em;
+        left: 0.5em;
         top: 1.4em;
         width: 86%;
-        height: .4em;
+        height: 0.4em;
         background-color: black;
         z-index: -1;
       }
@@ -581,15 +612,16 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         display: block;
         width: 1.3em;
         height: 1.3em;
-        color: #E2463B;
-        border: .1em solid #E2463B;
+        color: #e2463b;
+        border: 0.1em solid #e2463b;
         border-radius: 50%;
         position: absolute;
         line-height: 1.3;
-        top: -.1em;
+        top: -0.1em;
         left: -1.4em;
         text-shadow: 0.07em 0.07em 0.1em rgba(0, 0, 0, 0.5);
-        box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5), 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5) inset;
+        box-shadow: 0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5),
+          0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5) inset;
         -webkit-text-stroke: initial;
       }
     }
@@ -599,7 +631,7 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       text-decoration: underline;
       word-spacing: 1.4em;
       text-align: left;
-      margin: .8em 1.8em;
+      margin: 0.8em 1.8em;
       transform: scale(1.3, 1);
       position: relative;
 
@@ -607,41 +639,45 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         content: '';
         position: absolute;
         left: 2.7em;
-        top: -.4em;
-        width:  1.6em;
+        top: -0.4em;
+        width: 1.6em;
         height: 1.6em;
         background: linear-gradient(white, black);
-        border: .08em solid black;
-        border-radius: .4em;
-        transform: scale(.77, 1);
+        border: 0.08em solid black;
+        border-radius: 0.4em;
+        transform: scale(0.77, 1);
       }
 
       &:after {
         content: '';
         position: absolute;
         left: 2.85em;
-        top: -.25em;
+        top: -0.25em;
         width: 1.35em;
         height: 1.35em;
         background-color: #333;
         background-size: 150% 150%;
-        background-image: radial-gradient(rgba(255,255,255,.8) 0%, rgba(255,255,255,.6) 40%, transparent 75%);
-        background-position: 0 .3em;
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.8) 0%,
+          rgba(255, 255, 255, 0.6) 40%,
+          transparent 75%
+        );
+        background-position: 0 0.3em;
         background-repeat: no-repeat;
-        border: .04em solid #444;
-        border-radius: .3em;
+        border: 0.04em solid #444;
+        border-radius: 0.3em;
         transform: scale(0.77, 1);
       }
     }
 
     &.robinson-industries {
       text-transform: uppercase;
-      font-size: .05em;
-      letter-spacing: .3em;
+      font-size: 0.05em;
+      letter-spacing: 0.3em;
       width: 9em;
       line-height: 2;
       position: relative;
-      margin: .8em 3em .6em;
+      margin: 0.8em 3em 0.6em;
       background: linear-gradient(
         transparent 0%,
         transparent 15%,
@@ -656,9 +692,10 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         #ccc 67.5%,
         #ccc 85%,
         transparent 85%,
-        transparent 100%);
-      padding: 0 .5em;
-      transform: scale(1.4,1);
+        transparent 100%
+      );
+      padding: 0 0.5em;
+      transform: scale(1.4, 1);
 
       &:before {
         content: '';
@@ -669,35 +706,35 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         position: absolute;
         z-index: -1;
         border-radius: 50%;
-        transform: scale(.72, 1);
-        top: -.75em;
+        transform: scale(0.72, 1);
+        top: -0.75em;
         left: 1.3em;
       }
 
       &:after {
         content: '\2022\2022\2022\2022\2022\2022\2022';
         position: absolute;
-        letter-spacing: .52em;
+        letter-spacing: 0.52em;
         left: 0;
         top: 1.25em;
-        transform: scale(.77, 1);
+        transform: scale(0.77, 1);
         font-size: 1.5em;
         display: block;
-        height: .16em;
+        height: 0.16em;
         background-color: black;
         padding: 0;
-        line-height: .2;
+        line-height: 0.2;
         width: 5.8em;
       }
     }
 
     &.valley-trust {
       background-color: transparent;
-      filter: drop-shadow(.2em .2em .2em rgba(0, 0, 0, 0.5));
+      filter: drop-shadow(0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5));
       position: relative;
       width: 5em;
       height: 3.7em;
-      margin: .5em .8em;
+      margin: 0.5em 0.8em;
 
       &:before {
         content: 'VALLEY TRUST';
@@ -707,7 +744,7 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         text-transform: uppercase;
         text-shadow: 0.05em 0.05em 0.05em rgba(0, 0, 0, 0.5);
         position: absolute;
-        letter-spacing: .1em;
+        letter-spacing: 0.1em;
         padding-left: 1.75em;
         left: 0;
         top: 0;
@@ -715,23 +752,35 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         background-color: white;
         width: 100%;
         height: 100%;
-        color: #31407E;
+        color: #31407e;
       }
 
       &:after {
         content: '\00a0\2022';
-        line-height: .5;
-        letter-spacing: .11em;
+        line-height: 0.5;
+        letter-spacing: 0.11em;
         position: absolute;
         font-size: 2.5em;
         text-align: left;
         left: 0;
         top: 0;
-        background-color: #31407E;
+        background-color: #31407e;
         color: #fff;
         width: 100%;
         height: 100%;
-        clip-path: polygon(0 25%, 10% 0, 30% 0, 30% 60%, 3% 60%, 3% 94%, 26% 94%, 26% 60%, 30% 60%, 30% 100%, 0 100%);
+        clip-path: polygon(
+          0 25%,
+          10% 0,
+          30% 0,
+          30% 60%,
+          3% 60%,
+          3% 94%,
+          26% 94%,
+          26% 60%,
+          30% 60%,
+          30% 100%,
+          0 100%
+        );
       }
     }
 
@@ -741,11 +790,12 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       position: relative;
       width: 6em;
       height: 2.25em;
-      margin: .5em 2.2em;
+      margin: 0.5em 2.2em;
       text-align: left;
-      line-height: .8;
+      line-height: 0.8;
 
-      &:before, &:after {
+      &:before,
+      &:after {
         content: 'ViTOR';
         position: absolute;
         font-family: Georgia, 'Times New Roman', Times, serif;
@@ -755,20 +805,33 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         width: 100%;
         left: 0;
         top: 0;
-        padding: 0 .1em;
+        padding: 0 0.1em;
         transform: scale(1.5, 1);
-        border-width: .04em;
+        border-width: 0.04em;
         border-style: solid;
-        border-left-color: rgba(0,0,0,.2);
-        border-bottom-color: rgba(0,0,0,.2);
-        border-right-color: rgba(255,255,255,.2);
-        border-top-color: rgba(255,255,255,.2);
+        border-left-color: rgba(0, 0, 0, 0.2);
+        border-bottom-color: rgba(0, 0, 0, 0.2);
+        border-right-color: rgba(255, 255, 255, 0.2);
+        border-top-color: rgba(255, 255, 255, 0.2);
       }
 
       &:before {
-        background-color: #D36C57;
+        background-color: #d36c57;
         color: white;
-        clip-path: polygon(0 0, 87% 0, 100% 50%, 87% 100%, 87% 0, 84% 0, 84% 100%, 81% 100%, 81% 0, 78% 0, 78% 100%, 0 100%);
+        clip-path: polygon(
+          0 0,
+          87% 0,
+          100% 50%,
+          87% 100%,
+          87% 0,
+          84% 0,
+          84% 100%,
+          81% 100%,
+          81% 0,
+          78% 0,
+          78% 100%,
+          0 100%
+        );
       }
       &:after {
         background-color: white;
@@ -780,14 +843,21 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
     &.aphrodite {
       text-transform: uppercase;
       font-family: $aphrodite-font;
-      background: linear-gradient(to top, #ea6017 0%, #f7e819 16%, #ea6017 33%, #f7e819 60%, #ea6017 100%);
-      -webkit-text-stroke: .06em #1f1e23;
+      background: linear-gradient(
+        to top,
+        #ea6017 0%,
+        #f7e819 16%,
+        #ea6017 33%,
+        #f7e819 60%,
+        #ea6017 100%
+      );
+      -webkit-text-stroke: 0.06em #1f1e23;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
-      font-size: .11em;
-      letter-spacing: .05em;
-      filter: drop-shadow(.1em .1em .1em rgba(0,0,0,.4));
+      font-size: 0.11em;
+      letter-spacing: 0.05em;
+      filter: drop-shadow(0.1em 0.1em 0.1em rgba(0, 0, 0, 0.4));
 
       &:before {
         content: '♀';
@@ -795,23 +865,23 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         font-family: monospace;
         text-align: center;
         font-size: 2em;
-        padding-left: .17em;
-        margin-bottom: -.23em;
+        padding-left: 0.17em;
+        margin-bottom: -0.23em;
       }
     }
 
     &.manutech {
       font-family: Impact, Charcoal, sans-serif;
       text-transform: uppercase;
-      letter-spacing: .3em;
+      letter-spacing: 0.3em;
       transform: scaleX(1.5);
       color: #e40513;
       margin-left: -1.5em;
       margin-top: 1.3em;
-      margin-bottom: .3em;
-      filter: drop-shadow(.1em .1em .1em rgba(0,0,0,.5));
+      margin-bottom: 0.3em;
+      filter: drop-shadow(0.1em 0.1em 0.1em rgba(0, 0, 0, 0.5));
       position: relative;
-      
+
       &:before {
         content: '';
         position: absolute;
@@ -837,12 +907,18 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       display: block;
       width: 3.5em;
       text-transform: uppercase;
-      font-size: .15em;
-      margin: .9em 0 -1.1em .2em;
-      filter: drop-shadow(.05em .05em .05em rgba(0,0,0,.5));
+      font-size: 0.15em;
+      margin: 0.9em 0 -1.1em 0.2em;
+      filter: drop-shadow(0.05em 0.05em 0.05em rgba(0, 0, 0, 0.5));
       font-family: 'Dodge', sans-serif;
-      background: linear-gradient(to top, #777 0%, #000 50%, #999 50%, #000 100%);
-      -webkit-text-stroke: .02em #fff;
+      background: linear-gradient(
+        to top,
+        #777 0%,
+        #000 50%,
+        #999 50%,
+        #000 100%
+      );
+      -webkit-text-stroke: 0.02em #fff;
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -870,11 +946,12 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       text-transform: uppercase;
       text-align: left;
       position: relative;
-      filter: drop-shadow(.1em .05em .1em rgba(0,0,0,.5));
-      font-size: .15em;
-      margin: .4em 0 -.2em .3em;
-    
-      &:before, &:after {
+      filter: drop-shadow(0.1em 0.05em 0.1em rgba(0, 0, 0, 0.5));
+      font-size: 0.15em;
+      margin: 0.4em 0 -0.2em 0.3em;
+
+      &:before,
+      &:after {
         content: '';
         position: absolute;
         z-index: -1;
@@ -884,69 +961,69 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       &:before {
         background: linear-gradient(to right, #fffdfe, #f1aa62);
         height: 1.6em;
-        width: .8em;
-        left: -.1em;
-        top: -.3em;
+        width: 0.8em;
+        left: -0.1em;
+        top: -0.3em;
       }
       &:after {
         background: linear-gradient(to right, #f8fefe, #04ade5);
         height: 2em;
         width: 1em;
-        left: .57em;
-        top: -.5em;
+        left: 0.57em;
+        top: -0.5em;
       }
     }
 
     &.msi {
       text-transform: uppercase;
-      font-size: .08em;
+      font-size: 0.08em;
       color: #fff;
-      text-shadow: .03em .03em 0 #000;
-      filter: drop-shadow(.2em .2em .2em rgba(0,0,0,.5));
+      text-shadow: 0.03em 0.03em 0 #000;
+      filter: drop-shadow(0.2em 0.2em 0.2em rgba(0, 0, 0, 0.5));
       position: relative;
 
       &:before {
         content: 'MSI';
         display: inline-block;
         border-radius: 50%;
-        border: .1em solid #fff;
+        border: 0.1em solid #fff;
         background: radial-gradient(#039fe0, #26236b 60%);
         font-size: 1.8em;
         width: 2em;
         height: 2em;
-        box-shadow: .01em .01em 0 #000;
-        margin: 0 .4em -.2em -.5em;
+        box-shadow: 0.01em 0.01em 0 #000;
+        margin: 0 0.4em -0.2em -0.5em;
         line-height: 2.5;
       }
-      
+
       &:after {
         content: '★';
         position: absolute;
         font-size: 1.3em;
         left: 1.3em;
-        top: .2em;
-        text-shadow: 0 0 0.3em rgba(255,255,255,.7);
+        top: 0.2em;
+        text-shadow: 0 0 0.3em rgba(255, 255, 255, 0.7);
       }
     }
   }
 
   .flavor {
-    font-size: .045em;
+    font-size: 0.045em;
     font-style: italic;
     text-align: center;
-    line-height: .9;
+    line-height: 0.9;
     width: 100%;
-    margin: 0 0 .3em;
-    padding: 0 .3em .3em;
+    margin: 0 0 0.3em;
+    padding: 0 0.3em 0.3em;
   }
 
   .body {
     height: 100%;
-    font-size: .05em;
-    padding: .5em;
+    font-size: 0.05em;
+    padding: 0.5em;
 
     .description {
-      font-size: .8em;
+      font-size: 0.8em;
 
       &:before {
         content: '(';
@@ -957,12 +1034,22 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
     }
 
     .effect {
-      border: .2em solid #444;
-      background: linear-gradient(120deg, #eee 0%, #bbb 10%, #eee 30%, #bbb 50%, #bbb 70%, #eee 90%, #999 100%);
-      padding: .2em;
+      border: 0.2em solid #444;
+      background: linear-gradient(
+        120deg,
+        #eee 0%,
+        #bbb 10%,
+        #eee 30%,
+        #bbb 50%,
+        #bbb 70%,
+        #eee 90%,
+        #999 100%
+      );
+      padding: 0.2em;
       text-align: center;
 
-      .resources, .production {
+      .resources,
+      .production {
         font-size: 1.7em;
       }
       .resources {
@@ -981,20 +1068,29 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       }
 
       .effect-title {
-        font-size: .8em;
+        font-size: 0.8em;
         display: inline-block;
         text-align: center;
         font-family: $title-font;
         text-transform: uppercase;
-        box-shadow: 0 .2em 0 0 rgba(255,255,255,.2) inset, 0 .1em 0 0 rgba(0,0,0,.5) inset, 0 -.2em .1em 0 rgba(0,0,0,.7) inset;
-        border: .1em solid #999;
-        padding: .1em 3em;
-        background:
-          linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
+        box-shadow: 0 0.2em 0 0 rgba(255, 255, 255, 0.2) inset,
+          0 0.1em 0 0 rgba(0, 0, 0, 0.5) inset,
+          0 -0.2em 0.1em 0 rgba(0, 0, 0, 0.7) inset;
+        border: 0.1em solid #999;
+        padding: 0.1em 3em;
+        background: linear-gradient(
+          to right,
+          #315591 0%,
+          #3d9dd7 20%,
+          #3bb0e5 40%,
+          #3bb0e5 60%,
+          #3d9dd7 80%,
+          #315591 100%
+        );
       }
 
       .vp {
-        font-size: 2.5em
+        font-size: 2.5em;
       }
     }
 
@@ -1003,17 +1099,18 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
     }
 
     .award-title {
-      font-size: .8em;
+      font-size: 0.8em;
       display: inline-block;
       text-align: center;
       font-family: $title-font;
       text-transform: uppercase;
-      letter-spacing: .3em;
-      box-shadow: 0 .2em 0 0 rgba(0,0,0,.2) inset, 0 .1em 0 0 rgba(255,255,255,.5) inset, 0 -.2em .1em 0 rgba(255,255,255,.3) inset;
-      border: .1em solid #999;
-      padding: .1em 1em;
-      background:
-        linear-gradient(#DC885C, #D07455);
+      letter-spacing: 0.3em;
+      box-shadow: 0 0.2em 0 0 rgba(0, 0, 0, 0.2) inset,
+        0 0.1em 0 0 rgba(255, 255, 255, 0.5) inset,
+        0 -0.2em 0.1em 0 rgba(255, 255, 255, 0.3) inset;
+      border: 0.1em solid #999;
+      padding: 0.1em 1em;
+      background: linear-gradient(#dc885c, #d07455);
     }
   }
 }

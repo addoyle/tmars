@@ -3,21 +3,21 @@ $title-font: 'Prototype', sans-serif;
 .ocean-param {
   margin-right: -4px;
   margin-top: -8px;
-  transition: filter .3s ease;
+  transition: filter 0.3s ease;
   font-size: 64px;
 
   .tile {
-    filter: drop-shadow(0 0 12px rgba(128,128,128,.5));
+    filter: drop-shadow(0 0 12px rgba(128, 128, 128, 0.5));
   }
 
   &.maxed {
-    opacity: .25;
+    opacity: 0.25;
   }
 
   .ocean-num {
     font-family: $title-font;
     font-size: 150px;
-    color: #FFEF00;
+    color: #ffef00;
     text-align: center;
     margin: 180px 0;
   }

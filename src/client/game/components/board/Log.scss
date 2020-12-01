@@ -4,7 +4,7 @@ $title-font: 'Prototype', sans-serif;
   position: fixed;
   height: 50vh;
   width: 250px;
-  background: rgba(0,0,0,.75);
+  background: rgba(0, 0, 0, 0.75);
   color: #ddd;
   border-left: 2px solid #444;
   top: 12px;
@@ -18,17 +18,17 @@ $title-font: 'Prototype', sans-serif;
 
   .msgs {
     font-family: sans-serif;
-    font-size: .8em;
+    font-size: 0.8em;
     overflow-y: auto;
     flex: 1;
 
     .msg {
-      padding: .3em;
+      padding: 0.3em;
       line-height: 1.2;
 
       .standard-project {
         color: black;
-        padding: 0 .5em;
+        padding: 0 0.5em;
       }
 
       .log-inline {
@@ -39,19 +39,29 @@ $title-font: 'Prototype', sans-serif;
       }
 
       &.system {
-        background-color: rgba(255,255,255,.2);
+        background-color: rgba(255, 255, 255, 0.2);
         border: 1px solid #888;
-        font-size: .9em;
+        font-size: 0.9em;
         margin: 4px;
         border-radius: 10px;
         padding: 4px 8px;
       }
 
-      .player-1 { color: hsl(0,80%,60%); }
-      .player-2 { color: hsl(240,80%,70%); }
-      .player-3 { color: hsl(120,80%,40%); }
-      .player-4 { color: hsl(60,80%,40%); }
-      .player-5 { color: hsl(0,0%,65%); }
+      .player-1 {
+        color: hsl(0, 80%, 60%);
+      }
+      .player-2 {
+        color: hsl(240, 80%, 70%);
+      }
+      .player-3 {
+        color: hsl(120, 80%, 40%);
+      }
+      .player-4 {
+        color: hsl(60, 80%, 40%);
+      }
+      .player-5 {
+        color: hsl(0, 0%, 65%);
+      }
 
       .card-ref {
         .card-preview {
@@ -65,12 +75,24 @@ $title-font: 'Prototype', sans-serif;
         }
       }
 
-      h1 { font-size: 2.5em; }
-      h2 { font-size: 2em; }
-      h3 { font-size: 1.75em; }
-      h4 { font-size: 1.5em; }
-      h5 { font-size: 1.25em; }
-      h6 { font-size: 1.125em; }
+      h1 {
+        font-size: 2.5em;
+      }
+      h2 {
+        font-size: 2em;
+      }
+      h3 {
+        font-size: 1.75em;
+      }
+      h4 {
+        font-size: 1.5em;
+      }
+      h5 {
+        font-size: 1.25em;
+      }
+      h6 {
+        font-size: 1.125em;
+      }
       a {
         color: #1264ac;
         text-decoration: none;
@@ -98,15 +120,17 @@ $title-font: 'Prototype', sans-serif;
       width: 100%;
       height: 100%;
       font-family: sans-serif;
-      font-size: .8em;
+      font-size: 0.8em;
       background-color: transparent;
       color: #ddd;
       border: none;
       border-top: 1px solid #666;
       outline: none;
 
-      &:hover, &:active, &:focus {
-        background-color: rgba(255,255,255,.1);
+      &:hover,
+      &:active,
+      &:focus {
+        background-color: rgba(255, 255, 255, 0.1);
       }
     }
   }
@@ -117,7 +141,15 @@ $title-font: 'Prototype', sans-serif;
     font-family: $title-font;
 
     &.prelude {
-      background: linear-gradient(to right, #79277c 0%, #b0448f 20%, #e085c2 40%, #e085c2 60%, #b0448f 80%, #79277c 100%);
+      background: linear-gradient(
+        to right,
+        #79277c 0%,
+        #b0448f 20%,
+        #e085c2 40%,
+        #e085c2 60%,
+        #b0448f 80%,
+        #79277c 100%
+      );
 
       .card-ref {
         color: black;
@@ -125,7 +157,15 @@ $title-font: 'Prototype', sans-serif;
     }
 
     &.action {
-      background: linear-gradient(to right, #315591 0%, #3d9dd7 20%, #3bb0e5 40%, #3bb0e5 60%, #3d9dd7 80%, #315591 100%);
+      background: linear-gradient(
+        to right,
+        #315591 0%,
+        #3d9dd7 20%,
+        #3bb0e5 40%,
+        #3bb0e5 60%,
+        #3d9dd7 80%,
+        #315591 100%
+      );
 
       .card-ref {
         color: black;

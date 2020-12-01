@@ -5,9 +5,16 @@ $title-font: 'Prototype', sans-serif;
   margin: 2px 5px;
   padding: 2px;
   border: 1px solid #ccc;
-  background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+  background: linear-gradient(
+    135deg,
+    #444 0%,
+    #eee 25%,
+    #bbb 50%,
+    #bbb 75%,
+    #eee 100%
+  );
   border-top-right-radius: 10px;
-  transition: margin .3s ease, box-shadow .15s ease;
+  transition: margin 0.3s ease, box-shadow 0.15s ease;
   display: inline-block;
   cursor: pointer;
   box-shadow: none;
@@ -23,8 +30,15 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.passed {
-    filter: grayscale(.9);
-    background: linear-gradient(135deg, #222 0%, #bbb 25%, #999 50%, #999 75%, #bbb 100%);
+    filter: grayscale(0.9);
+    background: linear-gradient(
+      135deg,
+      #222 0%,
+      #bbb 25%,
+      #999 50%,
+      #999 75%,
+      #bbb 100%
+    );
     > span {
       color: #777;
       text-shadow: 1px 1px 0 #444;
