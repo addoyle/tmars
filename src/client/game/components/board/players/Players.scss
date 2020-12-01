@@ -22,7 +22,8 @@
     height: 36px;
     width: 200px;
     left: 3px;
-    transition: all .5s ease, left .5s ease, background-color .5s ease, opacity .3s ease;
+    transition: all 0.5s ease, left 0.5s ease, background-color 0.5s ease,
+      opacity 0.3s ease;
     z-index: -1;
     border: 2px solid #666;
     opacity: 1;
@@ -37,23 +38,23 @@
 
     &.player-1 {
       top: 0;
-      background-color: hsla(0,80%,40%,.6);
+      background-color: hsla(0, 80%, 40%, 0.6);
     }
     &.player-2 {
       top: calc(1 * 36px);
-      background-color: hsla(240,80%,40%,.6);
+      background-color: hsla(240, 80%, 40%, 0.6);
     }
     &.player-3 {
       top: calc(2 * 36px);
-      background-color: hsla(120,80%,30%,.6);
+      background-color: hsla(120, 80%, 30%, 0.6);
     }
     &.player-4 {
       top: calc(3 * 36px);
-      background-color: hsla(60,80%,40%,.6);
+      background-color: hsla(60, 80%, 40%, 0.6);
     }
     &.player-5 {
       top: calc(4 * 36px);
-      background-color: hsla(0,0%,35%,.6);
+      background-color: hsla(0, 0%, 35%, 0.6);
     }
   }
 }

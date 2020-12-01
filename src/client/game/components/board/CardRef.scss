@@ -3,23 +3,23 @@
   text-decoration: underline dashed;
 
   &.active {
-    color: hsl(200,80%,60%);
+    color: hsl(200, 80%, 60%);
   }
   &.automated {
-    color: hsl(120,50%,50%);
+    color: hsl(120, 50%, 50%);
   }
   &.event {
-    color: hsl(20,80%,50%);
+    color: hsl(20, 80%, 50%);
   }
   &.corporation {
-    color: hsl(40,100%,60%);
+    color: hsl(40, 100%, 60%);
   }
   &.prelude {
-    color: hsl(300,80%,60%);
+    color: hsl(300, 80%, 60%);
   }
   &.project {
     display: inline;
     border: none;
-    color: hsl(0,0%,67%);
+    color: hsl(0, 0%, 67%);
   }
 }

@@ -5,9 +5,9 @@ $title-font: 'Prototype', sans-serif;
   border: 1px solid black;
   border-radius: 10px;
   text-align: center;
-  background: rgba(255,255,255,.3);
+  background: rgba(255, 255, 255, 0.3);
   position: relative;
-  box-shadow: 0 0 12px rgba(128,128,128,.5);
+  box-shadow: 0 0 12px rgba(128, 128, 128, 0.5);
 
   > .param {
     position: absolute;
@@ -17,7 +17,7 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.maxed {
-    opacity: .25;
+    opacity: 0.25;
 
     .gauge {
       border-top-left-radius: 9px;
@@ -29,7 +29,7 @@ $title-font: 'Prototype', sans-serif;
     background-size: 20px 340px;
     background-position: bottom;
     width: 100%;
-    transition: height .3s ease;
+    transition: height 0.3s ease;
     position: relative;
     border-bottom-left-radius: 9px;
     border-bottom-right-radius: 9px;
@@ -53,16 +53,16 @@ $title-font: 'Prototype', sans-serif;
     border: 1px solid black;
     padding: 2px;
     background-color: #aaa;
-    box-shadow: 0 0 12px rgba(128,128,128,.5);
+    box-shadow: 0 0 12px rgba(128, 128, 128, 0.5);
 
     &.met {
-      opacity: .25;
+      opacity: 0.25;
     }
 
     > .production {
       font-size: 15px;
       min-height: unset;
-      padding: .2em;
+      padding: 0.2em;
 
       .icon {
         border: none;
@@ -101,6 +101,6 @@ $title-font: 'Prototype', sans-serif;
     left: 0;
     height: 0;
     width: 100%;
-    border-top: 1px solid rgba(255,255,255,.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
   }
 }

@@ -20,14 +20,18 @@ $title-font: 'Prototype', sans-serif;
       border-bottom: none;
       border-top-left-radius: 16px;
       border-top-right-radius: 16px;
-      background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+      background: linear-gradient(
+        135deg,
+        #444 0%,
+        #eee 25%,
+        #bbb 50%,
+        #bbb 75%,
+        #eee 100%
+      );
       font-family: $title-font;
       outline: none;
-      transition: 
-        border-color .3s ease,
-        box-shadow .15s ease,
-        margin .5s ease,
-        opacity .5s ease;
+      transition: border-color 0.3s ease, box-shadow 0.15s ease,
+        margin 0.5s ease, opacity 0.5s ease;
       vertical-align: bottom;
       position: relative;
       z-index: 3;
@@ -39,7 +43,7 @@ $title-font: 'Prototype', sans-serif;
         margin: 0;
         padding: 0;
       }
-  
+
       &.open {
         margin-bottom: 33vh;
 
@@ -55,36 +59,37 @@ $title-font: 'Prototype', sans-serif;
       > * {
         align-self: center;
       }
-  
+
       .param {
-        box-shadow: 0 0 4px 1px rgba(0,0,0,.4);
+        box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.4);
         margin-right: 8px;
-  
-        &.corp:before, &.prelude :before {
+
+        &.corp:before,
+        &.prelude :before {
           font-size: 1pt;
         }
       }
-  
+
       > .mc {
         font-size: 1.4em;
         margin-right: 8px;
-        filter: drop-shadow(0 0 4px rgba(0,0,0,.4));
+        filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.4));
         vertical-align: middle;
       }
-  
-      > svg[class*="fa-"] {
+
+      > svg[class*='fa-'] {
         vertical-align: middle;
         margin-right: 8px;
       }
-  
+
       & > span {
         vertical-align: middle;
       }
 
       .card-count {
         color: #666;
-        font-size: .7em;
-        margin-left: .25em;
+        font-size: 0.7em;
+        margin-left: 0.25em;
         vertical-align: middle;
 
         &:before {
@@ -94,14 +99,14 @@ $title-font: 'Prototype', sans-serif;
           content: ')';
         }
       }
-  
+
       .hand {
         width: 37px;
 
         .param {
-          box-shadow: 0 0 4px rgba(255,255,255,.4);
+          box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
           margin-right: -16px;
-  
+
           &:first-of-type {
             transform: rotateZ(-5deg);
           }
@@ -111,12 +116,12 @@ $title-font: 'Prototype', sans-serif;
           }
         }
       }
-  
+
       &:hover {
         border-color: #888;
       }
       &:active {
-        box-shadow: 0 0 24px rgba(0,0,0,.5) inset;
+        box-shadow: 0 0 24px rgba(0, 0, 0, 0.5) inset;
       }
     }
   }

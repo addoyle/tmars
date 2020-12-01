@@ -2,7 +2,14 @@ $title-font: 'Prototype', sans-serif;
 
 .standard-projects {
   font-family: $title-font;
-  background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+  background: linear-gradient(
+    135deg,
+    #444 0%,
+    #eee 25%,
+    #bbb 50%,
+    #bbb 75%,
+    #eee 100%
+  );
   border: 3px solid #444;
   position: fixed;
   right: 452px;
@@ -10,10 +17,17 @@ $title-font: 'Prototype', sans-serif;
   cursor: initial;
   font-size: 14px;
   padding: 6px 6px 0 6px;
-  transition: transform ease .5s;
+  transition: transform ease 0.5s;
 
   .header {
-    background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+    background: linear-gradient(
+      135deg,
+      #444 0%,
+      #eee 25%,
+      #bbb 50%,
+      #bbb 75%,
+      #eee 100%
+    );
     border: 3px solid #444;
     padding: 9px 16px;
     border-bottom-left-radius: 30px;
@@ -33,9 +47,9 @@ $title-font: 'Prototype', sans-serif;
       &:after {
         content: '\2259';
         font-size: 20px;
-        line-height: .24;
+        line-height: 0.24;
         vertical-align: middle;
-        margin-left: .1em;
+        margin-left: 0.1em;
         font-weight: bold;
       }
     }
@@ -51,7 +65,7 @@ $title-font: 'Prototype', sans-serif;
 
   .table {
     margin-right: -35px;
-    
+
     .row {
       height: 51px;
 
@@ -63,9 +77,9 @@ $title-font: 'Prototype', sans-serif;
       }
 
       .x {
-        margin-right: -.5em;
+        margin-right: -0.5em;
         font-family: $title-font;
-        text-shadow: 0 0 3px rgba(255,255,255,.7);
+        text-shadow: 0 0 3px rgba(255, 255, 255, 0.7);
         position: relative;
         z-index: 2;
         font-size: 1em;
@@ -76,7 +90,7 @@ $title-font: 'Prototype', sans-serif;
           margin-right: -4px;
         }
         .production {
-          font-size: .7em;
+          font-size: 0.7em;
         }
         button.standard-project {
           min-width: 64px;
@@ -96,8 +110,8 @@ $title-font: 'Prototype', sans-serif;
     position: relative;
     cursor: pointer;
     min-width: 88px;
-    transition: background-color .3s ease, border-color .3s ease;
-    margin-left: .5em;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    margin-left: 0.5em;
     height: auto;
     line-height: normal;
 
