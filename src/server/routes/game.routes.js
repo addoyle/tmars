@@ -30,6 +30,7 @@ router.post(
   GameController.confirmSelection
 );
 router.post('/:id/place-tile/:tileId', validate, GameController.placeTile);
+router.post('/:id/pass-skip', validate, GameController.passSkip);
 
 router.get('/:id/stream', validate, GameController.stream);
 

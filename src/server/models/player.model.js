@@ -61,6 +61,7 @@ export default class Player {
     heat: 8 // Heat to raise temperature
   };
   firstAction;
+  passed;
   modifiers = {};
 
   constructor(name) {

@@ -213,6 +213,11 @@ class Game {
   placeTile(id) {
     API(`game/${gameId()}/place-tile/${id}`, 'POST');
   }
+
+  @action
+  passSkip() {
+    API(`game/${gameId()}/pass-skip`, 'POST');
+  }
 }
 
 export default Game;

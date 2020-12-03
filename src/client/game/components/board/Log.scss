@@ -100,6 +100,10 @@ $title-font: 'Prototype', sans-serif;
           text-decoration: underline;
         }
       }
+      sup {
+        font-size: .6em;
+        vertical-align: super;
+      }
     }
 
     .follow-button {
@@ -140,7 +144,7 @@ $title-font: 'Prototype', sans-serif;
     text-transform: uppercase;
     font-family: $title-font;
 
-    &.prelude {
+    &.prelude-phase {
       background: linear-gradient(
         to right,
         #79277c 0%,
@@ -156,7 +160,7 @@ $title-font: 'Prototype', sans-serif;
       }
     }
 
-    &.action {
+    &.action-phase {
       background: linear-gradient(
         to right,
         #315591 0%,
@@ -165,11 +169,24 @@ $title-font: 'Prototype', sans-serif;
         #3bb0e5 60%,
         #3d9dd7 80%,
         #315591 100%
-      );
+        );
 
       .card-ref {
         color: black;
       }
+    }
+
+    &.production-phase {
+      background: linear-gradient(
+        to right, 
+        #003d22 0%,
+        #009f3e 20%,
+        #bacb00 40%,
+        #bacb00 60%,
+        #009f3e 80%,
+        #003d22 100%
+      );
+      color: black;
     }
   }
 }

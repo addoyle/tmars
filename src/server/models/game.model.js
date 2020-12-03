@@ -559,7 +559,7 @@ class Game {
     LogService.pushLog(
       this.id,
       new Log(0, [{ prelude: 'PRELUDE PHASE', drawer: 'prelude' }], true, {
-        classNames: ['phase', 'prelude']
+        classNames: ['phase', 'prelude-phase']
       })
     );
 
@@ -568,14 +568,47 @@ class Game {
     this.players.forEach(player => (player.ui.drawer = 'prelude'));
   }
 
+  beginPlayerOrderPhase() {
+    this.startingPlayer++;
+    if (this.startingPlayer > this.players.length) {
+      this.startingPlayer = 1;
+    }
+    const gen = ++this.params.generation;
+    this.turn = this.startingPlayer;
+
+    LogService.pushLog(
+      this.id,
+      new Log(
+        0,
+        [
+          gen,
+          {
+            super:
+              ['th', 'st', 'nd', 'rd'][
+                gen < 10 ? gen : gen > 20 ? gen % 10 : 0
+              ] || 'th'
+          },
+          ' generation'
+        ],
+        true,
+        { classNames: ['phase'] }
+      )
+    );
+
+    LogService.pushLog(
+      this.id,
+      new Log(this.startingPlayer, ' will be your starting player!')
+    );
+  }
+
   /**
    * Switch to action phase
    */
   beginActionPhase() {
     LogService.pushLog(
       this.id,
-      new Log(0, [{ prelude: 'ACTION PHASE', drawer: 'hand' }], true, {
-        classNames: ['phase', 'action']
+      new Log(0, [{ project: 'ACTION PHASE', drawer: 'hand' }], true, {
+        classNames: ['phase', 'action-phase']
       })
     );
 
@@ -583,6 +616,42 @@ class Game {
     this.turn = this.startingPlayer;
     this.players[this.turn].firstAction = true;
     this.players.forEach(player => (player.ui.drawer = 'hand'));
+  }
+
+  /**
+   * Switch to the production phase
+   */
+  beginProductionPhase() {
+    LogService.pushLog(
+      this.id,
+      new Log(0, ['PRODUCTION PHASE'], true, {
+        classNames: ['phase', 'production-phase']
+      })
+    );
+
+    this.players.forEach(player => {
+      // Reset players
+      player.firstAction = true;
+      player.passed = false;
+
+      // Move existing power to heat
+      player.resources.heat += player.resources.power;
+      player.resources.power = 0;
+
+      // Megacredits
+      player.resources.megacredit += player.tr + player.production.megacredit;
+
+      // Everything else
+      player.resources.steel += player.production.steel;
+      player.resources.titanium += player.production.titanium;
+      player.resources.plant += player.production.plant;
+      player.resources.power += player.production.power;
+      player.resources.heat += player.production.heat;
+
+      // TODO: Remove played status from Active cards
+    });
+
+    this.beginPlayerOrderPhase();
   }
 
   /**
@@ -604,11 +673,28 @@ class Game {
    * Advance to the next turn
    */
   nextTurn() {
-    // TODO: handle passes and skips
-    this.turn++;
-    if (this.turn > this.players.length) {
-      this.turn = 1;
+    // If all players have passed, move into the production phase
+    if (this.players.every(p => p.passed)) {
+      this.beginProductionPhase();
+      return;
     }
+
+    const player = this.players[this.turn - 1];
+
+    // First action, don't move to next turn
+    if (this.phase === 'action' && player.firstAction) {
+      player.firstAction = false;
+      return;
+    }
+
+    do {
+      this.turn++;
+      if (this.turn > this.players.length) {
+        this.turn = 1;
+      }
+    } while (this.players[this.turn - 1].passed);
+
+    this.players[this.turn - 1].firstAction = true;
   }
 
   resources(player, resource, num) {

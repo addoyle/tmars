@@ -18,7 +18,7 @@ export default new Prelude({
   emoji: '🏗️',
   action: (player, game) => {
     game.resources(player, 'titanium', 4);
-    game.production(player, 'production', 1);
+    game.production(player, 'titanium', 1);
   },
   layout: (
     <div className="flex gutter">

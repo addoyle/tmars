@@ -77,7 +77,10 @@ const CardDrawer = props => {
 
       {props.mode === 'select' ||
       buyMode ||
-      (gameStore.phase === 'action' && props.type === 'hand') ? (
+      ((gameStore.phase === 'action' ||
+        (gameStore.phase === 'prelude' && gameStore.playerStatus?.modifiers)) &&
+        props.type === 'hand' &&
+        gameStore.turn === gameStore.player.number) ? (
         <div
           className={classNames('button-bar flex gutter center center-items', {
             'buy-mode': buyMode
@@ -122,7 +125,7 @@ const CardDrawer = props => {
                 <span>For sale</span>
               </div>
             ) : null}
-            {gameStore.phase !== 'action' ? (
+            {gameStore.phase !== 'action' && gameStore.phase !== 'prelude' ? (
               <button
                 className="primary flex gutter center"
                 onClick={() =>
@@ -160,7 +163,14 @@ const CardDrawer = props => {
                   </div>
                 ) : null}
               </button>
-            ) : null}
+            ) : (
+              <div className="pill">
+                {gameStore.playerStatus?.modifiers
+                  ? gameStore.playerStatus.modifiers.desc ||
+                    'Play a card from hand'
+                  : 'Your Turn'}
+              </div>
+            )}
             {buyMode ? (
               <div className="pill text-center">
                 <span>Hand</span>
@@ -175,23 +185,22 @@ const CardDrawer = props => {
             style={{ paddingRight: '.5em' }}
           >
             {gameStore.phase === 'action' ? (
-              gameStore.player.firstAction ? (
-                <button className="flex gutter center-items">
-                  <span className="col-1" />
-                  <span className="col-5">Pass</span>
-                  <span className="col-1">
-                    <FontAwesomeIcon icon="times-circle" />
-                  </span>
-                </button>
-              ) : (
-                <button className="flex gutter center-items">
-                  <span className="col-1" />
-                  <span className="col-5">Skip</span>
-                  <span className="col-1">
-                    <FontAwesomeIcon icon="forward" />
-                  </span>
-                </button>
-              )
+              <button
+                className="flex gutter center-items"
+                onClick={() => gameStore.passSkip()}
+              >
+                <span className="col-1" />
+                <span className="col-5">
+                  {gameStore.player.firstAction ? 'Pass' : 'Skip'}
+                </span>
+                <span className="col-1">
+                  <FontAwesomeIcon
+                    icon={
+                      gameStore.player.firstAction ? 'times-circle' : 'forward'
+                    }
+                  />
+                </span>
+              </button>
             ) : null}
           </div>
         </div>
@@ -247,7 +256,9 @@ CardDrawer.propTypes = {
     switchDrawer: PropTypes.func,
     toggleSelectCard: PropTypes.func,
     phase: PropTypes.string,
+    turn: PropTypes.number,
     player: PropTypes.shape({
+      number: PropTypes.number,
       resources: PropTypes.shape({
         megacredit: PropTypes.number
       }),
@@ -274,7 +285,13 @@ CardDrawer.propTypes = {
     showActiveCard: PropTypes.func,
     buySelectedCards: PropTypes.func,
     confirmSelection: PropTypes.func,
-    confirmReveal: PropTypes.func
+    confirmReveal: PropTypes.func,
+    passSkip: PropTypes.func,
+    playerStatus: PropTypes.shape({
+      modifiers: PropTypes.shape({
+        desc: PropTypes.string
+      })
+    })
   }),
   cardStore: PropTypes.shape({
     get: PropTypes.func

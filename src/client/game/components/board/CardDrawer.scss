@@ -27,68 +27,12 @@ $hand-height: 40vh;
     transform: translateY(100%);
     z-index: 3;
 
-<<<<<<< HEAD
-=======
-    .button-box,
->>>>>>> 83c3cd2d63cd5e047b9687b676df0882cb038b3f
     .on-deck {
       pointer-events: none;
       opacity: 0;
     }
   }
 
-<<<<<<< HEAD
-=======
-  .button-box {
-    position: absolute;
-    top: -67px;
-    transform: translate(-50%, -100%);
-    left: 50vw;
-    padding: 16px;
-    border-radius: 16px;
-    border: 3px solid #444;
-    background: rgba(187, 187, 187, 0.5);
-    z-index: 2;
-    opacity: 1;
-    transition: opacity 0.5s ease;
-    box-shadow: 8px 8px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    text-align: center;
-
-    button {
-      padding: 8px;
-
-      .x {
-        position: relative;
-        text-shadow: 0 0 3px rgba(255, 255, 255, 0.7);
-        font-size: 1.2em;
-        margin-right: -10px;
-        margin-left: -3px;
-        z-index: 2;
-      }
-    }
-
-    .error {
-      text-align: center;
-      font-family: sans-serif;
-      background-color: rgba(128, 0, 0, 0.75);
-      color: #ddd;
-      margin-bottom: 16px;
-      padding: 4px;
-      border-radius: 8px;
-      height: 24px;
-      margin-top: -40px;
-      opacity: 0;
-      transition: margin-top 0.5s ease, opacity 0.5s ease;
-
-      &.show {
-        margin-top: 0;
-        opacity: 1;
-      }
-    }
-  }
-
->>>>>>> 83c3cd2d63cd5e047b9687b676df0882cb038b3f
   .on-deck {
     display: flex;
     flex-direction: column-reverse;
@@ -212,13 +156,10 @@ $hand-height: 40vh;
     background: rgba(0, 0, 0, 0.4);
     margin-top: -1px;
 
-<<<<<<< HEAD
     & ~ .cards {
       max-height: calc(#{$hand-height} - 46px - 3px);
     }
     
-=======
->>>>>>> 83c3cd2d63cd5e047b9687b676df0882cb038b3f
     &.buy-mode {
       border-top: 4px solid #444;
       margin-top: 0;

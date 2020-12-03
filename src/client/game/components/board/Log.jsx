@@ -115,6 +115,8 @@ const Log = forwardRef((props, ref) => {
                             onClick={() => gameStore.revealCards(body.reveal)}
                           />
                         );
+                      } else if (body.super) {
+                        return <sup>{body.super}</sup>;
                       } else {
                         const type = Object.keys(body).filter(key =>
                           ['corp', 'prelude', 'project'].includes(
@@ -140,7 +142,7 @@ const Log = forwardRef((props, ref) => {
                         <Markdown
                           key={i}
                           className="log-inline"
-                          source={body}
+                          source={body?.toString() || ''}
                           plugins={[require('remark-external-links')]}
                         />
                       );

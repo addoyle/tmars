@@ -136,6 +136,16 @@ export function placeTile(req, res) {
 }
 
 /**
+ * Skip or pass the current player's turn
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function passSkip(req, res) {
+  res.send(GameService.passSkip(`${req.params.id}`));
+}
+
+/**
  * For testing, load a preset which will replace the current game
  *
  * @param {*} req
@@ -143,14 +153,23 @@ export function placeTile(req, res) {
  */
 export function loadPreset(req, res) {
   if (req.query.preset) {
-    console.log('Loading preset into game', req.params.id);
-
     const presetGame = require(`../../testing/presets/${req.query.preset}.json`);
-    presetGame.id = req.params.id;
 
-    GameService.registerGame(presetGame, req.params.id);
+    if (presetGame) {
+      console.log(
+        'Loading',
+        req.query.preset,
+        'preset into game',
+        req.params.id
+      );
+      presetGame.id = req.params.id;
 
-    res.sendStatus(200);
+      GameService.registerGame(presetGame, req.params.id);
+
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
   } else {
     res.sendStatus(400);
   }

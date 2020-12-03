@@ -127,6 +127,10 @@ class GameService {
       // Put card in appropriate drawer, and remove from hand
       player.cards[cardType].push(card.card);
       player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
+
+      if (game.phase === 'action') {
+        game.nextTurn();
+      }
     };
 
     // Perform card's action
@@ -135,6 +139,8 @@ class GameService {
 
       // Server action didn't call done, call it now
       playedCard.action.length < 3 && done();
+    } else {
+      done();
     }
 
     game.playerStatus?.done();
@@ -407,6 +413,32 @@ class GameService {
     // TODO: Trigger placement events
 
     game.playerStatus.done();
+
+    return this.export(game);
+  }
+
+  /**
+   * Pass or skip a turn
+   *
+   * @param {string} id Game ID
+   */
+  @push(gameFilter)
+  passSkip(id) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, game.turn);
+
+    if (player.firstAction) {
+      player.passed = true;
+      player.firstAction = false;
+
+      // Log the pass
+      LogService.pushLog(game.id, new Log(player.number, [' passed.']));
+    } else {
+      // Log the pass
+      LogService.pushLog(game.id, new Log(player.number, [' skipped.']));
+    }
+
+    game.nextTurn();
 
     return this.export(game);
   }
