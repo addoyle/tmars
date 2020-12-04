@@ -95,9 +95,9 @@ class GameService {
    * @returns Game status
    */
   @push(gameFilter)
-  playCard(id, playerNum, playParams) {
+  playCard(id, playerNum, params) {
     const game = this.games[id];
-    const card = playParams.card;
+    const card = params.card;
     const player = this.getPlayer(game, playerNum);
     const playedCard = this.cardStore.project[card.card];
     const cardType = playedCard.constructor.name.toLowerCase();
@@ -107,9 +107,26 @@ class GameService {
     // TODO: Check if player can afford card
     // TODO: Check if player can afford resources used
 
-    // Decrease M€
-    // TODO: Calculate resource usage (steel, titanium, etc.)
-    player.resources.megacredit -= playedCard.cost;
+    // Pay for the card
+    let cost = playedCard.cost;
+    if (params.steel && playedCard.tags.includes('building')) {
+      cost -= params.steel * player.rates.steel;
+    }
+    if (params.titanium && playedCard.tags.includes('space')) {
+      cost -= params.titanium * player.rates.titanium;
+    }
+    if (params.heat) {
+      cost -= params.heat;
+    }
+    // Verify the player can afford the card
+    if (cost <= player.resources.megacredit) {
+      player.resources.steel -= params.steel;
+      player.resources.titanium -= params.titanium;
+      player.resources.heat -= params.heat;
+      player.resources.megacredit -= cost;
+    } else {
+      return this.export(game);
+    }
 
     LogService.pushLog(
       id,

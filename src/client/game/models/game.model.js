@@ -124,7 +124,8 @@ class Game {
       type,
       mode,
       steel: 0,
-      titanium: 0
+      titanium: 0,
+      heat: 0
     };
   }
 

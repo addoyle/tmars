@@ -15,7 +15,7 @@ export default new Automated({
   desc,
   flavor: 'Huge ultra-thin mirrors focusing sunlight onto the red planet',
   action: () => {},
-  emoji: '🔍',
+  emoji: '☀️',
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

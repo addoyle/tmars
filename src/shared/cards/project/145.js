@@ -29,7 +29,6 @@ export default new Automated({
       <div className="col-3 middle text-center">
         <Production>
           <div className="flex">
-            ]
             <Resource name="power" />
             <Resource name="power" />
             <Resource name="power" />

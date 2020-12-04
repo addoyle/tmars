@@ -599,6 +599,20 @@ class Game {
       this.id,
       new Log(this.startingPlayer, ' will be your starting player!')
     );
+
+    this.beginResearchPhase();
+  }
+
+  beginResearchPhase() {
+    LogService.pushLog(
+      this.id,
+      new Log(0, [{ project: 'RESEARCH PHASE', drawer: 'hand' }], true, {
+        classNames: ['phase', 'research-phase']
+      })
+    );
+
+    this.phase = 'research';
+    this.players.forEach(player => (player.ui.drawer = 'hand'));
   }
 
   /**

@@ -14,4 +14,78 @@ export default class Project extends Card {
 
     Object.assign(this, props);
   }
+
+  /**
+   * Any card specific requirements for play excluding global restrictions.
+   *
+   * E.g. negative power production requires the player to have at least 1 power production
+   */
+  canPlay() {
+    return { valid: true };
+  }
+
+  meetsRequirements(player, game) {
+    const result = { valid: true };
+
+    // No restriction, we're good!
+    if (!this.restriction) {
+      return result;
+    }
+
+    const val = this.restriction.value;
+    const max = this.restriction.max;
+
+    // Check parameters
+    if (this.restriction.param) {
+      const param = this.restriction.param;
+      const suffix = { oxygen: '%', venus: '%', temperature: '°C' };
+      if (
+        (!max && game.params[param] < val) ||
+        (max && game.params[param] > val)
+      ) {
+        result.valid = false;
+        result.msg = `Requires ${max ? 'at most' : 'at least'} ${val}${
+          suffix[param] || ''
+        }${param === 'temperature' ? '' : ` ${param}`}`;
+      }
+    }
+
+    // Check tags
+    if (this.restriction.tag) {
+      const tags = Array.isArray(this.restriction.tag)
+        ? this.restriction.tag
+        : [this.restriction.tag];
+      if (tags.some(t => player.tags[t] + (player.tags.any || 0) < val)) {
+        result.valid = false;
+        result.msg = `Requires ${val} ${tags.join(', ')} tag${
+          val > 1 ? 's' : ''
+        }`;
+      }
+    }
+
+    // Check tiles
+    if (this.restriction.tile) {
+      const tile = this.restriction.tile;
+      const tiles = game.field.flat().filter(t => t.type === tile);
+      const actual =
+        tile === 'ocean' || this.restriction.anyone
+          ? tiles.length
+          : tiles.filter(t => t.player === player.number);
+      if (actual < val) {
+        result.valid = false;
+        result.msg = `Requires ${val} ${tile} tile${val > 1 ? 's' : ''}`;
+      }
+    }
+
+    // Check production
+    if (this.restriction.production) {
+      const prod = this.restriction.production;
+      if (player.production[prod] < val) {
+        result.valid = false;
+        result.msg = `Requires ${val} ${prod} production`;
+      }
+    }
+
+    return result;
+  }
 }

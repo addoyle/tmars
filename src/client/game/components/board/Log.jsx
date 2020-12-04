@@ -116,7 +116,7 @@ const Log = forwardRef((props, ref) => {
                           />
                         );
                       } else if (body.super) {
-                        return <sup>{body.super}</sup>;
+                        return <sup key={i}>{body.super}</sup>;
                       } else {
                         const type = Object.keys(body).filter(key =>
                           ['corp', 'prelude', 'project'].includes(
