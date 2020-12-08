@@ -147,7 +147,7 @@ const StandardProjects = ({ gameStore }) => {
   return (
     <div
       className={classNames('standard-projects', {
-        collapse: gameStore.showStandardProjects
+        collapse: !gameStore.showStandardProjects
       })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
