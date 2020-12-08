@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import './StandardProjects.scss';
@@ -12,15 +12,142 @@ import {
 import classNames from 'classnames';
 
 /**
+ * Single standard project
+ */
+const StandardProject = inject('gameStore')(
+  observer(props => {
+    const player = props.gameStore.player;
+
+    const [chooserOpen, openChooser] = useState(false);
+
+    const canUse = Array.isArray(props.cost)
+      ? player?.resources.megacredit >= props.cost[0] ||
+        player?.resources[props.cost[1]] >= (player?.rates[props.cost[1]] || 8)
+      : isNaN(props.cost)
+      ? player?.cards.hand.length
+      : player?.resources.megacredit >= props.cost;
+
+    const action = () => {
+      if (!canUse || props.gameStore.turn !== player?.number) {
+        return;
+      }
+
+      if (Array.isArray(props.cost)) {
+        openChooser(!chooserOpen);
+      } else {
+        props.gameStore.standardProject(props.name);
+      }
+    };
+
+    return (
+      <div className="row">
+        <div className="cell">
+          {Array.isArray(props.cost) ? (
+            <>
+              <div className="resources middle text-right p-rel stack-bottom">
+                <span>{player?.rates[props.cost[1]] || 8}</span>
+                <Resource name={props.cost[1]} />
+              </div>
+              <div className="resources middle text-right p-rel">
+                <span className="sub small">OR</span>
+                <MegaCredit value={props.cost[0]} />
+              </div>
+            </>
+          ) : !isNaN(props.cost) ? (
+            <div className="resources middle text-right">
+              <MegaCredit value={props.cost} />
+            </div>
+          ) : (
+            props.cost
+          )}
+        </div>
+        <div className="cell middle">
+          <div className="resources middle">
+            <span className="arrow" />
+          </div>
+        </div>
+        <div className="cell middle">
+          <div className={classNames('flex', { city: props.name === 'City' })}>
+            <div className="resources middle text-center col-1">
+              {props.project}
+            </div>
+            <button
+              className="standard-project middle"
+              disabled={!canUse}
+              onClick={() => action()}
+            >
+              {props.name}
+            </button>
+          </div>
+        </div>
+        <div className={classNames('cell chooser', { chooserOpen })}>
+          <ul>
+            <li
+              className={classNames('resources', {
+                disabled:
+                  player?.resources[props.cost[1]] <
+                  (player?.rates[props.cost[1]] || 8)
+              })}
+              onClick={() => {
+                if (
+                  player?.resources[props.cost[1]] >=
+                  (player?.rates[props.cost[1]] || 8)
+                ) {
+                  openChooser(false);
+                  props.gameStore.standardProject(props.name, {
+                    resource: props.cost[1]
+                  });
+                }
+              }}
+            >
+              <span>{player?.rates[props.cost[1]] || 8}</span>
+              <Resource name={props.cost[1]} />
+            </li>
+            <li
+              className={classNames('resources', {
+                disabled: player?.resources.megacredit < props.cost[0]
+              })}
+              onClick={() => {
+                if (player?.resources.megacredit >= props.cost[0]) {
+                  openChooser(false);
+                  props.gameStore.standardProject(props.name);
+                }
+              }}
+            >
+              <MegaCredit value={props.cost[0]} />
+            </li>
+          </ul>
+        </div>
+      </div>
+    );
+  })
+);
+
+StandardProject.propTypes = {
+  gameStore: PropTypes.shape({
+    player: PropTypes.shape({
+      rates: PropTypes.object
+    }),
+    standardProject: PropTypes.func
+  }),
+  cost: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.array,
+    PropTypes.node
+  ]),
+  project: PropTypes.node,
+  name: PropTypes.string,
+  title: PropTypes.string
+};
+
+/**
  * Standard Projects pane
  */
 const StandardProjects = ({ gameStore }) => {
-  // TODO: reduce duplication
-
   return (
     <div
       className={classNames('standard-projects', {
-        collapse: !gameStore.showStandardProjects
+        collapse: gameStore.showStandardProjects
       })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
@@ -37,163 +164,76 @@ const StandardProjects = ({ gameStore }) => {
       </div>
 
       <div className="table">
-        <div className="row">
-          <div className="cell">
+        <StandardProject
+          cost={
             <div className="resources middle text-right m-right">
               <span className="x">X</span>
               <Param name="card back" />
             </div>
-          </div>
-          <div className="cell">
-            <div className="resources middle">
-              <span className="arrow" />
-            </div>
-          </div>
-          <div className="flex">
-            <div className="resources middle text-center col-1">
-              <MegaCredit value="X" />
-            </div>
-            <button className="standard-project middle">Sell Patents</button>
-          </div>
-        </div>
+          }
+          name="Sell Patents"
+          project={<MegaCredit value="X" />}
+        />
 
-        <div className="row">
-          <div className="cell">
-            <div className="resources middle text-right">
-              <MegaCredit value="11" />
-            </div>
-          </div>
-          <div className="cell">
-            <div className="resources middle">
-              <span className="arrow" />
-            </div>
-          </div>
-          <div className="flex">
-            <div className="resources middle text-center col-1">
-              <Production>
-                <div className="flex">
-                  <Resource name="power" />
-                </div>
-              </Production>
-            </div>
-            <button className="standard-project middle">Power Plant</button>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="cell">
-            <div className="resources middle text-right p-rel stack-bottom">
-              <span>8</span>
-              <Resource name="heat" />
-            </div>
-            <div className="resources middle text-right p-rel">
-              <span className="sub small">OR</span>
-              <MegaCredit value="14" />
-            </div>
-          </div>
-          <div className="cell middle">
-            <div className="resources middle">
-              <span className="arrow" />
-            </div>
-          </div>
-          <div className="cell middle">
-            <div className="flex">
-              <div className="resources middle text-center col-1">
-                <Param name="temperature" />
+        <StandardProject
+          cost={11}
+          name="Power Plant"
+          project={
+            <Production>
+              <div className="flex">
+                <Resource name="power" />
               </div>
-              <button className="standard-project middle">Asteroid</button>
-            </div>
-          </div>
-        </div>
+            </Production>
+          }
+        />
 
-        <div className="row">
-          <div className="cell">
-            <div className="resources middle text-right">
-              <MegaCredit value="18" />
-            </div>
-          </div>
-          <div className="cell">
-            <div className="resources middle">
-              <span className="arrow" />
-            </div>
-          </div>
-          <div className="flex">
-            <div className="resources middle text-center col-1">
-              <Tile name="ocean" />
-            </div>
-            <button className="standard-project middle">Aquifer</button>
-          </div>
-        </div>
+        <StandardProject
+          cost={[14, 'heat']}
+          name="Asteroid"
+          project={<Param name="temperature" />}
+        />
 
-        <div className="row">
-          <div className="cell">
-            <div className="resources middle text-right p-rel stack-bottom">
-              <span>8</span>
-              <Resource name="plant" />
-            </div>
-            <div className="resources middle text-right p-rel">
-              <span className="sub small">OR</span>
-              <MegaCredit value="23" />
-            </div>
-          </div>
-          <div className="cell middle">
-            <div className="resources middle">
-              <span className="arrow" />
-            </div>
-          </div>
-          <div className="cell middle">
-            <div className="flex">
-              <div className="resources middle text-center col-1">
-                <Tile name="greenery" />
-              </div>
-              <button className="standard-project middle">Greenery</button>
-            </div>
-          </div>
-        </div>
+        <StandardProject
+          cost={18}
+          name="Aquifer"
+          project={<Tile name="ocean" />}
+        />
 
-        <div className="row">
-          <div className="cell">
-            <div className="resources middle text-right">
-              <MegaCredit value="25" />
-            </div>
-          </div>
-          <div className="cell">
-            <div className="resources middle">
-              <span className="arrow" />
-            </div>
-          </div>
-          <div className="flex city">
-            <div className="resources middle text-center">
+        <StandardProject
+          cost={[23, 'plant']}
+          name="Greenery"
+          project={<Tile name="greenery" />}
+        />
+
+        <StandardProject
+          cost={25}
+          name="City"
+          project={
+            <>
               <Tile name="city" />
               <Production>
                 <div className="flex">
                   <MegaCredit value="1" />
                 </div>
               </Production>
-            </div>
-            <button className="standard-project middle">City</button>
-          </div>
-        </div>
+            </>
+          }
+        />
 
         {gameStore.sets.includes('venus') ? (
-          <div className="row">
-            <div className="cell">
-              <div className="resources middle text-right">
-                <MegaCredit value="15" />
-              </div>
-            </div>
-            <div className="cell">
-              <div className="resources middle">
-                <span className="arrow" />
-              </div>
-            </div>
-            <div className="flex">
-              <div className="resources middle text-center col-1">
-                <Param name="venus" />
-              </div>
-              <button className="standard-project middle">Air Scrapping</button>
-            </div>
-          </div>
+          <StandardProject
+            cost={15}
+            name="Air Scrapping"
+            project={<Param name="venus" />}
+          />
+        ) : null}
+
+        {gameStore.variants.trSolo && gameStore.players.length === 1 ? (
+          <StandardProject
+            cost={16}
+            name="Buffer Gas"
+            project={<Resource name="tr" />}
+          />
         ) : null}
       </div>
     </div>
@@ -203,7 +243,12 @@ const StandardProjects = ({ gameStore }) => {
 StandardProjects.propTypes = {
   gameStore: PropTypes.shape({
     sets: PropTypes.arrayOf(PropTypes.string),
-    showStandardProjects: PropTypes.bool
+    showStandardProjects: PropTypes.bool,
+    players: PropTypes.array,
+    standardProject: PropTypes.func,
+    variants: PropTypes.shape({
+      trSolo: PropTypes.bool
+    })
   })
 };
 

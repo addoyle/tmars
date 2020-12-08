@@ -146,6 +146,24 @@ export function passSkip(req, res) {
 }
 
 /**
+ * Fund a standard project
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function standardProject(req, res) {
+  res.send(
+    GameService.standardProject(
+      `${req.params.id}`,
+      req.body.player,
+      req.body.project,
+      req.body.resource,
+      res
+    )
+  );
+}
+
+/**
  * For testing, load a preset which will replace the current game
  *
  * @param {*} req

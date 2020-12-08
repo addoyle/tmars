@@ -31,6 +31,7 @@ router.post(
 );
 router.post('/:id/place-tile/:tileId', validate, GameController.placeTile);
 router.post('/:id/pass-skip', validate, GameController.passSkip);
+router.post('/:id/standard-project', validate, GameController.standardProject);
 
 router.get('/:id/stream', validate, GameController.stream);
 

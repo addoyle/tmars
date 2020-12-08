@@ -56,7 +56,8 @@ class Game {
   };
   variants = {
     draft: false,
-    wgt: false
+    wgt: false,
+    trSolo: false
   };
   board = 'Tharsis';
   field = [];
@@ -99,7 +100,34 @@ class Game {
     // Assign the player numbers
     this.players.forEach((player, i) => (player.number = i + 1));
 
-    // Filter out non-used cards and shuffle decks
+    // Solo game specific rules
+    if (this.players.length === 1) {
+      const player = this.players[0];
+
+      // Starting TR at 14
+      player.tr = 14;
+
+      // Solo games always play with corporate era
+      if (!this.sets.includes('corporate')) {
+        this.sets.push('corporate');
+      }
+    }
+    // Multi-player game rules
+    else {
+      this.players.forEach(player => {
+        // Starting TR at 20
+        player.tr = 20;
+
+        // Non-corporate era starts with 1 production for each resource
+        if (!this.sets.includes('corporate')) {
+          Object.keys(player.production).forEach(
+            p => (player.production[p] = 1)
+          );
+        }
+      });
+    }
+
+    // Filter out non-used cards and shuffle project deck
     this.cards.deck = shuffle(
       Object.values(this.cardStore.project)
         .filter(card => {
@@ -112,6 +140,7 @@ class Game {
         })
         .map(card => ({ card: normalize(card.number) }))
     );
+    // Do the same for the corp deck
     this.cards.corps = shuffle(
       Object.values(this.cardStore.corporation)
         .filter(
@@ -124,6 +153,7 @@ class Game {
         )
         .map(card => ({ card: normalize(card.number) }))
     );
+    // And the prelude deck
     if (this.sets.includes('prelude')) {
       this.cards.preludes = shuffle(
         Object.keys(this.cardStore.prelude).map(card => ({
@@ -179,34 +209,28 @@ class Game {
       new Log(this.startingPlayer, ' will be your starting player!')
     );
 
-    // Deal out corps
+    // Deal out 2 corps to each player
     for (let i = 0; i < 2; i++) {
       this.forEachPlayerOrder(player =>
         player.cards.corp.push(this.cards.corps.shift())
       );
     }
-    // Include beginner corp
+    // Add in beginner corp
+    // TODO: make this optional
     this.players.forEach(player => player.cards.corp.push({ card: '000' }));
 
-    // Deal out starting projects
+    // Deal out 10 projects
     for (let i = 0; i < 10; i++) {
       this.forEachPlayerOrder(player => this.drawCard(player, 'buy'));
     }
 
-    // Deal out preludes
+    // Deal out 4 preludes
     if (this.sets.includes('prelude')) {
       for (let i = 0; i < 4; i++) {
         this.forEachPlayerOrder(player =>
           player.cards.prelude.push(this.cards.preludes.shift())
         );
       }
-    }
-
-    // Solo game, starts at TR 14
-    if (this.players.length === 1) {
-      this.players[0].tr = 14;
-    } else {
-      this.players.forEach(player => (player.tr = 20));
     }
   }
 
@@ -394,7 +418,7 @@ class Game {
 
           // Show UI components
           player.ui = {
-            drawer: 'prelude',
+            drawer: this.phase === 'prelude' ? 'prelude' : 'hand',
             playerStats: {
               show: true,
               pid: player.number
@@ -664,6 +688,19 @@ class Game {
 
       // TODO: Remove played status from Active cards
     });
+
+    // TODO: shift to Solar Phase if using Venus and using WGT
+    this.beginPlayerOrderPhase();
+  }
+
+  /**
+   * Switch to the solar phase
+   */
+  beginSolarPhase() {
+    // TODO: implement this
+
+    this.phase = 'action';
+    this.turn = this.startingPlayer;
 
     this.beginPlayerOrderPhase();
   }

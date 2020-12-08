@@ -296,8 +296,6 @@ class GameService {
       this.checkStartPhaseDone(game);
     }
 
-    // console.log(game.params.generation, this.getDraftTargetPlayer(game));
-
     return this.export(game);
   }
 
@@ -451,11 +449,98 @@ class GameService {
       // Log the pass
       LogService.pushLog(game.id, new Log(player.number, [' passed.']));
     } else {
-      // Log the pass
+      // Log the skip
       LogService.pushLog(game.id, new Log(player.number, [' skipped.']));
     }
 
     game.nextTurn();
+
+    return this.export(game);
+  }
+
+  @push(gameFilter)
+  standardProject(id, playerNum, project, resource, res) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+
+    if (game.turn === playerNum) {
+      const doProject = (
+        cost,
+        action,
+        canPlay = player.resources.megacredit >= cost ||
+          (resource && player.resources[resource] >= player.rates[resource])
+      ) => {
+        if (canPlay) {
+          LogService.pushLog(
+            game.id,
+            new Log(player.number, [
+              ' used the ',
+              { standardProject: project },
+              ' standard project',
+              resource
+                ? ` by converting ${
+                    resource === 'heat' ? 'heat' : `${resource}s`
+                  } `
+                : '',
+              resource ? { resource } : '',
+              '.'
+            ])
+          );
+
+          if (resource) {
+            player.resources[resource] -= player.rates[resource];
+          } else {
+            player.resources.megacredit -= cost;
+          }
+
+          const done = () => game.nextTurn();
+          action(done);
+          if (action.length === 0) {
+            done();
+          }
+        } else {
+          res.sendStatus(403);
+        }
+      };
+
+      switch (project) {
+        case 'Sell Patents': {
+          doProject(0, done => done(), player.cards.hand.length);
+          break;
+        }
+        case 'Power Plant': {
+          doProject(11, () => game.production(player, 'power', 1));
+          break;
+        }
+        case 'Asteroid': {
+          doProject(14, () => game.param('temperature', player));
+          break;
+        }
+        case 'Aquifer': {
+          doProject(18, done => game.promptTile('ocean', player, done));
+          break;
+        }
+        case 'Greenery': {
+          doProject(23, done => game.promptTile('greenery', player, done));
+          break;
+        }
+        case 'City': {
+          doProject(18, done => {
+            game.production(player, 'megacredit', 1);
+            game.promptTile('city', player, done);
+          });
+          break;
+        }
+        case 'Air Scrapping': {
+          doProject(15, () => game.param('venus', player));
+          break;
+        }
+        case 'Buffer Gas': {
+          doProject(16, () => player.tr++);
+          break;
+        }
+      }
+    }
 
     return this.export(game);
   }

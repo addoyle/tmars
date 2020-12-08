@@ -124,7 +124,7 @@
       "number": 2,
       "tr": 20,
       "resources": {
-        "megacredit": 16,
+        "megacredit": 66,
         "steel": 0,
         "titanium": 0,
         "plant": 0,
@@ -337,10 +337,10 @@
       "number": 4,
       "tr": 22,
       "resources": {
-        "megacredit": 17,
+        "megacredit": 57,
         "steel": 5,
         "titanium": 4,
-        "plant": 0,
+        "plant": 9,
         "power": 0,
         "heat": 0
       },
@@ -439,12 +439,12 @@
       "number": 5,
       "tr": 23,
       "resources": {
-        "megacredit": 9,
+        "megacredit": 49,
         "steel": 5,
         "titanium": 0,
         "plant": 0,
         "power": 0,
-        "heat": 0
+        "heat": 8
       },
       "production": {
         "megacredit": 0,

@@ -2,6 +2,7 @@ import { observable, action } from 'mobx';
 import { API, gameId } from '../../util/api';
 
 const PLAYER_NUM = new URLSearchParams(window.location.search).get('player');
+const POST = 'POST';
 
 class Game {
   // Sets, or expansions, that are enabled in this game
@@ -81,6 +82,12 @@ class Game {
   @observable showMilestones = false;
   @observable showStandardProjects = false;
 
+  variants = {
+    draft: false,
+    wgt: false,
+    trSolo: false
+  };
+
   /**
    * Switch drawers. If the drawer is already open, close. Null will also close the active drawer.
    *
@@ -108,8 +115,6 @@ class Game {
    * - null: [Cancel]
    * - play: [Play, Use Steel, Use Titanium, Cancel]
    * - action: [Action 1, Action 2, ..., Cancel]
-   * - buy: [Buy, Cancel]
-   * - draft: [Draft, Cancel]
    *
    * @param {string} card Card number to show
    * @param {string} type Card type, one of [project, corp, prelude]
@@ -163,7 +168,7 @@ class Game {
 
   @action
   playCard(card, opts) {
-    API(`game/${gameId()}/play-card`, 'POST', {
+    API(`game/${gameId()}/play-card`, POST, {
       ...opts,
       card,
       player: +PLAYER_NUM
@@ -172,7 +177,7 @@ class Game {
 
   @action
   playPrelude(card, opts) {
-    API(`game/${gameId()}/play-prelude`, 'POST', {
+    API(`game/${gameId()}/play-prelude`, POST, {
       ...opts,
       card,
       player: +PLAYER_NUM
@@ -181,7 +186,7 @@ class Game {
 
   @action
   toggleSelectCard(card, type, opts) {
-    API(`game/${gameId()}/toggle-select-card`, 'POST', {
+    API(`game/${gameId()}/toggle-select-card`, POST, {
       ...opts,
       card,
       type,
@@ -191,7 +196,7 @@ class Game {
 
   @action
   draftCard(card, opts) {
-    API(`game/${gameId()}/draft-card`, 'POST', {
+    API(`game/${gameId()}/draft-card`, POST, {
       ...opts,
       card,
       player: +PLAYER_NUM
@@ -200,24 +205,33 @@ class Game {
 
   @action
   buySelectedCards() {
-    API(`game/${gameId()}/buy-selected`, 'POST', { player: +PLAYER_NUM });
+    API(`game/${gameId()}/buy-selected`, POST, { player: +PLAYER_NUM });
   }
 
   @action
   confirmSelection(type) {
-    API(`game/${gameId()}/confirm-selection/${type}`, 'POST', {
+    API(`game/${gameId()}/confirm-selection/${type}`, POST, {
       player: +PLAYER_NUM
     });
   }
 
   @action
   placeTile(id) {
-    API(`game/${gameId()}/place-tile/${id}`, 'POST');
+    API(`game/${gameId()}/place-tile/${id}`, POST);
   }
 
   @action
   passSkip() {
-    API(`game/${gameId()}/pass-skip`, 'POST');
+    API(`game/${gameId()}/pass-skip`, POST);
+  }
+
+  @action
+  standardProject(project, opts = {}) {
+    API(`game/${gameId()}/standard-project`, POST, {
+      ...opts,
+      project,
+      player: +PLAYER_NUM
+    });
   }
 }
 

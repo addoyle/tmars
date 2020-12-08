@@ -166,7 +166,7 @@ Field.propTypes = {
       player: PropTypes.shape({
         number: PropTypes.number
       }),
-      tile: PropTypes.oneOf([PropTypes.string, PropTypes.object])
+      tile: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
     }),
     player: PropTypes.shape({
       number: PropTypes.number

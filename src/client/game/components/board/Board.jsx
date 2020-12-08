@@ -81,7 +81,7 @@ const Board = props => {
       <Field />
       <Players />
       <GlobalParameters />
-      <MilestoneAward />
+      {props.gameStore.players.length > 1 ? <MilestoneAward /> : null}
       <StandardProjects />
       <ActiveCard />
       <Log ref={logRef} />
@@ -95,7 +95,8 @@ Board.propTypes = {
   gameStore: PropTypes.shape({
     activeCard: PropTypes.shape({
       show: PropTypes.bool
-    })
+    }),
+    players: PropTypes.array
   })
 };
 

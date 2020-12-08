@@ -209,7 +209,7 @@ const CardDrawer = props => {
       <ul className="cards">
         {cards.map(card => (
           <li
-            key={`card-${card.card}`}
+            key={`card-${card.card || card}`}
             onClick={() =>
               !card.disabled
                 ? props.mode === 'select'

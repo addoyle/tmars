@@ -12,7 +12,7 @@ $title-font: 'Prototype', sans-serif;
   );
   border: 3px solid #444;
   position: fixed;
-  right: 452px;
+  right: 482px;
   top: 0;
   cursor: initial;
   font-size: 14px;
@@ -41,7 +41,6 @@ $title-font: 'Prototype', sans-serif;
 
     .standard-project {
       padding-left: 1em;
-      position: relative;
       margin: 0;
 
       &:after {
@@ -68,6 +67,7 @@ $title-font: 'Prototype', sans-serif;
 
     .row {
       height: 51px;
+      position: relative;
 
       .resources > .mc {
         font-size: 1.3em;
@@ -85,7 +85,7 @@ $title-font: 'Prototype', sans-serif;
         font-size: 1em;
       }
 
-      & > .city {
+      .cell > .city {
         .tile {
           margin-right: -4px;
         }
@@ -99,9 +99,58 @@ $title-font: 'Prototype', sans-serif;
 
       .stack-bottom {
         z-index: 0;
-        margin-bottom: -25px;
-        margin-right: 22px;
+        margin: -7px 22px -25px 0;
         font-size: 1.9em;
+
+        & > span {
+          margin: 0;
+        }
+      }
+
+      .chooser {
+        position: absolute;
+        left: 266px;
+        min-width: 124px;
+        background: linear-gradient(135deg, #444 0%, #eee 25%, #bbb 50%, #bbb 75%, #eee 100%);
+        border: 3px solid #444;
+        border-radius: 16px;
+        pointer-events: none;
+        transition: opacity .3s ease;
+        opacity: 0;
+        overflow: hidden;
+        user-select: none;
+
+        &.chooserOpen {
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        ul {
+          display: flex;
+
+          li {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            padding: 0 4px;
+            cursor: pointer;
+            transition: background-color .3s ease;
+            background-color: transparent;
+
+            &.disabled {
+              cursor: not-allowed;
+              opacity: .5;
+              
+            }
+            &:hover {
+              background-color: rgba(0,0,0,.2);
+            }
+            &:active {
+              background-color: rgba(0,0,0,.4);
+            }
+          }
+        }
       }
     }
   }
@@ -110,14 +159,28 @@ $title-font: 'Prototype', sans-serif;
     position: relative;
     cursor: pointer;
     min-width: 88px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, filter 0.3s ease;
     margin-left: 0.5em;
     height: auto;
     line-height: normal;
+    opacity: 1;
+
+    &.disabled, &:disabled {
+      cursor: not-allowed;
+      background: #e8a91c80;
+      border-color: #f5ee2480;
+      box-shadow: 0 0 1px 1px #00000080;
+      filter: grayscale(.75);
+
+      &:before {
+        opacity: .5;
+      }
+    }
 
     &:hover {
       background: #edb94a;
       border-color: #f7f255;
+      box-shadow: 0 0 1px 1px black;
     }
     &:active {
       outline: none;
