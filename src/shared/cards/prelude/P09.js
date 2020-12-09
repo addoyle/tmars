@@ -19,7 +19,7 @@ export default new Prelude({
   emoji: '⛺',
   action: (player, game, done) => {
     game.production(player, 'plant', 1);
-    game.promptTile('city', player, done);
+    game.promptTile(player, 'city', done);
   },
   layout: (
     <div className="flex gutter">

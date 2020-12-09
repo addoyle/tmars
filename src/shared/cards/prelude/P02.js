@@ -22,7 +22,7 @@ export default new Prelude({
   action: (player, game, done) => {
     game.production(player, 'power', 2);
     game.resources(player, 'megacredit', -3);
-    game.promptTile('ocean', player, done);
+    game.promptTile(player, 'ocean', done);
   },
   layout: (
     <div className="flex gutter">

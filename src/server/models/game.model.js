@@ -16,13 +16,13 @@ const paramStats = {
       [-24]: player => player.production.heat++,
       [-20]: player => player.production.heat++,
       // TODO: place an ocean
-      0: (player, game) => game.param('ocean', player)
+      0: (player, game) => game.promtTile(player, 'ocean')
     }
   },
   oxygen: {
     max: 14,
     rewards: {
-      8: (player, game) => game.param('temperature', player)
+      8: (player, game) => game.param(player, 'temperature')
     }
   },
   venus: {
@@ -30,7 +30,7 @@ const paramStats = {
     step: 2,
     rewards: {
       8: (player, game) => game.drawCard(player),
-      16: player => player.tr++
+      16: (player, game) => game.tr(player, 1)
     }
   },
   ocean: {
@@ -75,8 +75,6 @@ class Game {
     preludes: []
   };
   cardStore;
-
-  queue = [];
 
   /**
    * Constructor
@@ -318,7 +316,7 @@ class Game {
    * @param {string} param
    * @param {Player} player
    */
-  param(param, player) {
+  param(player, param) {
     if (
       paramStats[param] !== undefined &&
       (this.params[param] < paramStats[param].max ||
@@ -326,7 +324,7 @@ class Game {
           this.params[param] > paramStats[param].max))
     ) {
       this.params[param] += paramStats[param].step || 1;
-      player.tr++;
+      this.tr(player, 1);
 
       // Handle rewards if a param reaches a certain threshold
       const rewardAction = paramStats[param].rewards[this.params[param]];
@@ -379,7 +377,7 @@ class Game {
    * @param {object} player Player placing the tile
    * @param {func} callback Callback once the tile is placed
    */
-  promptTile(tile, player, callback) {
+  promptTile(player, tile, callback) {
     const possibleTiles = this.findPossibleTiles(tile, player);
     if (possibleTiles.length) {
       possibleTiles.forEach(
@@ -405,9 +403,9 @@ class Game {
         done: () => {
           // Raise params if necessary
           if (tile === 'ocean') {
-            this.param('ocean', player);
+            this.param(player, 'ocean');
           } else if (tile === 'greenery') {
-            this.param('oxygen', player);
+            this.param(player, 'oxygen');
           }
 
           // Remove clickable
@@ -748,16 +746,47 @@ class Game {
     this.players[this.turn - 1].firstAction = true;
   }
 
+  /**
+   * Fires an event
+   *
+   * @param {string} evt Event
+   * @param {Player} player Player which fired the event
+   */
+  fire(evt, player) {
+    // TODO: Loop through Action cards and corps
+    console.log(evt, player.number);
+  }
+
+  /**
+   * Helper method to increase/decrease a resource
+   *
+   * @param {Player} player Player doing the action
+   * @param {string} resource Resource to change
+   * @param {number} num Amount to change
+   */
   resources(player, resource, num) {
     player.resources[resource] += num;
     // TODO fire resource change
   }
 
+  /**
+   * Helper method to increase/decrease a resource production
+   *
+   * @param {Player} player Player doing the action
+   * @param {string} resource Resource production to change
+   * @param {number} num Amount to change
+   */
   production(player, resource, num) {
     player.production[resource] += num;
     // TODO fire production change
   }
 
+  /**
+   * Helper method to increase/decrease the player's terraform rating
+   *
+   * @param {Player} player Player doing the action
+   * @param {*} num Amount to change
+   */
   tr(player, num) {
     player.tr += num;
     // TODO fire terraform change

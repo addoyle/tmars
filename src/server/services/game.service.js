@@ -145,6 +145,9 @@ class GameService {
       player.cards[cardType].push(card.card);
       player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
 
+      // Trigger card-played events
+      game.fire('onCardPlayed', player);
+
       if (game.phase === 'action') {
         game.nextTurn();
       }
@@ -413,7 +416,7 @@ class GameService {
         if (r === 'card') {
           game.drawCard(player);
         } else if (r === 'ocean') {
-          game.promptTile('ocean', player);
+          game.promptTile(player, 'ocean');
         } else if (r.megacredit) {
           player.resources.megacredit += r.megacredit;
         } else {
@@ -513,30 +516,30 @@ class GameService {
           break;
         }
         case 'Asteroid': {
-          doProject(14, () => game.param('temperature', player));
+          doProject(14, () => game.param(player, 'temperature'));
           break;
         }
         case 'Aquifer': {
-          doProject(18, done => game.promptTile('ocean', player, done));
+          doProject(18, done => game.promptTile(player, 'ocean', done));
           break;
         }
         case 'Greenery': {
-          doProject(23, done => game.promptTile('greenery', player, done));
+          doProject(23, done => game.promptTile(player, 'greenery', done));
           break;
         }
         case 'City': {
           doProject(18, done => {
             game.production(player, 'megacredit', 1);
-            game.promptTile('city', player, done);
+            game.promptTile(player, 'city', done);
           });
           break;
         }
         case 'Air Scrapping': {
-          doProject(15, () => game.param('venus', player));
+          doProject(15, () => game.param(player, 'venus'));
           break;
         }
         case 'Buffer Gas': {
-          doProject(16, () => player.tr++);
+          doProject(16, () => game.tr(player, 1));
           break;
         }
       }

@@ -17,7 +17,11 @@ export default new Automated({
   tags: ['space', 'city'],
   desc,
   flavor: 'The doorway to Mars',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'titanium', 1);
+    // TODO: figure out reserved spots
+    game.promptTile(player, 'city', done);
+  },
   emoji: '🍄',
   vp: 3,
   layout: (

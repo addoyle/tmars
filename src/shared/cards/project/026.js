@@ -21,7 +21,16 @@ export default new Automated({
   },
   desc,
   flavor: 'A wonder of the world, doing wonders for the tourism business',
-  action: () => {},
+  action: (player, game, done) => {
+    game.resources(player, 'plant', 3);
+    game.production(player, 'megacredit', 2);
+    // TODO: figure out how to add resources to other cards
+    game.promptCard(
+      card => card.resources++,
+      card => card.tags.includes('animal'),
+      done
+    );
+  },
   emoji: '🏞',
   layout: (
     <div>

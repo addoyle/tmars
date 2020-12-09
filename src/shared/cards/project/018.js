@@ -21,7 +21,10 @@ export default new Automated({
   desc,
   flavor:
     "Using Titan's liquid methane as fuel will add carbon and heat to Mars",
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'heat', 2);
+    game.production(player, 'plant', 2);
+  },
   emoji: '🌥',
   layout: (
     <div className="flex gutter">

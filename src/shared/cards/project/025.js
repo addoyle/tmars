@@ -17,7 +17,6 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Buy it today at www.fryxgames.se',
-  action: () => {},
   vp: 1,
   emoji: '🛰',
   activeLayout: (

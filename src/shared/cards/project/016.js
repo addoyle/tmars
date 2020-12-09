@@ -23,10 +23,11 @@ export default new Automated({
   },
   desc,
   flavor: 'A spacious area for a great city',
-  action: player => {
-    player.resources.plant += 3;
-    player.production.power--;
-    player.production.megacredit += 3;
+  action: (player, game, done) => {
+    game.resources(player, 'plant', 3);
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', 3);
+    game.promptTile(player, 'city', done);
   },
   emoji: '🕌',
   vp: 1,

@@ -20,7 +20,7 @@ export default new Active({
   desc,
   flavor:
     'An ultra-strong cable car up to geo-stationary orbit, enabling reasonable export costs',
-  action: () => {},
+  action: (player, game) => game.production(player, 'titanium', 1),
   clientActiveAction: () => {},
   serverActiveAction: () => {},
   vp: 2,

@@ -13,8 +13,8 @@ export default new Prelude({
   flavor: 'A prototype facility for elctrolyzing regolith into oxygen and iron',
   emoji: '🏭',
   action: (player, game) => {
-    game.param('oxygen', player);
-    game.param('oxygen', player);
+    game.param(player, 'oxygen');
+    game.param(player, 'oxygen');
     game.resources(player, 'steel', 5);
   },
   layout: (

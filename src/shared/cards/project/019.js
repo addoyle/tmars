@@ -12,7 +12,11 @@ export default new Event({
   tags: ['earth', 'space', 'event'],
   desc,
   flavor: 'A light-weight but expensive crucial element',
-  action: () => {},
+  action: (player, game, done) => {
+    // TODO: FIgure out an or situation, and how to choose cards to add resources to
+
+    game.promptTile(player, 'ocean', done);
+  },
   emoji: '🎈',
   layout: (
     <div>

@@ -17,8 +17,8 @@ export default new Event({
   desc,
   flavor: 'Prepare to be cratered!',
   action: (player, game, done) => {
-    game.param('temperature', player);
-    game.promptTile('ocean', player, () =>
+    game.param(player, 'temperature');
+    game.promptTile(player, 'ocean', () =>
       game.promptPlayer(
         targetPlayer => game.resources(targetPlayer, 'plant', -3),
         done

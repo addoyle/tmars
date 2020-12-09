@@ -26,7 +26,7 @@ export default new Automated({
   action: (game, player, done) => {
     game.production(player, 'power', -2);
     game.production(player, 'megacredit', 5);
-    game.promptTile('capital', player, done);
+    game.promptTile(player, 'capital', done);
   },
   vp: () => {},
   emoji: '🏛',

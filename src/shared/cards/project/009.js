@@ -13,7 +13,7 @@ export default new Event({
   desc,
   flavor: 'What are those plants in our impact zone?',
   action: (player, game, done) => {
-    game.param('temperature', player);
+    game.param(player, 'temperature');
     game.resources(player, 'titanium', 2);
     game.promptPlayer(
       targetPlayer => game.resources(targetPlayer, 'plant', -3),

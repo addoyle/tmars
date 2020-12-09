@@ -22,7 +22,7 @@ export default new Prelude({
       'plant cards',
       { tag: 'plant' }
     );
-    game.promptTile('greenery', player, done);
+    game.promptTile(player, 'greenery', done);
   },
   layout: (
     <div className="flex gutter m-bottom">

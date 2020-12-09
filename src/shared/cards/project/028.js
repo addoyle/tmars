@@ -18,7 +18,6 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Keeping the peace by force',
-  action: () => {},
   emoji: '🚀',
   activeLayout: (
     <div>

@@ -17,7 +17,7 @@ export default new Automated({
   desc,
   flavor: 'Digging deep to find heat from the core',
   action: (player, game) => {
-    game.param('temperature', player);
+    game.param(player, 'temperature');
     game.production(player, 'power', 4);
   },
   emoji: '☕',

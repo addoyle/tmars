@@ -23,7 +23,11 @@ export default new Automated({
   desc,
   flavor:
     'In a thin atmosphere, normal pressure can hold up a protective dome over the city.',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', 3);
+    game.promptTile(player, 'city', done);
+  },
   emoji: '🌇',
   layout: (
     <div className="flex">

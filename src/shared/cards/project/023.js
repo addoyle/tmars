@@ -18,7 +18,7 @@ export default new Active({
   desc,
   activeDesc,
   flavor: 'Suitable for freezing temperatures',
-  action: () => {},
+  action: (player, game) => game.resources(player, 'plant', 1),
   emoji: '🥗',
   activeLayout: (
     <div>

@@ -17,9 +17,9 @@ export default new Prelude({
   emoji: '☄',
   action: (player, game) => {
     game.resources(player, 'megacredit', -5);
-    game.param('temperature', player);
-    game.param('temperature', player);
-    game.param('temperature', player);
+    game.param(player, 'temperature');
+    game.param(player, 'temperature');
+    game.param(player, 'temperature');
   },
   layout: (
     <div className="flex m-top m-bottom">

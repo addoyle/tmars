@@ -13,7 +13,17 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'There are many unpopulated areas to crash it in',
-  action: () => {},
+  action: (player, game, done) => {
+    game.param(player, 'temperature');
+    game.param(player, 'temperature');
+    game.resources(player, 'titanium', 4);
+    game.promptTile(player, 'ocean', () =>
+      game.promptPlayer(
+        targetPlayer => game.resources(targetPlayer, 'plant', -4),
+        done
+      )
+    );
+  },
   emoji: '☄',
   layout: (
     <div className="flex gutter m-top m-bottom">

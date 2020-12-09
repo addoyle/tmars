@@ -16,7 +16,10 @@ export default new Active({
   desc,
   flavor:
     "Using Titan's liquid methane as fuel will add carbon and heat to Mars",
-  action: () => {},
+  action: (player, game, done) => {
+    // TODO: Figure out how to do placement restrictions
+    game.promptTile(player, 'city', done);
+  },
   emoji: '🏢',
   activeLayout: (
     <div>

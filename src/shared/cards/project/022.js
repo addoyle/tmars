@@ -18,7 +18,11 @@ export default new Automated({
   desc,
   flavor:
     'The sprinkled dust absorbs heat from the sun. Must be renewed after each snowfall, though',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'megacredit', -2);
+    game.production(player, 'heat', 3);
+    game.promptTile(player, 'ocean', done);
+  },
   emoji: '🌫',
   layout: (
     <div className="flex">

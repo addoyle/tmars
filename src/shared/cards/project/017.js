@@ -17,7 +17,12 @@ export default new Automated({
   tags: ['city', 'building'],
   desc,
   flavor: 'In Noctis Labyrinthus, where the mist is gray',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', 3);
+    // TODO: Figure out special placement rules
+    game.promptTile(player, 'city', done);
+  },
   emoji: '🌆',
   layout: (
     <div>
