@@ -412,7 +412,7 @@ class Game extends SharedGame {
       this.playerStatus = {
         player,
         tile,
-        done: () => {
+        done: params => {
           // Raise params if necessary
           if (tile === 'ocean') {
             this.param(player, 'ocean');
@@ -435,7 +435,7 @@ class Game extends SharedGame {
             }
           };
 
-          callback && callback();
+          callback && callback(params);
         }
       };
     }

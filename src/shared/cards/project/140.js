@@ -8,6 +8,13 @@ import {
 
 const desc =
   'Raise temperature 2 steps and place this tile ON EITHER THARSIS THOLUS, ASCRAEUS MONS, PAVONIS MONS OR ARSIA MONS.';
+const customFilter = (tile, game, notReserved) =>
+  // Not reserved
+  notReserved(tile) &&
+  // Is Hellas
+  (game.board.toLowerCase() === 'hellas' ||
+    // Or is a volcanic area
+    tile.attrs?.includes('volcano'));
 
 export default new Event({
   number: 140,
@@ -20,26 +27,18 @@ export default new Event({
   action: (player, game, done) => {
     game.param(player, 'temperature');
     game.param(player, 'temperature');
-    game.promptTile(
-      player,
-      { special: 'volcano' },
-      done,
-      (tile, game) =>
-        game.board.toLowerCase() === 'hellas' || tile.attrs?.includes('volcano')
-    );
+    game.promptTile(player, { special: 'volcano' }, done, customFilter);
   },
   canPlay: (player, game) => {
-    const volcanos = game.field
-      .flat()
-      .filter(t => t.attrs?.includes('volcano'));
-    const valid =
-      // In the case of Hellas which has no volcanic areas, this tile can be placed anywhere
-      !volcanos.length ||
-      // Otherwise, it must be on a volcanic area (marked in Bold) that hasn't already been claimed
-      !!volcanos.filter(t => !t.type).length;
+    const valid = !!game.findPossibleTiles(
+      { special: 'volcano' },
+      player,
+      customFilter(player)
+    ).length;
+
     return {
       valid,
-      msg: !valid ? 'No volcanic areas available' : null
+      msg: !valid ? 'No volcanic areas availble' : null
     };
   },
   emoji: '🌋',

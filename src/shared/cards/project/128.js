@@ -11,6 +11,11 @@ const activeDesc =
   'Effect: When you play an animal or a plant tag (including these 2), add an animal to this card.';
 const desc =
   'Requires that you have a greenery tile. Place this tile ADJACENT TO ANY GREENERY TILE. 1 VP per 2 animals on this card.';
+const customFilter = (tile, game, notReserved, neighbors) =>
+  // Not reserved
+  notReserved(tile) &&
+  // Is adjacent to one of your own tiles
+  neighbors.filter(t => t.type === 'greenery').length;
 
 export default new Active({
   number: 128,
@@ -24,7 +29,20 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'A secluded area where a multitude of species develop an ecosystem',
-  action: () => {},
+  action: (player, game, done) =>
+    game.promptTile(player, { special: 'animal' }, done, customFilter),
+  canPlay: (player, game) => {
+    const valid = !!game.findPossibleTiles(
+      { special: 'animal' },
+      player,
+      customFilter(player)
+    ).length;
+
+    return {
+      valid,
+      msg: !valid ? 'Requires a space adjacent to a greenery tile' : null
+    };
+  },
   emoji: '🏞️',
   activeLayout: (
     <div className="text-center">

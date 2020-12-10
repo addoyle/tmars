@@ -8,6 +8,11 @@ import {
 
 const desc =
   'Place this tile on an area with a steel or titanium placement bonus. Increase your production of that resource 1 step.';
+const customFilter = (tile, game, notReserved) =>
+  // Not reserved
+  notReserved(tile) &&
+  // Has either steel or titanium placement bonus
+  (tile.resources?.includes('steel') || tile.resources?.includes('titanium'));
 
 export default new Automated({
   number: 67,
@@ -16,7 +21,33 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'The battles for Martian riches sometimes begin in a courtroom',
-  action: () => {},
+  action: (player, game, done) =>
+    game.promptTile(
+      player,
+      { special: 'mine' },
+      t => {
+        game.production(
+          player,
+          t.resources.includes('steel') ? 'steel' : 'titanium',
+          1
+        );
+        done();
+      },
+      customFilter
+    ),
+  canPlay: (player, game) => {
+    const valid = !!game.findPossibleTiles(
+      { special: 'mine' },
+      player,
+      customFilter
+    ).length;
+    return {
+      valid,
+      msg: !valid
+        ? 'Requires a space with a titanium/steel placement bonus'
+        : null
+    };
+  },
   emoji: '⚖',
   layout: (
     <div className="flex gutter">

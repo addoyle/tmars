@@ -8,6 +8,9 @@ import {
 
 const desc =
   'Increase your heat production 4 steps. Place this tile ON AN AREA RESERVED FOR OCEAN.';
+const customFilter = tile =>
+  // Area reserved for ocean
+  tile.attrs?.includes('reserved-ocean');
 
 export default new Automated({
   number: 142,
@@ -16,7 +19,22 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'Tunnels deep down to the molten magma, releasing heat and gases',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'heat', 4);
+    game.promptTile(player, { special: 'mohole' }, done, customFilter);
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.findPossibleTiles(
+      { special: 'mohole' },
+      player,
+      customFilter(player)
+    ).length;
+
+    return {
+      valid,
+      msg: !valid ? 'No spaces reserved for ocean availble' : null
+    };
+  },
   emoji: '🕳',
   layout: (
     <div className="flex gutter">

@@ -19,7 +19,25 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Taking advantage of dense population centers',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', 4);
+    game.promptTile(player, { special: 'euro' }, done);
+  },
+  canPlay: (player, game) => {
+    if (player.production.power < 1) {
+      return {
+        valid: false,
+        msg: 'Requires at least 1 power production'
+      };
+    }
+    const valid = !!game.findPossibleTiles({ special: 'euro' }, player).length;
+
+    return {
+      valid,
+      msg: !valid ? 'Cannot place this tile' : null
+    };
+  },
   emoji: '🛍',
   layout: (
     <div className="flex gutter">
