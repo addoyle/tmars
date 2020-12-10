@@ -19,7 +19,14 @@ export default new Active({
   desc,
   flavor:
     'A place to conduct secret research, preventing the wrong people from getting in. Or out',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptTile(
+      player,
+      { special: 'restricted' },
+      done,
+      (tile, game, reserved) => reserved(tile)
+    );
+  },
   emoji: '🚫',
   activeLayout: (
     <div>

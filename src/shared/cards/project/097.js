@@ -16,7 +16,18 @@ export default new Automated({
   desc,
   flavor:
     'Detonating obsolete nuclear weapons from Earth is an efficient method for raising the temperature',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptTile(player, { special: 'nuclear' }, done);
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.findPossibleTiles({ special: 'nuclear' }, player)
+      .length;
+
+    return {
+      valid,
+      msg: !valid ? 'Cannot place this tile' : null
+    };
+  },
   vp: -2,
   emoji: '☢',
   layout: (

@@ -1,10 +1,11 @@
 import { observable, action } from 'mobx';
 import { API, gameId } from '../../util/api';
+import SharedGame from '../../../shared/game/game.shared.model';
 
 const PLAYER_NUM = new URLSearchParams(window.location.search).get('player');
 const POST = 'POST';
 
-class Game {
+class Game extends SharedGame {
   // Sets, or expansions, that are enabled in this game
   @observable sets = [];
 

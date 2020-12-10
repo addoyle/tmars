@@ -1,4 +1,4 @@
-import { shuffle, isString, uniq } from 'lodash';
+import { shuffle, isString } from 'lodash';
 import { normalize } from '../util';
 import Tharsis from '../../shared/boards/Tharsis';
 import Hellas from '../../shared/boards/Hellas';
@@ -6,6 +6,7 @@ import Elysium from '../../shared/boards/Elysium';
 import Log from './log.model';
 import { startCase } from 'lodash';
 import LogService from '../services/log.service';
+import SharedGame from '../../shared/game/game.shared.model';
 
 const paramStats = {
   temperature: {
@@ -41,7 +42,7 @@ const paramStats = {
   }
 };
 
-class Game {
+class Game extends SharedGame {
   id;
   sets = [];
   players = [];
@@ -81,6 +82,7 @@ class Game {
    * @param {CardModel} cardStore
    */
   constructor(cardStore, game) {
+    super();
     this.cardStore = cardStore;
 
     if (game) {
@@ -313,8 +315,8 @@ class Game {
   /**
    * Bump up the param and give the player the rewards
    *
-   * @param {string} param
    * @param {Player} player
+   * @param {string} param
    */
   param(player, param) {
     if (
@@ -362,7 +364,7 @@ class Game {
 
         // Show UI components
         player.ui = {
-          drawer: 'prelude'
+          drawer: this.phase === 'prelude' ? 'prelude' : 'hand'
         };
 
         callback && callback();
@@ -373,12 +375,12 @@ class Game {
   /**
    * Prompt for a tile placement
    *
-   * @param {string} tile Tile type to place (ocean, city, greenery, or {special: 'type'})
    * @param {object} player Player placing the tile
+   * @param {string} tile Tile type to place (ocean, city, greenery, or {special: 'type'})
    * @param {func} callback Callback once the tile is placed
    */
-  promptTile(player, tile, callback) {
-    const possibleTiles = this.findPossibleTiles(tile, player);
+  promptTile(player, tile, callback, customFilter) {
+    const possibleTiles = this.findPossibleTiles(tile, player, customFilter);
     if (possibleTiles.length) {
       possibleTiles.forEach(
         t => (t.clickable = isString(tile) ? tile : 'special')
@@ -427,151 +429,6 @@ class Game {
         }
       };
     }
-  }
-
-  /**
-   * Get a tile from a tile id
-   *
-   * @param {number} id
-   */
-  tileFromId(id) {
-    const coords = this.idToCoords(id);
-    return this.field[coords.y][coords.x];
-  }
-
-  /**
-   * Get the array coordinates of the id
-   * @param {number} id
-   */
-  idToCoords(id) {
-    let x = +id;
-    let y = 0;
-
-    for (let s = 5, d = 1; x >= s; x -= s, s += d, y++) {
-      if (s >= 9) {
-        d = -1;
-      }
-    }
-    return { x, y };
-  }
-
-  /**
-   * Find the possible locations for a tile type
-   *
-   * @param {string} tile Tile type (ocean, city, greenery, {special: 'type'})
-   * @param {object} player The player finding possible tiles
-   */
-  findPossibleTiles(tile, player) {
-    const self = this;
-
-    if (tile === 'ocean') {
-      return this.field.flat().filter(
-        t =>
-          // Reserved ocean spots
-          t.attrs?.includes('reserved-ocean') &&
-          // Not occupied
-          !t.name
-      );
-    } else if (tile === 'city') {
-      return this.field.flat().filter(
-        t =>
-          // Not reserved
-          !t.attrs?.filter(attr => attr.includes('reserved')).length &&
-          // Not occupied
-          !t.name &&
-          // Not adjacent to another city
-          !self.neighbors(t).filter(neighbor => neighbor.type === 'city').length
-      );
-    } else if (tile === 'greenery') {
-      // Spaces adjacent to player's tiles
-      const adjacentSites = uniq(
-        this.field
-          .flat()
-          // Get board tiles owned by player
-          .filter(t => t.player === player.number)
-          // Get neighbors
-          .map(t => this.neighbors(t))
-          .flat()
-      );
-
-      return (adjacentSites.length ? adjacentSites : this.field.flat()).filter(
-        t =>
-          // Not reserved
-          !t.attrs?.filter(attr => attr.includes('reserved')).length &&
-          // Not occupied
-          !t.name
-      );
-    } else if (!isString(tile)) {
-      // TODO special tiles
-      return [];
-    }
-  }
-
-  /**
-   * Return adjacent tiles
-   *
-   * @param {Tile} tile Tile to get neighbors of
-   */
-  neighbors(tile) {
-    const neighbors = [];
-    const { x, y } = { ...this.idToCoords(tile.id) };
-
-    // Grab top neighbors
-    if (y > 0) {
-      // Upper rows
-      if (this.field[y].length > this.field[y - 1].length) {
-        // Top left
-        if (x > 0) {
-          neighbors.push(this.field[y - 1][x - 1]);
-        }
-        // Top right
-        if (x < this.field[y].length - 1) {
-          neighbors.push(this.field[y - 1][x]);
-        }
-      }
-
-      // Lower rows
-      if (this.field[y].length < this.field[y - 1].length) {
-        // Top left
-        neighbors.push(this.field[y - 1][x]);
-        // Top right
-        neighbors.push(this.field[y - 1][x + 1]);
-      }
-    }
-
-    // Left
-    if (x > 0) {
-      neighbors.push(this.field[y][x - 1]);
-    }
-    // Right
-    if (x < this.field[y].length - 1) {
-      neighbors.push(this.field[y][x + 1]);
-    }
-
-    // Grab bottom neighbors
-    if (y < this.field.length - 1) {
-      // Upper rows
-      if (this.field[y].length < this.field[y + 1].length) {
-        // Bottom left
-        neighbors.push(this.field[y + 1][x]);
-        // Bottom right
-        neighbors.push(this.field[y + 1][x + 1]);
-      }
-
-      // Lower rows
-      if (this.field[y].length > this.field[y + 1].length) {
-        // Bottom left
-        if (x > 0) {
-          neighbors.push(this.field[y + 1][x - 1]);
-        }
-        // Bottom right
-        if (x < this.field[y].length - 1) {
-          neighbors.push(this.field[y + 1][x]);
-        }
-      }
-    }
-
-    return neighbors;
   }
 
   /**
@@ -701,21 +558,6 @@ class Game {
     this.turn = this.startingPlayer;
 
     this.beginPlayerOrderPhase();
-  }
-
-  /**
-   * Perform an action in player order
-   *
-   * @param {Function} func Action to perform in player order
-   */
-  forEachPlayerOrder(func) {
-    for (
-      let i = this.startingPlayer - 1, start = true;
-      start || i !== this.startingPlayer - 1;
-      i = i >= this.players.length - 1 ? 0 : i + 1, start = false
-    ) {
-      func(this.players[i], i);
-    }
   }
 
   /**

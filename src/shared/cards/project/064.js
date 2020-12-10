@@ -8,6 +8,14 @@ import {
 
 const desc =
   'Place this tile on an area with a steel or titanium placement bonus, adjacent to another of your tiles. Increase your production of that resource 1 step.';
+const customFilter = player => (tile, game, notReserved, neighbors) =>
+  // Not reserved
+  notReserved(tile) &&
+  // Is adjacent to one of your own tiles
+  neighbors.filter(t => t.player === player.number)(
+    // Has either steel or titanium placement bonus
+    tile.resources?.includes('steel') || tile.resources?.includes('titanium')
+  );
 
 export default new Automated({
   number: 64,
@@ -18,7 +26,31 @@ export default new Automated({
   desc,
   flavor:
     'It is easier to claim territories where you already have established activities',
-  action: () => {},
+  action: (player, game, done) =>
+    game.promptTile(
+      player,
+      { special: 'mine' },
+      t => {
+        game.production(
+          player,
+          t.resources.includes('steel') ? 'steel' : 'titanium',
+          1
+        );
+        done();
+      },
+      customFilter(player)
+    ),
+  canPlay: (player, game) => {
+    const valid = game.findPossibleTiles(
+      { special: 'mine' },
+      player,
+      customFilter(player)
+    );
+    return {
+      valid,
+      msg: !valid ? 'No volcanic areas available' : null
+    };
+  },
   emoji: '🕳️',
   layout: (
     <div className="flex gutter">

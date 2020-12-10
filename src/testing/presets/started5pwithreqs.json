@@ -540,7 +540,7 @@
       "firstAction": true
     }
   ],
-  "turn": 4,
+  "turn": 3,
   "startingPlayer": 4,
   "params": {
     "temperature": -30,

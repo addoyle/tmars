@@ -268,11 +268,14 @@ ActiveCard.propTypes = {
   gameStore: PropTypes.shape({
     activeCard: PropTypes.shape({
       show: PropTypes.bool,
-      card: PropTypes.shape({
-        card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-        select: PropTypes.bool,
-        resources: PropTypes.objectOf(PropTypes.number)
-      }),
+      card: PropTypes.oneOfType([
+        PropTypes.shape({
+          card: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+          select: PropTypes.bool,
+          resources: PropTypes.objectOf(PropTypes.number)
+        }),
+        PropTypes.string
+      ]),
       type: PropTypes.string,
       resources: PropTypes.object,
       mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft', 'select']),

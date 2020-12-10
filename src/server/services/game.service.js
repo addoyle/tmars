@@ -148,6 +148,8 @@ class GameService {
       // Trigger card-played events
       game.fire('onCardPlayed', player);
 
+      game.playerStatus?.done();
+
       if (game.phase === 'action') {
         game.nextTurn();
       }
@@ -162,8 +164,6 @@ class GameService {
     } else {
       done();
     }
-
-    game.playerStatus?.done();
 
     return this.export(game);
   }
@@ -381,7 +381,12 @@ class GameService {
     tile.name = `${tileString}-placed`;
     tile.type = isString(game.playerStatus.tile)
       ? game.playerStatus.tile
-      : game.playerStatus.tile.special;
+      : 'special';
+
+    // If it's a special tile, set the icon
+    if (game.playerStatus.tile.special) {
+      tile.icon = game.playerStatus.tile.special;
+    }
 
     // Add a player marker
     if (game.playerStatus.tile !== 'ocean') {
@@ -430,7 +435,7 @@ class GameService {
 
     // TODO: Trigger placement events
 
-    game.playerStatus.done();
+    game.playerStatus.done(tile);
 
     return this.export(game);
   }
