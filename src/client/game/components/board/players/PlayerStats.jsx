@@ -44,7 +44,7 @@ const PlayerStats = props => {
           tags={player.tags}
           venus={props.gameStore.sets.includes('venus')}
         />
-        <Tiles tiles={player.tiles} />
+        <Tiles />
       </div>
     )
   );

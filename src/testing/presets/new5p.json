@@ -1,10 +1,5 @@
 {
-  "sets": [
-    "corporate",
-    "promo",
-    "prelude",
-    "venus"
-  ],
+  "sets": ["corporate", "promo", "prelude", "venus"],
   "players": [
     {
       "name": "Andy",
@@ -63,11 +58,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [
-          { "card": "P02" },
-          { "card": "011" },
-          { "card": "000" }
-        ],
+        "corp": [{ "card": "P02" }, { "card": "011" }, { "card": "000" }],
         "prelude": [
           { "card": "P04" },
           { "card": "P14" },
@@ -144,11 +135,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [
-          { "card": "X01" },
-          { "card": "P03" },
-          { "card": "000" }
-        ],
+        "corp": [{ "card": "X01" }, { "card": "P03" }, { "card": "000" }],
         "prelude": [
           { "card": "P22" },
           { "card": "P10" },
@@ -225,11 +212,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [
-          { "card": "001" },
-          { "card": "020" },
-          { "card": "000" }
-        ],
+        "corp": [{ "card": "001" }, { "card": "020" }, { "card": "000" }],
         "prelude": [
           { "card": "P26" },
           { "card": "P20" },
@@ -306,11 +289,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [
-          { "card": "015" },
-          { "card": "009" },
-          { "card": "000" }
-        ],
+        "corp": [{ "card": "015" }, { "card": "009" }, { "card": "000" }],
         "prelude": [
           { "card": "P05" },
           { "card": "P29" },
@@ -387,11 +366,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [
-          { "card": "004" },
-          { "card": "019" },
-          { "card": "000" }
-        ],
+        "corp": [{ "card": "004" }, { "card": "019" }, { "card": "000" }],
         "prelude": [
           { "card": "P12" },
           { "card": "P27" },
@@ -426,43 +401,36 @@
     "wgt": false
   },
   "board": "Tharsis",
+  "offMarsCities": {
+    "ganymede": {},
+    "phobos": {},
+    "torus": {},
+    "maxwell": {},
+    "stratopolis": {},
+    "luna": {},
+    "dawn": {}
+  },
   "field": [
     [
       {
-        "resources": [
-          0,
-          0,
-          "steel",
-          "steel"
-        ],
+        "resources": [0, 0, "steel", "steel"],
         "id": 0
       },
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["steel", "steel"],
+        "attrs": ["reserved-ocean"],
         "id": 1
       },
       {
         "id": 2
       },
       {
-        "resources": [
-          "card"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["card"],
+        "attrs": ["reserved-ocean"],
         "id": 3
       },
       {
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "attrs": ["reserved-ocean"],
         "id": 4
       }
     ],
@@ -471,13 +439,9 @@
         "id": 5
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "text": "Tharsis Tholus",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 6
       },
       {
@@ -490,25 +454,16 @@
         "id": 9
       },
       {
-        "resources": [
-          "card",
-          "card"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["card", "card"],
+        "attrs": ["reserved-ocean"],
         "id": 10
       }
     ],
     [
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "text": "Ascraeus Mons",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 11
       },
       {
@@ -527,212 +482,126 @@
         "id": 16
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 17
       }
     ],
     [
       {
-        "resources": [
-          "titanium",
-          "plant"
-        ],
+        "resources": ["titanium", "plant"],
         "text": "Pavonis Mons",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 18
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 19
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 20
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 21
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 22
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 23
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 24
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 25
       }
     ],
     [
       {
-        "resources": [
-          "plant",
-          0,
-          "plant"
-        ],
+        "resources": ["plant", 0, "plant"],
         "text": "Arsia Mons",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 26
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 27
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-noctis-city"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-noctis-city"],
         "text": "Noctis City",
         "id": 28
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 29
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 30
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 31
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 32
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 33
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 34
       }
     ],
     [
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 35
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 36
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 37
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 38
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 39
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 40
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 41
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 42
       }
     ],
@@ -753,9 +622,7 @@
         "id": 47
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 48
       },
       {
@@ -764,49 +631,35 @@
     ],
     [
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
+        "resources": ["steel", "steel"],
         "id": 50
       },
       {
         "id": 51
       },
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "id": 52
       },
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "id": 53
       },
       {
         "id": 54
       },
       {
-        "resources": [
-          "titanium"
-        ],
+        "resources": ["titanium"],
         "id": 55
       }
     ],
     [
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 56
       },
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
+        "resources": ["steel", "steel"],
         "id": 57
       },
       {
@@ -816,13 +669,8 @@
         "id": 59
       },
       {
-        "resources": [
-          "titanium",
-          "titanium"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["titanium", "titanium"],
+        "attrs": ["reserved-ocean"],
         "id": 60
       }
     ]
@@ -1060,10 +908,7 @@
     },
     {
       "player": 0,
-      "body": [
-        "You are terraforming **Tharsis**, ",
-        "the land of volcanics!"
-      ],
+      "body": ["You are terraforming **Tharsis**, ", "the land of volcanics!"],
       "system": true
     },
     {

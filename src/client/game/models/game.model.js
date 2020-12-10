@@ -39,33 +39,14 @@ class Game extends SharedGame {
 
   // The field (tiles)
   @observable field = [];
-  @observable detachedCities = {
-    ganymede: {
-      label: 'Ganymede Colony'
-    },
-    phobos: {
-      label: 'Phobos Space Haven'
-    },
-    torus: {
-      label: 'Stanford Torus',
-      set: 'promo'
-    },
-    maxwell: {
-      label: 'Maxwell Base',
-      set: 'venus'
-    },
-    stratopolis: {
-      label: 'Stratopolis',
-      set: 'venus'
-    },
-    luna: {
-      label: 'Luna Metropolis',
-      set: 'venus'
-    },
-    dawn: {
-      label: 'Dawn City',
-      set: 'venus'
-    }
+  @observable offMarsCities = {
+    ganymede: {},
+    phobos: {},
+    torus: {},
+    maxwell: {},
+    stratopolis: {},
+    luna: {},
+    dawn: {}
   };
 
   // Current player's turn
@@ -88,6 +69,10 @@ class Game extends SharedGame {
     wgt: false,
     trSolo: false
   };
+
+  getField() {
+    return this.field;
+  }
 
   /**
    * Switch drawers. If the drawer is already open, close. Null will also close the active drawer.

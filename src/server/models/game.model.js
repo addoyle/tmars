@@ -67,6 +67,16 @@ class Game extends SharedGame {
   phase = 'start';
   playerStatus;
 
+  offMarsCities = {
+    ganymede: {},
+    phobos: {},
+    torus: {},
+    maxwell: {},
+    stratopolis: {},
+    luna: {},
+    dawn: {}
+  };
+
   log = [];
 
   cards = {
@@ -632,6 +642,10 @@ class Game extends SharedGame {
   tr(player, num) {
     player.tr += num;
     // TODO fire terraform change
+  }
+
+  getField() {
+    return this.field;
   }
 
   /**

@@ -1,11 +1,6 @@
 {
   "id": "123",
-  "sets": [
-    "corporate",
-    "promo",
-    "prelude",
-    "venus"
-  ],
+  "sets": ["corporate", "promo", "prelude", "venus"],
   "players": [
     {
       "name": "Andy",
@@ -176,9 +171,7 @@
         "draft": [],
         "active": [],
         "buy": [],
-        "automated": [
-          "001"
-        ],
+        "automated": ["001"],
         "event": [],
         "corp": [
           {
@@ -542,26 +535,25 @@
     "wgt": false
   },
   "board": "Tharsis",
+  "offMarsCities": {
+    "ganymede": {},
+    "phobos": {},
+    "torus": {},
+    "maxwell": {},
+    "stratopolis": {},
+    "luna": {},
+    "dawn": {}
+  },
   "field": [
     [
       {
-        "resources": [
-          0,
-          0,
-          "steel",
-          "steel"
-        ],
+        "resources": [0, 0, "steel", "steel"],
         "id": 0,
         "clickable": null
       },
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["steel", "steel"],
+        "attrs": ["reserved-ocean"],
         "id": 1,
         "clickable": null
       },
@@ -570,19 +562,13 @@
         "clickable": null
       },
       {
-        "resources": [
-          "card"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["card"],
+        "attrs": ["reserved-ocean"],
         "id": 3,
         "clickable": null
       },
       {
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "attrs": ["reserved-ocean"],
         "id": 4,
         "clickable": null
       }
@@ -593,13 +579,9 @@
         "clickable": null
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "text": "Tharsis Tholus",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 6,
         "clickable": null
       },
@@ -616,13 +598,8 @@
         "clickable": null
       },
       {
-        "resources": [
-          "card",
-          "card"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["card", "card"],
+        "attrs": ["reserved-ocean"],
         "id": 10,
         "clickable": null,
         "name": "ocean-placed",
@@ -631,13 +608,9 @@
     ],
     [
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "text": "Ascraeus Mons",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 11,
         "clickable": null,
         "name": "greenery-placed",
@@ -665,240 +638,154 @@
         "clickable": null
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 17,
         "clickable": null
       }
     ],
     [
       {
-        "resources": [
-          "titanium",
-          "plant"
-        ],
+        "resources": ["titanium", "plant"],
         "text": "Pavonis Mons",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 18,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 19,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 20,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 21,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 22,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 23,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 24,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 25,
         "clickable": null
       }
     ],
     [
       {
-        "resources": [
-          "plant",
-          0,
-          "plant"
-        ],
+        "resources": ["plant", 0, "plant"],
         "text": "Arsia Mons",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 26,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 27,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-noctis-city"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-noctis-city"],
         "text": "Noctis City",
         "id": 28
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 29,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 30,
         "clickable": null,
         "name": "ocean-placed",
         "type": "ocean"
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 31,
         "clickable": null,
         "name": "ocean-placed",
         "type": "ocean"
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 32,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 33,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 34,
         "clickable": null
       }
     ],
     [
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 35,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 36,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 37,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 38,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 39,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 40,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 41,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 42,
         "clickable": null
       }
@@ -925,9 +812,7 @@
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 48,
         "clickable": null
       },
@@ -938,10 +823,7 @@
     ],
     [
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
+        "resources": ["steel", "steel"],
         "id": 50,
         "clickable": null
       },
@@ -950,16 +832,12 @@
         "clickable": null
       },
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "id": 52,
         "clickable": null
       },
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "id": 53,
         "clickable": null,
         "name": "city-placed",
@@ -971,26 +849,19 @@
         "clickable": null
       },
       {
-        "resources": [
-          "titanium"
-        ],
+        "resources": ["titanium"],
         "id": 55,
         "clickable": null
       }
     ],
     [
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 56,
         "clickable": null
       },
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
+        "resources": ["steel", "steel"],
         "id": 57,
         "clickable": null
       },
@@ -1003,13 +874,8 @@
         "clickable": null
       },
       {
-        "resources": [
-          "titanium",
-          "titanium"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["titanium", "titanium"],
+        "attrs": ["reserved-ocean"],
         "id": 60,
         "clickable": null,
         "name": "ocean-placed",
@@ -1251,10 +1117,7 @@
     },
     {
       "player": 0,
-      "body": [
-        "You are terraforming **Tharsis**, ",
-        "the land of volcanics!"
-      ],
+      "body": ["You are terraforming **Tharsis**, ", "the land of volcanics!"],
       "system": true
     },
     {
@@ -1350,10 +1213,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "prelude-phase"
-        ]
+        "classNames": ["phase", "prelude-phase"]
       }
     },
     {
@@ -1613,10 +1473,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "action-phase"
-        ]
+        "classNames": ["phase", "action-phase"]
       }
     }
   ],

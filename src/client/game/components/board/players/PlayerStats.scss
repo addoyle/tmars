@@ -121,4 +121,31 @@ $title-font: 'Prototype', sans-serif;
     top: 0;
     left: -0.8em;
   }
+
+  .resources .tile {
+    font-size: 1.4em;
+  }
+
+  .on-mars {
+    position: relative;
+    background: #cca685;
+    border: 1px solid #a57245;
+    padding: 1em 0.25em 0 0.2em;
+    margin: 0 auto 0.25em;
+    width: 50%;
+
+    &:before {
+      content: 'On Mars';
+      position: absolute;
+      left: 0;
+      top: 0;
+      background: #a57245;
+      font-family: $title-font;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      display: block;
+      padding: 0.1em 0.5em 0.2em;
+      border-bottom-right-radius: 0.5em;
+    }
+  }
 }

@@ -1,6 +1,8 @@
 import { uniq } from 'lodash';
 
 class SharedGame {
+  getField() {}
+
   /**
    * Find the possible locations for a tile type
    *
@@ -9,62 +11,65 @@ class SharedGame {
    */
   findPossibleTiles(tile, player, customFilter) {
     const self = this;
-    const isNotReserved = t =>
+    const notReserved = t =>
       !t.attrs?.filter(attr => attr.includes('reserved')).length;
 
     // If the card has a special placement (special tiles, typically)
     if (customFilter) {
-      return this.field.flat().filter(
-        t =>
-          // Not occupied
-          !t.name &&
-          // Passes custom filter
-          customFilter(
-            t,
-            this,
-            // Helper filter for taking out reserved tiles, if needed
-            isNotReserved,
-            this.neighbors(t)
-          )
-      );
+      return this.getField()
+        .flat()
+        .filter(
+          t =>
+            // Not occupied
+            !t.name &&
+            // Passes custom filter
+            customFilter(t, this, notReserved, this.neighbors(t))
+        );
     }
     // By default, special tiles have no placement restrictions (other than reserved tiles)
     else if (tile.special) {
-      return this.field.flat().filter(
-        t =>
-          // Not reserved
-          isNotReserved(t) &&
-          // Not occupied
-          !t.name
-      );
+      return this.getField()
+        .flat()
+        .filter(
+          t =>
+            // Not reserved
+            notReserved(t) &&
+            // Not occupied
+            !t.name
+        );
     }
     // Oceans can only be placed on reserved ocean tiles
     else if (tile === 'ocean') {
-      return this.field.flat().filter(
-        t =>
-          // Reserved ocean spots
-          t.attrs?.includes('reserved-ocean') &&
-          // Not occupied
-          !t.name
-      );
+      return this.getField()
+        .flat()
+        .filter(
+          t =>
+            // Reserved ocean spots
+            t.attrs?.includes('reserved-ocean') &&
+            // Not occupied
+            !t.name
+        );
     }
     // Cities can not be placed next to another city
     else if (tile === 'city') {
-      return this.field.flat().filter(
-        t =>
-          // Not reserved
-          isNotReserved(t) &&
-          // Not occupied
-          !t.name &&
-          // Not adjacent to another city
-          !self.neighbors(t).filter(neighbor => neighbor.type === 'city').length
-      );
+      return this.getField()
+        .flat()
+        .filter(
+          t =>
+            // Not reserved
+            notReserved(t) &&
+            // Not occupied
+            !t.name &&
+            // Not adjacent to another city
+            !self.neighbors(t).filter(neighbor => neighbor.type === 'city')
+              .length
+        );
     }
     // Greeneries have to be placed next to an existing player's tile if possible, otherwise anywhere
     else if (tile === 'greenery') {
       // Spaces adjacent to player's tiles
       const adjacentSites = uniq(
-        this.field
+        this.getField()
           .flat()
           // Get board tiles owned by player
           .filter(t => t.player === player.number)
@@ -72,13 +77,16 @@ class SharedGame {
           .map(t => this.neighbors(t))
           .flat()
           // Remove any that are already placed or reserved
-          .filter(t => !t.name && isNotReserved(t))
+          .filter(t => !t.name && notReserved(t))
       );
 
-      return (adjacentSites.length ? adjacentSites : this.field.flat()).filter(
+      return (adjacentSites.length
+        ? adjacentSites
+        : this.getField().flat()
+      ).filter(
         t =>
           // Not reserved
-          isNotReserved(t) &&
+          notReserved(t) &&
           // Not occupied
           !t.name
       );
@@ -92,7 +100,7 @@ class SharedGame {
    */
   tileFromId(id) {
     const coords = this.idToCoords(id);
-    return this.field[coords.y][coords.x];
+    return this.getField()[coords.y][coords.x];
   }
 
   /**
@@ -119,58 +127,59 @@ class SharedGame {
   neighbors(tile) {
     const neighbors = [];
     const { x, y } = { ...this.idToCoords(tile.id) };
+    const field = this.getField();
 
     // Grab top neighbors
     if (y > 0) {
       // Upper rows
-      if (this.field[y].length > this.field[y - 1].length) {
+      if (field[y].length > field[y - 1].length) {
         // Top left
         if (x > 0) {
-          neighbors.push(this.field[y - 1][x - 1]);
+          neighbors.push(field[y - 1][x - 1]);
         }
         // Top right
-        if (x < this.field[y].length - 1) {
-          neighbors.push(this.field[y - 1][x]);
+        if (x < field[y].length - 1) {
+          neighbors.push(field[y - 1][x]);
         }
       }
 
       // Lower rows
-      if (this.field[y].length < this.field[y - 1].length) {
+      if (field[y].length < field[y - 1].length) {
         // Top left
-        neighbors.push(this.field[y - 1][x]);
+        neighbors.push(field[y - 1][x]);
         // Top right
-        neighbors.push(this.field[y - 1][x + 1]);
+        neighbors.push(field[y - 1][x + 1]);
       }
     }
 
     // Left
     if (x > 0) {
-      neighbors.push(this.field[y][x - 1]);
+      neighbors.push(field[y][x - 1]);
     }
     // Right
-    if (x < this.field[y].length - 1) {
-      neighbors.push(this.field[y][x + 1]);
+    if (x < field[y].length - 1) {
+      neighbors.push(field[y][x + 1]);
     }
 
     // Grab bottom neighbors
-    if (y < this.field.length - 1) {
+    if (y < field.length - 1) {
       // Upper rows
-      if (this.field[y].length < this.field[y + 1].length) {
+      if (field[y].length < field[y + 1].length) {
         // Bottom left
-        neighbors.push(this.field[y + 1][x]);
+        neighbors.push(field[y + 1][x]);
         // Bottom right
-        neighbors.push(this.field[y + 1][x + 1]);
+        neighbors.push(field[y + 1][x + 1]);
       }
 
       // Lower rows
-      if (this.field[y].length > this.field[y + 1].length) {
+      if (field[y].length > field[y + 1].length) {
         // Bottom left
         if (x > 0) {
-          neighbors.push(this.field[y + 1][x - 1]);
+          neighbors.push(field[y + 1][x - 1]);
         }
         // Bottom right
-        if (x < this.field[y].length - 1) {
-          neighbors.push(this.field[y + 1][x]);
+        if (x < field[y].length - 1) {
+          neighbors.push(field[y + 1][x]);
         }
       }
     }

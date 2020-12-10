@@ -79,7 +79,6 @@ const CardDrawer = props => {
       buyMode ||
       ((gameStore.phase === 'action' ||
         (gameStore.phase === 'prelude' && gameStore.playerStatus?.modifiers)) &&
-        props.type === 'hand' &&
         gameStore.turn === gameStore.player.number) ? (
         <div
           className={classNames('button-bar flex gutter center center-items', {
