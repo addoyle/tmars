@@ -7,6 +7,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO
+
 const desc =
   'Oxygen must be 6% or less. 3 VPs if you have one or more science resources here.';
 const activeDesc =
@@ -26,18 +28,32 @@ export default new Active({
   activeDesc,
   flavor:
     "Finding native life-forms would be the greatest discovery in history, so let's find out!",
-  effect: game => {
-    game.drawCard().then(card =>
-      game
-        .reveal(card)
-        .then(card => {
-          if (card.tags.includes('microbe')) {
-            this.resources = (this.resources || 0) + 1;
-          }
-        })
-        .then(card => game.discard(card))
-    );
-  },
+  actions: [
+    {
+      name: 'Reveal top card',
+      icon: <MegaCredit value={1} />,
+      canPlay: player => {
+        const valid = player.resources.megacredit >= 1;
+        return {
+          valid,
+          msg: "Can't afford this"
+        };
+      },
+      action: (player, game) => {
+        game.drawCard().then(card =>
+          // TODO Pseudo code, do this right
+          game
+            .reveal(card)
+            .then(card => {
+              if (card.tags.includes('microbe')) {
+                this.resources = (this.resources || 0) + 1;
+              }
+            })
+            .then(card => game.discard(card))
+        );
+      }
+    }
+  ],
   vp: () => this.resources * 3,
   emoji: '🔍',
   activeLayout: (

@@ -6,6 +6,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Increase your energy production 1 step. Increase temperature 1 step.';
 

@@ -2,6 +2,8 @@ import React from 'react';
 import Automated from '../Automated';
 import { VictoryPoint } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc = 'Oxygen must be 5% or less.';
 
 export default new Automated({

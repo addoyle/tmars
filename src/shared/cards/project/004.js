@@ -6,6 +6,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// VERIFY PROMPT PLAYER
+
 const desc =
   'Requires 3 ocean tiles. Decrease your M€ production 1 step and any heat production 1 step. Increase your plant production 2 steps.';
 
@@ -20,10 +22,20 @@ export default new Automated({
   },
   desc,
   flavor: 'Lessens solar influx, but enhances plant growth',
-  action: (player, game) => {
+  action: (player, game, done) => {
     game.production(player, 'megacredit', -1);
-    game.production(player, 'heat', -1);
     game.production(player, 'plant', 2);
+    game.promptPlayer(
+      targetPlayer => game.production(targetPlayer, 'heat', -1),
+      done
+    );
+  },
+  canPlay: player => {
+    const valid = player.resources.megacredit > -5;
+    return {
+      valid,
+      msg: !valid ? 'M€ production too low' : null
+    };
   },
   emoji: '⛅',
   layout: (
