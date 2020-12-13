@@ -16,6 +16,7 @@ export default new Automated({
   flavor: 'Standard equipment, normal output',
   action: () => {},
   emoji: '🏭',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

@@ -6,8 +6,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc = 'Increase your titanium production 1 step.';
 
 export default new Automated({

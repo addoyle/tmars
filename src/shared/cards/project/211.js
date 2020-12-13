@@ -23,6 +23,7 @@ export default new Automated({
     'Protected by the ice and the micro-environment it creates inside, making the ice darker',
   action: () => {},
   emoji: '❄️',
+  todo: true,
   layout: (
     <div className="flex gutter m-bottom">
       <div className="middle text-center">

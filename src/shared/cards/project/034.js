@@ -22,6 +22,7 @@ export default new Active({
   flavor: 'Working for the biosphere and the atmosphere at the same time',
   action: () => {},
   emoji: '🦠',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

@@ -22,6 +22,7 @@ export default new Automated({
     'Space tourism was one of the most important sources of income for the space industry',
   action: () => {},
   emoji: '🏨',
+  todo: true,
   layout: (
     <div className="flex m-top m-bottom">
       <div className="col-1 middle text-center">

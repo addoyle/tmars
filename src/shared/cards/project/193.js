@@ -19,6 +19,7 @@ export default new Automated({
     'By focusing on a limited area, helpful measures can be taken to improve local conditions for plant life',
   action: () => {},
   emoji: '🌳',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

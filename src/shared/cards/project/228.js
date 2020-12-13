@@ -19,6 +19,7 @@ export default new Event({
     'Less CO\u2082 on Venus and more on Mars helps terraform both planets',
   action: () => {},
   emoji: '🍾',
+  todo: true,
   layout: (
     <div>
       <div className="flex text-center">

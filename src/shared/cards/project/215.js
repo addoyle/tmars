@@ -15,6 +15,7 @@ export default new Event({
     'Converting CO\u2082 into nanotube materials that support your hovering infrastructure',
   action: () => {},
   emoji: '🎈',
+  todo: true,
   layout: (
     <div className="flex">
       <div className="col-1 middle">

@@ -19,6 +19,7 @@ export default new Automated({
   flavor: 'The new world attracts ever more immigrants from the old',
   action: () => {},
   emoji: '🛬',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

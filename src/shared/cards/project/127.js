@@ -14,6 +14,7 @@ export default new Event({
     "Also known as an aquifer. Burst one open and you've got a lot of water",
   action: () => {},
   emoji: '🌊',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

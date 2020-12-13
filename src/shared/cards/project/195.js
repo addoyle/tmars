@@ -19,6 +19,7 @@ export default new Event({
   action: () => {},
   vp: -1,
   emoji: '👷',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 center middle text-center">

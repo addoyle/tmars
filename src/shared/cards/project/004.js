@@ -6,8 +6,6 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Requires 3 ocean tiles. Decrease your M€ production 1 step and any heat production 1 step. Increase your plant production 2 steps.';
 

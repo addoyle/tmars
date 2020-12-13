@@ -25,6 +25,7 @@ export default new Active({
   action: () => {},
   vp: 3,
   emoji: '🕴',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

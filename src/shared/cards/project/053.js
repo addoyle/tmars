@@ -5,8 +5,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc = 'Requires 0°C or warmer. Place 2 ocean tiles.';
 
 export default new Automated({

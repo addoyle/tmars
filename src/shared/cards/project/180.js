@@ -20,6 +20,7 @@ export default new Automated({
     'With its shallow gravity well, Mars is a good host for the space industry, and rockets need fuel',
   action: () => {},
   emoji: '⛽',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-2 middle text-center">

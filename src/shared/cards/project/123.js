@@ -7,6 +7,8 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Action: Spend 7 M€ to increase your steel production 1 step.';
 const desc = 'Place this tile ADJACENT TO A CITY TILE.';
@@ -41,6 +43,7 @@ export default new Active({
     };
   },
   emoji: '🏭',
+  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">

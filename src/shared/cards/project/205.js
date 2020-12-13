@@ -18,6 +18,7 @@ export default new Automated({
     'Certain aromatic compounds can absorb dangerous radiation without breaking',
   action: () => {},
   emoji: '🧬',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

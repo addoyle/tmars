@@ -14,6 +14,7 @@ export default new Event({
   flavor: 'Acquiring strategic land areas',
   action: () => {},
   emoji: '🚩',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1"></div>

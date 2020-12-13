@@ -1,3 +1,5 @@
+
+
 import React from 'react';
 import Event from '../Event';
 import { Resource } from '../../../client/game/components/assets/Assets';
@@ -14,6 +16,7 @@ export default new Event({
   flavor: 'Life can benefit from local hot spots',
   action: () => {},
   emoji: '🔥',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

@@ -18,6 +18,7 @@ export default new Automated({
   flavor: 'The Martian ground is full of oxidizing agents',
   action: () => {},
   emoji: '🏭',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-2 middle">

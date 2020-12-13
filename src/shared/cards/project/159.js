@@ -20,6 +20,7 @@ export default new Automated({
   flavor: 'Slow growing, but very resilient',
   action: () => {},
   emoji: '💚',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

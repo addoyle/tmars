@@ -19,6 +19,7 @@ export default new Active({
   serverActiveAction: () => {},
   vp: () => {},
   emoji: '🏢',
+  todo: true,
   activeLayout: (
     <div>
       <div className="center text-center">

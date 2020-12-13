@@ -25,6 +25,7 @@ export default new Active({
   flavor: 'Heavy genetic engineering is needed for this work',
   action: () => {},
   emoji: '🦓',
+  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">

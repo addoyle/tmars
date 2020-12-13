@@ -7,8 +7,6 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Place an ocean tile. Decrease your M€ prodution 2 steps and increase your heat production 3 steps.';
 

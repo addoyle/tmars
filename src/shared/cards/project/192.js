@@ -14,5 +14,6 @@ export default new Event({
   flavor: 'Engaging the scientific community in a field of your choice',
   action: () => {},
   emoji: '👨‍🔬',
+  todo: true,
   layout: <div className="text-center sans-serif strong">{desc}</div>
 });

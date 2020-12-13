@@ -15,6 +15,7 @@ export default new Event({
   flavor: 'I made that crater - can I name it?',
   action: () => {},
   emoji: '☄',
+  todo: true,
   layout: (
     <div className="flex m-bottom">
       <div className="col-1 middle">

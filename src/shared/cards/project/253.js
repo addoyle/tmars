@@ -21,6 +21,7 @@ export default new Active({
   flavor: 'Thriving in the extreme heat, doing your work for you',
   action: () => {},
   emoji: '🥵',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

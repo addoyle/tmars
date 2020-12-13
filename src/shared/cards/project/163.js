@@ -14,6 +14,7 @@ export default new Event({
   flavor: 'Providing nitrogen needed in the atmosphere and for biomass',
   action: () => {},
   emoji: '🍾',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter">

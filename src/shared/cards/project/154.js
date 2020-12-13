@@ -21,6 +21,7 @@ export default new Active({
   flavor: 'In charge of establishing comfortable temperatures',
   action: () => {},
   emoji: '📝',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

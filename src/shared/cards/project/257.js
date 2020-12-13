@@ -19,6 +19,7 @@ export default new Automated({
   flavor: 'Its unique components can be used on Mars as well',
   action: () => {},
   emoji: '🌱',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

@@ -18,6 +18,7 @@ export default new Active({
     'Processing the atmosphere, sealing small packs of useful materials to the surface',
   action: () => {},
   emoji: '🎈',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

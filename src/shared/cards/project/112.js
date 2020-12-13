@@ -18,6 +18,7 @@ export default new Event({
   action: () => {},
   vp: -2,
   emoji: '👥',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 text-center">

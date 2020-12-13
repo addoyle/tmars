@@ -24,6 +24,7 @@ export default new Active({
   flavor: 'Decomposing dead organisms is essential to making sustainable soil',
   action: () => {},
   emoji: '🍄',
+  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">

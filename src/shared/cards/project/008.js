@@ -51,6 +51,7 @@ export default new Automated({
     // 1 VP per neighboring ocean
     game.neighbors(this.tile).filter(t => t.type === 'ocean').length,
   emoji: '🏛',
+  todo: true,
   layout: (
     <div>
       <div className="gutter">

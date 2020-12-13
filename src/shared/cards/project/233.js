@@ -22,6 +22,7 @@ export default new Automated({
     'The mountains on Venus’ nothern continent are full of interesting metals',
   action: () => {},
   emoji: '⛏',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="text-center middle">

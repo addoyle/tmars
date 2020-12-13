@@ -15,6 +15,7 @@ export default new Active({
   flavor: 'Standard solutions honed to perfection',
   action: () => {},
   emoji: '👨‍💻',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

@@ -7,6 +7,8 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Effect: When you play an animal or a plant tag (including these 2), add an animal to this card.';
 const desc =
@@ -44,6 +46,7 @@ export default new Active({
     };
   },
   emoji: '🏞️',
+  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">

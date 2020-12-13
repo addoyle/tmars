@@ -7,8 +7,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Decrease your plant production 1 step and increase your M€ production 4 steps.';
 

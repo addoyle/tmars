@@ -19,6 +19,7 @@ export default new Automated({
   flavor: 'Allowing access to the harsh Venusian environment',
   action: () => {},
   emoji: '👨‍🚀',
+  todo: true,
   layout: (
     <div className="flex gutter m-top m-bottom">
       <div className="col-1 middle text-center">

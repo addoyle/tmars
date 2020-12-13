@@ -14,5 +14,6 @@ export default new Event({
     'Everybody seems to be more concerned with doing their best when inspectors are scheduled to arrive',
   action: () => {},
   emoji: '🕵️',
+  todo: true,
   layout: <div className="m-top m-bottom text-center">{desc}</div>
 });

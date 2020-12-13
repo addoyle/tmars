@@ -26,6 +26,7 @@ export default new Active({
     'Although an important part of many ecosystems, ants can also be detrimental to their organisms',
   action: () => {},
   emoji: '🐜',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

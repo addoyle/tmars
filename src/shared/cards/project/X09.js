@@ -18,6 +18,7 @@ export default new Event({
   flavor: 'I think we can both benefit from this arrangement',
   action: () => {},
   emoji: '🤝',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

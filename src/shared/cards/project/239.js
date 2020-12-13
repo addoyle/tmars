@@ -22,6 +22,7 @@ export default new Automated({
   flavor: 'Your wide-spread influence results in a World Government contract',
   action: () => {},
   emoji: '⚖',
+  todo: true,
   layout: (
     <div>
       <div className="text-center">

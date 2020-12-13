@@ -20,6 +20,7 @@ export default new Active({
     'Electrolysis of water yields oxygen and hydrogen, both very useful gases',
   action: () => {},
   emoji: '💦',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

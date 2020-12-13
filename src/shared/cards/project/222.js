@@ -19,6 +19,7 @@ export default new Active({
   flavor: 'The Venus way to travel',
   action: () => {},
   emoji: '🎈',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

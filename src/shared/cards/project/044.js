@@ -7,8 +7,6 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Oxygen must be 4% or less. Place this tile NEXT TO NO OTHER TILE. Increase your M€ production 1 step.';
 const customFilter = (tile, game, notReserved, neighbors) =>

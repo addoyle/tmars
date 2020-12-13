@@ -5,8 +5,6 @@ import {
   Resource
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Requires that you have steel production. Decrease any steel production 1 step and increase your own 1 step.';
 

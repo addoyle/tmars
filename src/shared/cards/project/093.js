@@ -21,6 +21,7 @@ export default new Automated({
   flavor: 'Giving some wind protection for smaller species',
   action: () => {},
   emoji: '🌳',
+  todo: true,
   layout: (
     <div className="m-bottom">
       <div className="flex gutter center">

@@ -21,6 +21,7 @@ export default new Active({
     'Adapted strains able to form symbiotic relationships with other organisms',
   action: () => {},
   emoji: '🍄️',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

@@ -27,6 +27,7 @@ export default new Active({
   flavor: 'Tapping trhe very fabric of space',
   action: () => {},
   emoji: '🌟',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

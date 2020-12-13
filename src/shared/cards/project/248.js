@@ -27,6 +27,7 @@ export default new Active({
   flavor: 'A center of commerce in the cool clouds',
   action: () => {},
   emoji: '🌥',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

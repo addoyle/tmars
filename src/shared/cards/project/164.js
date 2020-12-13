@@ -17,6 +17,7 @@ export default new Automated({
     'Small, mass-produced windmills that convert some of the ever-present wind into heat',
   action: () => {},
   emoji: '💨',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

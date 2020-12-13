@@ -18,6 +18,7 @@ export default new Automated({
     'Fuel production and metal refining can be programmed into microorganisms',
   action: () => {},
   emoji: '🦠️',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

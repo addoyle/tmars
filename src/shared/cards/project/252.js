@@ -22,6 +22,7 @@ export default new Automated({
   flavor: 'A lucrative deal for a proven terraformer',
   action: () => {},
   emoji: '📜',
+  todo: true,
   layout: (
     <div className="flex gutter m-top m-bottom">
       <Production>

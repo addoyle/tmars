@@ -15,6 +15,7 @@ export default new Active({
     'The harsh environment is not the only threat to your ecological projects',
   action: () => {},
   emoji: '🏜',
+  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="strong sans-serif m-top">{activeDesc}</div>

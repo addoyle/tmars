@@ -18,6 +18,7 @@ export default new Event({
   flavor: 'Directing it to an almost safe place',
   action: () => {},
   emoji: '☄',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

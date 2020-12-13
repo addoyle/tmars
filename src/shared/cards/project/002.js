@@ -6,8 +6,6 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Requires that you have titanium production. Decrease any titanium production 1 step and increase your own 1 step.';
 

@@ -19,6 +19,7 @@ export default new Automated({
     'It is not exactly environmentally friendly to just dig up the surface, but it can be profitable',
   action: () => {},
   emoji: '👷',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter">

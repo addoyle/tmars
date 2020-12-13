@@ -21,6 +21,7 @@ export default new Automated({
   flavor: 'Supplying fuel and valuable minerals',
   action: () => {},
   emoji: '⛏',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3">

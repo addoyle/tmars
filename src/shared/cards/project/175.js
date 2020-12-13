@@ -19,6 +19,7 @@ export default new Automated({
   flavor: 'Coordinating orbital traffic',
   action: () => {},
   emoji: '🛰',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

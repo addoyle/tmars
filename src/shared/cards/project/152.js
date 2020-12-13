@@ -18,6 +18,7 @@ export default new Automated({
   flavor: 'Better insulation means lower energy spending',
   action: () => {},
   emoji: '🧥',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

@@ -17,6 +17,7 @@ export default new Event({
   flavor: 'By aerobraking it we get its contents without the impact',
   action: () => {},
   emoji: '☄',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources middle">

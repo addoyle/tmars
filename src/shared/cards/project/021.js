@@ -7,8 +7,6 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Increase your titanium production 1 step and place a city tile ON THE RESERVED AREA.';
 

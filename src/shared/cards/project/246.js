@@ -20,6 +20,7 @@ export default new Event({
     'Smash a heavy asteroid at a slanting angle to increase Venus’ rotation, reducing day length',
   action: () => {},
   emoji: '☄',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

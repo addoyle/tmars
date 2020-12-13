@@ -16,6 +16,7 @@ export default new Automated({
   flavor: 'Working those solar storms to your advantage',
   action: () => {},
   emoji: '💨',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle">

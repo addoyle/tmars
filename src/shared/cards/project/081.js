@@ -18,6 +18,7 @@ export default new Automated({
   flavor: 'Settling the biggest moon of the biggest planet',
   action: () => {},
   emoji: '🌑',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle">

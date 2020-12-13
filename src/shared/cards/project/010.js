@@ -6,8 +6,6 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Raise temperature 1 step and place an ocean tile. Remove up to 3 plants from any player.';
 

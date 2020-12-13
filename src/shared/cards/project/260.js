@@ -24,6 +24,7 @@ export default new Active({
     'With engineered chitin carapace to withstand the corrosive environment',
   action: () => {},
   emoji: '🐞',
+  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">

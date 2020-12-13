@@ -19,6 +19,7 @@ export default new Active({
     'The latest advances in metallurgy give you an edge in the competition',
   action: () => {},
   emoji: '🔩',
+  todo: true,
   activeLayout: (
     <div className="flex gutter">
       <div className="col-2">

@@ -19,6 +19,7 @@ export default new Active({
     'Underground water reservoirs may be tapped in a controlled manner, to safely build up oceans to the desired level',
   action: () => {},
   emoji: '🌊',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

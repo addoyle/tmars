@@ -6,8 +6,6 @@ import {
   MegaCredit
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Decrease your M€ production 2 steps and increase your heat production and energy production 2 steps each.';
 

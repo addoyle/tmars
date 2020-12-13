@@ -17,6 +17,7 @@ export default new Automated({
   flavor: 'Willing to support your projects',
   action: () => {},
   emoji: '💸',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

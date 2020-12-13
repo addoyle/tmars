@@ -24,6 +24,7 @@ export default new Active({
   desc,
   flavor: 'Lions and tigers and bears, oh my',
   emoji: '🐻',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

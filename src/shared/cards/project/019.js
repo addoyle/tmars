@@ -18,6 +18,7 @@ export default new Event({
     game.promptTile(player, 'ocean', done);
   },
   emoji: '🎈',
+  todo: true,
   layout: (
     <div>
       <div className="resources text-center">

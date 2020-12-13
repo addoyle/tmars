@@ -6,8 +6,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Requires -4°C or warmer. Increase your plant production 3 steps. Gain 1 plant.';
 

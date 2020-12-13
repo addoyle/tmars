@@ -31,6 +31,7 @@ export default new Active({
   flavor: '...self-replicating, self-replicating, self-replicating...',
   action: () => {},
   emoji: '🤖',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

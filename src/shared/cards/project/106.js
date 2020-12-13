@@ -17,6 +17,7 @@ export default new Automated({
   flavor: 'This interplanetary company will surely pay off',
   action: () => {},
   emoji: '🤝',
+  todo: true,
   layout: (
     <div className="m-bottom">
       <div className="flex gutter center">

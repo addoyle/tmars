@@ -15,6 +15,7 @@ export default new Active({
   activeDesc,
   flavor: 'When great minds meet, new ideas abound',
   emoji: '🤔',
+  todo: true,
   activeLayout: (
     <div className="flex middle">
       <div className="col-1 resources">

@@ -15,6 +15,7 @@ export default new Active({
     'Electrolysis of Martian soil yields both iron and oxygen, making it an important part of terraforming',
   action: () => {},
   emoji: '⚒',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

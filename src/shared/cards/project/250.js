@@ -20,6 +20,7 @@ export default new Automated({
   flavor: 'We have too much of it anyway',
   action: () => {},
   emoji: '🍯',
+  todo: true,
   layout: (
     <div className="flex">
       <div className="middle col-2">

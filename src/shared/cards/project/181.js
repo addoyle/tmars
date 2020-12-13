@@ -17,6 +17,7 @@ export default new Event({
   flavor: 'Getting the water back from the poles',
   action: () => {},
   emoji: '☃️',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

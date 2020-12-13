@@ -16,6 +16,7 @@ export default new Active({
   flavor: 'Living on the rocks and excreting oxygen',
   action: () => {},
   emoji: '🦠',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

@@ -6,8 +6,6 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Place a city tile. Decrease your energy production 2 steps and increase your steel production 2 steps.';
 

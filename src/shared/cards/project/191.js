@@ -17,6 +17,7 @@ export default new Event({
   flavor: 'Thawing the subsurface',
   action: () => {},
   emoji: '👨‍🔧',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

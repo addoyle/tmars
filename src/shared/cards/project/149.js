@@ -13,5 +13,6 @@ export default new Event({
     "Having the top man's attention, the involved people are sure to do their best",
   action: () => {},
   emoji: '👨🏻‍💼',
+  todo: true,
   layout: <div className="text-center m-bottom">{desc}</div>
 });

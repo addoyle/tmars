@@ -22,6 +22,7 @@ export default new Automated({
     'Bringing order to the colonization and terraforming of Venus is a well-paid job',
   action: () => {},
   emoji: '👵',
+  todo: true,
   layout: (
     <div className="flex gutter m-top m-bottom">
       <Production>

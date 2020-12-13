@@ -17,6 +17,7 @@ export default new Event({
   flavor: 'We have a better use for those resources',
   action: () => {},
   emoji: '🏴‍☠️',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter">

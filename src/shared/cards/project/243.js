@@ -27,6 +27,7 @@ export default new Active({
     'Using the oblique angle to increase global rotation and thus decrease day length',
   action: () => {},
   emoji: '🪨',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

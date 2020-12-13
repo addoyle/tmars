@@ -19,6 +19,7 @@ export default new Automated({
     'A fertile valley with higher air density and humidity, but in need of protection when the oceans rise',
   action: () => {},
   emoji: '🏞',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

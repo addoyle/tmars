@@ -24,6 +24,7 @@ export default new Active({
   flavor: 'Converting it into useful materials',
   action: () => {},
   emoji: '🦠',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

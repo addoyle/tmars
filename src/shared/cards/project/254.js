@@ -14,6 +14,7 @@ export default new Event({
   flavor: 'There is some in the atmosphere, but not nearly enough',
   action: () => {},
   emoji: '🚒',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

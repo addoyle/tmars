@@ -18,6 +18,7 @@ export default new Automated({
     'Synthesizing powerful greenhouse gases (GHGs), releasing them into the atmosphere',
   action: () => {},
   emoji: '🏭',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1">

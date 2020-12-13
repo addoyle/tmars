@@ -16,6 +16,7 @@ export default new Automated({
   flavor: 'Utilizing heat from the core through the cracks in the crust',
   action: () => {},
   emoji: '♨',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

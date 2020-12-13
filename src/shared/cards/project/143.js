@@ -20,6 +20,7 @@ export default new Event({
   action: () => {},
   vp: 2,
   emoji: '📦',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources text-center">

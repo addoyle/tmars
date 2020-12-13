@@ -19,6 +19,7 @@ export default new Automated({
   flavor: 'Licensed by the ‘government’',
   action: () => {},
   emoji: '💶',
+  todo: true,
   layout: (
     <div className="m-bottom">
       <div className="flex gutter center">

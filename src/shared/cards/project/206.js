@@ -15,6 +15,7 @@ export default new Event({
   action: () => {},
   vp: -1,
   emoji: '📐',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex center resources">

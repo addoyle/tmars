@@ -13,6 +13,7 @@ export default new Event({
   flavor: 'We need its water down here',
   action: () => {},
   emoji: '☄',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources middle">

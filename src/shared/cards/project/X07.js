@@ -24,6 +24,7 @@ export default new Active({
     'Studying the natural alloys of the Mercurian ground has led to a breakthrough in materials science',
   action: () => {},
   emoji: '🔩',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

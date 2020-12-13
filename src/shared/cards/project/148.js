@@ -22,6 +22,7 @@ export default new Automated({
   flavor: 'Pollinating flowers and spreading seeds',
   action: () => {},
   emoji: '🐞',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

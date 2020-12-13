@@ -20,6 +20,7 @@ export default new Automated({
   flavor: 'State of the art technology',
   action: () => {},
   emoji: '🔮',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

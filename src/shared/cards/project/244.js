@@ -22,6 +22,7 @@ export default new Automated({
   flavor: 'Welcome to the 1G club',
   action: () => {},
   emoji: '🤝🏻',
+  todo: true,
   layout: (
     <div className="text-center m-bottom">
       <Production>

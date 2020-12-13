@@ -20,6 +20,7 @@ export default new Automated({
     'When the population begins to soar, cities will eventually merge into large urban areas',
   action: () => {},
   emoji: '🌃',
+  todo: true,
   layout: (
     <div className="flex gutter center">
       <div className="col-1 text-center middle">

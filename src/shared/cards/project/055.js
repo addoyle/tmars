@@ -7,8 +7,6 @@ import {
   MegaCredit
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Requires 6 ocean tiles. Increase your M€ production 2 steps and your plant production 3 steps. Gain 2 plants.';
 

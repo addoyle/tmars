@@ -22,6 +22,7 @@ export default new Automated({
   flavor: 'Milling about in the soil, ‘processing’ it',
   action: () => {},
   emoji: '🐛',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

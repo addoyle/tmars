@@ -22,6 +22,7 @@ export default new Event({
   flavor: 'A thorough investigation of the geology of Mars',
   action: () => {},
   emoji: '🔦',
+  todo: true,
   vp: 1,
   layout: (
     <div className="flex gutter">

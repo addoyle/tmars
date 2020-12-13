@@ -14,6 +14,7 @@ export default new Event({
   flavor: 'Testing launch techniques, space hardware, and whatnot',
   action: () => {},
   emoji: '💡',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

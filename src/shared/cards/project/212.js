@@ -24,6 +24,7 @@ export default new Active({
     'Everybody loves penguins. And penguins love the new oceans and glaciers on Mars',
   action: () => {},
   emoji: '🐧',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

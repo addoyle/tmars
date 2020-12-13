@@ -6,8 +6,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'Requires a Jovian tag. Increase your heat production and energy production 3 steps each.';
 

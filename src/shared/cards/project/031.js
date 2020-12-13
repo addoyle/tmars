@@ -21,6 +21,7 @@ export default new Active({
     'Perfecting the art of ballistical and material analysis can increase efficiency and save money',
   action: () => {},
   emoji: '🛸',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

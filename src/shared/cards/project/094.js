@@ -27,6 +27,7 @@ export default new Active({
   flavor: 'E=mc². 1 kg = a LOT of energy',
   action: () => {},
   emoji: '🎆',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

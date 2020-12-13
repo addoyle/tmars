@@ -20,6 +20,7 @@ export default new Active({
     'Releasing aerosols that bind undesired gases, making them rain down to the surface',
   action: () => {},
   emoji: '🌧',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

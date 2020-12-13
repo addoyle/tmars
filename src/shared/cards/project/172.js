@@ -20,6 +20,7 @@ export default new Active({
   flavor: 'It wouldn’t be the same without them',
   action: () => {},
   emoji: '🐶️',
+  todo: true,
   activeLayout: (
     <div>
       <div className="flex">

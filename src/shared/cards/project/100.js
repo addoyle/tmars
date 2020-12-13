@@ -18,6 +18,7 @@ export default new Automated({
   flavor: 'Simple but limited power supply',
   action: () => {},
   emoji: '⛽',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

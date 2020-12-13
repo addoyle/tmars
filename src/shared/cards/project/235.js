@@ -19,6 +19,7 @@ export default new Active({
   flavor: 'Providing temperate areas for rich costumers',
   action: () => {},
   emoji: '⛱',
+  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

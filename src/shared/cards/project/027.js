@@ -2,8 +2,6 @@ import React from 'react';
 import Event from '../Event';
 import { VictoryPoint } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc = 'Requires 5 science tags.';
 
 export default new Event({

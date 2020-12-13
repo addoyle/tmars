@@ -34,6 +34,7 @@ export default new Automated({
     );
   },
   emoji: '🏞',
+  todo: true,
   layout: (
     <div>
       <div className="resources">

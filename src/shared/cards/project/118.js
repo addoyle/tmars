@@ -25,6 +25,7 @@ export default new Automated({
   action: () => {},
   vp: 2,
   emoji: '🚜',
+  todo: true,
   layout: (
     <div>
       <div className="flex gutter center">

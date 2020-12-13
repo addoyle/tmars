@@ -5,8 +5,6 @@ import {
   Resource
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc = 'Increase your steel production 1 step.';
 
 export default new Automated({

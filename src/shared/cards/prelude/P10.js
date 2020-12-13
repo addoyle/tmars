@@ -15,6 +15,7 @@ export default new Prelude({
   desc,
   flavor: 'I had no idea that you could actually do that',
   emoji: '♻️',
+  todo: true,
   action: (player, game, done) => {
     game.production(player, 'plant', 1);
     // TODO: Figure out how to skip global requirements

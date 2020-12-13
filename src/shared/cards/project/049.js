@@ -22,6 +22,7 @@ export default new Active({
     'These microscopic creatures can survive freezing, boiling, drying out, heavy radiation, and brute force',
   action: () => {},
   emoji: '🐛',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

@@ -16,6 +16,7 @@ export default new Event({
   flavor: 'Greenhouse gases (GHG) with improved effect',
   action: () => {},
   emoji: '🍾',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

@@ -17,6 +17,7 @@ export default new Automated({
   flavor: 'Protecting a limited area from cosmic radiation',
   action: () => {},
   emoji: '🧲',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

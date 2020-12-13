@@ -49,6 +49,7 @@ export default new Automated({
     };
   },
   emoji: '⚖',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 middle">

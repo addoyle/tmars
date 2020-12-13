@@ -18,6 +18,7 @@ export default new Automated({
   flavor: 'Accelerating building of the infrastructure',
   action: () => {},
   emoji: '🏗',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1">

@@ -13,6 +13,7 @@ export default new Event({
   flavor: 'Bringing ice and other key supplies from the Jovian moon Europa',
   action: () => {},
   emoji: '📦',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources text-center">

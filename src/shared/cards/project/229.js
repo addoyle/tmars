@@ -15,6 +15,7 @@ export default new Automated({
     'Drastically lowering the temperature to cause CO\u2082 to precipitate, reducing the greenhouse effect',
   action: () => {},
   emoji: '⛱',
+  todo: true,
   layout: (
     <div className="m-top m-bottom">
       <div className="resources text-center">

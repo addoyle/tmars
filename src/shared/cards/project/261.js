@@ -24,6 +24,7 @@ export default new Automated({
   action: () => {},
   vp: 1,
   emoji: '🌵',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources text-center">

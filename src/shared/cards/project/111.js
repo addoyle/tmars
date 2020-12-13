@@ -14,5 +14,6 @@ export default new Event({
   flavor: 'Money and information are often interchangeable',
   action: () => {},
   emoji: '🤝🏻',
+  todo: true,
   layout: <div className="text-center m-bottom m-top">{desc}</div>
 });

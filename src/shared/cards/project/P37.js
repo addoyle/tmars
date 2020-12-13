@@ -21,6 +21,7 @@ export default new Automated({
     'Giant lava tubes can provide protection for early settlements on Mars',
   action: () => {},
   emoji: '🚇',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-center">

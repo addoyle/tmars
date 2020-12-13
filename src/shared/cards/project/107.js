@@ -15,6 +15,7 @@ export default new Automated({
     'Accessing information on past events for better planning of the future',
   action: () => {},
   emoji: '🗃️',
+  todo: true,
   layout: (
     <div className="m-bottom">
       <div className="resources text-center">

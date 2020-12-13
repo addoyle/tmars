@@ -21,6 +21,7 @@ export default new Automated({
   flavor: 'Efficient soil makers',
   action: () => {},
   emoji: '🥦',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

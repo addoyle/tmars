@@ -20,6 +20,7 @@ export default new Active({
   flavor: 'Investing in social events can open up new opportunities',
   action: () => {},
   emoji: '🌐',
+  todo: true,
   activeLayout: (
     <div className="flex middle">
       <div className="col-1 resources">

@@ -25,6 +25,7 @@ export default new Active({
   flavor: 'Providing meat, wood, leather, etc.',
   action: () => {},
   emoji: '🐄',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

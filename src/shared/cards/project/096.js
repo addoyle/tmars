@@ -13,6 +13,7 @@ export default new Automated({
   flavor: 'Places to conduct bio research and experiments',
   action: () => {},
   emoji: '🏡',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 resources text-center middle">

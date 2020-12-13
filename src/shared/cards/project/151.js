@@ -17,6 +17,7 @@ export default new Event({
   flavor: 'Taking a loan to fund that urgent project',
   action: () => {},
   emoji: '📉',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

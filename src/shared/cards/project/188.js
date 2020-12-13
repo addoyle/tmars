@@ -19,6 +19,7 @@ export default new Event({
   action: () => {},
   vp: -1,
   emoji: '🌊',
+  todo: true,
   layout: (
     <div className="flex">
       <div className="col-1 middle text-center">

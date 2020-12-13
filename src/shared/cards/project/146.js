@@ -21,6 +21,7 @@ export default new Automated({
   flavor: 'Specially made to thrive on the salty Martian rock',
   action: () => {},
   emoji: '🥦',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

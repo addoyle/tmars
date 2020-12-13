@@ -18,6 +18,7 @@ export default new Automated({
   flavor: 'Dual terraforming by redirecting sunlight from Venus to Mars',
   action: () => {},
   emoji: '🪞',
+  todo: true,
   layout: (
     <div>
       <div className="flex gutter">

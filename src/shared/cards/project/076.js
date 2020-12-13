@@ -19,6 +19,7 @@ export default new Active({
     'Ultrathin mirrors reflecting sunlight down to receivers on the surface',
   action: () => {},
   emoji: '🛰',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

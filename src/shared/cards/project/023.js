@@ -22,6 +22,7 @@ export default new Active({
   flavor: 'Suitable for freezing temperatures',
   action: (player, game) => game.resources(player, 'plant', 1),
   emoji: '🥗',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

@@ -21,6 +21,7 @@ export default new Active({
   flavor: 'Buy it today at www.fryxgames.se',
   vp: 1,
   emoji: '🛰',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

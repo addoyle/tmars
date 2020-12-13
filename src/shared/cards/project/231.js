@@ -20,6 +20,7 @@ export default new Event({
     'Easily collected from the gas giants, hydrogen can increase floating power, or be converted to precious water',
   action: () => {},
   emoji: '🌀',
+  todo: true,
   layout: (
     <div className="flex">
       <div className="col-2 middle">

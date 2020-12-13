@@ -18,6 +18,7 @@ export default new Automated({
     'Titanium is useful to the space industry because of its great strength',
   action: () => {},
   emoji: '🏗️',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

@@ -8,8 +8,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// VERIFY
-
 const desc =
   'Oxygen must be 7% or less. Gain 3 plants and place a city tile. Decrease your energy production 1 step and increase M€ production 3 steps.';
 

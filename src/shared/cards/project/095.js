@@ -21,6 +21,7 @@ export default new Active({
     'This used to cause blackouts before the invention of supercapacitors',
   action: () => {},
   emoji: '⚛️',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

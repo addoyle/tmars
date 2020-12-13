@@ -23,6 +23,7 @@ export default new Automated({
     'Treating the smouldering Mercurian ground at sunset, collecting the separated molten metals',
   action: () => {},
   emoji: '🌘',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="middle text-center">

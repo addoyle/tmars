@@ -19,6 +19,7 @@ export default new Active({
   flavor: 'Connecting the atmospheric shuttles to the interplanetary flights',
   action: () => {},
   emoji: '🚏',
+  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">

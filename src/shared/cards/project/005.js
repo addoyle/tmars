@@ -56,6 +56,7 @@ export default new Active({
   ],
   vp: () => this.resources * 3,
   emoji: '🔍',
+  todo: true,
   activeLayout: (
     <div>
       <div className="center text-center">

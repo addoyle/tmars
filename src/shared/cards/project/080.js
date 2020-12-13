@@ -18,6 +18,7 @@ export default new Event({
   flavor: 'Crash it. The bigger, the better',
   action: () => {},
   emoji: '☄',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources middle">

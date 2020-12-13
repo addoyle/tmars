@@ -26,6 +26,7 @@ export default new Active({
   flavor: 'Cold-loving bacteria, preparing the ground for the new ecosystem',
   action: () => {},
   emoji: '🦠',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

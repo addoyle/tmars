@@ -5,8 +5,6 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc = 'Increase your plant production 1 step.';
 
 export default new Automated({

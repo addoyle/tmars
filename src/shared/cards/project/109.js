@@ -14,6 +14,7 @@ export default new Active({
   flavor: 'Profiting on every spectacular story',
   action: () => {},
   emoji: '🎙',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

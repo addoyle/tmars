@@ -17,6 +17,7 @@ export default new Event({
   flavor: 'Nobody will know who did it',
   action: () => {},
   emoji: '🏴‍☠️',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

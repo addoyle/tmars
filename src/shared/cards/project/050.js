@@ -17,6 +17,7 @@ export default new Event({
     'The virus is transient, changing from liquid to air-borne to blood transfusion',
   action: () => {},
   emoji: '🦠',
+  todo: true,
   layout: (
     <div>
       <div className="resources text-center">

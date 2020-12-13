@@ -23,6 +23,7 @@ export default new Active({
     'Taking care of immigrants is costly, but will begin to pay off when they start working for you in the growing society',
   action: () => {},
   emoji: '🌃',
+  todo: true,
   activeLayout: (
     <div>
       <div className="flex center gutter">

@@ -11,6 +11,7 @@ export default new Prelude({
   desc,
   flavor: 'He’ll support you, but he wants something big with his name on it',
   emoji: '🧐',
+  todo: true,
   action: (player, game, done) => {
     // TODO: Figure out how to reduce cost by 25
     game.promptCard(player, done);

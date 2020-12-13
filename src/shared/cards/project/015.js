@@ -22,6 +22,7 @@ export default new Active({
   clientActiveAction: () => {},
   serverActiveAction: () => {},
   emoji: '🧲',
+  todo: true,
   activeLayout: (
     <div className="text-center">
       <Production>

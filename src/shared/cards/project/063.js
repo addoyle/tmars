@@ -14,7 +14,17 @@ export default new Event({
   flavor: 'Ruthlessly excavating rich areas',
   action: (player, game, done) => {
     game.resources(player, 'steel', 2);
-    game.param(player, 'oxygen', done);
+    game.param(player, 'oxygen', () =>
+      game.promptPlayer(
+        player,
+        { resources: 'plant' },
+        ['took 2 plants ', { resource: 'plant' }, ' from'],
+        targetPlayer => {
+          targetPlayer && game.resources(targetPlayer, 'plant', -2);
+          done();
+        }
+      )
+    );
   },
   emoji: '🏗',
   layout: (

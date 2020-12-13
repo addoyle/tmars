@@ -17,6 +17,7 @@ export default new Event({
   flavor: 'Greenhouse gases (GHGs) to retain the heat',
   action: () => {},
   emoji: '🍾',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

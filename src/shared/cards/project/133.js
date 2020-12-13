@@ -19,6 +19,7 @@ export default new Active({
   flavor: 'Creating mutually beneficial conditions',
   action: () => {},
   emoji: '🍄',
+  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">

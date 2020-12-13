@@ -22,6 +22,7 @@ export default new Automated({
   flavor: 'Specializing in extremely cold conditions',
   action: () => {},
   emoji: '🦠',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

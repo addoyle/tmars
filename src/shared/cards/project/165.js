@@ -18,6 +18,7 @@ export default new Automated({
     'By generating a magnetic field, you can protect organisms from cosmic radiation',
   action: () => {},
   emoji: '🧲',
+  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter">

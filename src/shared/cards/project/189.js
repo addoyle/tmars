@@ -18,6 +18,7 @@ export default new Automated({
   flavor: 'Minimizing urban energy spending',
   action: () => {},
   emoji: '🔋',
+  todo: true,
   layout: (
     <div className="flex gutter m-bottom">
       <div className="middle text-center">

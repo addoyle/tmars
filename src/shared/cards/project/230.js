@@ -22,6 +22,7 @@ export default new Automated({
     'A rotating city, creating 1G at the perimeter. Perfect for people returning to Earth or Venus',
   action: () => {},
   emoji: '⛰',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="middle">

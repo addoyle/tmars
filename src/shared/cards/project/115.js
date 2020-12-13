@@ -18,6 +18,7 @@ export default new Automated({
     'Artificial photosynthesis was achieved chemically by prof Akermark et. al. in 2021. Its application to terraforming remains to be seen',
   action: () => {},
   emoji: '🍃',
+  todo: true,
   layout: (
     <div className="text-center">
       <Production>

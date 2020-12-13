@@ -2,8 +2,6 @@ import React from 'react';
 import Event from '../Event';
 import { Resource } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc = 'Gain 5 steel.';
 
 export default new Event({

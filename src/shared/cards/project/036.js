@@ -2,8 +2,6 @@ import React from 'react';
 import Event from '../Event';
 import { Resource } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc = 'Raise your terraform rating 2 steps.';
 
 export default new Event({

@@ -15,5 +15,6 @@ export default new Automated({
     'By combining different competences, many projects may benefit in new ways',
   action: () => {},
   emoji: '👩‍🔬',
+  todo: true,
   layout: <div className="text-center m-top m-bottom">{desc}</div>
 });

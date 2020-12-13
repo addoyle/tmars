@@ -14,6 +14,7 @@ export default new Automated({
   flavor: 'Enhancing your production capacity',
   action: () => {},
   emoji: '🤖',
+  todo: true,
   layout: (
     <div className="m-bottom">
       <div className="flex center">

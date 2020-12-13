@@ -5,8 +5,6 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc =
   'It must be -18°C or colder. Increase your plant production 1 step.';
 

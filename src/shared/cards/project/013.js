@@ -42,6 +42,7 @@ export default new Active({
   ],
   vp: 2,
   emoji: '🛗',
+  todo: true,
   activeLayout: (
     <div>
       <div className="center text-center">

@@ -7,8 +7,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// DONE
-
 const desc = 'Increase your M€ production 1 step for each Earth tag you have.';
 
 export default new Automated({

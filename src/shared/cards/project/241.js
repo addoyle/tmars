@@ -19,6 +19,7 @@ export default new Automated({
   flavor: 'Constructing the corridors of power',
   action: () => {},
   emoji: '🏛',
+  todo: true,
   layout: (
     <div>
       <div className="resources text-center">

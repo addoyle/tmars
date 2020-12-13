@@ -19,6 +19,7 @@ export default new Active({
     'Radiation from the nuclear blast is shielded, but over time, we are still getting the heat',
   action: () => {},
   emoji: '💥',
+  todo: true,
   activeLayout: (
     <div>
       <div className="flex center">
