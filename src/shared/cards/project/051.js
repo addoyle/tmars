@@ -7,6 +7,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc = 'Increase your M€ production 1 step for each Earth tag you have.';
 
 export default new Automated({
@@ -18,7 +20,8 @@ export default new Automated({
   desc,
   flavor:
     'Situated on Verona Rupes, the highest vertical drop in the solar system, the resort attracts many of the thrill-seekers among the rich on Earth',
-  action: () => {},
+  action: (player, game) =>
+    game.production(player, 'megacredit', player.tags.earth),
   vp: 1,
   emoji: '🧗',
   layout: (

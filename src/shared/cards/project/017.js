@@ -20,8 +20,35 @@ export default new Automated({
   action: (player, game, done) => {
     game.production(player, 'power', -1);
     game.production(player, 'megacredit', 3);
-    // TODO: Figure out special placement rules
-    game.promptTile(player, 'city', done);
+
+    const noctisSpace = game.field
+      .flat()
+      .find(t => t.attrs?.includes('reserved-noctis-city'));
+
+    // Place the city on the reserved noctis city space
+    if (noctisSpace) {
+      game.placeTile(player, noctisSpace, 'city', done);
+    }
+    // No noctis space (hellas, elysium), treat as a normal city
+    else {
+      game.promptTile(player, 'city', done);
+    }
+  },
+  canPlay: (player, game) => {
+    if (player.production.power < 1) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+
+    const valid =
+      game.field.includes(t => t.attrs?.includes('reserved-noctis-city')) ||
+      !!game.findPossibleTiles('city', player).length;
+    return {
+      valid,
+      msg: !valid ? 'Cannot place this tile' : null
+    };
   },
   emoji: '🌆',
   layout: (

@@ -8,17 +8,29 @@ import {
 const activeDesc = 'Effect: When you play a card, you pay 1 M€ less for it.';
 const desc = 'Place a city tile NEXT TO NO OTHER TILE.';
 
+const customFilter = (tile, game, notReserved, neighbors) =>
+  // Not reserved
+  notReserved(tile) &&
+  // No neighbors
+  !neighbors.filter(t => t.name).length;
+
 export default new Active({
   number: 20,
   title: 'Research Outpost',
   cost: 18,
   tags: ['science', 'city', 'building'],
   desc,
-  flavor:
-    "Using Titan's liquid methane as fuel will add carbon and heat to Mars",
+  flavor: 'Finding new ways to do things',
   action: (player, game, done) => {
-    // TODO: Figure out how to do placement restrictions
-    game.promptTile(player, 'city', done);
+    game.promptTile(player, 'city', done, customFilter);
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.findPossibleTiles('city', player, customFilter).length;
+
+    return {
+      valid,
+      msg: !valid ? 'No spaces exist that are next to no other tile' : null
+    };
   },
   emoji: '🏢',
   activeLayout: (

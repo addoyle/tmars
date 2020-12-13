@@ -5,7 +5,7 @@ import './Field.scss';
 import classnames from 'classnames';
 import { Tile, Resource, Param, MegaCredit } from '../assets/Assets';
 
-const offMarsCities = {
+const offMars = {
   ganymede: {
     label: 'Ganymede Colony'
   },
@@ -67,22 +67,18 @@ const Field = ({ gameStore }) => {
   return (
     <div className={classnames('field', { venus: hasVenus })}>
       <div className="tiles">
-        {Object.keys(gameStore.offMarsCities)
-          .filter(city => hasVenus || offMarsCities[city].set !== 'venus')
+        {Object.keys(gameStore.offMars)
+          .filter(city => hasVenus || offMars[city].set !== 'venus')
           .map((city, i) => (
             <div className={`${city} row`} key={i}>
               <Tile
-                name={
-                  gameStore.offMarsCities[city].player ? 'city-placed' : 'blank'
-                }
+                name={gameStore.offMars[city].player ? 'city-placed' : 'blank'}
                 clickable={
-                  gameStore.offMarsCities[city].clickable ? 'city' : undefined
+                  gameStore.offMars[city].clickable ? 'city' : undefined
                 }
               >
-                {gameStore.offMarsCities[city].player ? (
-                  <Tile name="city" />
-                ) : null}
-                {!gameStore.offMarsCities[city].player ? (
+                {gameStore.offMars[city].player ? <Tile name="city" /> : null}
+                {!gameStore.offMars[city].player ? (
                   <div className="rewards">
                     <div className="resources">
                       <Resource name="blank" />
@@ -94,13 +90,11 @@ const Field = ({ gameStore }) => {
                       <Resource name="blank" />
                     </div>
                     <img className="city" src="/icons/city.svg" />
-                    <div className="text">{offMarsCities[city].label}</div>
+                    <div className="text">{offMars[city].label}</div>
                   </div>
                 ) : null}
-                {gameStore.offMarsCities[city].player ? (
-                  <Resource
-                    name={`player-${gameStore.offMarsCities[city].player}`}
-                  />
+                {gameStore.offMars[city].player ? (
+                  <Resource name={`player-${gameStore.offMars[city].player}`} />
                 ) : null}
               </Tile>
               {['ganymede', 'luna', 'dawn', 'torus'].includes(city) ? (
@@ -122,7 +116,7 @@ const Field = ({ gameStore }) => {
                     : 'blank')
                 } ${tile.icon || ''}`}
                 clickable={
-                  gameStore.playerStatus?.tile &&
+                  gameStore.playerStatus?.type === 'prompt-tile' &&
                   gameStore.playerStatus?.player.number ===
                     gameStore.player?.number
                     ? tile.clickable
@@ -178,9 +172,10 @@ const tilePropType = PropTypes.shape({
 Field.propTypes = {
   gameStore: PropTypes.shape({
     field: PropTypes.arrayOf(PropTypes.arrayOf(tilePropType)),
-    offMarsCities: PropTypes.objectOf(tilePropType),
+    offMars: PropTypes.objectOf(tilePropType),
     sets: PropTypes.arrayOf(PropTypes.string),
     playerStatus: PropTypes.shape({
+      type: PropTypes.string,
       player: PropTypes.shape({
         number: PropTypes.number
       }),

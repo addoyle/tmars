@@ -6,7 +6,7 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// VERIFY PROMPT PLAYER
+// DONE
 
 const desc =
   'Requires that you have titanium production. Decrease any titanium production 1 step and increase your own 1 step.';
@@ -25,10 +25,15 @@ export default new Automated({
   desc,
   flavor: 'Your hold on the titanium market tightens',
   action: (player, game, done) => {
-    game.production(player, 'titanium', 1);
     game.promptPlayer(
-      targetPlayer => game.production(targetPlayer, 'titanium', -1),
-      done
+      player,
+      { production: 'titanium' },
+      ['took 1 titanium ', { resource: 'titanium' }, ' production from'],
+      targetPlayer => {
+        game.production(player, 'titanium', 1);
+        game.production(targetPlayer, 'titanium', -1);
+        done();
+      }
     );
   },
   emoji: '🌘',

@@ -39,7 +39,7 @@ class Game extends SharedGame {
 
   // The field (tiles)
   @observable field = [];
-  @observable offMarsCities = {
+  @observable offMars = {
     ganymede: {},
     phobos: {},
     torus: {},
@@ -142,17 +142,14 @@ class Game extends SharedGame {
     this.player.ui && Object.assign(this, this.player.ui);
   }
 
-  @action
   getGame(player) {
     API(`game/${gameId()}?player=${player}`).then(res => this.update(res));
   }
 
-  @action
   showPlayerStats(pid, player) {
     this.playerStats = { ...this.playerStats, show: true, pid, player };
   }
 
-  @action
   playCard(card, opts) {
     API(`game/${gameId()}/play-card`, POST, {
       ...opts,
@@ -161,7 +158,6 @@ class Game extends SharedGame {
     });
   }
 
-  @action
   playPrelude(card, opts) {
     API(`game/${gameId()}/play-prelude`, POST, {
       ...opts,
@@ -170,7 +166,6 @@ class Game extends SharedGame {
     });
   }
 
-  @action
   toggleSelectCard(card, type, opts) {
     API(`game/${gameId()}/toggle-select-card`, POST, {
       ...opts,
@@ -180,7 +175,6 @@ class Game extends SharedGame {
     });
   }
 
-  @action
   draftCard(card, opts) {
     API(`game/${gameId()}/draft-card`, POST, {
       ...opts,
@@ -189,29 +183,28 @@ class Game extends SharedGame {
     });
   }
 
-  @action
   buySelectedCards() {
     API(`game/${gameId()}/buy-selected`, POST, { player: +PLAYER_NUM });
   }
 
-  @action
   confirmSelection(type) {
     API(`game/${gameId()}/confirm-selection/${type}`, POST, {
       player: +PLAYER_NUM
     });
   }
 
-  @action
   placeTile(id) {
     API(`game/${gameId()}/place-tile/${id}`, POST);
   }
 
-  @action
+  pickPlayer(player) {
+    API(`game/${gameId()}/pick-player`, POST, { player });
+  }
+
   passSkip() {
     API(`game/${gameId()}/pass-skip`, POST);
   }
 
-  @action
   standardProject(project, opts = {}) {
     API(`game/${gameId()}/standard-project`, POST, {
       ...opts,

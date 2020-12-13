@@ -19,7 +19,10 @@ export default new Automated({
   },
   desc,
   flavor: 'Basic photosynthesizers in aqueous environments',
-  action: () => {},
+  action: (player, game) => {
+    game.resources(player, 'plant', 1);
+    game.production(player, 'plant', 2);
+  },
   emoji: '🧪',
   layout: (
     <div>

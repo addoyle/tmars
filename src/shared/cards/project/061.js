@@ -5,6 +5,8 @@ import {
   Resource
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Requires that you have steel production. Decrease any steel production 1 step and increase your own 1 step.';
 
@@ -21,7 +23,18 @@ export default new Automated({
   desc,
   flavor:
     'The border between the northern plains and the southern highlands is rich in minerals. Control it, and you will control the global mining business',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptPlayer(
+      player,
+      { production: 'steel' },
+      ['took 1 steel ', { resource: 'steel' }, ' production from'],
+      targetPlayer => {
+        game.production(player, 'steel', 1);
+        game.production(targetPlayer, 'steel', -1);
+        done();
+      }
+    );
+  },
   emoji: '⛰',
   layout: (
     <div className="flex gutter">

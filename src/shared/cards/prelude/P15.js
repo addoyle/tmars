@@ -15,11 +15,13 @@ export default new Prelude({
   desc,
   flavor: 'Deep impact on Mars - before too many move there',
   emoji: '☄',
-  action: (player, game) => {
+  action: (player, game, done) => {
     game.resources(player, 'megacredit', -5);
-    game.param(player, 'temperature');
-    game.param(player, 'temperature');
-    game.param(player, 'temperature');
+    game.param(player, 'temperature', () =>
+      game.param(player, 'temperature', () =>
+        game.param(player, 'temperature', done)
+      )
+    );
   },
   layout: (
     <div className="flex m-top m-bottom">

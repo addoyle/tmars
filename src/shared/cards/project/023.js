@@ -2,6 +2,8 @@ import React from 'react';
 import Active from '../Active';
 import { Resource, Tile } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc = 'Effect: When anyone places an ocean tile, gain 2 plants.';
 const desc = 'It must be -12°C or colder to play. Gain 1 plant.';
 

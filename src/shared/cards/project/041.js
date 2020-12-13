@@ -7,6 +7,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Decrease your plant production 1 step and increase your M€ production 4 steps.';
 
@@ -17,7 +19,17 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'For the growing population',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'plant', -1);
+    game.production(player, 'megacredit', 4);
+  },
+  canPlay: player => {
+    const valid = player.production.plant >= 1;
+    return {
+      valid,
+      msg: !valid ? 'Not enough plant production' : null
+    };
+  },
   vp: 1,
   emoji: '🌽',
   layout: (

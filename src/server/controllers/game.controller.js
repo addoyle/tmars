@@ -136,6 +136,16 @@ export function placeTile(req, res) {
 }
 
 /**
+ * Pick a player
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function pickPlayer(req, res) {
+  res.send(GameService.pickPlayer(`${req.params.id}`, req.body.player));
+}
+
+/**
  * Skip or pass the current player's turn
  *
  * @param {*} req

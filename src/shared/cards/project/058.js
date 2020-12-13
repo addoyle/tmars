@@ -6,6 +6,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Requires a Jovian tag. Increase your heat production and energy production 3 steps each.';
 
@@ -21,7 +23,10 @@ export default new Automated({
   desc,
   flavor:
     'Nuclear energy is safe, especially when located on a remote asteroid rich in radioactive elements',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'heat', 3);
+    game.production(player, 'power', 3);
+  },
   vp: 1,
   emoji: '🔫',
   layout: (

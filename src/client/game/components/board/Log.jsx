@@ -138,7 +138,9 @@ const Log = forwardRef((props, ref) => {
                         );
                       }
                     } else {
-                      return (
+                      return body === ' ' ? (
+                        ' '
+                      ) : (
                         <Markdown
                           key={i}
                           className="log-inline"

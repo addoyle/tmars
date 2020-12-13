@@ -14,16 +14,16 @@ const paramStats = {
     max: 8,
     step: 2,
     rewards: {
-      [-24]: player => player.production.heat++,
-      [-20]: player => player.production.heat++,
+      [-24]: (player, game) => game.production(player, 'heat', 1),
+      [-20]: (player, game) => game.production(player, 'heat', 1),
       // TODO: place an ocean
-      0: (player, game) => game.promtTile(player, 'ocean')
+      0: (player, game, done) => game.promtTile(player, 'ocean', done)
     }
   },
   oxygen: {
     max: 14,
     rewards: {
-      8: (player, game) => game.param(player, 'temperature')
+      8: (player, game, done) => game.param(player, 'temperature', done)
     }
   },
   venus: {
@@ -67,7 +67,7 @@ class Game extends SharedGame {
   phase = 'start';
   playerStatus;
 
-  offMarsCities = {
+  offMars = {
     ganymede: {},
     phobos: {},
     torus: {},
@@ -325,10 +325,11 @@ class Game extends SharedGame {
   /**
    * Bump up the param and give the player the rewards
    *
-   * @param {Player} player
-   * @param {string} param
+   * @param {Player} player Player who receives the rewards for the bump
+   * @param {string} param Param to bump
+   * @param {func} done Callback once param is complete
    */
-  param(player, param) {
+  param(player, param, done) {
     if (
       paramStats[param] !== undefined &&
       (this.params[param] < paramStats[param].max ||
@@ -349,7 +350,8 @@ class Game extends SharedGame {
             ` ${startCase(param)}!`
           ])
         );
-        rewardAction(player, this);
+        rewardAction(player, this, done);
+        rewardAction.length < 3 && done();
       }
     }
   }
@@ -366,6 +368,7 @@ class Game extends SharedGame {
     };
 
     this.playerStatus = {
+      type: 'prompt-card',
       player,
       modifiers: {},
       done: () => {
@@ -412,7 +415,8 @@ class Game extends SharedGame {
       this.playerStatus = {
         player,
         tile,
-        done: params => {
+        type: 'prompt-tile',
+        done: placedTile => {
           // Raise params if necessary
           if (tile === 'ocean') {
             this.param(player, 'ocean');
@@ -435,10 +439,109 @@ class Game extends SharedGame {
             }
           };
 
-          callback && callback(params);
+          callback && callback(placedTile);
         }
       };
     }
+  }
+
+  /**
+   * Prompt for a player
+   *
+   * @param {object} player The player to prompt
+   * @param {object} icon The icon to prompt for
+   * @param {array} logSnippet The snippet of a log that would fit this sentence: '{player} {snippet} {targetPlayer}'
+   * @param {func} callback Callback once the player is picked
+   */
+  promptPlayer(player, icon, logSnippet, callback) {
+    player.ui = {
+      activeCard: { show: false }
+    };
+
+    this.playerStatus = {
+      type: 'prompt-player',
+      icon,
+      player,
+      logSnippet,
+      done: pickedPlayer => {
+        // Player status is resolved
+        this.playerStatus = null;
+
+        // Show UI components
+        player.ui = {
+          drawer: this.phase === 'prelude' ? 'prelude' : 'hand'
+        };
+
+        callback && callback(pickedPlayer);
+      }
+    };
+  }
+
+  /**
+   * Place a tile on the board
+   *
+   * @param {object} player Player placing the tile
+   * @param {object} area Field area to place the tile
+   * @param {string} tile Tile to place, e.g. 'ocean', 'city', etc.
+   * @param {func} done Callback once the tile is placed
+   */
+  placeTile(player, area, tile, done) {
+    const type = isString(tile) ? tile : 'special';
+
+    // Set the tile
+    area.name = `${type.replace(/ /, '-')}-placed`;
+    area.type = type;
+
+    // If it's a special tile, set the icon
+    if (tile.special) {
+      area.icon = tile.special;
+    }
+
+    // Add a player marker
+    if (type !== 'ocean') {
+      area.player = player.number;
+    }
+
+    // Log the placement
+    LogService.pushLog(
+      this.id,
+      new Log(player.number, [
+        ` placed ${
+          type === 'ocean' ? 'an' : !isString(tile) ? 'the' : 'a'
+        } ${type} `,
+        { tile: type },
+        ' tile.'
+      ])
+    );
+
+    // Ocean adjacencies
+    if (area.id) {
+      player.resources.megacredit +=
+        this.neighbors(area).filter(t => t.type === 'ocean').length *
+        player.rates.ocean;
+    }
+
+    // TODO: Trigger placement events
+
+    let notDone = true;
+    // Handle placement bonuses
+    (area.resources || [])
+      .filter(r => r)
+      .forEach(r => {
+        // Resources on the space
+        if (r === 'card') {
+          this.drawCard(player);
+        } else if (r === 'ocean') {
+          notDone = false;
+          this.promptTile(player, 'ocean', done);
+        } else if (r.megacredit) {
+          player.resources.megacredit += r.megacredit;
+        } else {
+          player.resources[r]++;
+        }
+      });
+
+    notDone && done(area);
   }
 
   /**
@@ -618,6 +721,9 @@ class Game extends SharedGame {
    */
   resources(player, resource, num) {
     player.resources[resource] += num;
+    if (player.resources[resource] < 0) {
+      player.resources[resource] = 0;
+    }
     // TODO fire resource change
   }
 

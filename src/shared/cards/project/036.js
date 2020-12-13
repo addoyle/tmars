@@ -2,6 +2,8 @@ import React from 'react';
 import Event from '../Event';
 import { Resource } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc = 'Raise your terraform rating 2 steps.';
 
 export default new Event({
@@ -12,7 +14,7 @@ export default new Event({
   desc,
   flavor:
     "We need some nitrogen and other inert gases to increase atmospheric pressure. Let's stay away from helium, though",
-  action: () => {},
+  action: (player, game) => game.tr(player, 2),
   emoji: '🌬',
   layout: (
     <div>

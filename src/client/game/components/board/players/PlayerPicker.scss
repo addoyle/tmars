@@ -1,6 +1,6 @@
 $title-font: 'Prototype', sans-serif;
 
-.active-card {
+.player-picker {
   position: fixed;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -14,34 +14,39 @@ $title-font: 'Prototype', sans-serif;
   transform: translate(-50%, -50%);
   pointer-events: none;
   user-select: none;
+  width: 200px;
 
   &.show {
     opacity: 1;
     pointer-events: auto;
-
-    .card-preview {
+    .player {
       pointer-events: auto;
     }
   }
 
-  .card-preview {
-    position: static;
-    user-select: none;
-    cursor: move;
+  h1 {
+    color: #fffd;
+    font-family: $title-font;
+    font-size: 1.5em;
+    margin-bottom: .5em;
+    text-align: center;
+  }
 
-    > .card {
-      transition: height 0.5s ease, width 0.5s ease;
+  .player {
+    width: 100%;
+    height: auto;
+    margin: 4px 0 0;
+    pointer-events: none;
+
+    .production {
+      width: 64px;
     }
   }
 
   .footer {
-    padding: 8px 0 0;
-
-    button {
-      display: block;
-      width: 100%;
-      margin-top: 6px;
-      margin-bottom: 6px;
-    }
+    border-top: 1px solid #fff8;
+    margin-top: 1em;
+    padding-top: 1em;
+    text-align: right;
   }
 }

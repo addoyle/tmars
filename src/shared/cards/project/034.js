@@ -6,6 +6,8 @@ const activeDesc =
   'Action: Add 1 microbe to this card, or remove 2 microbes to raise temperature 1 step.';
 const desc = 'Requires 4% oxygen.';
 
+// TODO ACTION
+
 export default new Active({
   number: 34,
   title: 'GHG Producing Bacteria',

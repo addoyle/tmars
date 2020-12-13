@@ -5,6 +5,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Action: Spend 1 titanium to add 1 fighter resource to this card.';
 const desc = '1 VP for each fighter resource on this card.';

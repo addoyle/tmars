@@ -7,6 +7,8 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Increase your titanium production 1 step and place a city tile ON THE RESERVED AREA.';
 
@@ -19,8 +21,7 @@ export default new Automated({
   flavor: 'The doorway to Mars',
   action: (player, game, done) => {
     game.production(player, 'titanium', 1);
-    // TODO: figure out reserved spots
-    game.promptTile(player, 'city', done);
+    game.placeTile(player, game.offMars.phobos, 'city', done);
   },
   emoji: '🍄',
   vp: 3,

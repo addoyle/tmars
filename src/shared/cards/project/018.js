@@ -6,6 +6,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Requires 2% oxygen. Increase your heat production 2 steps and your plant production 2 steps.';
 

@@ -23,7 +23,10 @@ export default new Automated({
   desc,
   flavor:
     'Floating supercapacitors connecting clouds with a superconducting wire. The triggered and collected discharges are beamed down to a receptor',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', 1);
+    game.production(player, 'megacredit', 1);
+  },
   vp: 1,
   emoji: '🔋',
   layout: (

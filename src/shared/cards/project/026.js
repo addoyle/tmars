@@ -7,6 +7,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ADD CARD PICKER
+
 const desc =
   'Requires -12°C or warmer. Add 1 animal TO ANY ANIMAL CARD. Gain 3 plants. Increase your M€ production 2 steps.';
 

@@ -5,6 +5,8 @@ import {
   Resource
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc = 'Increase your steel production 1 step.';
 
 export default new Automated({
@@ -15,7 +17,7 @@ export default new Automated({
   desc,
   flavor:
     "Mars' main export industry also supplies the planet with construction materials",
-  action: () => {},
+  action: (player, game) => game.production(player, 'steel', 1),
   emoji: '⛏',
   layout: (
     <div className="flex gutter">

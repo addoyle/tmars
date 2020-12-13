@@ -41,8 +41,9 @@ const ActiveCard = ({ gameStore, cardStore }) => {
       activeCard.heat
   );
 
-  const meetsReqs = card?.meetsRequirements(player, gameStore);
-  const canPlay = card?.canPlay(player, gameStore);
+  const meetsReqs =
+    card?.meetsRequirements && card?.meetsRequirements(player, gameStore);
+  const canPlay = card?.canPlay && card?.canPlay(player, gameStore);
   const canAfford = player?.resources.megacredit >= effectiveCost;
   const valid = {
     valid: meetsReqs?.valid && canPlay?.valid && canAfford,
@@ -191,9 +192,7 @@ const ActiveCard = ({ gameStore, cardStore }) => {
             </button>
           ) : null}
 
-          {activeCard.mode === 'play' &&
-          myTurn &&
-          !gameStore.playerStatus?.tile ? (
+          {activeCard.mode === 'play' && myTurn && !gameStore.playerStatus ? (
             activeCard.type === 'prelude' ? (
               <button
                 className="primary text-center col-1"

@@ -33,7 +33,8 @@ const CityTile = props => (
 );
 
 CityTile.propTypes = {
-  noIcon: PropTypes.bool
+  noIcon: PropTypes.bool,
+  capital: PropTypes.bool
 };
 
 export default CityTile;

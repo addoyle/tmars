@@ -12,7 +12,24 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'We don’t use that moon anyway',
-  action: () => {},
+  action: (player, game, done) => {
+    game.resources(player, 'steel', 4);
+    game.param(player, 'temperature', () =>
+      game.param(player, 'temperature', () =>
+        game.param(player, 'temperature', () =>
+          game.promptPlayer(
+            player,
+            { resources: 'plant' },
+            ['took 8 plants ', { resource: 'plant' }, ' from'],
+            targetPlayer => {
+              targetPlayer && game.resources(targetPlayer, 'plant', -8);
+              done();
+            }
+          )
+        )
+      )
+    );
+  },
   emoji: '☄',
   layout: (
     <div className="flex gutter">

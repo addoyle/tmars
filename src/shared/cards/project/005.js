@@ -7,7 +7,7 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// TODO
+// TODO ACTION
 
 const desc =
   'Oxygen must be 6% or less. 3 VPs if you have one or more science resources here.';
@@ -36,7 +36,7 @@ export default new Active({
         const valid = player.resources.megacredit >= 1;
         return {
           valid,
-          msg: "Can't afford this"
+          msg: !valid ? "Can't afford this" : null
         };
       },
       action: (player, game) => {

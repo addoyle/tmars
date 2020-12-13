@@ -13,7 +13,7 @@ export default new Event({
   desc,
   flavor: 'A light-weight but expensive crucial element',
   action: (player, game, done) => {
-    // TODO: FIgure out an or situation, and how to choose cards to add resources to
+    // TODO: Figure out an or situation, and how to choose cards to add resources to
 
     game.promptTile(player, 'ocean', done);
   },

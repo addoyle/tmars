@@ -7,6 +7,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc = 'Action: Spend 1 steel to gain 5 M€';
 const desc = 'Increase your titanium production 1 step.';
 
@@ -21,10 +23,25 @@ export default new Active({
   flavor:
     'An ultra-strong cable car up to geo-stationary orbit, enabling reasonable export costs',
   action: (player, game) => game.production(player, 'titanium', 1),
-  clientActiveAction: () => {},
-  serverActiveAction: () => {},
+  actions: [
+    {
+      name: 'Spend 1 steel',
+      icon: <Resource name="steel" />,
+      canPlay: player => {
+        const valid = player.resources.steel >= 1;
+        return {
+          valid,
+          msg: 'Not enough steel'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'steel', -1);
+        game.resources(player, 'megacredit', 5);
+      }
+    }
+  ],
   vp: 2,
-  emoji: '🚠',
+  emoji: '🛗',
   activeLayout: (
     <div>
       <div className="center text-center">

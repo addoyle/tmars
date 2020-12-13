@@ -7,6 +7,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Raise terraform rating 2 steps and temperature 1 step. Increase your plant production 1 step or 4 steps if you have 3 plant tags.';
 
@@ -18,7 +20,11 @@ export default new Event({
   desc,
   flavor:
     'Adding nitrogen to Mars will both thicken the atmosphere with N2 and provide fertilizer for plants',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'plant', player.tags.plant >= 3 ? 4 : 1);
+    game.tr(player, 2);
+    game.param(player, 'temperature', done);
+  },
   emoji: '☄',
   layout: (
     <div className="flex gutter">

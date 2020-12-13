@@ -109,7 +109,8 @@
         "titanium": 3,
         "buy": 3,
         "plant": 8,
-        "heat": 8
+        "heat": 8,
+        "ocean": 2
       },
       "modifiers": {},
       "firstAction": true
@@ -208,7 +209,8 @@
         "titanium": 3,
         "buy": 3,
         "plant": 8,
-        "heat": 8
+        "heat": 8,
+        "ocean": 2
       },
       "modifiers": {},
       "firstAction": true
@@ -320,7 +322,8 @@
         "titanium": 3,
         "buy": 3,
         "plant": 8,
-        "heat": 8
+        "heat": 8,
+        "ocean": 2
       },
       "modifiers": {},
       "firstAction": true
@@ -422,7 +425,8 @@
         "titanium": 3,
         "buy": 3,
         "plant": 8,
-        "heat": 8
+        "heat": 8,
+        "ocean": 2
       },
       "modifiers": {},
       "firstAction": true
@@ -527,7 +531,8 @@
         "titanium": 3,
         "buy": 3,
         "plant": 8,
-        "heat": 8
+        "heat": 8,
+        "ocean": 2
       },
       "modifiers": {},
       "firstAction": true
@@ -547,7 +552,7 @@
     "wgt": false
   },
   "board": "Tharsis",
-  "offMarsCities": {
+  "offMars": {
     "ganymede": {},
     "phobos": {},
     "torus": {},

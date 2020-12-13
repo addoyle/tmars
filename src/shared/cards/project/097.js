@@ -17,9 +17,11 @@ export default new Automated({
   flavor:
     'Detonating obsolete nuclear weapons from Earth is an efficient method for raising the temperature',
   action: (player, game, done) => {
-    game.param(player, 'temperature');
-    game.param(player, 'temperature');
-    game.promptTile(player, { special: 'nuclear' }, done);
+    game.param(player, 'temperature', () =>
+      game.param(player, 'temperature', () =>
+        game.promptTile(player, { special: 'nuclear' }, done)
+      )
+    );
   },
   canPlay: (player, game) => {
     const valid = !!game.findPossibleTiles({ special: 'nuclear' }, player)

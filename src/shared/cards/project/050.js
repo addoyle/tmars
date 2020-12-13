@@ -2,6 +2,8 @@ import React from 'react';
 import Event from '../Event';
 import { Resource } from '../../../client/game/components/assets/Assets';
 
+// TODO FIGURE OUT HOW TO DO OR AND CARD PICKER
+
 const desc = 'Remove up to 2 animals or 5 plants from any player.';
 
 export default new Event({

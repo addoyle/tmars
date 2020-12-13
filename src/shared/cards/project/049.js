@@ -5,6 +5,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc = 'Action: Add 1 microbe to this card.';
 const desc = '1 VP per 4 microbes on this card.';
 

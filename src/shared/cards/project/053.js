@@ -5,6 +5,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc = 'Requires 0°C or warmer. Place 2 ocean tiles.';
 
 export default new Automated({
@@ -18,7 +20,10 @@ export default new Automated({
   },
   desc,
   flavor: 'Filling the Valles Marineris takes a lot of water',
-  action: () => {},
+  action: (player, game, done) =>
+    game.promptTile(player, 'ocean', () =>
+      game.promptTile(player, 'ocean', done)
+    ),
   vp: 1,
   emoji: '🏊',
   layout: (

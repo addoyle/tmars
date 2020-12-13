@@ -6,6 +6,8 @@ import {
   Tag
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Effect: When you play a space event, you gain 3 M€ and 3 heat.';
 

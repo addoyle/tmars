@@ -6,6 +6,8 @@ import {
   MegaCredit
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Effect: When you play a space card, you pay 2 M€ less for it.';
 

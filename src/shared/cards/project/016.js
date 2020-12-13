@@ -8,6 +8,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// VERIFY
+
 const desc =
   'Oxygen must be 7% or less. Gain 3 plants and place a city tile. Decrease your energy production 1 step and increase M€ production 3 steps.';
 
@@ -28,6 +30,20 @@ export default new Automated({
     game.production(player, 'power', -1);
     game.production(player, 'megacredit', 3);
     game.promptTile(player, 'city', done);
+  },
+  canPlay: (player, game) => {
+    if (player.production.power < 1) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+
+    const valid = !!game.findPossibleTiles('city', player).length;
+    return {
+      valid,
+      msg: !valid ? 'Cannot place city tile' : null
+    };
   },
   emoji: '🕌',
   vp: 1,

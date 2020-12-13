@@ -1,6 +1,8 @@
 import React from 'react';
 import Active from '../Active';
 
+// TODO ACTION
+
 const activeDesc =
   'ACTION: LOOK AT THE TOP CARD AND EITHER BUY IT OR DISCARD IT.';
 

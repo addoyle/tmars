@@ -29,8 +29,19 @@ $title-font: 'Prototype', sans-serif;
     margin-left: 24px;
   }
 
+  &.disabled {
+    cursor: not-allowed;
+    opacity: .5;
+    filter: grayscale(.5);
+
+    &:hover {
+      box-shadow: none;
+    }
+  }
+
   &.passed {
     filter: grayscale(0.9);
+    opacity: .5;
     background: linear-gradient(
       135deg,
       #222 0%,
@@ -65,5 +76,13 @@ $title-font: 'Prototype', sans-serif;
     display: inline-block;
     width: 16px;
     height: 16px;
+  }
+
+  .player-icon {
+    margin-left: auto;
+
+    &.resources {
+      font-size: 1.6em;
+    }
   }
 }

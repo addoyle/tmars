@@ -28,6 +28,20 @@ export default new Automated({
     game.production(player, 'megacredit', 3);
     game.promptTile(player, 'city', done);
   },
+  canPlay: (player, game) => {
+    if (player.production.power < 1) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+
+    const valid = !!game.findPossibleTiles('city', player).length;
+    return {
+      valid,
+      msg: !valid ? 'Cannot place city tile' : null
+    };
+  },
   emoji: '🌇',
   layout: (
     <div className="flex">

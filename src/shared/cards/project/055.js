@@ -7,6 +7,8 @@ import {
   MegaCredit
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Requires 6 ocean tiles. Increase your M€ production 2 steps and your plant production 3 steps. Gain 2 plants.';
 
@@ -22,7 +24,11 @@ export default new Automated({
   desc,
   flavor:
     'The newly formed oceans are very rich in minerals, perfect for food production',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'megacredit', 2);
+    game.production(player, 'plant', 3);
+    game.resources(player, 'plant', 2);
+  },
   vp: 1,
   emoji: '🌿',
   layout: (

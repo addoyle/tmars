@@ -2,6 +2,8 @@ import React from 'react';
 import Event from '../Event';
 import { Resource, Param } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Raise temperature 2 steps and gain 4 titanium. Remove up to 4 plants from any player.';
 
@@ -14,13 +16,18 @@ export default new Event({
   desc,
   flavor: 'There are many unpopulated areas to crash it in',
   action: (player, game, done) => {
-    game.param(player, 'temperature');
-    game.param(player, 'temperature');
     game.resources(player, 'titanium', 4);
-    game.promptTile(player, 'ocean', () =>
-      game.promptPlayer(
-        targetPlayer => game.resources(targetPlayer, 'plant', -4),
-        done
+    game.param(player, 'temperature', () =>
+      game.param(player, 'temperature', () =>
+        game.promptPlayer(
+          player,
+          { resources: 'plant' },
+          ['took 4 plants ', { resource: 'plant' }, ' from'],
+          targetPlayer => {
+            targetPlayer && game.resources(targetPlayer, 'plant', -4);
+            done();
+          }
+        )
       )
     );
   },

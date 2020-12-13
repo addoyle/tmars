@@ -6,6 +6,8 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Action: Spend 1 energy to gain 1 M€ for each city tile ON MARS';
 

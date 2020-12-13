@@ -39,7 +39,7 @@ const tiles = (type, props) => {
  */
 const Tile = props => {
   let key = props.name?.trim();
-  if (props.name === 'city capital') {
+  if (props.name === 'capital city') {
     key = 'city';
   }
 
@@ -51,7 +51,7 @@ const Tile = props => {
       className={classnames('tile', props.name, {
         anyone: props.anyone,
         clickable: props.clickable,
-        [`clickable-${props.clickable}`]: props.clickable
+        [`clickable-${props.clickable?.replace(/ /, '-')}`]: props.clickable
       })}
       data-icon={props.icon}
       style={props.style}

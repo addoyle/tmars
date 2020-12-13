@@ -6,6 +6,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Requires -4°C or warmer. Increase your plant production 3 steps. Gain 1 plant.';
 
@@ -20,7 +22,10 @@ export default new Automated({
   },
   desc,
   flavor: 'Providing fruits, wood, and new habitats',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'plant', 3);
+    game.resources(player, 'plant', 1);
+  },
   vp: 1,
   emoji: '🌲',
   layout: (

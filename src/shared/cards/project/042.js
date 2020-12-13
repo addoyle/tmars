@@ -5,6 +5,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'It must be -18°C or colder. Increase your plant production 1 step.';
 
@@ -20,7 +22,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Photosynthesizing bacteria specializing in extreme environments',
-  action: () => {},
+  action: (player, game) => game.production(player, 'plant', 1),
   emoji: '🦠',
   layout: (
     <div className="flex">

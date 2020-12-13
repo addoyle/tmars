@@ -34,7 +34,7 @@ const CardDrawers = ({ gameStore }) => {
       mode:
         (gameStore.phase === 'action' ||
           (gameStore.phase === 'prelude' &&
-            gameStore.playerStatus?.modifiers)) &&
+            gameStore.playerStatus?.type === 'prompt-card')) &&
         gameStore.turn === gameStore.player?.number
           ? 'play'
           : null
@@ -228,7 +228,7 @@ CardDrawers.propTypes = {
       generation: PropTypes.number
     }),
     playerStatus: PropTypes.shape({
-      modifiers: PropTypes.object
+      type: PropTypes.string
     }),
     player: PropTypes.shape({
       cards: PropTypes.shape({

@@ -164,8 +164,8 @@ const CardDrawer = props => {
               </button>
             ) : (
               <div className="pill">
-                {gameStore.playerStatus?.modifiers
-                  ? gameStore.playerStatus.modifiers.desc ||
+                {gameStore.playerStatus?.type === 'prompt-card'
+                  ? gameStore.playerStatus.modifiers?.desc ||
                     'Play a card from hand'
                   : 'Your Turn'}
               </div>
@@ -287,6 +287,7 @@ CardDrawer.propTypes = {
     confirmReveal: PropTypes.func,
     passSkip: PropTypes.func,
     playerStatus: PropTypes.shape({
+      type: PropTypes.string,
       modifiers: PropTypes.shape({
         desc: PropTypes.string
       })

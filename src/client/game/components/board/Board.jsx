@@ -13,6 +13,7 @@ import classNames from 'classnames';
 import ActiveCard from './ActiveCard';
 import MilestoneAward from './MilestoneAward';
 import Settings from './Settings';
+import PlayerPicker from './players/PlayerPicker';
 
 // prettier-ignore
 const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
@@ -79,8 +80,9 @@ const Board = props => {
       ref={boardContainer}
     >
       <Field />
-      <Players />
       <GlobalParameters />
+      <Players />
+      <PlayerPicker />
       {props.gameStore.players.length > 1 ? <MilestoneAward /> : null}
       <StandardProjects />
       <ActiveCard />

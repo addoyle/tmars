@@ -4,7 +4,6 @@ import LogService from './log.service';
 import Log from '../models/log.model';
 import Game from '../models/game.model';
 import shortid from 'shortid';
-import { isString } from 'lodash';
 import redis from 'redis';
 import { promisify } from 'util';
 
@@ -372,70 +371,38 @@ class GameService {
   placeTile(id, tileId) {
     const game = this.games[id];
     const player = game.playerStatus.player;
-    const tile = game.tileFromId(tileId);
-    const tileString = isString(game.playerStatus.tile)
-      ? game.playerStatus.tile
-      : 'special';
+    const area = game.tileFromId(tileId);
 
-    // Set the tile
-    tile.name = `${tileString}-placed`;
-    tile.type = isString(game.playerStatus.tile)
-      ? game.playerStatus.tile
-      : 'special';
-
-    // If it's a special tile, set the icon
-    if (game.playerStatus.tile.special) {
-      tile.icon = game.playerStatus.tile.special;
-    }
-
-    // Add a player marker
-    if (game.playerStatus.tile !== 'ocean') {
-      tile.player = player.number;
-    }
-
-    // Log the placement
-    LogService.pushLog(
-      game.id,
-      new Log(player.number, [
-        ` placed ${
-          game.playerStatus.tile === 'ocean'
-            ? 'an'
-            : !isString(game.playerStatus.tile)
-            ? 'the'
-            : 'a'
-        } ${
-          isString(game.playerStatus.tile)
-            ? game.playerStatus.tile
-            : game.playerStatus.tile.special
-        } `,
-        { tile: tileString },
-        ' tile.'
-      ])
+    game.placeTile(
+      player,
+      area,
+      game.playerStatus.tile,
+      game.playerStatus.done
     );
 
-    // Handle placement bonuses
-    (tile.resources || [])
-      .filter(r => r)
-      .forEach(r => {
-        // Resources on the space
-        if (r === 'card') {
-          game.drawCard(player);
-        } else if (r === 'ocean') {
-          game.promptTile(player, 'ocean');
-        } else if (r.megacredit) {
-          player.resources.megacredit += r.megacredit;
-        } else {
-          player.resources[r]++;
-        }
-      });
+    return this.export(game);
+  }
 
-    // Ocean adjacencies
-    player.resources.megacredit +=
-      game.neighbors(tile).filter(t => t.name === 'ocean-placed').length * 2;
+  @push(gameFilter)
+  pickPlayer(id, pickedPlayerID) {
+    const game = this.games[id];
+    const player = game.playerStatus.player;
+    const pickedPlayer = this.getPlayer(game, pickedPlayerID);
+    if (pickedPlayerID) {
+      // Log the placement
+      LogService.pushLog(
+        game.id,
+        new Log(player.number, [
+          ' ',
+          ...game.playerStatus.logSnippet,
+          ' ',
+          { player: pickedPlayerID },
+          '.'
+        ])
+      );
+    }
 
-    // TODO: Trigger placement events
-
-    game.playerStatus.done(tile);
+    game.playerStatus.done(pickedPlayer);
 
     return this.export(game);
   }
@@ -521,7 +488,7 @@ class GameService {
           break;
         }
         case 'Asteroid': {
-          doProject(14, () => game.param(player, 'temperature'));
+          doProject(14, done => game.param(player, 'temperature', done));
           break;
         }
         case 'Aquifer': {
@@ -540,7 +507,7 @@ class GameService {
           break;
         }
         case 'Air Scrapping': {
-          doProject(15, () => game.param(player, 'venus'));
+          doProject(15, done => game.param(player, 'venus', done));
           break;
         }
         case 'Buffer Gas': {

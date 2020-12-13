@@ -6,7 +6,7 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// VERIFY PROMPT PLAYER
+// DONE
 
 const desc =
   'Requires 3 ocean tiles. Decrease your M€ production 1 step and any heat production 1 step. Increase your plant production 2 steps.';
@@ -26,12 +26,17 @@ export default new Automated({
     game.production(player, 'megacredit', -1);
     game.production(player, 'plant', 2);
     game.promptPlayer(
-      targetPlayer => game.production(targetPlayer, 'heat', -1),
-      done
+      player,
+      { production: 'heat' },
+      ['took 1 heat ', { resource: 'heat' }, ' production from'],
+      targetPlayer => {
+        game.production(targetPlayer, 'heat', -1);
+        done();
+      }
     );
   },
   canPlay: player => {
-    const valid = player.resources.megacredit > -5;
+    const valid = player.production.megacredit > -5;
     return {
       valid,
       msg: !valid ? 'M€ production too low' : null

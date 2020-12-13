@@ -5,8 +5,13 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Requires +4°C or warmer. Place a greenery tile ON AN AREA RESERVED FOR OCEAN and raise oxygen 1 step. Disregard normal placement restrictions for this.';
+const customFilter = tile =>
+  // Area reserved for ocean
+  tile.attrs?.includes('reserved-ocean');
 
 export default new Automated({
   number: 59,
@@ -20,7 +25,20 @@ export default new Automated({
   desc,
   flavor:
     'A wetland forest will create an ecosystem where new species can thrive',
-  action: () => {},
+  action: (player, game, done) =>
+    game.promptTile(player, 'greenery', done, customFilter),
+  canPlay: (player, game) => {
+    const valid = !!game.findPossibleTiles(
+      'greenery',
+      player,
+      customFilter(player)
+    ).length;
+
+    return {
+      valid,
+      msg: !valid ? 'No areas reserved for ocean availble' : null
+    };
+  },
   vp: 1,
   emoji: '🌳',
   layout: (

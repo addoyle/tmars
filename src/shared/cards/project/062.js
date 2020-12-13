@@ -2,6 +2,8 @@ import React from 'react';
 import Event from '../Event';
 import { Resource } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc = 'Gain 5 steel.';
 
 export default new Event({
@@ -13,7 +15,7 @@ export default new Event({
   desc,
   flavor:
     'Still mostly untouched, Mars offers easy access to many useful minerals',
-  action: () => {},
+  action: (player, game) => game.resources(player, 'steel', 5),
   emoji: '🧱',
   layout: (
     <div>

@@ -51,7 +51,7 @@ class SharedGame {
         );
     }
     // Cities can not be placed next to another city
-    else if (tile === 'city') {
+    else if (tile === 'city' || tile === 'capital city') {
       return this.getField()
         .flat()
         .filter(

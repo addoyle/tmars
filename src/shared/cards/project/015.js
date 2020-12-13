@@ -5,6 +5,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Action: Decrease your Energy production 1 step to increase your terraform rating 1 step.';
 

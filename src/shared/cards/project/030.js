@@ -6,6 +6,8 @@ import {
   MegaCredit
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Decrease your M€ production 2 steps and increase your heat production and energy production 2 steps each.';
 
@@ -20,6 +22,13 @@ export default new Automated({
     game.production(player, 'megacredit', -2);
     game.production(player, 'heat', 2);
     game.production(player, 'power', 2);
+  },
+  canPlay: player => {
+    const valid = player.production.megacredit > -4;
+    return {
+      valid,
+      msg: !valid ? 'Not enough M€ production' : null
+    };
   },
   emoji: '🌠',
   layout: (

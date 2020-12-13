@@ -12,7 +12,10 @@ export default new Event({
   tags: ['event'],
   desc,
   flavor: 'Ruthlessly excavating rich areas',
-  action: () => {},
+  action: (player, game, done) => {
+    game.resources(player, 'steel', 2);
+    game.param(player, 'oxygen', done);
+  },
   emoji: '🏗',
   layout: (
     <div className="flex gutter">

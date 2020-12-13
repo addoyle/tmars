@@ -2,6 +2,8 @@ import React from 'react';
 import Active from '../Active';
 import { Resource, Param } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Action: Add 1 microbe to this card, or remove 2 microbes from this card to raise oxygen level 1 step.';
 

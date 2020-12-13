@@ -6,6 +6,8 @@ import {
   MegaCredit
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Decrease your M€ production 2 steps and increase your energy production 3 steps.';
 
@@ -16,7 +18,17 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'A simple way to satisfy your energy needs',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'megacredit', -2);
+    game.production(player, 'power', 3);
+  },
+  canPlay: player => {
+    const valid = player.production.megacredit > -4;
+    return {
+      valid,
+      msg: !valid ? 'Not enough M€ production' : null
+    };
+  },
   emoji: '☢',
   layout: (
     <div className="flex gutter">

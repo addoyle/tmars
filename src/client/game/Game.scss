@@ -76,8 +76,10 @@ table {
 		margin-left: auto;
 		margin-right: auto;
 	}
-	.flex {
-		display: flex;
+	.flex { display: flex; }
+	.center-items { align-items: center; }
+	.inline-flex { display: inline-flex; }
+	.inline-flex, .flex {
 		&.center {
 			justify-content: center;
 		}
@@ -85,8 +87,6 @@ table {
 			justify-content: flex-end;
 		}
 	}
-	.center-items { align-items: center; }
-	.inline-flex { display: inline-flex; }
 	.col-1 { flex: 1; }
 	.col-2 { flex: 2; }
 	.col-3 { flex: 3; }

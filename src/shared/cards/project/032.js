@@ -6,6 +6,8 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Place a city tile. Decrease your energy production 2 steps and increase your steel production 2 steps.';
 
@@ -17,7 +19,25 @@ export default new Automated({
   desc,
   flavor:
     'Excavating is expensive, but given both protection and building materials',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -2);
+    game.production(player, 'steel', 2);
+    game.promptTile(player, 'city', done);
+  },
+  canPlay: (player, game) => {
+    if (player.production.power < 2) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+
+    const valid = !!game.findPossibleTiles('city', player).length;
+    return {
+      valid,
+      msg: !valid ? 'Cannot place city tile' : null
+    };
+  },
   emoji: '🚇',
   layout: (
     <div className="flex">

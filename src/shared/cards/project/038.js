@@ -6,6 +6,8 @@ import {
   MegaCredit
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc = 'Effect: When any city tile is placed, gain 2 M€';
 
 export default new Active({

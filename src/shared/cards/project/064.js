@@ -30,7 +30,7 @@ export default new Automated({
       player,
       { special: 'mine' },
       t => {
-        console.log(t);
+        // Increase the production of steel or titanium, based on where the tile is placed
         game.production(
           player,
           t.resources.includes('steel') ? 'steel' : 'titanium',

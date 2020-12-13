@@ -6,6 +6,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc = 'Action: Add 1 animal to this card.';
 const desc =
   'Requires +2°C or warmer. Decrease any plant production 1 step. 1 VP for each animal on this card.';
@@ -22,7 +24,25 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Martian barracudas? Why not!',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptPlayer(
+      player,
+      { production: 'plant' },
+      ['took 1 plant ', { resource: 'plant' }, ' production from'],
+      targetPlayer => {
+        game.production(targetPlayer, 'plant', -1);
+        done();
+      }
+    );
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.players.filter(player => player.production.plant > 0)
+      .length;
+    return {
+      valid,
+      msg: !valid ? 'Requires at least one player with plant production' : null
+    };
+  },
   emoji: '🐟',
   activeLayout: (
     <div>

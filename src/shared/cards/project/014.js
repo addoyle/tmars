@@ -2,6 +2,8 @@ import React from 'react';
 import Active from '../Active';
 import { Resource, Param } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc = 'Action: Spend 1 energy to draw a card.';
 
 export default new Active({

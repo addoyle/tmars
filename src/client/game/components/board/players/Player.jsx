@@ -9,27 +9,37 @@ import classnames from 'classnames';
  */
 const Player = props => (
   <div
-    className={classnames('player', {
+    className={classnames('player inline-flex center-items', {
       active: props.active,
-      passed: props.player.passed
+      passed: props.player.passed,
+      disabled: props.disabled
     })}
     onClick={props.onClick}
     onMouseDown={e => e.stopPropagation()}
     onMouseMove={e => e.stopPropagation()}
   >
     <Resource name={`player-${props.pid}`} />
-    <div
-      className={classnames('points', {
-        o: props.player.tr % 5 !== 0
-      })}
-    >
-      <span className="value">{props.player.tr}</span>
-    </div>
+    {props.tr ? (
+      <div
+        className={classnames('points', {
+          o: props.player.tr % 5 !== 0
+        })}
+      >
+        <span className="value">{props.player.tr}</span>
+      </div>
+    ) : null}
     <span>{props.player.name}</span>
 
     {props.starting ? <span className="starting-player" /> : null}
+    {props.children ? (
+      <div className="player-icon resources">{props.children}</div>
+    ) : null}
   </div>
 );
+
+Player.defaultProps = {
+  tr: true
+};
 
 Player.propTypes = {
   active: PropTypes.bool,
@@ -39,8 +49,14 @@ Player.propTypes = {
     name: PropTypes.string.isRequired,
     tr: PropTypes.number
   }).isRequired,
+  disabled: PropTypes.bool,
   pid: PropTypes.number.isRequired,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
+  tr: PropTypes.bool,
+  children: PropTypes.oneOfType([
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node)
+  ])
 };
 
 export default Player;

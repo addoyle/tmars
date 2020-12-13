@@ -74,7 +74,8 @@
         "titanium": 3,
         "buy": 3,
         "plant": 8,
-        "heat": 8
+        "heat": 8,
+        "ocean": 2
       },
       "modifiers": {}
     },
@@ -151,7 +152,8 @@
         "titanium": 3,
         "buy": 3,
         "plant": 8,
-        "heat": 8
+        "heat": 8,
+        "ocean": 2
       },
       "modifiers": {}
     },
@@ -298,7 +300,8 @@
         "titanium": 3,
         "buy": 3,
         "plant": 8,
-        "heat": 8
+        "heat": 8,
+        "ocean": 2
       },
       "modifiers": {}
     }
@@ -317,7 +320,7 @@
     "wgt": false
   },
   "board": "Tharsis",
-  "offMarsCities": {
+  "offMars": {
     "ganymede": {},
     "phobos": {},
     "torus": {},

@@ -5,6 +5,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc = 'Increase your plant production 1 step.';
 
 export default new Automated({
@@ -14,7 +16,7 @@ export default new Automated({
   tags: ['plant'],
   desc,
   flavor: 'Suitable even for early terraforming',
-  action: () => {},
+  action: (player, game) => game.production(player, 'plant', 1),
   emoji: '🍀',
   layout: (
     <div className="flex gutter m-top m-bottom">

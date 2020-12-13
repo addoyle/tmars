@@ -8,6 +8,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Action: Pay 12 M€ to place an ocean tile. TITANIUM MAY BE USED as if playing a space card.';
 const desc = '1 VP for each Jovian tag you have.';

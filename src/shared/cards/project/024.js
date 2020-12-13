@@ -5,6 +5,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO ACTION
+
 const activeDesc =
   'Action: Remove 1 animal from any card and add it to this card.';
 const desc = 'Requires 11% oxygen. 1 VP per animal on this card.';

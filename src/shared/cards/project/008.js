@@ -8,6 +8,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// VERIFY VP
+
 const desc =
   'Requires 4 ocean tiles. Place this tile. Decrease your energy production 2 steps and increase your M€ production 5 steps. 1 ADDITIONAL VP FOR EACH OCEAN TILE ADJACENT TO THIS CITY TILE.';
 
@@ -23,12 +25,31 @@ export default new Automated({
   desc,
   flavor:
     'With its ideal placement and all its facilities, this is the true capital of Mars',
-  action: (game, player, done) => {
+  action: (player, game, done) => {
     game.production(player, 'power', -2);
     game.production(player, 'megacredit', 5);
-    game.promptTile(player, 'capital', done);
+    game.promptTile(player, 'capital city', tile => {
+      this.tile = tile;
+      done();
+    });
   },
-  vp: () => {},
+  canPlay: (player, game) => {
+    if (player.production.power < 2) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+
+    const valid = !!game.findPossibleTiles('city', player).length;
+    return {
+      valid,
+      msg: !valid ? 'Cannot place this tile' : null
+    };
+  },
+  vp: (player, game) =>
+    // 1 VP per neighboring ocean
+    game.neighbors(this.tile).filter(t => t.type === 'ocean').length,
   emoji: '🏛',
   layout: (
     <div>
@@ -51,7 +72,7 @@ export default new Automated({
           </Production>
           <div className="inline-block valign-top">
             <div className="resources" style={{ verticalAlign: 'top' }}>
-              <Tile name="city capital" />
+              <Tile name="capital city" />
             </div>
           </div>
         </div>

@@ -6,6 +6,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc = 'Increase your titanium production 2 steps.';
 
 export default new Automated({
@@ -15,7 +17,7 @@ export default new Automated({
   tags: ['jovian', 'space'],
   desc,
   flavor: 'Where gravity is low and rare minerals abound',
-  action: () => {},
+  action: (player, game) => game.production(player, 'titanium', 2),
   vp: 2,
   emoji: '🌖',
   layout: (

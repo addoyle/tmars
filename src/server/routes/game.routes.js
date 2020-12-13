@@ -22,6 +22,7 @@ router.post(
   validate,
   GameController.toggleSelectCard
 );
+router.post('/:id/pick-player', validate, GameController.pickPlayer);
 router.post('/:id/draft-card', validate, GameController.draftCard);
 router.post('/:id/buy-selected', validate, GameController.buySelectedCards);
 router.post(

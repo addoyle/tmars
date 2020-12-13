@@ -5,6 +5,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// DONE
+
 const desc =
   'Decrease your energy production 1 step and increase your heat production 3 steps.';
 
@@ -16,8 +18,18 @@ export default new Automated({
   desc,
   flavor:
     'Common minerals can be converted into carbon dioxide that increases the greenhouse effect',
-  action: () => {},
-  emoji: '🌤',
+  action: (player, game) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'heat', 3);
+  },
+  canPlay: player => {
+    const valid = player.production.power >= 1;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
+  emoji: '🏭',
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle">
