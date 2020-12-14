@@ -23,6 +23,7 @@ export default new Corporation({
   set: 'prelude',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'A corporation grown from crowd funding of new innovations. Always inclined to initiate projects that can gain public support, as well as innovation prizes.',
   layout: (

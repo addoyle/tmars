@@ -25,6 +25,7 @@ export default new Corporation({
   set: 'venus',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Morning Star Inc was formed when Inventrix early on decided to sell off their Venus-specific technologies. Now the scientists of MSI are ready to bring human colonies to Venus.',
   layout: (

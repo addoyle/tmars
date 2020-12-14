@@ -26,6 +26,7 @@ export default new Corporation({
   tags: ['power'],
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'As oil reserves ran out on Earth, Nordic ThorGate emerged as the new world leader in the energy field, with their cutting edge technology. Now that the colonies on Mars are growing, ThorGate leads the way in finding viable energy solutions.',
   layout: (

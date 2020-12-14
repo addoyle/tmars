@@ -21,6 +21,7 @@ export default new Corporation({
   tags: ['earth'],
   desc,
   actionDesc,
+  todo: true,
   flavor:
     "UNMI is the organization carrying out the World Government's own terraforming projects. After the terraforming announcement, the UNMI got competition from different corporations, but is still a major force behind Mars' development.",
   layout: (

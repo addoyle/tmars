@@ -23,6 +23,7 @@ export default new Corporation({
   set: 'prelude',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Buying into diverse businesses, Robinson Industries is soon expected to influence all aspects of Martian life',
   layout: (

@@ -28,6 +28,7 @@ export default new Corporation({
   set: 'prelude',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'The Moon is a perfect springboard to the solar system, and the mining company Point Luna has the largest spaceport on Luna, making it a perfect partner for Earth inventors wanting to realize their space projects',
   layout: (

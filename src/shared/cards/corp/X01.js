@@ -27,6 +27,7 @@ export default new Corporation({
   set: 'promo',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'With incoming asteroids and an unpredictable environment, any venture on Mars is a risky business. As the only insurance company on Mars, Mons Insurance has a busy time keeping up with all the claims.',
   layout: (

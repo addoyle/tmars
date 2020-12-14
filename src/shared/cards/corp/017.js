@@ -27,6 +27,7 @@ export default new Corporation({
   set: 'venus',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Manutech is specialized in supplying steel and plastic components. Its efficient organization leads to quick results, making it a worthy contender in the terraforming of Mars.',
   layout: (

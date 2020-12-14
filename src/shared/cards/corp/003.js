@@ -25,6 +25,7 @@ export default new Corporation({
   tags: ['space'],
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Developers of ultra-light solar sails, Helion now turns to the terraforming of Mars and other worlds. It promises to be a rewarding business, as Helion has already made a working model of a soletta, focusing sunlight down to the frozen planet.',
   layout: (

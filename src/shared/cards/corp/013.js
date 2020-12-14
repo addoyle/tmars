@@ -39,6 +39,7 @@ export default new Corporation({
   desc,
   actionDesc,
   effectDesc,
+  todo: true,
   flavor:
     'Several early settlements came together in the Arcadian Communities. This ever expanding society is investing in terraforming their new home...',
   layout: (

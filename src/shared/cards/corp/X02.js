@@ -27,6 +27,7 @@ export default new Corporation({
   set: 'promo',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'When the Martian society grew, Factorum made its name as the dominant industrial conglomerate on the planet.',
   layout: (

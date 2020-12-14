@@ -24,6 +24,7 @@ export default new Corporation({
   set: 'prelude',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'A community of technological entrepreneurs join forces to invest in space exploration',
   layout: (

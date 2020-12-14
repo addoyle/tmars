@@ -28,6 +28,7 @@ export default new Corporation({
   set: 'venus',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Soil experts Aphrodite acquired deveopment contracts for the Venus colonies, initiating a dedicated terraforming program.',
   layout: (

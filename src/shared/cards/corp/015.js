@@ -39,6 +39,7 @@ export default new Corporation({
   set: 'promo',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Recycling is the way of the future, especially on a barren planet like Mars, making Recyclon an efficient builder of the Martian society.',
   layout: (

@@ -25,6 +25,7 @@ export default new Corporation({
   set: 'venus',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Specializing in atmospheric infrastructure, Celestic has a key position when it comes to colonization of Venus and Titan.',
   layout: (

@@ -32,6 +32,7 @@ export default new Corporation({
   },
   tags: [],
   desc,
+  todo: true,
   flavor:
     'This is a standard corporation, doing standard things. There are no special effects or actions to keep track of. This is a good corporation to start with if you are terraforming a planet for the first time.',
   layout: (

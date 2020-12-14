@@ -24,6 +24,7 @@ export default new Corporation({
   set: 'promo',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Seeing opportunities and profits in taking advantage of the development other corporations are bringing to the Martian landscape, Philares loves the action on Mars!',
   layout: (

@@ -24,6 +24,7 @@ export default new Corporation({
   tags: ['building'],
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'With the first big city came a social community that could not be controlled by the corporations. Determined to have an elected leader, workers and staff from all corporations formed Tharsis Republic.',
   layout: (

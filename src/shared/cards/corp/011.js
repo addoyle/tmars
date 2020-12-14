@@ -26,6 +26,7 @@ export default new Corporation({
   set: 'corporate',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Influence enough to control entire nations, and an army of lawyers and businessmen, has taken Teractor all the way to the top. And now the sky is calling. The strongest corporation on Earth wants to dominate space too...',
   layout: (

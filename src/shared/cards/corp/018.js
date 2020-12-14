@@ -20,6 +20,7 @@ export default new Corporation({
   set: 'venus',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Founded by three Nobel Prize winners, Viron developed viral enhancers, able to modify diverse organisms and make them more efficient. These organisms are then put to use in various processes.',
   layout: (

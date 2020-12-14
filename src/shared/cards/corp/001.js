@@ -18,6 +18,7 @@ export default new Corporation({
   tags: [],
   desc,
   effectDesc,
+  todo: true,
   flavor:
     "Multibillionaire Bard Hunter likes terraforming, especially when it involves hurling asteroids at Mars. He also has a hunch that it's going to pay off. His company CrediCor has all the resources he needs to jump right into the contest.",
   layout: (

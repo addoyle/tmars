@@ -21,6 +21,7 @@ export default new Corporation({
   tags: ['space'],
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Aiming to be the leader in space solutions for the Mars era, PhoboLog acquired several national space programs. This allowed them access to much existing infrastructure and technology, and they are not going to let that advantage be wasted.',
   layout: (

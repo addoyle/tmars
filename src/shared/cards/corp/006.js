@@ -24,6 +24,7 @@ export default new Corporation({
   tags: ['science'],
   desc,
   effectDesc,
+  todo: true,
   flavor:
     "Inventrix uses brains, as well as muscle, when competing with other mega-corps. Its motto being: 'Do it right,' Inventrix is focused on research.",
   layout: (

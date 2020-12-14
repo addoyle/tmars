@@ -26,6 +26,7 @@ export default new Corporation({
   set: 'promo',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     'Holding the patents on a number of key gene lines, Splice is the natural for any project involving adapted microorganisms.',
   layout: (

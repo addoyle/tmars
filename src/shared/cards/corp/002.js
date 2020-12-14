@@ -27,6 +27,7 @@ export default new Corporation({
   tags: ['plant'],
   desc,
   effectDesc,
+  todo: true,
   flavor:
     "Having developed a fast-growing lichen suitable for early terraforming, this corporation's ambition is to lead the taming of the planets, despite its relatively small size.",
   layout: (

@@ -22,6 +22,7 @@ export default new Corporation({
   tags: ['building'],
   desc,
   effectDesc,
+  todo: true,
   flavor:
     "Finding funding where nations struggled, IC initiated the colonization of Mars by turning the process into a soap opera infused with plenty of advertising. With the media's attention and a head start in colonization, IC sets out to terraform.",
   layout: (

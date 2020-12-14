@@ -34,6 +34,7 @@ export default new Corporation({
   set: 'corporate',
   desc,
   effectDesc,
+  todo: true,
   flavor:
     "Having acquired the mining rights on several of Saturn's moons, Saturn Systems gained plenty of experience over the years. As a supplier of rare metals, space ships, and fuel, the company has made itself indispensible to the outer planets. Saturn Systems is now ready to play a key role in the terraforming of Mars.",
   layout: (
