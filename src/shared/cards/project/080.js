@@ -16,9 +16,25 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'Crash it. The bigger, the better',
-  action: () => {},
+  action: (player, game, done) =>
+    game.param(player, 'temperature', () =>
+      game.param(player, 'temperature', () =>
+        game.promptTile(player, 'ocean', () =>
+          game.promptTile(player, 'ocean', () =>
+            game.promptPlayer(
+              player,
+              { resources: 'plant' },
+              ['took 6 plants ', { resource: 'plant' }, ' from'],
+              targetPlayer => {
+                targetPlayer && game.resources(targetPlayer, 'plant', -6);
+                done();
+              }
+            )
+          )
+        )
+      )
+    ),
   emoji: '☄',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources middle">

@@ -14,9 +14,11 @@ export default new Automated({
   tags: ['science', 'space', 'power'],
   desc,
   flavor: 'Working those solar storms to your advantage',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', 1);
+    game.resources(player, 'titanium', 2);
+  },
   emoji: '💨',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle">

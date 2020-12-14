@@ -14,7 +14,6 @@ export default new Active({
   activeDesc,
   flavor:
     'Genetically engineered virus strains can be used to introduce favorable genes in other organisms',
-  action: () => {},
   emoji: '🦠',
   todo: true,
   activeLayout: (

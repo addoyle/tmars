@@ -22,7 +22,28 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Bringing life to the skies',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptPlayer(
+      player,
+      { production: 'plant' },
+      ['took 2 plant ', { resource: 'plant' }, ' production from'],
+      targetPlayer => {
+        game.production(targetPlayer, 'plant', -2);
+        done();
+      }
+    );
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.players.filter(player => player.production.plant > 1)
+      .length;
+    return {
+      valid,
+      msg: !valid
+        ? 'Requires at least one player with 2 plant production'
+        : null
+    };
+  },
+  vp: () => this.resources,
   emoji: '🐦',
   todo: true,
   activeLayout: (

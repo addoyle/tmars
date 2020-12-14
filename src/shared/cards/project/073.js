@@ -18,7 +18,6 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'A major step towards understanding Mars',
-  action: () => {},
   vp: 1,
   emoji: '🎓',
   todo: true,

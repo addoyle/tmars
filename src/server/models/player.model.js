@@ -59,7 +59,8 @@ export default class Player {
     buy: 3, // Cost to buy a card
     plant: 8, // Plants to place a greenery
     heat: 8, // Heat to raise temperature
-    ocean: 2 // Ocean adjacency bonus
+    ocean: 2, // Ocean adjacency bonus,
+    cost: [] // Cost modifier functions
   };
   firstAction;
   passed;

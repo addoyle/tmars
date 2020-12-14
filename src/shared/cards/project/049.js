@@ -21,6 +21,7 @@ export default new Active({
   flavor:
     'These microscopic creatures can survive freezing, boiling, drying out, heavy radiation, and brute force',
   action: () => {},
+  vp: () => Math.floor(this.resources / 4),
   emoji: '🐛',
   todo: true,
   activeLayout: (

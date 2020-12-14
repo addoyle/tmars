@@ -118,16 +118,17 @@ $title-font: 'Prototype', sans-serif;
   }
 
   .todo {
-    font-size: 0.1em;
     position: absolute;
-    width: 102%;
     height: 1em;
+    width: 102%;
     top: 50%;
     left: -1%;
-    transform: translateY(-50%) rotate(-5deg);
-    text-align: center;
+    font-size: 0.1em;
     font-family: 'Prototype', sans-serif;
+    text-align: center;
+    color: #a00;
     text-transform: uppercase;
+    transform: translateY(-50%) rotate(-5deg);
     background: repeating-linear-gradient(
       45deg,
       #a22722,
@@ -137,7 +138,6 @@ $title-font: 'Prototype', sans-serif;
     );
     box-shadow: 0 0 0 2px #f008;
     -webkit-text-stroke: #e88 1px;
-    color: #a00;
   }
 }
 

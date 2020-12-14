@@ -13,7 +13,12 @@ const euro = <span className="euro">&euro;</span>;
  * @prop anyone Boolean, true affects anyone (red border), otherwise false
  */
 const MegaCredit = props => (
-  <div className={classNames('mc', { anyone: props.anyone })}>
+  <div
+    className={classNames('mc', {
+      anyone: props.anyone,
+      modified: props.modified
+    })}
+  >
     <span className="value">
       {props.value === undefined ? euro : props.value}
       {props.tag ? <Tag name={props.tag} /> : null}
@@ -24,7 +29,8 @@ const MegaCredit = props => (
 MegaCredit.propTypes = {
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   anyone: PropTypes.bool,
-  tag: PropTypes.string
+  tag: PropTypes.string,
+  modified: PropTypes.bool
 };
 
 export default MegaCredit;

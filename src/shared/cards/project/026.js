@@ -33,6 +33,7 @@ export default new Automated({
       done
     );
   },
+  vp: 1,
   emoji: '🏞',
   todo: true,
   layout: (

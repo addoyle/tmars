@@ -229,6 +229,7 @@ const CardDrawer = props => {
               card={card}
               resources={card.resources}
               type={cardType}
+              costModifiers={props.type ? gameStore.player.rates.cost : []}
             />
           </li>
         ))}
@@ -267,7 +268,8 @@ CardDrawer.propTypes = {
         buy: PropTypes.array
       }),
       rates: PropTypes.shape({
-        buy: PropTypes.number
+        buy: PropTypes.number,
+        cost: PropTypes.object
       }),
       firstAction: PropTypes.bool
     }),

@@ -17,7 +17,6 @@ export default new Active({
   activeDesc,
   flavor:
     'Ultrathin mirrors reflecting sunlight down to receivers on the surface',
-  action: () => {},
   emoji: '🛰',
   todo: true,
   activeLayout: (

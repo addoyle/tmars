@@ -11,9 +11,11 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'We need its water down here',
-  action: () => {},
+  action: (player, game, done) =>
+    game.promptTile(player, 'ocean', () =>
+      game.promptTile(player, 'ocean', done)
+    ),
   emoji: '☄',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources middle">

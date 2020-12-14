@@ -25,9 +25,11 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Tapping trhe very fabric of space',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', 4);
+    player.rates.cost.space = -2;
+  },
   emoji: '🌟',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

@@ -16,9 +16,18 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Accelerating building of the infrastructure',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'steel', 2);
+  },
+  canPlay: player => {
+    const valid = player.resources.power > 0;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
   emoji: '🏗',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1">

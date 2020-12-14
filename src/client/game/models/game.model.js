@@ -142,6 +142,25 @@ class Game extends SharedGame {
     this.player.ui && Object.assign(this, this.player.ui);
   }
 
+  /**
+   * Calculate the cost of a card based on modifiers
+   * @param {object} card Card
+   * @param {object} modifiers Cost modifiers
+   */
+  calculateCost(card, modifiers) {
+    if (card && modifiers) {
+      let modifiedCost = card.cost + (modifiers.all || 0);
+      Object.entries(modifiers).forEach(([tag, modifier]) => {
+        if (card.tags.includes(tag)) {
+          modifiedCost += modifier;
+        }
+      });
+      return modifiedCost < 0 ? 0 : modifiedCost;
+    } else {
+      return 0;
+    }
+  }
+
   getGame(player) {
     API(`game/${gameId()}?player=${player}`).then(res => this.update(res));
   }

@@ -15,10 +15,9 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'When export from Earth becomes easier, everything gets cheaper',
-  action: () => {},
+  action: player => (player.rates.cost.all = -2),
   vp: 2,
   emoji: '🌎',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

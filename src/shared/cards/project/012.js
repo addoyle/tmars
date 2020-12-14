@@ -26,7 +26,7 @@ export default new Active({
   action: () => {},
   clientActiveAction: () => {},
   serverActiveAction: () => {},
-  vp: () => {},
+  vp: player => player.tags.jovian,
   emoji: '💧',
   todo: true,
   activeLayout: (

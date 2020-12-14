@@ -24,6 +24,7 @@ export default new Active({
   desc,
   flavor: 'Lions and tigers and bears, oh my',
   emoji: '🐻',
+  vp: () => this.resources,
   todo: true,
   activeLayout: (
     <div>

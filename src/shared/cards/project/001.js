@@ -18,7 +18,6 @@ export default new Automated({
   desc,
   flavor: 'Preparing for settlement of the moons of Jupiter',
   emoji: '🏕',
-  todo: true,
   layout: (
     <div className="flex">
       <div className="description col-3 text-center middle">{desc}</div>

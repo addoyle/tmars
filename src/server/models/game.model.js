@@ -352,6 +352,8 @@ class Game extends SharedGame {
         );
         rewardAction(player, this, done);
         rewardAction.length < 3 && done();
+      } else {
+        done && done();
       }
     }
   }

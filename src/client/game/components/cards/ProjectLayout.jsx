@@ -107,7 +107,12 @@ const ProjectLayout = props => {
           <div className="flavor">{props.flavor}</div>
         </div>
       </div>
-      {props.type !== 'prelude' ? <MegaCredit value={props.cost} /> : null}
+      {props.type !== 'prelude' ? (
+        <MegaCredit
+          value={props.modifiedCost}
+          modified={props.modifiedCost !== props.cost}
+        />
+      ) : null}
       <div className="tags">
         {props.tags.map((tag, i) => (
           <Tag key={i} name={tag} />
@@ -144,7 +149,8 @@ ProjectLayout.propTypes = {
   }),
   layout: PropTypes.node.isRequired,
   flavor: PropTypes.string,
-  todo: PropTypes.bool
+  todo: PropTypes.bool,
+  modifiedCost: PropTypes.number
 };
 
 export default ProjectLayout;

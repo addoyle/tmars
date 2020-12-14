@@ -14,6 +14,11 @@ const CardPreview = props => {
   const card = isString(props.card) ? { card: props.card } : props.card;
   const cardObj = props.cardStore.get(props.type, card.card);
 
+  const modifiedCost = props.gameStore.calculateCost(
+    cardObj,
+    props.costModifiers
+  );
+
   // TODO
   // const resources = props.resources;
 
@@ -33,6 +38,7 @@ const CardPreview = props => {
         <ProjectLayout
           {...cardObj}
           type={cardObj.constructor.name.toLowerCase()}
+          modifiedCost={modifiedCost}
         />
       )}
     </div>
@@ -62,7 +68,11 @@ CardPreview.propTypes = {
   gameStore: PropTypes.shape({
     settings: PropTypes.shape({
       simple: PropTypes.bool
-    })
+    }),
+    calculateCost: PropTypes.func
+  }),
+  costModifiers: PropTypes.shape({
+    all: PropTypes.number
   })
 };
 

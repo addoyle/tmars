@@ -43,6 +43,7 @@ export default new Active({
       msg: !valid ? 'Requires at least one player with plant production' : null
     };
   },
+  vp: () => this.resources,
   emoji: '🐟',
   todo: true,
   activeLayout: (

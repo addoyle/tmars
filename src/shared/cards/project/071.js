@@ -17,9 +17,11 @@ export default new Active({
   activeDesc,
   flavor:
     'The latest advances in metallurgy give you an edge in the competition',
-  action: () => {},
+  action: player => {
+    player.rates.titanium++;
+    player.rates.steel++;
+  },
   emoji: '🔩',
-  todo: true,
   activeLayout: (
     <div className="flex gutter">
       <div className="col-2">

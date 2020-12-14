@@ -21,6 +21,8 @@ const ActiveCard = ({ gameStore, cardStore }) => {
   const [dragging, setDragging] = useState(false);
 
   const card = cardStore.get(activeCard.type, activeCard.card);
+
+  // Calculating maximum required resources needed/available to purchase card
   const maxSteel = Math.min(
     Math.ceil(card?.cost / (player?.rates.steel || 2)),
     player?.resources.steel
@@ -31,16 +33,23 @@ const ActiveCard = ({ gameStore, cardStore }) => {
   );
   const maxHeat = Math.min(card?.cost, player?.resources.heat);
 
+  // Current player's turn
   const myTurn = gameStore.turn === player?.number;
 
+  // The card is "playable", i.e. a card from the current player's hand
+  const playable =
+    activeCard.mode === 'play' && myTurn && activeCard.type === 'project';
+
+  // Effective cost is the cost of the card in M€ subtracting resources
   const effectiveCost = Math.max(
     0,
-    card?.cost -
+    gameStore.calculateCost(card, player?.rates.cost) -
       player?.rates.steel * activeCard.steel -
       player?.rates.titanium * activeCard.titanium -
       activeCard.heat
   );
 
+  // Checks if the card can be played
   const meetsReqs =
     card?.meetsRequirements && card?.meetsRequirements(player, gameStore);
   const canPlay = card?.canPlay && card?.canPlay(player, gameStore);
@@ -79,14 +88,15 @@ const ActiveCard = ({ gameStore, cardStore }) => {
           }}
           onMouseLeave={() => setDragging(false)}
         >
-          <CardPreview card={activeCard.card} type={activeCard.type} />
+          <CardPreview
+            card={activeCard.card}
+            type={activeCard.type}
+            costModifiers={player.rates.cost}
+          />
         </div>
       ) : null}
       <div className="footer">
-        {activeCard.mode === 'play' &&
-        myTurn &&
-        activeCard.type === 'project' &&
-        card.tags.includes('building') ? (
+        {playable && card.tags.includes('building') ? (
           <button
             className="text-center"
             onClick={() =>
@@ -106,10 +116,7 @@ const ActiveCard = ({ gameStore, cardStore }) => {
           </button>
         ) : null}
 
-        {activeCard.mode === 'play' &&
-        myTurn &&
-        activeCard.type === 'project' &&
-        card.tags.includes('space') ? (
+        {playable && card.tags.includes('space') ? (
           <button
             className="text-center"
             onClick={() =>
@@ -131,29 +138,28 @@ const ActiveCard = ({ gameStore, cardStore }) => {
           </button>
         ) : null}
 
-        {activeCard.mode === 'play' &&
-        myTurn &&
-        activeCard.type === 'project' &&
-        // Only Helion can use heat as M€
-        player?.cards.corp[0].number === 3 ? (
-          <button
-            className="text-center"
-            onClick={() =>
-              (activeCard.heat =
-                activeCard.heat >= maxHeat ? 0 : activeCard.heat + 1)
-            }
-          >
-            <div className="flex">
-              <div className="resources middle">
-                <Resource name="heat" />
+        {
+          // Only Helion can use heat as M€
+          playable && player?.cards.corp[0].number === 3 ? (
+            <button
+              className="text-center"
+              onClick={() =>
+                (activeCard.heat =
+                  activeCard.heat >= maxHeat ? 0 : activeCard.heat + 1)
+              }
+            >
+              <div className="flex">
+                <div className="resources middle">
+                  <Resource name="heat" />
+                </div>
+                <div className="center middle">Use Heat</div>
+                <div className="pill middle">
+                  ({activeCard.heat}/{maxHeat})
+                </div>
               </div>
-              <div className="center middle">Use Heat</div>
-              <div className="pill middle">
-                ({activeCard.heat}/{maxHeat})
-              </div>
-            </div>
-          </button>
-        ) : null}
+            </button>
+          ) : null
+        }
 
         <div className="flex gutter">
           {activeCard.mode === 'draft' ? (
@@ -304,10 +310,12 @@ ActiveCard.propTypes = {
       rates: PropTypes.shape({
         steel: PropTypes.number,
         titanium: PropTypes.number,
-        heat: PropTypes.number
+        heat: PropTypes.number,
+        cost: PropTypes.object
       }),
       number: PropTypes.number
     }),
+    calculateCost: PropTypes.func,
     playerStatus: PropTypes.object
   }).isRequired,
   cardStore: PropTypes.shape({

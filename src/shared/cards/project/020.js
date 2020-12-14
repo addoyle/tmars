@@ -24,7 +24,15 @@ export default new Active({
   desc,
   flavor: 'Finding new ways to do things',
   action: (player, game, done) => {
-    game.promptTile(player, 'city', done, customFilter);
+    game.promptTile(
+      player,
+      'city',
+      () => {
+        player.rates.cost.all = -1;
+        done();
+      },
+      customFilter
+    );
   },
   canPlay: (player, game) => {
     const valid = !!game.findPossibleTiles('city', player, customFilter).length;
@@ -35,7 +43,6 @@ export default new Active({
     };
   },
   emoji: '🏢',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

@@ -20,6 +20,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Keeping the peace by force',
+  vp: () => this.resources,
   emoji: '🚀',
   todo: true,
   activeLayout: (

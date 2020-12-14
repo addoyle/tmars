@@ -107,7 +107,8 @@
         "buy": 3,
         "plant": 8,
         "heat": 8,
-        "ocean": 2
+        "ocean": 2,
+        "cost": {}
       },
       "modifiers": {},
       "firstAction": true
@@ -204,7 +205,8 @@
         "buy": 3,
         "plant": 8,
         "heat": 8,
-        "ocean": 2
+        "ocean": 2,
+        "cost": {}
       },
       "modifiers": {},
       "firstAction": true
@@ -302,7 +304,8 @@
         "buy": 3,
         "plant": 8,
         "heat": 8,
-        "ocean": 2
+        "ocean": 2,
+        "cost": {}
       },
       "modifiers": {},
       "firstAction": true
@@ -404,7 +407,8 @@
         "buy": 3,
         "plant": 8,
         "heat": 8,
-        "ocean": 2
+        "ocean": 2,
+        "cost": {}
       },
       "modifiers": {},
       "firstAction": true
@@ -520,7 +524,8 @@
         "buy": 3,
         "plant": 8,
         "heat": 8,
-        "ocean": 2
+        "ocean": 2,
+        "cost": {}
       },
       "modifiers": {},
       "firstAction": true
