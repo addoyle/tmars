@@ -21,6 +21,7 @@ const CardLayout = props => {
             <div key={i} className={classnames('set', set)} />
           ))
         : null}
+      {props.todo ? <div className="todo">Incomplete</div> : null}
     </div>
   );
 };
@@ -33,7 +34,8 @@ CardLayout.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  simple: PropTypes.bool
+  simple: PropTypes.bool,
+  todo: PropTypes.bool
 };
 
 export default CardLayout;

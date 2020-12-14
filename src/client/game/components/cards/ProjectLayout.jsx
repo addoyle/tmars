@@ -84,6 +84,7 @@ const ProjectLayout = props => {
     <CardLayout
       type={props.type}
       set={props.set}
+      todo={props.todo}
       landscape={props.type === 'prelude'}
     >
       <div className="project">
@@ -142,7 +143,8 @@ ProjectLayout.propTypes = {
     value: PropTypes.number
   }),
   layout: PropTypes.node.isRequired,
-  flavor: PropTypes.string
+  flavor: PropTypes.string,
+  todo: PropTypes.bool
 };
 
 export default ProjectLayout;

@@ -1,5 +1,3 @@
-
-
 import React from 'react';
 import Event from '../Event';
 import { Resource } from '../../../client/game/components/assets/Assets';

@@ -9,7 +9,7 @@ import classNames from 'classnames';
  * Corporation cards
  */
 const CorporationLayout = props => (
-  <CardLayout type="corp" set={props.set} landscape>
+  <CardLayout type="corp" set={props.set} todo={props.todo} landscape>
     <div className="tags">
       {props.tags.map((tag, i) => (
         <Tag key={i} name={tag} />
@@ -41,7 +41,8 @@ CorporationLayout.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
   layout: PropTypes.node.isRequired,
   flavor: PropTypes.string,
-  simple: PropTypes.bool
+  simple: PropTypes.bool,
+  todo: PropTypes.bool
 };
 
 export default CorporationLayout;

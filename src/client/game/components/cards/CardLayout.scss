@@ -1,3 +1,5 @@
+$title-font: 'Prototype', sans-serif;
+
 .card {
   font-size: 300px;
   height: 1.4em;
@@ -11,6 +13,7 @@
   vertical-align: top;
   font-family: Baskerville, serif;
   text-align: left;
+  overflow: hidden;
 
   &.landscape {
     height: 1em;
@@ -112,6 +115,29 @@
         );
       }
     }
+  }
+
+  .todo {
+    font-size: 0.1em;
+    position: absolute;
+    width: 102%;
+    height: 1em;
+    top: 50%;
+    left: -1%;
+    transform: translateY(-50%) rotate(-5deg);
+    text-align: center;
+    font-family: 'Prototype', sans-serif;
+    text-transform: uppercase;
+    background: repeating-linear-gradient(
+      45deg,
+      #a22722,
+      #db5b57 10px,
+      #a2272288 10px,
+      #a2272288 20px
+    );
+    box-shadow: 0 0 0 2px #f008;
+    -webkit-text-stroke: #e88 1px;
+    color: #a00;
   }
 }
 
