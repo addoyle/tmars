@@ -18,10 +18,19 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Utilizing heat production to attract tourists',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'heat', -2);
+    game.production(player, 'megacredit', 3);
+  },
+  canPlay: player => {
+    const valid = player.resources.heat >= 2;
+    return {
+      valid,
+      msg: !valid ? 'Not enough heat production' : null
+    };
+  },
   vp: 2,
   emoji: '🏖',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 text-center">

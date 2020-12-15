@@ -15,10 +15,12 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Through technical excellence you will unlock many wondrous things',
-  action: () => {},
+  action: (player, game) => {
+    game.drawCard(player);
+    game.drawCard(player);
+  },
   vp: 1,
   emoji: '‍🔬',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 text-center">

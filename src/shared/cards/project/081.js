@@ -16,9 +16,10 @@ export default new Automated({
   tags: ['jovian', 'space', 'city'],
   desc,
   flavor: 'Settling the biggest moon of the biggest planet',
-  action: () => {},
+  action: (player, game, done) =>
+    game.placeTile(player, game.offMars.ganymede, 'city', done),
   emoji: '🌑',
-  todo: true,
+  vp: player => player.tags.jovian,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle">

@@ -19,9 +19,11 @@ export default new Automated({
   },
   desc,
   flavor: 'Stabilizing the soil',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'plant', 1);
+    game.resources(player, 'plant', 1);
+  },
   emoji: '🌾',
-  todo: true,
   layout: (
     <div className="m-bottom">
       <div className="flex gutter center">

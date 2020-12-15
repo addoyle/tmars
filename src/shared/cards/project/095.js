@@ -20,6 +20,7 @@ export default new Active({
   flavor:
     'This used to cause blackouts before the invention of supercapacitors',
   action: () => {},
+  vp: () => (this.resources || 0) * 2,
   emoji: '⚛️',
   todo: true,
   activeLayout: (

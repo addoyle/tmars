@@ -27,7 +27,7 @@ export default new Active({
   flavor: 'Tapping trhe very fabric of space',
   action: (player, game) => {
     game.production(player, 'power', 4);
-    player.rates.cost.space = -2;
+    player.rates.cost.space = (player.rates.cost.space || 0) - 2;
   },
   emoji: '🌟',
   activeLayout: (

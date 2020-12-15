@@ -16,10 +16,9 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'You always wanted to be a warden, didn’t you?',
-  action: () => {},
+  action: (player, game) => game.production(player, 'megacredit', 3),
   vp: 2,
   emoji: '👮',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 text-center">

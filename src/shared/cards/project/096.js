@@ -11,9 +11,14 @@ export default new Automated({
   tags: ['plant', 'building'],
   desc,
   flavor: 'Places to conduct bio research and experiments',
-  action: () => {},
+  action: (player, game) =>
+    game.resources(
+      player,
+      'plant',
+      game.field.flat().filter(t => t.type === 'city').length +
+        Object.values(game.offMars).filter(t => t.type === 'city').length
+    ),
   emoji: '🏡',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 resources text-center middle">

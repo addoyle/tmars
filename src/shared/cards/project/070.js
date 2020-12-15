@@ -15,7 +15,7 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'When export from Earth becomes easier, everything gets cheaper',
-  action: player => (player.rates.cost.all = -2),
+  action: player => (player.rates.cost.all = (player.rates.cost.all || 0) - 2),
   vp: 2,
   emoji: '🌎',
   activeLayout: (

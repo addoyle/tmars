@@ -28,7 +28,7 @@ export default new Active({
       player,
       'city',
       () => {
-        player.rates.cost.all = -1;
+        player.rates.cost.all = (player.rates.cost.all || 0) - 1;
         done();
       },
       customFilter

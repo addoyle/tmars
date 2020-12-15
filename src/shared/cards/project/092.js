@@ -19,9 +19,12 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Supplying fuel and valuable minerals',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'titanium', 2);
+    game.production(player, 'megacredit', 2);
+  },
+  vp: player => player.tags.jovian,
   emoji: '⛏',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3">

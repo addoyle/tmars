@@ -25,9 +25,11 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'E=mc². 1 kg = a LOT of energy',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'tile', 6);
+    player.rates.cost.space = (player.rates.cost.space || 0) - 2;
+  },
   emoji: '🎆',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

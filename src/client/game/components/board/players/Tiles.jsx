@@ -27,7 +27,7 @@ const Tiles = ({ gameStore }) => {
       ).length;
 
   const offMarsCount = opts =>
-    Object.keys(gameStore.offMars).filter(
+    Object.values(gameStore.offMars).filter(
       t =>
         t.type === 'city' &&
         (opts.anyone || t.player === gameStore.player?.number)

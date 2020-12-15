@@ -19,7 +19,8 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Buy it today at www.fryxgames.se',
-  action: player => (player.rates.cost.space = -2),
+  action: player =>
+    (player.rates.cost.space = (player.rates.cost.space || 0) - 2),
   vp: 1,
   emoji: '🛰',
   activeLayout: (

@@ -8,6 +8,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO VERIFY VP
+
 const desc =
   'Decrease your energy production 1 step and increase your M€ production 4 steps. Place this tile. 1 VP PER ADJACENT CITY TILE.';
 
@@ -22,7 +24,10 @@ export default new Automated({
   action: (player, game, done) => {
     game.production(player, 'power', -1);
     game.production(player, 'megacredit', 4);
-    game.promptTile(player, { special: 'euro' }, done);
+    game.promptTile(player, { special: 'euro' }, tile => {
+      this.tile = tile;
+      done();
+    });
   },
   canPlay: (player, game) => {
     if (player.production.power < 1) {
@@ -38,7 +43,10 @@ export default new Automated({
       msg: !valid ? 'Cannot place this tile' : null
     };
   },
+  vp: (player, game) =>
+    game.neighbors(this.tile).filter(t => t.type === 'city').length,
   emoji: '🛍',
+  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle">

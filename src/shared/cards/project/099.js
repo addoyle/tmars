@@ -17,9 +17,15 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Licensed by the ‘government’',
-  action: () => {},
+  action: (player, game) =>
+    game.production(
+      player,
+      'megacredit',
+      game.players
+        .filter(p => p.number !== player.number)
+        .reduce((sum, p) => (sum += p.tags.space), 0)
+    ),
   emoji: '💶',
-  todo: true,
   layout: (
     <div className="m-bottom">
       <div className="flex gutter center">
