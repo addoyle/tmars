@@ -12,7 +12,6 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Profiting on every spectacular story',
-  action: () => {},
   emoji: '🎙',
   todo: true,
   activeLayout: (

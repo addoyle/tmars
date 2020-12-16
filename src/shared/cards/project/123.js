@@ -15,8 +15,8 @@ const desc = 'Place this tile ADJACENT TO A CITY TILE.';
 const customFilter = (tile, game, notReserved, neighbors) =>
   // Not reserved
   notReserved(tile) &&
-  // Is adjacent to one of your own tiles
-  neighbors.filter(t => t.type === 'city').length;
+  // Is adjacent a city
+  neighbors.filter(t => t.type === 'city' || t.type === 'capital city').length;
 
 export default new Active({
   number: 123,
@@ -34,7 +34,7 @@ export default new Active({
     const valid = !!game.findPossibleTiles(
       { special: 'factory' },
       player,
-      customFilter(player)
+      customFilter
     ).length;
 
     return {

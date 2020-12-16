@@ -12,7 +12,6 @@ export default new Active({
   tags: ['building'],
   activeDesc,
   flavor: 'Processing ore',
-  action: () => {},
   emoji: '⛏',
   todo: true,
   activeLayout: (

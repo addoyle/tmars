@@ -15,10 +15,9 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Influencing the people in power',
-  action: () => {},
+  action: (player, game) => game.tr(player, 2),
   vp: -2,
   emoji: '👥',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 text-center">

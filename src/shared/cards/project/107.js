@@ -13,9 +13,13 @@ export default new Automated({
   desc,
   flavor:
     'Accessing information on past events for better planning of the future',
-  action: () => {},
+  action: (player, game) =>
+    game.resources(
+      player,
+      'megacredit',
+      game.players.reduce((sum, p) => (sum += p.tags.event), 0)
+    ),
   emoji: '🗃️',
-  todo: true,
   layout: (
     <div className="m-bottom">
       <div className="resources text-center">

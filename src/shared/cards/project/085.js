@@ -44,7 +44,9 @@ export default new Automated({
     };
   },
   vp: (player, game) =>
-    game.neighbors(this.tile).filter(t => t.type === 'city').length,
+    game
+      .neighbors(this.tile)
+      .filter(t => t.type === 'city' || t.type === 'capital city').length,
   emoji: '🛍',
   todo: true,
   layout: (

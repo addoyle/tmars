@@ -13,7 +13,6 @@ export default new Active({
   activeDesc,
   flavor:
     'Turning the soil into steel and oxygen sounds good. It just takes a lot of energy',
-  action: () => {},
   emoji: '🛠',
   todo: true,
   activeLayout: (

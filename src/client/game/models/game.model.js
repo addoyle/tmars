@@ -157,7 +157,7 @@ class Game extends SharedGame {
       });
       return modifiedCost < 0 ? 0 : modifiedCost;
     } else {
-      return 0;
+      return card?.cost || 0;
     }
   }
 

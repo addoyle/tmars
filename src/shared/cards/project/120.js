@@ -9,6 +9,12 @@ import {
 
 const desc =
   'Decrease your energy production 1 step and increase your M€ production 2 steps. Place a city tile ADJACENT TO AT LEAST 2 OTHER CITY TILES.';
+const customFilter = (tile, game, notReserved, neighbors) =>
+  // Not reserved
+  notReserved(tile) &&
+  // Neighbors at least 2 cities
+  neighbors.filter(t => t.type === 'city' || t.type === 'capital city')
+    .length >= 2;
 
 export default new Automated({
   number: 120,
@@ -18,9 +24,26 @@ export default new Automated({
   desc,
   flavor:
     'When the population begins to soar, cities will eventually merge into large urban areas',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', 2);
+    game.promptTile(player, 'city', done, customFilter);
+  },
+  canPlay: (player, game) => {
+    if (player.production.power < 1) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+
+    const valid = !!game.findPossibleTiles('city', player, customFilter).length;
+    return {
+      valid,
+      msg: !valid ? 'No spaces avilable with 2 neighboring cities' : null
+    };
+  },
   emoji: '🌃',
-  todo: true,
   layout: (
     <div className="flex gutter center">
       <div className="col-1 text-center middle">

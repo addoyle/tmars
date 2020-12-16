@@ -29,7 +29,9 @@ export default new Automated({
     game.production(player, 'power', -2);
     game.production(player, 'megacredit', 5);
     game.promptTile(player, 'capital city', tile => {
-      this.tile = tile;
+      //this.tile = tile;
+      // Figure out what to do with tile
+      console.log(tile);
       done();
     });
   },
@@ -48,7 +50,6 @@ export default new Automated({
     };
   },
   vp: (player, game) =>
-    // 1 VP per neighboring ocean
     game.neighbors(this.tile).filter(t => t.type === 'ocean').length,
   emoji: '🏛',
   todo: true,

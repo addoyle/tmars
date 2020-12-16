@@ -15,9 +15,8 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'This interplanetary company will surely pay off',
-  action: () => {},
+  action: (player, game) => game.production(player, 'megacredit', 3),
   emoji: '🤝',
-  todo: true,
   layout: (
     <div className="m-bottom">
       <div className="flex gutter center">

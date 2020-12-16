@@ -15,7 +15,9 @@ export default new Automated({
     game.resources(
       player,
       'plant',
-      game.field.flat().filter(t => t.type === 'city').length +
+      game.field
+        .flat()
+        .filter(t => t.type === 'city' || t.type === 'capital city').length +
         Object.values(game.offMars).filter(t => t.type === 'city').length
     ),
   emoji: '🏡',

@@ -14,9 +14,8 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Utilizing heat from the core through the cracks in the crust',
-  action: () => {},
+  action: (player, game) => game.production(player, 'power', 2),
   emoji: '♨',
-  todo: true,
   layout: (
     <div className="text-center">
       <Production>

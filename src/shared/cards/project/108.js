@@ -22,10 +22,28 @@ export default new Automated({
   },
   desc,
   flavor: 'Not very comfortable conditions yet, but what freedom!!',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', 4);
+    game.resources(player, 'plant', 2);
+    game.promptTile(player, 'city', done);
+  },
+  canPlay: (player, game) => {
+    if (player.production.power < 1) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+
+    const valid = !!game.findPossibleTiles('city', player).length;
+    return {
+      valid,
+      msg: !valid ? 'Cannot place this tile' : null
+    };
+  },
   vp: 1,
   emoji: '🏙',
-  todo: true,
   layout: (
     <div>
       <div className="flex gutter center">

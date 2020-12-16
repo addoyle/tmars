@@ -61,8 +61,12 @@ class SharedGame {
             // Not occupied
             !t.name &&
             // Not adjacent to another city
-            !self.neighbors(t).filter(neighbor => neighbor.type === 'city')
-              .length
+            !self
+              .neighbors(t)
+              .filter(
+                neighbor =>
+                  neighbor.type === 'city' || neighbor.type === 'capital city'
+              ).length
         );
     }
     // Greeneries have to be placed next to an existing player's tile if possible, otherwise anywhere

@@ -395,6 +395,12 @@ class Game extends SharedGame {
    * @param {func} callback Callback once the tile is placed
    */
   promptTile(player, tile, callback, customFilter) {
+    // If all the oceans are placed, don't prompt
+    if (tile === 'ocean' && this.params.ocean <= 0) {
+      callback && callback();
+      return;
+    }
+
     const possibleTiles = this.findPossibleTiles(tile, player, customFilter);
     if (possibleTiles.length) {
       possibleTiles.forEach(

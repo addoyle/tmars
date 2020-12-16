@@ -17,10 +17,8 @@ export default new Automated({
   desc,
   flavor:
     'Tight seals to keep micron-sized dust out of buildings, vehicles and suits',
-  action: () => {},
   vp: 1,
   emoji: '🗜️',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="description text-center middle col-3">{desc}</div>

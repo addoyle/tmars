@@ -13,9 +13,9 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Coordinating deliveries and homeworld support',
-  action: () => {},
+  action: player =>
+    (player.rates.cost.earth = (player.rates.cost.earth || 0) - 3),
   emoji: '🏙',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
