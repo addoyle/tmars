@@ -14,9 +14,8 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Standard equipment, normal output',
-  action: () => {},
+  action: (player, game) => game.production(player, 'power', 1),
   emoji: '🏭',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

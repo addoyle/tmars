@@ -19,7 +19,7 @@ export default new Automated({
   flavor: 'We see it as brotherhood',
   action: (player, game) =>
     game.production(player, 'megacredit', player.tags.earth),
-  emoji: '👨‍👨‍👦‍👦',
+  emoji: '👥',
   layout: (
     <div className="text-center">
       <Production>

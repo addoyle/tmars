@@ -27,7 +27,7 @@ export default new Automated({
     const valid = !!game.findPossibleTiles(
       { special: 'mohole' },
       player,
-      customFilter(player)
+      customFilter
     ).length;
 
     return {

@@ -26,11 +26,8 @@ export default new Automated({
   action: (player, game, done) =>
     game.promptTile(player, 'greenery', done, customFilter),
   canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles(
-      'greenery',
-      player,
-      customFilter(player)
-    ).length;
+    const valid = !!game.findPossibleTiles('greenery', player, customFilter)
+      .length;
 
     return {
       valid,

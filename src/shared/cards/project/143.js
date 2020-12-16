@@ -17,7 +17,12 @@ export default new Event({
   tags: ['earth', 'space', 'event'],
   desc,
   flavor: 'Huge delivery from Earth',
-  action: () => {},
+  action: (player, game, done) => {
+    game.drawCard(player);
+    game.drawCard(player);
+    // TODO figure out the or thing
+    game.promptTile(player, 'ocean', done);
+  },
   vp: 2,
   emoji: '📦',
   todo: true,

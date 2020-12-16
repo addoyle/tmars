@@ -16,9 +16,8 @@ export default new Automated({
   desc,
   flavor:
     'Titanium is useful to the space industry because of its great strength',
-  action: () => {},
+  action: (player, game) => game.production(player, 'titanium', 1),
   emoji: '🏗️',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">
