@@ -17,7 +17,6 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Creating mutually beneficial conditions',
-  action: () => {},
   emoji: '🍄',
   todo: true,
   activeLayout: (

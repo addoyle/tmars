@@ -35,7 +35,7 @@ export default new Event({
     const valid = !!game.findPossibleTiles(
       { special: 'volcano' },
       player,
-      customFilter(player)
+      customFilter
     ).length;
 
     return {

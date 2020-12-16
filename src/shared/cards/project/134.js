@@ -19,7 +19,6 @@ export default new Active({
   desc,
   flavor:
     'Adapted strains able to form symbiotic relationships with other organisms',
-  action: () => {},
   emoji: '🍄️',
   todo: true,
   activeLayout: (

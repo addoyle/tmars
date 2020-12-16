@@ -104,8 +104,8 @@ const Log = forwardRef((props, ref) => {
                         return <Resource key={i} name={body.resource} />;
                       } else if (body.tag) {
                         return <Tag key={i} name={body.tag} />;
-                      } else if (body.megaCredit !== undefined) {
-                        return <MegaCredit key={i} value={body.megaCredit} />;
+                      } else if (body.megacredit !== undefined) {
+                        return <MegaCredit key={i} value={body.megacredit} />;
                       } else if (body.reveal) {
                         return (
                           <CardRef

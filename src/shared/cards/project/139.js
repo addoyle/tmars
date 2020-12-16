@@ -19,10 +19,9 @@ export default new Automated({
   },
   desc,
   flavor: 'Well, see, first you need some waves...',
-  action: () => {},
+  action: (player, game) => game.production(player, 'power', 1),
   vp: 1,
   emoji: '🌊',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

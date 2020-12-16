@@ -16,10 +16,8 @@ export default new Automated({
   desc,
   flavor:
     'Constructing functional, dynamic ecosystems requires many ingredients',
-  action: () => {},
   vp: 3,
   emoji: '🏞',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="description text-center middle col-3">{desc}</div>

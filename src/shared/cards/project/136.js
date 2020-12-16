@@ -19,10 +19,9 @@ export default new Automated({
   },
   desc,
   flavor: 'Letting natural processes do the work',
-  action: () => {},
+  action: (player, game) => game.production(player, 'power', 2),
   vp: 1,
   emoji: '🌊',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 text-center">

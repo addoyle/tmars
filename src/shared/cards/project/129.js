@@ -21,10 +21,16 @@ export default new Automated({
   },
   desc,
   flavor: 'A relatively cheap way to travel between cities across the planet',
-  action: () => {},
+  action: (player, game) =>
+    game.production(
+      player,
+      'megacredit',
+      game.field
+        .flat()
+        .filter(t => t.type === 'city' || t.type === 'capital city').length
+    ),
   vp: 1,
   emoji: '🎈',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 text-center">

@@ -18,7 +18,7 @@ export default new Automated({
   },
   desc,
   flavor: 'State of the art technology',
-  action: () => {},
+  action: (player, game) => game.production(player, 'power', 3),
   emoji: '🔮',
   todo: true,
   layout: (

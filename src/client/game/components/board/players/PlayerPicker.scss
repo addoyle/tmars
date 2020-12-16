@@ -28,7 +28,7 @@ $title-font: 'Prototype', sans-serif;
     color: #fffd;
     font-family: $title-font;
     font-size: 1.5em;
-    margin-bottom: .5em;
+    margin-bottom: 0.5em;
     text-align: center;
   }
 
@@ -37,10 +37,6 @@ $title-font: 'Prototype', sans-serif;
     height: auto;
     margin: 4px 0 0;
     pointer-events: none;
-
-    .production {
-      width: 64px;
-    }
   }
 
   .footer {

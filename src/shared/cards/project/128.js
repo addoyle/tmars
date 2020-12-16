@@ -45,6 +45,7 @@ export default new Active({
       msg: !valid ? 'Requires a space adjacent to a greenery tile' : null
     };
   },
+  vp: () => Math.floor(this.resources / 2),
   emoji: '🏞️',
   todo: true,
   activeLayout: (

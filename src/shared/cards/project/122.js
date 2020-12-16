@@ -19,9 +19,18 @@ export default new Automated({
   },
   desc,
   flavor: 'Efficient soil makers',
-  action: () => {},
+  action: (player, game) => {
+    game.resources(player, 'plant', -1);
+    game.production(player, 'plant', 1);
+  },
+  canPlay: player => {
+    const valid = player.resources.plant > 0;
+    return {
+      valid,
+      msg: !valid ? 'Requires at least one plant resource' : null
+    };
+  },
   emoji: '🥦',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

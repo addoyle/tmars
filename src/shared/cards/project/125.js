@@ -18,10 +18,39 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Very unethical, very illegal, very lucrative',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptPlayer(
+      player,
+      { production: 'megacredit' },
+      ['took 2 M€ ', { megacredit: null }, ' production from'],
+      targetPlayer => {
+        game.production(player, 'power', -1);
+        game.production(player, 'megacredit', 2);
+        game.production(targetPlayer, 'megacredit', -2);
+        done();
+      }
+    );
+  },
+  canPlay: (player, game) => {
+    if (player.production.power < 1) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+
+    // Check if ANYONE has M€ production > -5
+    const valid = !!game.players.filter(p => p.production.megacredit > -5)
+      .length;
+    return {
+      valid,
+      msg: !valid
+        ? 'Requires at least one player with -5 or more M€ production'
+        : null
+    };
+  },
   vp: -1,
   emoji: '💻',
-  todo: true,
   layout: (
     <div className="flex gutter center">
       <div className="col-3 text-center">

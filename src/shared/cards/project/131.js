@@ -22,7 +22,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Decomposing dead organisms is essential to making sustainable soil',
-  action: () => {},
+  vp: () => Math.floor(this.resources / 3),
   emoji: '🍄',
   todo: true,
   activeLayout: (

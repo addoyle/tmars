@@ -16,9 +16,18 @@ export default new Automated({
   desc,
   flavor:
     'Synthesizing powerful greenhouse gases (GHGs), releasing them into the atmosphere',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'heat', 4);
+  },
+  canPlay: player => {
+    const valid = player.production.power > 0;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
   emoji: '🏭',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1">
