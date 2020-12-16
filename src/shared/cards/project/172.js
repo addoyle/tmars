@@ -6,6 +6,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO action
+
 const activeDesc =
   'Effect: When any city tile is placed, add an animal to this card.';
 const desc = 'Add 1 animal to this card. 1 VP per 2 animals here.';
@@ -18,7 +20,8 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'It wouldn’t be the same without them',
-  action: () => {},
+  action: () => (this.resources = 1),
+  vp: () => Math.floor(this.resources / 2),
   emoji: '🐶️',
   todo: true,
   activeLayout: (

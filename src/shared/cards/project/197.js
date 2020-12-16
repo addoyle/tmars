@@ -17,10 +17,9 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Why stop at Mars?',
-  action: () => {},
+  action: (player, game) => game.tr(player, player.tags.jovian),
   vp: 2,
   emoji: '🌘',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 middle text-center">

@@ -22,10 +22,9 @@ export default new Automated({
   desc,
   flavor:
     'New synthetic fabrics, able to protect from cosmic radiation, are becoming high fashion',
-  action: () => {},
+  action: (player, game) => game.production(player, 'megacredit', 1),
   vp: 1,
   emoji: '👨‍🚀',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

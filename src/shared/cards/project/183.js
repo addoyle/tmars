@@ -20,10 +20,28 @@ export default new Automated({
   },
   desc,
   flavor: 'Burning wood is easy',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptPlayer(
+      player,
+      { production: 'plant' },
+      ['took 1 plant ', { resource: 'plant' }, ' production from'],
+      targetPlayer => {
+        game.production(targetPlayer, 'plant', -2);
+        game.production(player, 'power', 2);
+        done();
+      }
+    );
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.players.filter(player => player.production.plant > 0)
+      .length;
+    return {
+      valid,
+      msg: !valid ? 'Requires at least one player with plant production' : null
+    };
+  },
   vp: -1,
   emoji: '🔥',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 middle text-center">

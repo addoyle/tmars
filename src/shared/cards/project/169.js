@@ -21,10 +21,13 @@ export default new Automated({
   },
   desc,
   flavor: 'Farming the thawed soil over the frozen bedrock',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'plant', 1);
+    game.production(player, 'megacredit', 2);
+    game.resources(player, 'plant', 1);
+  },
   vp: 2,
   emoji: '🚜',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 middle text-center">

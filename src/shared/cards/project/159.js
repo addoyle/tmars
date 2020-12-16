@@ -18,9 +18,8 @@ export default new Automated({
   },
   desc,
   flavor: 'Slow growing, but very resilient',
-  action: () => {},
+  action: (player, game) => game.production(player, 'plant', 1),
   emoji: '💚',
-  todo: true,
   layout: (
     <div className="text-center">
       <Production>

@@ -18,7 +18,6 @@ export default new Active({
   desc,
   flavor:
     'Electrolysis of water yields oxygen and hydrogen, both very useful gases',
-  action: () => {},
   emoji: '💦',
   todo: true,
   activeLayout: (

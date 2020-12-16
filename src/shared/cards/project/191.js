@@ -15,9 +15,8 @@ export default new Event({
   },
   desc,
   flavor: 'Thawing the subsurface',
-  action: () => {},
+  action: (player, game, done) => game.promptTile(player, 'ocean', done),
   emoji: '👨‍🔧',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

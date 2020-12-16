@@ -14,9 +14,8 @@ export default new Event({
   tags: ['earth', 'space', 'event'],
   desc,
   flavor: 'Greenhouse gases (GHG) with improved effect',
-  action: () => {},
+  action: (player, game) => game.production(player, 'heat', 2),
   emoji: '🍾',
-  todo: true,
   layout: (
     <div className="text-center">
       <Production>

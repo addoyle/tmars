@@ -21,7 +21,6 @@ export default new Active({
   desc,
   flavor:
     'The scientific elite, assembled on the top of Olympus Mons, the highest spot in the solar system',
-  action: () => {},
   vp: 1,
   emoji: '💼',
   todo: true,

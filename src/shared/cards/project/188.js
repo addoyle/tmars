@@ -16,7 +16,12 @@ export default new Event({
   tags: ['event'],
   desc,
   flavor: 'Look out for tsunamis',
-  action: () => {},
+  action: (player, game, done) =>
+    game.promptTile(player, 'ocean', tile => {
+      // TODO: take 4 MC from an adjacent player
+      console.log(tile);
+      done();
+    }),
   vp: -1,
   emoji: '🌊',
   todo: true,

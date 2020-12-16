@@ -22,10 +22,12 @@ export default new Automated({
   desc,
   flavor:
     'Utilizing the uniquely dense and moist atmosphere in the canyons of Noctis Labyrinthus',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'megacredit', 1);
+    game.resources(player, 'plant', 2);
+  },
   vp: 1,
   emoji: '🚜',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 middle text-center">

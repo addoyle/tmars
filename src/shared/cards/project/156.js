@@ -13,7 +13,6 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Standard solutions honed to perfection',
-  action: () => {},
   emoji: '👨‍💻',
   todo: true,
   activeLayout: (

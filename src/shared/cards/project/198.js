@@ -17,9 +17,13 @@ export default new Automated({
   tags: ['earth', 'space'],
   desc,
   flavor: 'The new world attracts ever more immigrants from the old',
-  action: () => {},
+  action: (player, game) => game.production(player, 'megacredit', 5),
+  vp: (player, game) =>
+    game.field
+      .flat()
+      .concat(Object.values(game.offMars))
+      .filter(t => t.type === 'city' || t.type === 'capital city').length,
   emoji: '🛬',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

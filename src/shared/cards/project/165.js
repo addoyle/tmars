@@ -16,9 +16,19 @@ export default new Automated({
   desc,
   flavor:
     'By generating a magnetic field, you can protect organisms from cosmic radiation',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', -4);
+    game.production(player, 'plant', 2);
+    game.tr(player, 3);
+  },
+  canPlay: player => {
+    const valid = player.production.power >= 4;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
   emoji: '🧲',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter">

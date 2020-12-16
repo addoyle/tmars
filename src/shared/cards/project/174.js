@@ -8,6 +8,9 @@ import {
 
 const desc =
   'Increase your M€ production 2 steps. Place a greenery tile ON AN AREA RESERVED FOR OCEAN, disregarding normal placement restrictions, and increase oxygen 1 step.';
+const customFilter = tile =>
+  // Area reserved for ocean
+  tile.attrs?.includes('reserved-ocean');
 
 export default new Automated({
   number: 174,
@@ -17,9 +20,20 @@ export default new Automated({
   desc,
   flavor:
     'A fertile valley with higher air density and humidity, but in need of protection when the oceans rise',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'megacredit', 2);
+    game.promptTile(player, 'greenery', done, customFilter);
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.findPossibleTiles('greenery', player, customFilter)
+      .length;
+
+    return {
+      valid,
+      msg: !valid ? 'No spaces reserved for ocean availble' : null
+    };
+  },
   emoji: '🏞',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

@@ -16,9 +16,11 @@ export default new Automated({
   desc,
   flavor:
     'Fuel production and metal refining can be programmed into microorganisms',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', 1);
+    game.production(player, 'steel', 1);
+  },
   emoji: '🦠️',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

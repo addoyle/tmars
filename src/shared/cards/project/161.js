@@ -11,9 +11,11 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'Bringing ice and other key supplies from the Jovian moon Europa',
-  action: () => {},
+  action: (player, game, done) => {
+    game.drawCard(player);
+    game.promptTile(player, 'ocean', done);
+  },
   emoji: '📦',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources text-center">

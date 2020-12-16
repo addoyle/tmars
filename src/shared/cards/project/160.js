@@ -20,9 +20,27 @@ export default new Automated({
   },
   desc,
   flavor: 'Dominating the energy market allows you to make hostile takovers',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptPlayer(
+      player,
+      { production: 'power' },
+      ['took 2 power ', { resource: 'power' }, ' production from'],
+      targetPlayer => {
+        game.production(player, 'power', 1);
+        game.production(targetPlayer, 'power', -1);
+        done();
+      }
+    );
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.players.filter(player => player.production.power > 0)
+      .length;
+    return {
+      valid,
+      msg: !valid ? 'Requires at least one player with power production' : null
+    };
+  },
   emoji: '🔋',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

@@ -20,10 +20,9 @@ export default new Automated({
   },
   desc,
   flavor: 'At last we have more useful winds',
-  action: () => {},
+  action: (player, game) => game.production(player, 'power', 1),
   vp: 1,
   emoji: '🌬',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

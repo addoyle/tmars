@@ -13,7 +13,6 @@ export default new Active({
   tags: ['science'],
   activeDesc,
   flavor: 'Pushing the limits of the possible',
-  action: () => {},
   vp: 1,
   emoji: '🥽',
   todo: true,

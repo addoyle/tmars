@@ -19,7 +19,6 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'In charge of establishing comfortable temperatures',
-  action: () => {},
   emoji: '📝',
   todo: true,
   activeLayout: (

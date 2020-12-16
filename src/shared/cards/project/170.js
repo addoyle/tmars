@@ -16,7 +16,12 @@ export default new Event({
   desc,
   flavor:
     'Ammonia is a greenhouse gas, as well as being a convenient nitrogen source for organisms',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'heat', 3);
+    game.production(player, 'plant', 1);
+
+    // TODO add microbes to card
+  },
   emoji: '☄',
   todo: true,
   layout: (

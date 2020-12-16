@@ -22,10 +22,9 @@ export default new Active({
   desc,
   flavor:
     'Finally successful, anti-gravity will revolutionize everything, from households to industry and space travel',
-  action: () => {},
+  action: player => (player.rates.cost.all = (player.rates.cost.all || 0) - 2),
   vp: 3,
   emoji: '🕴',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

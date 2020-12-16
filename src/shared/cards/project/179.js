@@ -16,10 +16,19 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'There are many harmful elements to remove',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'plant', 1);
+  },
+  canPlay: player => {
+    const valid = player.production.power > 0;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
   vp: 1,
   emoji: '🌱',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1">

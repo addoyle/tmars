@@ -15,9 +15,18 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Taking a loan to fund that urgent project',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'megacredit', -1);
+    game.resources(player, 'megacredit', 10);
+  },
+  canPlay: player => {
+    const valid = player.production.megacredit > -5;
+    return {
+      valid,
+      msg: !valid ? 'M€ production too low' : null
+    };
+  },
   emoji: '📉',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter center">

@@ -16,9 +16,16 @@ export default new Automated({
   tags: ['power'],
   desc,
   flavor: 'Minimizing urban energy spending',
-  action: () => {},
+  action: (player, game) =>
+    game.production(
+      player,
+      'power',
+      game.field
+        .flat()
+        .concat(Object.values(game.offMars))
+        .filter(t => t.type === 'city' || t.type === 'capital city').length
+    ),
   emoji: '🔋',
-  todo: true,
   layout: (
     <div className="flex gutter m-bottom">
       <div className="middle text-center">

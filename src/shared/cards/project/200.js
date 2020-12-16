@@ -21,7 +21,31 @@ export default new Active({
   desc,
   flavor:
     'Taking care of immigrants is costly, but will begin to pay off when they start working for you in the growing society',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', -2);
+    game.promptTile(player, 'city', done);
+  },
+  canPlay: (player, game) => {
+    if (player.production.power < 1) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+    if (player.production.megacredit <= -4) {
+      return {
+        valid: false,
+        msg: 'Not enough M€ production'
+      };
+    }
+
+    const valid = !!game.findPossibleTiles('city', player).length;
+    return {
+      valid,
+      msg: !valid ? 'Cannot place city tile' : null
+    };
+  },
   emoji: '🌃',
   todo: true,
   activeLayout: (

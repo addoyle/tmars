@@ -15,9 +15,8 @@ export default new Automated({
   desc,
   flavor:
     'Small, mass-produced windmills that convert some of the ever-present wind into heat',
-  action: () => {},
+  action: (player, game) => game.production(player, 'heat', 1),
   emoji: '💨',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

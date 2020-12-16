@@ -17,9 +17,9 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Coordinating orbital traffic',
-  action: () => {},
+  action: (player, game) =>
+    game.production(player, 'megacredit', player.tags.space),
   emoji: '🛰',
-  todo: true,
   layout: (
     <div className="text-center">
       <Production>

@@ -26,10 +26,20 @@ export default new Active({
   desc,
   flavor:
     'Aided by low gravity going up, and by the increasing atmosphere when gliding down for landing',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', 2);
+    player.rates.cost.space = (player.rates.cost.space || 0) - 2;
+  },
+  canPlay: player => {
+    const valid = player.production.power > 0;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
   vp: 1,
   emoji: '🚌',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

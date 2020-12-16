@@ -16,10 +16,9 @@ export default new Automated({
   desc,
   flavor:
     'In a stationary orbit far from the planet, enabling very precise measurements',
-  action: () => {},
+  action: (player, game) => game.drawCard(player),
   vp: 1,
   emoji: '🔭',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

@@ -12,6 +12,8 @@ const activeDesc =
 const desc =
   'Requires 8% oxygen. Add 1 animal to this card. Decrease any plant production 1 step. 1 VP per 2 animals on this card.';
 
+// TODO ACTION
+
 export default new Active({
   number: 147,
   title: 'Herbivores',
@@ -24,7 +26,27 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Inhabiting the green hills of Mars',
-  action: () => {},
+  action: (player, game, done) => {
+    // TODO: figure out how to add an animal to a card
+    game.promptPlayer(
+      player,
+      { production: 'plant' },
+      ['took 1 plant ', { resource: 'plant' }, ' production from'],
+      targetPlayer => {
+        game.production(targetPlayer, 'plant', -1);
+        done();
+      }
+    );
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.players.filter(player => player.production.plant > 0)
+      .length;
+    return {
+      valid,
+      msg: !valid ? 'Requires at least one player with plant production' : null
+    };
+  },
+  vp: () => Math.floor(this.resources / 2),
   emoji: '🦌️',
   todo: true,
   activeLayout: (

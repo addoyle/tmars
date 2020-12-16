@@ -23,7 +23,18 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Providing meat, wood, leather, etc.',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'plant', -1);
+    game.production(player, 'megacredit', 2);
+  },
+  canPlay: player => {
+    const valid = player.production.plant > 0;
+    return {
+      valid,
+      msg: !valid ? 'Not enough plant production' : null
+    };
+  },
+  vp: () => this.resources,
   emoji: '🐄',
   todo: true,
   activeLayout: (

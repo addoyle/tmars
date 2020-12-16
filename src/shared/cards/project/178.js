@@ -16,10 +16,28 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Utilizing temperature gradients for energy production',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptPlayer(
+      player,
+      { production: 'heat' },
+      ['took 2 heat ', { resource: 'heat' }, ' production from'],
+      targetPlayer => {
+        game.production(player, 'power', 1);
+        game.production(targetPlayer, 'heat', -2);
+        done();
+      }
+    );
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.players.filter(player => player.production.heat >= 2)
+      .length;
+    return {
+      valid,
+      msg: !valid ? 'Requires at least one player with 2 heat production' : null
+    };
+  },
   vp: -1,
   emoji: '🔥',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 middle text-center">

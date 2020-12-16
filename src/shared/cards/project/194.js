@@ -16,7 +16,6 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Efficiency through flexibility',
-  action: () => {},
   emoji: '🔌',
   todo: true,
   activeLayout: (

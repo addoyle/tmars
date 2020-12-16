@@ -66,7 +66,12 @@ export default class Project extends Card {
     // Check tiles
     if (this.restriction.tile) {
       const tile = this.restriction.tile;
-      const tiles = game.field.flat().filter(t => t.type === tile);
+      const tiles = game.field
+        .flat()
+        .concat(Object.values(game.offMars))
+        .filter(
+          t => t.type === tile || (tile === 'city' && t.type === 'capital city')
+        );
       const actual =
         tile === 'ocean' || this.restriction.anyone
           ? tiles.length
