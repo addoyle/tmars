@@ -19,10 +19,12 @@ export default new Automated({
   },
   desc,
   flavor: 'Examining the extreme environment at the lowest elevation on Venus',
-  action: () => {},
+  action: (player, game) => {
+    game.drawCard(player);
+    game.drawCard(player);
+  },
   vp: 2,
   emoji: '❄️',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-2 middle text-center">

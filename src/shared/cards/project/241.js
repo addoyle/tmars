@@ -17,9 +17,8 @@ export default new Automated({
   },
   desc,
   flavor: 'Constructing the corridors of power',
-  action: () => {},
+  action: (player, game) => game.tr(player, 2),
   emoji: '🏛',
-  todo: true,
   layout: (
     <div>
       <div className="resources text-center">

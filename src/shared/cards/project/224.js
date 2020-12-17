@@ -21,7 +21,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Surviving even on the surface of Venus',
-  action: () => {},
+  vp: () => Math.floor(this.resources / 3),
   emoji: '🧊',
   todo: true,
   activeLayout: (

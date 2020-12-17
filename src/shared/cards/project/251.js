@@ -22,7 +22,6 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Converting it into useful materials',
-  action: () => {},
   emoji: '🦠',
   todo: true,
   activeLayout: (

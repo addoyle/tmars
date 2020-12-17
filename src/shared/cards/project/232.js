@@ -16,10 +16,15 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'Finding new uses for all the suphur coming out of the Venus venture',
-  action: () => {},
+  action: (player, game) => {
+    game.drawCard(player);
+    if (player.tags.venus >= 3) {
+      game.drawCard(player);
+      game.drawCard(player);
+    }
+  },
   vp: 2,
   emoji: '🔬',
-  todo: true,
   layout: (
     <div className="m-top">
       <div className="resources text-center">

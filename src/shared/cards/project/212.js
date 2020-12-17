@@ -22,7 +22,7 @@ export default new Active({
   desc,
   flavor:
     'Everybody loves penguins. And penguins love the new oceans and glaciers on Mars',
-  action: () => {},
+  vp: () => this.resources,
   emoji: '🐧',
   todo: true,
   activeLayout: (

@@ -22,9 +22,8 @@ export default new Active({
   desc,
   flavor:
     'Studying the natural alloys of the Mercurian ground has led to a breakthrough in materials science',
-  action: () => {},
+  action: player => player.rates.titanium++,
   emoji: '🔩',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

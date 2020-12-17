@@ -23,10 +23,20 @@ export default new Automated({
   desc,
   flavor:
     'Rolling around Mercury, always just before sunrise - time seems to stand still',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'titanium', 1);
+    game.placeTile(player, game.offMars.dawn, 'city', done);
+  },
+  canPlay: player => {
+    const valid = player.production.power > 0;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
   vp: 3,
   emoji: '🌃',
-  todo: true,
   layout: (
     <div>
       <div className="flex gutter">

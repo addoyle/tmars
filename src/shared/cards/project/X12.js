@@ -17,10 +17,10 @@ export default new Automated({
   desc,
   flavor:
     'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
-  action: () => {},
+  action: (player, game, done) =>
+    game.placeTile(player, game.offMars.torus, 'city', done),
   vp: 2,
   emoji: '🍩',
-  todo: true,
   layout: (
     <div className="flex">
       <div className="col-1 middle">

@@ -13,9 +13,19 @@ export default new Event({
   set: 'promo',
   desc,
   flavor: 'I made that crater - can I name it?',
-  action: () => {},
+  action: (player, game, done) =>
+    game.param(player, 'temperature', () =>
+      game.promptPlayer(
+        player,
+        { resources: 'plant' },
+        ['took 2 plants ', { resource: 'plant' }, ' from'],
+        targetPlayer => {
+          targetPlayer && game.resources(targetPlayer, 'plant', -2);
+          done();
+        }
+      )
+    ),
   emoji: '☄',
-  todo: true,
   layout: (
     <div className="flex m-bottom">
       <div className="col-1 middle">

@@ -16,7 +16,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Removing the sulphuric acids',
-  action: () => {},
+  action: (player, game, done) => game.param(player, 'venus', done),
   emoji: '🏭',
   todo: true,
   layout: (

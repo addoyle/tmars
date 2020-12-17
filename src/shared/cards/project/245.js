@@ -19,10 +19,12 @@ export default new Automated({
   },
   desc,
   flavor: 'Connecting the planets to the Cloud',
-  action: () => {},
+  action: (player, game) => {
+    game.drawCard(player);
+    game.drawCard(player);
+  },
   vp: 1,
   emoji: '💻',
-  todo: true,
   layout: (
     <div>
       <div className="flex gutter">

@@ -20,11 +20,12 @@ const Tags = props => {
     animal,
     city,
     event,
-    venus
+    venus,
+    any
   } = props.tags;
 
   const tags = [
-    [{ building }, { jovian }, { animal }],
+    [{ building }, { jovian }, { animal }, { any }],
     [{ space }, { earth }, { city }],
     [{ power }, { plant }, { event }],
     [{ science }, { microbe }, { venus }]
@@ -40,7 +41,7 @@ const Tags = props => {
               const key = Object.keys(tag)[0];
               const val = tag[key];
 
-              return props.venus || key !== 'venus' ? (
+              return val !== undefined && (props.venus || key !== 'venus') ? (
                 <div className="flex" key={j}>
                   <div className="resources col-1 text-right">
                     <span>{val}</span>
@@ -71,7 +72,8 @@ Tags.propTypes = {
     animal: PropTypes.number,
     city: PropTypes.number,
     event: PropTypes.number,
-    venus: PropTypes.number
+    venus: PropTypes.number,
+    any: PropTypes.number
   }),
   venus: PropTypes.bool
 };

@@ -139,7 +139,10 @@ ProjectLayout.propTypes = {
     value: PropTypes.number
   }),
   type: PropTypes.string,
-  set: PropTypes.string,
+  set: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   tags: PropTypes.arrayOf(PropTypes.string),
   activeLayout: PropTypes.node,
   emoji: PropTypes.string,

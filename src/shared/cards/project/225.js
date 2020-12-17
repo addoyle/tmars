@@ -22,7 +22,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Living in the clouds',
-  action: () => {},
+  vp: () => Math.floor(this.resources),
   emoji: '🏡',
   todo: true,
   activeLayout: (

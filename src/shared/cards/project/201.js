@@ -17,10 +17,28 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'They need it. But we need it more',
-  action: () => {},
+  action: (player, game, done) => {
+    game.promptPlayer(
+      player,
+      { production: 'power' },
+      ['took 1 power ', { resource: 'power' }, ' production from'],
+      targetPlayer => {
+        game.production(targetPlayer, 'power', -1);
+        game.production(player, 'power', 1);
+        done();
+      }
+    );
+  },
+  canPlay: (player, game) => {
+    const valid = !!game.players.filter(player => player.production.power > 0)
+      .length;
+    return {
+      valid,
+      msg: !valid ? 'Requires at least one player with power production' : null
+    };
+  },
   vp: -1,
   emoji: '🔌',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

@@ -10,15 +10,26 @@ const desc =
 
 export default new Event({
   number: 218,
-  title: 'Coment For Venus',
+  title: 'Comet For Venus',
   cost: 11,
   tags: ['space', 'event'],
   set: 'venus',
   desc,
   flavor: 'Directing it to an almost safe place',
-  action: () => {},
+  action: (player, game, done) =>
+    game.param(player, 'venus', () =>
+      game.promptPlayer(
+        player,
+        { resources: 'megacredit' },
+        ['took 4 M€ ', { megacredit: null }, ' from'],
+        targetPlayer => {
+          targetPlayer && game.resources(targetPlayer, 'megacredit', -4);
+          done();
+        },
+        p => p.tags.venus > 0
+      )
+    ),
   emoji: '☄',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

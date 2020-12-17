@@ -17,7 +17,16 @@ export default new Automated({
   desc,
   flavor:
     'Allowing universities independence, but with an ‘incentive’ to help you',
-  action: () => {},
+  action: (player, game) => {
+    // TODO pick card to discard
+    game.drawCard(player);
+    game.drawCard(player);
+    game.drawCard(player);
+
+    game.players
+      .filter(p => p.number !== player.number)
+      .forEach(p => game.drawCard(p));
+  },
   vp: 1,
   emoji: '🏫',
   todo: true,

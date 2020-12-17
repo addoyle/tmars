@@ -17,9 +17,9 @@ export default new Active({
   set: 'venus',
   activeDesc,
   flavor: 'Connecting the atmospheric shuttles to the interplanetary flights',
-  action: () => {},
+  action: player =>
+    (player.rates.cost.venus = (player.rates.cost.venus || 0) - 2),
   emoji: '🚏',
-  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">

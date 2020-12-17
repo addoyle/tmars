@@ -7,6 +7,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO action
+
 const activeDesc = 'Action: Gain 1 M€ per science tag you have.';
 const desc = 'Decrease your M€ production 2 steps.';
 
@@ -20,7 +22,11 @@ export default new Active({
   desc,
   flavor:
     'Debris in low Earth orbit is a steadily growing hazard for space traffic',
-  action: () => {},
+  action: (player, game) => game.production(player, 'megacredit', -2),
+  canPlay: player => {
+    const valid = player.production.megacredit > -4;
+    return { valid, msg: !valid ? 'Not enough M€ production' : null };
+  },
   vp: 2,
   emoji: '🛰',
   todo: true,

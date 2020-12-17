@@ -24,7 +24,6 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Cold-loving bacteria, preparing the ground for the new ecosystem',
-  action: () => {},
   emoji: '🦠',
   todo: true,
   activeLayout: (

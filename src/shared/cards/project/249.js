@@ -23,7 +23,10 @@ export default new Active({
   desc,
   flavor:
     'Living in the thick air, nesting on man-made structures, far away from the furnace at ground level',
-  action: () => {},
+  action: () => {
+    // TODO figure out how to remove floater
+  },
+  vp: () => this.resources,
   emoji: '🦅',
   todo: true,
   activeLayout: (

@@ -4,6 +4,8 @@ import { Resource } from '../../../client/game/components/assets/Assets';
 
 const desc = 'Requires that you have 2 Party Leaders. Gain 1 TR.';
 
+// TODO implement this when TURMOIL gets added
+
 export default new Event({
   number: 'X09',
   title: 'Political Alliance',

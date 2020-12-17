@@ -19,10 +19,12 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'The largest city on the Moon',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'megacredit', player.tags.earth);
+    game.placeTile(player, game.offMars.luna, 'city', done);
+  },
   vp: 2,
   emoji: '🌃',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div>

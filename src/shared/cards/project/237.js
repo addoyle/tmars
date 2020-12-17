@@ -16,10 +16,8 @@ export default new Automated({
   },
   desc,
   flavor: 'Have you tried the Venusian sulphur salmon?',
-  action: () => {},
   vp: 2,
-  emoji: '🥓',
-  todo: true,
+  emoji: '🍣',
   layout: (
     <div className="flex gutter">
       <div className="col-4 description middle text-center">{desc}</div>

@@ -16,9 +16,11 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'Dual terraforming by redirecting sunlight from Venus to Mars',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'heat', 2);
+    game.param(player, 'venus', () => game.param(player, 'venus', done));
+  },
   emoji: '🪞',
-  todo: true,
   layout: (
     <div>
       <div className="flex gutter">

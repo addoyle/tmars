@@ -15,10 +15,9 @@ export default new Automated({
   set: 'prelude',
   desc,
   flavor: 'A tribute to those who inspired us to come',
-  action: () => {},
+  action: (player, game) => game.drawCard(player),
   vp: 1,
   emoji: '🗽',
-  todo: true,
   layout: (
     <div className="flex">
       <div className="col-1 middle text-center">

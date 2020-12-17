@@ -16,10 +16,9 @@ export default new Active({
   set: 'promo',
   activeDesc,
   flavor: 'Silicon-based plastics for everyday use. Made from Martian regolith',
-  action: () => {},
+  action: player => player.rates.steel++,
   vp: 1,
   emoji: '♻',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

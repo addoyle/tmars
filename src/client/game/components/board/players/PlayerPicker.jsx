@@ -15,7 +15,9 @@ import { toJS } from 'mobx';
 const PlayerPicker = ({ gameStore }) => {
   const icon = gameStore.playerStatus?.icon;
   // TODO: Handle protected habitats
+
   const disabled = player =>
+    !gameStore.playerStatus?.validPlayers?.includes(player.number) ||
     (icon?.resources && player?.resources[icon.resources] <= 0) ||
     (icon?.production &&
       !(
@@ -105,7 +107,8 @@ PlayerPicker.propTypes = {
         production: PropTypes.string,
         resources: PropTypes.string
       }),
-      type: PropTypes.string
+      type: PropTypes.string,
+      validPlayers: PropTypes.arrayOf(PropTypes.number)
     }),
     pickPlayer: PropTypes.func,
     turn: PropTypes.number

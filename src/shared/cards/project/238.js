@@ -7,6 +7,8 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
+// TODO action
+
 const activeDesc = 'Action: Add 1 resource to ANOTHER VENUS CARD.';
 const desc =
   'Requires Venus 12%. Decrease your energy production 1 step. Place a city tile ON THE RESERVED AREA.';
@@ -25,7 +27,17 @@ export default new Active({
   desc,
   flavor:
     'A much needed base of operations in the high mountains of the Ishtar continent',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -1);
+    game.placeTile(player, game.offMars.maxwell, 'city', done);
+  },
+  canPlay: player => {
+    const valid = player.production.power > 0;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
   vp: 3,
   emoji: '🌆',
   todo: true,

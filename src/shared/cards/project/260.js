@@ -8,6 +8,8 @@ import {
 const activeDesc = 'Action: Add 1 microbe to this card.';
 const desc = 'Requires Venus 12%. 1 VP per 2 microbes on this card.';
 
+// TODO action
+
 export default new Active({
   number: 260,
   title: 'Venusian Insects',
@@ -22,7 +24,7 @@ export default new Active({
   desc,
   flavor:
     'With engineered chitin carapace to withstand the corrosive environment',
-  action: () => {},
+  vp: () => Math.floor(this.resources / 2),
   emoji: '🐞',
   todo: true,
   activeLayout: (

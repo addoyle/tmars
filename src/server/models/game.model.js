@@ -460,8 +460,9 @@ class Game extends SharedGame {
    * @param {object} icon The icon to prompt for
    * @param {array} logSnippet The snippet of a log that would fit this sentence: '{player} {snippet} {targetPlayer}'
    * @param {func} callback Callback once the player is picked
+   * @param {func} filter Optional player filter
    */
-  promptPlayer(player, icon, logSnippet, callback) {
+  promptPlayer(player, icon, logSnippet, callback, filter = () => true) {
     player.ui = {
       activeCard: { show: false }
     };
@@ -471,6 +472,7 @@ class Game extends SharedGame {
       icon,
       player,
       logSnippet,
+      validPlayers: this.players.filter(filter).map(p => p.number),
       done: pickedPlayer => {
         // Player status is resolved
         this.playerStatus = null;

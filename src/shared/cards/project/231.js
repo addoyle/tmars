@@ -18,7 +18,10 @@ export default new Event({
   desc,
   flavor:
     'Easily collected from the gas giants, hydrogen can increase floating power, or be converted to precious water',
-  action: () => {},
+  action: (player, game, done) => {
+    // TODO: Figure out flaoters
+    game.param(player, 'venus', done);
+  },
   emoji: '🌀',
   todo: true,
   layout: (

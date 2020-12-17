@@ -19,10 +19,10 @@ export default new Automated({
   desc,
   flavor:
     'Providing health care for the public can be lucrative, as well as noble',
-  action: () => {},
+  action: (player, game) =>
+    game.production(player, 'megacredit', Math.floor(player.tags.building / 2)),
   vp: 1,
   emoji: '🔬',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-3 middle text-center">

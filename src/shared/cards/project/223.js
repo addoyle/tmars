@@ -16,7 +16,7 @@ export default new Active({
   desc,
   flavor:
     'Processing the atmosphere, sealing small packs of useful materials to the surface',
-  action: () => {},
+  action: () => (this.resources = 3),
   emoji: '🎈',
   todo: true,
   activeLayout: (

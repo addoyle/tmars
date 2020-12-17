@@ -20,9 +20,8 @@ export default new Automated({
   desc,
   flavor:
     'Space tourism was one of the most important sources of income for the space industry',
-  action: () => {},
+  action: (player, game) => game.production(player, 'megacredit', 4),
   emoji: '🏨',
-  todo: true,
   layout: (
     <div className="flex m-top m-bottom">
       <div className="col-1 middle text-center">

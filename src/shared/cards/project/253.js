@@ -19,7 +19,6 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Thriving in the extreme heat, doing your work for you',
-  action: () => {},
   emoji: '🥵',
   todo: true,
   activeLayout: (

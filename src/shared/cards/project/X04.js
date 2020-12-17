@@ -18,7 +18,6 @@ export default new Active({
   activeDesc,
   flavor:
     'Expensive equipment and highly educated researchers focusing on advanced projects',
-  action: () => {},
   VP: 1,
   emoji: '🔬',
   todo: true,

@@ -7,6 +7,8 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
+// TODO action
+
 const activeDesc =
   'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
 const desc = 'Add 1 floater for every Earth tag you have, including this.';
@@ -20,7 +22,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: () => {},
+  action: player => (this.resource = player.tags.earth),
   vp: 1,
   emoji: '🏄',
   todo: true,

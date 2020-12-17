@@ -12,9 +12,11 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Testing launch techniques, space hardware, and whatnot',
-  action: () => {},
+  action: (player, game) => {
+    game.drawCard(player);
+    game.drawCard(player);
+  },
   emoji: '💡',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="resources">

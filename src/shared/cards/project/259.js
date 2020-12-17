@@ -6,6 +6,8 @@ import {
   Resource
 } from '../../../client/game/components/assets/Assets';
 
+// TODO action
+
 const activeDesc =
   'Effect: When you play a Science tag, including this, add 1 animal to this card.';
 const desc = 'Requires Venus 18%. 1 VP for each animal on this card.';
@@ -23,7 +25,7 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Heavy genetic engineering is needed for this work',
-  action: () => {},
+  vp: () => this.resources,
   emoji: '🦓',
   todo: true,
   activeLayout: (

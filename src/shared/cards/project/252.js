@@ -20,9 +20,8 @@ export default new Automated({
   },
   desc,
   flavor: 'A lucrative deal for a proven terraformer',
-  action: () => {},
+  action: (player, game) => game.production(player, 'megacredit', 4),
   emoji: '📜',
-  todo: true,
   layout: (
     <div className="flex gutter m-top m-bottom">
       <Production>

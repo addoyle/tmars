@@ -16,7 +16,29 @@ export default new Event({
   set: 'promo',
   desc,
   flavor: 'See you in court',
-  serverAction: () => {},
+  action: (player, game, done) =>
+    game.promptPlayer(
+      player,
+      { resources: 'megacredit' },
+      ['stole 3 M€ ', { megacredit: null }, ' from'],
+      targetPlayer => {
+        if (targetPlayer) {
+          let diff = targetPlayer.resources.megacredit - 3;
+          diff = diff < 0 ? 0 : diff;
+
+          game.resources(player, 'megacredit', diff < 3 ? diff : 3);
+          game.resources(targetPlayer, 'megacredit', -3);
+
+          // Remove card from player's events
+          player.cards.event = player.cards.event.filter(c => c.card !== 'X06');
+          player.tags.event--;
+          // Move to target player's events
+          targetPlayer.cards.event.push({ card: 'X06' });
+          targetPlayer.tags.event++;
+        }
+        done();
+      }
+    ),
   vp: -1,
   emoji: '👨‍⚖️',
   todo: true,

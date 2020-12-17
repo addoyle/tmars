@@ -11,7 +11,7 @@ const desc =
 const customFilter = (tile, game, notReserved) =>
   // Not reserved
   notReserved(tile) &&
-  // Is Hellas
+  // Is Hellas (no volcano spaces)
   (game.board.toLowerCase() === 'hellas' ||
     // Or is a volcanic area
     tile.attrs?.includes('volcano'));

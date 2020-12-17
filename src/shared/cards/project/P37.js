@@ -9,6 +9,13 @@ import {
 
 const desc =
   'Decrease your energy production 1 step. Increase your M€ production 2 steps. Place a city tile ON A VOLCANIC AREA, same as Lava Flows, regardless of adjacent cities.';
+const customFilter = (tile, game, notReserved) =>
+  // Not reserved
+  notReserved(tile) &&
+  // Is Hellas (no volcano spaces)
+  (game.board.toLowerCase() === 'hellas' ||
+    // Or is a volcanic area
+    tile.attrs?.includes('volcano'));
 
 export default new Automated({
   number: 'P37',
@@ -19,9 +26,31 @@ export default new Automated({
   desc,
   flavor:
     'Giant lava tubes can provide protection for early settlements on Mars',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', 2);
+    game.promptTile(player, 'city', done, customFilter);
+  },
+  canPlay: (player, game) => {
+    if (player.production.power < 1) {
+      return {
+        valid: false,
+        msg: 'Not enough power production'
+      };
+    }
+
+    const valid = !!game.findPossibleTiles(
+      { special: 'volcano' },
+      player,
+      customFilter
+    ).length;
+
+    return {
+      valid,
+      msg: !valid ? 'No volcanic areas availble' : null
+    };
+  },
   emoji: '🚇',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-center">

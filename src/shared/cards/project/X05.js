@@ -18,10 +18,18 @@ export default new Automated({
   set: 'promo',
   desc,
   flavor: 'Deuterium, diamonds, and delicacies',
-  action: () => {},
+  action: (player, game) =>
+    game.production(
+      player,
+      'megacredit',
+      Object.entries(player.tags)
+        // Event tags don't count as they are not "in play"
+        .filter(e => e[0] !== 'event')
+        .map(e => e[1])
+        .filter(n => n > 0).length
+    ),
   vp: 1,
   emoji: '💶',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="middle text-center">

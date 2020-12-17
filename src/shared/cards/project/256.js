@@ -24,7 +24,6 @@ export default new Active({
   desc,
   flavor:
     'After reducing the most corrosive elements from the atmosphere, cables can be deployed around the equator, the current creating a magnetic field',
-  action: () => {},
   emoji: '🧲',
   todo: true,
   activeLayout: (

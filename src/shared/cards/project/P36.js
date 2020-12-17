@@ -16,10 +16,9 @@ export default new Automated({
   set: 'prelude',
   desc,
   flavor: 'Large scale 3D printing - on Mars',
-  action: () => {},
+  action: (player, game) => game.production(player, 'steel', 1),
   vp: 1,
   emoji: '🖨',
-  todo: true,
   layout: (
     <div className="flex">
       <div className="col-1 middle">

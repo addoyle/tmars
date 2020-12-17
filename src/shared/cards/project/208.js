@@ -23,7 +23,16 @@ export default new Active({
   },
   activeDesc,
   flavor: '"42"',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', -1);
+  },
+  canPlay: player => {
+    const valid = player.production.power > 0;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
   vp: 1,
   emoji: '🖥️',
   todo: true,

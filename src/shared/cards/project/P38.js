@@ -20,9 +20,11 @@ export default new Event({
   },
   desc,
   flavor: 'A thorough investigation of the geology of Mars',
-  action: () => {},
+  action: (player, game) => {
+    game.drawCard(player);
+    game.drawCard(player);
+  },
   emoji: '🔦',
-  todo: true,
   vp: 1,
   layout: (
     <div className="flex gutter">

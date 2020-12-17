@@ -8,6 +8,8 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
+// TODO action
+
 const activeDesc = 'Action: Add 2 floaters to ANY VENUS CARD.';
 const desc =
   'Requires 2 science tags. Increase your M€ production 2 steps. Place a city tile on THE RESERVED AREA. 1 VP per 3 floaters on this card.';
@@ -25,7 +27,11 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'A center of commerce in the cool clouds',
-  action: () => {},
+  action: (player, game, done) => {
+    game.production(player, 'megacredit', 2);
+    game.placeTile(player, game.offMars.stratopolis, 'city', done);
+  },
+  vp: () => Math.floor(this.resources / 3),
   emoji: '🌥',
   todo: true,
   activeLayout: (

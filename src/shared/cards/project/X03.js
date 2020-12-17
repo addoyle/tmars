@@ -18,7 +18,6 @@ export default new Active({
   activeDesc,
   flavor:
     'Coordinating the supply and demand of energy gives you a flexible position',
-  action: () => {},
   emoji: '🏦',
   todo: true,
   activeLayout: (

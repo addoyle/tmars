@@ -18,7 +18,7 @@ export default new Active({
   flavor:
     'The D/H ratio on Venus is 100 times higher than on Earth, making it worthwile to extract and use on fusion power plants',
   action: () => {},
-  emoji: '⚛',
+  emoji: '🛢️',
   todo: true,
   activeLayout: (
     <div>

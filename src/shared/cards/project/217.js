@@ -9,6 +9,8 @@ import {
 const desc =
   'Requires 3 science tags. Either raise the temperature 2 steps, or raise Venus 2 steps. Add 2 floaters to ANY card.';
 
+// TODO figure out OR and floaters
+
 export default new Automated({
   number: 217,
   title: 'Atmoscoop',

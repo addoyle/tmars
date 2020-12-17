@@ -136,12 +136,15 @@ class GameService {
     if (cardType === 'event') {
       player.tags.event++;
     } else {
-      playedCard.tags.forEach(tag => player.tags[tag]++);
+      playedCard.tags.forEach(
+        tag => (player.tags[tag] = (player.tags[tag] || 0) + 1)
+      );
     }
 
     const done = () => {
       // Put card in appropriate drawer, and remove from hand
-      player.cards[cardType].push(card.card);
+      // HACK to handle Law Suit, which doesn't go in player's hand
+      card.card !== 'X06' && player.cards[cardType].push(card.card);
       player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
 
       // Trigger card-played events

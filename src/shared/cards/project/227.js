@@ -23,7 +23,18 @@ export default new Automated({
   desc,
   flavor:
     'A safe place to get the ecosystem started, in the northern mountains, where conditions are only mildly hellish',
-  action: () => {},
+  action: (player, game) => {
+    game.production(player, 'power', -1);
+    game.production(player, 'megacredit', 2);
+    // TODO: Figure out putting animals or microbes on cards
+  },
+  canPlay: player => {
+    const valid = player.production.power > 0;
+    return {
+      valid,
+      msg: !valid ? 'Not enough power production' : null
+    };
+  },
   vp: 2,
   emoji: '⛰',
   todo: true,

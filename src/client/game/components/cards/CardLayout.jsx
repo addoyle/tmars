@@ -28,7 +28,10 @@ const CardLayout = props => {
 
 CardLayout.propTypes = {
   type: PropTypes.string.isRequired,
-  set: PropTypes.string,
+  set: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string)
+  ]),
   landscape: PropTypes.bool,
   children: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.node),
