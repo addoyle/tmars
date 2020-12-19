@@ -17,7 +17,7 @@ const paramStats = {
       [-24]: (player, game) => game.production(player, 'heat', 1),
       [-20]: (player, game) => game.production(player, 'heat', 1),
       // TODO: place an ocean
-      0: (player, game, done) => game.promtTile(player, 'ocean', done)
+      0: (player, game, done) => game.promptTile(player, 'ocean', done)
     }
   },
   oxygen: {
@@ -249,8 +249,9 @@ class Game extends SharedGame {
    *
    * @param {Player} player
    * @param {string} pile
+   * @param {function} done If a callback is set, this was done as a card action
    */
-  drawCard(player, pile = 'hand') {
+  drawCard(player, pile = 'hand', done) {
     // Reshuffle draw deck
     if (this.cards.deck.length === 0) {
       this.cards.deck = shuffle(this.cards.discard);
@@ -258,6 +259,34 @@ class Game extends SharedGame {
     }
 
     player.cards[pile].push(this.cards.deck.shift());
+
+    if (done) {
+      // Set the player status
+      this.playerStatus = {
+        player,
+        type: 'buy-card',
+        done: cards => {
+          // Player status is resolved
+          this.playerStatus = null;
+
+          // Show UI components
+          player.ui = {
+            drawer: 'hand'
+          };
+
+          LogService.pushLog(
+            this.id,
+            new Log(player.number, [
+              ` bought ${cards.length} cards `,
+              { param: 'card back' },
+              '.'
+            ])
+          );
+
+          done && done();
+        }
+      };
+    }
   }
 
   /**
@@ -484,7 +513,11 @@ class Game extends SharedGame {
 
         // Show UI components
         player.ui = {
-          drawer: this.phase === 'prelude' ? 'prelude' : 'hand'
+          drawer: this.phase === 'prelude' ? 'prelude' : 'hand',
+          playerStats: {
+            show: true,
+            pid: player.number
+          }
         };
 
         callback && callback(pickedPlayer);
@@ -785,16 +818,11 @@ class Game extends SharedGame {
       .concat(player.cards.corp)
       .find(c => c.card === card.number);
 
-    console.log(card, playerCard);
-
     if (!playerCard.resource) {
-      playerCard.resource = {
-        type: card.resource,
-        value: 0
-      };
+      playerCard.resource = 0;
     }
 
-    playerCard.resource.value += value;
+    playerCard.resource += value;
 
     return playerCard.resource;
   }

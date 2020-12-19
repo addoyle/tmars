@@ -12,7 +12,7 @@ const activeDesc = 'Action: Add 1 animal to this card.';
 const desc =
   'Requires 6% oxygen. Decrease any plant production 1 step. 1 VP per 2 animals on this card.';
 
-export default new Active({
+const card = new Active({
   number: '054',
   title: 'Small Animals',
   cost: 6,
@@ -23,6 +23,7 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'animal',
   flavor: 'Able to live in sparse conditions',
   action: (player, game, done) => {
     game.promptPlayer(
@@ -43,9 +44,16 @@ export default new Active({
       msg: !valid ? 'Requires at least one player with plant production' : null
     };
   },
-  vp: () => Math.floor(this.resources / 2),
+  actions: [
+    {
+      name: 'Add 1 Animal',
+      log: ['add a animal ', { resource: 'animal' }],
+      icon: <Resource name="animal" />,
+      action: (player, game) => game.cardResource(player, card, 1)
+    }
+  ],
+  vp: (player, game) => Math.floor(game.cardResource(player, card) / 2),
   emoji: '🐀',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -77,3 +85,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

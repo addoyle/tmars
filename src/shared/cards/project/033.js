@@ -2,21 +2,44 @@ import React from 'react';
 import Active from '../Active';
 import { Resource, Param } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc =
   'Action: Add 1 microbe to this card, or remove 2 microbes from this card to raise oxygen level 1 step.';
 
-export default new Active({
+const card = new Active({
   number: '033',
   title: 'Regolith Eaters',
   cost: 13,
   tags: ['science', 'microbe'],
   activeDesc,
+  resource: 'microbe',
   flavor: 'Living on the rocks and excreting oxygen',
-  action: () => {},
+  actions: [
+    {
+      name: 'Add 1 Microbe',
+      log: ['add a microbe ', { resource: 'microbe' }],
+      icon: <Resource name="microbe" />,
+      action: (player, game) => {
+        game.cardResource(player, card, 1);
+      }
+    },
+    {
+      name: 'Raise Oxygen',
+      log: ['raise oxygen ', { param: 'oxygen' }],
+      icon: <Param name="oxygen" />,
+      canPlay: (player, game) => {
+        const valid = game.cardResource(player, card) >= 2;
+        return {
+          valid,
+          msg: 'Not enough microbes'
+        };
+      },
+      action: (player, game, done) => {
+        game.cardResource(player, card, -2);
+        game.param(player, 'oxygen', done);
+      }
+    }
+  ],
   emoji: '🦠',
-  todo: true,
   activeLayout: (
     <div>
       <div className="table center">
@@ -56,3 +79,5 @@ export default new Active({
   ),
   layout: <div className="m-top m-bottom" />
 });
+
+export default card;

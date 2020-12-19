@@ -34,9 +34,40 @@ export default new Active({
       msg: !valid ? 'Not enough power production' : null
     };
   },
+  actions: [
+    {
+      name: 'Spend 1 Plant',
+      icon: <Resource name="plant" />,
+      canPlay: player => {
+        const valid = player.resources.plant >= 1;
+        return {
+          valid,
+          msg: 'Not enough plants'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'plant', -1);
+        game.resources(player, 'megacredit', 7);
+      }
+    },
+    {
+      name: 'Spend 1 Steel',
+      icon: <Resource name="steel" />,
+      canPlay: player => {
+        const valid = player.resources.steel >= 1;
+        return {
+          valid,
+          msg: 'Not enough steel'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'steel', -1);
+        game.resources(player, 'megacredit', 7);
+      }
+    }
+  ],
   vp: 1,
   emoji: '🏸',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

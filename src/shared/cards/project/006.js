@@ -1,4 +1,5 @@
 import React from 'react';
+import Param from '../../../client/game/components/assets/Param';
 import Active from '../Active';
 
 // TODO ACTION
@@ -14,8 +15,14 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'When great minds meet, new ideas abound',
+  actions: [
+    {
+      name: 'Look at top card',
+      icon: <Param name="card back" />,
+      action: (player, game, done) => game.drawCard(player, 'buy', done)
+    }
+  ],
   emoji: '🤔',
-  todo: true,
   activeLayout: (
     <div className="flex middle">
       <div className="col-1 resources">

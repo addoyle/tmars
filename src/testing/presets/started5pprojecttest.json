@@ -8,11 +8,11 @@
       "tr": 22,
       "resources": {
         "megacredit": 63,
-        "steel": 0,
-        "titanium": 2,
-        "plant": 0,
-        "power": 0,
-        "heat": 0
+        "steel": 10,
+        "titanium": 12,
+        "plant": 10,
+        "power": 10,
+        "heat": 10
       },
       "production": {
         "megacredit": 0,
@@ -115,11 +115,11 @@
       "tr": 20,
       "resources": {
         "megacredit": 77,
-        "steel": 0,
-        "titanium": 0,
-        "plant": 0,
-        "power": 0,
-        "heat": 0
+        "steel": 10,
+        "titanium": 10,
+        "plant": 10,
+        "power": 10,
+        "heat": 10
       },
       "production": {
         "megacredit": 0,
@@ -218,11 +218,11 @@
       "tr": 22,
       "resources": {
         "megacredit": 74,
-        "steel": 0,
-        "titanium": 0,
-        "plant": 4,
-        "power": 0,
-        "heat": 0
+        "steel": 10,
+        "titanium": 10,
+        "plant": 14,
+        "power": 10,
+        "heat": 10
       },
       "production": {
         "megacredit": 0,
@@ -325,11 +325,11 @@
       "tr": 20,
       "resources": {
         "megacredit": 66,
-        "steel": 0,
-        "titanium": 4,
-        "plant": 0,
-        "power": 0,
-        "heat": 0
+        "steel": 10,
+        "titanium": 14,
+        "plant": 10,
+        "power": 10,
+        "heat": 10
       },
       "production": {
         "megacredit": 2,
@@ -433,11 +433,11 @@
       "tr": 24,
       "resources": {
         "megacredit": 62,
-        "steel": 5,
-        "titanium": 0,
-        "plant": 0,
-        "power": 0,
-        "heat": 0
+        "steel": 15,
+        "titanium": 10,
+        "plant": 10,
+        "power": 10,
+        "heat": 10
       },
       "production": {
         "megacredit": 0,

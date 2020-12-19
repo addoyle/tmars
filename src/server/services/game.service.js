@@ -326,19 +326,20 @@ class GameService {
       player.resources.megacredit -= cost;
     }
 
+    // The cards that were bought
+    const boughtCards = player.cards.buy
+      .filter(card => card.select)
+      .map(card => ({ card: card.card }));
+    // The cards that were discarded
+    const discardedCards = player.cards.buy
+      .filter(card => !card.select)
+      .map(card => ({ card: card.card }));
+
     // Move bought cards into hand
-    player.cards.hand = player.cards.hand.concat(
-      player.cards.buy
-        .filter(card => card.select)
-        .map(card => ({ card: card.card }))
-    );
+    player.cards.hand = player.cards.hand.concat(boughtCards);
 
     // Move unbought cards into discard pile
-    game.cards.discard = game.cards.discard.concat(
-      player.cards.buy
-        .filter(card => !card.select)
-        .map(card => ({ card: card.card }))
-    );
+    game.cards.discard = game.cards.discard.concat(discardedCards);
 
     // Clear out buy cards
     player.cards.buy = [];
@@ -346,6 +347,8 @@ class GameService {
     if (game.phase === 'start') {
       this.checkStartPhaseDone(game);
     }
+
+    game.playerStatus?.done(boughtCards, discardedCards);
 
     return this.export(game);
   }

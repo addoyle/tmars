@@ -5,8 +5,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc = 'Action: Add 1 microbe to this card.';
 const desc = '1 VP per 4 microbes on this card.';
 
@@ -17,13 +15,14 @@ const card = new Active({
   tags: ['microbe'],
   set: 'corporate',
   activeDesc,
-  resource: 'microbe',
   desc,
+  resource: 'microbe',
   flavor:
     'These microscopic creatures can survive freezing, boiling, drying out, heavy radiation, and brute force',
   actions: [
     {
       name: 'Add 1 Microbe',
+      log: ['add a microbe ', { resource: 'microbe' }],
       icon: <Resource name="microbe" />,
       action: (player, game) => game.cardResource(player, card, 1)
     }

@@ -5,8 +5,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc =
   'Action: Spend 1 titanium to add 1 fighter resource to this card.';
 const desc = '1 VP for each fighter resource on this card.';
@@ -24,6 +22,7 @@ const card = new Active({
   actions: [
     {
       name: 'Spend 1 Titanium',
+      log: ['add a fighter ', { resource: 'fighter' }],
       icon: <Resource name="titanium" />,
       canPlay: player => {
         const valid = player.resources.titanium >= 1;
@@ -38,7 +37,7 @@ const card = new Active({
       }
     }
   ],
-  vp: (player, game) => game.cardResource(player, card).value,
+  vp: (player, game) => game.cardResource(player, card),
   emoji: '🚀',
   activeLayout: (
     <div>

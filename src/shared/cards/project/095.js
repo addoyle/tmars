@@ -9,7 +9,7 @@ const activeDesc =
   'Action: Spend 6 energy to add a science resource to this card.';
 const desc = '2 VP for each science resource on this card.';
 
-export default new Active({
+const card = new Active({
   number: '095',
   title: 'Physics Complex',
   cost: 12,
@@ -17,12 +17,33 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   desc,
+  resource: 'science',
   flavor:
     'This used to cause blackouts before the invention of supercapacitors',
-  action: () => {},
-  vp: () => (this.resources || 0) * 2,
+  actions: [
+    {
+      name: 'Spend 6 Energy',
+      icon: (
+        <>
+          <span>6</span>
+          <Resource name="power" />
+        </>
+      ),
+      canPlay: player => {
+        const valid = player.resources.power >= 6;
+        return {
+          valid,
+          msg: 'Not enough energy'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'power', -6);
+        game.cardResource(player, card, 1);
+      }
+    }
+  ],
+  vp: (player, game) => game.cardResource(player, card) * 2,
   emoji: '⚛️',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -48,3 +69,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

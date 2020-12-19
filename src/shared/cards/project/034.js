@@ -6,9 +6,7 @@ const activeDesc =
   'Action: Add 1 microbe to this card, or remove 2 microbes to raise temperature 1 step.';
 const desc = 'Requires 4% oxygen.';
 
-// TODO ACTION
-
-export default new Active({
+const card = new Active({
   number: '034',
   title: 'GHG Producing Bacteria',
   cost: 8,
@@ -19,10 +17,35 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'microbe',
   flavor: 'Working for the biosphere and the atmosphere at the same time',
-  action: () => {},
+  actions: [
+    {
+      name: 'Add 1 Microbe',
+      log: ['add a microbe ', { resource: 'microbe' }],
+      icon: <Resource name="microbe" />,
+      action: (player, game) => {
+        game.cardResource(player, card, 1);
+      }
+    },
+    {
+      name: 'Raise Temperature',
+      log: ['raise temperature ', { param: 'temperature' }],
+      icon: <Param name="oxygen" />,
+      canPlay: (player, game) => {
+        const valid = game.cardResource(player, card) >= 2;
+        return {
+          valid,
+          msg: 'Not enough microbes'
+        };
+      },
+      action: (player, game, done) => {
+        game.cardResource(player, card, -2);
+        game.param(player, 'temperature', done);
+      }
+    }
+  ],
   emoji: '🦠',
-  todo: true,
   activeLayout: (
     <div>
       <div className="table center">
@@ -62,3 +85,5 @@ export default new Active({
   ),
   layout: <div className="m-top m-bottom description text-center">{desc}</div>
 });
+
+export default card;

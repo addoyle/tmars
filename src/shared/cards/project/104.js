@@ -12,8 +12,30 @@ export default new Active({
   tags: ['building'],
   activeDesc,
   flavor: 'Processing ore',
+  actions: [
+    {
+      name: 'Spend 4 Energy',
+      icon: (
+        <>
+          <span>4</span>
+          <Resource name="power" />
+        </>
+      ),
+      canPlay: player => {
+        const valid = player.resources.power >= 4;
+        return {
+          valid,
+          msg: 'Not enough energy'
+        };
+      },
+      action: (player, game, done) => {
+        game.resources(player, 'power', -4);
+        game.resources(player, 'titanium', 1);
+        game.param(player, 'oxygen', done);
+      }
+    }
+  ],
   emoji: '⛏',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

@@ -14,6 +14,11 @@ const CardPreview = props => {
   const card = isString(props.card) ? { card: props.card } : props.card;
   const cardObj = props.cardStore.get(props.type, card.card);
 
+  const resource = cardObj?.resource && {
+    type: cardObj.resource,
+    value: card.resource || 0
+  };
+
   // Apply cost modifiers (e.g. Research Outpost)
   const modifiedCost = props.gameStore.calculateCost(
     cardObj,
@@ -34,14 +39,14 @@ const CardPreview = props => {
         <CorporationLayout
           {...cardObj}
           type="corp"
-          resource={props.showResources ? card?.resource : null}
+          resource={props.showResources ? resource : null}
         />
       ) : (
         <ProjectLayout
           {...cardObj}
           type={cardObj.constructor.name.toLowerCase()}
           modifiedCost={modifiedCost}
-          resource={props.showResources ? card?.resource : null}
+          resource={props.showResources ? resource : null}
         />
       )}
     </div>

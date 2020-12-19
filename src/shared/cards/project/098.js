@@ -23,7 +23,7 @@ export default new Automated({
     game.production(player, 'megacredit', 3);
   },
   canPlay: player => {
-    const valid = player.resources.heat >= 2;
+    const valid = player.production.heat >= 2;
     return {
       valid,
       msg: !valid ? 'Not enough heat production' : null

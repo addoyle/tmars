@@ -124,7 +124,8 @@ const CardDrawer = props => {
                 <span>For sale</span>
               </div>
             ) : null}
-            {gameStore.phase !== 'action' && gameStore.phase !== 'prelude' ? (
+            {(gameStore.phase !== 'action' && gameStore.phase !== 'prelude') ||
+            gameStore.playerStatus?.type === 'buy-card' ? (
               <button
                 className="primary flex gutter center"
                 onClick={() =>

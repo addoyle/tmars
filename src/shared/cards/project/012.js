@@ -48,7 +48,6 @@ export default new Active({
         };
       },
       action: (player, game, done, opts) => {
-        console.log(opts);
         game.resources(
           player,
           'megacredit',

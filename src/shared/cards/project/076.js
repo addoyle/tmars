@@ -17,8 +17,24 @@ export default new Active({
   activeDesc,
   flavor:
     'Ultrathin mirrors reflecting sunlight down to receivers on the surface',
+  actions: [
+    {
+      name: 'Spend 7 M€',
+      icon: <MegaCredit value="7" />,
+      canPlay: player => {
+        const valid = player.resources.megacredit >= 7;
+        return {
+          valid,
+          msg: 'Not enough M€'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'megacredit', -7);
+        game.production(player, 'power', 1);
+      }
+    }
+  ],
   emoji: '🛰',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
