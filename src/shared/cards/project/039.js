@@ -6,7 +6,7 @@ const desc =
   'Raise temperature 3 steps and gain 4 steel. Remove up to 8 plants from any player.';
 
 export default new Event({
-  number: 39,
+  number: '039',
   title: 'Deimos Down',
   cost: 31,
   tags: ['space', 'event'],

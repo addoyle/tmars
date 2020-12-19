@@ -13,7 +13,7 @@ const customFilter = tile =>
   tile.attrs?.includes('reserved-ocean');
 
 export default new Automated({
-  number: 174,
+  number: '174',
   title: 'Protected Valley',
   cost: 23,
   tags: ['plant', 'building'],

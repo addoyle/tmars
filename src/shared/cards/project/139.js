@@ -9,7 +9,7 @@ import {
 const desc = 'Requires 3 ocean tiles. Increase your energy production 1 step.';
 
 export default new Automated({
-  number: 139,
+  number: '139',
   title: 'Wave Power',
   cost: 8,
   tags: ['power'],

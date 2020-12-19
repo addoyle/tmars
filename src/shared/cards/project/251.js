@@ -10,7 +10,7 @@ const activeDesc =
 const desc = 'Requires Venus 6%.';
 
 export default new Active({
-  number: 251,
+  number: '251',
   title: 'Sulphur-Eating Bacteria',
   cost: 6,
   tags: ['venus', 'microbe'],

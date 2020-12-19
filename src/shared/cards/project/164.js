@@ -8,7 +8,7 @@ import {
 const desc = 'Increase your heat production 1 step.';
 
 export default new Automated({
-  number: 164,
+  number: '164',
   title: 'Micro-Mills',
   cost: 3,
   tags: [],

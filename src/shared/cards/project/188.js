@@ -10,7 +10,7 @@ const desc =
   'Place an ocean tile. IF THERE ARE TILES ADJACENT TO THIS OCEAN TILE, YOU MAY REMOVE 4 M€ FROM THE OWNER OF ONE OF THOSE TILES.';
 
 export default new Event({
-  number: 188,
+  number: '188',
   title: 'Flooding',
   cost: 7,
   tags: ['event'],

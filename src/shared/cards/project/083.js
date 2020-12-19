@@ -8,7 +8,7 @@ import {
 const desc = 'Increase your energy production 3 steps.';
 
 export default new Automated({
-  number: 83,
+  number: '083',
   title: 'Giant Space Mirror',
   cost: 17,
   tags: ['power', 'space'],

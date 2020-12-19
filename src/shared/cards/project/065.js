@@ -9,7 +9,7 @@ const desc =
   'Decrease your energy production 1 step and increase your steel production 2 steps.';
 
 export default new Automated({
-  number: 65,
+  number: '065',
   title: 'Building Industries',
   cost: 6,
   tags: ['building'],

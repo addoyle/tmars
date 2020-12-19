@@ -6,7 +6,7 @@ const desc =
   'Raise oxygen 1 step. Remove 2 plants from any player. Gain 2 steel.';
 
 export default new Event({
-  number: 63,
+  number: '063',
   title: 'Mining Expedition',
   cost: 12,
   tags: ['event'],

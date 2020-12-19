@@ -7,7 +7,7 @@ const effectDesc =
   'Effect: When playing an Earth card, you pay 3 M€ less for it.';
 
 export default new Corporation({
-  number: 11,
+  number: '011',
   title: 'Teractor',
   titleStyle: {
     textTransform: 'uppercase',

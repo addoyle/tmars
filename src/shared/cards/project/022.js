@@ -11,7 +11,7 @@ const desc =
   'Place an ocean tile. Decrease your M€ prodution 2 steps and increase your heat production 3 steps.';
 
 export default new Automated({
-  number: 22,
+  number: '022',
   title: 'Black Polar Dust',
   cost: 15,
   tags: [],

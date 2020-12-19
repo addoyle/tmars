@@ -9,7 +9,7 @@ import {
 const desc = 'Increase your titanium production 1 step.';
 
 export default new Automated({
-  number: 57,
+  number: '057',
   title: 'Vesta Shipyard',
   cost: 15,
   tags: ['jovian', 'space'],

@@ -5,7 +5,7 @@ import { VictoryPoint } from '../../../client/game/components/assets/Assets';
 const desc = 'Requires 3 or less ocean tiles.';
 
 export default new Automated({
-  number: 119,
+  number: '119',
   title: 'Dust Seals',
   cost: 2,
   tags: [],

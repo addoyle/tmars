@@ -13,7 +13,7 @@ const desc =
   'Requires -12°C or warmer. Add 1 animal TO ANY ANIMAL CARD. Gain 3 plants. Increase your M€ production 2 steps.';
 
 export default new Automated({
-  number: 26,
+  number: '026',
   title: 'Eos Chasma National Park',
   cost: 16,
   tags: ['plant', 'building'],

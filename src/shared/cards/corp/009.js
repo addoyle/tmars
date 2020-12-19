@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: When playing a power card OR THE STANDARD PROJECT POWER PLANT, you pay 3 M€ less for it.';
 
 export default new Corporation({
-  number: 9,
+  number: '009',
   title: 'ThorGate',
   titleClass: 'thorgate',
   starting: {

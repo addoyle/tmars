@@ -8,7 +8,7 @@ import {
 const desc = 'Requires -24°C or warmer. Increase your plant production 1 step.';
 
 export default new Automated({
-  number: 159,
+  number: '159',
   title: 'Lichen',
   cost: 7,
   tags: ['plant'],

@@ -5,7 +5,7 @@ import { Param } from '../../../client/game/components/assets/Assets';
 const desc = 'Venus must be 10% or lower. Raise Venus 2 steps.';
 
 export default new Event({
-  number: 246,
+  number: '246',
   title: 'Spin-Inducing Asteroid',
   cost: 16,
   tags: ['space', 'event'],

@@ -9,7 +9,7 @@ import {
 const desc = 'Requires 2 cities in play. Increase your M€ production 1 step.';
 
 export default new Automated({
-  number: 186,
+  number: '186',
   title: 'Rad-Suits',
   cost: 6,
   tags: [],

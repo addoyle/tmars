@@ -6,7 +6,7 @@ const activeDesc =
   'Action: Spend 4 energy to gain 1 titanium and increase oxygen 1 step.';
 
 export default new Active({
-  number: 104,
+  number: '104',
   title: 'Ore Processor',
   cost: 13,
   tags: ['building'],

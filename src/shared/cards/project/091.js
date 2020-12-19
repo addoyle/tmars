@@ -9,7 +9,7 @@ import {
 const desc = 'Requires 3 science tags. Increase your M€ production 2 steps.';
 
 export default new Automated({
-  number: 91,
+  number: '091',
   title: 'Gene Repair',
   cost: 12,
   tags: ['science'],

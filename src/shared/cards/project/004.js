@@ -10,7 +10,7 @@ const desc =
   'Requires 3 ocean tiles. Decrease your M€ production 1 step and any heat production 1 step. Increase your plant production 2 steps.';
 
 export default new Automated({
-  number: 4,
+  number: '004',
   title: 'Cloud Seeding',
   cost: 11,
   tags: [],

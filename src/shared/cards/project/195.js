@@ -8,7 +8,7 @@ import {
 const desc = 'The next card you play this generation costs 8 M€ less.';
 
 export default new Event({
-  number: 195,
+  number: '195',
   title: 'Indentured Workers',
   cost: 0,
   tags: ['event'],

@@ -12,7 +12,7 @@ const activeDesc =
 const desc = 'Requires 11% oxygen. 1 VP per animal on this card.';
 
 export default new Active({
-  number: 24,
+  number: '024',
   title: 'Predators',
   cost: 14,
   tags: ['animal'],

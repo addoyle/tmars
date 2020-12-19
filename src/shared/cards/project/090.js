@@ -8,7 +8,7 @@ import {
 const desc = 'Counts as playing 2 science cards. Draw 2 cards.';
 
 export default new Automated({
-  number: 90,
+  number: '090',
   title: 'Research',
   cost: 11,
   tags: ['science', 'science'],

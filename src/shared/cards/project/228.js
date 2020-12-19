@@ -9,7 +9,7 @@ import {
 const desc = 'Raise Venus 1 step. Increase your heat production 3 steps.';
 
 export default new Event({
-  number: 228,
+  number: '228',
   title: 'GHG Import From Venus',
   cost: 23,
   tags: ['venus', 'space', 'event'],

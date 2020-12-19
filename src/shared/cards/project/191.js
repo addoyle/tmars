@@ -5,7 +5,7 @@ import { Tile } from '../../../client/game/components/assets/Assets';
 const desc = 'Requires -8°C or warmer. Place 1 ocean tile.';
 
 export default new Event({
-  number: 191,
+  number: '191',
   title: 'Permafrost Extraction',
   cost: 8,
   tags: ['event'],

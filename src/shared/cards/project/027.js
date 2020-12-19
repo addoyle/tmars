@@ -5,7 +5,7 @@ import { VictoryPoint } from '../../../client/game/components/assets/Assets';
 const desc = 'Requires 5 science tags.';
 
 export default new Event({
-  number: 27,
+  number: '027',
   title: 'Interstellar Colony Ship',
   cost: 24,
   tags: ['earth', 'space', 'event'],

@@ -11,7 +11,7 @@ const activeDesc =
 const desc = 'Requires 3% oxygen. 1 VP per 3 microbes on this card.';
 
 export default new Active({
-  number: 131,
+  number: '131',
   title: 'Decomposers',
   cost: 5,
   tags: ['microbe'],

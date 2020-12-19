@@ -11,7 +11,7 @@ const desc =
   'Decrease your energy production 1 step and increase your M€ 3 steps. Place a city tile ON THE RESERVED AREA, disregarding normal placement restrictions.';
 
 export default new Automated({
-  number: 17,
+  number: '017',
   title: 'Noctis City',
   cost: 18,
   tags: ['city', 'building'],

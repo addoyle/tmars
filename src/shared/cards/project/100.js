@@ -10,7 +10,7 @@ const desc =
   'Decrease your M€ production 1 step and increase your energy production 1 step.';
 
 export default new Automated({
-  number: 100,
+  number: '100',
   title: 'Fueled Generators',
   cost: 1,
   tags: ['power', 'building'],

@@ -11,7 +11,7 @@ const desc =
   'Decrease your M€ production 2 steps and increase your energy production 3 steps.';
 
 export default new Automated({
-  number: 46,
+  number: '046',
   title: 'Lightning Harvest',
   cost: 10,
   tags: ['power'],

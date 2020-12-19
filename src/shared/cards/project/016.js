@@ -12,7 +12,7 @@ const desc =
   'Oxygen must be 7% or less. Gain 3 plants and place a city tile. Decrease your energy production 1 step and increase M€ production 3 steps.';
 
 export default new Automated({
-  number: 16,
+  number: '016',
   title: 'Domed Crater',
   cost: 24,
   tags: ['city', 'building'],

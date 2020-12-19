@@ -9,7 +9,7 @@ import {
 const desc = 'Gain 2 plants. Raise oxygen level 1 step and place an ocean tile';
 
 export default new Event({
-  number: 75,
+  number: '075',
   title: 'Towing A Comet',
   cost: 23,
   tags: ['space', 'event'],

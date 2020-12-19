@@ -9,7 +9,7 @@ const desc =
   'Requires 2 power tags. Decrease any energy production 1 step and increase your own 1 step.';
 
 export default new Automated({
-  number: 160,
+  number: '160',
   title: 'Power Supply Consortium',
   cost: 5,
   tags: ['power'],

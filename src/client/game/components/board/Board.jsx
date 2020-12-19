@@ -10,7 +10,7 @@ import GlobalParameters from './params/GlobalParameters';
 import StandardProjects from './StandardProjects';
 import CardDrawers from './CardDrawers';
 import classNames from 'classnames';
-import ActiveCard from './ActiveCard';
+import CardModal from './card-modal/CardModal';
 import MilestoneAward from './MilestoneAward';
 import Settings from './Settings';
 import PlayerPicker from './players/PlayerPicker';
@@ -43,7 +43,7 @@ const Board = props => {
       }
 
       if (e.key === 'Escape') {
-        props.gameStore.activeCard.show = false;
+        props.gameStore.currentCard.show = false;
       }
     };
 
@@ -85,7 +85,7 @@ const Board = props => {
       <PlayerPicker />
       {props.gameStore.players.length > 1 ? <MilestoneAward /> : null}
       <StandardProjects />
-      <ActiveCard />
+      <CardModal />
       <Log ref={logRef} />
       <CardDrawers />
       <Settings />
@@ -95,7 +95,7 @@ const Board = props => {
 
 Board.propTypes = {
   gameStore: PropTypes.shape({
-    activeCard: PropTypes.shape({
+    currentCard: PropTypes.shape({
       show: PropTypes.bool
     }),
     players: PropTypes.array

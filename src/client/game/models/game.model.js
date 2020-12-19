@@ -13,7 +13,7 @@ class Game extends SharedGame {
   @observable drawer = 'corp';
 
   // Active card, shown in a popup
-  @observable activeCard = {
+  @observable currentCard = {
     show: false,
     card: null,
     type: null,
@@ -105,18 +105,20 @@ class Game extends SharedGame {
    * @param {string} card Card number to show
    * @param {string} type Card type, one of [project, corp, prelude]
    * @param {string} mode Play mode
+   * @param {boolean} showResources True to show resources on the card
    */
   @action
-  showActiveCard(card, type, mode) {
-    this.activeCard = {
-      ...this.activeCard,
+  showCurrentCard(card, type, mode, showResources) {
+    this.currentCard = {
+      ...this.currentCard,
       show: true,
       card,
       type,
       mode,
       steel: 0,
       titanium: 0,
-      heat: 0
+      heat: 0,
+      showResources
     };
   }
 
@@ -229,6 +231,15 @@ class Game extends SharedGame {
       ...opts,
       project,
       player: +PLAYER_NUM
+    });
+  }
+
+  cardAction(card, index, opts) {
+    API(`game/${gameId()}/card-action`, POST, {
+      card,
+      index,
+      player: +PLAYER_NUM,
+      opts
     });
   }
 }

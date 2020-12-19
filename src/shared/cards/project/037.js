@@ -11,7 +11,7 @@ const desc =
   'Raise terraform rating 2 steps and temperature 1 step. Increase your plant production 1 step or 4 steps if you have 3 plant tags.';
 
 export default new Event({
-  number: 37,
+  number: '037',
   title: 'Nitrogen-Rich Asteroid',
   cost: 31,
   tags: ['space', 'event'],

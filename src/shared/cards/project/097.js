@@ -9,7 +9,7 @@ import {
 const desc = 'Place this tile and raise temperature 2 steps.';
 
 export default new Automated({
-  number: 97,
+  number: '097',
   title: 'Nuclear Zone',
   cost: 10,
   tags: ['earth'],

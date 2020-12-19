@@ -10,7 +10,7 @@ const desc =
   'Requires that you have titanium production. Decrease any titanium production 1 step and increase your own 1 step.';
 
 export default new Automated({
-  number: 2,
+  number: '002',
   title: 'Asteroid Mining Consortium',
   cost: 13,
   tags: ['jovian'],

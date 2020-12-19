@@ -9,7 +9,7 @@ const desc =
   'Requires that you have at least 25 TR. Increase your M€ production 4 steps.';
 
 export default new Automated({
-  number: 252,
+  number: '252',
   title: 'Terraforming Contract',
   cost: 8,
   tags: ['earth'],

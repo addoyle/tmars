@@ -9,7 +9,7 @@ const desc =
   'Decrease your energy production 1 step. Raise your terraform rating 2 steps.';
 
 export default new Automated({
-  number: 205,
+  number: '205',
   title: 'Rad-Chem Factory',
   cost: 8,
   tags: ['building'],

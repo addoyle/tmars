@@ -10,7 +10,7 @@ const actionDesc =
   'Action: If your Terraforming Rating was raised this generation, you may pay 3 M€ to raise it 1 step more.';
 
 export default new Corporation({
-  number: 10,
+  number: '010',
   title: 'United Nations Mars Initiative',
   titleClass: 'unmi',
   starting: {

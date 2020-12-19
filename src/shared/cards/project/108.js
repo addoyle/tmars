@@ -12,7 +12,7 @@ const desc =
   'Requires 12% oxygen. Decrease your energy production 1 step and increase your M€ production 4 steps. Gain 2 plants and place a city tile.';
 
 export default new Automated({
-  number: 108,
+  number: '108',
   title: 'Open City',
   cost: 23,
   tags: ['city', 'building'],

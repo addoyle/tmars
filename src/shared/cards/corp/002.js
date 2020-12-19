@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: You may always pay 7 plants, instead of 8, to place 1 greenery.';
 
 export default new Corporation({
-  number: 2,
+  number: '002',
   title: 'Ecoline',
   titleClass: 'ecoline',
   starting: {

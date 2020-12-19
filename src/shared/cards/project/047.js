@@ -9,7 +9,7 @@ const desc =
   'Requires 5 ocean tiles. Gain 1 plant and increase your plant production 2 steps.';
 
 export default new Automated({
-  number: 47,
+  number: '047',
   title: 'Algae',
   cost: 10,
   tags: ['plant'],

@@ -9,7 +9,7 @@ const activeDesc =
   'Effect: Each titanium you have is worth 1€ extra. Each steel you have is worth 1 M€ extra.';
 
 export default new Active({
-  number: 71,
+  number: '071',
   title: 'Advanced Alloys',
   cost: 9,
   tags: ['science'],

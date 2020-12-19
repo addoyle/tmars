@@ -9,7 +9,7 @@ const desc =
   'Requires -10°C or warmer. Increase your plant production 2 steps. Gain 2 plants.';
 
 export default new Automated({
-  number: 93,
+  number: '093',
   title: 'Bushes',
   cost: 10,
   tags: ['plant'],

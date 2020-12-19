@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: Whenever Venus is terraformed 1 step, you gain 2 M€.';
 
 export default new Corporation({
-  number: 16,
+  number: '016',
   title: 'Aphrodite',
   titleClass: 'aphrodite',
   starting: {

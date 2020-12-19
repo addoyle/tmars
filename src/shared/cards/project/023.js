@@ -8,7 +8,7 @@ const activeDesc = 'Effect: When anyone places an ocean tile, gain 2 plants.';
 const desc = 'It must be -12°C or colder to play. Gain 1 plant.';
 
 export default new Active({
-  number: 23,
+  number: '023',
   title: 'Arctic Algae',
   cost: 12,
   tags: ['plant'],

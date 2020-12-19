@@ -5,7 +5,7 @@ import { Tile } from '../../../client/game/components/assets/Assets';
 const desc = 'Place 2 ocean tiles.';
 
 export default new Event({
-  number: 78,
+  number: '078',
   title: 'Ice Asteroid',
   cost: 23,
   tags: ['space', 'event'],

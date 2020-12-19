@@ -9,7 +9,7 @@ const desc =
   'Decrease your energy production 1 step and increase your heat production 4 steps.';
 
 export default new Automated({
-  number: 126,
+  number: '126',
   title: 'GHG Factories',
   cost: 11,
   tags: ['building'],

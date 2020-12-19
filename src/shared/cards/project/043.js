@@ -9,7 +9,7 @@ const desc =
   'Decrease your energy production 1 step and increase your heat production 3 steps.';
 
 export default new Automated({
-  number: 43,
+  number: '043',
   title: 'Carbonate Processing',
   cost: 6,
   tags: ['building'],

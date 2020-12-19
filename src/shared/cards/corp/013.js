@@ -13,7 +13,7 @@ const effectDesc =
   'EFFECT: MARKED AREAS ARE RESERVED FOR YOU. WHEN YOU PLACE A TILE THERE, GAIN 3 M€.';
 
 export default new Corporation({
-  number: 13,
+  number: '013',
   title: 'Arcadian Communities',
   titleStyle: {
     fontSize: '.07em',

@@ -10,7 +10,7 @@ const activeDesc =
   'Action: Add 1 floater to ANY card. Effect: When playing a Venus tag, floaters here may be used as payment, and are worth 3 M€ each.';
 
 export default new Active({
-  number: 222,
+  number: '222',
   title: 'Dirigibles',
   cost: 11,
   tags: ['venus'],

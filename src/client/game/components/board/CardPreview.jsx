@@ -14,13 +14,11 @@ const CardPreview = props => {
   const card = isString(props.card) ? { card: props.card } : props.card;
   const cardObj = props.cardStore.get(props.type, card.card);
 
+  // Apply cost modifiers (e.g. Research Outpost)
   const modifiedCost = props.gameStore.calculateCost(
     cardObj,
     props.costModifiers
   );
-
-  // TODO
-  // const resources = props.resources;
 
   return (
     <div
@@ -33,12 +31,17 @@ const CardPreview = props => {
       {!cardObj ? (
         <div>Loading...</div>
       ) : props.type === 'corp' ? (
-        <CorporationLayout {...cardObj} type="corp" />
+        <CorporationLayout
+          {...cardObj}
+          type="corp"
+          resource={props.showResources ? card?.resource : null}
+        />
       ) : (
         <ProjectLayout
           {...cardObj}
           type={cardObj.constructor.name.toLowerCase()}
           modifiedCost={modifiedCost}
+          resource={props.showResources ? card?.resource : null}
         />
       )}
     </div>
@@ -47,7 +50,8 @@ const CardPreview = props => {
 
 CardPreview.defaultProps = {
   type: 'project',
-  show: true
+  show: true,
+  showResources: false
 };
 
 CardPreview.propTypes = {
@@ -61,6 +65,7 @@ CardPreview.propTypes = {
   ]).isRequired,
   type: PropTypes.string.isRequired,
   show: PropTypes.bool,
+  showResources: PropTypes.bool,
   cardStore: PropTypes.shape({
     normalize: PropTypes.func.isRequired,
     get: PropTypes.func.isRequired

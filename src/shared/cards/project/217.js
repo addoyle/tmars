@@ -12,7 +12,7 @@ const desc =
 // TODO figure out OR and floaters
 
 export default new Automated({
-  number: 217,
+  number: '217',
   title: 'Atmoscoop',
   cost: 22,
   tags: ['jovian', 'space'],

@@ -13,7 +13,7 @@ const customFilter = tile =>
   tile.attrs?.includes('reserved-ocean');
 
 export default new Automated({
-  number: 142,
+  number: '142',
   title: 'Mohole Area',
   cost: 20,
   tags: ['building'],

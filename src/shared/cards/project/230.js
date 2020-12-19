@@ -12,7 +12,7 @@ const desc =
   'Decrease your energy production 2 steps. Increase your M€ production 1 step for each Venus and Earth tag you have. Place a city tile.';
 
 export default new Automated({
-  number: 230,
+  number: '230',
   title: 'Gyropolis',
   cost: 20,
   tags: ['city', 'building'],

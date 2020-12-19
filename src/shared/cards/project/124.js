@@ -8,7 +8,7 @@ import {
 const desc = 'Steel up to 2 steel, or 3 M€ from any other player.';
 
 export default new Event({
-  number: 124,
+  number: '124',
   title: 'Hired Raiders',
   cost: 1,
   tags: ['event'],

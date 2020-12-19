@@ -7,7 +7,7 @@ const activeDesc =
   'ACTION: LOOK AT THE TOP CARD AND EITHER BUY IT OR DISCARD IT.';
 
 export default new Active({
-  number: 6,
+  number: '006',
   title: "Inventor's Guild",
   cost: 9,
   tags: ['science'],

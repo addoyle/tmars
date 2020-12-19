@@ -18,7 +18,7 @@ const boards = {
 /**
  * Milestone/Awards pane
  */
-const MilestoneAward = ({ gameStore }) => {
+const MilestoneAward = ({ gameStore, cardStore }) => {
   const milestones = boards[gameStore?.board]?.milestones.slice() || [];
   const awards = boards[gameStore?.board]?.awards.slice() || [];
 
@@ -35,13 +35,20 @@ const MilestoneAward = ({ gameStore }) => {
       requirement: 7,
       description: 'Have at least 7 floater resources on cards',
       color: '#226695',
-      highlight: 'rgba(103,155,203,1)'
+      highlight: 'rgba(103,155,203,1)',
+      qualifies: player =>
+        player.cards.active
+          .map(c => cardStore.get('project', c.card))
+          .concat(player.cards.corp.map(c => cardStore.get('corp', c.card)))
+          .filter(c => c.resource.type === 'floater')
+          .reduce((sum, c) => (sum += c.resource.value), 0) >= 7
     });
     awards.push({
       name: 'Venuphile',
       getValue: player => player.tags.venus,
       icon: <Tag name="venus" />,
-      description: 'Have the most venus tags in play'
+      description: 'Have the most venus tags in play',
+      value: player => player.tags.venus
     });
   }
 
@@ -230,7 +237,10 @@ MilestoneAward.propTypes = {
       })
     ),
     showMilestones: PropTypes.bool
+  }),
+  cardStore: PropTypes.shape({
+    get: PropTypes.func
   })
 };
 
-export default inject('gameStore')(observer(MilestoneAward));
+export default inject('gameStore', 'cardStore')(observer(MilestoneAward));

@@ -11,7 +11,7 @@ const effectDesc =
   'Effect: You may use heat as M€. You may not use M€ as heat.';
 
 export default new Corporation({
-  number: 3,
+  number: '003',
   title: 'Helion',
   titleClass: 'helion',
   starting: {

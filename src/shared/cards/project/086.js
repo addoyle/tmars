@@ -5,7 +5,7 @@ import { Production, Tag } from '../../../client/game/components/assets/Assets';
 const desc = 'Duplicate only the production box of one of your building cards.';
 
 export default new Automated({
-  number: 86,
+  number: '086',
   title: 'Robotic Workforce',
   cost: 9,
   tags: ['science'],

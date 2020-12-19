@@ -9,7 +9,7 @@ import {
 const desc = 'Increase your M€ production 3 steps.';
 
 export default new Automated({
-  number: 82,
+  number: '082',
   title: 'Callisto Penal Mines',
   cost: 24,
   tags: ['jovian', 'space'],

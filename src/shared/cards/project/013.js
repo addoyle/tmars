@@ -13,7 +13,7 @@ const activeDesc = 'Action: Spend 1 steel to gain 5 M€';
 const desc = 'Increase your titanium production 1 step.';
 
 export default new Active({
-  number: 13,
+  number: '013',
   title: 'Space Elevator',
   cost: 27,
   tags: ['space', 'building'],
@@ -25,7 +25,7 @@ export default new Active({
   action: (player, game) => game.production(player, 'titanium', 1),
   actions: [
     {
-      name: 'Spend 1 steel',
+      name: 'Spend 1 Steel',
       icon: <Resource name="steel" />,
       canPlay: player => {
         const valid = player.resources.steel >= 1;
@@ -42,7 +42,6 @@ export default new Active({
   ],
   vp: 2,
   emoji: '🛗',
-  todo: true,
   activeLayout: (
     <div>
       <div className="center text-center">

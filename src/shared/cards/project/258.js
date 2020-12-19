@@ -10,7 +10,7 @@ const activeDesc =
   'Effect: When you play a Venus tag, you pay 2 M€ less for it.';
 
 export default new Active({
-  number: 258,
+  number: '258',
   title: 'Venus Waystation',
   cost: 9,
   tags: ['venus', 'space'],

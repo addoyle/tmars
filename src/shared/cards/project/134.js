@@ -6,7 +6,7 @@ const activeDesc = 'Action: Gain 1 plant or add 2 microbes to ANOTHER card.';
 const desc = 'It must be -10°C or colder.';
 
 export default new Active({
-  number: 134,
+  number: '134',
   title: 'Extreme-Cold Fungus',
   cost: 13,
   tags: ['microbe'],

@@ -6,7 +6,7 @@ const activeDesc = 'Action: Add a microbe to ANOTHER card.';
 const desc = 'Requires -14°C or warmer.';
 
 export default new Active({
-  number: 133,
+  number: '133',
   title: 'Symbiotic Fungus',
   cost: 4,
   tags: ['microbe'],

@@ -5,7 +5,7 @@ import { VictoryPoint } from '../../../client/game/components/assets/Assets';
 const desc = 'Oxygen must be 5% or less.';
 
 export default new Automated({
-  number: 1,
+  number: '001',
   title: 'Colonizer Training Camp',
   cost: 8,
   tags: ['jovian', 'building'],

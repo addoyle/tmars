@@ -11,7 +11,7 @@ const desc =
   'Requires -6°C or warmer. Increase your plant production 1 step and your M€ production 2 steps.';
 
 export default new Automated({
-  number: 169,
+  number: '169',
   title: 'Tundra Farming',
   cost: 16,
   tags: ['plant'],

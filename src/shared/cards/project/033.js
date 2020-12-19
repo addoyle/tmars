@@ -8,7 +8,7 @@ const activeDesc =
   'Action: Add 1 microbe to this card, or remove 2 microbes from this card to raise oxygen level 1 step.';
 
 export default new Active({
-  number: 33,
+  number: '033',
   title: 'Regolith Eaters',
   cost: 13,
   tags: ['science', 'microbe'],

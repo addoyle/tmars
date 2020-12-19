@@ -8,7 +8,7 @@ import {
 const desc = 'Increase your energy production 2 steps.';
 
 export default new Automated({
-  number: 117,
+  number: '117',
   title: 'Geothermal Power',
   cost: 11,
   tags: ['power', 'building'],

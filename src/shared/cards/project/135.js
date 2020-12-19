@@ -5,7 +5,7 @@ import { VictoryPoint } from '../../../client/game/components/assets/Assets';
 const desc = 'Requires a plant tag, a microbe tag, and an animal tag.';
 
 export default new Automated({
-  number: 135,
+  number: '135',
   title: 'Advanced Ecosystems',
   cost: 11,
   tags: ['plant', 'microbe', 'animal'],

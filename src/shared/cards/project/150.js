@@ -9,7 +9,7 @@ const activeDesc = 'Effect: When you play a card, you pay 2 M€ less for it.';
 const desc = 'Requires 7 science tags.';
 
 export default new Active({
-  number: 150,
+  number: '150',
   title: 'Anti-Gravity Technology',
   cost: 14,
   tags: ['science'],

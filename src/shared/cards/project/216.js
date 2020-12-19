@@ -8,7 +8,7 @@ import {
 const desc = 'Requires 3 science tags. Draw 2 cards.';
 
 export default new Automated({
-  number: 216,
+  number: '216',
   title: 'Atalanta Planitia Lab',
   cost: 10,
   tags: ['venus', 'science'],

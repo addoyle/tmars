@@ -7,7 +7,7 @@ const effectDesc =
   'Effect: After you pay for a card or standard project with a basic cost of 20 M€ or more, you gain 4 M€.';
 
 export default new Corporation({
-  number: 1,
+  number: '001',
   title: 'CrediCor',
   titleClass: 'credicor',
   starting: {

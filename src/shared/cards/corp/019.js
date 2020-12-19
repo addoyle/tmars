@@ -12,7 +12,7 @@ const desc =
 const effectDesc = 'Action: Add a floater to ANY card.';
 
 export default new Corporation({
-  number: 19,
+  number: '019',
   title: 'Celestic',
   titleClass: 'celestic',
   starting: {

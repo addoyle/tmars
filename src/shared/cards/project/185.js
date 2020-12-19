@@ -12,7 +12,7 @@ const activeDesc =
 const desc = 'Requires 2 ocean tiles.';
 
 export default new Active({
-  number: 185,
+  number: '185',
   title: 'Olympus Conference',
   cost: 10,
   tags: ['science', 'earth', 'building'],

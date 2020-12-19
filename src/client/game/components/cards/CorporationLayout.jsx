@@ -42,7 +42,11 @@ CorporationLayout.propTypes = {
   layout: PropTypes.node.isRequired,
   flavor: PropTypes.string,
   simple: PropTypes.bool,
-  todo: PropTypes.bool
+  todo: PropTypes.bool,
+  resource: PropTypes.shape({
+    type: PropTypes.string,
+    value: PropTypes.number
+  })
 };
 
 export default CorporationLayout;

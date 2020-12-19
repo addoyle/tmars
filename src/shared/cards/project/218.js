@@ -9,7 +9,7 @@ const desc =
   'Raise Venus 1 step. Remove up to 4 M€ from a player WITH A VENUS TAG IN PLAY.';
 
 export default new Event({
-  number: 218,
+  number: '218',
   title: 'Comet For Venus',
   cost: 11,
   tags: ['space', 'event'],

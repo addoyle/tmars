@@ -11,7 +11,7 @@ const desc =
   'Requires -20°C or warmer. Increase your M€ production 1 step and gain 2 plants.';
 
 export default new Automated({
-  number: 176,
+  number: '176',
   title: 'Noctis Farming',
   cost: 10,
   tags: ['plant', 'building'],

@@ -13,7 +13,7 @@ const desc =
   'Requires 4 science tags. Increase your energy production 4 steps.';
 
 export default new Active({
-  number: 79,
+  number: '079',
   title: 'Quantum Extractor',
   cost: 13,
   tags: ['science', 'power'],

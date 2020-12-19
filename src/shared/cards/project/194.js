@@ -9,7 +9,7 @@ const activeDesc =
   'Action: Spend any amount of energy to gain that amount of M€.';
 
 export default new Active({
-  number: 194,
+  number: '194',
   title: 'Power Infrastructure',
   cost: 4,
   tags: ['power', 'building'],

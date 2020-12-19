@@ -10,7 +10,7 @@ const desc =
   'Increase your energy production 1 step for each city tile in play.';
 
 export default new Automated({
-  number: 189,
+  number: '189',
   title: 'Energy Saving',
   cost: 15,
   tags: ['power'],

@@ -5,7 +5,7 @@ const desc =
   'LOOK AT THE TOP 3 CARDS FROM THE DECK. TAKE 1 OF THEM INTO HAND AND DISCARD THE OTHER 2';
 
 export default new Event({
-  number: 192,
+  number: '192',
   title: 'Invention Contest',
   cost: 2,
   tags: ['science', 'event'],

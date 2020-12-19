@@ -9,7 +9,7 @@ const desc = 'Requires 4% oxygen.';
 // TODO ACTION
 
 export default new Active({
-  number: 34,
+  number: '034',
   title: 'GHG Producing Bacteria',
   cost: 8,
   tags: ['science', 'microbe'],

@@ -63,9 +63,9 @@ const CardDrawer = props => {
                 onClick={() => props.gameStore.toggleSelectCard(card, 'buy')}
                 className={classNames('card-selector', {
                   selected:
-                    gameStore.activeCard.show &&
-                    card.card === gameStore.activeCard.card.card &&
-                    'buy' === gameStore.activeCard.type,
+                    gameStore.currentCard.show &&
+                    card.card === gameStore.currentCard.card.card &&
+                    'buy' === gameStore.currentCard.type,
                   disabled: card.disabled
                 })}
               >
@@ -213,14 +213,19 @@ const CardDrawer = props => {
               !card.disabled
                 ? props.mode === 'select'
                   ? gameStore.toggleSelectCard(card, cardType)
-                  : gameStore.showActiveCard(card, cardType, props.mode)
+                  : gameStore.showCurrentCard(
+                      card,
+                      cardType,
+                      props.mode,
+                      props.type === 'active' || props.type === 'corp'
+                    )
                 : null
             }
             className={classNames('card-selector', {
               selected:
-                gameStore.activeCard.show &&
-                card.card === gameStore.activeCard.card.card &&
-                cardType === gameStore.activeCard.type,
+                gameStore.currentCard.show &&
+                card.card === gameStore.currentCard.card.card &&
+                cardType === gameStore.currentCard.type,
               disabled: card.disabled,
               landscape: cardType === 'prelude' || cardType === 'corp'
             })}
@@ -230,6 +235,7 @@ const CardDrawer = props => {
               resources={card.resources}
               type={cardType}
               costModifiers={props.type ? gameStore.player.rates.cost : []}
+              showResources={props.type === 'active' || props.type === 'corp'}
             />
           </li>
         ))}
@@ -273,7 +279,7 @@ CardDrawer.propTypes = {
       }),
       firstAction: PropTypes.bool
     }),
-    activeCard: PropTypes.shape({
+    currentCard: PropTypes.shape({
       card: PropTypes.shape({
         card: PropTypes.string,
         select: PropTypes.bool,
@@ -283,7 +289,7 @@ CardDrawer.propTypes = {
       type: PropTypes.string,
       show: PropTypes.bool
     }),
-    showActiveCard: PropTypes.func,
+    showCurrentCard: PropTypes.func,
     buySelectedCards: PropTypes.func,
     confirmSelection: PropTypes.func,
     confirmReveal: PropTypes.func,

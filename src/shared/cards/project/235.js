@@ -10,7 +10,7 @@ const activeDesc =
   'Action: Add one floater to this card, or spend 1 floater here to raise your M€ production 1 step.';
 
 export default new Active({
-  number: 235,
+  number: '235',
   title: 'Local Shading',
   cost: 4,
   tags: ['venus'],

@@ -5,7 +5,7 @@ import { VictoryPoint } from '../../../client/game/components/assets/Assets';
 const desc = 'Requires Venus, Earth, and Jovian tags.';
 
 export default new Automated({
-  number: 237,
+  number: '237',
   title: 'Luxury Foods',
   cost: 8,
   tags: [],

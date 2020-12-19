@@ -7,7 +7,7 @@ import { Resource } from '../../../client/game/components/assets/Assets';
 const desc = 'Remove up to 2 animals or 5 plants from any player.';
 
 export default new Event({
-  number: 50,
+  number: '050',
   title: 'Virus',
   cost: 1,
   tags: ['microbe', 'event'],

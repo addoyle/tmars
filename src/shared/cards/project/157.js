@@ -7,7 +7,7 @@ const activeDesc =
 const desc = 'Add 3 microbes to this card.';
 
 export default new Active({
-  number: 157,
+  number: '157',
   title: 'Nitrite Reducing Bacteria',
   cost: 11,
   tags: ['microbe'],

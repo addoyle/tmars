@@ -6,7 +6,7 @@ const desc =
   'Gain 3 plants, or add 3 microbes or 2 animals to ANOTHER card. Place an ocean tile.';
 
 export default new Event({
-  number: 19,
+  number: '019',
   title: 'Imported Hydrogen',
   cost: 16,
   tags: ['earth', 'space', 'event'],

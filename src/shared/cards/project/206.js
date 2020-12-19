@@ -6,7 +6,7 @@ const desc =
   'The next card you play this generation is +2 or -2 in global requirements, your choice.';
 
 export default new Event({
-  number: 206,
+  number: '206',
   title: 'Special Design',
   cost: 4,
   tags: ['science', 'event'],

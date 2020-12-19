@@ -6,7 +6,7 @@ const desc =
   'Increase temperature 1 step. Remove up to 2 plants from any player.';
 
 export default new Event({
-  number: 209,
+  number: '209',
   title: 'Small Asteroid',
   cost: 10,
   tags: ['space', 'event'],

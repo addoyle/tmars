@@ -10,7 +10,7 @@ const desc =
   'Requires 2% oxygen. Increase your heat production 2 steps and your plant production 2 steps.';
 
 export default new Automated({
-  number: 18,
+  number: '018',
   title: 'Methane From Titan',
   cost: 28,
   tags: ['jovian', 'space'],

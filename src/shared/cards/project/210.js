@@ -18,7 +18,7 @@ const activeDesc = (
 const desc = 'Requires 2 science tags.';
 
 export default new Active({
-  number: 210,
+  number: '210',
   title: 'Self-Replicating Robots',
   cost: 7,
   tags: ['science', 'building'],

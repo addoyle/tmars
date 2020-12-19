@@ -5,7 +5,7 @@ import { MegaCredit, Tag } from '../../../client/game/components/assets/Assets';
 const desc = 'Gain 1 M€ for each event EVER PLAYED by all players.';
 
 export default new Automated({
-  number: 107,
+  number: '107',
   title: 'Media Archives',
   cost: 8,
   tags: ['earth'],

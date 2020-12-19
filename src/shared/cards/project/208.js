@@ -12,7 +12,7 @@ const desc =
   'Requires 3 science tags to play. Decrease your energy production 1 step.';
 
 export default new Active({
-  number: 208,
+  number: '208',
   title: 'AI Central',
   cost: 21,
   tags: ['science', 'building'],

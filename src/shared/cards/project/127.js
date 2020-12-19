@@ -5,7 +5,7 @@ import { Tile } from '../../../client/game/components/assets/Assets';
 const desc = 'Place 1 ocean tile.';
 
 export default new Event({
-  number: 127,
+  number: '127',
   title: 'Subterranean Reservoir',
   cost: 11,
   tags: ['event'],

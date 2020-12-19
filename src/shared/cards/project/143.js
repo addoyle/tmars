@@ -11,7 +11,7 @@ const desc =
   'Place an ocean tile and draw 2 cards. Gain 5 plants, or add 4 animals to ANOTHER card.';
 
 export default new Event({
-  number: 143,
+  number: '143',
   title: 'Large Convoy',
   cost: 36,
   tags: ['earth', 'space', 'event'],

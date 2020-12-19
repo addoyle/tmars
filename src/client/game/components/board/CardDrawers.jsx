@@ -221,7 +221,7 @@ CardDrawers.propTypes = {
     sets: PropTypes.arrayOf(PropTypes.string),
     phase: PropTypes.string,
     turn: PropTypes.number,
-    activeCard: PropTypes.shape({
+    currentCard: PropTypes.shape({
       show: PropTypes.bool
     }),
     params: PropTypes.shape({
@@ -232,33 +232,15 @@ CardDrawers.propTypes = {
     }),
     player: PropTypes.shape({
       cards: PropTypes.shape({
-        hand: PropTypes.arrayOf(
-          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        ),
-        automated: PropTypes.arrayOf(
-          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        ),
-        active: PropTypes.arrayOf(
-          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        ),
-        event: PropTypes.arrayOf(
-          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        ),
-        corp: PropTypes.arrayOf(
-          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        ),
-        prelude: PropTypes.arrayOf(
-          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        ),
-        draft: PropTypes.arrayOf(
-          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        ),
-        buy: PropTypes.arrayOf(
-          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        ),
-        reveal: PropTypes.arrayOf(
-          PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-        )
+        hand: PropTypes.arrayOf(PropTypes.object),
+        automated: PropTypes.arrayOf(PropTypes.object),
+        active: PropTypes.arrayOf(PropTypes.object),
+        event: PropTypes.arrayOf(PropTypes.object),
+        corp: PropTypes.arrayOf(PropTypes.object),
+        prelude: PropTypes.arrayOf(PropTypes.object),
+        draft: PropTypes.arrayOf(PropTypes.object),
+        buy: PropTypes.arrayOf(PropTypes.object),
+        reveal: PropTypes.arrayOf(PropTypes.object)
       }),
       number: PropTypes.number
     })

@@ -14,7 +14,7 @@ const desc =
   'Requires Venus 12%. Decrease your energy production 1 step. Place a city tile ON THE RESERVED AREA.';
 
 export default new Active({
-  number: 238,
+  number: '238',
   title: 'Maxwell Base',
   cost: 18,
   tags: ['venus', 'city'],

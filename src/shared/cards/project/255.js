@@ -8,7 +8,7 @@ import {
 const desc = 'Requires 2 Venus tags. Increase your M€ production 2 steps.';
 
 export default new Automated({
-  number: 255,
+  number: '255',
   title: 'Venus Governor',
   cost: 4,
   tags: ['venus', 'venus'],

@@ -8,7 +8,7 @@ import {
 const desc = 'Increase your energy production 1 step and gain 2 titanium.';
 
 export default new Automated({
-  number: 77,
+  number: '077',
   title: 'Solar Wind Power',
   cost: 11,
   tags: ['science', 'space', 'power'],

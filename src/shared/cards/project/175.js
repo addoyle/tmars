@@ -10,7 +10,7 @@ const desc =
   'Increase your M€ production 1 step for each space tag you have, including this.';
 
 export default new Automated({
-  number: 175,
+  number: '175',
   title: 'Satellites',
   cost: 10,
   tags: ['space'],

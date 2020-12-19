@@ -10,7 +10,7 @@ const desc =
   'Increase your M€ production 2 steps. Add 1 resource to ANY VENUS CARD.';
 
 export default new Automated({
-  number: 219,
+  number: '219',
   title: 'Corroder Suits',
   cost: 8,
   tags: ['venus'],

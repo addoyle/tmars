@@ -11,7 +11,7 @@ const desc =
   'Requires 5% oxygen. Increase your M€ production 1 step for each city tile ON MARS.';
 
 export default new Automated({
-  number: 129,
+  number: '129',
   title: 'Zeppelins',
   cost: 13,
   tags: [],

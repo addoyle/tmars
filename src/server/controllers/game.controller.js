@@ -47,6 +47,23 @@ export function playPrelude(req, res) {
 }
 
 /**
+ * Perform a card action
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function cardAction(req, res) {
+  GameService.cardAction(
+    `${req.params.id}`,
+    req.body.player,
+    req.body.card,
+    req.body.index,
+    req.body.opts
+  );
+  res.sendStatus(200);
+}
+
+/**
  * Toggle the selection of a card
  *
  * @param {*} req

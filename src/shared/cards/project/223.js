@@ -7,7 +7,7 @@ const activeDesc =
 const desc = 'Add 3 floaters to this card.';
 
 export default new Active({
-  number: 223,
+  number: '223',
   title: 'Extractor Balloons',
   cost: 21,
   tags: ['venus'],

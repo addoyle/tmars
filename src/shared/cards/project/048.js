@@ -8,7 +8,7 @@ import {
 const desc = 'Increase your plant production 1 step.';
 
 export default new Automated({
-  number: 48,
+  number: '048',
   title: 'Adapted Lichen',
   cost: 9,
   tags: ['plant'],

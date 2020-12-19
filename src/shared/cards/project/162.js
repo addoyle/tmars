@@ -8,7 +8,7 @@ import {
 const desc = 'Increase your heat production 1 step and gain 3 heat.';
 
 export default new Event({
-  number: 162,
+  number: '162',
   title: 'Imported GHG',
   cost: 7,
   tags: ['earth', 'space', 'event'],

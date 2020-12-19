@@ -10,7 +10,7 @@ const desc =
   'Requires a Jovian tag. Increase your heat production and energy production 3 steps each.';
 
 export default new Automated({
-  number: 58,
+  number: '058',
   title: 'Beam From A Thorium Asteroid',
   cost: 32,
   tags: ['jovian', 'space', 'power'],

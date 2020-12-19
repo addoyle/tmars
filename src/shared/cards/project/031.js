@@ -12,7 +12,7 @@ const activeDesc =
   'Effect: When you play a space event, you gain 3 M€ and 3 heat.';
 
 export default new Active({
-  number: 31,
+  number: '031',
   title: 'Optimal Aerobraking',
   cost: 7,
   tags: ['space'],

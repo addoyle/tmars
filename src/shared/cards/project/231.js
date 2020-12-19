@@ -10,7 +10,7 @@ const desc =
   'Raise Venus 1 step. Add 1 floater to A VENUS CARD for each Jovian tag you have.';
 
 export default new Event({
-  number: 231,
+  number: '231',
   title: 'Hydrogen To Venus',
   cost: 11,
   tags: ['space', 'event'],

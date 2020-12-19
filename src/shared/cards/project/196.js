@@ -8,7 +8,7 @@ import {
 const desc = 'Draw 1 card.';
 
 export default new Automated({
-  number: 196,
+  number: '196',
   title: 'Lagrange Observatory',
   cost: 9,
   tags: ['science', 'space'],

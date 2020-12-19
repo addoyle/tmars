@@ -10,7 +10,7 @@ const desc =
   'Decrease your heat production any number of steps and increase your M€ production the same number of steps';
 
 export default new Automated({
-  number: 152,
+  number: '152',
   title: 'Insulation',
   cost: 2,
   tags: [],

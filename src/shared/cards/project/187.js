@@ -10,7 +10,7 @@ const activeDesc =
   'Action: Spend 8 M€ to place 1 ocean tile. STEEL MAY BE USED as if you were playing a building card.';
 
 export default new Active({
-  number: 187,
+  number: '187',
   title: 'Aquifer Pumping',
   cost: 18,
   tags: ['building'],

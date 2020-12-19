@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: Your Venus requirements are +/- 2 steps, your choice in each case.';
 
 export default new Corporation({
-  number: 20,
+  number: '020',
   title: 'Morning Star Inc.',
   titleClass: 'msi',
   starting: {

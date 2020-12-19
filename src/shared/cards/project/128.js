@@ -20,7 +20,7 @@ const customFilter = (tile, game, notReserved, neighbors) =>
   neighbors.filter(t => t.type === 'greenery').length;
 
 export default new Active({
-  number: 128,
+  number: '128',
   title: 'Ecological Zone',
   cost: 12,
   tags: ['animal', 'plant'],

@@ -11,7 +11,7 @@ const desc = 'Requires Venus 12%. 1 VP per 2 microbes on this card.';
 // TODO action
 
 export default new Active({
-  number: 260,
+  number: '260',
   title: 'Venusian Insects',
   cost: 5,
   tags: ['venus', 'microbe'],

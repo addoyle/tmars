@@ -11,7 +11,7 @@ const desc =
 const customFilter = (tile, game, notReserved) => notReserved(tile);
 
 export default new Automated({
-  number: 116,
+  number: '116',
   title: 'Artificial Lake',
   cost: 15,
   tags: ['building'],

@@ -8,7 +8,7 @@ import {
 const desc = 'Raise your terraform rating 2 steps.';
 
 export default new Event({
-  number: 112,
+  number: '112',
   title: 'Bribed Committee',
   cost: 7,
   tags: ['earth', 'event'],

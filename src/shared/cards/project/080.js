@@ -10,7 +10,7 @@ const desc =
   'Raise temperature 2 steps and place 2 ocean tiles. Remove up to 6 plants from any player.';
 
 export default new Event({
-  number: 80,
+  number: '080',
   title: 'Giant Ice Asteroid',
   cost: 36,
   tags: ['space', 'event'],

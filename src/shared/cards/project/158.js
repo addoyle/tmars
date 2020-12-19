@@ -9,7 +9,7 @@ const desc =
   'Increase your energy production and your steel production 1 step each.';
 
 export default new Automated({
-  number: 158,
+  number: '158',
   title: 'Industrial Microbes',
   cost: 12,
   tags: ['microbe', 'building'],

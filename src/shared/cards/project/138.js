@@ -10,7 +10,7 @@ const desc =
   'Decrease your energy production 2 steps. Increase your steel production 2 steps and your titanium production 1 step. Raise oxygen 2 steps.';
 
 export default new Automated({
-  number: 138,
+  number: '138',
   title: 'Strip Mine',
   cost: 25,
   tags: ['building'],

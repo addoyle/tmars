@@ -9,7 +9,7 @@ const desc =
   'Discard 1 card from hand and THEN draw 3 cards. All OPPONENTS draw 1 card.';
 
 export default new Automated({
-  number: 247,
+  number: '247',
   title: 'Sponsored Academies',
   cost: 9,
   tags: ['science', 'earth'],
@@ -23,9 +23,9 @@ export default new Automated({
     game.drawCard(player);
     game.drawCard(player);
 
-    game.players
-      .filter(p => p.number !== player.number)
-      .forEach(p => game.drawCard(p));
+    game.forEachPlayerOrder(
+      p => p.number !== player.number && game.drawCard(p)
+    );
   },
   vp: 1,
   emoji: '🏫',

@@ -5,7 +5,7 @@ import { Param } from '../../../client/game/components/assets/Assets';
 const desc = 'Raise Venus 1 step.';
 
 export default new Event({
-  number: 254,
+  number: '254',
   title: 'Water to Venus',
   cost: 9,
   tags: ['space', 'event'],

@@ -9,7 +9,7 @@ const desc =
   'Requires Venus, Earth, and Jovian tags. Increase your steel production 2 steps.';
 
 export default new Automated({
-  number: 239,
+  number: '239',
   title: 'Mining Quota',
   cost: 5,
   tags: ['building'],

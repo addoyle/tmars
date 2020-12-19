@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: Your temperature, oxygen, and ocean requirements are +2 or -2 steps, your choice in each case.';
 
 export default new Corporation({
-  number: 6,
+  number: '006',
   title: 'Inventrix',
   titleClass: 'inventrix',
   starting: {

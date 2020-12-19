@@ -9,7 +9,7 @@ const desc =
   'Requires Venus and Earth tag. Increase your M€ production 3 steps.';
 
 export default new Automated({
-  number: 244,
+  number: '244',
   title: 'Sister Planet Support',
   cost: 7,
   tags: ['venus', 'earth'],

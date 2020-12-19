@@ -3,7 +3,7 @@ import Automated from '../Automated';
 import { VictoryPoint } from '../../../client/game/components/assets/Assets';
 
 export default new Automated({
-  number: 84,
+  number: '084',
   title: 'Trans-Neptune Probe',
   cost: 6,
   tags: ['science', 'space'],

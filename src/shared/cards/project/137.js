@@ -10,7 +10,7 @@ const desc =
   'Increase your M€ production 1 step for each Earth tag you have, including this.';
 
 export default new Automated({
-  number: 137,
+  number: '137',
   title: 'Cartel',
   cost: 8,
   tags: ['earth'],

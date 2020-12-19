@@ -5,24 +5,41 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc =
   'Action: Decrease your Energy production 1 step to increase your terraform rating 1 step.';
 
 export default new Active({
-  number: 15,
+  number: '015',
   title: 'Equatorial Magnetizer',
   cost: 11,
   tags: ['building'],
   activeDesc,
   flavor:
     'Super-conducting wires enircling the globe to create a magnetic field',
-  action: () => {},
-  clientActiveAction: () => {},
-  serverActiveAction: () => {},
+  actions: [
+    {
+      name: 'Spend 1 Power Production',
+      icon: (
+        <Production>
+          <div className="flex">
+            <Resource name="power" />
+          </div>
+        </Production>
+      ),
+      canPlay: player => {
+        const valid = player.production.power >= 1;
+        return {
+          valid,
+          msg: 'Not enough power production'
+        };
+      },
+      action: (player, game) => {
+        game.production(player, 'power', -1);
+        game.tr(player, 1);
+      }
+    }
+  ],
   emoji: '🧲',
-  todo: true,
   activeLayout: (
     <div className="text-center">
       <Production>

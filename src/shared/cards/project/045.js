@@ -10,7 +10,7 @@ const desc =
   'Decrease your M€ production 2 steps and increase your energy production 3 steps.';
 
 export default new Automated({
-  number: 45,
+  number: '045',
   title: 'Nuclear Power',
   cost: 10,
   tags: ['power', 'building'],

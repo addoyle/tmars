@@ -6,7 +6,7 @@ const activeDesc =
   'Effect: After you pay for a standard project, except selling patents, you gain 3 M€.';
 
 export default new Active({
-  number: 156,
+  number: '156',
   title: 'Standard Technology',
   cost: 6,
   tags: ['science'],

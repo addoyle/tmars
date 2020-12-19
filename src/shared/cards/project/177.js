@@ -6,7 +6,7 @@ const activeDesc = 'Action: Spend 3 energy to raise oxygen 1 step.';
 const desc = 'Requires 2 ocean tiles.';
 
 export default new Active({
-  number: 177,
+  number: '177',
   title: 'Water Splitting Plant',
   cost: 12,
   tags: ['building'],

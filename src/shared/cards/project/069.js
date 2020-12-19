@@ -12,7 +12,7 @@ const desc =
   'Oxygen must be 8% or less. Decrease your energy production 1 step.';
 
 export default new Active({
-  number: 69,
+  number: '069',
   title: 'Electro Catapult',
   cost: 17,
   tags: ['building'],

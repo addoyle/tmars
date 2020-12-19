@@ -11,7 +11,7 @@ const desc =
   'Requires 13% oxygen. Decrease any plant production 2 steps. 1 VP for each animal on this card.';
 
 export default new Active({
-  number: 72,
+  number: '072',
   title: 'Birds',
   cost: 10,
   tags: ['animal'],

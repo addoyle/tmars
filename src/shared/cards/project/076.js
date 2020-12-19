@@ -10,7 +10,7 @@ const activeDesc =
   'Action: Spend 7 M€ to increase your energy production 1 step.';
 
 export default new Active({
-  number: 76,
+  number: '076',
   title: 'Space Mirrors',
   cost: 3,
   tags: ['power', 'space'],

@@ -8,7 +8,7 @@ import {
 const activeDesc = 'Effect: When you play a card, you pay 2€ less for it.';
 
 export default new Active({
-  number: 70,
+  number: '070',
   title: 'Earth Catapult',
   cost: 23,
   tags: ['earth'],

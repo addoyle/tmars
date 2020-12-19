@@ -10,7 +10,7 @@ const desc =
   'Increase your energy production 1 step. Increase temperature 1 step.';
 
 export default new Automated({
-  number: 3,
+  number: '003',
   title: 'Deep Well Heating',
   cost: 13,
   tags: ['power', 'building'],

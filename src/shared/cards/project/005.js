@@ -4,18 +4,17 @@ import {
   Resource,
   MegaCredit,
   Tag,
-  VictoryPoint
+  VictoryPoint,
+  Param
 } from '../../../client/game/components/assets/Assets';
-
-// TODO ACTION
 
 const desc =
   'Oxygen must be 6% or less. 3 VPs if you have one or more science resources here.';
 const activeDesc =
   'Action: Spend 1 M€ to reveal and discard the top card of the draw deck. If that card has a microbe tag, add a science resource here.';
 
-export default new Active({
-  number: 5,
+const card = new Active({
+  number: '005',
   title: 'Search For Life',
   cost: 3,
   tags: ['science'],
@@ -26,12 +25,20 @@ export default new Active({
   },
   desc,
   activeDesc,
+  resource: 'science',
   flavor:
     "Finding native life-forms would be the greatest discovery in history, so let's find out!",
   actions: [
     {
-      name: 'Reveal top card',
-      icon: <MegaCredit value={1} />,
+      name: 'Search for life',
+      log: ['search for life'],
+      icon: (
+        <>
+          <MegaCredit value={1} />
+          <span className="arrow" />
+          <Param name="card back" />
+        </>
+      ),
       canPlay: player => {
         const valid = player.resources.megacredit >= 1;
         return {
@@ -40,23 +47,25 @@ export default new Active({
         };
       },
       action: (player, game) => {
-        game.drawCard().then(card =>
-          // TODO Pseudo code, do this right
-          game
-            .reveal(card)
-            .then(card => {
-              if (card.tags.includes('microbe')) {
-                this.resources = (this.resources || 0) + 1;
-              }
-            })
-            .then(card => game.discard(card))
-        );
+        game.resources(player, 'megacredit', -1);
+        const reveal = game.revealCards(player, null, 1, 'microbe', {
+          tag: 'microbe'
+        })[0];
+
+        game.cards.discard.push({ card: reveal.number });
+
+        if (reveal.tags.includes('microbe')) {
+          game.cardResource(player, card, 1);
+
+          game.pushLog(player, [' found life! ', { tag: 'microbe' }]);
+        } else {
+          game.pushLog(player, [' did not find life. 😔']);
+        }
       }
     }
   ],
-  vp: () => this.resources * 3,
+  vp: (player, game) => game.cardResource(player, card).value * 3,
   emoji: '🔍',
-  todo: true,
   activeLayout: (
     <div>
       <div className="center text-center">
@@ -85,3 +94,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

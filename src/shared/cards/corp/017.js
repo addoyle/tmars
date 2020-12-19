@@ -11,7 +11,7 @@ const effectDesc =
   'Effect: For each step you increase the production of a resource, including this, you also gain that resource.';
 
 export default new Corporation({
-  number: 17,
+  number: '017',
   title: 'Manutech',
   titleClass: 'manutech',
   starting: {

@@ -9,7 +9,7 @@ const desc =
   'Requires that you have steel production. Decrease any steel production 1 step and increase your own 1 step.';
 
 export default new Automated({
-  number: 61,
+  number: '061',
   title: 'Great Escarpment Consortium',
   cost: 6,
   tags: [],

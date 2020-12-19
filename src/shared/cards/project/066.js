@@ -5,7 +5,7 @@ const desc =
   'PLACE YOUR MARKER ON A NON-RESERVED AREA. ONLY YOU MAY PLACE A TILE HERE';
 
 export default new Event({
-  number: 66,
+  number: '066',
   title: 'Land Claim',
   cost: 1,
   tags: ['event'],

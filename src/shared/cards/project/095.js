@@ -10,7 +10,7 @@ const activeDesc =
 const desc = '2 VP for each science resource on this card.';
 
 export default new Active({
-  number: 95,
+  number: '095',
   title: 'Physics Complex',
   cost: 12,
   tags: ['science', 'building'],

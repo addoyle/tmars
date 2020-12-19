@@ -15,7 +15,7 @@ const customFilter = (tile, game, notReserved) =>
   (tile.resources?.includes('steel') || tile.resources?.includes('titanium'));
 
 export default new Automated({
-  number: 67,
+  number: '067',
   title: 'Mining Rights',
   cost: 9,
   tags: ['building'],

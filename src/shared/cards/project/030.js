@@ -10,7 +10,7 @@ const desc =
   'Decrease your M€ production 2 steps and increase your heat production and energy production 2 steps each.';
 
 export default new Automated({
-  number: 30,
+  number: '030',
   title: 'Lunar Beam',
   cost: 13,
   tags: ['earth', 'power'],

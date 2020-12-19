@@ -17,7 +17,7 @@ const customFilter = (tile, game, notReserved, neighbors) =>
   !neighbors.filter(t => t.name).length;
 
 export default new Active({
-  number: 20,
+  number: '020',
   title: 'Research Outpost',
   cost: 18,
   tags: ['science', 'city', 'building'],

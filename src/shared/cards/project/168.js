@@ -9,7 +9,7 @@ import {
 const desc = 'Requires 7% oxygen. Increase your energy production 1 step.';
 
 export default new Automated({
-  number: 168,
+  number: '168',
   title: 'Windmills',
   cost: 6,
   tags: ['power', 'building'],

@@ -6,7 +6,7 @@ const desc =
   'Spend 5 heat to either gain 4 plants, or to add 2 animals to ANOTHER card.';
 
 export default new Event({
-  number: 190,
+  number: '190',
   title: 'Local Heat Trapping',
   cost: 1,
   tags: ['event'],

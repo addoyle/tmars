@@ -5,7 +5,7 @@ import { Tag, MegaCredit } from '../../../client/game/components/assets/Assets';
 const activeDesc = 'Effect: After you play an event card, you gain 3 M€.';
 
 export default new Active({
-  number: 109,
+  number: '109',
   title: 'Media Group',
   cost: 6,
   tags: ['earth'],

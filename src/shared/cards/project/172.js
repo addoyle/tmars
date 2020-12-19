@@ -13,7 +13,7 @@ const activeDesc =
 const desc = 'Add 1 animal to this card. 1 VP per 2 animals here.';
 
 export default new Active({
-  number: 172,
+  number: '172',
   title: 'Pets',
   cost: 10,
   tags: ['earth', 'animal'],

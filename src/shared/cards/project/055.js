@@ -11,7 +11,7 @@ const desc =
   'Requires 6 ocean tiles. Increase your M€ production 2 steps and your plant production 3 steps. Gain 2 plants.';
 
 export default new Automated({
-  number: 55,
+  number: '055',
   title: 'Kelp Farming',
   cost: 17,
   tags: ['plant'],

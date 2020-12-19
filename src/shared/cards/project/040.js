@@ -9,7 +9,7 @@ import {
 const desc = 'Increase your titanium production 2 steps.';
 
 export default new Automated({
-  number: 40,
+  number: '040',
   title: 'Asteroid Mining',
   cost: 30,
   tags: ['jovian', 'space'],

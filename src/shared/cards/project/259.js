@@ -13,7 +13,7 @@ const activeDesc =
 const desc = 'Requires Venus 18%. 1 VP for each animal on this card.';
 
 export default new Active({
-  number: 259,
+  number: '259',
   title: 'Venusian Animals',
   cost: 15,
   tags: ['venus', 'science', 'animal'],

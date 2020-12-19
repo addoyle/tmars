@@ -8,7 +8,7 @@ import {
 const desc = 'Remove up to 3 titanium from any player, or 4 steel, or 7 M€.';
 
 export default new Event({
-  number: 121,
+  number: '121',
   title: 'Sabotage',
   cost: 1,
   tags: ['event'],

@@ -11,7 +11,7 @@ const desc =
   'Decrease your plant production 1 step and increase your M€ production 4 steps.';
 
 export default new Automated({
-  number: 41,
+  number: '041',
   title: 'Food Factory',
   cost: 12,
   tags: ['building'],

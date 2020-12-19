@@ -8,7 +8,7 @@ import {
 const desc = 'Requires 0°C or warmer. Place 2 ocean tiles.';
 
 export default new Automated({
-  number: 53,
+  number: '053',
   title: 'Lake Marineris',
   cost: 18,
   tags: [],

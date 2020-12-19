@@ -15,7 +15,7 @@ const desc =
   'Requires 2 science tags. Increase your M€ production 2 steps. Place a city tile on THE RESERVED AREA. 1 VP per 3 floaters on this card.';
 
 export default new Active({
-  number: 248,
+  number: '248',
   title: 'Stratopolis',
   cost: 22,
   tags: ['venus', 'city'],

@@ -11,7 +11,7 @@ const desc =
   'Increase your titanium production 1 step and place a city tile ON THE RESERVED AREA.';
 
 export default new Automated({
-  number: 21,
+  number: '021',
   title: 'Phobos Space Haven',
   cost: 25,
   tags: ['space', 'city'],

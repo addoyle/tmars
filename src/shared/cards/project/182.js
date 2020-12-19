@@ -12,7 +12,7 @@ const desc =
   'Decrease your energy production 1 step and increase your M€ production 3 steps. Place a city tile.';
 
 export default new Automated({
-  number: 182,
+  number: '182',
   title: 'Corporate Stronghold',
   cost: 11,
   tags: ['city', 'building'],

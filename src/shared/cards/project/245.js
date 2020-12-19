@@ -8,7 +8,7 @@ import {
 const desc = 'Requires Venus, Earth, and Jovian tags. Draw 2 cards.';
 
 export default new Automated({
-  number: 245,
+  number: '245',
   title: 'Solarnet',
   cost: 7,
   tags: [],

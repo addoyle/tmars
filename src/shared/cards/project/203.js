@@ -8,7 +8,7 @@ import {
 const desc = 'Increase your heat production 7 steps.';
 
 export default new Automated({
-  number: 203,
+  number: '203',
   title: 'Soletta',
   cost: 35,
   tags: ['space'],

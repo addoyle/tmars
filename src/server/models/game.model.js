@@ -276,11 +276,11 @@ class Game extends SharedGame {
    *
    * @param {*} player Player who's drawing cards
    * @param {*} revealFilter Filter for what to draw for
-   * @param {*} size How many cards needed to be found
+   * @param {*} num How many cards needed to be found
    * @param {*} label Label to be shown (for play log)
    * @param {*} icon Icon to be shown (for play log)
    */
-  revealCards(player, revealFilter, size, label, icon) {
+  revealCards(player, revealFilter, num, label, icon) {
     const reveal = [];
     let keep = [];
 
@@ -288,38 +288,43 @@ class Game extends SharedGame {
     while (
       (keep = reveal
         .map(card => this.cardStore.project[card.card])
-        .filter(revealFilter)
+        .filter(revealFilter || (() => true))
         .map(card => ({
           card: normalize(card.number)
-        }))).length < size
+        }))).length < num
     ) {
       reveal.push(this.cards.deck.shift());
     }
 
     // Select the cards that will move to the hand
-    reveal.forEach(card => {
-      if (keep.map(({ card }) => card).includes(card.card)) {
-        card.select = true;
-      }
-    });
+    if (revealFilter) {
+      reveal.forEach(card => {
+        if (keep.map(({ card }) => card).includes(card.card)) {
+          card.select = true;
+        }
+      });
+    }
 
     // Add the cards we were looking for to hand, and discard the rest
-    player.cards.hand = player.cards.hand.concat(keep);
-    this.cards.discard = this.cards.discard.concat(
-      reveal.filter(({ card }) => !keep.map(({ card }) => card).includes(card))
-    );
+    // TODO: Move this logic to the cards which use it
+    // player.cards.hand = player.cards.hand.concat(keep);
+    // this.cards.discard = this.cards.discard.concat(
+    //   reveal.filter(({ card }) => !keep.map(({ card }) => card).includes(card))
+    // );
 
     // Add a log for users to see revealed cards
     LogService.pushLog(
       this.id,
       new Log(player.number, [
-        ` searched for ${size} `,
+        ` searched for ${num} `,
         icon,
         ` ${label} and has `,
         { reveal },
         '.'
       ])
     );
+
+    return reveal.map(card => this.cardStore.project[card.card]);
   }
 
   /**
@@ -414,7 +419,7 @@ class Game extends SharedGame {
           show: false,
           pid: player.number
         },
-        activeCard: { show: false },
+        currentCard: { show: false },
         showMilestones: false,
         showStandardProjects: false
       };
@@ -464,7 +469,7 @@ class Game extends SharedGame {
    */
   promptPlayer(player, icon, logSnippet, callback, filter = () => true) {
     player.ui = {
-      activeCard: { show: false }
+      currentCard: { show: false }
     };
 
     this.playerStatus = {
@@ -570,6 +575,9 @@ class Game extends SharedGame {
     this.players.forEach(player => (player.ui.drawer = 'prelude'));
   }
 
+  /**
+   * Switch to the player order phase
+   */
   beginPlayerOrderPhase() {
     this.startingPlayer++;
     if (this.startingPlayer > this.players.length) {
@@ -605,6 +613,9 @@ class Game extends SharedGame {
     this.beginResearchPhase();
   }
 
+  /**
+   * Switch to the research phase
+   */
   beginResearchPhase() {
     LogService.pushLog(
       this.id,
@@ -665,6 +676,8 @@ class Game extends SharedGame {
       player.resources.heat += player.production.heat;
 
       // TODO: Remove played status from Active cards
+      player.cards.active.forEach(c => (c.disabled = false));
+      player.cards.corp.forEach(c => (c.disabled = false));
     });
 
     // TODO: shift to Solar Phase if using Venus and using WGT
@@ -753,11 +766,41 @@ class Game extends SharedGame {
    * Helper method to increase/decrease the player's terraform rating
    *
    * @param {Player} player Player doing the action
-   * @param {*} num Amount to change
+   * @param {number} num Amount to change
    */
   tr(player, num) {
     player.tr += num;
     // TODO fire terraform change
+  }
+
+  /**
+   * Helper method to increase/decrease the card's resource
+   *
+   * @param {Player} player Player doing the action
+   * @param {Card} card Card to change
+   * @param {number} value Amount to change
+   */
+  cardResource(player, card, value = 0) {
+    const playerCard = player.cards.active
+      .concat(player.cards.corp)
+      .find(c => c.card === card.number);
+
+    console.log(card, playerCard);
+
+    if (!playerCard.resource) {
+      playerCard.resource = {
+        type: card.resource,
+        value: 0
+      };
+    }
+
+    playerCard.resource.value += value;
+
+    return playerCard.resource;
+  }
+
+  pushLog(player, log) {
+    LogService.pushLog(this.id, new Log(player.number, log));
   }
 
   getField() {

@@ -144,7 +144,7 @@ class GameService {
     const done = () => {
       // Put card in appropriate drawer, and remove from hand
       // HACK to handle Law Suit, which doesn't go in player's hand
-      card.card !== 'X06' && player.cards[cardType].push(card.card);
+      card.card !== 'X06' && player.cards[cardType].push(card);
       player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
 
       // Trigger card-played events
@@ -232,6 +232,52 @@ class GameService {
 
       // Server action didn't call done, call it now
       playedCard.action.length < 3 && done();
+    }
+
+    return this.export(game);
+  }
+
+  /**
+   * Performs a card action
+   *
+   * @param {string} id Game ID
+   * @param {number} playerNum Player number
+   * @param {object} card Card whose action we are peforming
+   * @param {number} index Action index to be used
+   */
+  @push(gameFilter)
+  cardAction(id, playerNum, card, index, opts) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+    const playedCard = this.cardStore[card.type][card.card.card];
+    const action = playedCard.actions[index];
+
+    let log = [' used an action on ', { project: card.card.card }];
+    if (action.log) {
+      log.push(' to ');
+      log = log.concat(action.log);
+    }
+    LogService.pushLog(id, new Log(playerNum, log.concat(['.'])));
+
+    const done = () => {
+      // Mark action card as played by marking as "disabled"
+      player.cards[card.type === 'project' ? 'active' : 'corp'].find(
+        c => c.card === card.card.card
+      ).disabled = true;
+
+      game.playerStatus?.done();
+
+      game.nextTurn();
+    };
+
+    // Perform card's action
+    if (action.action) {
+      action.action(player, game, done, opts);
+
+      // Server action didn't call done, call it now
+      action.action.length < 3 && done();
+    } else {
+      done();
     }
 
     return this.export(game);

@@ -10,7 +10,7 @@ const activeDesc =
   'Action: Spend 10 M€ to increase your heat production 2 steps.';
 
 export default new Active({
-  number: 202,
+  number: '202',
   title: 'Underground Detonations',
   cost: 6,
   tags: ['building'],

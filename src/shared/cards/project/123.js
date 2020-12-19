@@ -19,7 +19,7 @@ const customFilter = (tile, game, notReserved, neighbors) =>
   neighbors.filter(t => t.type === 'city' || t.type === 'capital city').length;
 
 export default new Active({
-  number: 123,
+  number: '123',
   title: 'Industrial Center',
   cost: 4,
   tags: ['building'],

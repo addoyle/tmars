@@ -5,7 +5,7 @@ import { Tile } from '../../../client/game/components/assets/Assets';
 const desc = 'Requires +2°C or warmer. Place 1 ocean tile.';
 
 export default new Event({
-  number: 181,
+  number: '181',
   title: 'Ice Cap Melting',
   cost: 5,
   tags: ['event'],

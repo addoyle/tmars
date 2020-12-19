@@ -17,7 +17,7 @@ const customFilter = (tile, game, notReserved) =>
     tile.attrs?.includes('volcano'));
 
 export default new Event({
-  number: 140,
+  number: '140',
   title: 'Lava Flows',
   cost: 18,
   tags: ['event'],

@@ -16,7 +16,7 @@ const customFilter = (tile, game, notReserved, neighbors) =>
   !neighbors.filter(t => t.name).length;
 
 export default new Automated({
-  number: 44,
+  number: '044',
   title: 'Natural Preserve',
   cost: 9,
   tags: ['science', 'building'],

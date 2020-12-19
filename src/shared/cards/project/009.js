@@ -6,7 +6,7 @@ const desc =
   'Raise temperature 1 step and gain 2 titanium. Remove up to 3 plants from any player.';
 
 export default new Event({
-  number: 9,
+  number: '009',
   title: 'Asteroid',
   cost: 14,
   tags: ['space', 'event'],

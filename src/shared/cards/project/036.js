@@ -5,7 +5,7 @@ import { Resource } from '../../../client/game/components/assets/Assets';
 const desc = 'Raise your terraform rating 2 steps.';
 
 export default new Event({
-  number: 36,
+  number: '036',
   title: 'Release of Inert Gases',
   cost: 14,
   tags: ['event'],

@@ -17,6 +17,7 @@ router.get('/:id/loadPreset', GameController.loadPreset);
 router.get('/:id', validate, GameController.getGame);
 router.post('/:id/play-card', validate, GameController.playCard);
 router.post('/:id/play-prelude', validate, GameController.playPrelude);
+router.post('/:id/card-action', validate, GameController.cardAction);
 router.post(
   '/:id/toggle-select-card',
   validate,

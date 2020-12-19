@@ -6,7 +6,7 @@ const desc =
   'Requires Venus, Earth, and Jovian tags. Increase your TR 2 steps.';
 
 export default new Automated({
-  number: 241,
+  number: '241',
   title: 'Omnicourt',
   cost: 11,
   tags: ['building'],

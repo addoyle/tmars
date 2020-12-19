@@ -13,7 +13,7 @@ const desc =
   'Requires 5 science tags. Increase your energy production 6 steps.';
 
 export default new Active({
-  number: 94,
+  number: '094',
   title: 'Mass Converter',
   cost: 8,
   tags: ['science', 'power'],

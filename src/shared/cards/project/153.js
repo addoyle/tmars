@@ -7,7 +7,7 @@ const activeDesc =
   'Effect: Your global requirements are +2 or -2 steps, your choice in each case';
 
 export default new Active({
-  number: 153,
+  number: '153',
   title: 'Adaptation Technology',
   cost: 12,
   tags: ['science'],

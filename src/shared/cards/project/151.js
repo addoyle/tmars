@@ -8,7 +8,7 @@ import {
 const desc = 'Decrease your M€ production 1 step. Gain 10 M€.';
 
 export default new Event({
-  number: 151,
+  number: '151',
   title: 'Investment Loan',
   cost: 3,
   tags: ['earth', 'event'],

@@ -11,7 +11,7 @@ const desc =
   'Increase your M€ production 1 step for every 2 building tags you have, including this.';
 
 export default new Automated({
-  number: 207,
+  number: '207',
   title: 'Medical Lab',
   cost: 13,
   tags: ['science', 'building'],

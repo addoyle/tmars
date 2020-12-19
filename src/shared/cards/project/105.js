@@ -6,7 +6,7 @@ const activeDesc =
   'Effect: When you play an Earth tag, you pay 3 M€ less for it.';
 
 export default new Active({
-  number: 105,
+  number: '105',
   title: 'Earth Office',
   cost: 1,
   tags: ['earth'],

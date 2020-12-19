@@ -11,7 +11,7 @@ const activeDesc =
   'Effect: When you play a science tag, including this, you may discard a card from hand to draw a card.';
 
 export default new Active({
-  number: 73,
+  number: '073',
   title: 'Mars University',
   cost: 8,
   tags: ['science', 'building'],

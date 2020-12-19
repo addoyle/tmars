@@ -10,7 +10,7 @@ const desc =
   'Requires Venus 12%, and that you spend 1 floater from any card. 1 VP for each animal on this card.';
 
 export default new Active({
-  number: 249,
+  number: '249',
   title: 'Stratospheric Birds',
   cost: 12,
   tags: ['venus', 'animal'],

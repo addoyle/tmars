@@ -5,7 +5,7 @@ import { Param } from '../../../client/game/components/assets/Assets';
 const desc = 'Requires Venus 10%. Increase Venus 1 step.';
 
 export default new Automated({
-  number: 240,
+  number: '240',
   title: 'Neutralizer Factory',
   cost: 7,
   tags: ['venus'],

@@ -11,7 +11,7 @@ const activeDesc =
 const desc = 'Venus must be 14% or lower.';
 
 export default new Active({
-  number: 243,
+  number: '243',
   title: 'Rotator Impacts',
   cost: 6,
   tags: ['space'],

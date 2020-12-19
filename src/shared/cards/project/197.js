@@ -10,7 +10,7 @@ const desc =
   'Raise your TR 1 step for each Jovian tag you have, including this.';
 
 export default new Automated({
-  number: 197,
+  number: '197',
   title: 'Terraforming Ganymede',
   cost: 33,
   tags: ['jovian', 'space'],

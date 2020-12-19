@@ -9,7 +9,7 @@ const desc =
   'Increase your plant production 1 step or your energy production 2 steps.';
 
 export default new Automated({
-  number: 115,
+  number: '115',
   title: 'Artificial Photosynthesis',
   cost: 12,
   tags: ['science'],

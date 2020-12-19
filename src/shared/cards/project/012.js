@@ -8,14 +8,12 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc =
   'Action: Pay 12 M€ to place an ocean tile. TITANIUM MAY BE USED as if playing a space card.';
 const desc = '1 VP for each Jovian tag you have.';
 
 export default new Active({
-  number: 12,
+  number: '012',
   title: 'Water Import From Europa',
   cost: 25,
   tags: ['jovian', 'space'],
@@ -23,12 +21,46 @@ export default new Active({
   desc,
   flavor:
     'With its low gravity, this Jovian ice moon is suitable for mass export of water.',
-  action: () => {},
-  clientActiveAction: () => {},
-  serverActiveAction: () => {},
+  actions: [
+    {
+      name: 'Place an ocean',
+      log: ['place an ocean ', { tile: 'ocean' }],
+      icon: <Tile name="ocean" />,
+      opts: {
+        cost: 12,
+        resource: 'titanium'
+      },
+      canPlay: (player, game, opts) => {
+        if (game.params.ocean <= 0) {
+          return {
+            valid: false,
+            msg: 'All oceans have been placed'
+          };
+        }
+
+        const valid =
+          player.resources.megacredit +
+            (opts?.titanium || 0) * player.rates.titanium >=
+          12;
+        return {
+          valid,
+          msg: !valid ? 'Cannot afford this' : null
+        };
+      },
+      action: (player, game, done, opts) => {
+        console.log(opts);
+        game.resources(
+          player,
+          'megacredit',
+          -Math.max(0, 12 - (opts?.titanium || 0) * player.rates.titanium)
+        );
+        game.resources(player, 'titanium', -(opts?.titanium || 0));
+        game.promptTile(player, 'ocean', done);
+      }
+    }
+  ],
   vp: player => player.tags.jovian,
   emoji: '💧',
-  todo: true,
   activeLayout: (
     <div>
       <div className="center text-center">

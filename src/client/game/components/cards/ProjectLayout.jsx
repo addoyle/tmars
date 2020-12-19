@@ -100,7 +100,7 @@ const ProjectLayout = props => {
         {props.type === 'active' ? (
           <div className="body top">{props.activeLayout}</div>
         ) : null}
-        <Art art={props.emoji} resources={props.resources} />
+        <Art art={props.emoji} resources={props.resource} />
         <Separator number={props.number} />
         <div className="body">
           {props.layout}
@@ -146,7 +146,7 @@ ProjectLayout.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
   activeLayout: PropTypes.node,
   emoji: PropTypes.string,
-  resources: PropTypes.shape({
+  resource: PropTypes.shape({
     type: PropTypes.string,
     value: PropTypes.number
   }),

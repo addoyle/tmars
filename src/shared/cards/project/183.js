@@ -10,7 +10,7 @@ const desc =
   'Requires 6% oxygen. Decrease any plant production 1 step and increase your energy production 2 steps.';
 
 export default new Automated({
-  number: 183,
+  number: '183',
   title: 'Biomass Combustors',
   cost: 4,
   tags: ['power', 'building'],

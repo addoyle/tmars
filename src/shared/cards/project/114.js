@@ -5,7 +5,7 @@ import { VictoryPoint } from '../../../client/game/components/assets/Assets';
 const desc = 'Requires 7% oxygen.';
 
 export default new Automated({
-  number: 114,
+  number: '114',
   title: 'Breathing Filters',
   cost: 11,
   tags: ['science'],

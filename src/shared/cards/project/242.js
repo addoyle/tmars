@@ -9,7 +9,7 @@ import {
 const desc = 'Raise Venus 2 steps. Increase your heat production 2 steps.';
 
 export default new Automated({
-  number: 242,
+  number: '242',
   title: 'Orbital Reflectors',
   cost: 26,
   tags: ['venus', 'space'],

@@ -13,8 +13,8 @@ import {
 const desc =
   'Requires 4 ocean tiles. Place this tile. Decrease your energy production 2 steps and increase your M€ production 5 steps. 1 ADDITIONAL VP FOR EACH OCEAN TILE ADJACENT TO THIS CITY TILE.';
 
-export default new Automated({
-  number: 8,
+const card = new Automated({
+  number: '008',
   title: 'Capital',
   cost: 26,
   tags: ['city', 'building'],
@@ -29,9 +29,7 @@ export default new Automated({
     game.production(player, 'power', -2);
     game.production(player, 'megacredit', 5);
     game.promptTile(player, 'capital city', tile => {
-      //this.tile = tile;
-      // Figure out what to do with tile
-      console.log(tile);
+      card.tile = tile;
       done();
     });
   },
@@ -50,7 +48,7 @@ export default new Automated({
     };
   },
   vp: (player, game) =>
-    game.neighbors(this.tile).filter(t => t.type === 'ocean').length,
+    game.neighbors(card.tile).filter(t => t.type === 'ocean').length,
   emoji: '🏛',
   todo: true,
   layout: (
@@ -89,3 +87,5 @@ export default new Automated({
     </div>
   )
 });
+
+export default card;

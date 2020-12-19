@@ -8,7 +8,7 @@ import {
 const desc = 'Requires 2 power tags. Increase your energy production 3 steps.';
 
 export default new Automated({
-  number: 132,
+  number: '132',
   title: 'Fusion Power',
   cost: 14,
   tags: ['science', 'power', 'building'],

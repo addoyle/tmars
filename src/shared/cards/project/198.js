@@ -11,7 +11,7 @@ const desc =
   'Increase your M€ production 5 steps. 1 VP for every 3rd city in play.';
 
 export default new Automated({
-  number: 198,
+  number: '198',
   title: 'Immigration Shuttles',
   cost: 31,
   tags: ['earth', 'space'],

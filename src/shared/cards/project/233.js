@@ -8,7 +8,7 @@ import {
 const desc = 'Requires Venus 8%. Increase your titanium production 1 step.';
 
 export default new Automated({
-  number: 233,
+  number: '233',
   title: 'Ishtar Mining',
   cost: 5,
   tags: ['venus'],

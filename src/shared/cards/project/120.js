@@ -17,7 +17,7 @@ const customFilter = (tile, game, notReserved, neighbors) =>
     .length >= 2;
 
 export default new Automated({
-  number: 120,
+  number: '120',
   title: 'Urbanized Area',
   cost: 10,
   tags: ['city', 'building'],

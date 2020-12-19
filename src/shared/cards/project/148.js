@@ -10,7 +10,7 @@ const desc =
   'Requires 6% oxygen. Increase your plant production 1 step for each plant tag you have.';
 
 export default new Automated({
-  number: 148,
+  number: '148',
   title: 'Insects',
   cost: 9,
   tags: ['microbe'],

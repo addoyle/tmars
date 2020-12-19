@@ -10,7 +10,7 @@ const desc =
   'Place a city tile. Decrease your energy production 2 steps and increase your steel production 2 steps.';
 
 export default new Automated({
-  number: 32,
+  number: '032',
   title: 'Underground City',
   cost: 18,
   tags: ['city', 'building'],

@@ -11,7 +11,7 @@ const desc =
   'Requires +4°C or warmer. Increase your M€ production 2 steps and your plant production 2 steps. Gain 2 plants.';
 
 export default new Automated({
-  number: 118,
+  number: '118',
   title: 'Farming',
   cost: 16,
   tags: ['plant'],

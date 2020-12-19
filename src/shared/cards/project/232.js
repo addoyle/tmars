@@ -9,7 +9,7 @@ import {
 const desc = 'Draw 1 card, or draw 3 cards if you have at least 3 Venus tags.';
 
 export default new Automated({
-  number: 232,
+  number: '232',
   title: 'IO Sulphur Reasearch',
   cost: 17,
   tags: ['science', 'jovian'],

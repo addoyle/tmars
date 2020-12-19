@@ -5,7 +5,7 @@ import { Param, Resource } from '../../../client/game/components/assets/Assets';
 const desc = 'Raise Venus 1 step. Add 3 floaters to ANY VENUS CARD.';
 
 export default new Event({
-  number: 215,
+  number: '215',
   title: 'Air-Scrapping Expedition',
   cost: 13,
   tags: ['venus', 'event'],

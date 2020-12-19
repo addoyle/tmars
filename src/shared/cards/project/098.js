@@ -11,7 +11,7 @@ const desc =
   'Decrease your heat production 2 steps and increase your M€ production 3 steps.';
 
 export default new Automated({
-  number: 98,
+  number: '098',
   title: 'Tropical Resort',
   cost: 13,
   tags: ['building'],

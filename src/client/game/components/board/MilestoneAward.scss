@@ -243,11 +243,12 @@ $title-font: 'Prototype', sans-serif;
       font-size: 1.4em;
       letter-spacing: 0.15em;
       width: 100%;
-      padding: 0.2em 0 0.2em 0.2em;
+      padding: 6px 0 4px 4px;
       margin-top: 0.75em;
       position: relative;
-      transition: border-color 0.3s ease;
-      border: 2px solid #c78c33;
+      transition: box-shadow 0.3s ease;
+      // border: 2px solid #c78c33;
+      box-shadow: 0 0 0 2px #c78c33 inset;
       height: 30px;
       border-radius: 15px;
       background: linear-gradient(
@@ -267,7 +268,7 @@ $title-font: 'Prototype', sans-serif;
         right: 0;
         top: 0;
         bottom: 0;
-        margin: -4px;
+        margin: -3px;
         background: linear-gradient(#444, white);
         border-radius: 17px;
         z-index: -1;
@@ -275,10 +276,10 @@ $title-font: 'Prototype', sans-serif;
     }
 
     &:not(.disabled):hover .label {
-      border-color: #dab174;
+      box-shadow: 0 0 0 3px #9e6f29 inset;
     }
     &:not(.disabled):active .label {
-      border-color: #a37228;
+      box-shadow: 0 0 0 5px #9e6f29 inset;
     }
   }
 

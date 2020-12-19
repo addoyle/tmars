@@ -10,7 +10,7 @@ const desc =
   'Decrease your energy production 1 step and increase your titanium and your M€ production 1 step each.';
 
 export default new Automated({
-  number: 180,
+  number: '180',
   title: 'Fuel Factory',
   cost: 6,
   tags: ['building'],

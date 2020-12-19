@@ -10,7 +10,7 @@ const activeDesc =
   'Action: Spend 2 M€ to add a floater to this card, or spend 2 floaters here to increase Venus 1 step.';
 
 export default new Active({
-  number: 226,
+  number: '226',
   title: 'Forced Precipitation',
   cost: 8,
   tags: ['venus'],

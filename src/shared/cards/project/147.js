@@ -15,7 +15,7 @@ const desc =
 // TODO ACTION
 
 export default new Active({
-  number: 147,
+  number: '147',
   title: 'Herbivores',
   cost: 12,
   tags: ['animal'],

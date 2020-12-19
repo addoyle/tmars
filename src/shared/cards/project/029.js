@@ -11,7 +11,7 @@ const desc =
   'Oxygen must be 9% or less. Place a city tile. Decrease your energy production 1 step and increase your M€ production 3 steps.';
 
 export default new Automated({
-  number: 29,
+  number: '029',
   title: 'Cupola City',
   cost: 16,
   tags: ['city', 'building'],

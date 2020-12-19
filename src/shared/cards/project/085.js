@@ -14,7 +14,7 @@ const desc =
   'Decrease your energy production 1 step and increase your M€ production 4 steps. Place this tile. 1 VP PER ADJACENT CITY TILE.';
 
 export default new Automated({
-  number: 85,
+  number: '085',
   title: 'Commercial District',
   cost: 16,
   tags: ['building'],

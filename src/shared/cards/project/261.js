@@ -10,7 +10,7 @@ const desc =
   'Requires Venus 16%. Raise Venus 1 step. Add 1 microbe or 1 animal to ANOTHER VENUS CARD.';
 
 export default new Automated({
-  number: 261,
+  number: '261',
   title: 'Venusian Plants',
   cost: 13,
   tags: ['venus', 'plant'],

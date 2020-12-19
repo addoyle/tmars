@@ -9,7 +9,7 @@ const desc =
   'It must be -14°C or colder. Increase your plant production 2 steps.';
 
 export default new Automated({
-  number: 155,
+  number: '155',
   title: 'Designed Microorganisms',
   cost: 16,
   tags: ['science', 'microbe'],

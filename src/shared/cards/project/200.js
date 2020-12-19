@@ -13,7 +13,7 @@ const desc =
   'Decrease your energy production 1 step and decrease your M€ production 2 steps. Place a city tile.';
 
 export default new Active({
-  number: 200,
+  number: '200',
   title: 'Immigrant City',
   cost: 13,
   tags: ['city', 'building'],

@@ -10,7 +10,7 @@ const desc =
   'Decrease your M€ production 1 step and increase your energy production 2 steps.';
 
 export default new Automated({
-  number: 89,
+  number: '089',
   title: 'Peroxide Power',
   cost: 7,
   tags: ['power', 'building'],

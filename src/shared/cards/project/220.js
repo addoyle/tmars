@@ -11,7 +11,7 @@ const desc =
   'Requires 4 science tags. Decrease your energy production 1 step. Increase your titanium production 1 step. Place a city tile ON THE RESERVED AREA.';
 
 export default new Automated({
-  number: 220,
+  number: '220',
   title: 'Dawn City',
   cost: 15,
   tags: ['space', 'city'],

@@ -10,7 +10,7 @@ const desc =
   'Decrease any heat production 2 steps and increase your energy production 1 step.';
 
 export default new Automated({
-  number: 178,
+  number: '178',
   title: 'Heat Trappers',
   cost: 6,
   tags: ['power', 'building'],

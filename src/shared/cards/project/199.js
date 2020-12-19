@@ -12,7 +12,7 @@ const activeDesc = 'Action: Spend 2 M€ to draw a card.';
 const desc = 'Place this tile.';
 
 export default new Active({
-  number: 199,
+  number: '199',
   title: 'Restricted Area',
   cost: 11,
   tags: ['science'],

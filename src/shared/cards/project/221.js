@@ -9,7 +9,7 @@ const activeDesc =
   'Action: Add 1 floater to this card, or spend 1 floater here to increase your energy production 1 step..';
 
 export default new Active({
-  number: 221,
+  number: '221',
   title: 'Deuterium Export',
   cost: 11,
   tags: ['venus', 'power', 'space'],

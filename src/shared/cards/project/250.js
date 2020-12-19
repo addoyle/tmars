@@ -11,7 +11,7 @@ const desc =
   'Increase Venus 1 step. Increase your M€ production 1 step for each Venus tag you have, including this.';
 
 export default new Automated({
-  number: 250,
+  number: '250',
   title: 'Sulphur Exports',
   cost: 21,
   tags: ['venus', 'space'],

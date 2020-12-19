@@ -6,7 +6,7 @@ const desc =
   'Requires 2 science tags. Place a greenery tile and raise oxygen 1 step.';
 
 export default new Automated({
-  number: 193,
+  number: '193',
   title: 'Plantation',
   cost: 15,
   tags: ['plant'],

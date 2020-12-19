@@ -5,7 +5,7 @@ import { Tile, Param } from '../../../client/game/components/assets/Assets';
 const desc = 'Place 1 ocean tile and draw 1 card.';
 
 export default new Event({
-  number: 161,
+  number: '161',
   title: 'Convoy From Europa',
   cost: 15,
   tags: ['space', 'event'],

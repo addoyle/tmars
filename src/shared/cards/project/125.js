@@ -11,7 +11,7 @@ const desc =
   'Decrease your enery production 1 step and any M€ production 2 steps. Increase your M€ production 2 steps.';
 
 export default new Automated({
-  number: 125,
+  number: '125',
   title: 'Hackers',
   cost: 3,
   tags: [],

@@ -6,7 +6,7 @@ const desc =
   'Raise your TR 1 step and gain 4 plants. Add 3 microbes to ANOTHER card and 2 animals to ANOTHER card.';
 
 export default new Event({
-  number: 163,
+  number: '163',
   title: 'Imported Nitrogen',
   cost: 23,
   tags: ['earth', 'space', 'event'],

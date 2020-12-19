@@ -5,7 +5,7 @@ import { Resource } from '../../../client/game/components/assets/Assets';
 const activeDesc = 'OPPONENTS MAY NOT REMOVE YOUR';
 
 export default new Active({
-  number: 173,
+  number: '173',
   title: 'Protected Habitats',
   cost: 5,
   tags: [],

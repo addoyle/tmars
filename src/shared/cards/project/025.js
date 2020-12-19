@@ -12,7 +12,7 @@ const activeDesc =
   'Effect: When you play a space card, you pay 2 M€ less for it.';
 
 export default new Active({
-  number: 25,
+  number: '025',
   title: 'Space Station',
   cost: 10,
   tags: ['space'],

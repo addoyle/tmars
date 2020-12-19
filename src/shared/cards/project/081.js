@@ -10,7 +10,7 @@ const desc =
   'Place a city tile ON THE RESERVED AREA. 1 VP per Jovian tag you have.';
 
 export default new Automated({
-  number: 81,
+  number: '081',
   title: 'Ganymede Colony',
   cost: 20,
   tags: ['jovian', 'space', 'city'],

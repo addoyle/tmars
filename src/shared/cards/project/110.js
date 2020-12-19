@@ -10,7 +10,7 @@ const activeDesc =
 const desc = 'Decrease your M€ production 1 step.';
 
 export default new Active({
-  number: 110,
+  number: '110',
   title: 'Business Network',
   cost: 4,
   tags: ['earth'],

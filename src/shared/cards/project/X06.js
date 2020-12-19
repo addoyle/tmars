@@ -29,10 +29,7 @@ export default new Event({
           game.resources(player, 'megacredit', diff < 3 ? diff : 3);
           game.resources(targetPlayer, 'megacredit', -3);
 
-          // Remove card from player's events
-          player.cards.event = player.cards.event.filter(c => c.card !== 'X06');
-          player.tags.event--;
-          // Move to target player's events
+          // Put in target player's events
           targetPlayer.cards.event.push({ card: 'X06' });
           targetPlayer.tags.event++;
         }

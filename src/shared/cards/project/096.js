@@ -5,7 +5,7 @@ import { Tile, Resource } from '../../../client/game/components/assets/Assets';
 const desc = 'Gain 1 plant for each city tile in play.';
 
 export default new Automated({
-  number: 96,
+  number: '096',
   title: 'Greenhouses',
   cost: 6,
   tags: ['plant', 'building'],

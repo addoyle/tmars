@@ -6,7 +6,7 @@ const activeDesc =
   'Effect: When you play a plant, microbe, or an animal tag, including this, gain 1 plant or add 1 resource TO THAT CARD.';
 
 export default new Active({
-  number: 74,
+  number: '074',
   title: 'Viral Enhancers',
   cost: 9,
   tags: ['science', 'microbe'],

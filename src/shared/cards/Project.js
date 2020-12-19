@@ -5,9 +5,7 @@ export default class Project extends Card {
   restriction; // Restrictions in order to play
   vp; // Victory points, or function for variable VPs
   emoji; // Emoji of card, used for card art
-  layout; // Layout of the card
-  clientEffect = () => {}; // Client effect of the card
-  serverEffect = () => {}; // Server effect of the card
+  layout; // Layout of the car
 
   constructor(props) {
     super(props);

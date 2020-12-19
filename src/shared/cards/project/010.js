@@ -10,7 +10,7 @@ const desc =
   'Raise temperature 1 step and place an ocean tile. Remove up to 3 plants from any player.';
 
 export default new Event({
-  number: 10,
+  number: '010',
   title: 'Comet',
   cost: 21,
   tags: ['space', 'event'],

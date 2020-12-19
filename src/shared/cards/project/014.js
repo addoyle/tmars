@@ -2,24 +2,34 @@ import React from 'react';
 import Active from '../Active';
 import { Resource, Param } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc = 'Action: Spend 1 energy to draw a card.';
 
 export default new Active({
-  number: 14,
+  number: '014',
   title: 'Development Center',
   cost: 11,
   tags: ['science', 'building'],
   set: 'corporate',
   activeDesc,
   flavor: 'Ensuring a constant influx of ideas',
-  action: () => {},
-  clientActiveAction: () => {},
-  serverActiveAction: () => {},
-  vp: () => {},
+  actions: [
+    {
+      name: 'Spend 1 Energy',
+      icon: <Resource name="power" />,
+      canPlay: player => {
+        const valid = player.resources.power >= 1;
+        return {
+          valid,
+          msg: 'Not enough energy'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'power', -1);
+        game.drawCard(player);
+      }
+    }
+  ],
   emoji: '🏢',
-  todo: true,
   activeLayout: (
     <div>
       <div className="center text-center">

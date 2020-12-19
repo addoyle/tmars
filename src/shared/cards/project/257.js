@@ -10,7 +10,7 @@ const desc =
   'Raise Venus 1 step. Increase your plant production 1 step. Add 2 microbes to ANOTHER card.';
 
 export default new Automated({
-  number: 257,
+  number: '257',
   title: 'Venus Soils',
   cost: 20,
   tags: ['venus', 'plant'],

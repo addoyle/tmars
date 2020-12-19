@@ -8,7 +8,7 @@ import {
 const desc = 'Increase your M€ production 3 steps.';
 
 export default new Automated({
-  number: 106,
+  number: '106',
   title: 'Acquired Company',
   cost: 10,
   tags: ['earth'],

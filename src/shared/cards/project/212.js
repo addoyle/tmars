@@ -9,7 +9,7 @@ const activeDesc = 'Action: Add 1 animal to this card.';
 const desc = 'Requires 8 oceans. 1 VP for each animal on this card.';
 
 export default new Active({
-  number: 212,
+  number: '212',
   title: 'Penguins',
   cost: 7,
   tags: ['animal'],

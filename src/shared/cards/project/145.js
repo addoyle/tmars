@@ -10,7 +10,7 @@ const desc =
   'Requires 2 science tags. Increase your energy production 3 steps.';
 
 export default new Automated({
-  number: 145,
+  number: '145',
   title: 'Tectonic Stress Power',
   cost: 18,
   tags: ['power', 'building'],

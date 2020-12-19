@@ -12,7 +12,7 @@ const desc =
   'Increase your titanium production 2 steps and your M€ production 2 steps. 1 VP per Jovian tag you have.';
 
 export default new Automated({
-  number: 92,
+  number: '092',
   title: 'Io Mining Industries',
   cost: 11,
   tags: ['jovian', 'space'],

@@ -9,7 +9,7 @@ import {
 const desc = 'Requires 4 ocean tiles. Increase your energy production 2 steps.';
 
 export default new Automated({
-  number: 136,
+  number: '136',
   title: 'Great Dam',
   cost: 12,
   tags: ['power', 'building'],

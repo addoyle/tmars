@@ -10,7 +10,7 @@ const desc =
   'Decrease any energy production 1 step and increase your own 1 step.';
 
 export default new Automated({
-  number: 201,
+  number: '201',
   title: 'Energy Tapping',
   cost: 3,
   tags: ['power'],

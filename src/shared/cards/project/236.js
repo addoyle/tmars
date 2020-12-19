@@ -12,7 +12,7 @@ const desc =
   'Increase your M€ production 1 step for each Earth tag you have, including this. Place a city tile ON THE RESERVED AREA.';
 
 export default new Automated({
-  number: 236,
+  number: '236',
   title: 'Luna Metropolis',
   cost: 21,
   tags: ['space', 'earth', 'city'],

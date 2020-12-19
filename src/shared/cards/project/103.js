@@ -6,7 +6,7 @@ const activeDesc =
   'Action: Spend 4 energy to gain 2 steel and increase oxygen 1 step.';
 
 export default new Active({
-  number: 103,
+  number: '103',
   title: 'Steelworks',
   cost: 15,
   tags: ['building'],

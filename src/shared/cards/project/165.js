@@ -9,7 +9,7 @@ const desc =
   'Decrease your energy production 4 steps and increase your plant production 2 steps. Raise your TR 3 steps.';
 
 export default new Automated({
-  number: 165,
+  number: '165',
   title: 'Magnetic Field Generators',
   cost: 20,
   tags: ['building'],

@@ -9,7 +9,7 @@ import {
 const desc = 'Increase your energy production 1 step.';
 
 export default new Automated({
-  number: 113,
+  number: '113',
   title: 'Solar Power',
   cost: 11,
   tags: ['power', 'building'],

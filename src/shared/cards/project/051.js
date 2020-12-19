@@ -10,7 +10,7 @@ import {
 const desc = 'Increase your M€ production 1 step for each Earth tag you have.';
 
 export default new Automated({
-  number: 51,
+  number: '051',
   title: 'Miranda Resort',
   cost: 12,
   tags: ['jovian', 'space'],

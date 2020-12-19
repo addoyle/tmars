@@ -3,7 +3,8 @@ import Project from './Project';
 export default class Active extends Project {
   activeDesc; // Top description
   activeLayout; // Top layout
-  resources; // Current resources on card
+  resource; // Resource type for card
+  actions; // List of possible actions to be peformed
 
   constructor(props) {
     super(props);

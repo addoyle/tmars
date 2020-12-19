@@ -10,7 +10,7 @@ const activeDesc = 'Action: Spend 2 M€ to add 1 floater to ANY card.';
 const desc = 'Requires 2 science tags. 1 VP per 2 floaters on this card.';
 
 export default new Active({
-  number: 225,
+  number: '225',
   title: 'Floating Habs',
   cost: 5,
   tags: ['venus'],

@@ -11,18 +11,35 @@ const activeDesc =
   'Action: Spend 1 titanium to add 1 fighter resource to this card.';
 const desc = '1 VP for each fighter resource on this card.';
 
-export default new Active({
-  number: 28,
+const card = new Active({
+  number: '028',
   title: 'Security Fleet',
   cost: 12,
   tags: ['space'],
   set: 'corporate',
   activeDesc,
+  resource: 'fighter',
   desc,
   flavor: 'Keeping the peace by force',
-  vp: () => this.resources,
+  actions: [
+    {
+      name: 'Spend 1 Titanium',
+      icon: <Resource name="titanium" />,
+      canPlay: player => {
+        const valid = player.resources.titanium >= 1;
+        return {
+          valid,
+          msg: 'Not enough titanium'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'titanium', -1);
+        game.cardResource(player, card, 1);
+      }
+    }
+  ],
+  vp: (player, game) => game.cardResource(player, card).value,
   emoji: '🚀',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -46,3 +63,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

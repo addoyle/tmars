@@ -5,7 +5,7 @@ import { Param } from '../../../client/game/components/assets/Assets';
 const desc = 'Raise Venus 3 steps.';
 
 export default new Automated({
-  number: 229,
+  number: '229',
   title: 'Giant Solar Shade',
   cost: 27,
   tags: ['venus', 'space'],

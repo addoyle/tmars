@@ -11,7 +11,7 @@ const desc =
   'Requires Venus 10%. Add 2 microbes or 2 animals TO ANOTHER VENUS CARD. Decrease your energy production 1 step, and increase your M€ production 2 steps.';
 
 export default new Automated({
-  number: 227,
+  number: '227',
   title: 'Freyja Biodomes',
   cost: 14,
   tags: ['venus', 'plant'],

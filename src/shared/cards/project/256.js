@@ -11,7 +11,7 @@ const activeDesc =
 const desc = 'Requires Venus 10%.';
 
 export default new Active({
-  number: 256,
+  number: '256',
   title: 'Venus Magnetizer',
   cost: 7,
   tags: ['venus'],

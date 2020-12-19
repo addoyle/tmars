@@ -10,7 +10,7 @@ const desc =
   'Increase your M€ production 1 step for each space tag your OPPONENTS have.';
 
 export default new Automated({
-  number: 99,
+  number: '099',
   title: 'Toll Station',
   cost: 12,
   tags: ['space'],

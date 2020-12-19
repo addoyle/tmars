@@ -13,7 +13,7 @@ const desc =
   'Requires +2°C or warmer. Decrease any plant production 1 step. 1 VP for each animal on this card.';
 
 export default new Active({
-  number: 52,
+  number: '052',
   title: 'Fish',
   cost: 9,
   tags: ['animal'],

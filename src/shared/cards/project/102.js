@@ -10,7 +10,7 @@ const desc =
   'Increase your energy production 1 step for each power tag you have, including this.';
 
 export default new Automated({
-  number: 102,
+  number: '102',
   title: 'Power Grid',
   cost: 18,
   tags: ['power'],

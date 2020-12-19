@@ -7,7 +7,7 @@ const activeDesc =
 const desc = 'Requires Venus 6%.';
 
 export default new Active({
-  number: 253,
+  number: '253',
   title: 'Thermophiles',
   cost: 9,
   tags: ['venus', 'microbe'],

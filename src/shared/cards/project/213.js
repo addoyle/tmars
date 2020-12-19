@@ -10,7 +10,7 @@ const activeDesc =
   'Action: Add 1 floater to ANY card, or spend 1 floater here to draw a card.';
 
 export default new Active({
-  number: 213,
+  number: '213',
   title: 'Aerial Mappers',
   cost: 11,
   tags: ['venus'],

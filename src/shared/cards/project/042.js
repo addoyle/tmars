@@ -9,7 +9,7 @@ const desc =
   'It must be -18°C or colder. Increase your plant production 1 step.';
 
 export default new Automated({
-  number: 42,
+  number: '042',
   title: 'Archaebacteria',
   cost: 6,
   tags: ['microbe'],

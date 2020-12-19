@@ -14,7 +14,7 @@ const desc =
   'Requires 5% oxygen. Decrease your energy production 1 step and increase your M€ production 2 steps.';
 
 export default new Active({
-  number: 166,
+  number: '166',
   title: 'Shuttles',
   cost: 10,
   tags: ['space'],

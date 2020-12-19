@@ -5,7 +5,7 @@ import { Param } from '../../../client/game/components/assets/Assets';
 const desc = 'Draw 2 cards.';
 
 export default new Event({
-  number: 204,
+  number: '204',
   title: 'Technology Demonstration',
   cost: 5,
   tags: ['science', 'space', 'event'],

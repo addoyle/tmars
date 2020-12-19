@@ -9,7 +9,7 @@ const desc =
   'Requires 3 ocean tiles and that you lose 2 plants. Increase your plant production 2 steps.';
 
 export default new Automated({
-  number: 146,
+  number: '146',
   title: 'Nitrophilic Moss',
   cost: 8,
   tags: ['plant'],

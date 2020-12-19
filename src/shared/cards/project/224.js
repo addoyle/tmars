@@ -9,7 +9,7 @@ const activeDesc = 'Action: Add 1 microbe to ANY card.';
 const desc = 'Requires 2 science tags. 1 VP per 3 microbes on this card.';
 
 export default new Active({
-  number: 224,
+  number: '224',
   title: 'Extremophiles',
   cost: 3,
   tags: ['venus', 'microbe'],

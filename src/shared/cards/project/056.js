@@ -8,7 +8,7 @@ import {
 const desc = 'Increase your steel production 1 step.';
 
 export default new Automated({
-  number: 56,
+  number: '056',
   title: 'Mine',
   cost: 4,
   tags: ['building'],

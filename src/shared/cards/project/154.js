@@ -7,7 +7,7 @@ const activeDesc =
 const desc = 'Requires 0°C or warmer.';
 
 export default new Active({
-  number: 154,
+  number: '154',
   title: 'Caretaker Contract',
   cost: 3,
   tags: [],

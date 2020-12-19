@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: Each time any Jovian tag is put into play, including this, increase your M€ production 1 step.';
 
 export default new Corporation({
-  number: 12,
+  number: '012',
   title: 'Saturn Systems',
   titleStyle: {
     fontSize: '.07em',

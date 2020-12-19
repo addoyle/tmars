@@ -9,7 +9,7 @@ const desc =
   'Add 2 microbes to ANOTHER card. Increase your heat production 3 steps and your plant production 1 step.';
 
 export default new Event({
-  number: 170,
+  number: '170',
   title: 'Aerobraked Ammonia Asteroid',
   cost: 26,
   tags: ['space', 'event'],

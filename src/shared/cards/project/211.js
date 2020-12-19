@@ -9,7 +9,7 @@ const desc =
   'Requires 2 oceans. Increase your plant production and your heat production 1 step each.';
 
 export default new Automated({
-  number: 211,
+  number: '211',
   title: 'Snow Algae',
   cost: 12,
   tags: ['plant'],

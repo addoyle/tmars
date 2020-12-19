@@ -5,7 +5,7 @@ import { Resource } from '../../../client/game/components/assets/Assets';
 const desc = 'Gain 5 steel.';
 
 export default new Event({
-  number: 62,
+  number: '062',
   title: 'Mineral Deposit',
   cost: 5,
   tags: ['event'],

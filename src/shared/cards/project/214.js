@@ -12,7 +12,7 @@ const desc =
   'Requires that you have 5 floaters. Gain 1 M€ for each city tile in play.';
 
 export default new Event({
-  number: 214,
+  number: '214',
   title: 'Aerosport Tournament',
   cost: 7,
   tags: ['event'],

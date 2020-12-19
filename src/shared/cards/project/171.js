@@ -9,7 +9,7 @@ const desc =
   'Decrease your energy production 2 steps and increase your plant production 1 step. Raise your terraform rating 1 step.';
 
 export default new Automated({
-  number: 171,
+  number: '171',
   title: 'Magnetic Field Dome',
   cost: 5,
   tags: ['building'],

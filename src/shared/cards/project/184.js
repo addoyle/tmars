@@ -12,7 +12,7 @@ const desc =
   'Requires 9% oxygen. Decrease your plant production 1 step and increase your M€ production 2 steps. 1 VP for each animal on this card.';
 
 export default new Active({
-  number: 184,
+  number: '184',
   title: 'Livestock',
   cost: 13,
   tags: ['animal'],

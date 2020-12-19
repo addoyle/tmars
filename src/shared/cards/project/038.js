@@ -11,7 +11,7 @@ import {
 const activeDesc = 'Effect: When any city tile is placed, gain 2 M€';
 
 export default new Active({
-  number: 38,
+  number: '038',
   title: 'Rover Construction',
   cost: 8,
   tags: ['building'],

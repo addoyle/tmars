@@ -10,7 +10,7 @@ const desc =
   'Decrease your energy production 1 step and increase your plant production 1 step.';
 
 export default new Automated({
-  number: 179,
+  number: '179',
   title: 'Soil Factory',
   cost: 9,
   tags: ['building'],
