@@ -15,12 +15,8 @@ export default new Corporation({
   number: '008',
   title: 'Tharsis Republic',
   titleClass: 'tharsis',
-  starting: {
-    resources: {
-      megacredit: 40
-    }
-  },
-  firstAction: () => {},
+  starting: (player, game) => game.resources(player, 'megacredit', 40),
+  firstAction: (player, game, done) => game.promptTile(player, 'city', done),
   tags: ['building'],
   desc,
   effectDesc,

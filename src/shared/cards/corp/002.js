@@ -15,19 +15,15 @@ export default new Corporation({
   number: '002',
   title: 'Ecoline',
   titleClass: 'ecoline',
-  starting: {
-    resources: {
-      megacredit: 36,
-      plant: 3
-    },
-    production: {
-      plant: 2
-    }
+  starting: (player, game) => {
+    game.production(player, 'plant', 2);
+    game.resources(player, 'plant', 3);
+    game.resources(player, 'megacredit', 36);
+    player.rates.plant = 7;
   },
   tags: ['plant'],
   desc,
   effectDesc,
-  todo: true,
   flavor:
     "Having developed a fast-growing lichen suitable for early terraforming, this corporation's ambition is to lead the taming of the planets, despite its relatively small size.",
   layout: (

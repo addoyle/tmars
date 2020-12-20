@@ -14,15 +14,10 @@ export default new Corporation({
   number: '017',
   title: 'Manutech',
   titleClass: 'manutech',
-  starting: {
-    resources: {
-      megacredit: 35
-    },
-    production: {
-      steel: 1
-    }
+  starting: (player, game) => {
+    game.production(player, 'steel', 1);
+    game.resources(player, 'megacredit', 35);
   },
-  firstAction: () => {},
   tags: ['building'],
   set: 'venus',
   desc,

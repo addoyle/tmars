@@ -13,11 +13,26 @@ export default new Corporation({
   number: '010',
   title: 'United Nations Mars Initiative',
   titleClass: 'unmi',
-  starting: {
-    resources: {
-      megacredit: 40
+  starting: (player, game) => game.resources(player, 'megacredit', 40),
+  actions: [
+    {
+      name: 'Raise TR',
+      log: ['raise TR ', { resource: 'tr' }],
+      icon: <Resource name="tr" />,
+      canPlay: () => {
+        // TODO: figure out how to check if TR was raised this gen
+        const valid = true;
+        return {
+          valid,
+          msg: !valid ? 'Your TR has not been raised this generation' : null
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'megacredit', -3);
+        game.tr(player, 1);
+      }
     }
-  },
+  ],
   tags: ['earth'],
   desc,
   actionDesc,

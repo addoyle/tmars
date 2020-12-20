@@ -15,19 +15,59 @@ export default new Corporation({
   number: 'X02',
   title: 'Factorum',
   titleClass: 'factorum',
-  starting: {
-    resources: {
-      megacredit: 37
-    },
-    production: {
-      steel: 1
-    }
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 37);
+    game.production(player, 'steel', 1);
   },
+  actions: [
+    {
+      name: 'Increase Enery Production',
+      log: ['increase energy production ', { resource: 'power' }],
+      icon: (
+        <Production>
+          <div className="flex">
+            <Resource name="power" />
+          </div>
+        </Production>
+      ),
+      canPlay: player => {
+        const valid = player.resources.power <= 0;
+        return {
+          valid,
+          msg: !valid ? 'Requires 0 energy resources' : null
+        };
+      },
+      action: (player, game) => {
+        game.production(player, 'power', 1);
+      }
+    },
+    {
+      name: 'Draw Building Card',
+      log: ['draw a building card ', { tag: 'building' }],
+      icon: <Param name="card back" tag="building" />,
+      canPlay: player => {
+        const valid = player.resources.megacredit >= 3;
+        return {
+          valid,
+          msg: !valid ? 'Not enough M€' : null
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'megacredit', -3);
+        game.revealCards(
+          player,
+          card => card.tags.includes('building'),
+          1,
+          'building cards',
+          { tag: 'building' }
+        );
+      }
+    }
+  ],
   tags: ['power', 'building'],
   set: 'promo',
   desc,
   effectDesc,
-  todo: true,
   flavor:
     'When the Martian society grew, Factorum made its name as the dominant industrial conglomerate on the planet.',
   layout: (

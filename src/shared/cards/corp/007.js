@@ -12,16 +12,14 @@ export default new Corporation({
   number: '007',
   title: 'PhoboLog',
   titleClass: 'phobolog',
-  starting: {
-    resources: {
-      megacredit: 23,
-      titanium: 10
-    }
+  starting: (player, game) => {
+    game.resources(player, 'titanium', 10);
+    game.resources(player, 'megacredit', 23);
+    player.rates.titanium++;
   },
   tags: ['space'],
   desc,
   effectDesc,
-  todo: true,
   flavor:
     'Aiming to be the leader in space solutions for the Mars era, PhoboLog acquired several national space programs. This allowed them access to much existing infrastructure and technology, and they are not going to let that advantage be wasted.',
   layout: (

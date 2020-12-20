@@ -11,21 +11,25 @@ const desc =
   'You start with 42 M€. As your first action, reveal cards from the deck until you have revealed 2 cards with a floater icon on it. Take those 2 cards into hand, and discard the rest. 1 VP per 3 floaters on this card.';
 const effectDesc = 'Action: Add a floater to ANY card.';
 
-export default new Corporation({
+const card = new Corporation({
   number: '019',
   title: 'Celestic',
   titleClass: 'celestic',
-  starting: {
-    resources: {
-      megacredit: 42
-    }
-  },
-  firstAction: () => {},
+  starting: (player, game) => game.resources(player, 'megacredit', 42),
+  firstAction: (player, game) =>
+    game.revealCards(
+      player,
+      card => card.resource === 'floater',
+      2,
+      'floater cards',
+      { resource: 'floater' }
+    ),
   tags: ['venus'],
   set: 'venus',
   desc,
   effectDesc,
   todo: true,
+  vp: (player, game) => Math.floor(game.cardResource(player, card) / 3),
   flavor:
     'Specializing in atmospheric infrastructure, Celestic has a key position when it comes to colonization of Venus and Titan.',
   layout: (
@@ -67,3 +71,5 @@ export default new Corporation({
     </div>
   )
 });
+
+export default card;

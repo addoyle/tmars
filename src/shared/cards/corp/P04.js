@@ -15,10 +15,12 @@ export default new Corporation({
   number: 'P04',
   title: 'Valley Trust',
   titleClass: 'valley-trust',
-  starting: {
-    resources: {
-      megacredit: 37
-    }
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 37);
+    player.rates.cost.science = -2;
+  },
+  firstAction: () => {
+    // TODO
   },
   tags: ['earth'],
   set: 'prelude',

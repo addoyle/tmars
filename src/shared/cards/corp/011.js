@@ -17,16 +17,14 @@ export default new Corporation({
     fontFamily: 'Papyrus, fantasy',
     letterSpacing: '.2em'
   },
-  starting: {
-    resources: {
-      megacredit: 60
-    }
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 60);
+    player.rates.cost.earth = -3;
   },
   tags: ['earth'],
   set: 'corporate',
   desc,
   effectDesc,
-  todo: true,
   flavor:
     'Influence enough to control entire nations, and an army of lawyers and businessmen, has taken Teractor all the way to the top. And now the sky is calling. The strongest corporation on Earth wants to dominate space too...',
   layout: (

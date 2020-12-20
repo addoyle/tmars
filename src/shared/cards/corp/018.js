@@ -10,11 +10,7 @@ export default new Corporation({
   number: '018',
   title: 'Viron',
   titleClass: 'viron',
-  starting: {
-    resources: {
-      megacredit: 48
-    }
-  },
+  starting: (player, game) => game.resources(player, 'megacredit', 48),
   firstAction: () => {},
   tags: ['microbe'],
   set: 'venus',

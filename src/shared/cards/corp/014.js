@@ -16,12 +16,15 @@ export default new Corporation({
   number: '014',
   title: 'Splice',
   titleClass: 'splice',
-  starting: {
-    resources: {
-      megacredit: 44
-    }
-  },
-  firstAction: () => {},
+  starting: (player, game) => game.resources(player, 'megacredit', 44),
+  firstAction: (player, game) =>
+    game.revealCards(
+      player,
+      card => card.tags.includes('microbe'),
+      1,
+      'microbe cards',
+      { tag: 'microbe' }
+    ),
   tags: ['microbe'],
   set: 'promo',
   desc,

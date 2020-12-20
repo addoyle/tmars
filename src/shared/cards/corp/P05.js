@@ -14,10 +14,9 @@ export default new Corporation({
   number: 'P05',
   title: 'Vitor',
   titleClass: 'vitor',
-  starting: {
-    resources: {
-      megacredit: 45
-    }
+  starting: (player, game) => game.resources(player, 'megacredit', 45),
+  firstAction: () => {
+    // TODO
   },
   tags: ['earth'],
   set: 'prelude',

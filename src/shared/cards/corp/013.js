@@ -12,6 +12,12 @@ const actionDesc =
 const effectDesc =
   'EFFECT: MARKED AREAS ARE RESERVED FOR YOU. WHEN YOU PLACE A TILE THERE, GAIN 3 M€.';
 
+const customFilter = player => (tile, game, notReserved, neighbors) =>
+  // Not reserved
+  notReserved(tile) &&
+  // Is adjacent to one of your own tiles
+  neighbors.filter(t => t.player === player.number).length;
+
 export default new Corporation({
   number: '013',
   title: 'Arcadian Communities',
@@ -27,13 +33,28 @@ export default new Corporation({
     borderRadius: '50% 50% 0 0 / 70% 70% 0 0',
     padding: '1em 0 0'
   },
-  starting: {
-    resources: {
-      megacredit: 40,
-      steel: 10
-    }
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 40);
+    game.resources(player, 'steel', 10);
   },
-  firstAction: () => {},
+  firstAction: (player, game, done) => game.promptTile(player, 'marker', done),
+  actions: [
+    {
+      name: 'Place a marker',
+      log: ['place a marker ', { resource: 'marker' }],
+      icon: <Resource name="marker" />,
+      canPlay: (player, game) => {
+        const valid = !!game.findPossibleTiles('marker', player, customFilter)
+          .length;
+        return {
+          valid,
+          msg: !valid ? 'No spaces available to mark' : null
+        };
+      },
+      action: (player, game, done) =>
+        game.promptTile(player, 'marker', done, customFilter)
+    }
+  ],
   tags: [],
   set: 'promo',
   desc,

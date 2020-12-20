@@ -27,13 +27,9 @@ export default new Corporation({
     borderRadius: '1em',
     padding: '.3em'
   },
-  starting: {
-    resources: {
-      megacredit: 38
-    },
-    production: {
-      steel: 1
-    }
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 38);
+    game.production(player, 'steel', 1);
   },
   tags: ['microbe', 'building'],
   set: 'promo',

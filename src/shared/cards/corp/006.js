@@ -15,12 +15,12 @@ export default new Corporation({
   number: '006',
   title: 'Inventrix',
   titleClass: 'inventrix',
-  starting: {
-    resources: {
-      megacredit: 45
-    }
+  starting: (player, game) => game.resources(player, 'megacredit', 45),
+  firstAction: (player, game) => {
+    game.drawCard(player);
+    game.drawCard(player);
+    game.drawCard(player);
   },
-  firstAction: () => {},
   tags: ['science'],
   desc,
   effectDesc,

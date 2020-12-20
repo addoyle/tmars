@@ -14,18 +14,13 @@ export default new Corporation({
   number: '003',
   title: 'Helion',
   titleClass: 'helion',
-  starting: {
-    resources: {
-      megacredit: 42
-    },
-    production: {
-      heat: 3
-    }
+  starting: (player, game) => {
+    game.production(player, 'heat', 3);
+    game.resources(player, 'megacredit', 42);
   },
   tags: ['space'],
   desc,
   effectDesc,
-  todo: true,
   flavor:
     'Developers of ultra-light solar sails, Helion now turns to the terraforming of Mars and other worlds. It promises to be a rewarding business, as Helion has already made a working model of a soletta, focusing sunlight down to the frozen planet.',
   layout: (

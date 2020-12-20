@@ -15,12 +15,15 @@ export default new Corporation({
   number: '020',
   title: 'Morning Star Inc.',
   titleClass: 'msi',
-  starting: {
-    resources: {
-      megacredit: 50
-    }
-  },
-  firstAction: () => {},
+  starting: (player, game) => game.resources(player, 'megacredit', 50),
+  firstAction: (player, game) =>
+    game.revealCards(
+      player,
+      card => card.tags.includes('venus'),
+      3,
+      'venus cards',
+      { tag: 'venus' }
+    ),
   tags: ['venus'],
   set: 'venus',
   desc,

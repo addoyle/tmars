@@ -13,11 +13,9 @@ export default new Corporation({
   number: '005',
   title: 'Interplanetary Cinematics',
   titleClass: 'interplanetary',
-  starting: {
-    resources: {
-      megacredit: 30,
-      steel: 20
-    }
+  starting: (player, game) => {
+    game.resources(player, 'steel', 20);
+    game.resources(player, 'megacredit', 30);
   },
   tags: ['building'],
   desc,

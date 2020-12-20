@@ -14,19 +14,15 @@ export default new Corporation({
   number: 'P01',
   title: 'Cheung Shing Mars',
   titleClass: 'cheung-shing-mars',
-  starting: {
-    resources: {
-      megacredit: 44
-    },
-    production: {
-      megacredit: 3
-    }
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 44);
+    game.production(player, 'megacredit', 3);
+    player.rates.cost.building = -2;
   },
   tags: ['building'],
   set: 'prelude',
   desc,
   effectDesc,
-  todo: true,
   flavor:
     'Asian contractor Mars Wall took an early lead in the construction of colonies and industries on Mars, making them a power to be reckoned with',
   layout: (

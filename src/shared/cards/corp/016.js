@@ -15,15 +15,10 @@ export default new Corporation({
   number: '016',
   title: 'Aphrodite',
   titleClass: 'aphrodite',
-  starting: {
-    resources: {
-      megacredit: 47
-    },
-    production: {
-      plant: 1
-    }
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 47);
+    game.production(player, 'plant', 1);
   },
-  firstAction: () => {},
   tags: ['venus', 'plant'],
   set: 'venus',
   desc,

@@ -26,9 +26,10 @@ export default new Corporation({
       '.3em 0 0 #e69a00, .4em 0 0 #444, -.3em 0 0 #e69a00, -.4em 0 0 #444',
     borderRadius: '0 0 .75em .75em/0 0 100% 100%'
   },
-  starting: {
-    resources: { megacredit: 42 },
-    cards: 10
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 42);
+    player.cards.hand = player.cards.buy;
+    player.cards.buy = [];
   },
   tags: [],
   desc,

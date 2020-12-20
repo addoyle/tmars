@@ -16,13 +16,12 @@ export default new Corporation({
   number: 'P02',
   title: 'Point Luna',
   titleClass: 'point-luna',
-  starting: {
-    resources: {
-      megacredit: 38
-    },
-    production: {
-      titanium: 1
-    }
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 38);
+    game.production(player, 'titanium', 1);
+
+    // Effects don't happen in the starting phase, so perform action now
+    game.drawCard(player);
   },
   tags: ['earth', 'space'],
   set: 'prelude',

@@ -10,10 +10,8 @@ export default new Corporation({
   number: '001',
   title: 'CrediCor',
   titleClass: 'credicor',
-  starting: {
-    resources: {
-      megacredit: 57
-    }
+  starting: (player, game) => {
+    game.resources(player, 'megacredit', 57);
   },
   tags: [],
   desc,
