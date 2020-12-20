@@ -5,17 +5,50 @@ import { Resource, Param } from '../../../client/game/components/assets/Assets';
 const activeDesc =
   'Action: Spend 1 titanium to add 2 floaters to this card, or remove 2 floaters here to raise Venus 1 step.';
 
-export default new Active({
+const card = new Active({
   number: '234',
   title: 'Jet Stream Microscrappers',
   cost: 12,
   tags: ['venus'],
   set: 'venus',
   activeDesc,
+  resource: 'floater',
   flavor: 'Released in millions to remove unwanted gases',
-  action: () => {},
+  actions: [
+    {
+      name: 'Add 2 Floaters',
+      log: ['add 2 floaters ', { resource: 'floater' }],
+      icon: <Resource name="titanium" />,
+      canPlay: player => {
+        const valid = player.resources.titanium >= 1;
+        return {
+          valid,
+          msg: !valid ? 'Not enough titanium' : null
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'titanium', -1);
+        game.cardResource(player, card, 2);
+      }
+    },
+    {
+      name: 'Raise Venus',
+      log: ['raise Venus ', { param: 'venus' }],
+      icon: <Param name="venus" />,
+      canPlay: (player, game) => {
+        const valid = game.cardResource(player, card) >= 2;
+        return {
+          valid,
+          msg: !valid ? 'Not enough floaters' : null
+        };
+      },
+      action: (player, game, done) => {
+        game.cardResource(player, card, -2);
+        game.param(player, 'venus', done);
+      }
+    }
+  ],
   emoji: '🌪',
-  todo: true,
   activeLayout: (
     <div>
       <div className="table center">
@@ -45,3 +78,5 @@ export default new Active({
   ),
   layout: <div />
 });
+
+export default card;

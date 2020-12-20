@@ -8,7 +8,7 @@ import {
 const activeDesc = 'Action: Add 1 animal to this card.';
 const desc = 'Requires 8 oceans. 1 VP for each animal on this card.';
 
-export default new Active({
+const card = new Active({
   number: '212',
   title: 'Penguins',
   cost: 7,
@@ -20,11 +20,19 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'animal',
   flavor:
     'Everybody loves penguins. And penguins love the new oceans and glaciers on Mars',
-  vp: () => this.resources,
+  actions: [
+    {
+      name: 'Add 1 Animal',
+      log: ['add an animal ', { resource: 'animal' }],
+      icon: <Resource name="animal" />,
+      action: (player, game) => game.cardResource(player, card, 1)
+    }
+  ],
+  vp: (player, game) => game.cardResource(player, card),
   emoji: '🐧',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -47,3 +55,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

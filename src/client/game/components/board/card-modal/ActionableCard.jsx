@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { Tooltip } from '@material-ui/core';
-import { MegaCredit, Resource } from '../../assets/Assets';
 import classnames from 'classnames';
-import { capitalize } from 'lodash';
 
 const ActionableCard = ({ gameStore, card }) => {
   const currentCard = gameStore.currentCard;
@@ -13,22 +11,14 @@ const ActionableCard = ({ gameStore, card }) => {
   return (
     <>
       {card.actions?.map((action, i) => {
+        const [count, setCount] = useState(0);
+
         const valid = action.canPlay
-          ? action.canPlay(gameStore.player, gameStore)
+          ? action.canPlay(gameStore.player, gameStore, count)
           : { valid: true };
 
-        // Maximum of the optional resource that can be used
-        const maxResource =
-          action.opts?.resource &&
-          Math.min(
-            Math.ceil(action.opts?.cost / player?.rates[action.opts?.resource]),
-            player?.resources[action.opts?.resource]
-          );
-
-        const [resource, setResource] = useState(0);
-
         return (
-          <div key={i}>
+          <div key={`${card.number}-${i}`}>
             <Tooltip title={valid?.msg || ''} arrow placement="top">
               <button
                 className={classnames({
@@ -39,10 +29,7 @@ const ActionableCard = ({ gameStore, card }) => {
                     gameStore.cardAction(
                       currentCard,
                       i,
-                      // Opts object from used resources
-                      action.opts?.resource
-                        ? { [action.opts.resource]: resource }
-                        : null
+                      action.counter ? count : null
                     );
                     currentCard.show = false;
                   }
@@ -50,40 +37,34 @@ const ActionableCard = ({ gameStore, card }) => {
               >
                 <div className="flex">
                   <div className="resources middle">
-                    {action.opts?.resource ? (
-                      <>
-                        <MegaCredit
-                          value={
-                            action.opts.cost -
-                            resource * player?.rates[action.opts?.resource]
-                          }
-                        />
-                        <span className="arrow" />
-                      </>
-                    ) : null}
-                    {action.icon}
+                    {action.counter
+                      ? action.counter.resultIcon(count, player, gameStore)
+                      : action.icon}
                   </div>
                   <div className="center middle">{action.name}</div>
+                  {action.counter ? (
+                    <div className="resources middle">{action.icon}</div>
+                  ) : null}
                 </div>
               </button>
             </Tooltip>
 
-            {action.opts?.resource ? (
+            {action.counter ? (
               <button
                 className="text-center"
                 onClick={() => {
-                  setResource(resource >= maxResource ? 0 : resource + 1);
+                  setCount(
+                    count >= action.counter.max(player, gameStore)
+                      ? 0
+                      : count + 1
+                  );
                 }}
               >
                 <div className="flex">
-                  <div className="resources middle">
-                    <Resource name={action.opts.resource} />
-                  </div>
-                  <div className="center middle">
-                    Use {capitalize(action.opts.resource)}
-                  </div>
+                  <div className="resources middle">{action.counter.icon}</div>
+                  <div className="center middle">{action.counter.name}</div>
                   <div className="pill middle">
-                    ({resource}/{maxResource})
+                    ({count}/{action.counter.max(player, gameStore)})
                   </div>
                 </div>
               </button>
@@ -112,10 +93,17 @@ ActionableCard.propTypes = {
     player: PropTypes.object
   }),
   card: PropTypes.shape({
+    number: PropTypes.string,
     actions: PropTypes.arrayOf(
       PropTypes.shape({
         name: PropTypes.string,
-        icon: PropTypes.node
+        icon: PropTypes.node,
+        counter: PropTypes.shape({
+          max: PropTypes.func,
+          icon: PropTypes.node,
+          name: PropTypes.string,
+          resultIcon: PropTypes.func
+        })
       })
     )
   })

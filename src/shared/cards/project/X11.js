@@ -13,7 +13,7 @@ const activeDesc =
   'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
 const desc = 'Add 1 floater for every Earth tag you have, including this.';
 
-export default new Active({
+const card = new Active({
   number: 'X11',
   title: 'Saturn Surfing',
   cost: 13,
@@ -21,11 +21,25 @@ export default new Active({
   set: 'promo',
   activeDesc,
   desc,
+  resource: 'floater',
   flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: player => (this.resource = player.tags.earth),
+  action: (player, game) => game.cardResource(player, card, player.tags.earth),
+  actions: [
+    {
+      name: 'Spend 1 Floater',
+      icon: <Resource name="floater" />,
+      action: (player, game) => {
+        game.resources(
+          player,
+          'megacredit',
+          Math.min(game.cardResource(player, card), 5)
+        );
+        game.cardResource(player, card, -1);
+      }
+    }
+  ],
   vp: 1,
   emoji: '🏄',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -55,3 +69,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

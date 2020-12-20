@@ -58,7 +58,7 @@ export function cardAction(req, res) {
     req.body.player,
     req.body.card,
     req.body.index,
-    req.body.opts
+    req.body.count
   );
   res.sendStatus(200);
 }

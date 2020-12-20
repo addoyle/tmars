@@ -6,18 +6,43 @@ const activeDesc =
   'Action: Add 1 microbe to this card, or remove 3 microbes to increase your TR 1 step.';
 const desc = 'Add 3 microbes to this card.';
 
-export default new Active({
+const card = new Active({
   number: '157',
   title: 'Nitrite Reducing Bacteria',
   cost: 11,
   tags: ['microbe'],
   activeDesc,
   desc,
+  resource: 'microbe',
   flavor:
     'Making use of the nitrites in the ground to release nitrogen into the atmosphere',
-  action: () => {},
+  action: (player, game) => {
+    game.cardResource(player, card, 3);
+  },
+  actions: [
+    {
+      name: 'Add 1 Microbe',
+      icon: <Resource name="microbe" />,
+      action: (player, game) => game.cardResource(player, card, 1)
+    },
+    {
+      name: 'Raise TR',
+      log: ['raise TR ', { resource: 'tr' }],
+      icon: <Resource name="tr" />,
+      canPlay: (player, game) => {
+        const valid = game.cardResource(player, card) >= 3;
+        return {
+          valid,
+          msg: 'Not enough microbes'
+        };
+      },
+      action: (player, game) => {
+        game.cardResource(player, card, -3);
+        game.tr(player, 1);
+      }
+    }
+  ],
   emoji: '🦠️',
-  todo: true,
   activeLayout: (
     <div>
       <div className="table center">
@@ -59,3 +84,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

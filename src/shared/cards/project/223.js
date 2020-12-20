@@ -6,7 +6,7 @@ const activeDesc =
   'Action: Add 1 floater to this card, or remove 2 floaters here to raise Venus 1 step.';
 const desc = 'Add 3 floaters to this card.';
 
-export default new Active({
+const card = new Active({
   number: '223',
   title: 'Extractor Balloons',
   cost: 21,
@@ -14,11 +14,35 @@ export default new Active({
   set: 'venus',
   activeDesc,
   desc,
+  resource: 'floater',
   flavor:
     'Processing the atmosphere, sealing small packs of useful materials to the surface',
-  action: () => (this.resources = 3),
+  action: (player, game) => game.cardResource(player, card, 3),
+  actions: [
+    {
+      name: 'Add 1 Floater',
+      log: ['add a floater ', { resource: 'floater' }],
+      icon: <Resource name="floater" />,
+      action: (player, game) => game.cardResource(player, card, 1)
+    },
+    {
+      name: 'Raise Venus',
+      log: ['raise Venus ', { param: 'venus' }],
+      icon: <Param name="venus" />,
+      canPlay: (player, game) => {
+        const valid = game.cardResource(player, card) >= 2;
+        return {
+          valid,
+          msg: !valid ? 'Not enough floaters' : null
+        };
+      },
+      action: (player, game, done) => {
+        game.cardResource(player, card, -2);
+        game.param(player, 'venus', done);
+      }
+    }
+  ],
   emoji: '🎈',
-  todo: true,
   activeLayout: (
     <div>
       <div className="table center">
@@ -61,3 +85,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

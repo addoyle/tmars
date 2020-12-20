@@ -234,12 +234,12 @@ class Game extends SharedGame {
     });
   }
 
-  cardAction(card, index, opts) {
+  cardAction(card, index, count) {
     API(`game/${gameId()}/card-action`, POST, {
       card,
       index,
       player: +PLAYER_NUM,
-      opts
+      count
     });
   }
 }

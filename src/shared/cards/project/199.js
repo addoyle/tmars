@@ -33,8 +33,24 @@ export default new Active({
       msg: !valid ? 'Cannot place this tile' : null
     };
   },
+  actions: [
+    {
+      name: 'Draw a card',
+      icon: <MegaCredit value="2" />,
+      canPlay: player => {
+        const valid = player.resources.megacredit >= 2;
+        return {
+          valid,
+          msg: 'Not enough M€'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'megacredit', -2);
+        game.drawCard(player);
+      }
+    }
+  ],
   emoji: '🚫',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

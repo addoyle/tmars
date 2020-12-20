@@ -18,8 +18,52 @@ export default new Active({
   activeDesc,
   flavor:
     'Coordinating the supply and demand of energy gives you a flexible position',
+  actions: [
+    {
+      name: 'Convert M€ to Energy',
+      icon: <Resource name="power" />,
+      counter: {
+        name: 'Use M€',
+        max: player => Math.floor(player.resources.megacredit / 2),
+        icon: <Resource name="power" />,
+        resultIcon: count => <MegaCredit value={count * 2} />
+      },
+      canPlay: player => {
+        const valid = player.resources.megacredit >= 2;
+        return {
+          valid,
+          msg: !valid ? 'Requires at least 2 M€' : null
+        };
+      },
+      action: (player, game, done, count) => {
+        game.resources(player, 'megacredit', -(count * 2));
+        game.resources(player, 'power', count);
+        done();
+      }
+    },
+    {
+      name: 'Spend Enery Production',
+      icon: (
+        <Production>
+          <div className="flex">
+            <Resource name="power" />
+          </div>
+        </Production>
+      ),
+      canPlay: player => {
+        const valid = player.production.power > 0;
+        return {
+          valid,
+          msg: !valid ? 'Not enough enery production' : null
+        };
+      },
+      action: (player, game) => {
+        game.production(player, 'power', -1);
+        game.resources(player, 'megacredit', 8);
+      }
+    }
+  ],
   emoji: '🏦',
-  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

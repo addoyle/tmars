@@ -18,7 +18,39 @@ export default new Active({
   activeDesc,
   flavor:
     'Expensive equipment and highly educated researchers focusing on advanced projects',
-  VP: 1,
+  actions: [
+    {
+      name: 'Draw Card(s)',
+      icon: <Param name="card back" />,
+      counter: {
+        name: 'Use Energy',
+        max: player => player.resources.power,
+        icon: <Resource name="power" />,
+        resultIcon: count => (
+          <>
+            <span>{count}</span>
+            <Resource name="power" />
+          </>
+        )
+      },
+      canPlay: (player, game, count) => {
+        const valid = count > 0;
+        return {
+          valid,
+          msg: !valid ? 'Requires at least 1 energy' : null
+        };
+      },
+      action: (player, game, done, count) => {
+        game.resources(player, 'megacredit', -count);
+        for (let i = 0; i < count; i++) {
+          // TODO take 1 card and discard the rest
+          // game.drawCard(player);
+        }
+        done();
+      }
+    }
+  ],
+  vp: 1,
   emoji: '🔬',
   todo: true,
   activeLayout: (

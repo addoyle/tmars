@@ -9,7 +9,7 @@ const activeDesc =
   'Action: Add 1 microbe to this card, or spend any number of microbes here to gain the triple amount of M€.';
 const desc = 'Requires Venus 6%.';
 
-export default new Active({
+const card = new Active({
   number: '251',
   title: 'Sulphur-Eating Bacteria',
   cost: 6,
@@ -21,9 +21,39 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'microbe',
   flavor: 'Converting it into useful materials',
+  actions: [
+    {
+      name: 'Add 1 Microbe',
+      log: ['add a microbe ', { resource: 'microbe' }],
+      icon: <Resource name="microbe" />,
+      action: (player, game) => game.cardResource(player, card, 1)
+    },
+    {
+      name: 'Spend Microbes',
+      icon: <Resource name="microbe" />,
+      counter: {
+        name: 'Use Microbes',
+        max: (player, game) => game.cardResource(player, card),
+        icon: <Resource name="microbe" />,
+        resultIcon: count => <MegaCredit value={count * 3} />
+      },
+      canPlay: (player, game, count) => {
+        const valid = count > 0;
+        return {
+          valid,
+          msg: !valid ? 'Requires at least 1 microbe' : null
+        };
+      },
+      action: (player, game, done, count) => {
+        game.resources(player, 'megacredit', count * 3);
+        game.cardResource(player, card, -count);
+        done();
+      }
+    }
+  ],
   emoji: '🦠',
-  todo: true,
   activeLayout: (
     <div>
       <div className="table center">
@@ -50,3 +80,5 @@ export default new Active({
   ),
   layout: <div className="description text-center m-top m-bottom">{desc}</div>
 });
+
+export default card;

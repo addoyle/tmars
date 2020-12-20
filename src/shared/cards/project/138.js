@@ -31,7 +31,6 @@ export default new Automated({
     };
   },
   emoji: '👷',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter">

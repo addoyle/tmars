@@ -19,8 +19,29 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'In charge of establishing comfortable temperatures',
+  actions: [
+    {
+      name: 'Spend 7 M€',
+      icon: (
+        <>
+          <span>8</span>
+          <Resource name="heat" />
+        </>
+      ),
+      canPlay: player => {
+        const valid = player.resources.heat >= 8;
+        return {
+          valid,
+          msg: 'Not enough heat'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'heat', -8);
+        game.tr(player, 1);
+      }
+    }
+  ],
   emoji: '📝',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

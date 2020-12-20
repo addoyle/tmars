@@ -10,7 +10,7 @@ const activeDesc =
   'Action: Spend 6 M€ to add an asteroid resource to this card (TITANIUM MAY BE USED), or spend a resource from this card to increase Venus 1 step.';
 const desc = 'Venus must be 14% or lower.';
 
-export default new Active({
+const card = new Active({
   number: '243',
   title: 'Rotator Impacts',
   cost: 6,
@@ -23,10 +23,63 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'asteroid',
   flavor:
     'Using the oblique angle to increase global rotation and thus decrease day length',
+  actions: [
+    {
+      name: 'Add Asteroid',
+      log: ['add an asteroid ', { resource: 'asteroid' }],
+      icon: <Resource name="asteroid" />,
+      counter: {
+        name: 'Use Titanium',
+        max: player =>
+          Math.min(
+            Math.ceil(6 / player.rates.titanium),
+            player.resources.titanium
+          ),
+        icon: <Resource name="titanium" />,
+        resultIcon: (count, player) => (
+          <MegaCredit value={6 - count * player.rates.titanium} />
+        )
+      },
+      canPlay: (player, game, count) => {
+        const valid =
+          player.resources.megacredit + count * player.rates.titanium >= 6;
+        return {
+          valid,
+          msg: !valid ? 'Cannot afford this' : null
+        };
+      },
+      action: (player, game, done, count) => {
+        game.resources(
+          player,
+          'megacredit',
+          -Math.max(0, 6 - count * player.rates.titanium)
+        );
+        game.resources(player, 'titanium', -count);
+        game.cardResource(player, card, 1);
+        done();
+      }
+    },
+    {
+      name: 'Raise Venus',
+      log: ['raise Venus ', { param: 'venus' }],
+      icon: <Param name="venus" />,
+      canPlay: (player, game) => {
+        const valid = game.cardResource(player, card) >= 1;
+        return {
+          valid,
+          msg: !valid ? 'Not enough asteroids' : null
+        };
+      },
+      action: (player, game, done) => {
+        game.cardResource(player, card, -1);
+        game.param(player, 'venus', done);
+      }
+    }
+  ],
   emoji: '🪨',
-  todo: true,
   activeLayout: (
     <div>
       <div className="table center">
@@ -65,3 +118,5 @@ export default new Active({
   ),
   layout: <div className="description text-center m-top m-bottom">{desc}</div>
 });
+
+export default card;

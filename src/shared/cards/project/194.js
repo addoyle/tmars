@@ -16,8 +16,31 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Efficiency through flexibility',
+  actions: [
+    {
+      name: 'Convert energy',
+      icon: <Resource name="power" />,
+      counter: {
+        name: 'Use Energy',
+        max: player => player.resources.power,
+        icon: <Resource name="power" />,
+        resultIcon: count => <MegaCredit value={count} />
+      },
+      canPlay: player => {
+        const valid = player.resources.power > 0;
+        return {
+          valid,
+          msg: !valid ? 'Cannot afford this' : null
+        };
+      },
+      action: (player, game, done, count) => {
+        game.resources(player, 'megacredit', count);
+        game.resources(player, 'power', -count);
+        done();
+      }
+    }
+  ],
   emoji: '🔌',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

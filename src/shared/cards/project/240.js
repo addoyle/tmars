@@ -18,7 +18,6 @@ export default new Automated({
   flavor: 'Removing the sulphuric acids',
   action: (player, game, done) => game.param(player, 'venus', done),
   emoji: '🏭',
-  todo: true,
   layout: (
     <div className="m-top m-bottom flex gutter">
       <div className="resources middle">

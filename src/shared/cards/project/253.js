@@ -35,7 +35,7 @@ export default new Active({
         </div>
         <div className="row">
           <div className="cell middle resources">
-            <span>OR X</span>
+            <span>OR </span>
             <Resource name="microbe" />
             <Resource name="microbe" />
           </div>

@@ -814,7 +814,8 @@ class Game extends SharedGame {
    * @param {number} value Amount to change
    */
   cardResource(player, card, value = 0) {
-    const playerCard = player.cards.active
+    const playerCard = player.cards.hand
+      .concat(player.cards.active)
       .concat(player.cards.corp)
       .find(c => c.card === card.number);
 

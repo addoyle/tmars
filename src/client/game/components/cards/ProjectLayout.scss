@@ -208,7 +208,8 @@ $title-font: 'Prototype', sans-serif;
       top: 50%;
       transform: translate(-50%, -50%);
       font-size: 0.5em;
-      background-color: rgba(255, 255, 255, 0.5);
+      border: .1em solid rgba(0,0,0, 0.3);
+      background: rgba(255,255,255,.85);
       padding: 0.2em 0.4em;
       border-radius: 0.2em;
     }

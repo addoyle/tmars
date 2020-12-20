@@ -11,7 +11,7 @@ const activeDesc = 'Action: Add 1 animal to this card.';
 const desc =
   'Requires 9% oxygen. Decrease your plant production 1 step and increase your M€ production 2 steps. 1 VP for each animal on this card.';
 
-export default new Active({
+const card = new Active({
   number: '184',
   title: 'Livestock',
   cost: 13,
@@ -22,6 +22,7 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'animal',
   flavor: 'Providing meat, wood, leather, etc.',
   action: (player, game) => {
     game.production(player, 'plant', -1);
@@ -34,9 +35,16 @@ export default new Active({
       msg: !valid ? 'Not enough plant production' : null
     };
   },
-  vp: () => this.resources,
+  actions: [
+    {
+      name: 'Add 1 Animal',
+      log: ['add an animal ', { resource: 'animal' }],
+      icon: <Resource name="animal" />,
+      action: (player, game) => game.cardResource(player, card, 1)
+    }
+  ],
+  vp: (player, game) => game.cardResource(player, card),
   emoji: '🐄',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -71,3 +79,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

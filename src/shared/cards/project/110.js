@@ -2,7 +2,8 @@ import React from 'react';
 import Active from '../Active';
 import {
   Production,
-  MegaCredit
+  MegaCredit,
+  Param
 } from '../../../client/game/components/assets/Assets';
 
 const activeDesc =
@@ -26,8 +27,14 @@ export default new Active({
       msg: !valid ? 'Not enough M€ production' : null
     };
   },
+  actions: [
+    {
+      name: 'Look at top card',
+      icon: <Param name="card back" />,
+      action: (player, game, done) => game.drawCard(player, 'buy', done)
+    }
+  ],
   emoji: '🌐',
-  todo: true,
   activeLayout: (
     <div className="flex middle">
       <div className="col-1 resources">

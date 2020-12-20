@@ -205,6 +205,21 @@ class SharedGame {
       func(this.players[i], i);
     }
   }
+
+  /**
+   * Helper method to increase/decrease the card's resource
+   *
+   * @param {Player} player Player doing the action
+   * @param {Card} card Card to change
+   */
+  cardResource(player, card) {
+    const playerCard = player.cards.hand
+      .concat(player.cards.active)
+      .concat(player.cards.corp)
+      .find(c => c.card === card.number);
+
+    return (playerCard && playerCard.resource) || 0;
+  }
 }
 
 export default SharedGame;

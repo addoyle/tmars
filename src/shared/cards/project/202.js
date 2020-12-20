@@ -17,8 +17,24 @@ export default new Active({
   activeDesc,
   flavor:
     'Radiation from the nuclear blast is shielded, but over time, we are still getting the heat',
+  actions: [
+    {
+      name: 'Spend 10 M€',
+      icon: <MegaCredit value="10" />,
+      canPlay: player => {
+        const valid = player.resources.megacredit >= 10;
+        return {
+          valid,
+          msg: 'Not enough M€'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'megacredit', -10);
+        game.production(player, 'heat', 2);
+      }
+    }
+  ],
   emoji: '💥',
-  todo: true,
   activeLayout: (
     <div>
       <div className="flex center">

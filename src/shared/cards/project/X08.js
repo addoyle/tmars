@@ -7,8 +7,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// TODO action
-
 const activeDesc = 'Action: Gain 1 M€ per science tag you have.';
 const desc = 'Decrease your M€ production 2 steps.';
 
@@ -27,9 +25,22 @@ export default new Active({
     const valid = player.production.megacredit > -4;
     return { valid, msg: !valid ? 'Not enough M€ production' : null };
   },
+  actions: [
+    {
+      name: 'Gain M€',
+      icon: (
+        <>
+          <MegaCredit value="1" />
+          <span>/</span>
+          <Tag name="science" />
+        </>
+      ),
+      action: (player, game) =>
+        game.resources(player, 'megacredit', player.tags.science)
+    }
+  ],
   vp: 2,
   emoji: '🛰',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

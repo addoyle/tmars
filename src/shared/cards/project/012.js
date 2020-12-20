@@ -26,11 +26,19 @@ export default new Active({
       name: 'Place an ocean',
       log: ['place an ocean ', { tile: 'ocean' }],
       icon: <Tile name="ocean" />,
-      opts: {
-        cost: 12,
-        resource: 'titanium'
+      counter: {
+        name: 'Use Titanium',
+        max: player =>
+          Math.min(
+            Math.ceil(12 / player.rates.titanium),
+            player.resources.titanium
+          ),
+        icon: <Resource name="titanium" />,
+        resultIcon: (count, player) => (
+          <MegaCredit value={12 - count * player.rates.titanium} />
+        )
       },
-      canPlay: (player, game, opts) => {
+      canPlay: (player, game, count) => {
         if (game.params.ocean <= 0) {
           return {
             valid: false,
@@ -39,21 +47,19 @@ export default new Active({
         }
 
         const valid =
-          player.resources.megacredit +
-            (opts?.titanium || 0) * player.rates.titanium >=
-          12;
+          player.resources.megacredit + count * player.rates.titanium >= 12;
         return {
           valid,
           msg: !valid ? 'Cannot afford this' : null
         };
       },
-      action: (player, game, done, opts) => {
+      action: (player, game, done, count) => {
         game.resources(
           player,
           'megacredit',
-          -Math.max(0, 12 - (opts?.titanium || 0) * player.rates.titanium)
+          -Math.max(0, 12 - count * player.rates.titanium)
         );
-        game.resources(player, 'titanium', -(opts?.titanium || 0));
+        game.resources(player, 'titanium', -count);
         game.promptTile(player, 'ocean', done);
       }
     }

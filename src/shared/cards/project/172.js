@@ -12,15 +12,16 @@ const activeDesc =
   'Effect: When any city tile is placed, add an animal to this card.';
 const desc = 'Add 1 animal to this card. 1 VP per 2 animals here.';
 
-export default new Active({
+const card = new Active({
   number: '172',
   title: 'Pets',
   cost: 10,
   tags: ['earth', 'animal'],
   activeDesc,
   desc,
+  resource: 'animal',
   flavor: 'It wouldn’t be the same without them',
-  action: () => (this.resources = 1),
+  action: (player, game) => game.cardResource(player, card, 1),
   vp: () => Math.floor(this.resources / 2),
   emoji: '🐶️',
   todo: true,
@@ -58,3 +59,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

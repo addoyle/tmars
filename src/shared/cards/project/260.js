@@ -8,9 +8,7 @@ import {
 const activeDesc = 'Action: Add 1 microbe to this card.';
 const desc = 'Requires Venus 12%. 1 VP per 2 microbes on this card.';
 
-// TODO action
-
-export default new Active({
+const card = new Active({
   number: '260',
   title: 'Venusian Insects',
   cost: 5,
@@ -22,11 +20,19 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'microbe',
   flavor:
     'With engineered chitin carapace to withstand the corrosive environment',
-  vp: () => Math.floor(this.resources / 2),
+  actions: [
+    {
+      name: 'Add 1 Microbe',
+      log: ['add a microbe ', { resource: 'microbe' }],
+      icon: <Resource name="microbe" />,
+      action: (player, game) => game.cardResource(player, card, 1)
+    }
+  ],
+  vp: (player, game) => Math.floor(game.cardResource(player, card) / 2),
   emoji: '🐞',
-  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">
@@ -50,3 +56,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

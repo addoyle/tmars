@@ -47,7 +47,7 @@ const card = new Active({
   actions: [
     {
       name: 'Add 1 Animal',
-      log: ['add a animal ', { resource: 'animal' }],
+      log: ['add an animal ', { resource: 'animal' }],
       icon: <Resource name="animal" />,
       action: (player, game) => game.cardResource(player, card, 1)
     }

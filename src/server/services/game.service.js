@@ -96,12 +96,17 @@ class GameService {
   @push(gameFilter)
   playCard(id, playerNum, params) {
     const game = this.games[id];
-    const card = params.card;
     const player = this.getPlayer(game, playerNum);
+
+    const card = player.cards.hand.find(c => c.card === params.card.card);
+    // Card wasn't in hand, don't perform any further actions
+    if (!card) {
+      return this.export(game);
+    }
+
     const playedCard = this.cardStore.project[card.card];
     const cardType = playedCard.constructor.name.toLowerCase();
 
-    // TODO: Check if card is in hand
     // TODO: Check requirements
     // TODO: Check if player can afford card
     // TODO: Check if player can afford resources used
@@ -142,9 +147,11 @@ class GameService {
     }
 
     const done = () => {
-      // Put card in appropriate drawer, and remove from hand
+      // Put card in appropriate drawer
       // HACK to handle Law Suit, which doesn't go in player's hand
       card.card !== 'X06' && player.cards[cardType].push(card);
+
+      // Remove from hand
       player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
 
       // Trigger card-played events
@@ -164,6 +171,7 @@ class GameService {
       // Server action didn't call done, call it now
       playedCard.action.length < 3 && done();
     } else {
+      // No action, call done
       done();
     }
 
@@ -244,9 +252,10 @@ class GameService {
    * @param {number} playerNum Player number
    * @param {object} card Card whose action we are peforming
    * @param {number} index Action index to be used
+   * @param {number} count If a counter was used, the count value
    */
   @push(gameFilter)
-  cardAction(id, playerNum, card, index, opts) {
+  cardAction(id, playerNum, card, index, count) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
     const playedCard = this.cardStore[card.type][card.card.card];
@@ -272,7 +281,7 @@ class GameService {
 
     // Perform card's action
     if (action.action) {
-      action.action(player, game, done, opts);
+      action.action(player, game, done, count);
 
       // Server action didn't call done, call it now
       action.action.length < 3 && done();

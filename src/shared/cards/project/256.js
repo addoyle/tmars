@@ -24,8 +24,25 @@ export default new Active({
   desc,
   flavor:
     'After reducing the most corrosive elements from the atmosphere, cables can be deployed around the equator, the current creating a magnetic field',
+  actions: [
+    {
+      name: 'Raise Venus',
+      log: ['raise Venus ', { param: 'venus' }],
+      icon: <Param name="venus" />,
+      canPlay: player => {
+        const valid = player.production.power >= 1;
+        return {
+          valid,
+          msg: !valid ? 'Not enough energy production' : null
+        };
+      },
+      action: (player, game, done) => {
+        game.production(player, 'power', -1);
+        game.param(player, 'venus', done);
+      }
+    }
+  ],
   emoji: '🧲',
-  todo: true,
   activeLayout: (
     <div>
       <div className="flex center">

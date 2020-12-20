@@ -18,8 +18,29 @@ export default new Active({
   desc,
   flavor:
     'Electrolysis of water yields oxygen and hydrogen, both very useful gases',
+  actions: [
+    {
+      name: 'Spend 3 Energy',
+      icon: (
+        <>
+          <span>3</span>
+          <Resource name="power" />
+        </>
+      ),
+      canPlay: player => {
+        const valid = player.resources.power >= 3;
+        return {
+          valid,
+          msg: 'Not enough energy'
+        };
+      },
+      action: (player, game, done) => {
+        game.resources(player, 'power', -3);
+        game.param(player, 'oxygen', done);
+      }
+    }
+  ],
   emoji: '💦',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

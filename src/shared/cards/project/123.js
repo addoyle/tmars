@@ -7,8 +7,6 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc =
   'Action: Spend 7 M€ to increase your steel production 1 step.';
 const desc = 'Place this tile ADJACENT TO A CITY TILE.';
@@ -42,8 +40,24 @@ export default new Active({
       msg: !valid ? 'Requires a space adjacent to a city tile' : null
     };
   },
+  actions: [
+    {
+      name: 'Spend 7 M€',
+      icon: <MegaCredit value="7" />,
+      canPlay: player => {
+        const valid = player.resources.megacredit >= 7;
+        return {
+          valid,
+          msg: 'Not enough M€'
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'megacredit', -7);
+        game.production(player, 'steel', 1);
+      }
+    }
+  ],
   emoji: '🏭',
-  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">

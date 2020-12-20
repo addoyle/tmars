@@ -153,7 +153,7 @@ const CardDrawer = props => {
                   <Param name="card back" />
                 </div>
                 <span className="middle col-1">
-                  Comfirm {buyMode ? numToBuy : numSelected} Cards
+                  Buy {buyMode ? numToBuy : numSelected} Cards
                 </span>
                 {buyMode ? (
                   <div className="resources middle">

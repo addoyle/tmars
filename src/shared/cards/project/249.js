@@ -9,7 +9,7 @@ const activeDesc = 'Action: Add 1 animal to this card.';
 const desc =
   'Requires Venus 12%, and that you spend 1 floater from any card. 1 VP for each animal on this card.';
 
-export default new Active({
+const card = new Active({
   number: '249',
   title: 'Stratospheric Birds',
   cost: 12,
@@ -21,14 +21,22 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'animal',
   flavor:
     'Living in the thick air, nesting on man-made structures, far away from the furnace at ground level',
   action: () => {
     // TODO figure out how to remove floater
   },
-  vp: () => this.resources,
+  actions: [
+    {
+      name: 'Add 1 Animal',
+      log: ['add an animal ', { resource: 'animal' }],
+      icon: <Resource name="animal" />,
+      action: (player, game) => game.cardResource(player, card, 1)
+    }
+  ],
+  vp: (player, game) => game.cardResource(player, card),
   emoji: '🦅',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -58,3 +66,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

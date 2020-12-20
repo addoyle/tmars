@@ -33,9 +33,23 @@ export default new Active({
       msg: !valid ? 'Not enough power production' : null
     };
   },
+  actions: [
+    {
+      name: 'Draw 2 cards',
+      icon: (
+        <>
+          <Param name="card back" />
+          <Param name="card back" />
+        </>
+      ),
+      action: (player, game) => {
+        game.drawCard(player);
+        game.drawCard(player);
+      }
+    }
+  ],
   vp: 1,
   emoji: '🖥️',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
