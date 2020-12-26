@@ -17,10 +17,15 @@ export default new Active({
   tags: ['building'],
   activeDesc,
   flavor: 'Providing safe transport vehicles',
-  action: () => {},
+  events: {
+    onAnyTile: (player, game, tile) =>
+      // Is a city
+      ['city', 'capital city'].includes(tile.type) &&
+      // Bump resources
+      game.resources(player, 'megacredit', 2)
+  },
   vp: 1,
   emoji: '🚙',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

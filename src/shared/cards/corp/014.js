@@ -16,19 +16,31 @@ export default new Corporation({
   number: '014',
   title: 'Splice',
   titleClass: 'splice',
-  starting: (player, game) => game.resources(player, 'megacredit', 44),
+  startingMC: 44,
   firstAction: (player, game) =>
-    game.revealCards(
-      player,
-      card => card.tags.includes('microbe'),
-      1,
-      'microbe cards',
-      { tag: 'microbe' }
+    game.keepSelected(
+      game.revealCards(
+        player,
+        card => card.tags.includes('microbe'),
+        1,
+        'microbe cards',
+        { tag: 'microbe' }
+      )
     ),
   tags: ['microbe'],
   set: 'promo',
   desc,
   effectDesc,
+  events: {
+    onAnyCardPlayed: (player, game, card, targetPlayer, done) => {
+      if (card.tags.includes('microbe')) {
+        game.resources(player, 'megacredit', 2);
+
+        // TODO: Target player gets to choose one or the other
+        done();
+      }
+    }
+  },
   todo: true,
   flavor:
     'Holding the patents on a number of key gene lines, Splice is the natural for any project involving adapted microorganisms.',

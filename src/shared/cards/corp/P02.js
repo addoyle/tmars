@@ -16,18 +16,23 @@ export default new Corporation({
   number: 'P02',
   title: 'Point Luna',
   titleClass: 'point-luna',
+  startingMC: 38,
   starting: (player, game) => {
-    game.resources(player, 'megacredit', 38);
     game.production(player, 'titanium', 1);
 
     // Effects don't happen in the starting phase, so perform action now
-    game.drawCard(player);
+    // game.drawCard(player);
   },
   tags: ['earth', 'space'],
   set: 'prelude',
   desc,
   effectDesc,
-  todo: true,
+  events: {
+    onCardPlayed: (player, game, card) =>
+      card.type !== 'Event' &&
+      card.tags.includes('earth') &&
+      game.drawCard(player)
+  },
   flavor:
     'The Moon is a perfect springboard to the solar system, and the mining company Point Luna has the largest spaceport on Luna, making it a perfect partner for Earth inventors wanting to realize their space projects',
   layout: (

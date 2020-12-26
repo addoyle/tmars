@@ -25,7 +25,7 @@ const Players = ({ gameStore }) =>
 
       <ul>
         {gameStore.players.map((player, i) => (
-          <li key={i}>
+          <li key={`player-stats-${i}`}>
             <Player
               pid={i + 1}
               player={player}

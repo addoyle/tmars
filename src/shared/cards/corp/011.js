@@ -17,10 +17,8 @@ export default new Corporation({
     fontFamily: 'Papyrus, fantasy',
     letterSpacing: '.2em'
   },
-  starting: (player, game) => {
-    game.resources(player, 'megacredit', 60);
-    player.rates.cost.earth = -3;
-  },
+  startingMC: 60,
+  starting: player => (player.rates.cost.earth = -3),
   tags: ['earth'],
   set: 'corporate',
   desc,

@@ -50,12 +50,12 @@ const StandardProject = inject('gameStore')(
               </div>
               <div className="resources middle text-right p-rel">
                 <span className="sub small">OR</span>
-                <MegaCredit value={props.cost[0]} />
+                <MegaCredit value={props.cost[0]} modified={props.modified} />
               </div>
             </>
           ) : !isNaN(props.cost) ? (
             <div className="resources middle text-right">
-              <MegaCredit value={props.cost} />
+              <MegaCredit value={props.cost} modified={props.modified} />
             </div>
           ) : (
             props.cost
@@ -176,7 +176,8 @@ const StandardProjects = ({ gameStore }) => {
         />
 
         <StandardProject
-          cost={11}
+          cost={gameStore.player?.rates.powerplant || 11}
+          modified={gameStore.player?.rates.powerplant === 8}
           name="Power Plant"
           project={
             <Production>
@@ -244,6 +245,11 @@ StandardProjects.propTypes = {
   gameStore: PropTypes.shape({
     sets: PropTypes.arrayOf(PropTypes.string),
     showStandardProjects: PropTypes.bool,
+    player: PropTypes.shape({
+      rates: PropTypes.shape({
+        powerplant: PropTypes.number
+      })
+    }),
     players: PropTypes.array,
     standardProject: PropTypes.func,
     variants: PropTypes.shape({

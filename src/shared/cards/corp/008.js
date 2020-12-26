@@ -15,12 +15,26 @@ export default new Corporation({
   number: '008',
   title: 'Tharsis Republic',
   titleClass: 'tharsis',
-  starting: (player, game) => game.resources(player, 'megacredit', 40),
+  startingMC: 40,
   firstAction: (player, game, done) => game.promptTile(player, 'city', done),
   tags: ['building'],
   desc,
   effectDesc,
-  todo: true,
+  events: {
+    onAnyTile: (player, game, tile) =>
+      // Is a city
+      ['city', 'capital city'].includes(tile.type) &&
+      // Is on Mars
+      tile.id &&
+      // Bump production
+      game.production(player, 'megacredit', 1),
+
+    onTile: (player, game, tile) =>
+      // Is a city
+      ['city', 'capital city'].includes(tile.type) &&
+      // Bump production
+      game.resources(player, 'megacredit', 3)
+  },
   flavor:
     'With the first big city came a social community that could not be controlled by the corporations. Determined to have an elected leader, workers and staff from all corporations formed Tharsis Republic.',
   layout: (

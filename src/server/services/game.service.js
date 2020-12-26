@@ -146,16 +146,17 @@ class GameService {
       );
     }
 
+    // Put card in appropriate drawer
+    // HACK to handle Law Suit, which doesn't go in player's hand
+    card.card !== 'X06' && player.cards[cardType].push(card);
+
+    // Remove from hand
+    player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
+
+    // To do once all card actions are complete (placing tiles, etc.)
     const done = () => {
-      // Put card in appropriate drawer
-      // HACK to handle Law Suit, which doesn't go in player's hand
-      card.card !== 'X06' && player.cards[cardType].push(card);
-
-      // Remove from hand
-      player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
-
       // Trigger card-played events
-      game.fire('onCardPlayed', player);
+      game.fire('onCardPlayed', player, playedCard);
 
       game.playerStatus?.done();
 
@@ -545,7 +546,9 @@ class GameService {
           break;
         }
         case 'Power Plant': {
-          doProject(11, () => game.production(player, 'power', 1));
+          doProject(player.rates.powerplant || 11, () =>
+            game.production(player, 'power', 1)
+          );
           break;
         }
         case 'Asteroid': {

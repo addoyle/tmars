@@ -13,14 +13,15 @@ export default new Corporation({
   number: '005',
   title: 'Interplanetary Cinematics',
   titleClass: 'interplanetary',
-  starting: (player, game) => {
-    game.resources(player, 'steel', 20);
-    game.resources(player, 'megacredit', 30);
-  },
+  startingMC: 30,
+  starting: (player, game) => game.resources(player, 'steel', 20),
   tags: ['building'],
   desc,
   effectDesc,
-  todo: true,
+  events: {
+    onCardPlayed: (player, game, card) =>
+      card.type === 'event' && game.resources(player, 'megacredit', 2)
+  },
   flavor:
     "Finding funding where nations struggled, IC initiated the colonization of Mars by turning the process into a soap opera infused with plenty of advertising. With the media's attention and a head start in colonization, IC sets out to terraform.",
   layout: (

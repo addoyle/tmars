@@ -177,7 +177,9 @@
           }
         ],
         "draft": [],
-        "active": ["260"],
+        "active": [
+          {"card": "260"}
+        ],
         "buy": [],
         "automated": [],
         "event": [],

@@ -15,8 +15,8 @@ export default new Corporation({
   number: 'X01',
   title: 'Mons Insurance',
   titleClass: 'mons',
+  startingMC: 48,
   starting: (player, game) => {
-    game.resources(player, 'megacredit', 48);
     game.production(player, 'megacredit', 4);
     game.players
       .filter(p => p.number !== player.number)
@@ -26,7 +26,13 @@ export default new Corporation({
   set: 'promo',
   desc,
   effectDesc,
-  todo: true,
+  events: {
+    losesResources: (player, game, victim) => {
+      const amt = Math.min(3, player.resources.megacredit);
+      game.resources(player, 'megacredit', -amt);
+      game.resources(victim, 'megacredit', amt);
+    }
+  },
   flavor:
     'With incoming asteroids and an unpredictable environment, any venture on Mars is a risky business. As the only insurance company on Mars, Mons Insurance has a busy time keeping up with all the claims.',
   layout: (

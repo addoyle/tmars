@@ -10,15 +10,16 @@ export default new Corporation({
   number: '001',
   title: 'CrediCor',
   titleClass: 'credicor',
-  starting: (player, game) => {
-    game.resources(player, 'megacredit', 57);
-  },
+  startingMC: 57,
   tags: [],
   desc,
   effectDesc,
-  todo: true,
   flavor:
     "Multibillionaire Bard Hunter likes terraforming, especially when it involves hurling asteroids at Mars. He also has a hunch that it's going to pay off. His company CrediCor has all the resources he needs to jump right into the contest.",
+  events: {
+    onCardPlayed: (player, game, card) =>
+      card.cost >= 20 && game.resources(player, 'megacredit', 4)
+  },
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle">

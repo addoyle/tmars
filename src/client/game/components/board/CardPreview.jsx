@@ -38,13 +38,11 @@ const CardPreview = props => {
       ) : props.type === 'corp' ? (
         <CorporationLayout
           {...cardObj}
-          type="corp"
           resource={props.showResources ? resource : null}
         />
       ) : (
         <ProjectLayout
           {...cardObj}
-          type={cardObj.constructor.name.toLowerCase()}
           modifiedCost={modifiedCost}
           resource={props.showResources ? resource : null}
         />

@@ -15,15 +15,16 @@ export default new Corporation({
   number: '016',
   title: 'Aphrodite',
   titleClass: 'aphrodite',
-  starting: (player, game) => {
-    game.resources(player, 'megacredit', 47);
-    game.production(player, 'plant', 1);
-  },
+  startingMC: 47,
+  starting: (player, game) => game.production(player, 'plant', 1),
   tags: ['venus', 'plant'],
   set: 'venus',
   desc,
   effectDesc,
-  todo: true,
+  events: {
+    onParam: (player, game, param) =>
+      param === 'venus' && game.resources(player, 'megacredit', 2)
+  },
   flavor:
     'Soil experts Aphrodite acquired deveopment contracts for the Venus colonies, initiating a dedicated terraforming program.',
   layout: (

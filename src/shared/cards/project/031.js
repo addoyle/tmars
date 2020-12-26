@@ -19,9 +19,16 @@ export default new Active({
   activeDesc,
   flavor:
     'Perfecting the art of ballistical and material analysis can increase efficiency and save money',
-  action: () => {},
+  events: {
+    onCardPlayed: (player, game, card) =>
+      // Is an event
+      card.type === 'event' &&
+      // Has a space tag
+      card.tags.includes('space') &&
+      game.resources(player, 'megacredit', 3) &&
+      game.resources(player, 'heat', 3)
+  },
   emoji: '🛸',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

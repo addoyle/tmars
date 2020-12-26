@@ -26,14 +26,13 @@ export default new Corporation({
       '.3em 0 0 #e69a00, .4em 0 0 #444, -.3em 0 0 #e69a00, -.4em 0 0 #444',
     borderRadius: '0 0 .75em .75em/0 0 100% 100%'
   },
-  starting: (player, game) => {
-    game.resources(player, 'megacredit', 42);
+  startingMC: 42,
+  starting: player => {
     player.cards.hand = player.cards.buy;
     player.cards.buy = [];
   },
   tags: [],
   desc,
-  todo: true,
   flavor:
     'This is a standard corporation, doing standard things. There are no special effects or actions to keep track of. This is a good corporation to start with if you are terraforming a planet for the first time.',
   layout: (

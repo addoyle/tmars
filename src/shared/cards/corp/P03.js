@@ -17,7 +17,7 @@ export default new Corporation({
   number: 'P03',
   title: 'Robinson Industries',
   titleClass: 'robinson-industries',
-  starting: (player, game) => game.resources(player, 'megacredit', 47),
+  startingMC: 47,
   actions: [
     {
       name: 'Increase M€ Production',

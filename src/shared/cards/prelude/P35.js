@@ -16,12 +16,14 @@ export default new Prelude({
   emoji: '🛰️',
   action: (player, game) => {
     game.resources(player, 'titanium', 6);
-    game.revealCards(
-      player,
-      card => card.tags.includes('space'),
-      2,
-      'space cards',
-      { tag: 'space' }
+    game.keepSelected(
+      game.revealCards(
+        player,
+        card => card.tags.includes('space'),
+        2,
+        'space cards',
+        { tag: 'space' }
+      )
     );
   },
   layout: (

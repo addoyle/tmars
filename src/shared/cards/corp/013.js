@@ -33,10 +33,8 @@ export default new Corporation({
     borderRadius: '50% 50% 0 0 / 70% 70% 0 0',
     padding: '1em 0 0'
   },
-  starting: (player, game) => {
-    game.resources(player, 'megacredit', 40);
-    game.resources(player, 'steel', 10);
-  },
+  startingMC: 40,
+  starting: (player, game) => game.resources(player, 'steel', 10),
   firstAction: (player, game, done) => game.promptTile(player, 'marker', done),
   actions: [
     {

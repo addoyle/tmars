@@ -46,8 +46,14 @@ export default new Active({
       msg: !valid ? 'Cannot place city tile' : null
     };
   },
+  events: {
+    onAnyTile: (player, game, tile) =>
+      // Is a city
+      ['city', 'capital city'].includes(tile.type) &&
+      // Bump production
+      game.production(player, 'megacredit', 1)
+  },
   emoji: '🌃',
-  todo: true,
   activeLayout: (
     <div>
       <div className="flex center gutter">

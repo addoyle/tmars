@@ -10,7 +10,7 @@ const activeDesc =
   'Effect: When you play an animal, plant, or microbe tag, including this, add a microbe to this card.';
 const desc = 'Requires 3% oxygen. 1 VP per 3 microbes on this card.';
 
-export default new Active({
+const card = new Active({
   number: '131',
   title: 'Decomposers',
   cost: 5,
@@ -21,10 +21,18 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'microbe',
   flavor: 'Decomposing dead organisms is essential to making sustainable soil',
-  vp: () => Math.floor(this.resources / 3),
+  events: {
+    onCardPlayed: (player, game, card) =>
+      // Has a space, plant, or microbe tag
+      (card.tags.includes('animal') ||
+        card.tags.includes('plant') ||
+        card.tags.includes('microbe')) &&
+      game.cardResource(player, card, 1)
+  },
+  vp: (player, game) => Math.floor(game.cardResource(player, card) / 3),
   emoji: '🍄',
-  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">
@@ -48,3 +56,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

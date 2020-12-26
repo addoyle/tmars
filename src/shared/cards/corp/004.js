@@ -14,15 +14,19 @@ export default new Corporation({
   number: '004',
   title: 'Mining Guild',
   titleClass: 'mining-guild',
+  startingMC: 30,
   starting: (player, game) => {
-    game.resources(player, 'megacredit', 30);
     game.resources(player, 'steel', 5);
     game.production(player, 'steel', 1);
   },
   tags: ['building', 'building'],
   desc,
   effectDesc,
-  todo: true,
+  events: {
+    onTile: (player, game, tile) =>
+      ['steel', 'titanium'].some(r => tile.resources.includes(r)) &&
+      game.production(player, 'steel', 1)
+  },
   flavor:
     'Developers of ultra-light solar sails, Helion now turns to the terraforming of Mars and other worlds. It promises to be a rewarding business, as Helion has already made a working model of a soletta, focusing sunlight down to the frozen planet.',
   layout: (

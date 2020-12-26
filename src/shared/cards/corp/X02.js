@@ -15,10 +15,8 @@ export default new Corporation({
   number: 'X02',
   title: 'Factorum',
   titleClass: 'factorum',
-  starting: (player, game) => {
-    game.resources(player, 'megacredit', 37);
-    game.production(player, 'steel', 1);
-  },
+  startingMC: 37,
+  starting: (player, game) => game.production(player, 'steel', 1),
   actions: [
     {
       name: 'Increase Enery Production',
@@ -54,12 +52,14 @@ export default new Corporation({
       },
       action: (player, game) => {
         game.resources(player, 'megacredit', -3);
-        game.revealCards(
-          player,
-          card => card.tags.includes('building'),
-          1,
-          'building cards',
-          { tag: 'building' }
+        game.keepSelected(
+          game.revealCards(
+            player,
+            card => card.tags.includes('building'),
+            1,
+            'building cards',
+            { tag: 'building' }
+          )
         );
       }
     }

@@ -6,7 +6,7 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// TODO action
+// TODO Block removal
 
 const activeDesc =
   'Effect: When any city tile is placed, add an animal to this card.';
@@ -22,7 +22,14 @@ const card = new Active({
   resource: 'animal',
   flavor: 'It wouldn’t be the same without them',
   action: (player, game) => game.cardResource(player, card, 1),
-  vp: () => Math.floor(this.resources / 2),
+  events: {
+    onAnyTile: (player, game, tile) =>
+      // Is a city
+      ['city', 'capital city'].includes(tile.type) &&
+      // Add an animal
+      game.cardResource(player, card, 1)
+  },
+  vp: (player, game) => Math.floor(game.cardResource(player, card) / 2),
   emoji: '🐶️',
   todo: true,
   activeLayout: (

@@ -25,15 +25,21 @@ export default new Corporation({
     boxShadow: '0 0 0 .03em black, 0 .5em .5em rgba(0,0,0,.5)',
     borderRadius: '100%'
   },
-  starting: (player, game) => {
-    game.production(player, 'titanium', 1);
-    game.resources(player, 'megacredit', 42);
-  },
+  startingMC: 42,
+  starting: (player, game) => game.production(player, 'titanium', 1),
   tags: ['jovian'],
   set: 'corporate',
   desc,
   effectDesc,
-  todo: true,
+  events: {
+    onAnyCardPlayed: (player, game, card) =>
+      // Is NOT an event card
+      card.type !== 'event' &&
+      // Has a Jovian tag
+      card.tags.includes('jovian') &&
+      // Bump M€ production
+      game.production(player, 'megacredit', 1)
+  },
   flavor:
     "Having acquired the mining rights on several of Saturn's moons, Saturn Systems gained plenty of experience over the years. As a supplier of rare metals, space ships, and fuel, the company has made itself indispensible to the outer planets. Saturn Systems is now ready to play a key role in the terraforming of Mars.",
   layout: (

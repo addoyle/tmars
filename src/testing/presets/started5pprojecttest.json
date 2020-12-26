@@ -111,7 +111,7 @@
         "event": [],
         "corp": [
           {
-            "card": "011",
+            "card": "005",
             "select": false
           }
         ],
@@ -258,7 +258,7 @@
         "event": [],
         "corp": [
           {
-            "card": "P03",
+            "card": "008",
             "select": false
           }
         ],
@@ -549,7 +549,7 @@
         "event": [],
         "corp": [
           {
-            "card": "015",
+            "card": "009",
             "select": false
           }
         ],
@@ -725,7 +725,7 @@
     "venus": 0
   },
   "variants": {
-    "draft": false,
+    "draft": true,
     "wgt": false
   },
   "board": "Tharsis",

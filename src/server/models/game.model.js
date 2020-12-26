@@ -295,8 +295,8 @@ class Game extends SharedGame {
    */
   applyCorp(player) {
     const corp = this.cardStore.corporation[player.cards.corp[0].card];
-    Object.assign(player.resources, corp.starting.resources || {});
-    Object.assign(player.production, corp.starting.production || {});
+    this.resources(player, 'megacredit', corp.startingMC);
+    corp.starting && corp.starting(player, this);
     (corp.tags || []).forEach(tag => player.tags[tag]++);
   }
 
@@ -334,13 +334,6 @@ class Game extends SharedGame {
       });
     }
 
-    // Add the cards we were looking for to hand, and discard the rest
-    // TODO: Move this logic to the cards which use it
-    // player.cards.hand = player.cards.hand.concat(keep);
-    // this.cards.discard = this.cards.discard.concat(
-    //   reveal.filter(({ card }) => !keep.map(({ card }) => card).includes(card))
-    // );
-
     // Add a log for users to see revealed cards
     LogService.pushLog(
       this.id,
@@ -353,7 +346,19 @@ class Game extends SharedGame {
       ])
     );
 
-    return reveal.map(card => this.cardStore.project[card.card]);
+    return reveal;
+  }
+
+  keepSelected(player, cards) {
+    const keep = cards.filter(c => c.select);
+
+    // Put selected cards in hand
+    player.cards.hand = player.cards.hand.concat(keep);
+
+    // Discard the rest
+    this.cards.discard = this.cards.discard.concat(
+      cards.filter(card => !card.select)
+    );
   }
 
   /**
@@ -569,25 +574,33 @@ class Game extends SharedGame {
         player.rates.ocean;
     }
 
-    // TODO: Trigger placement events
-
     let notDone = true;
     // Handle placement bonuses
     (area.resources || [])
       .filter(r => r)
       .forEach(r => {
-        // Resources on the space
+        // Draw a card
         if (r === 'card') {
           this.drawCard(player);
-        } else if (r === 'ocean') {
+        }
+        // Place an ocean
+        else if (r === 'ocean') {
           notDone = false;
           this.promptTile(player, 'ocean', done);
-        } else if (r.megacredit) {
+        }
+        // Megacredits
+        else if (r.megacredit) {
           player.resources.megacredit += r.megacredit;
-        } else {
+        }
+        // Anything else SHOULD be a resource
+        else {
           player.resources[r]++;
         }
       });
+
+    // Trigger events
+    this.fire('onTile', player, area);
+    this.fire('onAnyTile', null, area);
 
     notDone && done(area);
   }
@@ -612,12 +625,24 @@ class Game extends SharedGame {
    * Switch to the player order phase
    */
   beginPlayerOrderPhase() {
+    // Set the new starting player
     this.startingPlayer++;
     if (this.startingPlayer > this.players.length) {
       this.startingPlayer = 1;
     }
+    // Increase generation
     const gen = ++this.params.generation;
+    // Set the turn to the starting player
     this.turn = this.startingPlayer;
+
+    // Reset things for players
+    this.players.forEach(p => {
+      // Reset cards
+      p.cards.active.forEach(c => (c.disabled = false));
+      p.cards.corp.forEach(c => (c.disabled = false));
+      // Reset if TR was set, for UNMI
+      p.trRaised = false;
+    });
 
     LogService.pushLog(
       this.id,
@@ -656,6 +681,13 @@ class Game extends SharedGame {
         classNames: ['phase', 'research-phase']
       })
     );
+
+    // Draw 4 cards for each player and put in buy or draft
+    for (let i = 0; i < 4; i++) {
+      this.forEachPlayerOrder(p =>
+        this.drawCard(p, this.variants.draft ? 'draft' : 'buy')
+      );
+    }
 
     this.phase = 'research';
     this.players.forEach(player => (player.ui.drawer = 'hand'));
@@ -763,9 +795,28 @@ class Game extends SharedGame {
    * @param {string} evt Event
    * @param {Player} player Player which fired the event
    */
-  fire(evt, player) {
-    // TODO: Loop through Action cards and corps
-    console.log(evt, player.number);
+  fire(evt, player, ...opts) {
+    (player ? [player] : this.players).forEach(p =>
+      // Loop through active cards and corp
+      p.cards.active
+        .map(c => this.cardStore.project[c.card])
+        .concat(p.cards.corp.map(c => this.cardStore.corporation[c.card]))
+        .filter(c => c.events && c.events[evt])
+        .forEach(c => {
+          c.events[evt](p, this, ...opts) &&
+            // Only show the log if the event happened
+            LogService.pushLog(
+              this.id,
+              new Log(p.number, [
+                "'s ",
+                c.type === 'corporation'
+                  ? { corp: c.number }
+                  : { project: c.number },
+                ' effect was triggered.'
+              ])
+            );
+        })
+    );
   }
 
   /**
@@ -781,6 +832,8 @@ class Game extends SharedGame {
       player.resources[resource] = 0;
     }
     // TODO fire resource change
+
+    return true;
   }
 
   /**
@@ -793,6 +846,8 @@ class Game extends SharedGame {
   production(player, resource, num) {
     player.production[resource] += num;
     // TODO fire production change
+
+    return true;
   }
 
   /**
@@ -803,7 +858,13 @@ class Game extends SharedGame {
    */
   tr(player, num) {
     player.tr += num;
+
+    // For UNMI, marks if TR was raised this generation
+    player.trRaised = true;
+
     // TODO fire terraform change
+
+    return true;
   }
 
   /**
@@ -826,6 +887,26 @@ class Game extends SharedGame {
     playerCard.resource += value;
 
     return playerCard.resource;
+  }
+
+  /**
+   * Helper method to get/set the card's related tile
+   *
+   * @param {Player} player Player doing the action
+   * @param {Card} card Card to change
+   * @param {obhect} tile Tile to set
+   */
+  cardTile(player, card, tile) {
+    const playerCard = player.cards.hand
+      .concat(player.cards.active)
+      .concat(player.cards.corp)
+      .find(c => c.card === card.number);
+
+    if (tile) {
+      playerCard.tile = tile.id;
+    }
+
+    return tile || this.tileFromId(playerCard.tile);
   }
 
   pushLog(player, log) {

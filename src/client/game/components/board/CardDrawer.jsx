@@ -28,10 +28,9 @@ const CardDrawer = props => {
   const numToBuy = gameStore.player?.cards.buy.filter(card => card.select)
     .length;
 
-  const buyMode =
-    gameStore.phase !== 'draft' &&
-    gameStore.player?.cards.buy.length &&
-    props.type === 'hand';
+  const buyMode = gameStore.player?.cards.buy.length && props.type === 'hand';
+  const draftMode =
+    gameStore.player?.cards.draft.length && props.type === 'hand';
 
   return (
     <div
@@ -43,10 +42,10 @@ const CardDrawer = props => {
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
     >
-      {props.mode === 'draft' ? (
+      {props.mode === 'research' ? (
         <div className="on-deck">
           {gameStore.player?.cards.onDeck.map((row, i) => (
-            <div className="" key={i}>
+            <div key={i}>
               {[...Array(row.length)].map((n, j) => (
                 <Param key={j} name="card back" />
               ))}
@@ -55,7 +54,11 @@ const CardDrawer = props => {
         </div>
       ) : null}
 
-      <ul className={classNames('cards', 'buy-mode', { show: buyMode })}>
+      <ul
+        className={classNames('cards', 'buy-mode', {
+          show: buyMode || draftMode
+        })}
+      >
         {buyMode
           ? gameStore.player?.cards.buy.map(card => (
               <li
@@ -95,7 +98,7 @@ const CardDrawer = props => {
                         cardStore.get(
                           'corp',
                           gameStore.player?.cards.corp[0].card
-                        )?.starting.resources.megacredit
+                        )?.startingMC
                       }
                     />
                     <CardRef
@@ -144,7 +147,7 @@ const CardDrawer = props => {
                             cardStore.get(
                               'corp',
                               gameStore.player?.cards.corp[0].card
-                            )?.starting.resources.megacredit)
+                            )?.startingMC)
                       )
                     : numSelected > props.max || numSelected < props.min
                 }
@@ -153,7 +156,8 @@ const CardDrawer = props => {
                   <Param name="card back" />
                 </div>
                 <span className="middle col-1">
-                  Buy {buyMode ? numToBuy : numSelected} Cards
+                  {buyMode ? 'Buy' : 'Confirm'}{' '}
+                  {buyMode ? numToBuy : numSelected} Cards
                 </span>
                 {buyMode ? (
                   <div className="resources middle">
@@ -272,7 +276,8 @@ CardDrawer.propTypes = {
       cards: PropTypes.shape({
         onDeck: PropTypes.arrayOf(PropTypes.array),
         corp: PropTypes.array,
-        buy: PropTypes.array
+        buy: PropTypes.array,
+        draft: PropTypes.array
       }),
       rates: PropTypes.shape({
         buy: PropTypes.number,

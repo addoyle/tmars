@@ -53,6 +53,7 @@ export default class Project extends Card {
       const tags = Array.isArray(this.restriction.tag)
         ? this.restriction.tag
         : [this.restriction.tag];
+      // Includes ? tags, if applicable
       if (tags.some(t => player.tags[t] + (player.tags.any || 0) < val)) {
         result.valid = false;
         result.msg = `Requires ${val} ${tags.join(', ')} tag${
@@ -95,9 +96,26 @@ export default class Project extends Card {
       if (this.restriction.resource === 'tr' && player.tr < val) {
         result.valid = false;
         result.msg = `Requires ${val} Terraform Rating`;
-      } else if (player.resources[this.restriction.resource] < val) {
+      }
+      // Standard resources
+      else if (
+        ['megacredit', 'steel', 'titanium', 'plant', 'power', 'heat'].includes(
+          this.restriction.resource
+        ) &&
+        player.resources[this.restriction.resource] < val
+      ) {
         result.valid = false;
         result.msg = `Requires ${val} ${this.restriction.resource} resources`;
+      }
+      // Anything else is treated as resources on cards
+      else if (
+        player.cards.active
+          .concat(player.cards.corp)
+          .filter(c => c.resource === this.restriction.resource)
+          .reduce((sum, c) => sum + c.resource, 0) < val
+      ) {
+        result.valid = false;
+        result.msg = `Requires ${val} ${this.restriction.resource} resources on cards`;
       }
     }
 

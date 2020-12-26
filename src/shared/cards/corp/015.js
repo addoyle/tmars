@@ -11,7 +11,7 @@ const desc = 'You start with 38 M€ and 1 steel production.';
 const effectDesc =
   'Effect: When you play a building tag, including this, gain 1 microbe to this card, or remove 2 microbes here and raise your plant production 1 step.';
 
-export default new Corporation({
+const card = new Corporation({
   number: '015',
   title: 'Recyclon',
   titleStyle: {
@@ -27,15 +27,23 @@ export default new Corporation({
     borderRadius: '1em',
     padding: '.3em'
   },
-  starting: (player, game) => {
-    game.resources(player, 'megacredit', 38);
-    game.production(player, 'steel', 1);
-  },
+  startingMC: 38,
+  starting: (player, game) => game.production(player, 'steel', 1),
   tags: ['microbe', 'building'],
   set: 'promo',
   desc,
   effectDesc,
-  todo: true,
+  resource: 'microbe',
+  events: {
+    onCardPlayed: (player, game, card) => {
+      if (game.cardResource(player, card) >= 2) {
+        game.production(player, 'plant', 1);
+        game.cardResource(player, card, -2);
+      } else {
+        game.cardResource(player, card, 1);
+      }
+    }
+  },
   flavor:
     'Recycling is the way of the future, especially on a barren planet like Mars, making Recyclon an efficient builder of the Martian society.',
   layout: (
@@ -80,3 +88,5 @@ export default new Corporation({
     </div>
   )
 });
+
+export default card;

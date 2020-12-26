@@ -51,7 +51,6 @@ export default class Player {
     prelude: [],
     onDeck: []
   };
-  phase = '';
   ui = {};
   rates = {
     steel: 2, // Value of steel for playing building cards
@@ -62,7 +61,6 @@ export default class Player {
     ocean: 2, // Ocean adjacency bonus,
     cost: {} // Cost modifier functions
   };
-  firstAction;
   passed;
   modifiers = {};
 

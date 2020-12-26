@@ -14,15 +14,16 @@ export default new Corporation({
   number: '017',
   title: 'Manutech',
   titleClass: 'manutech',
-  starting: (player, game) => {
-    game.production(player, 'steel', 1);
-    game.resources(player, 'megacredit', 35);
-  },
+  startingMC: 35,
+  starting: (player, game) => game.production(player, 'steel', 1),
   tags: ['building'],
   set: 'venus',
   desc,
   effectDesc,
-  todo: true,
+  events: {
+    onProductionChange: (player, game, resource, change) =>
+      change > 0 && game.resources(player, resource, change)
+  },
   flavor:
     'Manutech is specialized in supplying steel and plastic components. Its efficient organization leads to quick results, making it a worthy contender in the terraforming of Mars.',
   layout: (

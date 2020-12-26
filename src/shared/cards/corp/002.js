@@ -15,10 +15,10 @@ export default new Corporation({
   number: '002',
   title: 'Ecoline',
   titleClass: 'ecoline',
+  startingMC: 36,
   starting: (player, game) => {
     game.production(player, 'plant', 2);
     game.resources(player, 'plant', 3);
-    game.resources(player, 'megacredit', 36);
     player.rates.plant = 7;
   },
   tags: ['plant'],

@@ -15,14 +15,16 @@ const card = new Corporation({
   number: '019',
   title: 'Celestic',
   titleClass: 'celestic',
-  starting: (player, game) => game.resources(player, 'megacredit', 42),
+  startingMC: 42,
   firstAction: (player, game) =>
-    game.revealCards(
-      player,
-      card => card.resource === 'floater',
-      2,
-      'floater cards',
-      { resource: 'floater' }
+    game.keepSelected(
+      game.revealCards(
+        player,
+        card => card.resource === 'floater',
+        2,
+        'floater cards',
+        { resource: 'floater' }
+      )
     ),
   tags: ['venus'],
   set: 'venus',

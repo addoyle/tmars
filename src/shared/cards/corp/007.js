@@ -12,9 +12,9 @@ export default new Corporation({
   number: '007',
   title: 'PhoboLog',
   titleClass: 'phobolog',
+  startingMC: 23,
   starting: (player, game) => {
     game.resources(player, 'titanium', 10);
-    game.resources(player, 'megacredit', 23);
     player.rates.titanium++;
   },
   tags: ['space'],

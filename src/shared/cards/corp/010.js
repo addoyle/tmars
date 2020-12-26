@@ -13,20 +13,18 @@ export default new Corporation({
   number: '010',
   title: 'United Nations Mars Initiative',
   titleClass: 'unmi',
-  starting: (player, game) => game.resources(player, 'megacredit', 40),
+  startingMC: 40,
   actions: [
     {
       name: 'Raise TR',
       log: ['raise TR ', { resource: 'tr' }],
       icon: <Resource name="tr" />,
-      canPlay: () => {
-        // TODO: figure out how to check if TR was raised this gen
-        const valid = true;
-        return {
-          valid,
-          msg: !valid ? 'Your TR has not been raised this generation' : null
-        };
-      },
+      canPlay: player => ({
+        valid: player.trRaised,
+        msg: !player.trRaised
+          ? 'Your TR has not been raised this generation'
+          : null
+      }),
       action: (player, game) => {
         game.resources(player, 'megacredit', -3);
         game.tr(player, 1);
@@ -36,7 +34,6 @@ export default new Corporation({
   tags: ['earth'],
   desc,
   actionDesc,
-  todo: true,
   flavor:
     "UNMI is the organization carrying out the World Government's own terraforming projects. After the terraforming announcement, the UNMI got competition from different corporations, but is still a major force behind Mars' development.",
   layout: (

@@ -14,7 +14,7 @@ export default new Corporation({
   number: 'P05',
   title: 'Vitor',
   titleClass: 'vitor',
-  starting: (player, game) => game.resources(player, 'megacredit', 45),
+  startingMC: 45,
   firstAction: () => {
     // TODO
   },
@@ -22,6 +22,15 @@ export default new Corporation({
   set: 'prelude',
   desc,
   effectDesc,
+  events: {
+    onCardPlayed: (player, game, card) =>
+      // Exclude ONLY negative VP cards (1 per X VPs are also included)
+      card.vp !== undefined &&
+      // Numeric comparisons with functions ALWAYS resolve to false
+      !card.vp < 0 &&
+      // Get 3 M€
+      game.resources(player, 'megacredit', 3)
+  },
   todo: true,
   flavor:
     'A corporation grown from crowd funding of new innovations. Always inclined to initiate projects that can gain public support, as well as innovation prizes.',

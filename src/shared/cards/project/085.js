@@ -8,12 +8,10 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// TODO VERIFY VP
-
 const desc =
   'Decrease your energy production 1 step and increase your M€ production 4 steps. Place this tile. 1 VP PER ADJACENT CITY TILE.';
 
-export default new Automated({
+const card = new Automated({
   number: '085',
   title: 'Commercial District',
   cost: 16,
@@ -25,7 +23,7 @@ export default new Automated({
     game.production(player, 'power', -1);
     game.production(player, 'megacredit', 4);
     game.promptTile(player, { special: 'euro' }, tile => {
-      this.tile = tile;
+      game.cardTile(player, card, tile);
       done();
     });
   },
@@ -45,10 +43,9 @@ export default new Automated({
   },
   vp: (player, game) =>
     game
-      .neighbors(this.tile)
+      .neighbors(game.cardTile(player, card))
       .filter(t => t.type === 'city' || t.type === 'capital city').length,
   emoji: '🛍',
-  todo: true,
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle">
@@ -80,3 +77,5 @@ export default new Automated({
     </div>
   )
 });
+
+export default card;

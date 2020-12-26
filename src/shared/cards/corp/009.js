@@ -15,17 +15,15 @@ export default new Corporation({
   number: '009',
   title: 'ThorGate',
   titleClass: 'thorgate',
+  startingMC: 48,
   starting: (player, game) => {
     game.production(player, 'power', 1);
-    game.resources(player, 'megacredit', 48);
     player.rates.cost.power = -3;
-
-    // TODO Power Plant standard project
+    player.rates.powerplant = 8;
   },
   tags: ['power'],
   desc,
   effectDesc,
-  todo: true,
   flavor:
     'As oil reserves ran out on Earth, Nordic ThorGate emerged as the new world leader in the energy field, with their cutting edge technology. Now that the colonies on Mars are growing, ThorGate leads the way in finding viable energy solutions.',
   layout: (

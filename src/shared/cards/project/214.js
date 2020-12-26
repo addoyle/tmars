@@ -6,8 +6,6 @@ import {
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// TODO handle floater restriction
-
 const desc =
   'Requires that you have 5 floaters. Gain 1 M€ for each city tile in play.';
 
@@ -27,11 +25,13 @@ export default new Event({
     game.resources(
       player,
       'megacredit',
-      game.field.flat().concat(Object.values(game.offMars)).length
+      game.field
+        .flat()
+        .concat(Object.values(game.offMars))
+        .filter(t => ['city', 'capital city'].includes(t.type)).length
     ),
   vp: 1,
   emoji: '🏂',
-  todo: true,
   layout: (
     <div className="flex">
       <div className="col-3 text-center">
