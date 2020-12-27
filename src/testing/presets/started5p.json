@@ -541,7 +541,7 @@
     "venus": 0
   },
   "variants": {
-    "draft": false,
+    "draft": true,
     "wgt": false
   },
   "board": "Tharsis",

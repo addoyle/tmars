@@ -19,7 +19,7 @@ const customFilter = (tile, game, notReserved, neighbors) =>
   // Is adjacent to one of your own tiles
   neighbors.filter(t => t.type === 'greenery').length;
 
-export default new Active({
+const card = new Active({
   number: '128',
   title: 'Ecological Zone',
   cost: 12,
@@ -30,6 +30,7 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'animal',
   flavor: 'A secluded area where a multitude of species develop an ecosystem',
   action: (player, game, done) =>
     game.promptTile(player, { special: 'animal' }, done, customFilter),
@@ -45,9 +46,15 @@ export default new Active({
       msg: !valid ? 'Requires a space adjacent to a greenery tile' : null
     };
   },
-  vp: () => Math.floor(this.resources / 2),
+  events: {
+    onCardPlayed: (player, game, card) =>
+      // Has an animal or plant tag
+      (card.tags.includes('animal') || card.tags.includes('plant')) &&
+      // Bump resource
+      game.cardResource(player, card, 1)
+  },
+  vp: (player, game) => Math.floor(game.cardResource(player, card) / 2),
   emoji: '🏞️',
-  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">
@@ -75,3 +82,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

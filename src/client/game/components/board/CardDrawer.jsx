@@ -29,8 +29,6 @@ const CardDrawer = props => {
     .length;
 
   const buyMode = gameStore.player?.cards.buy.length && props.type === 'hand';
-  const draftMode =
-    gameStore.player?.cards.draft.length && props.type === 'hand';
 
   return (
     <div
@@ -56,26 +54,24 @@ const CardDrawer = props => {
 
       <ul
         className={classNames('cards', 'buy-mode', {
-          show: buyMode || draftMode
+          show: buyMode
         })}
       >
-        {buyMode
-          ? gameStore.player?.cards.buy.map(card => (
-              <li
-                key={`card-${card.card}`}
-                onClick={() => props.gameStore.toggleSelectCard(card, 'buy')}
-                className={classNames('card-selector', {
-                  selected:
-                    gameStore.currentCard.show &&
-                    card.card === gameStore.currentCard.card.card &&
-                    'buy' === gameStore.currentCard.type,
-                  disabled: card.disabled
-                })}
-              >
-                <CardPreview card={card} type="project" />
-              </li>
-            ))
-          : null}
+        {gameStore.player?.cards.buy.map(card => (
+          <li
+            key={`card-${card.card}`}
+            onClick={() => props.gameStore.toggleSelectCard(card, 'buy')}
+            className={classNames('card-selector', {
+              selected:
+                gameStore.currentCard.show &&
+                card.card === gameStore.currentCard.card.card &&
+                'buy' === gameStore.currentCard.type,
+              disabled: card.disabled
+            })}
+          >
+            <CardPreview card={card} type="project" />
+          </li>
+        ))}
       </ul>
 
       {props.mode === 'select' ||
@@ -297,6 +293,7 @@ CardDrawer.propTypes = {
     }),
     showCurrentCard: PropTypes.func,
     buySelectedCards: PropTypes.func,
+    draftSelectedCard: PropTypes.func,
     confirmSelection: PropTypes.func,
     confirmReveal: PropTypes.func,
     passSkip: PropTypes.func,

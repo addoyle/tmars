@@ -137,29 +137,29 @@ const CardDrawers = ({ gameStore }) => {
     },
 
     // Cards to draft
-    // {
-    //   type: 'draft',
-    //   tab: (
-    //     <>
-    //       <FontAwesomeIcon
-    //         fixedWidth
-    //         icon={`arrow-alt-circle-${
-    //           ['left', 'right'][gameStore.params.generation % 2]
-    //         }`}
-    //       />
-    //       <span>
-    //         Draft
-    //         {gameStore.player ? (
-    //           <span className="card-count">
-    //             {gameStore.player.cards.draft.length}
-    //           </span>
-    //         ) : null}
-    //       </span>
-    //     </>
-    //   ),
-    //   mode: 'draft',
-    //   hidden: gameStore.phase !== 'draft'
-    // },
+    {
+      type: 'draft',
+      tab: (
+        <>
+          <FontAwesomeIcon
+            fixedWidth
+            icon={`arrow-alt-circle-${
+              ['left', 'right'][gameStore.params.generation % 2]
+            }`}
+          />
+          <span>
+            Draft
+            {gameStore.player ? (
+              <span className="card-count">
+                {gameStore.player.cards.draft.length}
+              </span>
+            ) : null}
+          </span>
+        </>
+      ),
+      mode: 'draft',
+      hidden: gameStore.phase !== 'research'
+    },
 
     // Cards revealed during a tag search
     {
