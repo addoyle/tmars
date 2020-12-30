@@ -87,7 +87,7 @@ export function toggleSelectCard(req, res) {
  * @param {*} res
  */
 export function draftCard(req, res) {
-  GameService.draftCard(`${req.params.id}`, req.body.player, req.body, res);
+  GameService.draftCard(`${req.params.id}`, req.body.player, res);
   res.sendStatus(200);
 }
 

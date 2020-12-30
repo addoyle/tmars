@@ -157,7 +157,7 @@ $title-font: 'Prototype', sans-serif;
       );
 
       .card-ref {
-        color: black;
+        color: #111;
       }
     }
 
@@ -170,10 +170,10 @@ $title-font: 'Prototype', sans-serif;
         #3bb0e5 60%,
         #3d9dd7 80%,
         #315591 100%
-        );
+      );
 
       .card-ref {
-        color: black;
+        color: #111;
       }
     }
 
@@ -187,7 +187,23 @@ $title-font: 'Prototype', sans-serif;
         #009f3e 80%,
         #003d22 100%
       );
-      color: black;
+      color: #111;
+    }
+
+    &.research-phase {
+      background: linear-gradient(
+        to right, 
+        #141e30 0%,
+        #243b55 20%,
+        #436d9d 40%,
+        #436d9d 60%,
+        #243b55 80%,
+        #141e30 100%
+      );
+
+      .card-ref {
+        color: #fff;
+      }
     }
   }
 }

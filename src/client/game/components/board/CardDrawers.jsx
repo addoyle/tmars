@@ -141,12 +141,7 @@ const CardDrawers = ({ gameStore }) => {
       type: 'draft',
       tab: (
         <>
-          <FontAwesomeIcon
-            fixedWidth
-            icon={`arrow-alt-circle-${
-              ['left', 'right'][gameStore.params.generation % 2]
-            }`}
-          />
+          <Param name="card back" />
           <span>
             Draft
             {gameStore.player ? (
@@ -158,7 +153,9 @@ const CardDrawers = ({ gameStore }) => {
         </>
       ),
       mode: 'draft',
-      hidden: gameStore.phase !== 'research'
+      hidden: gameStore.phase !== 'research',
+      max: 1,
+      min: 1
     },
 
     // Cards revealed during a tag search

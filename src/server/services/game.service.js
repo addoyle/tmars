@@ -372,22 +372,28 @@ class GameService {
    * @returns Game status
    */
   @push(gameFilter)
-  draftCard(id, playerNum, card) {
+  draftCard(id, playerNum) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
+    const card = player.cards.draft.filter(c => c.select)[0];
+    card.select = false;
 
-    player.cards.buy.push(card.card);
+    if (!card) {
+      return this.export(game);
+    }
+
+    // Move card to buy pile
+    player.cards.buy.push(card);
 
     // Send draft cards to next player
-    console.log(this.getDraftTargetPlayer);
-    // this.getDraftTargetPlayer(game).cards.onDeck.push(
-    //   player.cards.draft.filter(c => c !== card.card)
-    // );
+    this.getDraftTargetPlayer(player, game).cards.onDeck.push(
+      player.cards.draft.filter(c => c.card !== card.card)
+    );
 
     // Grab the next set on deck
-    if (player.cards.onDeck.length) {
-      player.cards.draft = player.cards.onDeck.shift();
-    }
+    player.cards.draft = player.cards.onDeck.length
+      ? player.cards.onDeck.shift()
+      : [];
 
     return this.export(game);
   }
@@ -669,11 +675,12 @@ class GameService {
   /**
    * Helper method to get the next player who you draft to
    *
+   * @param {Player} player The player doing the drafting
    * @param {Game} game The game
-   * @returns The next player
+   * @returns The player to be passed to
    */
-  getDraftTargetPlayer(game) {
-    let p = this.query.player + (game.params.generation % 2 ? -1 : 1);
+  getDraftTargetPlayer(player, game) {
+    let p = player.number + (game.params.generation % 2 ? -1 : 1);
     if (p < 0) {
       p = game.players.length - 1;
     } else if (p >= game.players.length) {

@@ -632,8 +632,8 @@ class Game extends SharedGame {
     }
     // Increase generation
     const gen = ++this.params.generation;
-    // Set the turn to the starting player
-    this.turn = this.startingPlayer;
+    // Set the turn to 0 until the action phase starts
+    this.turn = 0;
 
     // Reset things for players
     this.players.forEach(p => {
@@ -690,7 +690,7 @@ class Game extends SharedGame {
     }
 
     this.phase = 'research';
-    this.players.forEach(player => (player.ui.drawer = 'hand'));
+    this.players.forEach(player => (player.ui.drawer = 'draft'));
   }
 
   /**

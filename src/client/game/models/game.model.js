@@ -196,10 +196,9 @@ class Game extends SharedGame {
     });
   }
 
-  draftCard(card, opts) {
+  draftCard(opts) {
     API(`game/${gameId()}/draft-card`, POST, {
       ...opts,
-      card,
       player: +PLAYER_NUM
     });
   }
