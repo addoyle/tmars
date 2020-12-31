@@ -265,7 +265,7 @@ class Game extends SharedGame {
       this.playerStatus = {
         player,
         type: 'buy-card',
-        done: cards => {
+        done: () => {
           // Player status is resolved
           this.playerStatus = null;
 
@@ -273,15 +273,6 @@ class Game extends SharedGame {
           player.ui = {
             drawer: 'hand'
           };
-
-          LogService.pushLog(
-            this.id,
-            new Log(player.number, [
-              ` bought ${cards.length} cards `,
-              { param: 'card back' },
-              '.'
-            ])
-          );
 
           done && done();
         }
@@ -559,9 +550,9 @@ class Game extends SharedGame {
     LogService.pushLog(
       this.id,
       new Log(player.number, [
-        ` placed ${
-          type === 'ocean' ? 'an' : !isString(tile) ? 'the' : 'a'
-        } ${type} `,
+        ` placed ${type === 'ocean' ? 'an' : !isString(tile) ? 'the' : 'a'} ${
+          type === 'special' ? tile.special : type
+        } `,
         { tile: type },
         ' tile.'
       ])
@@ -706,7 +697,7 @@ class Game extends SharedGame {
 
     this.phase = 'action';
     this.turn = this.startingPlayer;
-    this.players[this.turn].firstAction = true;
+    this.players[this.turn - 1].firstAction = true;
     this.players.forEach(player => (player.ui.drawer = 'hand'));
   }
 
@@ -745,8 +736,13 @@ class Game extends SharedGame {
       player.cards.corp.forEach(c => (c.disabled = false));
     });
 
-    // TODO: shift to Solar Phase if using Venus and using WGT
-    this.beginPlayerOrderPhase();
+    // Check if the game should end (i.e. each global param is maxed out)
+    if (this.checkGameEnd()) {
+      this.beginEndPhase();
+    } else {
+      // If WGT, switch to solar phase, otherwise go directly to player order phase
+      this.variants.wgt ? this.beginSolarPhase() : this.beginPlayerOrderPhase();
+    }
   }
 
   /**
@@ -755,10 +751,19 @@ class Game extends SharedGame {
   beginSolarPhase() {
     // TODO: implement this
 
-    this.phase = 'action';
-    this.turn = this.startingPlayer;
-
     this.beginPlayerOrderPhase();
+  }
+
+  /**
+   * Checks if the game has ended (i.e. params are maxed out)
+   */
+  checkGameEnd() {
+    return (
+      this.params.temperature >= paramStats.temperature.max &&
+      this.params.oxygen >= paramStats.oxygen.max &&
+      this.field.flat().filter(t => t.type === 'ocean').length <=
+        paramStats.ocean.max
+    );
   }
 
   /**

@@ -24,7 +24,7 @@ export default new Corporation({
   effectDesc,
   events: {
     onTile: (player, game, tile) =>
-      ['steel', 'titanium'].some(r => tile.resources.includes(r)) &&
+      ['steel', 'titanium'].some(r => tile.resources?.includes(r)) &&
       game.production(player, 'steel', 1)
   },
   flavor:

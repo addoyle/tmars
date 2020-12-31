@@ -75,6 +75,7 @@ export function toggleSelectCard(req, res) {
     req.body.player,
     req.body.card,
     req.body.type,
+    req.body.single,
     res
   );
   res.sendStatus(200);

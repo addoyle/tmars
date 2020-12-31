@@ -12,8 +12,11 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   flavor: 'Profiting on every spectacular story',
+  events: {
+    onCardPlayed: (player, game, card) =>
+      card.type === 'event' && game.resources(player, 'megacredit', 3)
+  },
   emoji: '🎙',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

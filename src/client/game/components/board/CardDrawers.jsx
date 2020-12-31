@@ -8,6 +8,12 @@ import { Param } from '../assets/Assets';
 import classnames from 'classnames';
 
 const CardDrawers = ({ gameStore }) => {
+  const buyMode =
+    gameStore.player?.cards.buy.length &&
+    (gameStore.phase !== 'research' ||
+      (gameStore.phase === 'research' &&
+        gameStore.player?.cards.buy.length === 4));
+
   const drawers = [
     // Hand of cards
     {
@@ -29,8 +35,7 @@ const CardDrawers = ({ gameStore }) => {
           </span>
         </>
       ),
-      extraClasses: gameStore.phase !== 'draft' &&
-        gameStore.player?.cards.buy.length && ['buy-mode'],
+      extraClasses: buyMode && ['buy-mode'],
       mode:
         (gameStore.phase === 'action' ||
           (gameStore.phase === 'prelude' &&
@@ -153,7 +158,9 @@ const CardDrawers = ({ gameStore }) => {
         </>
       ),
       mode: 'draft',
-      hidden: gameStore.phase !== 'research',
+      hidden:
+        gameStore.phase !== 'research' ||
+        gameStore.player?.cards.buy.length === 4,
       max: 1,
       min: 1
     },

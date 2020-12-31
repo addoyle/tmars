@@ -35,12 +35,15 @@ const card = new Corporation({
   effectDesc,
   resource: 'microbe',
   events: {
-    onCardPlayed: (player, game, card) => {
-      if (game.cardResource(player, card) >= 2) {
-        game.production(player, 'plant', 1);
-        game.cardResource(player, card, -2);
-      } else {
-        game.cardResource(player, card, 1);
+    onCardPlayed: (player, game, playedCard) => {
+      if (playedCard.tags.includes('building')) {
+        if (game.cardResource(player, card) >= 2) {
+          game.production(player, 'plant', 1);
+          game.cardResource(player, card, -2);
+        } else {
+          game.cardResource(player, card, 1);
+        }
+        return true;
       }
     }
   },

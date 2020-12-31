@@ -303,12 +303,14 @@ class GameService {
    * @returns Game status
    */
   @push(gameFilter)
-  toggleSelectCard(id, playerNum, card, type) {
+  toggleSelectCard(id, playerNum, card, type, single) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
 
     player.cards[type] = player.cards[type].map(c =>
-      card.card === c.card ? { ...c, select: !card.select } : c
+      card.card === c.card
+        ? { ...c, select: single ? true : !card.select }
+        : { ...c, select: single ? false : c.select }
     );
 
     return this.export(game);
@@ -354,8 +356,26 @@ class GameService {
     // Clear out buy cards
     player.cards.buy = [];
 
+    LogService.pushLog(
+      this.id,
+      new Log(player.number, [
+        ` bought ${boughtCards.length} cards `,
+        { param: 'card back' },
+        '.'
+      ])
+    );
+
+    // If start phase, check if everyone's done their starting activities
     if (game.phase === 'start') {
       this.checkStartPhaseDone(game);
+    }
+
+    // If research phase and everyone's bought their researched/drafted cards, move to action phase
+    if (
+      game.phase === 'research' &&
+      !game.players.some(player => player.cards.buy.length > 0)
+    ) {
+      game.beginActionPhase();
     }
 
     game.playerStatus?.done(boughtCards, discardedCards);
@@ -390,10 +410,20 @@ class GameService {
       player.cards.draft.filter(c => c.card !== card.card)
     );
 
-    // Grab the next set on deck
-    player.cards.draft = player.cards.onDeck.length
-      ? player.cards.onDeck.shift()
-      : [];
+    // Empty draft deck (since it was passed)
+    player.cards.draft = [];
+
+    // Grab the next set on deck for each player
+    game.players
+      .filter(p => !p.cards.draft.length)
+      .forEach(p => {
+        p.cards.draft = p.cards.onDeck.length ? p.cards.onDeck.shift() : [];
+
+        // 4 cards drafted, switch back to hand
+        if (p.cards.buy.length === 4) {
+          p.ui.drawer = 'hand';
+        }
+      });
 
     return this.export(game);
   }
@@ -612,6 +642,8 @@ class GameService {
   /**
    * Check if the start phase is complete, i.e. all players have bought their cards, selected their
    * corps, and chosen their preludes (if applicable). If it's done, it will move to the action phase
+   *
+   * @param {Game} game The game
    */
   checkStartPhaseDone(game) {
     // Return if any players still haven't confirmed their corp
@@ -680,7 +712,7 @@ class GameService {
    * @returns The player to be passed to
    */
   getDraftTargetPlayer(player, game) {
-    let p = player.number + (game.params.generation % 2 ? -1 : 1);
+    let p = player.number + (game.params.generation % 2 ? -1 : 1) - 1;
     if (p < 0) {
       p = game.players.length - 1;
     } else if (p >= game.players.length) {

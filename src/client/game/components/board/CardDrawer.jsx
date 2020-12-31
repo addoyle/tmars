@@ -28,7 +28,12 @@ const CardDrawer = props => {
   const numToBuy = gameStore.player?.cards.buy.filter(card => card.select)
     .length;
 
-  const buyMode = gameStore.player?.cards.buy.length && props.type === 'hand';
+  const buyMode =
+    gameStore.player?.cards.buy.length &&
+    props.type === 'hand' &&
+    (gameStore.phase !== 'research' ||
+      (gameStore.phase === 'research' &&
+        gameStore.player?.cards.buy.length === 4));
   const draftMode = props.type === 'draft';
 
   return (
@@ -172,7 +177,7 @@ const CardDrawer = props => {
                     <FontAwesomeIcon
                       fixedWidth
                       icon={`arrow-alt-circle-${
-                        ['left', 'right'][gameStore.params.generation % 2]
+                        ['right', 'left'][gameStore.params.generation % 2]
                       }`}
                     />
                   </div>
@@ -230,7 +235,10 @@ const CardDrawer = props => {
                 ? props.mode === 'select' || props.mode === 'draft'
                   ? gameStore.toggleSelectCard(
                       card,
-                      props.mode === 'draft' ? 'draft' : cardType
+                      props.mode === 'draft' ? 'draft' : cardType,
+                      props.min === 1 && props.max === 1
+                        ? { single: true }
+                        : null
                     )
                   : gameStore.showCurrentCard(
                       card,

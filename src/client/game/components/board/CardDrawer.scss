@@ -104,6 +104,13 @@ $hand-height: 40vh;
         }
       }
 
+      &.separator {
+        width: 4px;
+        background: #0008;
+        margin-left: 12px;
+        margin-right: 12px;
+      }
+
       .card-preview {
         position: static;
         pointer-events: auto;
@@ -151,11 +158,9 @@ $hand-height: 40vh;
   }
 
   .button-bar {
-    height: 46px;
     opacity: 1;
     border-bottom: 4px solid #444;
     background: rgba(0, 0, 0, 0.4);
-    margin-top: -1px;
 
     & ~ .cards {
       max-height: calc(#{$hand-height} - 46px - 3px);
