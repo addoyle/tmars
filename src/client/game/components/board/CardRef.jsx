@@ -21,10 +21,7 @@ const CardRef = props => {
       onMouseOut={() => setShown(false)}
     >
       <span
-        className={classNames(
-          'card-ref',
-          (card && card.constructor.name.toLowerCase()) || props.type
-        )}
+        className={classNames('card-ref', card?.type || props.type)}
         onClick={props.onClick || (() => {})}
       >
         {card ? card.title : props.card}

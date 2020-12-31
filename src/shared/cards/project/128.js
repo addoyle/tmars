@@ -47,9 +47,10 @@ const card = new Active({
     };
   },
   events: {
-    onCardPlayed: (player, game, card) =>
+    onCardPlayed: (player, game, playedCard) =>
       // Has an animal or plant tag
-      (card.tags.includes('animal') || card.tags.includes('plant')) &&
+      (playedCard.tags.includes('animal') ||
+        playedCard.tags.includes('plant')) &&
       // Bump resource
       game.cardResource(player, card, 1)
   },

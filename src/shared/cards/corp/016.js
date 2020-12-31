@@ -23,7 +23,10 @@ export default new Corporation({
   effectDesc,
   events: {
     onParam: (player, game, param) =>
-      param === 'venus' && game.resources(player, 'megacredit', 2)
+      // Raised Venus
+      param === 'venus' &&
+      // Add 2 M€
+      game.resources(player, 'megacredit', 2)
   },
   flavor:
     'Soil experts Aphrodite acquired deveopment contracts for the Venus colonies, initiating a dedicated terraforming program.',

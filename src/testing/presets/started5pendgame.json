@@ -1,0 +1,5621 @@
+{
+  "id": "123",
+  "sets": [
+    "corporate",
+    "promo",
+    "prelude",
+    "venus"
+  ],
+  "players": [
+    {
+      "name": "Andy",
+      "number": 1,
+      "tr": 30,
+      "resources": {
+        "megacredit": 1,
+        "steel": 5,
+        "titanium": 0,
+        "plant": 3,
+        "power": 1,
+        "heat": 5
+      },
+      "production": {
+        "megacredit": 30,
+        "steel": 0,
+        "titanium": 1,
+        "plant": 3,
+        "power": 4,
+        "heat": 5
+      },
+      "tags": {
+        "building": 2,
+        "space": 4,
+        "power": 2,
+        "science": 2,
+        "jovian": 2,
+        "earth": 7,
+        "plant": 2,
+        "microbe": 0,
+        "animal": 0,
+        "city": 1,
+        "venus": 0,
+        "event": 4
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [
+          {
+            "card": "102"
+          },
+          {
+            "card": "103"
+          }
+        ],
+        "draft": [],
+        "active": [
+          {
+            "card": "105",
+            "disabled": false
+          },
+          {
+            "card": "006",
+            "disabled": true
+          }
+        ],
+        "buy": [],
+        "automated": [
+          {
+            "card": "097"
+          },
+          {
+            "card": "107"
+          },
+          {
+            "card": "044"
+          },
+          {
+            "card": "252"
+          },
+          {
+            "card": "201"
+          },
+          {
+            "card": "176"
+          },
+          {
+            "card": "055"
+          },
+          {
+            "card": "106"
+          },
+          {
+            "card": "057"
+          },
+          {
+            "card": "236"
+          },
+          {
+            "card": "058"
+          },
+          {
+            "card": "099"
+          }
+        ],
+        "event": [
+          {
+            "card": "039"
+          },
+          {
+            "card": "204"
+          },
+          {
+            "card": "075"
+          },
+          {
+            "card": "062"
+          }
+        ],
+        "corp": [
+          {
+            "card": "011",
+            "select": false,
+            "disabled": false
+          }
+        ],
+        "prelude": [
+          {
+            "card": "P14",
+            "select": false,
+            "disabled": false
+          },
+          {
+            "card": "P08",
+            "select": false,
+            "disabled": false
+          }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {
+        "drawer": "hand"
+      },
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8,
+        "ocean": 2,
+        "cost": {
+          "earth": -3
+        }
+      },
+      "modifiers": {},
+      "firstAction": false,
+      "trRaised": false,
+      "passed": true
+    },
+    {
+      "name": "Frank",
+      "number": 2,
+      "tr": 26,
+      "resources": {
+        "megacredit": 16,
+        "steel": 0,
+        "titanium": 1,
+        "plant": 7,
+        "power": 1,
+        "heat": 4
+      },
+      "production": {
+        "megacredit": 5,
+        "steel": 0,
+        "titanium": 3,
+        "plant": 5,
+        "power": 2,
+        "heat": 0
+      },
+      "tags": {
+        "building": 1,
+        "space": 3,
+        "power": 1,
+        "science": 1,
+        "jovian": 2,
+        "earth": 1,
+        "plant": 3,
+        "microbe": 3,
+        "animal": 0,
+        "city": 1,
+        "venus": 3,
+        "event": 2
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [
+          {
+            "card": "230"
+          },
+          {
+            "card": "145"
+          }
+        ],
+        "draft": [],
+        "active": [
+          {
+            "card": "260",
+            "disabled": true,
+            "resource": 5
+          },
+          {
+            "card": "235",
+            "resource": 1,
+            "disabled": true
+          },
+          {
+            "card": "031",
+            "disabled": false
+          },
+          {
+            "card": "173",
+            "disabled": false
+          },
+          {
+            "card": "X03",
+            "disabled": false
+          },
+          {
+            "card": "070",
+            "disabled": false
+          }
+        ],
+        "buy": [],
+        "automated": [
+          {
+            "card": "001"
+          },
+          {
+            "card": "130"
+          },
+          {
+            "card": "219"
+          },
+          {
+            "card": "084"
+          },
+          {
+            "card": "021"
+          },
+          {
+            "card": "122"
+          },
+          {
+            "card": "047"
+          }
+        ],
+        "event": [
+          {
+            "card": "036"
+          },
+          {
+            "card": "209"
+          }
+        ],
+        "corp": [
+          {
+            "card": "P03",
+            "select": false,
+            "disabled": false
+          }
+        ],
+        "prelude": [
+          {
+            "card": "P10",
+            "select": false,
+            "disabled": false
+          },
+          {
+            "card": "P13",
+            "select": false,
+            "disabled": false
+          }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {
+        "drawer": "hand",
+        "playerStats": {
+          "show": true,
+          "pid": 2
+        }
+      },
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8,
+        "ocean": 2,
+        "cost": {
+          "all": -2
+        }
+      },
+      "modifiers": {},
+      "firstAction": false,
+      "trRaised": true,
+      "passed": true
+    },
+    {
+      "name": "Colin",
+      "number": 3,
+      "tr": 29,
+      "resources": {
+        "megacredit": 1,
+        "steel": 0,
+        "titanium": 4,
+        "plant": 3,
+        "power": 0,
+        "heat": 2
+      },
+      "production": {
+        "megacredit": 14,
+        "steel": 0,
+        "titanium": 1,
+        "plant": 1,
+        "power": 1,
+        "heat": 0
+      },
+      "tags": {
+        "building": 4,
+        "space": 4,
+        "power": 3,
+        "science": 3,
+        "jovian": 0,
+        "earth": 3,
+        "plant": 2,
+        "microbe": 0,
+        "animal": 0,
+        "city": 0,
+        "venus": 0,
+        "event": 3
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [
+          {
+            "card": "002"
+          },
+          {
+            "card": "035"
+          },
+          {
+            "card": "094"
+          },
+          {
+            "card": "207"
+          },
+          {
+            "card": "074"
+          },
+          {
+            "card": "197"
+          },
+          {
+            "card": "P39"
+          },
+          {
+            "card": "174"
+          },
+          {
+            "card": "144"
+          },
+          {
+            "card": "046"
+          },
+          {
+            "card": "127"
+          },
+          {
+            "card": "132"
+          },
+          {
+            "card": "168"
+          },
+          {
+            "card": "079"
+          },
+          {
+            "card": "151"
+          }
+        ],
+        "draft": [],
+        "active": [
+          {
+            "card": "199",
+            "disabled": true
+          },
+          {
+            "card": "109",
+            "disabled": false
+          },
+          {
+            "card": "014",
+            "disabled": true
+          },
+          {
+            "card": "166",
+            "disabled": false
+          },
+          {
+            "card": "X10",
+            "disabled": false
+          }
+        ],
+        "buy": [],
+        "automated": [
+          {
+            "card": "087"
+          },
+          {
+            "card": "096"
+          },
+          {
+            "card": "077"
+          },
+          {
+            "card": "141"
+          },
+          {
+            "card": "X01"
+          },
+          {
+            "card": "198"
+          },
+          {
+            "card": "129"
+          }
+        ],
+        "event": [
+          {
+            "card": "140"
+          },
+          {
+            "card": "010"
+          },
+          {
+            "card": "011"
+          }
+        ],
+        "corp": [
+          {
+            "card": "001",
+            "select": false,
+            "disabled": false
+          }
+        ],
+        "prelude": [
+          {
+            "card": "P01",
+            "select": false,
+            "disabled": false
+          },
+          {
+            "card": "P02",
+            "select": false,
+            "disabled": false
+          }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {
+        "drawer": "hand",
+        "playerStats": {
+          "show": true,
+          "pid": 3
+        }
+      },
+      "rates": {
+        "steel": 3,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8,
+        "ocean": 2,
+        "cost": {
+          "space": -2
+        }
+      },
+      "modifiers": {},
+      "firstAction": false,
+      "trRaised": true,
+      "passed": true
+    },
+    {
+      "name": "Larissa",
+      "number": 4,
+      "tr": 30,
+      "resources": {
+        "megacredit": 1,
+        "steel": 0,
+        "titanium": 1,
+        "plant": 4,
+        "power": 2,
+        "heat": 5
+      },
+      "production": {
+        "megacredit": 14,
+        "steel": 1,
+        "titanium": 1,
+        "plant": 1,
+        "power": 2,
+        "heat": 5
+      },
+      "tags": {
+        "building": 6,
+        "space": 3,
+        "power": 1,
+        "science": 0,
+        "jovian": 0,
+        "earth": 0,
+        "plant": 3,
+        "microbe": 1,
+        "animal": 1,
+        "city": 0,
+        "venus": 0,
+        "event": 2
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [
+          {
+            "card": "237"
+          },
+          {
+            "card": "238"
+          },
+          {
+            "card": "227"
+          },
+          {
+            "card": "186"
+          },
+          {
+            "card": "098"
+          }
+        ],
+        "draft": [],
+        "active": [
+          {
+            "card": "128",
+            "resource": 1,
+            "disabled": false
+          }
+        ],
+        "buy": [],
+        "automated": [
+          {
+            "card": "164"
+          },
+          {
+            "card": "026"
+          },
+          {
+            "card": "142"
+          },
+          {
+            "card": "X05"
+          },
+          {
+            "card": "089"
+          },
+          {
+            "card": "175"
+          },
+          {
+            "card": "088"
+          },
+          {
+            "card": "041"
+          }
+        ],
+        "event": [
+          {
+            "card": "063"
+          },
+          {
+            "card": "080"
+          }
+        ],
+        "corp": [
+          {
+            "card": "015",
+            "select": false,
+            "disabled": false,
+            "resource": 0
+          }
+        ],
+        "prelude": [
+          {
+            "card": "P30",
+            "select": false,
+            "disabled": false
+          },
+          {
+            "card": "P25",
+            "select": false,
+            "disabled": false
+          }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {
+        "drawer": "hand",
+        "playerStats": {
+          "show": true,
+          "pid": 4
+        }
+      },
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8,
+        "ocean": 2,
+        "cost": {}
+      },
+      "modifiers": {},
+      "firstAction": false,
+      "trRaised": false,
+      "passed": true
+    },
+    {
+      "name": "Adrian",
+      "number": 5,
+      "tr": 34,
+      "resources": {
+        "megacredit": 2,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 2,
+        "power": 2,
+        "heat": 4
+      },
+      "production": {
+        "megacredit": 10,
+        "steel": 5,
+        "titanium": 1,
+        "plant": 1,
+        "power": 0,
+        "heat": 2
+      },
+      "tags": {
+        "building": 8,
+        "space": 2,
+        "power": 1,
+        "science": 2,
+        "jovian": 1,
+        "earth": 1,
+        "plant": 1,
+        "microbe": 2,
+        "animal": 1,
+        "city": 1,
+        "venus": 0,
+        "event": 2
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [
+          {
+            "card": "217"
+          },
+          {
+            "card": "203"
+          },
+          {
+            "card": "135"
+          },
+          {
+            "card": "218"
+          }
+        ],
+        "draft": [],
+        "active": [
+          {
+            "card": "033",
+            "resource": 0,
+            "disabled": true
+          },
+          {
+            "card": "243",
+            "disabled": true,
+            "resource": 0
+          },
+          {
+            "card": "187",
+            "disabled": false
+          },
+          {
+            "card": "131",
+            "resource": 2,
+            "disabled": false
+          },
+          {
+            "card": "071",
+            "disabled": false
+          },
+          {
+            "card": "184",
+            "resource": 1,
+            "disabled": true
+          },
+          {
+            "card": "038"
+          }
+        ],
+        "buy": [],
+        "automated": [
+          {
+            "card": "081"
+          },
+          {
+            "card": "085",
+            "tile": 36
+          },
+          {
+            "card": "093",
+            "resource": 1
+          },
+          {
+            "card": "064"
+          },
+          {
+            "card": "138"
+          }
+        ],
+        "event": [
+          {
+            "card": "161"
+          },
+          {
+            "card": "167"
+          }
+        ],
+        "corp": [
+          {
+            "card": "004",
+            "select": false,
+            "disabled": false
+          }
+        ],
+        "prelude": [
+          {
+            "card": "P27",
+            "select": false,
+            "disabled": false
+          },
+          {
+            "card": "P34",
+            "select": false,
+            "disabled": false
+          }
+        ],
+        "onDeck": []
+      },
+      "phase": "",
+      "ui": {
+        "drawer": "hand",
+        "playerStats": {
+          "show": true,
+          "pid": 5
+        }
+      },
+      "rates": {
+        "steel": 3,
+        "titanium": 4,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8,
+        "ocean": 2,
+        "cost": {}
+      },
+      "modifiers": {},
+      "firstAction": true,
+      "trRaised": true,
+      "passed": false
+    }
+  ],
+  "turn": 5,
+  "startingPlayer": 4,
+  "params": {
+    "temperature": 8,
+    "oxygen": 14,
+    "ocean": 0,
+    "generation": 6,
+    "venus": 4
+  },
+  "variants": {
+    "draft": true,
+    "wgt": false
+  },
+  "board": "Tharsis",
+  "field": [
+    [
+      {
+        "resources": [
+          0,
+          0,
+          "steel",
+          "steel"
+        ],
+        "id": 0,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 1,
+        "clickable": null
+      },
+      {
+        "id": 2,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 3,
+        "clickable": null,
+        "name": "ocean-placed",
+        "type": "ocean"
+      },
+      {
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 4,
+        "clickable": null,
+        "name": "ocean-placed",
+        "type": "ocean"
+      }
+    ],
+    [
+      {
+        "id": 5,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "steel"
+        ],
+        "text": "Tharsis Tholus",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 6,
+        "clickable": null,
+        "name": "special-placed",
+        "type": "special",
+        "icon": "mars",
+        "player": 1
+      },
+      {
+        "id": 7,
+        "clickable": null
+      },
+      {
+        "id": 8,
+        "clickable": null
+      },
+      {
+        "id": 9,
+        "clickable": null,
+        "name": "special-placed",
+        "type": "special",
+        "icon": "nuclear",
+        "player": 1
+      },
+      {
+        "resources": [
+          "card",
+          "card"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 10,
+        "clickable": null,
+        "name": "ocean-placed",
+        "type": "ocean"
+      }
+    ],
+    [
+      {
+        "resources": [
+          "card"
+        ],
+        "text": "Ascraeus Mons",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 11,
+        "clickable": null
+      },
+      {
+        "id": 12,
+        "clickable": null
+      },
+      {
+        "id": 13,
+        "clickable": null
+      },
+      {
+        "id": 14,
+        "clickable": null
+      },
+      {
+        "id": 15,
+        "clickable": null
+      },
+      {
+        "id": 16,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "steel"
+        ],
+        "id": 17,
+        "clickable": null
+      }
+    ],
+    [
+      {
+        "resources": [
+          "titanium",
+          "plant"
+        ],
+        "text": "Pavonis Mons",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 18,
+        "clickable": null,
+        "name": "special-placed",
+        "type": "special",
+        "icon": "volcano",
+        "player": 3
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 19,
+        "clickable": null,
+        "name": "greenery-placed",
+        "type": "greenery",
+        "player": 4
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 20,
+        "clickable": null,
+        "name": "special-placed",
+        "type": "special",
+        "icon": "animal",
+        "player": 4
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 21,
+        "clickable": null,
+        "name": "greenery-placed",
+        "type": "greenery",
+        "player": 2
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 22,
+        "clickable": null,
+        "name": "city-placed",
+        "type": "city",
+        "player": 2
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 23,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 24,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 25,
+        "clickable": null,
+        "name": "ocean-placed",
+        "type": "ocean"
+      }
+    ],
+    [
+      {
+        "resources": [
+          "plant",
+          0,
+          "plant"
+        ],
+        "text": "Arsia Mons",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 26,
+        "clickable": null,
+        "name": "greenery-placed",
+        "type": "greenery",
+        "player": 4
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 27,
+        "clickable": null,
+        "name": "greenery-placed",
+        "type": "greenery",
+        "player": 4
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-noctis-city"
+        ],
+        "text": "Noctis City",
+        "id": 28
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 29,
+        "clickable": null,
+        "name": "ocean-placed",
+        "type": "ocean"
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 30,
+        "clickable": null,
+        "name": "ocean-placed",
+        "type": "ocean"
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 31,
+        "clickable": null,
+        "name": "ocean-placed",
+        "type": "ocean"
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 32,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 33,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 34,
+        "clickable": null
+      }
+    ],
+    [
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 35,
+        "clickable": null,
+        "name": "city-placed",
+        "type": "city",
+        "player": 1
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 36,
+        "clickable": null,
+        "name": "special-placed",
+        "type": "special",
+        "icon": "euro",
+        "player": 5
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 37,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 38,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 39,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 40,
+        "clickable": null,
+        "name": "ocean-placed",
+        "type": "ocean"
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 41,
+        "clickable": null,
+        "name": "special-placed",
+        "type": "special",
+        "icon": "mohole",
+        "player": 4
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 42,
+        "clickable": null
+      }
+    ],
+    [
+      {
+        "id": 43,
+        "clickable": null,
+        "name": "greenery-placed",
+        "type": "greenery",
+        "player": 5
+      },
+      {
+        "id": 44,
+        "clickable": null
+      },
+      {
+        "id": 45,
+        "clickable": null
+      },
+      {
+        "id": 46,
+        "clickable": null
+      },
+      {
+        "id": 47,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 48,
+        "clickable": null
+      },
+      {
+        "id": 49,
+        "clickable": null
+      }
+    ],
+    [
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "id": 50,
+        "clickable": null,
+        "name": "special-placed",
+        "type": "special",
+        "icon": "mine",
+        "player": 5
+      },
+      {
+        "id": 51,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "id": 52,
+        "clickable": null,
+        "name": "greenery-placed",
+        "type": "greenery",
+        "player": 3
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "id": 53,
+        "clickable": null,
+        "name": "special-placed",
+        "type": "special",
+        "icon": "restricted",
+        "player": 3
+      },
+      {
+        "id": 54,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "titanium"
+        ],
+        "id": 55,
+        "clickable": null
+      }
+    ],
+    [
+      {
+        "resources": [
+          "steel"
+        ],
+        "id": 56,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "id": 57,
+        "clickable": null,
+        "name": "city-placed",
+        "type": "city",
+        "player": 4
+      },
+      {
+        "id": 58,
+        "clickable": null
+      },
+      {
+        "id": 59,
+        "clickable": null
+      },
+      {
+        "resources": [
+          "titanium",
+          "titanium"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 60,
+        "clickable": null,
+        "name": "ocean-placed",
+        "type": "ocean"
+      }
+    ]
+  ],
+  "milestones": [
+    {
+      "name": "Terraformer",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "tr"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 35,
+      "description": "Have a terraform rating of at least 35",
+      "color": "#e24e26",
+      "highlight": "rgba(255,165,0,.5)"
+    },
+    {
+      "name": "Mayor",
+      "icon": {
+        "type": {
+          "isMobxInjector": true,
+          "displayName": "inject-with-gameStore(Tile)",
+          "wrappedComponent": {
+            "compare": null,
+            "propTypes": {},
+            "displayName": "Tile"
+          }
+        },
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "city"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 3,
+      "description": "Own at least 3 city tiles",
+      "color": "#666",
+      "highlight": "rgba(255,255,255,.9)"
+    },
+    {
+      "name": "Gardener",
+      "icon": {
+        "type": {
+          "isMobxInjector": true,
+          "displayName": "inject-with-gameStore(Tile)",
+          "wrappedComponent": {
+            "compare": null,
+            "propTypes": {},
+            "displayName": "Tile"
+          }
+        },
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "greenery",
+          "noOxygen": true
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 3,
+      "description": "Own at least 3 greenery tiles",
+      "color": "#52af3c",
+      "highlight": "rgba(173,255,47,.5)"
+    },
+    {
+      "name": "Builder",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "building"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 8,
+      "description": "Have at least 8 building tags in play",
+      "color": "#805835",
+      "highlight": "rgba(185,153,121,.7)"
+    },
+    {
+      "name": "Planner",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "card back"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "requirement": 16,
+      "description": "Have at least 16 cards in your hand when you claim this milestone",
+      "color": "#39557c",
+      "highlight": "rgba(135,206,235,.7)"
+    }
+  ],
+  "awards": [
+    {
+      "name": "Landlord",
+      "icon": {
+        "type": {
+          "isMobxInjector": true,
+          "displayName": "inject-with-gameStore(Tile)",
+          "wrappedComponent": {
+            "compare": null,
+            "propTypes": {},
+            "displayName": "Tile"
+          }
+        },
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "blank-city capital",
+          "noIcon": true,
+          "children": {
+            "type": "div",
+            "key": null,
+            "ref": null,
+            "props": {
+              "className": "icon-text",
+              "children": "X"
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Own the most tiles in play"
+    },
+    {
+      "name": "Banker",
+      "icon": {
+        "key": "banker",
+        "ref": null,
+        "props": {
+          "children": {
+            "type": "div",
+            "key": null,
+            "ref": null,
+            "props": {
+              "className": "flex",
+              "children": {
+                "key": null,
+                "ref": null,
+                "props": {},
+                "_owner": null,
+                "_store": {}
+              }
+            },
+            "_owner": null,
+            "_store": {}
+          }
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Have the highest M€ production"
+    },
+    {
+      "name": "Scientist",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "science"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Have the most science tags in play"
+    },
+    {
+      "name": "Thermalist",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "name": "heat"
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Have the most heat resources"
+    },
+    {
+      "name": "Miner",
+      "icon": {
+        "key": null,
+        "ref": null,
+        "props": {
+          "children": [
+            {
+              "key": "miner-steel",
+              "ref": null,
+              "props": {
+                "name": "steel"
+              },
+              "_owner": null,
+              "_store": {}
+            },
+            {
+              "key": "miner-titanium",
+              "ref": null,
+              "props": {
+                "name": "titanium"
+              },
+              "_owner": null,
+              "_store": {}
+            }
+          ]
+        },
+        "_owner": null,
+        "_store": {}
+      },
+      "description": "Have the most steel and titanium resources"
+    }
+  ],
+  "phase": "action",
+  "playerStatus": null,
+  "offMars": {
+    "ganymede": {
+      "name": "city-placed",
+      "type": "city",
+      "player": 5
+    },
+    "phobos": {
+      "name": "city-placed",
+      "type": "city",
+      "player": 2
+    },
+    "torus": {},
+    "maxwell": {},
+    "stratopolis": {},
+    "luna": {
+      "name": "city-placed",
+      "type": "city",
+      "player": 1
+    },
+    "dawn": {}
+  },
+  "log": [
+    {
+      "player": 0,
+      "body": "Welcome to Terraforming Mars!",
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "You are terraforming **Tharsis**, ",
+        "the land of volcanics!"
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "Please select 1 ",
+        {
+          "corp": "Corporation",
+          "drawer": "corp"
+        },
+        ", 2 ",
+        {
+          "prelude": "Preludes",
+          "drawer": "prelude"
+        },
+        ", ",
+        "and buy cards for your ",
+        {
+          "project": "starting hand",
+          "drawer": "hand"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": " will be your starting player!",
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " is representing ",
+        {
+          "corp": "015"
+        },
+        " and bought 7 projects."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " is representing ",
+        {
+          "corp": "004"
+        },
+        " and bought 7 projects."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " is representing ",
+        {
+          "corp": "011"
+        },
+        " and bought 7 projects."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " is representing ",
+        {
+          "corp": "P03"
+        },
+        " and bought 7 projects."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " is representing ",
+        {
+          "corp": "001"
+        },
+        " and bought 8 projects."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "prelude": "PRELUDE PHASE",
+          "drawer": "prelude"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "prelude-phase"
+        ]
+      }
+    },
+    {
+      "player": 4,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P30"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P25"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P34"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P27"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P14"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P08"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P10"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "260"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P13"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P01"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P02"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "ACTION PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "action-phase"
+        ]
+      }
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "033"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "161"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "039"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " got a reward from raising ",
+        {
+          "param": "temperature"
+        },
+        " Temperature!"
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " ",
+        "took 8 plants ",
+        {
+          "resource": "plant"
+        },
+        " from",
+        " ",
+        {
+          "player": 4
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "097"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " got a reward from raising ",
+        {
+          "param": "temperature"
+        },
+        " Temperature!"
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " placed the nuclear ",
+        {
+          "tile": "special"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "036"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "001"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "199"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " placed the restricted ",
+        {
+          "tile": "special"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "140"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " placed the volcano ",
+        {
+          "tile": "special"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Greenery"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " placed a greenery ",
+        {
+          "tile": "greenery"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Greenery"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " placed a greenery ",
+        {
+          "tile": "greenery"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "243"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Aquifer"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "City"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " placed a city ",
+        {
+          "tile": "city"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "107"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "City"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " placed a city ",
+        {
+          "tile": "city"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Aquifer"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "164"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Asteroid"
+        },
+        " standard project",
+        " by converting heat ",
+        {
+          "resource": "heat"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "033"
+        },
+        " to ",
+        "add a microbe ",
+        {
+          "resource": "microbe"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "044"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " placed the mars ",
+        {
+          "tile": "special"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "PRODUCTION PHASE"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "production-phase"
+        ]
+      }
+    },
+    {
+      "player": 0,
+      "body": [
+        2,
+        {
+          "super": "nd"
+        },
+        " generation"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase"
+        ]
+      }
+    },
+    {
+      "player": 5,
+      "body": " will be your starting player!",
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "RESEARCH PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "research-phase"
+        ]
+      }
+    },
+    {
+      "player": 4,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " bought 3 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " bought 3 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "ACTION PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "action-phase"
+        ]
+      }
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "187"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "033"
+        },
+        " to ",
+        "add a microbe ",
+        {
+          "resource": "microbe"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "243"
+        },
+        " to ",
+        "add an asteroid ",
+        {
+          "resource": "asteroid"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "252"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "235"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "260"
+        },
+        " to ",
+        "add a microbe ",
+        {
+          "resource": "microbe"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "087"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "109"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "063"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " ",
+        "took 2 plants ",
+        {
+          "resource": "plant"
+        },
+        " from",
+        " ",
+        {
+          "player": 3
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Asteroid"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "131"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        "'s ",
+        {
+          "project": "131"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "204"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "105"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "235"
+        },
+        " to ",
+        "add a floater ",
+        {
+          "resource": "floater"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "031"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "026"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Greenery"
+        },
+        " standard project",
+        " by converting plants ",
+        {
+          "resource": "plant"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " placed a greenery ",
+        {
+          "tile": "greenery"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "201"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " ",
+        "took 1 power ",
+        {
+          "resource": "power"
+        },
+        " production from",
+        " ",
+        {
+          "player": 3
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Aquifer"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "176"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "PRODUCTION PHASE"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "production-phase"
+        ]
+      }
+    },
+    {
+      "player": 0,
+      "body": [
+        3,
+        {
+          "super": "rd"
+        },
+        " generation"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase"
+        ]
+      }
+    },
+    {
+      "player": 1,
+      "body": " will be your starting player!",
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "RESEARCH PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "research-phase"
+        ]
+      }
+    },
+    {
+      "player": 5,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " bought 1 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " bought 3 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "ACTION PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "action-phase"
+        ]
+      }
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "075"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "062"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "P03"
+        },
+        " to ",
+        "increase energy production ",
+        {
+          "resource": "power"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "130"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "010"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " ",
+        "took 3 plants ",
+        {
+          "resource": "plant"
+        },
+        " from",
+        " ",
+        {
+          "player": 2
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        "'s ",
+        {
+          "project": "109"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        "'s ",
+        {
+          "corp": "001"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "014"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "080"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " ",
+        "took 6 plants ",
+        {
+          "resource": "plant"
+        },
+        " from",
+        " ",
+        {
+          "player": 1
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "081"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " placed a city ",
+        {
+          "tile": "city"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "173"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "096"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Greenery"
+        },
+        " standard project",
+        " by converting plants ",
+        {
+          "resource": "plant"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        "'s ",
+        {
+          "corp": "001"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " placed a greenery ",
+        {
+          "tile": "greenery"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " got a reward from raising ",
+        {
+          "param": "oxygen"
+        },
+        " Oxygen!"
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "243"
+        },
+        " to ",
+        "raise Venus ",
+        {
+          "param": "venus"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "033"
+        },
+        " to ",
+        "raise oxygen ",
+        {
+          "param": "oxygen"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "235"
+        },
+        " to ",
+        "raise M€ production ",
+        {
+          "megacredit": null
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "260"
+        },
+        " to ",
+        "add a microbe ",
+        {
+          "resource": "microbe"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " used an action on ",
+        {
+          "project": "014"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " used an action on ",
+        {
+          "project": "199"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "PRODUCTION PHASE"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "production-phase"
+        ]
+      }
+    },
+    {
+      "player": 0,
+      "body": [
+        4,
+        {
+          "super": "th"
+        },
+        " generation"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase"
+        ]
+      }
+    },
+    {
+      "player": 2,
+      "body": " will be your starting player!",
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "RESEARCH PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "research-phase"
+        ]
+      }
+    },
+    {
+      "player": 1,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " bought 1 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "ACTION PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "action-phase"
+        ]
+      }
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "X03"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "X03"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "166"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "077"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "128"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " placed the animal ",
+        {
+          "tile": "special"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        "'s ",
+        {
+          "project": "128"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "142"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " placed the mohole ",
+        {
+          "tile": "special"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        "'s ",
+        {
+          "corp": "015"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "085"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " placed the euro ",
+        {
+          "tile": "special"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "093"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        "'s ",
+        {
+          "project": "131"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "055"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "106"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "260"
+        },
+        " to ",
+        "add a microbe ",
+        {
+          "resource": "microbe"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "235"
+        },
+        " to ",
+        "add a floater ",
+        {
+          "resource": "floater"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " used an action on ",
+        {
+          "project": "199"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " used an action on ",
+        {
+          "project": "014"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "033"
+        },
+        " to ",
+        "add a microbe ",
+        {
+          "resource": "microbe"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "070"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "219"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "141"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "X01"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "084"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "PRODUCTION PHASE"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "production-phase"
+        ]
+      }
+    },
+    {
+      "player": 0,
+      "body": [
+        5,
+        {
+          "super": "th"
+        },
+        " generation"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase"
+        ]
+      }
+    },
+    {
+      "player": 3,
+      "body": " will be your starting player!",
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "RESEARCH PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "research-phase"
+        ]
+      }
+    },
+    {
+      "player": 4,
+      "body": [
+        " bought 1 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " bought 1 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " bought 1 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " bought 3 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "ACTION PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "action-phase"
+        ]
+      }
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "198"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        "'s ",
+        {
+          "corp": "001"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "X10"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Asteroid"
+        },
+        " standard project",
+        " by converting heat ",
+        {
+          "resource": "heat"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "X05"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "071"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Power Plant"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "057"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "236"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " placed a city ",
+        {
+          "tile": "city"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Greenery"
+        },
+        " standard project",
+        " by converting plants ",
+        {
+          "resource": "plant"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " placed a greenery ",
+        {
+          "tile": "greenery"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "021"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " placed a city ",
+        {
+          "tile": "city"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " used an action on ",
+        {
+          "project": "199"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " used an action on ",
+        {
+          "project": "014"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "089"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        "'s ",
+        {
+          "corp": "015"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "175"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "167"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Asteroid"
+        },
+        " standard project",
+        " by converting heat ",
+        {
+          "resource": "heat"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " got a reward from raising ",
+        {
+          "param": "temperature"
+        },
+        " Temperature!"
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Asteroid"
+        },
+        " standard project",
+        " by converting heat ",
+        {
+          "resource": "heat"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "122"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "047"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Greenery"
+        },
+        " standard project",
+        " by converting plants ",
+        {
+          "resource": "plant"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " placed a greenery ",
+        {
+          "tile": "greenery"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "064"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " placed the mine ",
+        {
+          "tile": "special"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        "'s ",
+        {
+          "corp": "004"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "corp": "P03"
+        },
+        " to ",
+        "increase energy production ",
+        {
+          "resource": "power"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "235"
+        },
+        " to ",
+        "raise M€ production ",
+        {
+          "megacredit": null
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "243"
+        },
+        " to ",
+        "add an asteroid ",
+        {
+          "resource": "asteroid"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "033"
+        },
+        " to ",
+        "add a microbe ",
+        {
+          "resource": "microbe"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "260"
+        },
+        " to ",
+        "add a microbe ",
+        {
+          "resource": "microbe"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " skipped."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "PRODUCTION PHASE"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "production-phase"
+        ]
+      }
+    },
+    {
+      "player": 0,
+      "body": [
+        6,
+        {
+          "super": "th"
+        },
+        " generation"
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase"
+        ]
+      }
+    },
+    {
+      "player": 4,
+      "body": " will be your starting player!",
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "RESEARCH PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "research-phase"
+        ]
+      }
+    },
+    {
+      "player": 5,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " bought 1 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " bought 1 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " bought 2 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " bought 3 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "ACTION PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "action-phase"
+        ]
+      }
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "088"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "City"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " placed a city ",
+        {
+          "tile": "city"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " played ",
+        {
+          "project": "041"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        "'s ",
+        {
+          "corp": "015"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "184"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        "'s ",
+        {
+          "project": "131"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "138"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "058"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "099"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "209"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " ",
+        "took 2 plants ",
+        {
+          "resource": "plant"
+        },
+        " from",
+        " ",
+        {
+          "player": 1
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        "'s ",
+        {
+          "project": "031"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "235"
+        },
+        " to ",
+        "add a floater ",
+        {
+          "resource": "floater"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "011"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " ",
+        "took 4 plants ",
+        {
+          "resource": "plant"
+        },
+        " from",
+        " ",
+        {
+          "player": 1
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        "'s ",
+        {
+          "project": "109"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        "'s ",
+        {
+          "corp": "001"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " played ",
+        {
+          "project": "129"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " played ",
+        {
+          "project": "038"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "184"
+        },
+        " to ",
+        "add an animal ",
+        {
+          "resource": "animal"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " played ",
+        {
+          "project": "006"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " used an action on ",
+        {
+          "project": "006"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " bought 0 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used an action on ",
+        {
+          "project": "260"
+        },
+        " to ",
+        "add a microbe ",
+        {
+          "resource": "microbe"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " used the ",
+        {
+          "standardProject": "Power Plant"
+        },
+        " standard project",
+        "",
+        "",
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " used an action on ",
+        {
+          "project": "199"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " used an action on ",
+        {
+          "project": "014"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "243"
+        },
+        " to ",
+        "raise Venus ",
+        {
+          "param": "venus"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " used an action on ",
+        {
+          "project": "033"
+        },
+        " to ",
+        "raise oxygen ",
+        {
+          "param": "oxygen"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " passed."
+      ],
+      "system": true
+    }
+  ],
+  "cards": {
+    "deck": [
+      {
+        "card": "083"
+      },
+      {
+        "card": "171"
+      },
+      {
+        "card": "254"
+      },
+      {
+        "card": "205"
+      },
+      {
+        "card": "146"
+      },
+      {
+        "card": "246"
+      },
+      {
+        "card": "210"
+      },
+      {
+        "card": "003"
+      },
+      {
+        "card": "259"
+      },
+      {
+        "card": "258"
+      },
+      {
+        "card": "069"
+      },
+      {
+        "card": "255"
+      },
+      {
+        "card": "072"
+      },
+      {
+        "card": "P41"
+      },
+      {
+        "card": "215"
+      },
+      {
+        "card": "137"
+      },
+      {
+        "card": "195"
+      },
+      {
+        "card": "008"
+      },
+      {
+        "card": "247"
+      },
+      {
+        "card": "189"
+      },
+      {
+        "card": "019"
+      },
+      {
+        "card": "111"
+      },
+      {
+        "card": "024"
+      },
+      {
+        "card": "245"
+      },
+      {
+        "card": "123"
+      },
+      {
+        "card": "042"
+      },
+      {
+        "card": "115"
+      },
+      {
+        "card": "183"
+      },
+      {
+        "card": "X06"
+      },
+      {
+        "card": "005"
+      },
+      {
+        "card": "242"
+      },
+      {
+        "card": "018"
+      },
+      {
+        "card": "082"
+      },
+      {
+        "card": "120"
+      },
+      {
+        "card": "027"
+      },
+      {
+        "card": "150"
+      },
+      {
+        "card": "065"
+      },
+      {
+        "card": "092"
+      },
+      {
+        "card": "017"
+      },
+      {
+        "card": "043"
+      },
+      {
+        "card": "112"
+      },
+      {
+        "card": "233"
+      },
+      {
+        "card": "211"
+      },
+      {
+        "card": "188"
+      },
+      {
+        "card": "239"
+      },
+      {
+        "card": "257"
+      },
+      {
+        "card": "143"
+      },
+      {
+        "card": "200"
+      },
+      {
+        "card": "244"
+      },
+      {
+        "card": "192"
+      },
+      {
+        "card": "124"
+      },
+      {
+        "card": "068"
+      },
+      {
+        "card": "076"
+      },
+      {
+        "card": "034"
+      },
+      {
+        "card": "X11"
+      },
+      {
+        "card": "113"
+      },
+      {
+        "card": "108"
+      },
+      {
+        "card": "060"
+      },
+      {
+        "card": "049"
+      },
+      {
+        "card": "196"
+      },
+      {
+        "card": "194"
+      },
+      {
+        "card": "X04"
+      },
+      {
+        "card": "029"
+      },
+      {
+        "card": "232"
+      },
+      {
+        "card": "004"
+      },
+      {
+        "card": "121"
+      },
+      {
+        "card": "229"
+      },
+      {
+        "card": "222"
+      },
+      {
+        "card": "009"
+      },
+      {
+        "card": "191"
+      },
+      {
+        "card": "118"
+      },
+      {
+        "card": "158"
+      },
+      {
+        "card": "170"
+      },
+      {
+        "card": "013"
+      },
+      {
+        "card": "025"
+      },
+      {
+        "card": "226"
+      },
+      {
+        "card": "090"
+      },
+      {
+        "card": "067"
+      },
+      {
+        "card": "054"
+      },
+      {
+        "card": "116"
+      },
+      {
+        "card": "020"
+      },
+      {
+        "card": "220"
+      },
+      {
+        "card": "250"
+      },
+      {
+        "card": "240"
+      },
+      {
+        "card": "104"
+      },
+      {
+        "card": "P36"
+      },
+      {
+        "card": "172"
+      },
+      {
+        "card": "159"
+      },
+      {
+        "card": "059"
+      },
+      {
+        "card": "048"
+      },
+      {
+        "card": "139"
+      },
+      {
+        "card": "153"
+      },
+      {
+        "card": "134"
+      },
+      {
+        "card": "221"
+      },
+      {
+        "card": "056"
+      },
+      {
+        "card": "028"
+      },
+      {
+        "card": "178"
+      },
+      {
+        "card": "157"
+      },
+      {
+        "card": "155"
+      },
+      {
+        "card": "148"
+      },
+      {
+        "card": "154"
+      },
+      {
+        "card": "160"
+      },
+      {
+        "card": "X08"
+      },
+      {
+        "card": "156"
+      },
+      {
+        "card": "030"
+      },
+      {
+        "card": "193"
+      },
+      {
+        "card": "169"
+      },
+      {
+        "card": "P42"
+      },
+      {
+        "card": "X12"
+      },
+      {
+        "card": "053"
+      },
+      {
+        "card": "100"
+      }
+    ],
+    "discard": [
+      {
+        "card": "066"
+      },
+      {
+        "card": "163"
+      },
+      {
+        "card": "225"
+      },
+      {
+        "card": "050"
+      },
+      {
+        "card": "213"
+      },
+      {
+        "card": "126"
+      },
+      {
+        "card": "P40"
+      },
+      {
+        "card": "214"
+      },
+      {
+        "card": "051"
+      },
+      {
+        "card": "216"
+      },
+      {
+        "card": "206"
+      },
+      {
+        "card": "095"
+      },
+      {
+        "card": "234"
+      },
+      {
+        "card": "223"
+      },
+      {
+        "card": "114"
+      },
+      {
+        "card": "040"
+      },
+      {
+        "card": "241"
+      },
+      {
+        "card": "119"
+      },
+      {
+        "card": "045"
+      },
+      {
+        "card": "208"
+      },
+      {
+        "card": "147"
+      },
+      {
+        "card": "179"
+      },
+      {
+        "card": "202"
+      },
+      {
+        "card": "091"
+      },
+      {
+        "card": "181"
+      },
+      {
+        "card": "X02"
+      },
+      {
+        "card": "P37"
+      },
+      {
+        "card": "061"
+      },
+      {
+        "card": "224"
+      },
+      {
+        "card": "149"
+      },
+      {
+        "card": "032"
+      },
+      {
+        "card": "182"
+      },
+      {
+        "card": "X07"
+      },
+      {
+        "card": "136"
+      },
+      {
+        "card": "248"
+      },
+      {
+        "card": "162"
+      },
+      {
+        "card": "228"
+      },
+      {
+        "card": "177"
+      },
+      {
+        "card": "133"
+      },
+      {
+        "card": "261"
+      },
+      {
+        "card": "231"
+      },
+      {
+        "card": "037"
+      },
+      {
+        "card": "078"
+      },
+      {
+        "card": "212"
+      },
+      {
+        "card": "256"
+      },
+      {
+        "card": "023"
+      },
+      {
+        "card": "086"
+      },
+      {
+        "card": "249"
+      },
+      {
+        "card": "101"
+      },
+      {
+        "card": "015"
+      },
+      {
+        "card": "185"
+      },
+      {
+        "card": "012"
+      },
+      {
+        "card": "052"
+      },
+      {
+        "card": "152"
+      },
+      {
+        "card": "180"
+      },
+      {
+        "card": "251"
+      },
+      {
+        "card": "022"
+      },
+      {
+        "card": "110"
+      },
+      {
+        "card": "125"
+      },
+      {
+        "card": "190"
+      },
+      {
+        "card": "253"
+      },
+      {
+        "card": "165"
+      },
+      {
+        "card": "P38"
+      },
+      {
+        "card": "073"
+      },
+      {
+        "card": "016"
+      },
+      {
+        "card": "117"
+      },
+      {
+        "card": "007"
+      }
+    ],
+    "corps": [
+      {
+        "card": "007"
+      },
+      {
+        "card": "008"
+      },
+      {
+        "card": "013"
+      },
+      {
+        "card": "X02"
+      },
+      {
+        "card": "018"
+      },
+      {
+        "card": "014"
+      },
+      {
+        "card": "X03"
+      },
+      {
+        "card": "002"
+      },
+      {
+        "card": "017"
+      },
+      {
+        "card": "010"
+      },
+      {
+        "card": "P05"
+      },
+      {
+        "card": "016"
+      },
+      {
+        "card": "P01"
+      },
+      {
+        "card": "012"
+      },
+      {
+        "card": "003"
+      },
+      {
+        "card": "006"
+      },
+      {
+        "card": "P04"
+      },
+      {
+        "card": "005"
+      }
+    ],
+    "preludes": [
+      {
+        "card": "P33"
+      },
+      {
+        "card": "P31"
+      },
+      {
+        "card": "P35"
+      },
+      {
+        "card": "P15"
+      },
+      {
+        "card": "P16"
+      },
+      {
+        "card": "P19"
+      },
+      {
+        "card": "P09"
+      },
+      {
+        "card": "P24"
+      },
+      {
+        "card": "P06"
+      },
+      {
+        "card": "P11"
+      },
+      {
+        "card": "P23"
+      },
+      {
+        "card": "P07"
+      },
+      {
+        "card": "P03"
+      },
+      {
+        "card": "P32"
+      },
+      {
+        "card": "P17"
+      }
+    ]
+  },
+  "queue": []
+}

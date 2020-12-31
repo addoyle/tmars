@@ -24,11 +24,11 @@ const card = new Active({
   resource: 'microbe',
   flavor: 'Decomposing dead organisms is essential to making sustainable soil',
   events: {
-    onCardPlayed: (player, game, card) =>
+    onCardPlayed: (player, game, playedCard) =>
       // Has a space, plant, or microbe tag
-      (card.tags.includes('animal') ||
-        card.tags.includes('plant') ||
-        card.tags.includes('microbe')) &&
+      (playedCard.tags.includes('animal') ||
+        playedCard.tags.includes('plant') ||
+        playedCard.tags.includes('microbe')) &&
       game.cardResource(player, card, 1)
   },
   vp: (player, game) => Math.floor(game.cardResource(player, card) / 3),

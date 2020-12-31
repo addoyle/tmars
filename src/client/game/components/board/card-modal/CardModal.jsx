@@ -67,7 +67,10 @@ const CardModal = ({ gameStore, cardStore }) => {
           ) : currentCard.type === 'prelude' ? (
             <PlayablePrelude />
           ) : null
-        ) : currentCard.mode === 'action' && card.actions ? (
+        ) : currentCard.mode === 'action' &&
+          myTurn &&
+          !gameStore.playerStatus &&
+          card.actions?.length ? (
           <ActionableCard card={card} />
         ) : (
           <button

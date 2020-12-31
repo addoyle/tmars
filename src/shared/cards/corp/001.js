@@ -6,6 +6,9 @@ const desc = 'You start with 57 M€.';
 const effectDesc =
   'Effect: After you pay for a card or standard project with a basic cost of 20 M€ or more, you gain 4 M€.';
 
+const onThingPlayed = (player, game, thing) =>
+  thing.cost >= 20 && game.resources(player, 'megacredit', 4);
+
 export default new Corporation({
   number: '001',
   title: 'CrediCor',
@@ -17,8 +20,8 @@ export default new Corporation({
   flavor:
     "Multibillionaire Bard Hunter likes terraforming, especially when it involves hurling asteroids at Mars. He also has a hunch that it's going to pay off. His company CrediCor has all the resources he needs to jump right into the contest.",
   events: {
-    onCardPlayed: (player, game, card) =>
-      card.cost >= 20 && game.resources(player, 'megacredit', 4)
+    onCardPlayed: onThingPlayed,
+    onStandardProjectPlayed: onThingPlayed
   },
   layout: (
     <div className="flex gutter">

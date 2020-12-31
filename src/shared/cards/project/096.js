@@ -17,6 +17,7 @@ export default new Automated({
       'plant',
       game.field
         .flat()
+        .concat(Object.values(game.offMars))
         .filter(t => t.type === 'city' || t.type === 'capital city').length +
         Object.values(game.offMars).filter(t => t.type === 'city').length
     ),

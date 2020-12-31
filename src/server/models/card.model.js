@@ -3,7 +3,7 @@ import { normalize } from '../util';
 
 export default class CardModel {
   project = {};
-  corporation = {};
+  corp = {};
   prelude = {};
 
   constructor() {
@@ -25,24 +25,19 @@ export default class CardModel {
         .readdirSync(`${CARD_DIR}/prelude`)
         .map(f => import(`${CARD_DIR}/prelude/${f}`))
     ]).then(res => {
-      ({
-        project: this.project,
-        corporation: this.corporation,
-        prelude: this.prelude
-      } = res
+      ({ project: this.project, corp: this.corp, prelude: this.prelude } = res
         .map(card => card.default)
         .reduce(
           (cards, card) => {
             cards[
-              Object.getPrototypeOf(Object.getPrototypeOf(card)).constructor
-                .name === 'Project'
+              ['automated', 'active', 'event'].includes(card.type)
                 ? 'project'
-                : card.constructor.name.toLowerCase()
+                : card.type
             ][normalize(card.number)] = card;
 
             return cards;
           },
-          { project: {}, corporation: {}, prelude: {} }
+          { project: {}, corp: {}, prelude: {} }
         ));
 
       // Cards should never be changed, only copied
@@ -51,10 +46,7 @@ export default class CardModel {
       Object.freeze(this.prelude);
 
       console.log(Object.values(this.project).length, 'projects loaded');
-      console.log(
-        Object.values(this.corporation).length,
-        'corporations loaded'
-      );
+      console.log(Object.values(this.corp).length, 'corporations loaded');
       console.log(Object.values(this.prelude).length, 'preludes loaded');
     });
   }

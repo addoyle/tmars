@@ -14,7 +14,10 @@ export default new Active({
   activeDesc,
   flavor: 'Standard solutions honed to perfection',
   emoji: '👨‍💻',
-  todo: true,
+  events: {
+    onStandardProjectPlayed: (player, game, project) =>
+      project.cost > 0 && game.resources(player, 'megacredit', 3)
+  },
   activeLayout: (
     <div>
       <div className="resources text-center">

@@ -118,11 +118,9 @@ const Log = forwardRef((props, ref) => {
                       } else if (body.super) {
                         return <sup key={i}>{body.super}</sup>;
                       } else {
-                        const type = Object.keys(body).filter(key =>
-                          ['corp', 'prelude', 'project'].includes(
-                            key.toLocaleLowerCase()
-                          )
-                        )[0];
+                        const type = Object.keys(body).find(key =>
+                          ['corp', 'prelude', 'project'].includes(key)
+                        );
 
                         return (
                           <CardRef

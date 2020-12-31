@@ -152,7 +152,7 @@ class Game extends SharedGame {
     );
     // Do the same for the corp deck
     this.cards.corps = shuffle(
-      Object.values(this.cardStore.corporation)
+      Object.values(this.cardStore.corp)
         .filter(
           corp =>
             +corp.number !== 0 &&
@@ -285,7 +285,7 @@ class Game extends SharedGame {
    * @param {Player} player
    */
   applyCorp(player) {
-    const corp = this.cardStore.corporation[player.cards.corp[0].card];
+    const corp = this.cardStore.corp[player.cards.corp[0].card];
     this.resources(player, 'megacredit', corp.startingMC);
     corp.starting && corp.starting(player, this);
     (corp.tags || []).forEach(tag => player.tags[tag]++);
@@ -805,7 +805,7 @@ class Game extends SharedGame {
       // Loop through active cards and corp
       p.cards.active
         .map(c => this.cardStore.project[c.card])
-        .concat(p.cards.corp.map(c => this.cardStore.corporation[c.card]))
+        .concat(p.cards.corp.map(c => this.cardStore.corp[c.card]))
         .filter(c => c.events && c.events[evt])
         .forEach(c => {
           c.events[evt](p, this, ...opts) &&
@@ -814,9 +814,7 @@ class Game extends SharedGame {
               this.id,
               new Log(p.number, [
                 "'s ",
-                c.type === 'corporation'
-                  ? { corp: c.number }
-                  : { project: c.number },
+                c.type === 'corp' ? { corp: c.number } : { project: c.number },
                 ' effect was triggered.'
               ])
             );
@@ -904,6 +902,7 @@ class Game extends SharedGame {
   cardTile(player, card, tile) {
     const playerCard = player.cards.hand
       .concat(player.cards.active)
+      .concat(player.cards.automated)
       .concat(player.cards.corp)
       .find(c => c.card === card.number);
 

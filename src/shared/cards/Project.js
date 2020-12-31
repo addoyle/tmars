@@ -93,9 +93,11 @@ export default class Project extends Card {
     // Check resources
     if (this.restriction.resource) {
       // Special case when resource is TR
-      if (this.restriction.resource === 'tr' && player.tr < val) {
-        result.valid = false;
-        result.msg = `Requires ${val} Terraform Rating`;
+      if (this.restriction.resource === 'tr') {
+        if (player.tr < val) {
+          result.valid = false;
+          result.msg = `Requires ${val} Terraform Rating`;
+        }
       }
       // Standard resources
       else if (

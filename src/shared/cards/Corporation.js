@@ -5,7 +5,7 @@ export default class Corporation extends Card {
   effectDesc; // Action/Effect description
   resource; // Resource type for card
   actions; // List of possible actions to be peformed
-  type = 'corporation';
+  type = 'corp';
 
   constructor(props) {
     super(props);

@@ -14,7 +14,7 @@ class Card {
     };
 
     API('game/card-numbers').then(res => {
-      loadCards('corp', res.corporation);
+      loadCards('corp', res.corp);
       loadCards('project', res.project);
       loadCards('prelude', res.prelude);
     });

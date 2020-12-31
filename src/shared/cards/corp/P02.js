@@ -21,7 +21,7 @@ export default new Corporation({
     game.production(player, 'titanium', 1);
 
     // Effects don't happen in the starting phase, so perform action now
-    // game.drawCard(player);
+    game.drawCard(player);
   },
   tags: ['earth', 'space'],
   set: 'prelude',
@@ -29,8 +29,11 @@ export default new Corporation({
   effectDesc,
   events: {
     onCardPlayed: (player, game, card) =>
+      // NOT an event
       card.type !== 'Event' &&
+      // Has an earth tag
       card.tags.includes('earth') &&
+      // Draw a card
       game.drawCard(player)
   },
   flavor:

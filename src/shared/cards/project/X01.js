@@ -27,7 +27,7 @@ export default new Automated({
     game.resources(player, 'titanium', 4);
   },
   canPlay: player => {
-    const valid = player.production.power < 1;
+    const valid = player.production.power > 1;
     return {
       valid,
       msg: !valid ? 'Not enough power production' : null

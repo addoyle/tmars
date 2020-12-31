@@ -105,7 +105,6 @@ class GameService {
     }
 
     const playedCard = this.cardStore.project[card.card];
-    const cardType = playedCard.constructor.name.toLowerCase();
 
     // TODO: Check requirements
     // TODO: Check if player can afford card
@@ -113,6 +112,9 @@ class GameService {
 
     // Pay for the card
     let cost = playedCard.cost;
+
+    // TODO handle rate modifiers
+
     if (params.steel && playedCard.tags.includes('building')) {
       cost -= params.steel * player.rates.steel;
     }
@@ -129,7 +131,7 @@ class GameService {
       player.resources.heat -= params.heat;
       player.resources.megacredit -= cost;
     } else {
-      return this.export(game);
+      // return this.export(game);
     }
 
     LogService.pushLog(
@@ -138,7 +140,7 @@ class GameService {
     );
 
     // Set tags if card is not event
-    if (cardType === 'event') {
+    if (playedCard.type === 'event') {
       player.tags.event++;
     } else {
       playedCard.tags.forEach(
@@ -148,7 +150,7 @@ class GameService {
 
     // Put card in appropriate drawer
     // HACK to handle Law Suit, which doesn't go in player's hand
-    card.card !== 'X06' && player.cards[cardType].push(card);
+    card.card !== 'X06' && player.cards[playedCard.type].push(card);
 
     // Remove from hand
     player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
@@ -196,7 +198,7 @@ class GameService {
     // Check to make sure the user can play this prelude
     if (
       !player.cards.prelude.filter(c => card.card === c.card).length ||
-      player.cards.prelude.filter(c => card.card === c.card)[0].disabled
+      player.cards.prelude.find(c => card.card === c.card).disabled
     ) {
       return this.export(game);
     }
@@ -262,7 +264,10 @@ class GameService {
     const playedCard = this.cardStore[card.type][card.card.card];
     const action = playedCard.actions[index];
 
-    let log = [' used an action on ', { project: card.card.card }];
+    let log = [
+      ' used an action on ',
+      { [playedCard.type === 'corp' ? 'corp' : 'project']: card.card.card }
+    ];
     if (action.log) {
       log.push(' to ');
       log = log.concat(action.log);
@@ -357,7 +362,7 @@ class GameService {
     player.cards.buy = [];
 
     LogService.pushLog(
-      this.id,
+      id,
       new Log(player.number, [
         ` bought ${boughtCards.length} cards `,
         { param: 'card back' },
@@ -536,46 +541,49 @@ class GameService {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
 
-    if (game.turn === playerNum) {
-      const doProject = (
-        cost,
-        action,
-        canPlay = player.resources.megacredit >= cost ||
-          (resource && player.resources[resource] >= player.rates[resource])
-      ) => {
-        if (canPlay) {
-          LogService.pushLog(
-            game.id,
-            new Log(player.number, [
-              ' used the ',
-              { standardProject: project },
-              ' standard project',
-              resource
-                ? ` by converting ${
-                    resource === 'heat' ? 'heat' : `${resource}s`
-                  } `
-                : '',
-              resource ? { resource } : '',
-              '.'
-            ])
-          );
+    const doProject = (
+      cost,
+      action,
+      canPlay = player.resources.megacredit >= cost ||
+        (resource && player.resources[resource] >= player.rates[resource])
+    ) => {
+      if (canPlay) {
+        LogService.pushLog(
+          game.id,
+          new Log(player.number, [
+            ' used the ',
+            { standardProject: project },
+            ' standard project',
+            resource
+              ? ` by converting ${
+                  resource === 'heat' ? 'heat' : `${resource}s`
+                } `
+              : '',
+            resource ? { resource } : '',
+            '.'
+          ])
+        );
 
-          if (resource) {
-            player.resources[resource] -= player.rates[resource];
-          } else {
-            player.resources.megacredit -= cost;
-          }
-
-          const done = () => game.nextTurn();
-          action(done);
-          if (action.length === 0) {
-            done();
-          }
+        if (resource) {
+          player.resources[resource] -= player.rates[resource];
         } else {
-          res.sendStatus(403);
-        }
-      };
+          player.resources.megacredit -= cost;
 
+          // Only fire when M€ was used as using plant/heat doesn't actually count as a standard project
+          game.fire('onStandardProjectPlayed', player, { project, cost });
+        }
+
+        const done = () => game.nextTurn();
+        action(done);
+        if (action.length === 0) {
+          done();
+        }
+      } else {
+        res.sendStatus(403);
+      }
+    };
+
+    if (game.turn === playerNum) {
       switch (project) {
         case 'Sell Patents': {
           doProject(0, done => done(), player.cards.hand.length);
