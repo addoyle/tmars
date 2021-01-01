@@ -207,6 +207,23 @@ class SharedGame {
   }
 
   /**
+   * Return the first player that matches a condition, in player order
+   *
+   * @param {Function} func Condition to perform in player order
+   */
+  findPlayerOrder(func) {
+    for (
+      let i = this.startingPlayer - 1, start = true;
+      start || i !== this.startingPlayer - 1;
+      i = i >= this.players.length - 1 ? 0 : i + 1, start = false
+    ) {
+      if (func(this.players[i], i)) {
+        return this.players[i];
+      }
+    }
+  }
+
+  /**
    * Helper method to increase/decrease the card's resource
    *
    * @param {Player} player Player doing the action

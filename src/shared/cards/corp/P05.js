@@ -23,11 +23,11 @@ export default new Corporation({
   desc,
   effectDesc,
   events: {
-    onCardPlayed: (player, game, card) =>
+    onCardPlayed: (player, game, playedCard) =>
       // Exclude ONLY negative VP cards (1 per X VPs are also included)
-      card.vp !== undefined &&
+      playedCard.vp !== undefined &&
       // Numeric comparisons with functions ALWAYS resolve to false
-      !card.vp < 0 &&
+      !playedCard.vp < 0 &&
       // Get 3 M€
       game.resources(player, 'megacredit', 3)
   },

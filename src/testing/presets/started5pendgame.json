@@ -176,7 +176,7 @@
         "megacredit": 5,
         "steel": 0,
         "titanium": 3,
-        "plant": 5,
+        "plant": 9,
         "power": 2,
         "heat": 0
       },
@@ -512,7 +512,7 @@
         "megacredit": 1,
         "steel": 0,
         "titanium": 1,
-        "plant": 4,
+        "plant": 7,
         "power": 2,
         "heat": 5
       },
@@ -656,7 +656,7 @@
         "megacredit": 2,
         "steel": 0,
         "titanium": 0,
-        "plant": 2,
+        "plant": 7,
         "power": 2,
         "heat": 4
       },

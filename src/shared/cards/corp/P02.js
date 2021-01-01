@@ -28,11 +28,11 @@ export default new Corporation({
   desc,
   effectDesc,
   events: {
-    onCardPlayed: (player, game, card) =>
+    onCardPlayed: (player, game, playedCard) =>
       // NOT an event
-      card.type !== 'Event' &&
+      playedCard.type !== 'Event' &&
       // Has an earth tag
-      card.tags.includes('earth') &&
+      playedCard.tags.includes('earth') &&
       // Draw a card
       game.drawCard(player)
   },

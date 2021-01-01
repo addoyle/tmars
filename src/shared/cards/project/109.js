@@ -13,8 +13,8 @@ export default new Active({
   activeDesc,
   flavor: 'Profiting on every spectacular story',
   events: {
-    onCardPlayed: (player, game, card) =>
-      card.type === 'event' && game.resources(player, 'megacredit', 3)
+    onCardPlayed: (player, game, playedCard) =>
+      playedCard.type === 'event' && game.resources(player, 'megacredit', 3)
   },
   emoji: '🎙',
   activeLayout: (

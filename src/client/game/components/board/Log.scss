@@ -105,6 +105,96 @@ $title-font: 'Prototype', sans-serif;
         font-size: .6em;
         vertical-align: super;
       }
+
+      &.phase {
+        text-align: center;
+        text-transform: uppercase;
+        font-family: $title-font;
+
+        &.prelude-phase {
+          background: linear-gradient(
+            to right,
+            #79277c 0%,
+            #b0448f 20%,
+            #e085c2 40%,
+            #e085c2 60%,
+            #b0448f 80%,
+            #79277c 100%
+          );
+
+          .card-ref {
+            color: #111;
+          }
+        }
+
+        &.action-phase {
+          background: linear-gradient(
+            to right,
+            #315591 0%,
+            #3d9dd7 20%,
+            #3bb0e5 40%,
+            #3bb0e5 60%,
+            #3d9dd7 80%,
+            #315591 100%
+          );
+
+          .card-ref {
+            color: #111;
+          }
+        }
+
+        &.production-phase {
+          background: linear-gradient(
+            to right, 
+            #003d22 0%,
+            #009f3e 20%,
+            #bacb00 40%,
+            #bacb00 60%,
+            #009f3e 80%,
+            #003d22 100%
+          );
+          color: #111;
+        }
+
+        &.research-phase {
+          background: linear-gradient(
+            to right, 
+            #141e30 0%,
+            #243b55 20%,
+            #436d9d 40%,
+            #436d9d 60%,
+            #243b55 80%,
+            #141e30 100%
+          );
+
+          .card-ref {
+            color: #fff;
+          }
+        }
+
+        &.end-phase {
+          background: linear-gradient(90deg, 
+          hsl(0, 80%, 40%),
+            hsl(0, 80%, 40%),
+            hsl(240, 80%, 40%),
+            hsl(120, 80%, 30%),
+            hsl(60, 80%, 40%),
+            hsl(0, 0%, 35%),
+            hsl(0, 0%, 35%),
+            hsl(60, 80%, 40%),
+            hsl(120, 80%, 30%),
+            hsl(240, 80%, 40%),
+            hsl(0, 80%, 40%),
+            hsl(0, 80%, 40%)
+          );
+          background-size: 250% 250%;
+          animation: endPhase 10s ease infinite;
+          text-shadow: 2px 2px 2px rgba(0,0,0,.5);
+          font-size: 1.3em;
+          padding: 8px;
+              box-shadow: 0 0 0 4px #0004 inset;
+        }
+      }
     }
 
     .follow-button {
@@ -140,70 +230,17 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
-  .phase {
-    text-align: center;
-    text-transform: uppercase;
-    font-family: $title-font;
+  
+}
 
-    &.prelude-phase {
-      background: linear-gradient(
-        to right,
-        #79277c 0%,
-        #b0448f 20%,
-        #e085c2 40%,
-        #e085c2 60%,
-        #b0448f 80%,
-        #79277c 100%
-      );
-
-      .card-ref {
-        color: #111;
-      }
-    }
-
-    &.action-phase {
-      background: linear-gradient(
-        to right,
-        #315591 0%,
-        #3d9dd7 20%,
-        #3bb0e5 40%,
-        #3bb0e5 60%,
-        #3d9dd7 80%,
-        #315591 100%
-      );
-
-      .card-ref {
-        color: #111;
-      }
-    }
-
-    &.production-phase {
-      background: linear-gradient(
-        to right, 
-        #003d22 0%,
-        #009f3e 20%,
-        #bacb00 40%,
-        #bacb00 60%,
-        #009f3e 80%,
-        #003d22 100%
-      );
-      color: #111;
-    }
-
-    &.research-phase {
-      background: linear-gradient(
-        to right, 
-        #141e30 0%,
-        #243b55 20%,
-        #436d9d 40%,
-        #436d9d 60%,
-        #243b55 80%,
-        #141e30 100%
-      );
-
-      .card-ref {
-        color: #fff;
-      }
-    }
+@keyframes endPhase {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

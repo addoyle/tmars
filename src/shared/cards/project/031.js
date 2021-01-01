@@ -20,11 +20,11 @@ export default new Active({
   flavor:
     'Perfecting the art of ballistical and material analysis can increase efficiency and save money',
   events: {
-    onCardPlayed: (player, game, card) =>
+    onCardPlayed: (player, game, playedCard) =>
       // Is an event
-      card.type === 'event' &&
+      playedCard.type === 'event' &&
       // Has a space tag
-      card.tags.includes('space') &&
+      playedCard.tags.includes('space') &&
       game.resources(player, 'megacredit', 3) &&
       game.resources(player, 'heat', 3)
   },

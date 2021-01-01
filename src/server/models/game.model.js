@@ -340,6 +340,12 @@ class Game extends SharedGame {
     return reveal;
   }
 
+  /**
+   * Put the selected cards into their hand
+   *
+   * @param {Player} player Player receiving the cards
+   * @param {array} cards Cards to receive
+   */
   keepSelected(player, cards) {
     const keep = cards.filter(c => c.select);
 
@@ -737,7 +743,7 @@ class Game extends SharedGame {
     });
 
     // Check if the game should end (i.e. each global param is maxed out)
-    if (this.checkGameEnd()) {
+    if (this.checkEndGame()) {
       this.beginEndPhase();
     } else {
       // If WGT, switch to solar phase, otherwise go directly to player order phase
@@ -755,14 +761,88 @@ class Game extends SharedGame {
   }
 
   /**
-   * Checks if the game has ended (i.e. params are maxed out)
+   * Switch to the end phase (i.e. placing plants)
    */
-  checkGameEnd() {
+  beginEndPhase() {
+    this.phase = 'end';
+
+    LogService.pushLog(
+      this.id,
+      new Log(0, 'Mars is TERRAFORMED!', true, {
+        classNames: ['phase', 'end-phase']
+      })
+    );
+    LogService.pushLog(
+      this.id,
+      new Log(0, [
+        'Convert any remaining plants ',
+        { resource: 'plant' },
+        ' to greeneries ',
+        { tile: 'greenery' }
+      ])
+    );
+
+    // Set up stuff for players
+    this.players.forEach(player => {
+      // Mark a player as passed if they don't have enough plants
+      player.passed = player.resources.plant < player.rates.plant;
+
+      player.ui = {
+        drawer: null
+      };
+    });
+
+    const game = this;
+
+    // Nobody can place plants, skip right to score phase
+    if (this.players.every(p => p.passed)) {
+      this.beginScorePhase();
+    } else {
+      const done = () => {
+        const player = game.players[game.turn - 1];
+
+        this.resources(player, 'plant', -player.rates.plant);
+
+        // If they're out of plants, move on to the next player
+        if (player.resources.plant < player.rates.plant) {
+          player.passed = true;
+          game.nextTurn();
+
+          // All players are done
+          if (this.players.every(p => p.passed)) {
+            game.beginScorePhase();
+          } else {
+            // Prompt for the next player
+            game.promptTile(game.players[game.turn - 1], 'greenery', done);
+          }
+        }
+        // Still got more plants, keep placing greeneries!
+        else {
+          game.promptTile(player, 'greenery', done);
+        }
+      };
+
+      // Find the first player that can play plants and start placing greeneries!
+      const player = this.findPlayerOrder(p => !p.passed);
+      this.turn = player.number;
+      this.promptTile(player, 'greenery', done);
+    }
+  }
+
+  beginScorePhase() {
+    this.turn = 0;
+    console.log('Score phase!');
+  }
+
+  /**
+   * Checks if we've reached the end of the game
+   */
+  checkEndGame() {
     return (
       this.params.temperature >= paramStats.temperature.max &&
       this.params.oxygen >= paramStats.oxygen.max &&
       this.field.flat().filter(t => t.type === 'ocean').length <=
-        paramStats.ocean.max
+        paramStats.ocean.start
     );
   }
 
@@ -772,7 +852,9 @@ class Game extends SharedGame {
   nextTurn() {
     // If all players have passed, move into the production phase
     if (this.players.every(p => p.passed)) {
-      this.beginProductionPhase();
+      if (this.phase === 'action') {
+        this.beginProductionPhase();
+      }
       return;
     }
 
