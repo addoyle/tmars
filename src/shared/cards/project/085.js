@@ -31,7 +31,7 @@ const card = new Automated({
     if (player.production.power < 1) {
       return {
         valid: false,
-        msg: 'Requires at least 1 power production'
+        msg: 'Not enough enery production'
       };
     }
     const valid = !!game.findPossibleTiles({ special: 'euro' }, player).length;

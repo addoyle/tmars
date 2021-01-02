@@ -241,6 +241,20 @@ class Game extends SharedGame {
       count
     });
   }
+
+  claimMilestone(milestone) {
+    API(`game/${gameId()}/milestone`, POST, {
+      milestone,
+      player: +PLAYER_NUM
+    });
+  }
+
+  fundAward(award) {
+    API(`game/${gameId()}/award`, POST, {
+      award,
+      player: +PLAYER_NUM
+    });
+  }
 }
 
 export default Game;

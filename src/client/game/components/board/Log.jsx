@@ -100,6 +100,18 @@ const Log = forwardRef((props, ref) => {
                             {body.standardProject}
                           </span>
                         );
+                      } else if (body.milestone) {
+                        return (
+                          <span key={i} className="milestone">
+                            {body.milestone}
+                          </span>
+                        );
+                      } else if (body.award) {
+                        return (
+                          <span key={i} className="award">
+                            {body.award}
+                          </span>
+                        );
                       } else if (body.resource) {
                         return <Resource key={i} name={body.resource} />;
                       } else if (body.tag) {

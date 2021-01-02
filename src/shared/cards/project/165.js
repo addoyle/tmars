@@ -25,7 +25,7 @@ export default new Automated({
     const valid = player.production.power >= 4;
     return {
       valid,
-      msg: !valid ? 'Not enough power production' : null
+      msg: !valid ? 'Not enough energy production' : null
     };
   },
   emoji: '🧲',

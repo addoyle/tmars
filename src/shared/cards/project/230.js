@@ -33,7 +33,7 @@ export default new Automated({
     if (player.production.power < 2) {
       return {
         valid: false,
-        msg: 'Not enough power production'
+        msg: 'Not enough energy production'
       };
     }
 

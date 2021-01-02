@@ -192,6 +192,40 @@ export function standardProject(req, res) {
 }
 
 /**
+ * Claim a milestone
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function claimMilestone(req, res) {
+  res.send(
+    GameService.claimMilestone(
+      `${req.params.id}`,
+      req.body.player,
+      req.body.milestone,
+      res
+    )
+  );
+}
+
+/**
+ * Fund an award
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function fundAward(req, res) {
+  res.send(
+    GameService.fundAward(
+      `${req.params.id}`,
+      req.body.player,
+      req.body.award,
+      res
+    )
+  );
+}
+
+/**
  * For testing, load a preset which will replace the current game
  *
  * @param {*} req

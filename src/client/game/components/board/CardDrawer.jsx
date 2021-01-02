@@ -24,8 +24,8 @@ const CardDrawer = props => {
   }
 
   const cards = gameStore.player?.cards[props.type] || [];
-  const numSelected = cards.filter(card => card.select).length;
-  const numToBuy = gameStore.player?.cards.buy.filter(card => card.select)
+  const numSelected = cards.filter(card => card?.select).length;
+  const numToBuy = gameStore.player?.cards.buy.filter(card => card?.select)
     .length;
 
   const buyMode =
@@ -66,14 +66,14 @@ const CardDrawer = props => {
         {buyMode
           ? gameStore.player?.cards.buy.map(card => (
               <li
-                key={`card-${card.card}`}
+                key={`card-${card?.card}`}
                 onClick={() => props.gameStore.toggleSelectCard(card, 'buy')}
                 className={classNames('card-selector', {
                   selected:
                     gameStore.currentCard.show &&
-                    card.card === gameStore.currentCard.card.card &&
+                    card?.card === gameStore.currentCard.card.card &&
                     'buy' === gameStore.currentCard.type,
-                  disabled: card.disabled
+                  disabled: card?.disabled
                 })}
               >
                 <CardPreview card={card} type="project" />
@@ -229,9 +229,9 @@ const CardDrawer = props => {
       <ul className="cards">
         {cards.map(card => (
           <li
-            key={`card-${card.card || card}`}
+            key={`card-${card?.card || card}`}
             onClick={() =>
-              !card.disabled
+              !card?.disabled
                 ? props.mode === 'select' || props.mode === 'draft'
                   ? gameStore.toggleSelectCard(
                       card,
@@ -251,15 +251,15 @@ const CardDrawer = props => {
             className={classNames('card-selector', {
               selected:
                 gameStore.currentCard.show &&
-                card.card === gameStore.currentCard.card.card &&
+                card?.card === gameStore.currentCard.card.card &&
                 cardType === gameStore.currentCard.type,
-              disabled: card.disabled,
+              disabled: card?.disabled,
               landscape: cardType === 'prelude' || cardType === 'corp'
             })}
           >
             <CardPreview
               card={card}
-              resources={card.resources}
+              resources={card?.resources}
               type={cardType}
               costModifiers={props.type ? gameStore.player.rates.cost : []}
               showResources={props.type === 'active' || props.type === 'corp'}
@@ -271,12 +271,12 @@ const CardDrawer = props => {
             <li className="separator" />
             {gameStore.player?.cards.buy.map(card => (
               <li
-                key={`card-${card.card || card}`}
+                key={`card-${card?.card || card}`}
                 onClick={() => gameStore.showCurrentCard(card, 'project')}
                 className={classNames('card-selector', {
                   selected:
                     gameStore.currentCard.show &&
-                    card.card === gameStore.currentCard.card.card &&
+                    card?.card === gameStore.currentCard.card.card &&
                     cardType === gameStore.currentCard.type
                 })}
               >

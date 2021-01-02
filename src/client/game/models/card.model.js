@@ -40,6 +40,10 @@ class Card {
 
   @computedFn
   get(type, card) {
+    if (!card) {
+      return null;
+    }
+
     const cardObj = isString(card) ? { card } : card;
 
     return this.cards[type] && this.cards[type][this.normalize(cardObj.card)];

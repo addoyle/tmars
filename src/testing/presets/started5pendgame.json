@@ -1362,226 +1362,30 @@
   ],
   "milestones": [
     {
-      "name": "Terraformer",
-      "icon": {
-        "key": null,
-        "ref": null,
-        "props": {
-          "name": "tr"
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "requirement": 35,
-      "description": "Have a terraform rating of at least 35",
-      "color": "#e24e26",
-      "highlight": "rgba(255,165,0,.5)"
-    },
-    {
-      "name": "Mayor",
-      "icon": {
-        "type": {
-          "isMobxInjector": true,
-          "displayName": "inject-with-gameStore(Tile)",
-          "wrappedComponent": {
-            "compare": null,
-            "propTypes": {},
-            "displayName": "Tile"
-          }
-        },
-        "key": null,
-        "ref": null,
-        "props": {
-          "name": "city"
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "requirement": 3,
-      "description": "Own at least 3 city tiles",
-      "color": "#666",
-      "highlight": "rgba(255,255,255,.9)"
-    },
-    {
       "name": "Gardener",
-      "icon": {
-        "type": {
-          "isMobxInjector": true,
-          "displayName": "inject-with-gameStore(Tile)",
-          "wrappedComponent": {
-            "compare": null,
-            "propTypes": {},
-            "displayName": "Tile"
-          }
-        },
-        "key": null,
-        "ref": null,
-        "props": {
-          "name": "greenery",
-          "noOxygen": true
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "requirement": 3,
-      "description": "Own at least 3 greenery tiles",
-      "color": "#52af3c",
-      "highlight": "rgba(173,255,47,.5)"
+      "player": 3
     },
     {
       "name": "Builder",
-      "icon": {
-        "key": null,
-        "ref": null,
-        "props": {
-          "name": "building"
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "requirement": 8,
-      "description": "Have at least 8 building tags in play",
-      "color": "#805835",
-      "highlight": "rgba(185,153,121,.7)"
+      "player": 5
     },
     {
-      "name": "Planner",
-      "icon": {
-        "key": null,
-        "ref": null,
-        "props": {
-          "name": "card back"
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "requirement": 16,
-      "description": "Have at least 16 cards in your hand when you claim this milestone",
-      "color": "#39557c",
-      "highlight": "rgba(135,206,235,.7)"
+      "name": "Hoverlord",
+      "player": 2
     }
   ],
   "awards": [
     {
       "name": "Landlord",
-      "icon": {
-        "type": {
-          "isMobxInjector": true,
-          "displayName": "inject-with-gameStore(Tile)",
-          "wrappedComponent": {
-            "compare": null,
-            "propTypes": {},
-            "displayName": "Tile"
-          }
-        },
-        "key": null,
-        "ref": null,
-        "props": {
-          "name": "blank-city capital",
-          "noIcon": true,
-          "children": {
-            "type": "div",
-            "key": null,
-            "ref": null,
-            "props": {
-              "className": "icon-text",
-              "children": "X"
-            },
-            "_owner": null,
-            "_store": {}
-          }
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "description": "Own the most tiles in play"
-    },
-    {
-      "name": "Banker",
-      "icon": {
-        "key": "banker",
-        "ref": null,
-        "props": {
-          "children": {
-            "type": "div",
-            "key": null,
-            "ref": null,
-            "props": {
-              "className": "flex",
-              "children": {
-                "key": null,
-                "ref": null,
-                "props": {},
-                "_owner": null,
-                "_store": {}
-              }
-            },
-            "_owner": null,
-            "_store": {}
-          }
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "description": "Have the highest M€ production"
+      "player": 4
     },
     {
       "name": "Scientist",
-      "icon": {
-        "key": null,
-        "ref": null,
-        "props": {
-          "name": "science"
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "description": "Have the most science tags in play"
+      "player": 3
     },
     {
-      "name": "Thermalist",
-      "icon": {
-        "key": null,
-        "ref": null,
-        "props": {
-          "name": "heat"
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "description": "Have the most heat resources"
-    },
-    {
-      "name": "Miner",
-      "icon": {
-        "key": null,
-        "ref": null,
-        "props": {
-          "children": [
-            {
-              "key": "miner-steel",
-              "ref": null,
-              "props": {
-                "name": "steel"
-              },
-              "_owner": null,
-              "_store": {}
-            },
-            {
-              "key": "miner-titanium",
-              "ref": null,
-              "props": {
-                "name": "titanium"
-              },
-              "_owner": null,
-              "_store": {}
-            }
-          ]
-        },
-        "_owner": null,
-        "_store": {}
-      },
-      "description": "Have the most steel and titanium resources"
+      "name": "Banker",
+      "player": 1
     }
   ],
   "phase": "action",

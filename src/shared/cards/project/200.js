@@ -30,7 +30,7 @@ export default new Active({
     if (player.production.power < 1) {
       return {
         valid: false,
-        msg: 'Not enough power production'
+        msg: 'Not enough energy production'
       };
     }
     if (player.production.megacredit <= -4) {

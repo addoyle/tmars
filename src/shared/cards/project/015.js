@@ -18,7 +18,7 @@ export default new Active({
     'Super-conducting wires enircling the globe to create a magnetic field',
   actions: [
     {
-      name: 'Spend 1 Power Production',
+      name: 'Spend 1 Energy Production',
       icon: (
         <Production>
           <div className="flex">
@@ -30,7 +30,7 @@ export default new Active({
         const valid = player.production.power >= 1;
         return {
           valid,
-          msg: 'Not enough power production'
+          msg: 'Not enough energy production'
         };
       },
       action: (player, game) => {

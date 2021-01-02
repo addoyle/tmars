@@ -32,6 +32,29 @@ $title-font: 'Prototype', sans-serif;
         font-size: .8em;
       }
 
+      .milestone {
+        text-transform: uppercase;
+        font-family: $title-font;
+        color: #30231a;
+        background: linear-gradient(135deg, #ffce99 0%, #ffce99 5%, #ef7e2e 15%, #ef7e2e 85%, #ffce99 95%, #ffce99 100%);
+        border: 2px solid #e27d39;
+        border-radius: 50% 50% 0 0 / 20% 20% 0 0;
+        padding: 0.1em 0.2em 0;
+        font-size: .9em;
+      }
+
+      .award {
+        color: black;
+        font-style: italic;
+        font-family: 'Monotype Corsiva', serif;
+        font-size: 1.4em;
+        padding: 2px 7px 2px 4px;
+        transition: box-shadow 0.3s ease;
+        box-shadow: 0 0 0 2px #c78c33 inset;
+        border-radius: .7em;
+        background: linear-gradient(120deg, #f7b152 0%, #f7b152 40%, #fcf1a2 50%, #f9bc52 60%, #f6ec71 75%, #cb7f29 100%);
+      }
+
       .log-inline {
         display: inline;
         *:first-child {
@@ -192,7 +215,7 @@ $title-font: 'Prototype', sans-serif;
           text-shadow: 2px 2px 2px rgba(0,0,0,.5);
           font-size: 1.3em;
           padding: 8px;
-              box-shadow: 0 0 0 4px #0004 inset;
+          box-shadow: 0 0 0 4px #0004 inset;
         }
       }
     }

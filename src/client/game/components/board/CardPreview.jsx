@@ -12,11 +12,11 @@ import { isString } from 'lodash';
  */
 const CardPreview = props => {
   const card = isString(props.card) ? { card: props.card } : props.card;
-  const cardObj = props.cardStore.get(props.type, card.card);
+  const cardObj = props.cardStore.get(props.type, card?.card);
 
   const resource = cardObj?.resource && {
     type: cardObj.resource,
-    value: card.resource || 0
+    value: card?.resource || 0
   };
 
   // Apply cost modifiers (e.g. Research Outpost)
@@ -30,7 +30,7 @@ const CardPreview = props => {
       className={classNames('card-preview', {
         show: props.show && cardObj,
         simple: props.gameStore.settings.simple,
-        select: card.select
+        select: card?.select
       })}
     >
       {!cardObj ? (

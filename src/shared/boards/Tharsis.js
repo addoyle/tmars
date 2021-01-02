@@ -100,7 +100,6 @@ const Tharsis = {
   milestones: [
     {
       name: 'Terraformer',
-      getValue: player => player.tr,
       icon: <Resource name="tr" />,
       requirement: 35,
       description: 'Have a terraform rating of at least 35',
@@ -110,14 +109,14 @@ const Tharsis = {
     },
     {
       name: 'Mayor',
-      getValue: player => player.tiles.city,
       icon: <Tile name="city" />,
       requirement: 3,
       description: 'Own at least 3 city tiles',
       color: '#666',
       highlight: 'rgba(255,255,255,.9)',
       qualifies: (player, game) =>
-        game.field
+        game
+          .getField()
           .flat()
           .concat(Object.values(game.offMars))
           .filter(t => ['city', 'capital city'].includes(t.type))
@@ -125,21 +124,20 @@ const Tharsis = {
     },
     {
       name: 'Gardener',
-      getValue: player => player.tiles.greenery,
       icon: <Tile name="greenery" noOxygen />,
       requirement: 3,
       description: 'Own at least 3 greenery tiles',
       color: '#52af3c',
       highlight: 'rgba(173,255,47,.5)',
       qualifies: (player, game) =>
-        game.field
+        game
+          .getField()
           .flat()
           .filter(t => t.type === 'greenery' && t.player === player.number)
           .length >= 3
     },
     {
       name: 'Builder',
-      getValue: player => player.tags.building,
       icon: <Tag name="building" />,
       requirement: 8,
       description: 'Have at least 8 building tags in play',
@@ -149,7 +147,6 @@ const Tharsis = {
     },
     {
       name: 'Planner',
-      getValue: player => player.cards.hand.length,
       icon: <Param name="card back" />,
       requirement: 16,
       description:
@@ -162,8 +159,6 @@ const Tharsis = {
   awards: [
     {
       name: 'Landlord',
-      getValue: player =>
-        player.tiles.city + player.tiles.greenery + player.tiles.special,
       icon: (
         <Tile name="blank-city capital" noIcon>
           <div className="icon-text">X</div>
@@ -178,7 +173,6 @@ const Tharsis = {
     },
     {
       name: 'Banker',
-      getValue: player => player.production.megacredit,
       icon: (
         <Production key="banker">
           <div className="flex">
@@ -191,20 +185,17 @@ const Tharsis = {
     },
     {
       name: 'Scientist',
-      getValue: player => player.tags.science,
       icon: <Tag name="science" />,
       description: 'Have the most science tags in play'
     },
     {
       name: 'Thermalist',
-      getValue: player => player.resources.heat,
       icon: <Resource name="heat" />,
       description: 'Have the most heat resources',
       value: player => player.tags.science
     },
     {
       name: 'Miner',
-      getValue: player => player.resources.steel + player.resources.titanium,
       icon: (
         <>
           <Resource name="steel" key="miner-steel" />

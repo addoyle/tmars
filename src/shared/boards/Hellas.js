@@ -173,7 +173,7 @@ const Hellas = {
       name: 'Contractor',
       getValue: player => player.tags.building,
       icon: <Tag name="building" />,
-      description: 'Have the most building tags (event cards don not count)'
+      description: 'Have the most building tags (event cards do not count)'
     }
   ]
 };

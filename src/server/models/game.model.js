@@ -173,14 +173,7 @@ class Game extends SharedGame {
     }
 
     // Set field
-    Object.assign(
-      this,
-      this.board.toLowerCase() === 'hellas'
-        ? Hellas
-        : this.board.toLowerCase() === 'elysium'
-        ? Elysium
-        : Tharsis
-    );
+    this.field = { Tharsis, Elysium, Hellas }[this.board].field;
 
     // Assign tile ids
     let id = 0;

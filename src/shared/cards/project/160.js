@@ -37,7 +37,7 @@ export default new Automated({
       .length;
     return {
       valid,
-      msg: !valid ? 'Requires at least one player with power production' : null
+      msg: !valid ? 'Requires at least one player with energy production' : null
     };
   },
   emoji: '🔋',

@@ -6,6 +6,9 @@ import Game from '../models/game.model';
 import shortid from 'shortid';
 import redis from 'redis';
 import { promisify } from 'util';
+import Tharsis from '../../shared/boards/Tharsis';
+import Elysium from '../../shared/boards/Elysium';
+import Hellas from '../../shared/boards/Hellas';
 
 const client = redis.createClient();
 const redisGet = promisify(client.get).bind(client);
@@ -153,7 +156,7 @@ class GameService {
     card.card !== 'X06' && player.cards[playedCard.type].push(card);
 
     // Remove from hand
-    player.cards.hand = player.cards.hand.filter(c => c.card !== card.card);
+    player.cards.hand = player.cards.hand.filter(c => c?.card !== card.card);
 
     // To do once all card actions are complete (placing tiles, etc.)
     const done = () => {
@@ -536,6 +539,15 @@ class GameService {
     return this.export(game);
   }
 
+  /**
+   * Play a standard project
+   *
+   * @param {string} id Game ID
+   * @param {number} playerNum Player ID
+   * @param {string} project Standard project to be played
+   * @param {string} resource Resource used (i.e. plant/heat)
+   * @param {object} res Response handler
+   */
   @push(gameFilter)
   standardProject(id, playerNum, project, resource, res) {
     const game = this.games[id];
@@ -623,6 +635,90 @@ class GameService {
           break;
         }
       }
+    }
+
+    return this.export(game);
+  }
+
+  /**
+   * Claim a milestone
+   *
+   * @param {string} id Game ID
+   * @param {number} playerNum Player ID
+   * @param {string} milestone Milestone to be claimed
+   */
+  @push(gameFilter)
+  claimMilestone(id, playerNum, milestone) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+    const claimedMilestone =
+      milestone === 'Hoverlord'
+        ? {
+            qualifies: player =>
+              player.cards.active
+                .map(c => ({
+                  card: c,
+                  obj: this.cardStore.get('project', c.card)
+                }))
+                .concat(
+                  player.cards.corp.map(c => ({
+                    card: c,
+                    obj: this.cardStore.get('corp', c.card)
+                  }))
+                )
+                .filter(c => c?.obj.resource === 'floater')
+                .reduce((sum, c) => (sum += c.card.resource), 0) >= 7
+          }
+        : {
+            Tharsis,
+            Elysium,
+            Hellas
+          }[game.board].milestones.find(m => m.name === milestone);
+
+    if (
+      claimedMilestone.qualifies(player, game) &&
+      game.milestones.length <= 3 &&
+      player.resources.megacredit >= 8
+    ) {
+      game.resources(player, 'megacredit', -8);
+      game.milestones.push({ player: playerNum, name: milestone });
+
+      LogService.pushLog(
+        id,
+        new Log(playerNum, [' claimed the ', { milestone }, ' milestone.'])
+      );
+
+      game.nextTurn();
+    }
+
+    return this.export(game);
+  }
+
+  /**
+   * Fund an award
+   *
+   * @param {string} id Game ID
+   * @param {number} playerNum Player ID
+   * @param {string} award Award to be funde
+   */
+  @push(gameFilter)
+  fundAward(id, playerNum, award) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+
+    if (
+      game.awards.length <= 3 &&
+      player.resources.megacredit >= 8 + 6 * game.awards.length
+    ) {
+      game.resources(player, 'megacredit', -(8 + 6 * game.awards.length));
+      game.awards.push({ player: playerNum, name: award });
+
+      LogService.pushLog(
+        id,
+        new Log(playerNum, [' funded the ', { award }, ' award.'])
+      );
+
+      game.nextTurn();
     }
 
     return this.export(game);
