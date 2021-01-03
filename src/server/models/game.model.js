@@ -1,10 +1,9 @@
-import { shuffle, isString } from 'lodash';
+import { shuffle, isString, startCase, groupBy } from 'lodash';
 import { normalize } from '../util';
 import Tharsis from '../../shared/boards/Tharsis';
 import Hellas from '../../shared/boards/Hellas';
 import Elysium from '../../shared/boards/Elysium';
 import Log from './log.model';
-import { startCase, groupBy } from 'lodash';
 import LogService from '../services/log.service';
 import SharedGame from '../../shared/game/game.shared.model';
 
@@ -472,7 +471,12 @@ class Game extends SharedGame {
 
           // Show UI components
           player.ui = {
-            drawer: this.phase === 'prelude' ? 'prelude' : 'hand',
+            drawer:
+              this.phase === 'prelude'
+                ? 'prelude'
+                : this.phase === 'end'
+                ? null
+                : 'hand',
             playerStats: {
               show: true,
               pid: player.number
@@ -823,19 +827,27 @@ class Game extends SharedGame {
 
   beginScorePhase() {
     this.turn = 0;
+    this.phase = 'score';
+
+    LogService.pushLog(
+      this.id,
+      new Log(0, 'GAME OVER', true, {
+        classNames: ['phase', 'game-over']
+      })
+    );
 
     // Initialize scores
-    this.players.forEach(
-      p =>
-        (p.score = {
-          tr: p.tr,
-          awards: 0,
-          milestones: 0,
-          field: 0,
-          cards: 0,
-          total: 0
-        })
-    );
+    this.players.forEach(p => {
+      p.score = {
+        tr: p.tr,
+        awards: 0,
+        milestones: 0,
+        field: 0,
+        cards: 0,
+        total: 0
+      };
+      p.passed = false;
+    });
 
     const awardList = { Tharsis, Elysium, Hellas }[this.board].awards;
 
@@ -851,17 +863,14 @@ class Game extends SharedGame {
     this.awards.forEach(a => {
       const award = awardList.find(aw => aw.name === a.name);
       const playerScores = groupBy(
-        [
-          ...this.players.map(player => ({
-            player,
-            score: award.value(player, this)
-          }))
-        ],
-        'score'
+        this.players.map(player => ({
+          player,
+          score: award.value(player, this)
+        })),
+        s => s.score
       );
 
-      const keys = Object.keys(playerScores);
-      keys.reverse();
+      const keys = Object.keys(playerScores).sort((a, b) => +b - +a);
 
       // First place
       playerScores[keys[0]].forEach(score => (score.player.score.awards += 5));
@@ -913,11 +922,39 @@ class Game extends SharedGame {
         );
 
       // Calculate total score
-      player.score.total = Object.values(player.score).reduce(
+      player.tr = player.score.total = Object.values(player.score).reduce(
         (sum, val) => sum + val,
         0
       );
     });
+
+    const finalScores = groupBy(this.players, p => p.score.total);
+    const keys = Object.keys(finalScores).sort((a, b) => +b - +a);
+    const winners = finalScores[keys[0]];
+
+    if (winners.length === 1) {
+      LogService.pushLog(
+        this.id,
+        new Log(0, [
+          'Congrats to ',
+          { player: winners[0].number },
+          ' for winning the game!'
+        ])
+      );
+    } else {
+      const winner = winners.reduce((maxP, p) =>
+        maxP.resources.megacredit < p.resources.megacredit ? p : maxP
+      );
+
+      LogService.pushLog(
+        this.id,
+        new Log(0, [
+          'Congrats to ',
+          { player: winner.number },
+          ' for winning the tie breaker and winning the game!'
+        ])
+      );
+    }
   }
 
   /**

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useEffect, forwardRef } from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import './Log.scss';
@@ -9,37 +9,13 @@ import Markdown from 'react-markdown';
 import { isPlainObject } from 'lodash';
 import { subscribe, gameId } from '../../../util/api';
 import { Tile, Param, Resource, Tag, MegaCredit } from '../assets/Assets';
+import LogText from './LogText';
 
 /**
  * The chat log/game history
  */
 const Log = forwardRef((props, ref) => {
   const { logStore, gameStore } = props;
-  const [msg, setMsg] = useState('');
-
-  const playerNum = new URLSearchParams(window.location.search).get('player');
-
-  // Attach events
-  useEffect(() => {
-    const keydown = e => {
-      if (e.key === 'Enter' && !e.shiftKey) {
-        e.preventDefault();
-
-        if (msg) {
-          props.logStore.postLog({
-            player: +playerNum,
-            body: msg
-          });
-          setMsg('');
-        }
-      }
-    };
-    document.addEventListener('keydown', keydown);
-
-    return () => {
-      document.removeEventListener('keydown', keydown);
-    };
-  });
 
   // Init
   useEffect(() => {
@@ -165,21 +141,13 @@ const Log = forwardRef((props, ref) => {
             ))
           : null}
       </ScrollToBottom>
-      <div className="form">
-        <textarea
-          placeholder="Message..."
-          onChange={e => setMsg(e.target.value)}
-          value={msg}
-          ref={ref}
-        />
-      </div>
+      <LogText ref={ref} />
     </div>
   );
 });
 
 Log.propTypes = {
   logStore: PropTypes.shape({
-    postLog: PropTypes.func,
     fetchLogs: PropTypes.func,
     log: PropTypes.array
   }),

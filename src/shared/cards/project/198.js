@@ -19,10 +19,12 @@ export default new Automated({
   flavor: 'The new world attracts ever more immigrants from the old',
   action: (player, game) => game.production(player, 'megacredit', 5),
   vp: (player, game) =>
-    game.field
-      .flat()
-      .concat(Object.values(game.offMars))
-      .filter(t => t.type === 'city' || t.type === 'capital city').length,
+    Math.floor(
+      game.field
+        .flat()
+        .concat(Object.values(game.offMars))
+        .filter(t => t.type === 'city' || t.type === 'capital city').length / 3
+    ),
   emoji: '🛬',
   layout: (
     <div className="flex gutter">

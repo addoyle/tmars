@@ -92,6 +92,10 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.card {
+    .mc {
+      left: .4em;
+    }
+
     .title,
     .separator {
       height: 3em;
