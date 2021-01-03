@@ -61,7 +61,7 @@ export default class Player {
     ocean: 2, // Ocean adjacency bonus,
     cost: {} // Cost modifier functions
   };
-  passed;
+  passed = false;
   score = {};
 
   constructor(name) {

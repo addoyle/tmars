@@ -20,6 +20,17 @@ export async function getGame(req, res) {
 }
 
 /**
+ * Create a new game
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function createGame(req, res) {
+  GameService.createGame(`${req.params.id}`, req.body.players, req.body.opts);
+  res.sendStatus(200);
+}
+
+/**
  * Play a card
  *
  * @param {*} req

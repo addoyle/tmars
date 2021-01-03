@@ -9,6 +9,7 @@ import { promisify } from 'util';
 import Tharsis from '../../shared/boards/Tharsis';
 import Elysium from '../../shared/boards/Elysium';
 import Hellas from '../../shared/boards/Hellas';
+import Player from '../models/player.model';
 
 const client = redis.createClient();
 const redisGet = promisify(client.get).bind(client);
@@ -86,6 +87,20 @@ class GameService {
     return gameFilter(this.export(game), {
       req: { query: { player } }
     });
+  }
+
+  /**
+   * Creates a new game
+   *
+   * @param {number} id Game ID
+   * @param {Player} players Player names
+   * @param {object} opts Game options
+   */
+  createGame(id, players, opts) {
+    const game = new Game(this.cardStore, opts);
+    game.players = players.map(p => new Player(p));
+    game.init();
+    this.registerGame(game, id);
   }
 
   /**
