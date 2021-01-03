@@ -385,6 +385,15 @@ class Game extends SharedGame {
         done && done();
       }
     }
+
+    if (this.checkEndGame()) {
+      LogService.pushLog(
+        this.id,
+        new Log(0, 'Mars is TERRAFORMED!', true, {
+          classNames: ['phase', 'end-phase']
+        })
+      );
+    }
   }
 
   /**
@@ -588,6 +597,15 @@ class Game extends SharedGame {
         }
       });
 
+    if (this.checkEndGame()) {
+      LogService.pushLog(
+        this.id,
+        new Log(0, 'Mars is TERRAFORMED!', true, {
+          classNames: ['phase', 'end-phase']
+        })
+      );
+    }
+
     // Trigger events
     this.fire('onTile', player, area);
     this.fire('onAnyTile', null, area);
@@ -759,12 +777,6 @@ class Game extends SharedGame {
   beginEndPhase() {
     this.phase = 'end';
 
-    LogService.pushLog(
-      this.id,
-      new Log(0, 'Mars is TERRAFORMED!', true, {
-        classNames: ['phase', 'end-phase']
-      })
-    );
     LogService.pushLog(
       this.id,
       new Log(0, [
