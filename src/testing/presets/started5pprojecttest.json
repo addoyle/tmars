@@ -146,7 +146,6 @@
         "ocean": 2,
         "cost": {}
       },
-      "modifiers": {},
       "firstAction": true
     },
     {
@@ -289,7 +288,6 @@
         "ocean": 2,
         "cost": {}
       },
-      "modifiers": {},
       "firstAction": true
     },
     {
@@ -436,7 +434,6 @@
         "ocean": 2,
         "cost": {}
       },
-      "modifiers": {},
       "firstAction": true
     },
     {
@@ -584,7 +581,6 @@
         "ocean": 2,
         "cost": {}
       },
-      "modifiers": {},
       "firstAction": true
     },
     {
@@ -711,7 +707,6 @@
         "ocean": 2,
         "cost": {}
       },
-      "modifiers": {},
       "firstAction": true
     }
   ],
@@ -1450,9 +1445,7 @@
     }
   ],
   "cards": {
-    "deck": [
-      
-    ],
+    "deck": [],
     "discard": [],
     "corps": [
       {

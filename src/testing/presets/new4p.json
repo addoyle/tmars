@@ -77,8 +77,7 @@
         "heat": 8,
         "ocean": 2,
         "cost": {}
-      },
-      "modifiers": {}
+      }
     },
     {
       "name": "Frank",
@@ -156,8 +155,7 @@
         "heat": 8,
         "ocean": 2,
         "cost": {}
-      },
-      "modifiers": {}
+      }
     },
     {
       "name": "Colin",
@@ -227,7 +225,15 @@
       },
       "phase": "",
       "ui": {},
-      "modifiers": {}
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8,
+        "ocean": 2,
+        "cost": {}
+      }
     },
     {
       "name": "Larissa",
@@ -305,8 +311,7 @@
         "heat": 8,
         "ocean": 2,
         "cost": {}
-      },
-      "modifiers": {}
+      }
     }
   ],
   "turn": 0,

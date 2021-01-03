@@ -1,11 +1,6 @@
 {
   "id": "123",
-  "sets": [
-    "corporate",
-    "promo",
-    "prelude",
-    "venus"
-  ],
+  "sets": ["corporate", "promo", "prelude", "venus"],
   "players": [
     {
       "name": "Andy",
@@ -155,7 +150,6 @@
           "earth": -3
         }
       },
-      "modifiers": {},
       "firstAction": false,
       "trRaised": false,
       "passed": true
@@ -309,7 +303,6 @@
           "all": -2
         }
       },
-      "modifiers": {},
       "firstAction": false,
       "trRaised": true,
       "passed": true
@@ -499,7 +492,6 @@
           "space": -2
         }
       },
-      "modifiers": {},
       "firstAction": false,
       "trRaised": true,
       "passed": true
@@ -643,7 +635,6 @@
         "ocean": 2,
         "cost": {}
       },
-      "modifiers": {},
       "firstAction": false,
       "trRaised": false,
       "passed": true
@@ -802,7 +793,6 @@
         "ocean": 2,
         "cost": {}
       },
-      "modifiers": {},
       "firstAction": true,
       "trRaised": true,
       "passed": false
@@ -825,23 +815,13 @@
   "field": [
     [
       {
-        "resources": [
-          0,
-          0,
-          "steel",
-          "steel"
-        ],
+        "resources": [0, 0, "steel", "steel"],
         "id": 0,
         "clickable": null
       },
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["steel", "steel"],
+        "attrs": ["reserved-ocean"],
         "id": 1,
         "clickable": null
       },
@@ -850,21 +830,15 @@
         "clickable": null
       },
       {
-        "resources": [
-          "card"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["card"],
+        "attrs": ["reserved-ocean"],
         "id": 3,
         "clickable": null,
         "name": "ocean-placed",
         "type": "ocean"
       },
       {
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "attrs": ["reserved-ocean"],
         "id": 4,
         "clickable": null,
         "name": "ocean-placed",
@@ -877,13 +851,9 @@
         "clickable": null
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "text": "Tharsis Tholus",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 6,
         "clickable": null,
         "name": "special-placed",
@@ -908,13 +878,8 @@
         "player": 1
       },
       {
-        "resources": [
-          "card",
-          "card"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["card", "card"],
+        "attrs": ["reserved-ocean"],
         "id": 10,
         "clickable": null,
         "name": "ocean-placed",
@@ -923,13 +888,9 @@
     ],
     [
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "text": "Ascraeus Mons",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 11,
         "clickable": null
       },
@@ -954,23 +915,16 @@
         "clickable": null
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 17,
         "clickable": null
       }
     ],
     [
       {
-        "resources": [
-          "titanium",
-          "plant"
-        ],
+        "resources": ["titanium", "plant"],
         "text": "Pavonis Mons",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 18,
         "clickable": null,
         "name": "special-placed",
@@ -979,9 +933,7 @@
         "player": 3
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 19,
         "clickable": null,
         "name": "greenery-placed",
@@ -989,9 +941,7 @@
         "player": 4
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 20,
         "clickable": null,
         "name": "special-placed",
@@ -1000,9 +950,7 @@
         "player": 4
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 21,
         "clickable": null,
         "name": "greenery-placed",
@@ -1010,10 +958,7 @@
         "player": 2
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 22,
         "clickable": null,
         "name": "city-placed",
@@ -1021,27 +966,18 @@
         "player": 2
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 23,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 24,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 25,
         "clickable": null,
         "name": "ocean-placed",
@@ -1050,15 +986,9 @@
     ],
     [
       {
-        "resources": [
-          "plant",
-          0,
-          "plant"
-        ],
+        "resources": ["plant", 0, "plant"],
         "text": "Arsia Mons",
-        "attrs": [
-          "volcano"
-        ],
+        "attrs": ["volcano"],
         "id": 26,
         "clickable": null,
         "name": "greenery-placed",
@@ -1066,10 +996,7 @@
         "player": 4
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 27,
         "clickable": null,
         "name": "greenery-placed",
@@ -1077,85 +1004,54 @@
         "player": 4
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-noctis-city"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-noctis-city"],
         "text": "Noctis City",
         "id": 28
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 29,
         "clickable": null,
         "name": "ocean-placed",
         "type": "ocean"
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 30,
         "clickable": null,
         "name": "ocean-placed",
         "type": "ocean"
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 31,
         "clickable": null,
         "name": "ocean-placed",
         "type": "ocean"
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 32,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 33,
         "clickable": null
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 34,
         "clickable": null
       }
     ],
     [
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 35,
         "clickable": null,
         "name": "city-placed",
@@ -1163,10 +1059,7 @@
         "player": 1
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 36,
         "clickable": null,
         "name": "special-placed",
@@ -1175,45 +1068,31 @@
         "player": 5
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 37,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 38,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 39,
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 40,
         "clickable": null,
         "name": "ocean-placed",
         "type": "ocean"
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 41,
         "clickable": null,
         "name": "special-placed",
@@ -1222,12 +1101,8 @@
         "player": 4
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 42,
         "clickable": null
       }
@@ -1257,9 +1132,7 @@
         "clickable": null
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 48,
         "clickable": null
       },
@@ -1270,10 +1143,7 @@
     ],
     [
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
+        "resources": ["steel", "steel"],
         "id": 50,
         "clickable": null,
         "name": "special-placed",
@@ -1286,9 +1156,7 @@
         "clickable": null
       },
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "id": 52,
         "clickable": null,
         "name": "greenery-placed",
@@ -1296,9 +1164,7 @@
         "player": 3
       },
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "id": 53,
         "clickable": null,
         "name": "special-placed",
@@ -1311,26 +1177,19 @@
         "clickable": null
       },
       {
-        "resources": [
-          "titanium"
-        ],
+        "resources": ["titanium"],
         "id": 55,
         "clickable": null
       }
     ],
     [
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 56,
         "clickable": null
       },
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
+        "resources": ["steel", "steel"],
         "id": 57,
         "clickable": null,
         "name": "city-placed",
@@ -1346,13 +1205,8 @@
         "clickable": null
       },
       {
-        "resources": [
-          "titanium",
-          "titanium"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["titanium", "titanium"],
+        "attrs": ["reserved-ocean"],
         "id": 60,
         "clickable": null,
         "name": "ocean-placed",
@@ -1390,6 +1244,7 @@
   ],
   "phase": "action",
   "playerStatus": null,
+  "endGame": true,
   "offMars": {
     "ganymede": {
       "name": "city-placed",
@@ -1419,10 +1274,7 @@
     },
     {
       "player": 0,
-      "body": [
-        "You are terraforming **Tharsis**, ",
-        "the land of volcanics!"
-      ],
+      "body": ["You are terraforming **Tharsis**, ", "the land of volcanics!"],
       "system": true
     },
     {
@@ -1518,10 +1370,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "prelude-phase"
-        ]
+        "classNames": ["phase", "prelude-phase"]
       }
     },
     {
@@ -1688,10 +1537,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "action-phase"
-        ]
+        "classNames": ["phase", "action-phase"]
       }
     },
     {
@@ -2039,9 +1885,7 @@
     },
     {
       "player": 3,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -2057,9 +1901,7 @@
     },
     {
       "player": 4,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
@@ -2118,50 +1960,35 @@
     },
     {
       "player": 1,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
       "player": 2,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 4,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 5,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 1,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 0,
-      "body": [
-        "PRODUCTION PHASE"
-      ],
+      "body": ["PRODUCTION PHASE"],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "production-phase"
-        ]
+        "classNames": ["phase", "production-phase"]
       }
     },
     {
@@ -2175,9 +2002,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase"
-        ]
+        "classNames": ["phase"]
       }
     },
     {
@@ -2195,10 +2020,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "research-phase"
-        ]
+        "classNames": ["phase", "research-phase"]
       }
     },
     {
@@ -2266,10 +2088,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "action-phase"
-        ]
+        "classNames": ["phase", "action-phase"]
       }
     },
     {
@@ -2441,9 +2260,7 @@
     },
     {
       "player": 5,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
@@ -2497,9 +2314,7 @@
     },
     {
       "player": 3,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -2542,16 +2357,12 @@
     },
     {
       "player": 4,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
       "player": 5,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -2584,9 +2395,7 @@
     },
     {
       "player": 1,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
@@ -2616,16 +2425,12 @@
     },
     {
       "player": 2,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
       "player": 4,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -2641,36 +2446,25 @@
     },
     {
       "player": 1,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
       "player": 2,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 1,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 0,
-      "body": [
-        "PRODUCTION PHASE"
-      ],
+      "body": ["PRODUCTION PHASE"],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "production-phase"
-        ]
+        "classNames": ["phase", "production-phase"]
       }
     },
     {
@@ -2684,9 +2478,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase"
-        ]
+        "classNames": ["phase"]
       }
     },
     {
@@ -2704,10 +2496,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "research-phase"
-        ]
+        "classNames": ["phase", "research-phase"]
       }
     },
     {
@@ -2775,10 +2564,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "action-phase"
-        ]
+        "classNames": ["phase", "action-phase"]
       }
     },
     {
@@ -2943,9 +2729,7 @@
     },
     {
       "player": 4,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
@@ -2972,16 +2756,12 @@
     },
     {
       "player": 5,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
       "player": 1,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -2997,9 +2777,7 @@
     },
     {
       "player": 2,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
@@ -3064,9 +2842,7 @@
     },
     {
       "player": 4,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -3157,36 +2933,25 @@
     },
     {
       "player": 5,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 2,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 3,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 0,
-      "body": [
-        "PRODUCTION PHASE"
-      ],
+      "body": ["PRODUCTION PHASE"],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "production-phase"
-        ]
+        "classNames": ["phase", "production-phase"]
       }
     },
     {
@@ -3200,9 +2965,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase"
-        ]
+        "classNames": ["phase"]
       }
     },
     {
@@ -3220,10 +2983,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "research-phase"
-        ]
+        "classNames": ["phase", "research-phase"]
       }
     },
     {
@@ -3291,10 +3051,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "action-phase"
-        ]
+        "classNames": ["phase", "action-phase"]
       }
     },
     {
@@ -3529,9 +3286,7 @@
     },
     {
       "player": 4,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -3552,16 +3307,12 @@
     },
     {
       "player": 5,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
       "player": 1,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -3610,9 +3361,7 @@
     },
     {
       "player": 5,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -3628,36 +3377,25 @@
     },
     {
       "player": 2,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
       "player": 3,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 2,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 0,
-      "body": [
-        "PRODUCTION PHASE"
-      ],
+      "body": ["PRODUCTION PHASE"],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "production-phase"
-        ]
+        "classNames": ["phase", "production-phase"]
       }
     },
     {
@@ -3671,9 +3409,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase"
-        ]
+        "classNames": ["phase"]
       }
     },
     {
@@ -3691,10 +3427,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "research-phase"
-        ]
+        "classNames": ["phase", "research-phase"]
       }
     },
     {
@@ -3762,10 +3495,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "action-phase"
-        ]
+        "classNames": ["phase", "action-phase"]
       }
     },
     {
@@ -4046,9 +3776,7 @@
     },
     {
       "player": 1,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
@@ -4075,16 +3803,12 @@
     },
     {
       "player": 3,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 4,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -4149,9 +3873,7 @@
     },
     {
       "player": 1,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -4236,36 +3958,25 @@
     },
     {
       "player": 2,
-      "body": [
-        " skipped."
-      ],
+      "body": [" skipped."],
       "system": true
     },
     {
       "player": 5,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 2,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 0,
-      "body": [
-        "PRODUCTION PHASE"
-      ],
+      "body": ["PRODUCTION PHASE"],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "production-phase"
-        ]
+        "classNames": ["phase", "production-phase"]
       }
     },
     {
@@ -4279,9 +3990,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase"
-        ]
+        "classNames": ["phase"]
       }
     },
     {
@@ -4299,10 +4008,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "research-phase"
-        ]
+        "classNames": ["phase", "research-phase"]
       }
     },
     {
@@ -4370,10 +4076,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "action-phase"
-        ]
+        "classNames": ["phase", "action-phase"]
       }
     },
     {
@@ -4607,9 +4310,7 @@
     },
     {
       "player": 4,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
@@ -4757,24 +4458,26 @@
       "system": true
     },
     {
+      "player": 0,
+      "body": ["Mars is TERRAFORMED"],
+      "system": true,
+      "opts": {
+        "classNames": ["phase", "end-phase"]
+      }
+    },
+    {
       "player": 1,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 2,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     },
     {
       "player": 3,
-      "body": [
-        " passed."
-      ],
+      "body": [" passed."],
       "system": true
     }
   ],

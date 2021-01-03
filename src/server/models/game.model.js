@@ -4,7 +4,7 @@ import Tharsis from '../../shared/boards/Tharsis';
 import Hellas from '../../shared/boards/Hellas';
 import Elysium from '../../shared/boards/Elysium';
 import Log from './log.model';
-import { startCase } from 'lodash';
+import { startCase, groupBy } from 'lodash';
 import LogService from '../services/log.service';
 import SharedGame from '../../shared/game/game.shared.model';
 
@@ -66,6 +66,7 @@ class Game extends SharedGame {
   awards = [];
   phase = 'start';
   playerStatus;
+  endGame = false;
 
   offMars = {
     ganymede: {},
@@ -386,14 +387,7 @@ class Game extends SharedGame {
       }
     }
 
-    if (this.checkEndGame()) {
-      LogService.pushLog(
-        this.id,
-        new Log(0, 'Mars is TERRAFORMED!', true, {
-          classNames: ['phase', 'end-phase']
-        })
-      );
-    }
+    this.checkEndGame();
   }
 
   /**
@@ -597,14 +591,7 @@ class Game extends SharedGame {
         }
       });
 
-    if (this.checkEndGame()) {
-      LogService.pushLog(
-        this.id,
-        new Log(0, 'Mars is TERRAFORMED!', true, {
-          classNames: ['phase', 'end-phase']
-        })
-      );
-    }
+    this.checkEndGame();
 
     // Trigger events
     this.fire('onTile', player, area);
@@ -836,19 +823,128 @@ class Game extends SharedGame {
 
   beginScorePhase() {
     this.turn = 0;
-    console.log('Score phase!');
+
+    // Initialize scores
+    this.players.forEach(
+      p =>
+        (p.score = {
+          tr: p.tr,
+          awards: 0,
+          milestones: 0,
+          field: 0,
+          cards: 0,
+          total: 0
+        })
+    );
+
+    const awardList = { Tharsis, Elysium, Hellas }[this.board].awards;
+
+    // Adding Venuphile to awards
+    if (this.sets.includes('venus')) {
+      awardList.push({
+        name: 'Venuphile',
+        value: player => player.tags.venus
+      });
+    }
+
+    // Awards
+    this.awards.forEach(a => {
+      const award = awardList.find(aw => aw.name === a.name);
+      const playerScores = groupBy(
+        [
+          ...this.players.map(player => ({
+            player,
+            score: award.value(player, this)
+          }))
+        ],
+        'score'
+      );
+
+      const keys = Object.keys(playerScores);
+      keys.reverse();
+
+      // First place
+      playerScores[keys[0]].forEach(score => (score.player.score.awards += 5));
+
+      // Second place
+      (playerScores[keys[1]] || []).forEach(
+        score => (score.player.score.awards += 2)
+      );
+    });
+
+    // Milestones
+    this.milestones.forEach(
+      m => (this.players[m.player - 1].score.milestones += 5)
+    );
+
+    // Don't include cities off mars, as they don't count towards points
+    const field = this.getField().flat();
+
+    this.players.forEach(player => {
+      // Each greenery is 1 VP
+      player.score.field += field.filter(
+        t => t.player === player.number && t.type === 'greenery'
+      ).length;
+
+      // Every adjacenty between a city and a greenery is 1 VP
+      player.score.field += field
+        .filter(
+          t =>
+            t.player === player.number &&
+            ['city', 'capital city'].includes(t.type)
+        )
+        .reduce(
+          (sum, city) =>
+            sum +
+            this.neighbors(city).filter(t => t.type === 'greenery').length,
+          0
+        );
+
+      // Cards
+      player.score.cards = player.cards.automated
+        .concat(player.cards.active)
+        .concat(player.cards.event)
+        .map(c => this.cardStore.project[c.card])
+        .concat(player.cards.corp.map(c => this.cardStore.corp[c.card]))
+        .reduce(
+          (sum, c) =>
+            sum + (!c.vp ? 0 : isNaN(c.vp) ? c.vp(player, this) : c.vp),
+          0
+        );
+
+      // Calculate total score
+      player.score.total = Object.values(player.score).reduce(
+        (sum, val) => sum + val,
+        0
+      );
+    });
   }
 
   /**
    * Checks if we've reached the end of the game
    */
   checkEndGame() {
-    return (
+    if (this.endGame) {
+      return true;
+    }
+
+    if (
       this.params.temperature >= paramStats.temperature.max &&
       this.params.oxygen >= paramStats.oxygen.max &&
       this.field.flat().filter(t => t.type === 'ocean').length <=
         paramStats.ocean.start
-    );
+    ) {
+      LogService.pushLog(
+        this.id,
+        new Log(0, 'Mars is TERRAFORMED!', true, {
+          classNames: ['phase', 'end-phase']
+        })
+      );
+
+      this.gameEnd = true;
+    }
+
+    return this.endGame;
   }
 
   /**

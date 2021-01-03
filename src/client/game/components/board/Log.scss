@@ -29,18 +29,26 @@ $title-font: 'Prototype', sans-serif;
       .standard-project {
         color: black;
         padding: 0 0.5em;
-        font-size: .8em;
+        font-size: 0.8em;
       }
 
       .milestone {
         text-transform: uppercase;
         font-family: $title-font;
         color: #30231a;
-        background: linear-gradient(135deg, #ffce99 0%, #ffce99 5%, #ef7e2e 15%, #ef7e2e 85%, #ffce99 95%, #ffce99 100%);
+        background: linear-gradient(
+          135deg,
+          #ffce99 0%,
+          #ffce99 5%,
+          #ef7e2e 15%,
+          #ef7e2e 85%,
+          #ffce99 95%,
+          #ffce99 100%
+        );
         border: 2px solid #e27d39;
         border-radius: 50% 50% 0 0 / 20% 20% 0 0;
         padding: 0.1em 0.2em 0;
-        font-size: .9em;
+        font-size: 0.9em;
       }
 
       .award {
@@ -51,8 +59,16 @@ $title-font: 'Prototype', sans-serif;
         padding: 2px 7px 2px 4px;
         transition: box-shadow 0.3s ease;
         box-shadow: 0 0 0 2px #c78c33 inset;
-        border-radius: .7em;
-        background: linear-gradient(120deg, #f7b152 0%, #f7b152 40%, #fcf1a2 50%, #f9bc52 60%, #f6ec71 75%, #cb7f29 100%);
+        border-radius: 0.7em;
+        background: linear-gradient(
+          120deg,
+          #f7b152 0%,
+          #f7b152 40%,
+          #fcf1a2 50%,
+          #f9bc52 60%,
+          #f6ec71 75%,
+          #cb7f29 100%
+        );
       }
 
       .log-inline {
@@ -125,7 +141,7 @@ $title-font: 'Prototype', sans-serif;
         }
       }
       sup {
-        font-size: .6em;
+        font-size: 0.6em;
         vertical-align: super;
       }
 
@@ -168,7 +184,7 @@ $title-font: 'Prototype', sans-serif;
 
         &.production-phase {
           background: linear-gradient(
-            to right, 
+            to right,
             #003d22 0%,
             #009f3e 20%,
             #bacb00 40%,
@@ -181,7 +197,7 @@ $title-font: 'Prototype', sans-serif;
 
         &.research-phase {
           background: linear-gradient(
-            to right, 
+            to right,
             #141e30 0%,
             #243b55 20%,
             #436d9d 40%,
@@ -196,26 +212,35 @@ $title-font: 'Prototype', sans-serif;
         }
 
         &.end-phase {
-          background: linear-gradient(90deg, 
-          hsl(0, 80%, 40%),
+          background: linear-gradient(
+            90deg,
+            hsl(0, 80%, 40%),
             hsl(0, 80%, 40%),
             hsl(240, 80%, 40%),
+            hsl(240, 80%, 40%),
             hsl(120, 80%, 30%),
+            hsl(120, 80%, 30%),
+            hsl(60, 80%, 40%),
             hsl(60, 80%, 40%),
             hsl(0, 0%, 35%),
             hsl(0, 0%, 35%),
-            hsl(60, 80%, 40%),
-            hsl(120, 80%, 30%),
-            hsl(240, 80%, 40%),
             hsl(0, 80%, 40%),
-            hsl(0, 80%, 40%)
+            hsl(0, 80%, 40%),
+            hsl(240, 80%, 40%),
+            hsl(240, 80%, 40%),
+            hsl(120, 80%, 30%),
+            hsl(120, 80%, 30%),
+            hsl(60, 80%, 40%),
+            hsl(60, 80%, 40%),
+            hsl(0, 0%, 35%),
+            hsl(0, 0%, 35%)
           );
           background-size: 250% 250%;
           animation: endPhase 10s ease infinite;
-          text-shadow: 2px 2px 2px rgba(0,0,0,.5);
+          text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
           font-size: 1.3em;
           padding: 8px;
-          box-shadow: 0 0 0 4px #0004 inset;
+          box-shadow: 0 0 0 4px #0003 inset;
         }
       }
     }
@@ -252,8 +277,6 @@ $title-font: 'Prototype', sans-serif;
       }
     }
   }
-
-  
 }
 
 @keyframes endPhase {

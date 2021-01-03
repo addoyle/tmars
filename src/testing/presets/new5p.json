@@ -77,8 +77,7 @@
         "heat": 8,
         "ocean": 2,
         "cost": {}
-      },
-      "modifiers": {}
+      }
     },
     {
       "name": "Frank",
@@ -156,8 +155,7 @@
         "heat": 8,
         "ocean": 2,
         "cost": {}
-      },
-      "modifiers": {}
+      }
     },
     {
       "name": "Colin",
@@ -235,8 +233,7 @@
         "heat": 8,
         "ocean": 2,
         "cost": {}
-      },
-      "modifiers": {}
+      }
     },
     {
       "name": "Larissa",
@@ -314,8 +311,7 @@
         "heat": 8,
         "ocean": 2,
         "cost": {}
-      },
-      "modifiers": {}
+      }
     },
     {
       "name": "Adrian",
@@ -393,8 +389,7 @@
         "heat": 8,
         "ocean": 2,
         "cost": {}
-      },
-      "modifiers": {}
+      }
     }
   ],
   "turn": 0,

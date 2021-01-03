@@ -62,7 +62,7 @@ export default class Player {
     cost: {} // Cost modifier functions
   };
   passed;
-  modifiers = {};
+  score = {};
 
   constructor(name) {
     this.name = name;

@@ -186,13 +186,14 @@ const Tharsis = {
     {
       name: 'Scientist',
       icon: <Tag name="science" />,
-      description: 'Have the most science tags in play'
+      description: 'Have the most science tags in play',
+      value: player => player.tags.science
     },
     {
       name: 'Thermalist',
       icon: <Resource name="heat" />,
       description: 'Have the most heat resources',
-      value: player => player.tags.science
+      value: player => player.resources.heat
     },
     {
       name: 'Miner',
