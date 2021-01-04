@@ -20,6 +20,7 @@ const CardModal = ({ gameStore, cardStore }) => {
 
   // State for dragging
   const [dragging, setDragging] = useState(false);
+  const [prevTouch, setPrevTouch] = useState(null);
 
   const card = cardStore.get(currentCard.type, currentCard.card);
 
@@ -50,6 +51,18 @@ const CardModal = ({ gameStore, cardStore }) => {
             }
           }}
           onMouseLeave={() => setDragging(false)}
+          onTouchMove={e => {
+            const touch = e.touches[0];
+            const ret =
+              dragging && prevTouch
+                ? window.scrollTo(
+                    window.scrollX - (touch.pageX - prevTouch.pageX),
+                    window.scrollY - (touch.pageY - prevTouch.pageY)
+                  )
+                : null;
+            setPrevTouch(touch);
+            return ret;
+          }}
         >
           <CardPreview
             card={currentCard.card}

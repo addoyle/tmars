@@ -21,7 +21,7 @@ export default new Active({
   flavor: 'In charge of establishing comfortable temperatures',
   actions: [
     {
-      name: 'Spend 7 M€',
+      name: 'Spend M€',
       icon: (
         <>
           <span>8</span>

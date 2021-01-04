@@ -75,7 +75,7 @@ export default class Project extends Card {
         tile === 'ocean' || this.restriction.anyone
           ? tiles.length
           : tiles.filter(t => t.player === player.number);
-      if (actual < val) {
+      if ((!max && actual < val) || (max && actual > val)) {
         result.valid = false;
         result.msg = `Requires ${val} ${tile} tile${val > 1 ? 's' : ''}`;
       }

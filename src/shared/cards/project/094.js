@@ -26,7 +26,7 @@ export default new Active({
   desc,
   flavor: 'E=mc². 1 kg = a LOT of energy',
   action: (player, game) => {
-    game.production(player, 'tile', 6);
+    game.production(player, 'power', 6);
     player.rates.cost.space = (player.rates.cost.space || 0) - 2;
   },
   emoji: '🎆',

@@ -357,12 +357,57 @@ $title-font: 'Prototype', sans-serif;
         }
 
         .rewards {
-          margin-bottom: -87px;
-
           .resources {
             font-size: 88px;
             margin: 0 0 -46px;
             padding: 0;
+
+            .icon {
+              font-size: 88px;
+            }
+          }
+        }
+
+        @media (hover: none) {
+          foreignObject {
+            & > div {
+              > .resource {
+                opacity: 0.9;
+                font-size: 120px;
+              }
+
+              > .tile {
+                + .resource {
+                  font-size: 36px;
+                  top: -219px;
+                  margin-left: -299px;
+                }
+              }
+
+              .rewards {
+                .resources {
+                  margin-bottom: -69px;
+                  margin-left: -299px;
+                  margin-top: -54px;
+
+                  .icon {
+                    font-size: 24px;
+                  }
+                  .param.card {
+                    font-size: 24px;
+                    z-index: 0;
+                    margin-top: 14px;
+                    margin-left: 2px;
+                  }
+                }
+                .text {
+                  margin-top: 220px;
+                }
+                img.city {
+                  margin-top: 120px;
+                }
+              }
+            }
           }
         }
 

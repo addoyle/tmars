@@ -2,8 +2,6 @@ import React from 'react';
 import Active from '../Active';
 import { Resource, Tile } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc = 'Effect: When anyone places an ocean tile, gain 2 plants.';
 const desc = 'It must be -12°C or colder to play. Gain 1 plant.';
 
@@ -21,8 +19,14 @@ export default new Active({
   activeDesc,
   flavor: 'Suitable for freezing temperatures',
   action: (player, game) => game.resources(player, 'plant', 1),
+  events: {
+    onAnyTile: (player, game, tile) =>
+      // Is an city
+      tile.type === 'ocean' &&
+      // Bump plants
+      game.resources(player, 'plant', 2)
+  },
   emoji: '🥗',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

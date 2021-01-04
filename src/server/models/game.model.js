@@ -978,7 +978,7 @@ class Game extends SharedGame {
         })
       );
 
-      this.gameEnd = true;
+      this.endGame = true;
     }
 
     return this.endGame;

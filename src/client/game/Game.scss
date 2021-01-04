@@ -7,6 +7,7 @@ $title-font: 'Prototype', sans-serif;
    v2.0 | 20110126
    License: none (public domain)
 */
+// prettier-ignore
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -28,154 +29,221 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
+// prettier-ignore
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1;
-	overflow: hidden;
+  line-height: 1;
 }
-ol, ul {
-	list-style: none;
+@media (hover: hover) {
+  body {
+    overflow: hidden;
+  }
 }
-blockquote, q {
-	quotes: none;
+ol,
+ul {
+  list-style: none;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
 }
 table {
-	border-collapse: collapse;
-	border-spacing: 0;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
 
 .tmars {
   background-color: #444;
-	
-	* {
-		box-sizing: border-box;
-	}
-	
-	p {
-		margin: 0;
-	}
-	
-	/**
+
+  * {
+    box-sizing: border-box;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  /**
 	 * Utility classes
 	 */
-	.text-center { text-align: center; }
-	.text-left { text-align: left; }
-	.text-right { text-align: right; }
-	.float-right { float: right; }
-	strong, .strong { font-weight: bold; }
-	em, .em { font-style: italic; }
-	.center:not(.flex) {
-		margin-left: auto;
-		margin-right: auto;
-	}
-	.flex { display: flex; }
-	.center-items { align-items: center; }
-	.inline-flex { display: inline-flex; }
-	.inline-flex, .flex {
-		&.center {
-			justify-content: center;
-		}
-		&.right {
-			justify-content: flex-end;
-		}
-	}
-	.col-1 { flex: 1; }
-	.col-2 { flex: 2; }
-	.col-3 { flex: 3; }
-	.col-4 { flex: 4; }
-	.col-5 { flex: 5; }
-	.col-6 { flex: 6; }
-	.col-7 { flex: 7; }
-	.col-8 { flex: 8; }
-	.middle { align-self: center; }
-	.bottom { align-self: flex-end; }
-	.inline-block { display: inline-block; }
-	.valign-top { vertical-align: top; }
-	.m-top { margin-top: 1em; }
-	.m-bottom { margin-bottom: 1em; }
-	.m-right { margin-right: .2em; }
-	.p-top { padding-top: 1em; }
-	.p-bottom { padding-top: 1em }
-	.p-rel { position: relative; }
-	.gutter > * {
-		margin-left: .5em;
-		&:first-child {
-			margin-left: inherit;
-		}
-	}
-	.sans-serif {
-		font-family: sans-serif;
-	}
+  .text-center {
+    text-align: center;
+  }
+  .text-left {
+    text-align: left;
+  }
+  .text-right {
+    text-align: right;
+  }
+  .float-right {
+    float: right;
+  }
+  strong,
+  .strong {
+    font-weight: bold;
+  }
+  em,
+  .em {
+    font-style: italic;
+  }
+  .center:not(.flex) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .flex {
+    display: flex;
+  }
+  .center-items {
+    align-items: center;
+  }
+  .inline-flex {
+    display: inline-flex;
+  }
+  .inline-flex,
+  .flex {
+    &.center {
+      justify-content: center;
+    }
+    &.right {
+      justify-content: flex-end;
+    }
+  }
+  .col-1 {
+    flex: 1;
+  }
+  .col-2 {
+    flex: 2;
+  }
+  .col-3 {
+    flex: 3;
+  }
+  .col-4 {
+    flex: 4;
+  }
+  .col-5 {
+    flex: 5;
+  }
+  .col-6 {
+    flex: 6;
+  }
+  .col-7 {
+    flex: 7;
+  }
+  .col-8 {
+    flex: 8;
+  }
+  .middle {
+    align-self: center;
+  }
+  .bottom {
+    align-self: flex-end;
+  }
+  .inline-block {
+    display: inline-block;
+  }
+  .valign-top {
+    vertical-align: top;
+  }
+  .m-top {
+    margin-top: 1em;
+  }
+  .m-bottom {
+    margin-bottom: 1em;
+  }
+  .m-right {
+    margin-right: 0.2em;
+  }
+  .p-top {
+    padding-top: 1em;
+  }
+  .p-bottom {
+    padding-top: 1em;
+  }
+  .p-rel {
+    position: relative;
+  }
+  .gutter > * {
+    margin-left: 0.5em;
+    &:first-child {
+      margin-left: inherit;
+    }
+  }
+  .sans-serif {
+    font-family: sans-serif;
+  }
 }
 
 button {
-	padding: 2px;
-	border: 1px solid #ccc;
-	background: linear-gradient(
-		135deg,
-		#444 0%,
-		#eee 25%,
-		#bbb 50%,
-		#bbb 75%,
-		#eee 100%
-	);
-	border-top-right-radius: 10px;
-	cursor: pointer;
-	transition: box-shadow 0.15s ease, opacity .3s ease, color .3s ease;
-	font-family: $title-font;
-	font-size: 1.25em;
-	height: 38px;
-	outline: none;
-	line-height: 1;
-	color: #000;
+  padding: 2px;
+  border: 1px solid #ccc;
+  background: linear-gradient(
+    135deg,
+    #444 0%,
+    #eee 25%,
+    #bbb 50%,
+    #bbb 75%,
+    #eee 100%
+  );
+  border-top-right-radius: 10px;
+  cursor: pointer;
+  transition: box-shadow 0.15s ease, opacity 0.3s ease, color 0.3s ease;
+  font-family: $title-font;
+  font-size: 1.25em;
+  height: 38px;
+  outline: none;
+  line-height: 1;
+  color: #000;
 
-	&.primary {
-		border-width: 2px;
-	}
+  &.primary {
+    border-width: 2px;
+  }
 
-	.pill {
-		padding: 4px 12px;
-		margin-right: 4px;
-		background-color: rgba(0, 0, 0, 0.75);
-		color: #eee;
-		border-radius: 18px;
-		font-size: 12px;
-	}
+  .pill {
+    padding: 4px 12px;
+    margin-right: 4px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: #eee;
+    border-radius: 18px;
+    font-size: 12px;
+  }
 
-	.resources {
-		font-size: 1em;
-		
-		.mc {
-			font-size: 1.3em;
-		}
+  .resources {
+    font-size: 1em;
 
-		.production {
-			font-size: .75em;
-		}
-	}
+    .mc {
+      font-size: 1.3em;
+    }
 
-	&.disabled, &:disabled {
-		color: #666;
-		cursor: not-allowed;
-		opacity: .5;
-	}
+    .production {
+      font-size: 0.75em;
+    }
+  }
 
-	&:hover:not(:disabled):not(.disabled) {
-		box-shadow: 0 0 0 4px #666;
-	}
-	&:active:not(:disabled):not(.disabled) {
-		box-shadow: 0 0 0 4px #666, 0 0 12px rgba(0, 0, 0, 0.5) inset;
-	}
+  &.disabled,
+  &:disabled {
+    color: #666;
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
 
-	.param.prelude .project:before {
-		font-size: 1pt;
-	}
+  &:hover:not(:disabled):not(.disabled) {
+    box-shadow: 0 0 0 4px #666;
+  }
+  &:active:not(:disabled):not(.disabled) {
+    box-shadow: 0 0 0 4px #666, 0 0 12px rgba(0, 0, 0, 0.5) inset;
+  }
+
+  .param.prelude .project:before {
+    font-size: 1pt;
+  }
 }

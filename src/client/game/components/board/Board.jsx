@@ -69,14 +69,14 @@ const Board = props => {
       className={classNames('board', { dragging })}
       onMouseDown={() => setDragging(true)}
       onMouseUp={() => setDragging(false)}
-      onMouseMove={e => {
+      onMouseMove={e =>
         dragging
           ? window.scrollTo(
               window.scrollX - e.movementX,
               window.scrollY - e.movementY
             )
-          : null;
-      }}
+          : null
+      }
       ref={boardContainer}
     >
       <Field />
