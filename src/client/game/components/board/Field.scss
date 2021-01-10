@@ -404,7 +404,11 @@ $title-font: 'Prototype', sans-serif;
                   margin-top: 220px;
                 }
                 img.city {
-                  margin-top: 120px;
+                  margin-bottom: -250px;
+
+                  & + .text {
+                    margin-top: 130px;
+                  }
                 }
               }
             }

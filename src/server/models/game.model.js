@@ -614,6 +614,14 @@ class Game extends SharedGame {
         classNames: ['phase', 'prelude-phase']
       })
     );
+    LogService.pushLog(
+      this.id,
+      new Log(0, [
+        'Reveal your ',
+        { prelude: 'preludes', drawer: 'prelude' },
+        '.'
+      ])
+    );
 
     this.phase = 'prelude';
     this.turn = this.startingPlayer;

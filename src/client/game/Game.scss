@@ -37,11 +37,6 @@ footer, header, hgroup, menu, nav, section {
 body {
   line-height: 1;
 }
-@media (hover: hover) {
-  body {
-    overflow: hidden;
-  }
-}
 ol,
 ul {
   list-style: none;
@@ -60,6 +55,15 @@ q:after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+body {
+  background-color: black;
+}
+@media (hover: hover) {
+  body {
+    overflow: hidden;
+  }
 }
 
 .tmars {

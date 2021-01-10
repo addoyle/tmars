@@ -28,7 +28,12 @@ const card = new Corporation({
     padding: '.3em'
   },
   startingMC: 38,
-  starting: (player, game) => game.production(player, 'steel', 1),
+  starting: (player, game) => {
+    game.production(player, 'steel', 1);
+
+    // Revealing corps doesn't trigger events, so place a microbe now
+    game.cardResource(player, card, 1);
+  },
   tags: ['microbe', 'building'],
   set: 'promo',
   desc,
