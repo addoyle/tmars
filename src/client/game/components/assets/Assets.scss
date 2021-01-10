@@ -84,7 +84,8 @@ $title-font: 'Prototype', sans-serif;
 .param {
   position: relative;
 
-  .icon, .icon.resource {
+  .icon,
+  .icon.resource {
     position: absolute;
     font-size: 0.7em;
     top: -0.5em;
@@ -93,7 +94,7 @@ $title-font: 'Prototype', sans-serif;
 
   &.card {
     .mc {
-      left: .4em;
+      left: 0.4em;
     }
 
     .title,
@@ -147,6 +148,7 @@ $title-font: 'Prototype', sans-serif;
   width: 1em;
   height: 1em;
   vertical-align: text-bottom;
+  text-align: center;
 
   .base {
     stroke: black;

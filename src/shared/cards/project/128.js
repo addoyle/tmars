@@ -7,8 +7,6 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc =
   'Effect: When you play an animal or a plant tag (including these 2), add an animal to this card.';
 const desc =
@@ -48,11 +46,12 @@ const card = new Active({
   },
   events: {
     onCardPlayed: (player, game, playedCard) =>
-      // Has an animal or plant tag
-      (playedCard.tags.includes('animal') ||
-        playedCard.tags.includes('plant')) &&
-      // Bump resource
-      game.cardResource(player, card, 1)
+      // Bump resource by the number of plant and animal tags
+      game.cardResource(
+        player,
+        card,
+        playedCard.tags.filter(tag => ['animal', 'plant'].includes(tag)).length
+      )
   },
   vp: (player, game) => Math.floor(game.cardResource(player, card) / 2),
   emoji: '🏞️',

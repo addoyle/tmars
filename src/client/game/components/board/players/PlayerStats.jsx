@@ -46,7 +46,7 @@ const PlayerStats = props => {
             tags={player.tags}
             venus={props.gameStore.sets.includes('venus')}
           />
-          <Tiles />
+          <Tiles player={player.number} />
         </div>
         {props.gameStore.phase === 'score' ? (
           <div className="col-1 score">
@@ -105,6 +105,7 @@ PlayerStats.propTypes = {
     }),
     players: PropTypes.arrayOf(
       PropTypes.shape({
+        number: PropTypes.number,
         resources: PropTypes.object,
         production: PropTypes.production,
         tags: PropTypes.object,
