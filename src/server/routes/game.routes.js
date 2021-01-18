@@ -13,6 +13,7 @@ const validate = async (req, res, next) => {
 };
 
 router.get('/card-numbers', GameController.getAllCardNumbers);
+router.get('/games', GameController.getGames);
 router.get('/:id/loadPreset', GameController.loadPreset);
 router.get('/:id', validate, GameController.getGame);
 router.post('/:id/create', validate, GameController.createGame);
@@ -31,6 +32,11 @@ router.post(
   '/:id/confirm-selection/:type',
   validate,
   GameController.confirmSelection
+);
+router.post(
+  '/:id/switch-drawer/:drawer',
+  validate,
+  GameController.switchDrawer
 );
 router.post('/:id/place-tile/:tileId', validate, GameController.placeTile);
 router.post('/:id/pass-skip', validate, GameController.passSkip);

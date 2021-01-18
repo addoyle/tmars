@@ -77,6 +77,35 @@ class GameService {
   }
 
   /**
+   * Gets the list of games
+   */
+  getGames(done) {
+    return client.keys('*', (err, keys) => {
+      client.mget(...keys, (err, games) => {
+        done(
+          games
+            .map(game => JSON.parse(game))
+            .map(game => ({
+              id: game.id,
+              sets: game.sets,
+              players: game.players.map(player => ({
+                name: player.name,
+                number: player.number,
+                tr: player.tr
+              })),
+              turn: game.turn,
+              params: game.params,
+              variants: game.variants,
+              board: game.board,
+              phase: game.phase,
+              endGame: game.endGame
+            }))
+        );
+      });
+    });
+  }
+
+  /**
    * Gets the current state of the game and converts to a format that can be exported to the UI
    *
    * @param {*} id Game ID
@@ -504,6 +533,26 @@ class GameService {
     return this.export(game);
   }
 
+  /**
+   * Switch the opened drawer
+   *
+   * @param {string} id Game ID
+   * @param {number} playerNum Player number
+   * @param {string} drawer Drawer to switch to
+   */
+  switchDrawer(id, playerNum, drawer) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+    player.ui.drawer = drawer;
+    return this.export(game);
+  }
+
+  /**
+   * Pick a player
+   *
+   * @param {string} id Game ID
+   * @param {number} pickedPlayerID Player that was chosen
+   */
   @push(gameFilter)
   pickPlayer(id, pickedPlayerID) {
     const game = this.games[id];

@@ -20,6 +20,16 @@ export async function getGame(req, res) {
 }
 
 /**
+ * Get the current list of games
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function getGames(req, res) {
+  GameService.getGames(games => res.send(games));
+}
+
+/**
  * Create a new game
  *
  * @param {*} req
@@ -126,6 +136,15 @@ export function confirmSelection(req, res) {
     req.body.player,
     req.params.type,
     res
+  );
+  res.sendStatus(200);
+}
+
+export function switchDrawer(req, res) {
+  GameService.switchDrawer(
+    `${req.params.id}`,
+    req.body.player,
+    req.params.drawer
   );
   res.sendStatus(200);
 }

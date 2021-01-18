@@ -91,6 +91,8 @@ class Game extends SharedGame {
     if (this.drawer !== 'reveal') {
       this.player.cards.reveal = [];
     }
+
+    this.doSwitchDrawer(this.drawer);
   }
 
   /**
@@ -209,6 +211,12 @@ class Game extends SharedGame {
 
   confirmSelection(type) {
     API(`game/${gameId()}/confirm-selection/${type}`, POST, {
+      player: +PLAYER_NUM
+    });
+  }
+
+  doSwitchDrawer(drawer) {
+    API(`game/${gameId()}/switch-drawer/${drawer}`, POST, {
       player: +PLAYER_NUM
     });
   }

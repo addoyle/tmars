@@ -9,6 +9,7 @@ import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Content from './components/Content.jsx';
 import GameModel from './models/game.model.js';
+import './Lobby.scss';
 
 const userStore = new UserModel();
 const gameStore = new GameModel();
