@@ -237,6 +237,29 @@ class Game extends SharedGame {
     }
   }
 
+  playStartingAction() {
+    const player = this.players[this.turn - 1];
+    const corp = this.cardStore.corp[player.cards.corp[0].card];
+
+    if (
+      this.params.generation === 1 &&
+      player.firstAction &&
+      corp.firstAction
+    ) {
+      // To do once all card actions are complete (placing tiles, etc.)
+      const done = () => {
+        this.playerStatus?.done();
+
+        this.nextTurn();
+      };
+
+      corp.firstAction(player, this, done);
+      if (corp.firstAction.length <= 2) {
+        done();
+      }
+    }
+  }
+
   /**
    * Draw a project card for a player
    *
@@ -711,6 +734,8 @@ class Game extends SharedGame {
       })
     );
 
+    this.playStartingAction();
+
     this.phase = 'action';
     this.turn = this.startingPlayer;
     this.players[this.turn - 1].firstAction = true;
@@ -921,11 +946,12 @@ class Game extends SharedGame {
       player.score.cards = player.cards.automated
         .concat(player.cards.active)
         .concat(player.cards.event)
-        .map(c => this.cardStore.project[c.card])
+        .map(card => this.cardStore.project[card.card])
         .concat(player.cards.corp.map(c => this.cardStore.corp[c.card]))
         .reduce(
-          (sum, c) =>
-            sum + (!c.vp ? 0 : isNaN(c.vp) ? c.vp(player, this) : c.vp),
+          (sum, card) =>
+            sum +
+            (!card.vp ? 0 : isNaN(card.vp) ? card.vp(player, this) : card.vp),
           0
         );
 
@@ -1012,6 +1038,7 @@ class Game extends SharedGame {
       return;
     }
 
+    // Go to the next player that hasn't passed
     do {
       this.turn++;
       if (this.turn > this.players.length) {
@@ -1020,6 +1047,9 @@ class Game extends SharedGame {
     } while (this.players[this.turn - 1].passed);
 
     this.players[this.turn - 1].firstAction = true;
+
+    // Play starting action, if applicable
+    this.playStartingAction();
   }
 
   /**

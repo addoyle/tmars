@@ -62,6 +62,8 @@ export default class Player {
     cost: {} // Cost modifier functions
   };
   passed = false;
+  firstAction = true;
+  startingAction = true;
   score = {};
 
   constructor(name) {

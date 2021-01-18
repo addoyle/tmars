@@ -29,7 +29,13 @@ const card = new Active({
       (playedCard.tags.includes('animal') ||
         playedCard.tags.includes('plant') ||
         playedCard.tags.includes('microbe')) &&
-      game.cardResource(player, card, 1)
+      game.cardResource(
+        player,
+        card,
+        playedCard.tags.filter(tag =>
+          ['animal', 'plant', 'microbe'].includes(tag)
+        ).length
+      )
   },
   vp: (player, game) => Math.floor(game.cardResource(player, card) / 3),
   emoji: '🍄',
