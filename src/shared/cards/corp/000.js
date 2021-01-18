@@ -27,10 +27,6 @@ export default new Corporation({
     borderRadius: '0 0 .75em .75em/0 0 100% 100%'
   },
   startingMC: 42,
-  starting: player => {
-    player.cards.hand = player.cards.buy;
-    player.cards.buy = [];
-  },
   tags: [],
   desc,
   flavor:
