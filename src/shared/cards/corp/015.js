@@ -41,11 +41,16 @@ const card = new Corporation({
   resource: 'microbe',
   events: {
     onCardPlayed: (player, game, playedCard) => {
+      // Is a building card
       if (playedCard.tags.includes('building')) {
+        // TODO: This should be an OR
+        // Resources are over 2, raise plant production
         if (game.cardResource(player, card) >= 2) {
           game.production(player, 'plant', 1);
           game.cardResource(player, card, -2);
-        } else {
+        }
+        // Otherwise, bump resources
+        else {
           game.cardResource(player, card, 1);
         }
         return true;

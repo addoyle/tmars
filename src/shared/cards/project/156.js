@@ -15,7 +15,7 @@ export default new Active({
   flavor: 'Standard solutions honed to perfection',
   emoji: '👨‍💻',
   events: {
-    onStandardProjectPlayed: (player, game, project) =>
+    onStandardProject: (player, game, project) =>
       project.cost > 0 && game.resources(player, 'megacredit', 3)
   },
   activeLayout: (

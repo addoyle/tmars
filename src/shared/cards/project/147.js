@@ -12,9 +12,7 @@ const activeDesc =
 const desc =
   'Requires 8% oxygen. Add 1 animal to this card. Decrease any plant production 1 step. 1 VP per 2 animals on this card.';
 
-// TODO ACTION
-
-export default new Active({
+const card = new Active({
   number: '147',
   title: 'Herbivores',
   cost: 12,
@@ -25,9 +23,10 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'animal',
   flavor: 'Inhabiting the green hills of Mars',
   action: (player, game, done) => {
-    // TODO: figure out how to add an animal to a card
+    game.cardResource(player, card, 1);
     game.promptPlayer(
       player,
       { production: 'plant' },
@@ -46,9 +45,15 @@ export default new Active({
       msg: !valid ? 'Requires at least one player with plant production' : null
     };
   },
-  vp: () => Math.floor(this.resources / 2),
+  events: {
+    onTile: (player, game, tile) =>
+      // Is a greenery
+      tile.type === 'greenery' &&
+      // Bump animals
+      game.cardResource(player, card, 1)
+  },
+  vp: (player, game) => Math.floor(game.cardResource(player, card) / 2),
   emoji: '🦌️',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -82,3 +87,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

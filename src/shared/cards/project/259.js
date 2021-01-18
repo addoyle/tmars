@@ -6,13 +6,11 @@ import {
   Resource
 } from '../../../client/game/components/assets/Assets';
 
-// TODO action
-
 const activeDesc =
   'Effect: When you play a Science tag, including this, add 1 animal to this card.';
 const desc = 'Requires Venus 18%. 1 VP for each animal on this card.';
 
-export default new Active({
+const card = new Active({
   number: '259',
   title: 'Venusian Animals',
   cost: 15,
@@ -24,10 +22,21 @@ export default new Active({
   },
   activeDesc,
   desc,
+  resource: 'animal',
   flavor: 'Heavy genetic engineering is needed for this work',
-  vp: () => this.resources,
+  events: {
+    onCardPlayed: (player, game, playedCard) =>
+      // Card has a science tag
+      playedCard.tags.includes('science') &&
+      // Bump resource
+      game.cardResource(
+        player,
+        card,
+        playedCard.tags.filter(tag => tag === 'science').length
+      )
+  },
+  vp: (player, game) => game.cardResource(player, card),
   emoji: '🦓',
-  todo: true,
   activeLayout: (
     <div className="text-center">
       <div className="resources">
@@ -51,3 +60,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

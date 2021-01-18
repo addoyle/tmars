@@ -646,7 +646,7 @@ class GameService {
           player.resources.megacredit -= cost;
 
           // Only fire when M€ was used as using plant/heat doesn't actually count as a standard project
-          game.fire('onStandardProjectPlayed', player, { project, cost });
+          game.fire('onStandardProject', player, { project, cost });
         }
 
         const done = () => game.nextTurn();

@@ -24,7 +24,9 @@ export default new Corporation({
   effectDesc,
   events: {
     onTile: (player, game, tile) =>
+      // Space has steel or titanium placement bonus
       ['steel', 'titanium'].some(r => tile.resources?.includes(r)) &&
+      // Bump steel production
       game.production(player, 'steel', 1)
   },
   flavor:
