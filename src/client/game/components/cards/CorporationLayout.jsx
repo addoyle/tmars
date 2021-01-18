@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './CorporationLayout.scss';
 import CardLayout from './CardLayout';
-import { Tag } from '../assets/Assets';
+import { Resource, Tag } from '../assets/Assets';
 import classNames from 'classnames';
 
 /**
@@ -26,6 +26,12 @@ const CorporationLayout = props => (
         className={classNames('title', props.titleClass)}
       >
         {props.title}
+        {props.resource ? (
+          <div className="resources image-resources">
+            <span>{props.resource.value}</span>
+            <Resource name={props.resource.type} />
+          </div>
+        ) : null}
       </div>
       <div className="body">{props.layout}</div>
       <div className="flavor bottom">{props.flavor}</div>
@@ -41,12 +47,12 @@ CorporationLayout.propTypes = {
   tags: PropTypes.arrayOf(PropTypes.string),
   layout: PropTypes.node.isRequired,
   flavor: PropTypes.string,
-  simple: PropTypes.bool,
-  todo: PropTypes.bool,
   resource: PropTypes.shape({
-    type: PropTypes.string,
-    value: PropTypes.number
-  })
+    value: PropTypes.number,
+    type: PropTypes.string
+  }),
+  simple: PropTypes.bool,
+  todo: PropTypes.bool
 };
 
 export default CorporationLayout;

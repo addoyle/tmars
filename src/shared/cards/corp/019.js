@@ -30,6 +30,7 @@ const card = new Corporation({
   set: 'venus',
   desc,
   effectDesc,
+  resource: 'floater',
   todo: true,
   vp: (player, game) => Math.floor(game.cardResource(player, card) / 3),
   flavor:
