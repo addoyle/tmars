@@ -12,6 +12,7 @@ import classnames from 'classnames';
 import '../../game/components/cards/CardLayout.scss';
 import PropTypes from 'prop-types';
 import Player from '../../game/components/board/players/Player';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -71,11 +72,16 @@ const setBlurbs = {
   turmoil: 'Turmoil'
 };
 
+const gameStates = {
+  notStarted: 0,
+  inProgress: 1,
+  complete: 2
+};
+
 const Games = ({ gameStore }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
 
-  // Subscribe to the game
   useEffect(() => {
     // Get the current games
     gameStore.getGames();
@@ -89,10 +95,10 @@ const Games = ({ gameStore }) => {
       <Paper className={classes.list} variant="outlined">
         {gameStore.games.map(game => {
           const gameState = ['end', 'score'].includes(game.phase)
-            ? 'Completed'
+            ? gameStates.complete
             : ['research', 'action'].includes(game.phase)
-            ? 'In Progress'
-            : 'Not Started';
+            ? gameStates.inProgress
+            : gameStates.notStarted;
 
           return (
             <Accordion
@@ -104,19 +110,26 @@ const Games = ({ gameStore }) => {
             >
               <AccordionSummary>
                 <div className={classes.gameTitle}>
-                  {game.id}
-                  <Chip
-                    className={classnames(classes.chip, classes.statusChip)}
-                    size="small"
-                    label={gameState}
-                    color={
-                      gameState === 'Completed'
-                        ? 'secondary'
-                        : gameState === 'Not Started'
-                        ? 'default'
-                        : 'primary'
+                  <Typography component="span" variant="h6">
+                    {game.id}
+                  </Typography>
+                  <Tooltip
+                    arrow
+                    title={
+                      ['Not Started', 'In Game', 'Game Complete'][gameState]
                     }
-                  />
+                  >
+                    <Chip
+                      className={classnames(classes.chip, classes.statusChip)}
+                      size="small"
+                      label={
+                        <FontAwesomeIcon
+                          icon={['globe', 'clock', 'tree'][gameState]}
+                        />
+                      }
+                      color={['default', 'primary', 'secondary'][gameState]}
+                    />
+                  </Tooltip>
                 </div>
                 <div className={classes.sets}>
                   {game.sets.map(set => (
@@ -137,16 +150,16 @@ const Games = ({ gameStore }) => {
                     }[game.board]
                   }}
                 />
-                <div className={classes.occupancy}>({game.players.length})</div>
-              </AccordionSummary>
-              <AccordionDetails>
                 <ul className="game-variants">
                   {Object.keys(game.variants).map(key => (
                     <li key={`${game.id}-${key}`}>
-                      <Chip size="small" label={key} />
+                      <Chip size="small" label={key} variant="outlined" />
                     </li>
                   ))}
                 </ul>
+                <div className={classes.occupancy}>({game.players.length})</div>
+              </AccordionSummary>
+              <AccordionDetails>
                 <ul className="game-players">
                   {game.players.map(player => (
                     <li className="" key={`${game.id}-${player.name}`}>
@@ -158,6 +171,14 @@ const Games = ({ gameStore }) => {
                           (window.location = `/game/${game.id}?player=${player.number}`)
                         }
                       />
+                      &mdash;{' '}
+                      <Typography
+                        variant="h6"
+                        component="span"
+                        className="corporation"
+                      >
+                        {player.corp}
+                      </Typography>
                     </li>
                   ))}
                 </ul>

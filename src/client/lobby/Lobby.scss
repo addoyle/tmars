@@ -1,6 +1,20 @@
+$title-font: 'Prototype', sans-serif;
+
+.lobby {
+  height: 100vh;
+  overflow: auto;
+}
 .center-items {
   align-items: center;
 }
 .inline-flex {
   display: inline-flex;
+}
+.game-variants {
+  display: flex;
+}
+.corporation {
+  color: #ffbb33;
+  font-family: $title-font;
+  text-decoration: underline dashed;
 }

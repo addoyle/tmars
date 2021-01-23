@@ -185,69 +185,69 @@ body {
   .sans-serif {
     font-family: sans-serif;
   }
-}
 
-button {
-  padding: 2px;
-  border: 1px solid #ccc;
-  background: linear-gradient(
-    135deg,
-    #444 0%,
-    #eee 25%,
-    #bbb 50%,
-    #bbb 75%,
-    #eee 100%
-  );
-  border-top-right-radius: 10px;
-  cursor: pointer;
-  transition: box-shadow 0.15s ease, opacity 0.3s ease, color 0.3s ease;
-  font-family: $title-font;
-  font-size: 1.25em;
-  height: 38px;
-  outline: none;
-  line-height: 1;
-  color: #000;
+  button {
+    padding: 2px;
+    border: 1px solid #ccc;
+    background: linear-gradient(
+      135deg,
+      #444 0%,
+      #eee 25%,
+      #bbb 50%,
+      #bbb 75%,
+      #eee 100%
+    );
+    border-top-right-radius: 10px;
+    cursor: pointer;
+    transition: box-shadow 0.15s ease, opacity 0.3s ease, color 0.3s ease;
+    font-family: $title-font;
+    font-size: 1.25em;
+    height: 38px;
+    outline: none;
+    line-height: 1;
+    color: #000;
 
-  &.primary {
-    border-width: 2px;
-  }
-
-  .pill {
-    padding: 4px 12px;
-    margin-right: 4px;
-    background-color: rgba(0, 0, 0, 0.75);
-    color: #eee;
-    border-radius: 18px;
-    font-size: 12px;
-  }
-
-  .resources {
-    font-size: 1em;
-
-    .mc {
-      font-size: 1.3em;
+    &.primary {
+      border-width: 2px;
     }
 
-    .production {
-      font-size: 0.75em;
+    .pill {
+      padding: 4px 12px;
+      margin-right: 4px;
+      background-color: rgba(0, 0, 0, 0.75);
+      color: #eee;
+      border-radius: 18px;
+      font-size: 12px;
     }
-  }
 
-  &.disabled,
-  &:disabled {
-    color: #666;
-    cursor: not-allowed;
-    opacity: 0.5;
-  }
+    .resources {
+      font-size: 1em;
 
-  &:hover:not(:disabled):not(.disabled) {
-    box-shadow: 0 0 0 4px #666;
-  }
-  &:active:not(:disabled):not(.disabled) {
-    box-shadow: 0 0 0 4px #666, 0 0 12px rgba(0, 0, 0, 0.5) inset;
-  }
+      .mc {
+        font-size: 1.3em;
+      }
 
-  .param.prelude .project:before {
-    font-size: 1pt;
+      .production {
+        font-size: 0.75em;
+      }
+    }
+
+    &.disabled,
+    &:disabled {
+      color: #666;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+
+    &:hover:not(:disabled):not(.disabled) {
+      box-shadow: 0 0 0 4px #666;
+    }
+    &:active:not(:disabled):not(.disabled) {
+      box-shadow: 0 0 0 4px #666, 0 0 12px rgba(0, 0, 0, 0.5) inset;
+    }
+
+    .param.prelude .project:before {
+      font-size: 1pt;
+    }
   }
 }

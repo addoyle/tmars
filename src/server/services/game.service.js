@@ -91,7 +91,8 @@ class GameService {
               players: game.players.map(player => ({
                 name: player.name,
                 number: player.number,
-                tr: player.tr
+                tr: player.tr,
+                corp: this.cardStore.corp[player.cards.corp[0].card]?.title
               })),
               turn: game.turn,
               params: game.params,
