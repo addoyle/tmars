@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import { observer, inject } from 'mobx-react';
 import Box from '@material-ui/core/Box';
@@ -24,7 +25,7 @@ const useStyles = makeStyles(theme =>
   })
 );
 
-const CreateGame = () => {
+const CreateGame = ({ gameStore }) => {
   const [name, setName] = useState('');
   const [expansions, setExpansions] = useState({
     corporate: true,
@@ -52,6 +53,19 @@ const CreateGame = () => {
 
   const classes = useStyles();
 
+  const createGame = () => {
+    const game = {
+      id: name,
+      players,
+      variants,
+      board,
+      sets: Object.entries(expansions)
+        .filter(([, value]) => value)
+        .map(([key]) => key)
+    };
+    gameStore.createGame(game);
+  };
+
   return (
     <>
       <Typography component="h2" variant="h6" gutterBottom>
@@ -62,6 +76,7 @@ const CreateGame = () => {
           <Box p={2}>
             <TextField
               label="Game Name"
+              required
               fullWidth
               onChange={e => setName(e.target.value)}
               value={name}
@@ -74,7 +89,7 @@ const CreateGame = () => {
                     label="Corporate Era"
                     checked={expansions.corporate}
                     onChange={() => toggleExpansion('corporate')}
-                    control={<Switch />}
+                    control={<Switch color="primary" />}
                   />
                 </FormControl>
 
@@ -83,7 +98,7 @@ const CreateGame = () => {
                     label="Venus Next"
                     checked={expansions.venus}
                     onChange={() => toggleExpansion('venus')}
-                    control={<Switch />}
+                    control={<Switch color="primary" />}
                   />
                 </FormControl>
 
@@ -92,7 +107,7 @@ const CreateGame = () => {
                     label="Preludes"
                     checked={expansions.prelude}
                     onChange={() => toggleExpansion('prelude')}
-                    control={<Switch />}
+                    control={<Switch color="primary" />}
                   />
                 </FormControl>
 
@@ -101,7 +116,7 @@ const CreateGame = () => {
                     label="Promo Cards"
                     checked={expansions.promo}
                     onChange={() => toggleExpansion('promo')}
-                    control={<Switch />}
+                    control={<Switch color="primary" />}
                   />
                 </FormControl>
               </FieldSet>
@@ -114,7 +129,7 @@ const CreateGame = () => {
                     label="Draft"
                     checked={variants.draft}
                     onChange={() => toggleVariant('draft')}
-                    control={<Switch />}
+                    control={<Switch color="primary" />}
                   />
                 </FormControl>
 
@@ -124,7 +139,7 @@ const CreateGame = () => {
                     checked={variants.draft}
                     disabled={!expansions.corporate}
                     onChange={() => toggleVariant('corporate')}
-                    control={<Switch />}
+                    control={<Switch color="primary" />}
                   />
                 </FormControl>
 
@@ -134,7 +149,7 @@ const CreateGame = () => {
                     checked={variants.wgt}
                     disabled={!expansions.venus}
                     onChange={() => toggleVariant('wgt')}
-                    control={<Switch />}
+                    control={<Switch color="primary" />}
                   />
                 </FormControl>
               </FieldSet>
@@ -145,11 +160,27 @@ const CreateGame = () => {
                 <ToggleButtonGroup
                   value={board}
                   exclusive
+                  color="primary"
                   onChange={(e, newBoard) => setBoard(newBoard)}
                 >
-                  <ToggleButton value="Tharsis">Tharsis</ToggleButton>
-                  <ToggleButton value="Elysium">Elysium</ToggleButton>
-                  <ToggleButton value="Hellas">Hellas</ToggleButton>
+                  <ToggleButton
+                    value="Tharsis"
+                    classes={{ label: 'board-button tharsis' }}
+                  >
+                    Tharsis
+                  </ToggleButton>
+                  <ToggleButton
+                    value="Elysium"
+                    classes={{ label: 'board-button elysium' }}
+                  >
+                    Elysium
+                  </ToggleButton>
+                  <ToggleButton
+                    value="Hellas"
+                    classes={{ label: 'board-button hellas' }}
+                  >
+                    Hellas
+                  </ToggleButton>
                 </ToggleButtonGroup>
               </FieldSet>
             </Box>
@@ -164,6 +195,7 @@ const CreateGame = () => {
                     <TextField
                       fullWidth
                       label="Player 1"
+                      required
                       onChange={e => setPlayer(0, e.target.value)}
                     />
                   </Grid>
@@ -229,6 +261,7 @@ const CreateGame = () => {
                 color="primary"
                 size="large"
                 startIcon={<FontAwesomeIcon icon="rocket" />}
+                onClick={() => createGame()}
               >
                 Create Game
               </Button>
@@ -240,4 +273,10 @@ const CreateGame = () => {
   );
 };
 
-export default inject('userStore')(observer(CreateGame));
+CreateGame.propTypes = {
+  gameStore: PropTypes.shape({
+    createGame: PropTypes.func
+  })
+};
+
+export default inject('gameStore')(observer(CreateGame));

@@ -126,11 +126,11 @@ class GameService {
    * @param {Player} players Player names
    * @param {object} opts Game options
    */
-  createGame(id, players, opts) {
-    const game = new Game(this.cardStore, opts);
-    game.players = players.map(p => new Player(p));
-    game.init();
-    this.registerGame(game, id);
+  createGame(id, game) {
+    const newGame = new Game(this.cardStore, game);
+    newGame.players = game.players.map(p => new Player(p));
+    newGame.init();
+    this.registerGame(newGame, id);
   }
 
   /**

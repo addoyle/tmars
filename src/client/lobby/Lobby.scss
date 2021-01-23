@@ -18,3 +18,17 @@ $title-font: 'Prototype', sans-serif;
   font-family: $title-font;
   text-decoration: underline dashed;
 }
+
+.board-button {
+  font-size: 1.5em;
+  letter-spacing: .1em;
+}
+.tharsis {
+  font-family: $title-font!important;
+}
+.elysium {
+  font-family: 'Nasalization', sans-serif!important;
+}
+.hellas {
+  font-family: 'Vlaanderen', sans-serif!important;
+}

@@ -9,6 +9,13 @@ class GameModel {
   getGames() {
     API('game/games').then(res => (this.games = res));
   }
+
+  @action
+  createGame(game) {
+    API(`game/${game.id}/create`, 'POST', {
+      ...game
+    });
+  }
 }
 
 export default GameModel;

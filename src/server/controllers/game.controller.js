@@ -36,7 +36,7 @@ export function getGames(req, res) {
  * @param {*} res
  */
 export function createGame(req, res) {
-  GameService.createGame(`${req.params.id}`, req.body.players, req.body.opts);
+  GameService.createGame(`${req.params.id}`, req.body);
   res.sendStatus(200);
 }
 

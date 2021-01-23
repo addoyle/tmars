@@ -38,3 +38,19 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: Nasalization;
+  src: url('./game/components/assets/fonts/Nasalization.ttf') format('truetype'),
+    url('./game/components/assets/fonts/Nasalization.woff2') format('woff2'),
+    url('./game/components/assets/fonts/Nasalization.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: Vlaanderen;
+  src: url('./game/components/assets/fonts/Vlaanderen.ttf') format('truetype'),
+    url('./game/components/assets/fonts/Vlaanderen.woff2') format('woff2'),
+    url('./game/components/assets/fonts/Vlaanderen.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}

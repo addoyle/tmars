@@ -36,7 +36,6 @@ const useStyles = makeStyles(theme => ({
     cursor: 'pointer'
   },
   boardChip: {
-    fontFamily: 'Prototype',
     letterSpacing: '.2em',
     textTransform: 'uppercase',
     cursor: 'pointer'
@@ -139,7 +138,11 @@ const Games = ({ gameStore }) => {
                   ))}
                 </div>
                 <Chip
-                  className={classnames(classes.chip, classes.boardChip)}
+                  className={classnames(
+                    classes.chip,
+                    classes.boardChip,
+                    game.board.toLowerCase()
+                  )}
                   size="small"
                   label={game.board}
                   style={{
