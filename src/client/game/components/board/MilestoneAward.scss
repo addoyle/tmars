@@ -159,6 +159,33 @@ $title-font: 'Prototype', sans-serif;
           transform: translate(-50%, -50%);
           z-index: 1;
         }
+
+        .production {
+          font-size: 1em;
+          background: transparent;
+        }
+        .compact{
+          .production {
+            font-size: .5em;
+            padding: .4em;
+            
+            &:before {
+              border-width: .14em;
+            }
+
+            .flex * {
+              margin: 0;
+            }
+          }
+
+          .tag {
+            font-size: .8em;
+
+            &:last-of-type:not(:first-of-type) {
+              margin-left: .5em;
+            }
+          }
+        }
       }
 
       &:before {
@@ -282,9 +309,9 @@ $title-font: 'Prototype', sans-serif;
       font-style: italic;
       font-family: 'Monotype Corsiva', serif;
       font-size: 1.4em;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.1em;
       width: 100%;
-      padding: 6px 0 4px 4px;
+      padding: 6px 0 4px;
       margin-top: 0.75em;
       position: relative;
       transition: box-shadow 0.3s ease;

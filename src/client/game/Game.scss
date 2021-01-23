@@ -239,10 +239,10 @@ body {
       opacity: 0.5;
     }
 
-    &:hover:not(:disabled):not(.disabled):not(.standard-project) {
+    &:hover:not(:disabled):not(.disabled):not(.standard-project):not(.milestone-award) {
       box-shadow: 0 0 0 4px #666;
     }
-    &:active:not(:disabled):not(.disabled):not(.standard-project) {
+    &:active:not(:disabled):not(.disabled):not(.standard-project):not(.milestone-award) {
       box-shadow: 0 0 0 4px #666, 0 0 12px rgba(0, 0, 0, 0.5) inset;
     }
 

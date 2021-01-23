@@ -108,78 +108,93 @@ const Elysium = {
   milestones: [
     {
       name: 'Generalist',
-      getValue: player =>
-        Object.values(player.production).filter(val => val).length,
       icon: (
-        <Production>
-          <div className="flex">
-            <MegaCredit />
-            <Resource name="steel" />
-            <Resource name="titanium" />
-          </div>
-          <div className="flex">
-            <Resource name="plant" />
-            <Resource name="power" />
-            <Resource name="heat" />
-          </div>
-        </Production>
+        <div className="compact">
+          <Production>
+            <div className="flex">
+              <MegaCredit />
+              <Resource name="steel" />
+              <Resource name="titanium" />
+            </div>
+            <div className="flex">
+              <Resource name="plant" />
+              <Resource name="power" />
+              <Resource name="heat" />
+            </div>
+          </Production>
+        </div>
       ),
       requirement: 6,
       label: '+1',
       description:
-        'Have increased all 6 productions by at least 1 step (starting production from corporation cards count as increase)'
+        'Have increased all 6 productions by at least 1 step (starting production from corporation cards count as increase)',
+      color: '#dc551b',
+      highlight: 'rgba(255,165,0,.5)',
+      qualifies: player =>
+        Object.values(player.production).filter(val => val).length >= 6
     },
     {
       name: 'Specialist',
-      getValue: player => Math.max(...Object.values(player.production)),
       icon: (
         <Production>
           <div className="flex">
-            <Resource name="blank" />
+            <Resource name="marker" />
           </div>
         </Production>
       ),
       requirement: 10,
-      description: 'Have at least 10 in production of any resource'
+      description: 'Have at least 10 in production of any resource',
+      color: '#666',
+      highlight: 'rgba(255,255,255,1)',
+      qualifies: player => Math.max(...Object.values(player.production)) >= 10
     },
     {
       name: 'Ecologist',
-      getValue: player =>
-        player.tags.plant + player.tags.microbe + player.tags.animal,
       icon: (
-        <div className="flex center">
-          <div>
+        <div className="compact">
+          <div className="text-center">
             <Tag name="microbe" />
           </div>
-          <div>
+          <div
+            className="flex text-center"
+            style={{ marginTop: '-.25em', marginBottom: '.25em' }}
+          >
             <Tag name="plant" />
             <Tag name="animal" />
           </div>
         </div>
       ),
       requirement: 4,
-      description: 'Have 4 bio tags (plant, microbe, and animal tags)'
+      description: 'Have 4 bio tags (plant, microbe, and animal tags)',
+      color: '#4eb640',
+      highlight: 'rgba(143,198,102,1)',
+      qualifies: player =>
+        player.tags.plant + player.tags.microbe + player.tags.animal >= 4
     },
     {
       name: 'Tycoon',
-      getValue: player =>
-        player.cards.automated.length + player.cards.active.length,
       icon: <Param name="card back" />,
       requirement: 15,
-      description: 'Have 15 project cards in play (blue and green cards)'
+      description: 'Have 15 project cards in play (blue and green cards)',
+      color: '#057dc1',
+      highlight: 'rgba(96,192,255,.5)',
+      qualifies: player =>
+        player.cards.automated.length + player.cards.active.length >= 15
     },
     {
       name: 'Legend',
-      getValue: player => player.cards.event,
       icon: <Tag name="event" />,
       requirement: 5,
-      description: 'Have 5 played events (red cards)'
+      description: 'Have 5 played events (red cards)',
+      color: '#f6a51e',
+      highlight: 'rgba(255,255,92,.75)',
+      qualifies: player => player.cards.event >= 5
     }
   ],
   awards: [
     {
       name: 'Celebrity',
-      getValue: player =>
+      value: player =>
         player.cards.automated
           .concat(player.cards.active)
           .filter(card => card.cost >= 20).length,
@@ -189,7 +204,7 @@ const Elysium = {
     },
     {
       name: 'Industrialist',
-      getValue: player => player.resources.steel + player.resources.power,
+      value: player => player.resources.steel + player.resources.power,
       icon: (
         <>
           <Resource name="steel" />
@@ -201,7 +216,7 @@ const Elysium = {
     {
       name: 'Desert Settler',
       // TODO: Calculate this
-      getValue: player => player.tags.space,
+      value: player => player.tags.space,
       icon: <Tile name="city" />,
       description:
         'Have the most tiles south of the equator (the four bottom rows)'
@@ -209,10 +224,12 @@ const Elysium = {
     {
       name: 'Estate Dealer',
       // TODO: Calculate this
-      getValue: player => player.tiles.city,
+      value: player => player.tiles.city,
       icon: (
         <>
-          <Tile name="any" />
+          <Tile name="blank-city capital" noIcon>
+            <div className="icon-text">X</div>
+          </Tile>
           <Tile name="ocean" />
         </>
       ),
@@ -220,7 +237,7 @@ const Elysium = {
     },
     {
       name: 'Benefactor',
-      getValue: player => player.tr,
+      value: player => player.tr,
       icon: <Resource name="tr" />,
       description: 'Have the highest terraform rating'
     }

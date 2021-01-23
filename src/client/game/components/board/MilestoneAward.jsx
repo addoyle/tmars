@@ -126,6 +126,7 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
             const allClaimed = gameStore.milestones.length >= 3;
 
             const disabled =
+              false &&
               (!qualifies ||
                 allClaimed ||
                 gameStore?.player.resources.megacredit < 8) &&
@@ -266,6 +267,7 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
             const allFunded = gameStore.awards.length >= 3;
 
             const disabled =
+              false &&
               (allFunded ||
                 gameStore.player?.resources.megacredit <
                   8 + 6 * gameStore.awards.length) &&
@@ -283,7 +285,7 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
                   placement={i === 0 ? 'bottom-start' : 'bottom'}
                 >
                   <div
-                    className={classnames('award', { disabled: disabled })}
+                    className={classnames('award', { disabled })}
                     onClick={() => clickable && gameStore.fundAward(award.name)}
                   >
                     <div className="award-img">

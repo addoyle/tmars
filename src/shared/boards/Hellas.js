@@ -141,28 +141,28 @@ const Hellas = {
   awards: [
     {
       name: 'Cultivator',
-      getValue: player => player.tiles.greenery,
+      value: player => player.tiles.greenery,
       icon: <Tile name="greenery" />,
       description: 'Have the most greenery tiles'
     },
     {
       name: 'Magnate',
-      getValue: player => player.cards.automated.length,
+      value: player => player.cards.automated.length,
       // TODO: Render this
       icon: <Tag name="plant" />,
       description: 'Have the most automated cards in play (green cards)'
     },
     {
       name: 'Space Baron',
-      getValue: player => player.tags.space,
+      value: player => player.tags.space,
       icon: <Tag name="space" />,
       description: 'Have the most space tags (event cards do not count)'
     },
     {
       name: 'Excentric',
-      getValue: player =>
+      value: player =>
         [player.cards.active, player.corp].reduce(
-          (sum, card) => sum + (card.resources || 0),
+          (sum, card) => sum + (card.resource || 0),
           0
         ),
       // TODO: Render this
@@ -171,7 +171,7 @@ const Hellas = {
     },
     {
       name: 'Contractor',
-      getValue: player => player.tags.building,
+      value: player => player.tags.building,
       icon: <Tag name="building" />,
       description: 'Have the most building tags (event cards do not count)'
     }
