@@ -164,6 +164,40 @@ $title-font: 'Prototype', sans-serif;
           font-size: 1em;
           background: transparent;
         }
+
+        .tycoon {
+          .card {
+            font-size: 1em;
+            height: auto;
+            width: auto;
+            border-radius: 0;
+            background-color: initial;
+            display: block;
+            padding: 0;
+
+            .project {
+              box-shadow: none;
+              border-radius: 0;
+
+              .title {
+                font-size: .5em;
+                height: 1em;
+                width: 4.5em;
+                border: none;
+              }
+            }
+          }
+        }
+
+        .resource.icon.marker {
+          background: linear-gradient(#ccc 60%, #444);
+
+          &:before {
+            background: #fff;
+            box-shadow: 0 -2.47em 0 -2em rgba(28, 23, 3, 0.1) inset
+          }
+        }
+
         .compact{
           .production {
             font-size: .5em;
@@ -267,9 +301,13 @@ $title-font: 'Prototype', sans-serif;
       font-size: 2.5em;
       align-items: center;
 
-      .tile {
+      > .tile {
         font-size: 1.5em;
         margin-right: -.05em;
+
+        &:last-of-type:not(:first-of-type) {
+          margin-left: -.13em;
+        }
       }
 
       .tag {
@@ -288,6 +326,58 @@ $title-font: 'Prototype', sans-serif;
         top: 50%;
         transform: translate(-50%, -50%);
         z-index: 1;
+      }
+
+      .field {
+        background: none;
+        border: none;
+        margin: auto;
+        box-shadow: none;
+        margin: 0;
+        width: auto;
+        height: auto;
+
+        & > .tile  {
+          transform: rotate(30deg);
+          font-size: 1.5em;
+          margin-right: -.05em;
+
+          .rotate-reset {
+            transform: rotate(-30deg);
+            position: relative;
+          }
+
+          .tiles {
+            font-size: calc(5em / 6);
+            margin-left: -8em;
+            margin-top: 4.3em;
+
+            .tile {
+              font-size: 63px;
+              margin: 0 -5.75px;
+
+              .base {
+                stroke: #fff8;
+                stroke-width: .5em;
+              }
+            }
+          }
+
+          .floating-tile {
+            position: absolute;
+            font-size: 2.75em;
+            text-align: center;
+            width: 117%;
+          }
+
+          & > .base {
+            fill: #dc723e;
+          }
+        }
+
+        .row {
+          height: 4.12em;
+        }
       }
 
       &:before {

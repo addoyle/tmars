@@ -104,49 +104,49 @@ const Field = ({ gameStore }) => {
           ))}
 
         {gameStore.field.map((row, r) => (
-          <div key={r} className="row">
-            {row.map((tile, i) => (
+          <div key={`field-row-${r}`} className="row">
+            {row.map((area, i) => (
               <Tile
-                key={i}
+                key={`area-${r}-${i}`}
                 id={id++}
                 name={`${
-                  tile.name ||
-                  (tile.attrs && tile.attrs.includes('reserved-ocean')
+                  area.name ||
+                  (area.attrs && area.attrs.includes('reserved-ocean')
                     ? 'reserved-ocean'
                     : 'blank')
-                } ${tile.icon || ''}`}
+                } ${area.icon || ''}`}
                 clickable={
                   gameStore.playerStatus?.type === 'prompt-tile' &&
                   gameStore.playerStatus?.player.number ===
                     gameStore.player?.number
-                    ? tile.clickable
+                    ? area.clickable
                     : undefined
                 }
-                onClick={() => gameStore.placeTile(tile)}
+                onClick={() => gameStore.placeTile(area)}
               >
-                {tile.name ? <Tile name={tile.type} icon={tile.icon} /> : null}
-                {!tile.name ? (
+                {area.name ? <Tile name={area.type} icon={area.icon} /> : null}
+                {!area.name ? (
                   <div className="rewards">
                     <div className="resources">
-                      {renderResource(tile.resources, 0)}
+                      {renderResource(area.resources, 0)}
                     </div>
                     <div className="resources">
-                      {renderResource(tile.resources, 1)}
+                      {renderResource(area.resources, 1)}
                       <Resource name="blank" />
-                      {renderResource(tile.resources, 2)}
+                      {renderResource(area.resources, 2)}
                     </div>
                     <div className="resources">
-                      {renderResource(tile.resources, 3)}
+                      {renderResource(area.resources, 3)}
                     </div>
-                    {tile.attrs &&
-                    tile.attrs.includes('reserved-noctis-city') ? (
+                    {area.attrs &&
+                    area.attrs.includes('reserved-noctis-city') ? (
                       <img className="city" src="/icons/city.svg" />
                     ) : null}
-                    {tile.text ? <div className="text">{tile.text}</div> : null}
+                    {area.text ? <div className="text">{area.text}</div> : null}
                   </div>
                 ) : null}
-                {tile.player ? (
-                  <Resource name={`player-${tile.player}`} />
+                {area.player ? (
+                  <Resource name={`player-${area.player}`} />
                 ) : null}
               </Tile>
             ))}

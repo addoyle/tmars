@@ -26,13 +26,13 @@ $title-font: 'Prototype', sans-serif;
   }
 
   .tiles {
-    margin: 64px -152px 0 -143px;
+    margin: 4em -9.5em 0 -8.9em;
     position: relative;
 
     .row {
-      margin: -50px 0;
+      margin: -3.125em 0;
       pointer-events: none;
-      height: 151px;
+      height: 9.44em;
 
       &.phobos {
         position: absolute;

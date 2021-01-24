@@ -302,6 +302,12 @@ $title-font: 'Prototype', sans-serif;
     }
   }
 
+  &.white {
+    .base {
+      fill: #fff8;
+    }
+  }
+
   &.reserved-ocean {
     .base {
       fill: url('#ocean-gradient');

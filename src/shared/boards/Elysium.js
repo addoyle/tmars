@@ -4,107 +4,108 @@ import {
   Resource,
   MegaCredit,
   Tag,
-  Param,
   Tile
 } from '../../client/game/components/assets/Assets';
 
 /**
  * Elysium Board
  */
-const Elysium = {
-  field: [
-    [
-      { attrs: ['reserved-ocean'] },
-      { resources: ['titanium'], attrs: ['reserved-ocean'] },
-      { resources: ['card'], attrs: ['reserved-ocean'] },
-      { resources: ['steel'], attrs: ['reserved-ocean'] },
-      { resources: ['card'] }
-    ],
-    [
-      { resources: ['titanium'], text: 'Hecates Tholus', attrs: ['volcano'] },
-      {},
-      {},
-      { attrs: ['reserved-ocean'] },
-      { attrs: ['reserved-ocean'] },
-      { resources: ['steel', 'steel'] }
-    ],
-    [
-      {
-        resources: ['titanium', 'titanium'],
-        text: 'Elysium Mons',
-        attrs: ['volcano']
-      },
-      {},
-      { resources: ['card'] },
-      {},
-      { resources: ['plant'], attrs: ['reserved-ocean'] },
-      { attrs: ['reserved-ocean'] },
-      {
-        resources: ['card', 'card', 'card'],
-        text: 'Olympus Mons',
-        attrs: ['volcano']
-      }
-    ],
-    [
-      { resources: ['plant'] },
-      { resources: ['plant'] },
-      { resources: ['plant'] },
-      { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant'] },
-      { resources: ['plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant', 'steel'] }
-    ],
-    [
-      { resources: ['plant', 0, 'plant'] },
-      { resources: ['plant', 'plant'] },
-      { resources: ['plant', 'plant'] },
-      { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant', 'plant'] },
-      { resources: ['plant', 'plant', 'plant'] },
-      { resources: ['plant', 'plant'] },
-      { resources: ['plant', 'plant'] },
-      {
-        resources: ['titanium', 'plant'],
-        text: 'Arsia Mons',
-        attrs: ['volcano']
-      }
-    ],
-    [
-      { resources: ['steel'] },
-      { resources: ['plant'] },
-      { resources: ['plant'] },
-      { resources: ['plant'] },
-      { resources: ['plant'] },
-      { resources: ['plant'] },
-      { resources: ['plant'] },
-      {}
-    ],
-    [
-      { resources: ['titanium'] },
-      { resources: ['steel'] },
-      {},
-      {},
-      { resources: ['steel'] },
-      {},
-      {}
-    ],
-    [
-      { resources: ['steel', 'steel'] },
-      {},
-      {},
-      {},
-      { resources: ['steel', 'steel'] },
-      {}
-    ],
-    [
-      { resources: ['steel'] },
-      {},
-      { resources: ['card'] },
-      { resources: ['card'] },
-      { resources: ['steel', 'steel'] }
-    ]
+const field = [
+  [
+    { attrs: ['reserved-ocean'] },
+    { resources: ['titanium'], attrs: ['reserved-ocean'] },
+    { resources: ['card'], attrs: ['reserved-ocean'] },
+    { resources: ['steel'], attrs: ['reserved-ocean'] },
+    { resources: ['card'] }
   ],
+  [
+    { resources: ['titanium'], text: 'Hecates Tholus', attrs: ['volcano'] },
+    {},
+    {},
+    { attrs: ['reserved-ocean'] },
+    { attrs: ['reserved-ocean'] },
+    { resources: ['steel', 'steel'] }
+  ],
+  [
+    {
+      resources: ['titanium', 'titanium'],
+      text: 'Elysium Mons',
+      attrs: ['volcano']
+    },
+    {},
+    { resources: ['card'] },
+    {},
+    { resources: ['plant'], attrs: ['reserved-ocean'] },
+    { attrs: ['reserved-ocean'] },
+    {
+      resources: ['card', 'card', 'card'],
+      text: 'Olympus Mons',
+      attrs: ['volcano']
+    }
+  ],
+  [
+    { resources: ['plant'] },
+    { resources: ['plant'] },
+    { resources: ['plant'] },
+    { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant'] },
+    { resources: ['plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant', 'steel'] }
+  ],
+  [
+    { resources: ['plant', 0, 'plant'] },
+    { resources: ['plant', 'plant'] },
+    { resources: ['plant', 'plant'] },
+    { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant', 'plant'] },
+    { resources: ['plant', 'plant', 'plant'] },
+    { resources: ['plant', 'plant'] },
+    { resources: ['plant', 'plant'] },
+    {
+      resources: ['titanium', 'plant'],
+      text: 'Arsia Mons',
+      attrs: ['volcano']
+    }
+  ],
+  [
+    { resources: ['steel'] },
+    { resources: ['plant'] },
+    { resources: ['plant'] },
+    { resources: ['plant'] },
+    { resources: ['plant'] },
+    { resources: ['plant'] },
+    { resources: ['plant'] },
+    {}
+  ],
+  [
+    { resources: ['titanium'] },
+    { resources: ['steel'] },
+    {},
+    {},
+    { resources: ['steel'] },
+    {},
+    {}
+  ],
+  [
+    { resources: ['steel', 'steel'] },
+    {},
+    {},
+    {},
+    { resources: ['steel', 'steel'] },
+    {}
+  ],
+  [
+    { resources: ['steel'] },
+    {},
+    { resources: ['card'] },
+    { resources: ['card'] },
+    { resources: ['steel', 'steel'] }
+  ]
+];
+
+const Elysium = {
+  field,
   milestones: [
     {
       name: 'Generalist',
@@ -173,7 +174,20 @@ const Elysium = {
     },
     {
       name: 'Tycoon',
-      icon: <Param name="card back" />,
+      icon: (
+        <div className="tycoon">
+          <div className="card active">
+            <div className="project">
+              <div className="title" />
+            </div>
+          </div>
+          <div className="card automated">
+            <div className="project">
+              <div className="title" />
+            </div>
+          </div>
+        </div>
+      ),
       requirement: 15,
       description: 'Have 15 project cards in play (blue and green cards)',
       color: '#057dc1',
@@ -215,16 +229,48 @@ const Elysium = {
     },
     {
       name: 'Desert Settler',
-      // TODO: Calculate this
-      value: player => player.tags.space,
-      icon: <Tile name="city" />,
+      value: (player, game) =>
+        game.field
+          // Last 4 rows
+          .slice(5)
+          .flat()
+          .filter(t => t.player === player.number).length,
+      icon: (
+        <div className="field">
+          <Tile>
+            <div className="rotate-reset">
+              <div className="tiles">
+                {field.map((row, r) => (
+                  <div className="row" key={`desert-${r}`}>
+                    {row.map((area, i) => (
+                      <Tile
+                        key={`area-${r}-${i}`}
+                        name={r > 4 ? 'white' : 'blank'}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+              <div className="floating-tile" style={{ bottom: '1em' }}>
+                <Tile name="blank-city capital" noIcon />
+              </div>
+            </div>
+          </Tile>
+        </div>
+      ),
       description:
         'Have the most tiles south of the equator (the four bottom rows)'
     },
     {
       name: 'Estate Dealer',
-      // TODO: Calculate this
-      value: player => player.tiles.city,
+      value: (player, game) =>
+        game.field
+          .flat()
+          .filter(
+            t =>
+              t.player === player.number &&
+              game.neighbors(t).some(t => t.type === 'ocean')
+          ).length,
       icon: (
         <>
           <Tile name="blank-city capital" noIcon>
