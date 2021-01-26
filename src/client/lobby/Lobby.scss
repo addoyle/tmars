@@ -18,6 +18,15 @@ $title-font: 'Prototype', sans-serif;
   font-family: $title-font;
   text-decoration: underline dashed;
 }
+.del-btn {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-grow: 1;
+  button {
+    padding: 12px 14px;
+  }
+}
 
 .board-button {
   font-size: 1.5em;

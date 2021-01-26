@@ -66,7 +66,7 @@ class GameService {
   /**
    * Gets the current state of the game
    *
-   * @param {*} id Game ID
+   * @param {string} id Game ID
    */
   async getGame(id) {
     if (!this.games[id]) {
@@ -122,7 +122,7 @@ class GameService {
   /**
    * Creates a new game
    *
-   * @param {number} id Game ID
+   * @param {string} id Game ID
    * @param {Player} players Player names
    * @param {object} opts Game options
    */
@@ -131,6 +131,22 @@ class GameService {
     newGame.players = game.players.map(p => new Player(p));
     newGame.init();
     this.registerGame(newGame, id);
+  }
+
+  /**
+   * Delete a game
+   *
+   * @param {string} id Game ID
+   * @param {object} res Response object
+   */
+  deleteGame(id, res) {
+    if (this.games[id]) {
+      delete this.games[id];
+      client.del(id);
+      res.sendStatus(200);
+    } else {
+      res.sendStatus(404);
+    }
   }
 
   /**

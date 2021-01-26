@@ -40,6 +40,7 @@ const CreateGame = ({ gameStore }) => {
   });
   const [board, setBoard] = useState('Tharsis');
   const [players, setPlayers] = useState([]);
+  const [error, setError] = useState(false);
 
   const toggleExpansion = exp =>
     setExpansions({ ...expansions, [exp]: !expansions[exp] });
@@ -54,16 +55,22 @@ const CreateGame = ({ gameStore }) => {
   const classes = useStyles();
 
   const createGame = () => {
-    const game = {
-      id: name,
-      players,
-      variants,
-      board,
-      sets: Object.entries(expansions)
-        .filter(([, value]) => value)
-        .map(([key]) => key)
-    };
-    gameStore.createGame(game);
+    // Validate
+    if (name && players[0]) {
+      const game = {
+        id: name,
+        players,
+        variants,
+        board,
+        sets: Object.entries(expansions)
+          .filter(([, value]) => value)
+          .map(([key]) => key)
+      };
+      gameStore.createGame(game);
+      setTimeout(() => gameStore.getGames(), 1000);
+    } else {
+      setError(true);
+    }
   };
 
   return (
@@ -78,7 +85,11 @@ const CreateGame = ({ gameStore }) => {
               label="Game Name"
               required
               fullWidth
-              onChange={e => setName(e.target.value)}
+              error={error && !name}
+              helperText={error && !name ? 'Required' : ''}
+              onChange={e =>
+                setName(e.target.value.replaceAll(/[^a-zA-Z0-9-_.~]/g, '-'))
+              }
               value={name}
             />
 
@@ -196,6 +207,8 @@ const CreateGame = ({ gameStore }) => {
                       fullWidth
                       label="Player 1"
                       required
+                      error={error && !players[0]}
+                      helperText={error && !players[0] ? 'Required' : ''}
                       onChange={e => setPlayer(0, e.target.value)}
                     />
                   </Grid>
@@ -275,7 +288,8 @@ const CreateGame = ({ gameStore }) => {
 
 CreateGame.propTypes = {
   gameStore: PropTypes.shape({
-    createGame: PropTypes.func
+    createGame: PropTypes.func,
+    getGames: PropTypes.func
   })
 };
 

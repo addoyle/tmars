@@ -3,8 +3,9 @@ $title-font: 'Prototype', sans-serif;
 .field {
   width: 994px;
   height: 994px;
-  background: url('/icons/mars_bg.jpg') center no-repeat;
   background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   border: 7px solid #8b5e36;
   border-radius: 100%;
   text-align: center;
@@ -12,6 +13,16 @@ $title-font: 'Prototype', sans-serif;
   box-shadow: 0 0 100px rgba(255, 255, 255, 0.7);
   user-select: none;
   position: relative;
+
+  .tharsis & {
+    background-image: url('/icons/tharsis_bg.jpg');
+  }
+  .elysium & {
+    background-image: url('/icons/elysium_bg.jpg');
+  }
+  .hellas & {
+    background-image: url('/icons/hellas_bg.jpg');
+  }
 
   &.venus:after {
     content: '';

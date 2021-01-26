@@ -16,6 +16,7 @@ router.get('/card-numbers', GameController.getAllCardNumbers);
 router.get('/games', GameController.getGames);
 router.get('/:id/loadPreset', GameController.loadPreset);
 router.get('/:id', validate, GameController.getGame);
+router.delete('/:id', validate, GameController.deleteGame);
 router.post('/:id/create', validate, GameController.createGame);
 router.post('/:id/play-card', validate, GameController.playCard);
 router.post('/:id/play-prelude', validate, GameController.playPrelude);

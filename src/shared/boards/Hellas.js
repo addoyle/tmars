@@ -9,133 +9,160 @@ import {
 /**
  * Hellas Board
  */
-const Hellas = {
-  field: [
-    [
-      { resources: [0, 0, 'plant', 'plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant', 'plant'] },
-      { resources: ['plant', 'plant'] },
-      { resources: ['plant', 'steel'] },
-      { resources: ['plant'] }
-    ],
-    [
-      { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant', 'plant'] },
-      { resources: ['plant'] },
-      { resources: ['plant', 'steel'] },
-      { resources: ['plant'] },
-      { resources: ['plant'] }
-    ],
-    [
-      { resources: ['plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant'] },
-      { resources: ['steel'] },
-      { resources: ['steel'] },
-      {},
-      { resources: ['plant', 'plant'] },
-      { resources: ['card', 'plant'] }
-    ],
-    [
-      { resources: ['plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant'] },
-      { resources: ['steel'] },
-      { resources: ['steel', 'steel'] },
-      { resources: ['steel'] },
-      { resources: ['plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant'], attrs: ['reserved-ocean'] },
-      { resources: ['plant'] }
-    ],
-    [
-      { resources: ['card'] },
-      {},
-      {},
-      { resources: ['steel', 'steel'] },
-      {},
-      { resources: ['card'], attrs: ['reserved-ocean'] },
-      { resources: ['heat', 'heat', 'heat'], attrs: ['reserved-ocean'] },
-      { attrs: ['reserved-ocean'] },
-      { resources: ['plant'] }
-    ],
-    [
-      { resources: ['titanium'] },
-      {},
-      { resources: ['steel'] },
-      {},
-      {},
-      { attrs: ['reserved-ocean'] },
-      { resources: ['steel'], attrs: ['reserved-ocean'] },
-      {}
-    ],
-    [
-      { resources: ['titanium', 'titanium'], attrs: ['reserved-ocean'] },
-      {},
-      {},
-      { resources: ['card'] },
-      {},
-      {},
-      { resources: ['titanium'] }
-    ],
-    [
-      { resources: ['steel'] },
-      { resources: ['card'] },
-      { resources: ['heat', 'heat'] },
-      { resources: ['heat', 0, 'heat'] },
-      { resources: ['titanium'] },
-      { resources: ['titanium'] }
-    ],
-    [
-      {},
-      { resources: ['heat', 'heat'] },
-      { resources: [0, 'ocean', { megacredit: -6 }] },
-      { resources: ['heat', 'heat'] },
-      {}
-    ]
+const field = [
+  [
+    { resources: [0, 0, 'plant', 'plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant', 'plant'] },
+    { resources: ['plant', 'plant'] },
+    { resources: ['plant', 'steel'] },
+    { resources: ['plant'] }
   ],
+  [
+    { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant', 'plant'] },
+    { resources: ['plant'] },
+    { resources: ['plant', 'steel'] },
+    { resources: ['plant'] },
+    { resources: ['plant'] }
+  ],
+  [
+    { resources: ['plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant'] },
+    { resources: ['steel'] },
+    { resources: ['steel'] },
+    {},
+    { resources: ['plant', 'plant'] },
+    { resources: ['card', 'plant'] }
+  ],
+  [
+    { resources: ['plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant'] },
+    { resources: ['steel'] },
+    { resources: ['steel', 'steel'] },
+    { resources: ['steel'] },
+    { resources: ['plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant'], attrs: ['reserved-ocean'] },
+    { resources: ['plant'] }
+  ],
+  [
+    { resources: ['card'] },
+    {},
+    {},
+    { resources: ['steel', 'steel'] },
+    {},
+    { resources: ['card'], attrs: ['reserved-ocean'] },
+    { resources: ['heat', 'heat', 'heat'], attrs: ['reserved-ocean'] },
+    { attrs: ['reserved-ocean'] },
+    { resources: ['plant'] }
+  ],
+  [
+    { resources: ['titanium'] },
+    {},
+    { resources: ['steel'] },
+    {},
+    {},
+    { attrs: ['reserved-ocean'] },
+    { resources: ['steel'], attrs: ['reserved-ocean'] },
+    {}
+  ],
+  [
+    { resources: ['titanium', 'titanium'], attrs: ['reserved-ocean'] },
+    {},
+    {},
+    { resources: ['card'] },
+    {},
+    {},
+    { resources: ['titanium'] }
+  ],
+  [
+    { resources: ['steel'] },
+    { resources: ['card'] },
+    { resources: ['heat', 'heat'] },
+    { resources: ['heat', 0, 'heat'] },
+    { resources: ['titanium'] },
+    { resources: ['titanium'] }
+  ],
+  [
+    {},
+    { resources: ['heat', 'heat'] },
+    { resources: [0, 'ocean', { megacredit: -6 }], text: 'SOUTH POLE' },
+    { resources: ['heat', 'heat'] },
+    {}
+  ]
+];
+const Hellas = {
+  field,
   milestones: [
     {
       name: 'Diversifier',
-      getValue: player => Object.values(player.tags).filter(tag => tag).length,
       icon: <Tag name="all" />,
       requirement: 8,
-      description: 'Have 8 different tags in play'
+      description: 'Have 8 different tags in play',
+      qualifies: player =>
+        Object.values(player.tags).filter(tag => tag).length >= 8
     },
     {
       name: 'Tactician',
-      getValue: player =>
-        player.cards.active
-          .concat(player.cards.automated)
-          .filter(card => card.restriction).length,
       // TODO: Render this
       icon: <Tile name="city" />,
       requirement: 5,
-      description: 'Have 5 cards with requirements in play'
+      description: 'Have 5 cards with requirements in play',
+      qualifies: player =>
+        player.cards.active
+          .concat(player.cards.automated)
+          .filter(card => card.restriction).length >= 5
     },
     {
       name: 'Polar Explorer',
-      // TODO: Calculate this
-      getValue: player => player.tiles.greenery,
-      // TODO: Render this
-      icon: <Tile name="greenery" />,
+      icon: (
+        <div className="field">
+          <Tile>
+            <div className="rotate-reset">
+              <div className="tiles">
+                {field.map((row, r) => (
+                  <div className="row" key={`desert-${r}`}>
+                    {row.map((area, i) => (
+                      <Tile
+                        key={`area-${r}-${i}`}
+                        name={r >= 7 ? 'white' : 'blank'}
+                      />
+                    ))}
+                  </div>
+                ))}
+              </div>
+              <div className="floating-tile" style={{ bottom: '.3333em' }}>
+                <Tile name="blank-city capital" noIcon />
+              </div>
+            </div>
+          </Tile>
+        </div>
+      ),
       requirement: 3,
-      description: 'Have 3 tiles on the two bottom rows'
+      description: 'Have 3 tiles on the two bottom rows',
+      qualifies: (player, game) =>
+        game.field
+          // Last 2 rows
+          .slice(7)
+          .flat()
+          .filter(t => t.player === player.number).length >= 3
     },
     {
       name: 'Energizer',
-      getValue: player => player.production.power,
       icon: (
         <Production>
           <Resource name="power" />
         </Production>
       ),
       requirement: 6,
-      description: 'Have 6 energy production'
+      description: 'Have 6 energy production',
+      qualifies: player => player.production.power >= 6
     },
     {
       name: 'Rim Settler',
-      getValue: player => player.tags.jovian,
       icon: <Tag name="jovian" />,
       requirement: 3,
-      description: 'Have 3 jovian tags'
+      description: 'Have 3 jovian tags',
+      qualifies: player => player.tags.jovian >= 3
     }
   ],
   awards: [

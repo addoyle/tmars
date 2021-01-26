@@ -66,7 +66,9 @@ const Board = props => {
 
   return (
     <div
-      className={classNames('board', { dragging })}
+      className={classNames('board', props.gameStore.board?.toLowerCase(), {
+        dragging
+      })}
       onMouseDown={() => setDragging(true)}
       onMouseUp={() => setDragging(false)}
       onMouseMove={e =>
@@ -98,6 +100,7 @@ Board.propTypes = {
     currentCard: PropTypes.shape({
       show: PropTypes.bool
     }),
+    board: PropTypes.string,
     players: PropTypes.array
   })
 };

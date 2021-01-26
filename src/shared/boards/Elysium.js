@@ -245,13 +245,13 @@ const Elysium = {
                     {row.map((area, i) => (
                       <Tile
                         key={`area-${r}-${i}`}
-                        name={r > 4 ? 'white' : 'blank'}
+                        name={r >= 5 ? 'white' : 'blank'}
                       />
                     ))}
                   </div>
                 ))}
               </div>
-              <div className="floating-tile" style={{ bottom: '1em' }}>
+              <div className="floating-tile" style={{ bottom: '.55em' }}>
                 <Tile name="blank-city capital" noIcon />
               </div>
             </div>

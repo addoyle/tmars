@@ -16,6 +16,11 @@ class GameModel {
       ...game
     });
   }
+
+  @action
+  deleteGame(id) {
+    API(`game/${id}`, 'DELETE');
+  }
 }
 
 export default GameModel;

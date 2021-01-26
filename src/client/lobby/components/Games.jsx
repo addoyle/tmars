@@ -1,16 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { observer, inject } from 'mobx-react';
 import { makeStyles } from '@material-ui/core/styles';
 import Accordion from '@material-ui/core/Accordion';
 import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
+import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
 import classnames from 'classnames';
 import '../../game/components/cards/CardLayout.scss';
-import PropTypes from 'prop-types';
 import Player from '../../game/components/board/players/Player';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -80,6 +87,7 @@ const gameStates = {
 const Games = ({ gameStore }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState('');
 
   useEffect(() => {
     // Get the current games
@@ -185,11 +193,42 @@ const Games = ({ gameStore }) => {
                     </li>
                   ))}
                 </ul>
+                <div className="del-btn">
+                  <IconButton
+                    color="primary"
+                    onClick={() => setConfirmOpen(game.id)}
+                  >
+                    <FontAwesomeIcon icon="trash-alt" />
+                  </IconButton>
+                </div>
               </AccordionDetails>
             </Accordion>
           );
         })}
       </Paper>
+      <Dialog open={confirmOpen} onClose={() => setConfirmOpen(false)}>
+        <DialogTitle>Delete {confirmOpen}</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete {confirmOpen}?
+          </DialogContentText>
+          <DialogActions>
+            <Button
+              color="primary"
+              onClick={() => {
+                gameStore.deleteGame(confirmOpen);
+                setConfirmOpen(false);
+                setTimeout(() => gameStore.getGames(), 1000);
+              }}
+            >
+              Yes
+            </Button>
+            <Button autoFocus onClick={() => setConfirmOpen(false)}>
+              No
+            </Button>
+          </DialogActions>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
@@ -210,7 +249,8 @@ Games.propTypes = {
         )
       })
     ),
-    getGames: PropTypes.func
+    getGames: PropTypes.func,
+    deleteGame: PropTypes.func
   })
 };
 

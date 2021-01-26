@@ -41,6 +41,16 @@ export function createGame(req, res) {
 }
 
 /**
+ * Create a new game
+ *
+ * @param {*} req
+ * @param {*} res
+ */
+export function deleteGame(req, res) {
+  GameService.deleteGame(`${req.params.id}`, res);
+}
+
+/**
  * Play a card
  *
  * @param {*} req

@@ -193,7 +193,7 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
                       className="label"
                       style={
                         milestone.style || {
-                          backgroundColor: milestone.color,
+                          background: milestone.color,
                           boxShadow: `0 -12px 12px 0 ${milestone.highlight} inset`
                         }
                       }

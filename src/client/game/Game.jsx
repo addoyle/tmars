@@ -60,6 +60,9 @@ const Game = () => {
       game => gameStore.update(game)
     );
 
+    // Set page title
+    document.title = `TMars - ${gameId()}`;
+
     return () => eventSource.close();
   }, []);
 

@@ -9,7 +9,8 @@ import {
   faRocket,
   faGlobe,
   faClock,
-  faTree
+  faTree,
+  faTrashAlt
 } from '@fortawesome/free-solid-svg-icons';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -26,6 +27,7 @@ library.add(faRocket);
 library.add(faGlobe);
 library.add(faClock);
 library.add(faTree);
+library.add(faTrashAlt);
 
 const theme = createMuiTheme({
   palette: {
