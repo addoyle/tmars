@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
-import './PlayerPicker.scss';
+import './ChoicePicker.scss';
 import Player from './Player';
 import { MegaCredit, Production, Resource } from '../../assets/Assets';
 import classNames from 'classnames';
@@ -12,7 +12,7 @@ import { toJS } from 'mobx';
  *
  * @param {*} props
  */
-const PlayerPicker = ({ gameStore }) => {
+const ChoicePicker = ({ gameStore }) => {
   const icon = gameStore.playerStatus?.icon;
   // TODO: Handle protected habitats
 
@@ -92,7 +92,7 @@ const PlayerPicker = ({ gameStore }) => {
   );
 };
 
-PlayerPicker.propTypes = {
+ChoicePicker.propTypes = {
   gameStore: PropTypes.shape({
     player: PropTypes.shape({
       number: PropTypes.number
@@ -115,4 +115,4 @@ PlayerPicker.propTypes = {
   })
 };
 
-export default inject('gameStore')(observer(PlayerPicker));
+export default inject('gameStore')(observer(ChoicePicker));

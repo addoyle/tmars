@@ -13,7 +13,7 @@ import classNames from 'classnames';
 import CardModal from './card-modal/CardModal';
 import MilestoneAward from './MilestoneAward';
 import Settings from './Settings';
-import PlayerPicker from './players/PlayerPicker';
+import ChoicePicker from './players/ChoicePicker';
 
 // prettier-ignore
 const nonFocusingKeys = new Set(['Control', 'Shift', 'Alt', 'ArrowUp', 'ArrowLeft', 'ArrowRight', 'ArrowDown', 'Tab',
@@ -84,7 +84,7 @@ const Board = props => {
       <Field />
       <GlobalParameters />
       <Players />
-      <PlayerPicker />
+      <ChoicePicker />
       {props.gameStore.players.length > 1 ? <MilestoneAward /> : null}
       <StandardProjects />
       <CardModal />

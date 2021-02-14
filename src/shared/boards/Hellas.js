@@ -51,7 +51,11 @@ const field = [
     { resources: ['steel', 'steel'] },
     {},
     { resources: ['card'], attrs: ['reserved-ocean'] },
-    { resources: ['heat', 'heat', 'heat'], attrs: ['reserved-ocean'] },
+    {
+      resources: ['heat', 'heat', 'heat'],
+      text: 'Hellas Planitia',
+      attrs: ['reserved-ocean']
+    },
     { attrs: ['reserved-ocean'] },
     { resources: ['plant'] }
   ],
@@ -66,7 +70,11 @@ const field = [
     {}
   ],
   [
-    { resources: ['titanium', 'titanium'], attrs: ['reserved-ocean'] },
+    {
+      resources: ['titanium', 'titanium'],
+      text: 'Argyre Planitia',
+      attrs: ['reserved-ocean']
+    },
     {},
     {},
     { resources: ['card'] },

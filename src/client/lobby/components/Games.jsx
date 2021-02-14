@@ -215,6 +215,7 @@ const Games = ({ gameStore }) => {
           <DialogActions>
             <Button
               color="primary"
+              variant="outlined"
               onClick={() => {
                 gameStore.deleteGame(confirmOpen);
                 setConfirmOpen(false);
@@ -223,7 +224,11 @@ const Games = ({ gameStore }) => {
             >
               Yes
             </Button>
-            <Button autoFocus onClick={() => setConfirmOpen(false)}>
+            <Button
+              variant="outlined"
+              autoFocus
+              onClick={() => setConfirmOpen(false)}
+            >
               No
             </Button>
           </DialogActions>

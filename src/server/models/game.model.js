@@ -184,7 +184,7 @@ class Game extends SharedGame {
       new Log(0, [
         `You are terraforming **${startCase(this.board)}**, `,
         {
-          tharsis: 'the land of volcanics!',
+          tharsis: 'the volcanic province!',
           hellas: 'the southern wild!',
           elysium: 'the other side of mars!'
         }[this.board.toLowerCase()]
@@ -516,23 +516,71 @@ class Game extends SharedGame {
    * Prompt for a player
    *
    * @param {object} player The player to prompt
+   * @param {string} desc Description to present to user
    * @param {object} icon The icon to prompt for
    * @param {array} logSnippet The snippet of a log that would fit this sentence: '{player} {snippet} {targetPlayer}'
-   * @param {func} callback Callback once the player is picked
+   * @param {func} done Callback once the player is picked
    * @param {func} filter Optional player filter
    */
-  promptPlayer(player, icon, logSnippet, callback, filter = () => true) {
+  promptPlayer(
+    player,
+    desc,
+    icon,
+    rightIcon,
+    logSnippet,
+    done,
+    filter = () => true
+  ) {
     player.ui = {
       currentCard: { show: false }
     };
 
-    this.playerStatus = {
-      type: 'prompt-player',
-      icon,
+    this.promptChoice(
       player,
-      logSnippet,
-      validPlayers: this.players.filter(filter).map(p => p.number),
-      done: pickedPlayer => {
+      desc,
+      this.players.map(
+        p => ({
+          icon,
+          rightIcon,
+          label: p.name,
+          disabled: filter(player),
+          logSnippet
+        }),
+        done
+      )
+    );
+
+    // this.playerStatus = {
+    //   type: 'prompt',
+    //   icon,
+    //   player,
+    //   logSnippet,
+    //   validPlayers: this.players.filter(filter).map(p => p.number),
+    //   done: pickedPlayer => {
+    //     // Player status is resolved
+    //     this.playerStatus = null;
+
+    //     // Show UI components
+    //     player.ui = {
+    //       drawer: this.phase === 'prelude' ? 'prelude' : 'hand',
+    //       playerStats: {
+    //         show: true,
+    //         pid: player.number
+    //       }
+    //     };
+
+    //     done && done(pickedPlayer);
+    //   }
+    // };
+  }
+
+  promptChoice(player, desc, choices, done) {
+    this.playerStatus = {
+      type: 'prompt',
+      player,
+      choices,
+      desc,
+      done: choice => {
         // Player status is resolved
         this.playerStatus = null;
 
@@ -545,7 +593,7 @@ class Game extends SharedGame {
           }
         };
 
-        callback && callback(pickedPlayer);
+        done && done(choice);
       }
     };
   }

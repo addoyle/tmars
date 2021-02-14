@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import './Field.scss';
 import classnames from 'classnames';
 import { Tile, Resource, Param, MegaCredit } from '../assets/Assets';
+import { toJS } from 'mobx';
 
 const offMars = {
   ganymede: {
@@ -54,8 +55,8 @@ const Field = ({ gameStore }) => {
         return <Param name="card back" />;
       } else if (resource[i] === 'ocean') {
         return <Tile name="ocean" />;
-      } else if (resource[i].mc) {
-        return <MegaCredit value={resource[i].mc} />;
+      } else if (resource[i].megacredit) {
+        return <MegaCredit value={resource[i].megacredit} />;
       } else {
         return <Resource name={resource[i]} />;
       }
@@ -63,6 +64,8 @@ const Field = ({ gameStore }) => {
       return <Resource name="blank" />;
     }
   };
+
+  console.log(toJS(gameStore.field));
 
   return (
     <div className={classnames('field', { venus: hasVenus })}>
