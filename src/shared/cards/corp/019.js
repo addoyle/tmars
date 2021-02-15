@@ -18,6 +18,7 @@ const card = new Corporation({
   startingMC: 42,
   firstAction: (player, game) =>
     game.keepSelected(
+      player,
       game.revealCards(
         player,
         card => card.resource === 'floater',

@@ -206,7 +206,7 @@ const Games = ({ gameStore }) => {
           );
         })}
       </Paper>
-      <Dialog open={confirmOpen} onClose={() => setConfirmOpen(false)}>
+      <Dialog open={!!confirmOpen} onClose={() => setConfirmOpen(false)}>
         <DialogTitle>Delete {confirmOpen}</DialogTitle>
         <DialogContent>
           <DialogContentText>

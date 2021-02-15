@@ -53,6 +53,7 @@ export default new Corporation({
       action: (player, game) => {
         game.resources(player, 'megacredit', -3);
         game.keepSelected(
+          player,
           game.revealCards(
             player,
             card => card.tags.includes('building'),

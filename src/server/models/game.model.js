@@ -363,7 +363,9 @@ class Game extends SharedGame {
    * @param {array} cards Cards to receive
    */
   keepSelected(player, cards) {
-    const keep = cards.filter(c => c.select);
+    const keep = cards
+      .filter(c => c.select)
+      .map(c => ({ ...c, select: false }));
 
     // Put selected cards in hand
     player.cards.hand = player.cards.hand.concat(keep);
@@ -519,16 +521,16 @@ class Game extends SharedGame {
    * @param {string} desc Description to present to user
    * @param {object} icon The icon to prompt for
    * @param {array} logSnippet The snippet of a log that would fit this sentence: '{player} {snippet} {targetPlayer}'
-   * @param {func} done Callback once the player is picked
+   * @param {func} action Action when the player is chosen
    * @param {func} filter Optional player filter
    */
   promptPlayer(
     player,
     desc,
     icon,
-    rightIcon,
     logSnippet,
-    done,
+    action,
+    optional = false,
     filter = () => true
   ) {
     player.ui = {
@@ -538,48 +540,34 @@ class Game extends SharedGame {
     this.promptChoice(
       player,
       desc,
-      this.players.map(
-        p => ({
-          icon,
-          rightIcon,
-          label: p.name,
-          disabled: filter(player),
-          logSnippet
-        }),
-        done
-      )
+      this.players.map(p => ({
+        icon: { resource: `player-${p.number}` },
+        rightIcon: icon,
+        label: p.name,
+        canPlay: filter(player),
+        logSnippet,
+        action
+      })),
+      optional
     );
-
-    // this.playerStatus = {
-    //   type: 'prompt',
-    //   icon,
-    //   player,
-    //   logSnippet,
-    //   validPlayers: this.players.filter(filter).map(p => p.number),
-    //   done: pickedPlayer => {
-    //     // Player status is resolved
-    //     this.playerStatus = null;
-
-    //     // Show UI components
-    //     player.ui = {
-    //       drawer: this.phase === 'prelude' ? 'prelude' : 'hand',
-    //       playerStats: {
-    //         show: true,
-    //         pid: player.number
-    //       }
-    //     };
-
-    //     done && done(pickedPlayer);
-    //   }
-    // };
   }
 
-  promptChoice(player, desc, choices, done) {
+  /**
+   * Prompt for a list of choices
+   *
+   * @param {object} player Player making the choice
+   * @param {string} desc Description of the choices
+   * @param {array} choices List of choices and actions
+   * @param {func} Callback once the choice has been chosen
+   * @param {boolean} optional Whether the choices is optional, i.e. can be "canceled"
+   */
+  promptChoice(player, desc, choices, done, optional = false) {
     this.playerStatus = {
       type: 'prompt',
       player,
       choices,
       desc,
+      optional,
       done: choice => {
         // Player status is resolved
         this.playerStatus = null;
@@ -593,7 +581,7 @@ class Game extends SharedGame {
           }
         };
 
-        done && done(choice);
+        choice(player, this, done);
       }
     };
   }
@@ -1097,7 +1085,9 @@ class Game extends SharedGame {
     this.players[this.turn - 1].firstAction = true;
 
     // Play starting action, if applicable
-    this.playStartingAction();
+    if (this.phase === 'action') {
+      this.playStartingAction();
+    }
   }
 
   /**

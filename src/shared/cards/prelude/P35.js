@@ -17,6 +17,7 @@ export default new Prelude({
   action: (player, game) => {
     game.resources(player, 'titanium', 6);
     game.keepSelected(
+      player,
       game.revealCards(
         player,
         card => card.tags.includes('space'),

@@ -16,6 +16,7 @@ export default new Prelude({
   emoji: '🌳',
   action: (player, game, done) => {
     game.keepSelected(
+      player,
       game.revealCards(
         player,
         card => card.tags.includes('plant'),

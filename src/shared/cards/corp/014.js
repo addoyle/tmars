@@ -19,6 +19,7 @@ export default new Corporation({
   startingMC: 44,
   firstAction: (player, game) =>
     game.keepSelected(
+      player,
       game.revealCards(
         player,
         card => card.tags.includes('microbe'),

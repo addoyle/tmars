@@ -18,6 +18,7 @@ export default new Corporation({
   startingMC: 50,
   firstAction: (player, game) =>
     game.keepSelected(
+      player,
       game.revealCards(
         player,
         card => card.tags.includes('venus'),
