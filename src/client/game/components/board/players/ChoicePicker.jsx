@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import './ChoicePicker.scss';
-import Player from './Player';
 import { MegaCredit, Production, Resource } from '../../assets/Assets';
 import classNames from 'classnames';
 import { toJS } from 'mobx';
@@ -13,79 +12,76 @@ import { toJS } from 'mobx';
  * @param {*} props
  */
 const ChoicePicker = ({ gameStore }) => {
-  const icon = gameStore.playerStatus?.icon;
+  console.log(toJS(gameStore.playerStatus));
+
+  const playerStatus = gameStore.playerStatus;
+
+  // const icon = playerStatus?.icon;
   // TODO: Handle protected habitats
 
-  const disabled = player =>
-    !gameStore.playerStatus?.validPlayers?.includes(player.number) ||
-    (icon?.resources && player?.resources[icon.resources] <= 0) ||
-    (icon?.production &&
-      !(
-        player?.production[icon.production] > 0 ||
-        (icon.production === 'megacredit' && player?.production.megacredit > -5)
-      ));
+  const disabled = () => false;
+  // player =>
+  //   !gameStore.playerStatus?.validPlayers?.includes(player.number) ||
+  //   (icon?.resources && player?.resources[icon.resources] <= 0) ||
+  //   (icon?.production &&
+  //     !(
+  //       player?.production[icon.production] > 0 ||
+  //       (icon.production === 'megacredit' && player?.production.megacredit > -5)
+  //     ));
 
   return (
     <div
-      className={classNames('player-picker', {
+      className={classNames('choice-picker', {
         show:
-          gameStore.playerStatus?.type === 'prompt-player' &&
+          playerStatus?.type === 'prompt' &&
           gameStore.turn === gameStore.player?.number
       })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
     >
-      <h1>Pick a Player</h1>
-      <ul className="player-list">
-        {gameStore.players.map(p => {
-          const player = toJS(p);
+      <h1>{gameStore.playerStatus?.desc}</h1>
+      <ul className="choice-list">
+        {playerStatus?.choices.map((choice, i) => {
+          // const player = toJS(p);
           // Don't disable passed players
-          player.passed = false;
+          // player.passed = false;
 
           return (
-            <li key={player.number}>
-              <Player
-                pid={player.number}
-                player={player}
-                tr={false}
+            <li key={i}>
+              <button
+                // pid={player.number}
+                // player={player}
+                // tr={false}
                 onClick={() =>
-                  !disabled(player) && gameStore.pickPlayer(player.number)
+                  !disabled(choice) && gameStore.pickChoice(choice.number)
                 }
-                disabled={disabled(player)}
+                disabled={disabled(choice)}
               >
-                {icon?.production ? (
+                {choice.icon?.production ? (
                   <Production>
                     <div className="flex">
-                      {icon.production === 'megacredit' ? (
-                        <MegaCredit value={player.production.megacredit} />
+                      {choice.icon.production === 'megacredit' ? (
+                        <MegaCredit value={1} />
                       ) : (
-                        <>
-                          <div className="col-1 text-center">
-                            <span>{player.production[icon.production]}</span>
-                          </div>
-                          <Resource name={icon.production} />
-                        </>
+                        <Resource name={choice.icon.production} />
                       )}
                     </div>
                   </Production>
-                ) : icon?.resources ? (
-                  icon.resources === 'megacredit' ? (
-                    <MegaCredit value={player.resources.megacredit} />
+                ) : choice.icon?.resource ? (
+                  choice.icon.resource === 'megacredit' ? (
+                    <MegaCredit value={1} />
                   ) : (
-                    <>
-                      <span>{player.resources[icon.resources]}</span>
-                      <Resource name={icon.resources} />
-                    </>
+                    <Resource name={choice.icon.resource} />
                   )
                 ) : null}
-              </Player>
+              </button>
             </li>
           );
         })}
       </ul>
-      {icon?.resources ? (
+      {gameStore.playerStatus?.optional ? (
         <div className="footer">
-          <button onClick={() => gameStore.pickPlayer(null)}>Cancel</button>
+          <button onClick={() => gameStore.pickChoice(null)}>Cancel</button>
         </div>
       ) : null}
     </div>
@@ -97,20 +93,33 @@ ChoicePicker.propTypes = {
     player: PropTypes.shape({
       number: PropTypes.number
     }),
-    players: PropTypes.arrayOf(
-      PropTypes.shape({
-        number: PropTypes.number
-      })
-    ),
     playerStatus: PropTypes.shape({
-      icon: PropTypes.shape({
-        production: PropTypes.string,
-        resources: PropTypes.string
-      }),
       type: PropTypes.string,
-      validPlayers: PropTypes.arrayOf(PropTypes.number)
+      choices: PropTypes.arrayOf(
+        PropTypes.shape({
+          number: PropTypes.number,
+          canPlay: PropTypes.bool,
+          icon: PropTypes.oneOfType([
+            PropTypes.arrayOf(
+              PropTypes.oneOfType([
+                PropTypes.shape({
+                  production: PropTypes.string,
+                  resource: PropTypes.string
+                }),
+                PropTypes.string
+              ])
+            ),
+            PropTypes.shape({
+              production: PropTypes.string,
+              resource: PropTypes.string
+            })
+          ])
+        })
+      ),
+      desc: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
+      optional: PropTypes.bool
     }),
-    pickPlayer: PropTypes.func,
+    pickChoice: PropTypes.func,
     turn: PropTypes.number
   })
 };

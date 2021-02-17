@@ -19,12 +19,14 @@ export default new Event({
       game.param(player, 'temperature', () =>
         game.promptPlayer(
           player,
+          'Pick a player to remove up to 4 plants',
           { resources: 'plant' },
-          ['took 4 plants ', { resource: 'plant' }, ' from'],
           targetPlayer => {
+            // ['took 4 plants ', { resource: 'plant' }, ' from'],
             targetPlayer && game.resources(targetPlayer, 'plant', -4);
             done();
-          }
+          },
+          done
         )
       )
     );

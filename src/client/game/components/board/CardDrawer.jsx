@@ -262,7 +262,10 @@ const CardDrawer = props => {
               resources={card?.resources}
               type={cardType}
               costModifiers={props.type ? gameStore.player.rates.cost : []}
-              showResources={props.type === 'active' || props.type === 'corp'}
+              showResources={
+                !['start', 'prelude'].includes(gameStore.phase) &&
+                ['active', 'corp'].includes(props.type)
+              }
             />
           </li>
         ))}

@@ -225,8 +225,8 @@ class Game extends SharedGame {
     API(`game/${gameId()}/place-tile/${id}`, POST);
   }
 
-  pickPlayer(player) {
-    API(`game/${gameId()}/pick-player`, POST, { player });
+  pickChoice(choice) {
+    API(`game/${gameId()}/pick-choice`, POST, { choice });
   }
 
   passSkip() {

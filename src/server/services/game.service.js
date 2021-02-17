@@ -565,31 +565,34 @@ class GameService {
   }
 
   /**
-   * Pick a player
+   * Pick a choice
    *
    * @param {string} id Game ID
-   * @param {number} pickedPlayerID Player that was chosen
+   * @param {number} i Item that was chosen
    */
   @push(gameFilter)
-  pickPlayer(id, pickedPlayerID) {
+  pickChoice(id, i) {
     const game = this.games[id];
     const player = game.playerStatus.player;
-    const pickedPlayer = this.getPlayer(game, pickedPlayerID);
-    if (pickedPlayerID) {
+    // const pickedPlayer = this.getPlayer(game, choice);
+
+    console.log(game.playerStatus);
+
+    if (i) {
+      const choice = game.playerStatus.choices[i];
+
+      choice.action(player, game);
+
       // Log the placement
-      LogService.pushLog(
-        game.id,
-        new Log(player.number, [
-          ' ',
-          ...game.playerStatus.logSnippet,
-          ' ',
-          { player: pickedPlayerID },
-          '.'
-        ])
-      );
+      // LogService.pushLog(
+      //   game.id,
+      //   new Log(player.number, [' ', ...choice.logSnippet, '.'])
+      // );
+    } else {
+      game.playerStatus.cancelAction(player, game);
     }
 
-    game.playerStatus.done(pickedPlayer);
+    // game.playerStatus.done(pickedPlayer);
 
     return this.export(game);
   }

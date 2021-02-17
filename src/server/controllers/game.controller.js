@@ -194,13 +194,13 @@ export function placeTile(req, res) {
 }
 
 /**
- * Pick a player
+ * Pick a choice
  *
  * @param {*} req
  * @param {*} res
  */
-export function pickPlayer(req, res) {
-  res.send(GameService.pickPlayer(`${req.params.id}`, req.body.player));
+export function pickChoice(req, res) {
+  res.send(GameService.pickChoice(`${req.params.id}`, req.body.choice));
 }
 
 /**

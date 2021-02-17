@@ -522,21 +522,17 @@ class Game extends SharedGame {
    * @param {object} icon The icon to prompt for
    * @param {array} logSnippet The snippet of a log that would fit this sentence: '{player} {snippet} {targetPlayer}'
    * @param {func} action Action when the player is chosen
+   * @param {func} cancelAction Action when the player hits cancel
    * @param {func} filter Optional player filter
    */
   promptPlayer(
     player,
     desc,
     icon,
-    logSnippet,
     action,
-    optional = false,
+    cancelAction = () => {},
     filter = () => true
   ) {
-    player.ui = {
-      currentCard: { show: false }
-    };
-
     this.promptChoice(
       player,
       desc,
@@ -545,10 +541,9 @@ class Game extends SharedGame {
         rightIcon: icon,
         label: p.name,
         canPlay: filter(player),
-        logSnippet,
         action
       })),
-      optional
+      cancelAction
     );
   }
 
@@ -558,17 +553,20 @@ class Game extends SharedGame {
    * @param {object} player Player making the choice
    * @param {string} desc Description of the choices
    * @param {array} choices List of choices and actions
-   * @param {func} Callback once the choice has been chosen
-   * @param {boolean} optional Whether the choices is optional, i.e. can be "canceled"
+   * @param {func} cancelAction Whether the choices is optional, i.e. can be "canceled"
    */
-  promptChoice(player, desc, choices, done, optional = false) {
+  promptChoice(player, desc, choices, cancelAction = null) {
+    player.ui = {
+      currentCard: { show: false }
+    };
+
     this.playerStatus = {
       type: 'prompt',
       player,
       choices,
       desc,
-      optional,
-      done: choice => {
+      optional: !!cancelAction,
+      done: i => {
         // Player status is resolved
         this.playerStatus = null;
 
@@ -581,7 +579,7 @@ class Game extends SharedGame {
           }
         };
 
-        choice(player, this, done);
+        isNaN(i) ? cancelAction(player, this) : choices[i](player, this);
       }
     };
   }
@@ -654,6 +652,7 @@ class Game extends SharedGame {
         }
       });
 
+    // Check if this tile placement finished terraforming
     this.checkEndGame();
 
     // Trigger events
