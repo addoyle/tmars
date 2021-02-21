@@ -21,12 +21,15 @@ export default new Event({
       game.promptTile(player, 'ocean', () =>
         game.promptPlayer(
           player,
-          { resources: 'plant' },
+          'Pick a player to remove up to 3 plants',
+          [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
           ['took 3 plants ', { resource: 'plant' }, ' from'],
           targetPlayer => {
             targetPlayer && game.resources(targetPlayer, 'plant', -3);
             done();
-          }
+          },
+          player => player.resources.plant > 0,
+          done
         )
       )
     );

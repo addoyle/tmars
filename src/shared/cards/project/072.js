@@ -26,12 +26,14 @@ const card = new Active({
   action: (player, game, done) => {
     game.promptPlayer(
       player,
-      { production: 'plant' },
-      ['took 2 plant ', { resource: 'plant' }, ' production from'],
+      'Pick a player to remove 2 plant production',
+      [p => ({ production: 'plant', value: p.production.plant })],
+      ['took 2 plant production ', { production: 'plant' }, ' from'],
       targetPlayer => {
         game.production(targetPlayer, 'plant', -2);
         done();
-      }
+      },
+      player => player.production.plant >= 2
     );
   },
   canPlay: (player, game) => {

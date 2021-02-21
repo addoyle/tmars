@@ -20,12 +20,13 @@ export default new Event({
         game.promptPlayer(
           player,
           'Pick a player to remove up to 4 plants',
-          { resources: 'plant' },
+          [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
+          ['took 4 plants ', { resource: 'plant' }, ' from'],
           targetPlayer => {
-            // ['took 4 plants ', { resource: 'plant' }, ' from'],
             targetPlayer && game.resources(targetPlayer, 'plant', -4);
             done();
           },
+          player => player.resources.plant > 0,
           done
         )
       )

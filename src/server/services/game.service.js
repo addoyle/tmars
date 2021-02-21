@@ -574,20 +574,17 @@ class GameService {
   pickChoice(id, i) {
     const game = this.games[id];
     const player = game.playerStatus.player;
-    // const pickedPlayer = this.getPlayer(game, choice);
 
-    console.log(game.playerStatus);
-
-    if (i) {
+    if (i !== null) {
       const choice = game.playerStatus.choices[i];
 
       choice.action(player, game);
 
       // Log the placement
-      // LogService.pushLog(
-      //   game.id,
-      //   new Log(player.number, [' ', ...choice.logSnippet, '.'])
-      // );
+      LogService.pushLog(
+        game.id,
+        new Log(player.number, [' ', ...choice.logSnippet, '.'])
+      );
     } else {
       game.playerStatus.cancelAction(player, game);
     }

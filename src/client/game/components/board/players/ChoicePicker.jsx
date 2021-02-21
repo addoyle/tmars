@@ -1,10 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
+import PropTypes from 'prop-types';
 import './ChoicePicker.scss';
 import { MegaCredit, Production, Resource } from '../../assets/Assets';
 import classNames from 'classnames';
-import { toJS } from 'mobx';
 
 /**
  * Render the tiles portion of the player stats
@@ -12,72 +11,69 @@ import { toJS } from 'mobx';
  * @param {*} props
  */
 const ChoicePicker = ({ gameStore }) => {
-  console.log(toJS(gameStore.playerStatus));
-
   const playerStatus = gameStore.playerStatus;
 
-  // const icon = playerStatus?.icon;
-  // TODO: Handle protected habitats
+  // Render the icon
+  const renderIcon = origIcon => {
+    const icons = Array.isArray(origIcon) ? origIcon : [origIcon];
 
-  const disabled = () => false;
-  // player =>
-  //   !gameStore.playerStatus?.validPlayers?.includes(player.number) ||
-  //   (icon?.resources && player?.resources[icon.resources] <= 0) ||
-  //   (icon?.production &&
-  //     !(
-  //       player?.production[icon.production] > 0 ||
-  //       (icon.production === 'megacredit' && player?.production.megacredit > -5)
-  //     ));
+    return (
+      <div className="resources">
+        {icons.map((icon, i) => {
+          if (icon.player) {
+            return <Resource key={i} name={`player-${icon.player}`} />;
+          } else if (icon.megacredit) {
+            return <MegaCredit key={i} value={icon.megacredit} />;
+          } else if (icon.resource) {
+            return <Resource key={i} name={icon.resource} />;
+          } else if (icon.production) {
+            return (
+              <Production key={i}>
+                <div className="flex">
+                  {icon.production === 'megacredit' ? (
+                    <MegaCredit value={icon.value} />
+                  ) : (
+                    <>
+                      {icon.value !== null ? <span>{icon.value}</span> : null}
+                      <Resource name={icon.production} />
+                    </>
+                  )}
+                </div>
+              </Production>
+            );
+          } else if (icon.text !== null) {
+            return <span key={i}>{`${icon.text}`}</span>;
+          }
+        })}
+      </div>
+    );
+  };
 
   return (
     <div
       className={classNames('choice-picker', {
         show:
-          playerStatus?.type === 'prompt' &&
+          playerStatus?.type === 'prompt-choice' &&
           gameStore.turn === gameStore.player?.number
       })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
     >
-      <h1>{gameStore.playerStatus?.desc}</h1>
+      <h1>{playerStatus?.desc}</h1>
       <ul className="choice-list">
-        {playerStatus?.choices.map((choice, i) => {
-          // const player = toJS(p);
-          // Don't disable passed players
-          // player.passed = false;
-
-          return (
-            <li key={i}>
-              <button
-                // pid={player.number}
-                // player={player}
-                // tr={false}
-                onClick={() =>
-                  !disabled(choice) && gameStore.pickChoice(choice.number)
-                }
-                disabled={disabled(choice)}
-              >
-                {choice.icon?.production ? (
-                  <Production>
-                    <div className="flex">
-                      {choice.icon.production === 'megacredit' ? (
-                        <MegaCredit value={1} />
-                      ) : (
-                        <Resource name={choice.icon.production} />
-                      )}
-                    </div>
-                  </Production>
-                ) : choice.icon?.resource ? (
-                  choice.icon.resource === 'megacredit' ? (
-                    <MegaCredit value={1} />
-                  ) : (
-                    <Resource name={choice.icon.resource} />
-                  )
-                ) : null}
-              </button>
-            </li>
-          );
-        })}
+        {playerStatus?.choices?.map((choice, i) => (
+          <li key={i}>
+            <button
+              className="flex"
+              onClick={() => !choice?.disabled && gameStore.pickChoice(i)}
+              disabled={choice?.disabled}
+            >
+              <div className="left middle">{renderIcon(choice.icon)}</div>
+              <div className="center middle">{choice.label}</div>
+              <div className="right middle">{renderIcon(choice.rightIcon)}</div>
+            </button>
+          </li>
+        ))}
       </ul>
       {gameStore.playerStatus?.optional ? (
         <div className="footer">
@@ -88,6 +84,21 @@ const ChoicePicker = ({ gameStore }) => {
   );
 };
 
+const icon = PropTypes.oneOfType([
+  PropTypes.arrayOf(
+    PropTypes.oneOfType([
+      PropTypes.shape({
+        production: PropTypes.string,
+        resource: PropTypes.string
+      }),
+      PropTypes.string
+    ])
+  ),
+  PropTypes.shape({
+    production: PropTypes.string,
+    resource: PropTypes.string
+  })
+]);
 ChoicePicker.propTypes = {
   gameStore: PropTypes.shape({
     player: PropTypes.shape({
@@ -99,21 +110,8 @@ ChoicePicker.propTypes = {
         PropTypes.shape({
           number: PropTypes.number,
           canPlay: PropTypes.bool,
-          icon: PropTypes.oneOfType([
-            PropTypes.arrayOf(
-              PropTypes.oneOfType([
-                PropTypes.shape({
-                  production: PropTypes.string,
-                  resource: PropTypes.string
-                }),
-                PropTypes.string
-              ])
-            ),
-            PropTypes.shape({
-              production: PropTypes.string,
-              resource: PropTypes.string
-            })
-          ])
+          icon,
+          rightIcon: icon
         })
       ),
       desc: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),

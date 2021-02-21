@@ -16,18 +16,19 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Utilizing temperature gradients for energy production',
-  action: (player, game, done) => {
+  action: (player, game, done) =>
     game.promptPlayer(
       player,
-      { production: 'heat' },
-      ['took 2 heat ', { resource: 'heat' }, ' production from'],
+      'Pick a player to remove 2 heat production',
+      [p => ({ production: 'heat', value: p.production.heat })],
+      ['took 2 heat production ', { production: 'heat' }, ' from'],
       targetPlayer => {
         game.production(player, 'power', 1);
         game.production(targetPlayer, 'heat', -2);
         done();
-      }
-    );
-  },
+      },
+      player => player.production.heat >= 2
+    ),
   canPlay: (player, game) => {
     const valid = !!game.players.filter(player => player.production.heat >= 2)
       .length;

@@ -17,18 +17,19 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'They need it. But we need it more',
-  action: (player, game, done) => {
+  action: (player, game, done) =>
     game.promptPlayer(
       player,
-      { production: 'power' },
-      ['took 1 power ', { resource: 'power' }, ' production from'],
+      'Pick a player to remove 1 energy production',
+      [p => ({ production: 'power', value: p.production.power })],
+      ['took 1 energy production ', { production: 'energy' }, ' from'],
       targetPlayer => {
         game.production(targetPlayer, 'power', -1);
         game.production(player, 'power', 1);
         done();
-      }
-    );
-  },
+      },
+      player => player.production.power > 0
+    ),
   canPlay: (player, game) => {
     const valid = !!game.players.filter(player => player.production.power > 0)
       .length;

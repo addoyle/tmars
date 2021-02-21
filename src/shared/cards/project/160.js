@@ -20,18 +20,19 @@ export default new Automated({
   },
   desc,
   flavor: 'Dominating the energy market allows you to make hostile takovers',
-  action: (player, game, done) => {
+  action: (player, game, done) =>
     game.promptPlayer(
       player,
-      { production: 'power' },
-      ['took 2 power ', { resource: 'power' }, ' production from'],
+      'Pick a player to remove 1 energy production',
+      [p => ({ production: 'power', value: p.production.power })],
+      ['took 1 energy production ', { production: 'power' }, ' from'],
       targetPlayer => {
         game.production(player, 'power', 1);
         game.production(targetPlayer, 'power', -1);
         done();
-      }
-    );
-  },
+      },
+      player => player.production.power > 0
+    ),
   canPlay: (player, game) => {
     const valid = !!game.players.filter(player => player.production.power > 0)
       .length;

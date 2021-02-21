@@ -115,6 +115,9 @@ body {
   }
   .inline-flex,
   .flex {
+    &.left {
+      justify-content: flex-start;
+    }
     &.center {
       justify-content: center;
     }
@@ -187,7 +190,6 @@ body {
   }
 
   button {
-    padding: 2px;
     border: 1px solid #ccc;
     background: linear-gradient(
       135deg,

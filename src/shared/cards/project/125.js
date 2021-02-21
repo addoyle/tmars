@@ -21,14 +21,16 @@ export default new Automated({
   action: (player, game, done) => {
     game.promptPlayer(
       player,
-      { production: 'megacredit' },
-      ['took 2 M€ ', { megacredit: null }, ' production from'],
+      'Pick a player to remove 2 M€ production',
+      [p => ({ production: 'megacredit', value: p.production.megacredit })],
+      ['took 2 M€ production ', { production: 'megacredit' }, ' from'],
       targetPlayer => {
         game.production(player, 'power', -1);
         game.production(player, 'megacredit', 2);
         game.production(targetPlayer, 'megacredit', -2);
         done();
-      }
+      },
+      player => player.production.megacredit >= -3
     );
   },
   canPlay: (player, game) => {

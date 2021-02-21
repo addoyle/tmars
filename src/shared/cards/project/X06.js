@@ -19,8 +19,9 @@ export default new Event({
   action: (player, game, done) =>
     game.promptPlayer(
       player,
-      { resources: 'megacredit' },
-      ['stole 3 M€ ', { megacredit: null }, ' from'],
+      'Pick a player to remove up to 3 M€',
+      [p => ({ megacredit: p.resources.megacredit })],
+      ['stole 3 M€ ', { megacredit: '3' }, ' from'],
       targetPlayer => {
         if (targetPlayer) {
           let diff = targetPlayer.resources.megacredit - 3;
@@ -35,6 +36,8 @@ export default new Event({
         }
         done();
       }
+      // TODO: filter players that took from you
+      // player => player.tags.venus > 0
     ),
   vp: -1,
   emoji: '👨‍⚖️',

@@ -33,11 +33,14 @@ $title-font: 'Prototype', sans-serif;
     text-align: center;
   }
 
-  .player {
-    width: 100%;
-    height: auto;
-    margin: 4px 0 0;
-    pointer-events: none;
+  .choice-list {
+    li {
+      margin-top: .25em;
+
+      button {
+        width: 100%;
+      }
+    }
   }
 
   .footer {

@@ -25,12 +25,14 @@ export default new Automated({
     game.production(player, 'plant', 2);
     game.promptPlayer(
       player,
-      { production: 'heat' },
+      'Pick a player to remove 1 heat production',
+      [p => ({ production: 'heat', value: p.production.heat })],
       ['took 1 heat ', { resource: 'heat' }, ' production from'],
       targetPlayer => {
         game.production(targetPlayer, 'heat', -1);
         done();
-      }
+      },
+      player => player.production.heat > 0
     );
   },
   canPlay: player => {

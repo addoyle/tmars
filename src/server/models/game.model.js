@@ -1,4 +1,4 @@
-import { shuffle, isString, startCase, groupBy } from 'lodash';
+import { shuffle, isString, isFunction, startCase, groupBy } from 'lodash';
 import { normalize } from '../util';
 import Tharsis from '../../shared/boards/Tharsis';
 import Hellas from '../../shared/boards/Hellas';
@@ -520,8 +520,8 @@ class Game extends SharedGame {
    * @param {object} player The player to prompt
    * @param {string} desc Description to present to user
    * @param {object} icon The icon to prompt for
-   * @param {array} logSnippet The snippet of a log that would fit this sentence: '{player} {snippet} {targetPlayer}'
    * @param {func} action Action when the player is chosen
+   * @param {array} logSnippet The snippet of a log that would fit this sentence: '{player} {snippet} {targetPlayer}'
    * @param {func} cancelAction Action when the player hits cancel
    * @param {func} filter Optional player filter
    */
@@ -529,19 +529,25 @@ class Game extends SharedGame {
     player,
     desc,
     icon,
+    logSnippet,
     action,
-    cancelAction = () => {},
-    filter = () => true
+    filter = () => true,
+    cancelAction = () => {}
   ) {
+    const renderIcon = (icons, p) =>
+      (Array.isArray(icons) ? icons : [icons]).map(i =>
+        isFunction(i) ? i(p, this) : i
+      );
     this.promptChoice(
       player,
       desc,
       this.players.map(p => ({
-        icon: { resource: `player-${p.number}` },
-        rightIcon: icon,
+        icon: { player: p.number },
+        rightIcon: renderIcon(icon, p),
         label: p.name,
-        canPlay: filter(player),
-        action
+        disabled: !filter(p),
+        logSnippet: [...logSnippet, ' ', { player: p.number }],
+        action: (player, game) => action(p, game)
       })),
       cancelAction
     );
@@ -561,12 +567,13 @@ class Game extends SharedGame {
     };
 
     this.playerStatus = {
-      type: 'prompt',
+      type: 'prompt-choice',
       player,
       choices,
       desc,
       optional: !!cancelAction,
-      done: i => {
+      cancelAction,
+      done: () => {
         // Player status is resolved
         this.playerStatus = null;
 
@@ -578,8 +585,6 @@ class Game extends SharedGame {
             pid: player.number
           }
         };
-
-        isNaN(i) ? cancelAction(player, this) : choices[i](player, this);
       }
     };
   }

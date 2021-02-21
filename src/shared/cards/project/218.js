@@ -20,13 +20,15 @@ export default new Event({
     game.param(player, 'venus', () =>
       game.promptPlayer(
         player,
-        { resources: 'megacredit' },
-        ['took 4 M€ ', { megacredit: null }, ' from'],
+        'Pick a player to remove up to 4 M€',
+        [p => ({ megacredit: p.resources.megacredit })],
+        ['took 4 M€ ', { megacredit: '4' }, ' from'],
         targetPlayer => {
           targetPlayer && game.resources(targetPlayer, 'megacredit', -4);
           done();
         },
-        p => p.tags.venus > 0
+        player => player.tags.venus > 0,
+        done
       )
     ),
   emoji: '☄',

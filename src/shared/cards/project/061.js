@@ -24,13 +24,15 @@ export default new Automated({
   action: (player, game, done) => {
     game.promptPlayer(
       player,
-      { production: 'steel' },
-      ['took 1 steel ', { resource: 'steel' }, ' production from'],
+      'Pick a player to remove 1 steel production',
+      [p => ({ production: 'steel', value: p.production.steel })],
+      ['took 1 steel production ', { production: 'steel' }, ' from'],
       targetPlayer => {
         game.production(player, 'steel', 1);
         game.production(targetPlayer, 'steel', -1);
         done();
-      }
+      },
+      player => player.production.steel > 0
     );
   },
   emoji: '⛰',

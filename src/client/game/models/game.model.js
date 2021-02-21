@@ -56,8 +56,13 @@ class Game extends SharedGame {
   @observable players = [];
   @observable player;
 
+  // Temporary status when an action is pending
+  @observable playerStatus;
+
+  // Game phase
   @observable phase;
 
+  // Game settings/menu
   @observable settings = {};
 
   // State of milestones and standard projects windows
