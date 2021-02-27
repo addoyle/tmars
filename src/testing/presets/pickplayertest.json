@@ -1,10 +1,6 @@
 {
   "id": "dudegame",
-  "sets": [
-    "corporate",
-    "prelude",
-    "promo"
-  ],
+  "sets": ["corporate", "prelude", "promo"],
   "players": [
     {
       "name": "Phil",
@@ -159,7 +155,7 @@
             "card": "092"
           },
           {
-            "card": "011"
+            "card": "124"
           },
           {
             "card": "105"
@@ -337,200 +333,124 @@
   "field": [
     [
       {
-        "resources": [
-          0,
-          0,
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": [0, 0, "plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 0
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 1
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 2
       },
       {
-        "resources": [
-          "plant",
-          "steel"
-        ],
+        "resources": ["plant", "steel"],
         "id": 3
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 4
       }
     ],
     [
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant", "plant"],
+        "attrs": ["reserved-ocean"],
         "id": 5
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 6
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 7
       },
       {
-        "resources": [
-          "plant",
-          "steel"
-        ],
+        "resources": ["plant", "steel"],
         "id": 8
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 9
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 10
       }
     ],
     [
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 11
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 12
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 13
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 14
       },
       {
         "id": 15
       },
       {
-        "resources": [
-          "plant",
-          "plant"
-        ],
+        "resources": ["plant", "plant"],
         "id": 16
       },
       {
-        "resources": [
-          "card",
-          "plant"
-        ],
+        "resources": ["card", "plant"],
         "id": 17
       }
     ],
     [
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 18
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 19
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 20
       },
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
+        "resources": ["steel", "steel"],
         "id": 21
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 22
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 23
       },
       {
-        "resources": [
-          "plant"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["plant"],
+        "attrs": ["reserved-ocean"],
         "id": 24
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 25
       }
     ],
     [
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "id": 26
       },
       {
@@ -540,63 +460,42 @@
         "id": 28
       },
       {
-        "resources": [
-          "steel",
-          "steel"
-        ],
+        "resources": ["steel", "steel"],
         "id": 29
       },
       {
         "id": 30
       },
       {
-        "resources": [
-          "card"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["card"],
+        "attrs": ["reserved-ocean"],
         "id": 31
       },
       {
-        "resources": [
-          "heat",
-          "heat",
-          "heat"
-        ],
+        "resources": ["heat", "heat", "heat"],
         "text": "Hellas Planitia",
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "attrs": ["reserved-ocean"],
         "id": 32
       },
       {
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "attrs": ["reserved-ocean"],
         "id": 33
       },
       {
-        "resources": [
-          "plant"
-        ],
+        "resources": ["plant"],
         "id": 34
       }
     ],
     [
       {
-        "resources": [
-          "titanium"
-        ],
+        "resources": ["titanium"],
         "id": 35
       },
       {
         "id": 36
       },
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 37
       },
       {
@@ -606,18 +505,12 @@
         "id": 39
       },
       {
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "attrs": ["reserved-ocean"],
         "id": 40
       },
       {
-        "resources": [
-          "steel"
-        ],
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "resources": ["steel"],
+        "attrs": ["reserved-ocean"],
         "id": 41
       },
       {
@@ -626,14 +519,9 @@
     ],
     [
       {
-        "resources": [
-          "titanium",
-          "titanium"
-        ],
+        "resources": ["titanium", "titanium"],
         "text": "Argyre Planitia",
-        "attrs": [
-          "reserved-ocean"
-        ],
+        "attrs": ["reserved-ocean"],
         "id": 43
       },
       {
@@ -643,9 +531,7 @@
         "id": 45
       },
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "id": 46
       },
       {
@@ -655,50 +541,33 @@
         "id": 48
       },
       {
-        "resources": [
-          "titanium"
-        ],
+        "resources": ["titanium"],
         "id": 49
       }
     ],
     [
       {
-        "resources": [
-          "steel"
-        ],
+        "resources": ["steel"],
         "id": 50
       },
       {
-        "resources": [
-          "card"
-        ],
+        "resources": ["card"],
         "id": 51
       },
       {
-        "resources": [
-          "heat",
-          "heat"
-        ],
+        "resources": ["heat", "heat"],
         "id": 52
       },
       {
-        "resources": [
-          "heat",
-          0,
-          "heat"
-        ],
+        "resources": ["heat", 0, "heat"],
         "id": 53
       },
       {
-        "resources": [
-          "titanium"
-        ],
+        "resources": ["titanium"],
         "id": 54
       },
       {
-        "resources": [
-          "titanium"
-        ],
+        "resources": ["titanium"],
         "id": 55
       }
     ],
@@ -707,10 +576,7 @@
         "id": 56
       },
       {
-        "resources": [
-          "heat",
-          "heat"
-        ],
+        "resources": ["heat", "heat"],
         "id": 57
       },
       {
@@ -725,10 +591,7 @@
         "id": 58
       },
       {
-        "resources": [
-          "heat",
-          "heat"
-        ],
+        "resources": ["heat", "heat"],
         "id": 59
       },
       {
@@ -757,10 +620,7 @@
     },
     {
       "player": 0,
-      "body": [
-        "You are terraforming **Hellas**, ",
-        "the southern wild!"
-      ],
+      "body": ["You are terraforming **Hellas**, ", "the southern wild!"],
       "system": true
     },
     {
@@ -867,10 +727,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "prelude-phase"
-        ]
+        "classNames": ["phase", "prelude-phase"]
       }
     },
     {
@@ -1021,10 +878,7 @@
       ],
       "system": true,
       "opts": {
-        "classNames": [
-          "phase",
-          "action-phase"
-        ]
+        "classNames": ["phase", "action-phase"]
       }
     }
   ],
@@ -1529,7 +1383,7 @@
         "card": "045"
       },
       {
-        "card": "124"
+        "card": "019"
       },
       {
         "card": "P42"

@@ -5,7 +5,7 @@ import {
   Resource
 } from '../../../client/game/components/assets/Assets';
 
-const desc = 'Steel up to 2 steel, or 3 M€ from any other player.';
+const desc = 'Steal up to 2 steel, or 3 M€ from any other player.';
 
 export default new Event({
   number: '124',
@@ -15,9 +15,66 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'We have a better use for those resources',
-  action: () => {},
+  action: (player, game, done) =>
+    game.promptPlayer(
+      player,
+      'Pick a player to remove up to 2 steel or 3 M€',
+      [
+        p => ({ text: +p.resources.steel }),
+        { resource: 'steel' },
+        { text: '/' },
+        p => ({ megacredit: +p.resources.megacredit })
+      ],
+      null,
+      targetPlayer => {
+        // targetPlayer && game.resources(targetPlayer, 'plant', -2);
+        game.promptChoice(player, 'Remove up to 2 steel or 3 M€', [
+          {
+            icon: { player: targetPlayer.number },
+            rightIcon: [{ text: 2 }, { resource: 'steel' }],
+            label: 'Remove 2 steel',
+            disabled: targetPlayer.resources.steel < 2,
+            logSnippet: [
+              'stole 2 steel ',
+              { resource: 'steel' },
+              ' from ',
+              { player: targetPlayer.number }
+            ],
+            action: (p, game) => {
+              const cur = targetPlayer.resources.steel;
+              game.resources(targetPlayer, 'steel', -2);
+              const diff = cur - targetPlayer.resources.steel;
+              game.resources(player, 'steel', diff);
+              done();
+            }
+          },
+          {
+            icon: { player: targetPlayer.number },
+            rightIcon: [{ megacredit: 3 }],
+            label: 'Remove 3 M€',
+            disabled: targetPlayer.resources.megacredit < 3,
+            logSnippet: [
+              'stole 3 M€ ',
+              { megacredit: null },
+              ' from ',
+              { player: targetPlayer.number }
+            ],
+            action: (p, game) => {
+              const cur = targetPlayer.resources.megacredit;
+              game.resources(targetPlayer, 'megacredit', -3);
+              const diff = cur - targetPlayer.resources.megacredit;
+              game.resources(player, 'megacredit', diff);
+              done();
+            }
+          }
+        ]);
+      },
+      p =>
+        p.number !== player.number &&
+        (p.resources.steel > 0 || p.resources.megacredit > 0),
+      done
+    ),
   emoji: '🏴‍☠️',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex gutter">

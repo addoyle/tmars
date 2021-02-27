@@ -546,7 +546,9 @@ class Game extends SharedGame {
         rightIcon: renderIcon(icon, p),
         label: p.name,
         disabled: !filter(p),
-        logSnippet: [...logSnippet, ' ', { player: p.number }],
+        logSnippet: logSnippet
+          ? [...logSnippet, ' ', { player: p.number }]
+          : null,
         action: (player, game) => action(p, game)
       })),
       cancelAction

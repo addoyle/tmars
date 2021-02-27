@@ -581,10 +581,12 @@ class GameService {
       choice.action(player, game);
 
       // Log the placement
-      LogService.pushLog(
-        game.id,
-        new Log(player.number, [' ', ...choice.logSnippet, '.'])
-      );
+      if (choice.logSnippet) {
+        LogService.pushLog(
+          game.id,
+          new Log(player.number, [' ', ...choice.logSnippet, '.'])
+        );
+      }
     } else {
       game.playerStatus.cancelAction(player, game);
     }
