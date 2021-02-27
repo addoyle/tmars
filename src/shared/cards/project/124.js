@@ -18,7 +18,7 @@ export default new Event({
   action: (player, game, done) =>
     game.promptPlayer(
       player,
-      'Pick a player to remove up to 2 steel or 3 M€',
+      'Pick a player to steal up to 2 steel or 3 M€',
       [
         p => ({ text: +p.resources.steel }),
         { resource: 'steel' },
@@ -26,13 +26,12 @@ export default new Event({
         p => ({ megacredit: +p.resources.megacredit })
       ],
       null,
-      targetPlayer => {
-        // targetPlayer && game.resources(targetPlayer, 'plant', -2);
-        game.promptChoice(player, 'Remove up to 2 steel or 3 M€', [
+      targetPlayer =>
+        game.promptChoice(player, 'Steal up to 2 steel or 3 M€', [
           {
             icon: { player: targetPlayer.number },
-            rightIcon: [{ text: 2 }, { resource: 'steel' }],
-            label: 'Remove 2 steel',
+            rightIcon: [{ text: -2 }, { resource: 'steel' }],
+            label: 'Steal steel',
             disabled: targetPlayer.resources.steel < 2,
             logSnippet: [
               'stole 2 steel ',
@@ -50,8 +49,8 @@ export default new Event({
           },
           {
             icon: { player: targetPlayer.number },
-            rightIcon: [{ megacredit: 3 }],
-            label: 'Remove 3 M€',
+            rightIcon: [{ megacredit: -3 }],
+            label: 'Steal M€',
             disabled: targetPlayer.resources.megacredit < 3,
             logSnippet: [
               'stole 3 M€ ',
@@ -67,8 +66,7 @@ export default new Event({
               done();
             }
           }
-        ]);
-      },
+        ]),
       p =>
         p.number !== player.number &&
         (p.resources.steel > 0 || p.resources.megacredit > 0),

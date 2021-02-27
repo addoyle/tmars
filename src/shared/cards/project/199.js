@@ -6,8 +6,6 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc = 'Action: Spend 2 M€ to draw a card.';
 const desc = 'Place this tile.';
 

@@ -11,7 +11,7 @@ const activeDesc =
   'When you play a science tag, including this, either add a science resource to this card, or remove a science resource from this card to draw a card.';
 const desc = 'Requires 2 ocean tiles.';
 
-export default new Active({
+const card = new Active({
   number: '185',
   title: 'Olympus Conference',
   cost: 10,
@@ -19,8 +19,42 @@ export default new Active({
   set: 'corporate',
   activeDesc,
   desc,
+  resource: 'science',
   flavor:
     'The scientific elite, assembled on the top of Olympus Mons, the highest spot in the solar system',
+  events: {
+    onCardPlayed: (player, game, playedCard) => {
+      console.log('onCardPlayed');
+      // Has a science tag
+      playedCard.tags.includes('science') &&
+        game.promptChoice(player, 'Add science or draw a card', [
+          {
+            icon: { resource: 'science' },
+            label: 'Add science',
+            logSnippet: [
+              'added a science ',
+              { resource: 'science' },
+              ' resource'
+            ],
+            action: (p, game) =>
+              game.cardResource(
+                player,
+                card,
+                playedCard.tags.filter(tag => tag === 'science').length
+              )
+          },
+          {
+            icon: { param: 'card back' },
+            label: 'Draw card',
+            logSnippet: ['drew a card ', { param: 'card back' }],
+            action: (p, game) => {
+              game.cardResource(player, card, -1);
+              game.drawCard(player);
+            }
+          }
+        ]);
+    }
+  },
   vp: 1,
   emoji: '💼',
   todo: true,
@@ -47,3 +81,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

@@ -15,7 +15,7 @@ $title-font: 'Prototype', sans-serif;
   pointer-events: none;
   user-select: none;
   width: 20vw;
-  min-width: 200px;
+  min-width: 300px;
 
   &.show {
     opacity: 1;
@@ -39,6 +39,11 @@ $title-font: 'Prototype', sans-serif;
 
       button {
         width: 100%;
+        font-size: 1em;
+
+        .resources {
+          font-size: 1.4em;
+        }
       }
     }
   }
