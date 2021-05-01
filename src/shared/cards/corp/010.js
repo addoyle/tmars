@@ -13,7 +13,7 @@ export default new Corporation({
   number: '010',
   title: 'United Nations Mars Initiative',
   titleClass: 'unmi',
-  startingMC: 40,
+  resources: { megacredit: 40 },
   actions: [
     {
       name: 'Raise TR',

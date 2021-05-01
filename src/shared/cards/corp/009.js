@@ -15,12 +15,12 @@ export default new Corporation({
   number: '009',
   title: 'ThorGate',
   titleClass: 'thorgate',
-  startingMC: 48,
-  starting: (player, game) => {
-    game.production(player, 'power', 1);
+  starting: player => {
     player.rates.cost.power = -3;
     player.rates.powerplant = 8;
   },
+  resources: { megacredit: 48 },
+  production: { power: 1 },
   tags: ['power'],
   desc,
   effectDesc,

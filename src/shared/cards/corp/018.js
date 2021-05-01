@@ -10,7 +10,7 @@ export default new Corporation({
   number: '018',
   title: 'Viron',
   titleClass: 'viron',
-  startingMC: 48,
+  resources: { megacredit: 48 },
   tags: ['microbe'],
   set: 'venus',
   desc,

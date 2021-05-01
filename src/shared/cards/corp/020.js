@@ -15,7 +15,7 @@ export default new Corporation({
   number: '020',
   title: 'Morning Star Inc.',
   titleClass: 'msi',
-  startingMC: 50,
+  resources: { megacredit: 50 },
   firstAction: (player, game) =>
     game.keepSelected(
       player,

@@ -15,13 +15,12 @@ export default new Corporation({
   number: 'X01',
   title: 'Mons Insurance',
   titleClass: 'mons',
-  startingMC: 48,
-  starting: (player, game) => {
-    game.production(player, 'megacredit', 4);
+  resources: { megacredit: 48 },
+  production: { megacredit: 4 },
+  starting: (player, game) =>
     game.players
       .filter(p => p.number !== player.number)
-      .forEach(p => game.production(p, 'megacredit', -2));
-  },
+      .forEach(p => game.production(p, 'megacredit', -2)),
   tags: [],
   set: 'promo',
   desc,

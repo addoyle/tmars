@@ -17,7 +17,7 @@ export default new Corporation({
   number: 'P03',
   title: 'Robinson Industries',
   titleClass: 'robinson-industries',
-  startingMC: 47,
+  resources: { megacredit: 47 },
   actions: [
     {
       name: 'Increase M€ Production',

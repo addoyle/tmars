@@ -13,7 +13,7 @@ export default new Corporation({
   number: '001',
   title: 'CrediCor',
   titleClass: 'credicor',
-  startingMC: 57,
+  resources: { megacredit: 57 },
   tags: [],
   desc,
   effectDesc,

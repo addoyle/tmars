@@ -14,7 +14,7 @@ export default new Corporation({
   number: 'P05',
   title: 'Vitor',
   titleClass: 'vitor',
-  startingMC: 45,
+  resources: { megacredit: 45 },
   firstAction: () => {
     // TODO
   },

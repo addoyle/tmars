@@ -14,9 +14,9 @@ export default new Corporation({
   number: '003',
   title: 'Helion',
   titleClass: 'helion',
-  startingMC: 42,
-  starting: (player, game) => {
-    game.production(player, 'heat', 3);
+  resources: { megacredit: 42 },
+  production: {
+    heat: 3
   },
   tags: ['space'],
   desc,

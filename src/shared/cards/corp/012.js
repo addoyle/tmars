@@ -25,8 +25,8 @@ export default new Corporation({
     boxShadow: '0 0 0 .03em black, 0 .5em .5em rgba(0,0,0,.5)',
     borderRadius: '100%'
   },
-  startingMC: 42,
-  starting: (player, game) => game.production(player, 'titanium', 1),
+  resources: { megacredit: 42 },
+  production: { titanium: 1 },
   tags: ['jovian'],
   set: 'corporate',
   desc,

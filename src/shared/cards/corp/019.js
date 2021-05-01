@@ -15,7 +15,7 @@ const card = new Corporation({
   number: '019',
   title: 'Celestic',
   titleClass: 'celestic',
-  startingMC: 42,
+  resources: { megacredit: 42 },
   firstAction: (player, game) =>
     game.keepSelected(
       player,

@@ -16,7 +16,7 @@ export default new Corporation({
   number: '014',
   title: 'Splice',
   titleClass: 'splice',
-  startingMC: 44,
+  resources: { megacredit: 44 },
   firstAction: (player, game) =>
     game.keepSelected(
       player,

@@ -15,8 +15,8 @@ export default new Corporation({
   number: 'X02',
   title: 'Factorum',
   titleClass: 'factorum',
-  startingMC: 37,
-  starting: (player, game) => game.production(player, 'steel', 1),
+  resources: { megacredit: 37 },
+  production: { megacredit: 1 },
   actions: [
     {
       name: 'Increase Enery Production',

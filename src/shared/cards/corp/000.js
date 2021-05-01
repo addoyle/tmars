@@ -26,7 +26,7 @@ export default new Corporation({
       '.3em 0 0 #e69a00, .4em 0 0 #444, -.3em 0 0 #e69a00, -.4em 0 0 #444',
     borderRadius: '0 0 .75em .75em/0 0 100% 100%'
   },
-  startingMC: 42,
+  resources: { megacredit: 42 },
   tags: [],
   desc,
   flavor:

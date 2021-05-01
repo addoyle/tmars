@@ -14,10 +14,12 @@ export default new Corporation({
   number: '004',
   title: 'Mining Guild',
   titleClass: 'mining-guild',
-  startingMC: 30,
-  starting: (player, game) => {
-    game.resources(player, 'steel', 5);
-    game.production(player, 'steel', 1);
+  resources: {
+    megacredit: 30,
+    steel: 5
+  },
+  production: {
+    steel: 1
   },
   tags: ['building', 'building'],
   desc,

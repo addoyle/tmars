@@ -15,7 +15,7 @@ export default new Corporation({
   number: '006',
   title: 'Inventrix',
   titleClass: 'inventrix',
-  startingMC: 45,
+  resources: { megacredit: 45 },
   firstAction: (player, game) => {
     game.drawCard(player);
     game.drawCard(player);

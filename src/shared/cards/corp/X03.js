@@ -15,7 +15,7 @@ export default new Corporation({
   number: 'X03',
   title: 'Philares',
   titleClass: 'philares',
-  startingMC: 47,
+  resources: { megacredit: 47 },
   firstAction: (player, game, done) =>
     game.promptTile(player, 'greenery', done),
   tags: ['building'],

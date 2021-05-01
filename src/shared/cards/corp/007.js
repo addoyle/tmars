@@ -12,11 +12,11 @@ export default new Corporation({
   number: '007',
   title: 'PhoboLog',
   titleClass: 'phobolog',
-  startingMC: 23,
-  starting: (player, game) => {
-    game.resources(player, 'titanium', 10);
-    player.rates.titanium++;
+  resources: {
+    megacredit: 30,
+    titanium: 10
   },
+  starting: player => player.rates.titanium++,
   tags: ['space'],
   desc,
   effectDesc,
