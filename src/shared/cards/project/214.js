@@ -21,7 +21,7 @@ export default new Event({
   },
   desc,
   flavor: 'A spectacular sports event',
-  action: (player, game) =>
+  resources: (player, game) =>
     game.resources(
       player,
       'megacredit',

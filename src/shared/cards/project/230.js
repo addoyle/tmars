@@ -20,29 +20,15 @@ export default new Automated({
   desc,
   flavor:
     'A rotating city, creating 1G at the perimeter. Perfect for people returning to Earth or Venus',
-  action: (player, game, done) => {
+  production: (player, game) => {
     game.production(player, 'power', -2);
     game.production(
       player,
       'megacredit',
       player.tags.venus + player.tags.earth
     );
-    game.promptTile(player, 'city', done);
   },
-  canPlay: (player, game) => {
-    if (player.production.power < 2) {
-      return {
-        valid: false,
-        msg: 'Not enough energy production'
-      };
-    }
-
-    const valid = !!game.findPossibleTiles('city', player).length;
-    return {
-      valid,
-      msg: !valid ? 'Cannot place city tile' : null
-    };
-  },
+  tile: 'city',
   emoji: '💫',
   layout: (
     <div className="flex gutter">

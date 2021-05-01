@@ -12,18 +12,11 @@ export default new Event({
   tags: ['event'],
   desc,
   flavor: 'Life can benefit from local hot spots',
-  action: (player, game) => {
-    game.resources(player, 'heat', -5);
-
+  action: () => {
     // TODO handle OR situation
   },
-  canPlay: (player, game) => {
-    const valid = !!game.players.filter(player => player.resources.heat >= 5)
-      .length;
-    return {
-      valid,
-      msg: !valid ? 'Not enough heat' : null
-    };
+  resources: {
+    heat: -5
   },
   emoji: '🔥',
   todo: true,

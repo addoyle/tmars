@@ -12,8 +12,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'We don’t use that moon anyway',
-  action: (player, game, done) => {
-    game.resources(player, 'steel', 4);
+  action: (player, game, done) =>
     game.param(player, 'temperature', () =>
       game.param(player, 'temperature', () =>
         game.param(player, 'temperature', () =>
@@ -31,7 +30,9 @@ export default new Event({
           )
         )
       )
-    );
+    ),
+  resources: {
+    steel: 4
   },
   emoji: '☄',
   layout: (

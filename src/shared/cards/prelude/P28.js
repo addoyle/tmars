@@ -21,7 +21,9 @@ export default new Prelude({
     game.drawCard(player);
     game.drawCard(player);
     game.drawCard(player);
-    game.production(player, 'megacredit', 1);
+  },
+  production: {
+    megacredit: 1
   },
   layout: (
     <div className="flex gutter">

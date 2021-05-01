@@ -13,7 +13,7 @@ export default new Automated({
   desc,
   flavor:
     'Accessing information on past events for better planning of the future',
-  action: (player, game) =>
+  resources: (player, game) =>
     game.resources(
       player,
       'megacredit',

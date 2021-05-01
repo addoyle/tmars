@@ -20,7 +20,9 @@ export default new Automated({
   },
   desc,
   flavor: 'At last we have more useful winds',
-  action: (player, game) => game.production(player, 'power', 1),
+  production: {
+    power: 1
+  },
   vp: 1,
   emoji: '🌬',
   layout: (

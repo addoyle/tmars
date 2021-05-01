@@ -19,7 +19,9 @@ export default new Automated({
   },
   desc,
   flavor: 'Letting natural processes do the work',
-  action: (player, game) => game.production(player, 'power', 2),
+  production: {
+    power: 2
+  },
   vp: 1,
   emoji: '🌊',
   layout: (

@@ -16,16 +16,9 @@ export default new Automated({
   desc,
   flavor:
     'Common minerals can be converted into carbon dioxide that increases the greenhouse effect',
-  action: (player, game) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'heat', 3);
-  },
-  canPlay: player => {
-    const valid = player.production.power >= 1;
-    return {
-      valid,
-      msg: !valid ? 'Not enough energy production' : null
-    };
+  production: {
+    power: -1,
+    heat: 3
   },
   emoji: '🏭',
   layout: (

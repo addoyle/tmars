@@ -14,7 +14,9 @@ export default new Automated({
   tags: ['plant'],
   desc,
   flavor: 'Suitable even for early terraforming',
-  action: (player, game) => game.production(player, 'plant', 1),
+  production: {
+    plant: 1
+  },
   emoji: '🍀',
   layout: (
     <div className="flex gutter m-top m-bottom">

@@ -12,8 +12,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'What are those plants in our impact zone?',
-  action: (player, game, done) => {
-    game.resources(player, 'titanium', 2);
+  action: (player, game, done) =>
     game.param(player, 'temperature', () =>
       game.promptPlayer(
         player,
@@ -27,7 +26,9 @@ export default new Event({
         player => player.resources.plant > 0,
         done
       )
-    );
+    ),
+  resources: {
+    titanium: 2
   },
   emoji: '☄',
   layout: (

@@ -15,9 +15,11 @@ export default new Prelude({
   desc,
   flavor: 'Putting people’s savings to good use',
   emoji: '🏦',
-  action: (player, game) => {
-    game.resources(player, 'megacredit', 3);
-    game.production(player, 'megacredit', 4);
+  resources: {
+    megacredit: 3
+  },
+  production: {
+    megacredit: 4
   },
   layout: (
     <div className="flex">

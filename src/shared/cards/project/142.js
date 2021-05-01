@@ -19,9 +19,10 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'Tunnels deep down to the molten magma, releasing heat and gases',
-  action: (player, game, done) => {
-    game.production(player, 'heat', 4);
-    game.promptTile(player, { special: 'mohole' }, done, customFilter);
+  action: (player, game, done) =>
+    game.promptTile(player, { special: 'mohole' }, done, customFilter),
+  production: {
+    heat: 4
   },
   canPlay: (player, game) => {
     const valid = !!game.findPossibleTiles(

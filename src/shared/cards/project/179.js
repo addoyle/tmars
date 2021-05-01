@@ -16,16 +16,9 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'There are many harmful elements to remove',
-  action: (player, game) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'plant', 1);
-  },
-  canPlay: player => {
-    const valid = player.production.power > 0;
-    return {
-      valid,
-      msg: !valid ? 'Not enough energy production' : null
-    };
+  production: {
+    power: -1,
+    plant: 1
   },
   vp: 1,
   emoji: '🌱',

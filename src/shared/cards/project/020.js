@@ -5,8 +5,6 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTTION
-
 const activeDesc = 'Effect: When you play a card, you pay 1 M€ less for it.';
 const desc = 'Place a city tile NEXT TO NO OTHER TILE.';
 

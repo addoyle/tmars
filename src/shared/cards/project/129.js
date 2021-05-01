@@ -21,7 +21,7 @@ export default new Automated({
   },
   desc,
   flavor: 'A relatively cheap way to travel between cities across the planet',
-  action: (player, game) =>
+  production: (player, game) =>
     game.production(
       player,
       'megacredit',

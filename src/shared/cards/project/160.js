@@ -20,7 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Dominating the energy market allows you to make hostile takovers',
-  action: (player, game, done) =>
+  production: (player, game, done) =>
     game.promptPlayer(
       player,
       'Pick a player to remove 1 energy production',

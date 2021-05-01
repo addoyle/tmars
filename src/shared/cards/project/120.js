@@ -24,19 +24,13 @@ export default new Automated({
   desc,
   flavor:
     'When the population begins to soar, cities will eventually merge into large urban areas',
-  action: (player, game, done) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'megacredit', 2);
-    game.promptTile(player, 'city', done, customFilter);
+  action: (player, game, done) =>
+    game.promptTile(player, 'city', done, customFilter),
+  production: {
+    power: -1,
+    megacredit: 2
   },
   canPlay: (player, game) => {
-    if (player.production.power < 1) {
-      return {
-        valid: false,
-        msg: 'Not enough energy production'
-      };
-    }
-
     const valid = !!game.findPossibleTiles('city', player, customFilter).length;
     return {
       valid,

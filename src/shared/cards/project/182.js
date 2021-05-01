@@ -19,25 +19,11 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'A city exclusively devoted to your corporation',
-  action: (player, game, done) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'megacredit', 3);
-    game.promptTile(player, 'city', done);
+  production: {
+    power: -1,
+    megacredit: 3
   },
-  canPlay: (player, game) => {
-    if (player.production.power < 1) {
-      return {
-        valid: false,
-        msg: 'Not enough energy production'
-      };
-    }
-
-    const valid = !!game.findPossibleTiles('city', player).length;
-    return {
-      valid,
-      msg: !valid ? 'Cannot place city tile' : null
-    };
-  },
+  tile: 'city',
   vp: -2,
   emoji: '🏙',
   layout: (

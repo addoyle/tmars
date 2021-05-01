@@ -19,9 +19,11 @@ export default new Automated({
   },
   desc,
   flavor: 'Giving some wind protection for smaller species',
-  action: (player, game) => {
-    game.production(player, 'plant', 2);
-    game.resources(player, 'plant', 2);
+  resources: {
+    plant: 1
+  },
+  production: {
+    plant: 1
   },
   emoji: '🌳',
   layout: (

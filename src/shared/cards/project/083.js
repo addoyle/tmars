@@ -15,7 +15,9 @@ export default new Automated({
   desc,
   flavor:
     'Square kilometers of extra sunlight reflected down to a receiving power plant',
-  action: (player, game) => game.production(player, 'power', 3),
+  production: {
+    power: 3
+  },
   emoji: '🪞',
   layout: (
     <div className="text-center">

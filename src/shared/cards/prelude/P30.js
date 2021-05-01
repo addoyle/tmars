@@ -12,9 +12,10 @@ export default new Prelude({
   desc,
   flavor: 'A prototype facility for elctrolyzing regolith into oxygen and iron',
   emoji: '🏭',
-  action: (player, game, done) => {
-    game.resources(player, 'steel', 5);
-    game.param(player, 'oxygen', () => game.param(player, 'oxygen', done));
+  action: (player, game, done) =>
+    game.param(player, 'oxygen', () => game.param(player, 'oxygen', done)),
+  resources: {
+    steel: 5
   },
   layout: (
     <div className="flex gutter">

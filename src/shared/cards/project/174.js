@@ -20,9 +20,10 @@ export default new Automated({
   desc,
   flavor:
     'A fertile valley with higher air density and humidity, but in need of protection when the oceans rise',
-  action: (player, game, done) => {
-    game.production(player, 'megacredit', 2);
-    game.promptTile(player, 'greenery', done, customFilter);
+  action: (player, game, done) =>
+    game.promptTile(player, 'greenery', done, customFilter),
+  production: {
+    megacredit: 2
   },
   canPlay: (player, game) => {
     const valid = !!game.findPossibleTiles('greenery', player, customFilter)

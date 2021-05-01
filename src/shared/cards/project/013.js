@@ -22,7 +22,9 @@ export default new Active({
   desc,
   flavor:
     'An ultra-strong cable car up to geo-stationary orbit, enabling reasonable export costs',
-  action: (player, game) => game.production(player, 'titanium', 1),
+  production: {
+    titanium: 1
+  },
   actions: [
     {
       name: 'Spend 1 Steel',

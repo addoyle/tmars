@@ -16,7 +16,9 @@ export default new Automated({
   set: 'prelude',
   desc,
   flavor: 'Large scale 3D printing - on Mars',
-  action: (player, game) => game.production(player, 'steel', 1),
+  production: {
+    steel: 1
+  },
   vp: 1,
   emoji: '🖨',
   layout: (

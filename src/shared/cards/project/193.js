@@ -17,14 +17,7 @@ export default new Automated({
   desc,
   flavor:
     'By focusing on a limited area, helpful measures can be taken to improve local conditions for plant life',
-  action: (player, game, done) => game.promptTile(player, 'greenery', done),
-  canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles('greenery', player).length;
-    return {
-      valid,
-      msg: !valid ? 'Cannot place greenery tile' : null
-    };
-  },
+  tile: 'greenery',
   emoji: '🌳',
   layout: (
     <div className="text-center">

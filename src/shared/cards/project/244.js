@@ -20,7 +20,9 @@ export default new Automated({
   },
   desc,
   flavor: 'Welcome to the 1G club',
-  action: (player, game) => game.production(player, 'megacredit', 3),
+  production: {
+    megacredit: 3
+  },
   emoji: '🤝🏻',
   layout: (
     <div className="text-center m-bottom">

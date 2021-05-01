@@ -14,7 +14,7 @@ export default new Prelude({
   flavor:
     'Nothing spurs new ecological advances like having a biological testing ground',
   emoji: '🌳',
-  action: (player, game, done) => {
+  action: (player, game) =>
     game.keepSelected(
       player,
       game.revealCards(
@@ -24,9 +24,8 @@ export default new Prelude({
         'plant cards',
         { tag: 'plant' }
       )
-    );
-    game.promptTile(player, 'greenery', done);
-  },
+    ),
+  tile: 'greenery',
   layout: (
     <div className="flex gutter m-bottom">
       <div className="col-1 middle">

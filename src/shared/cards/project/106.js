@@ -15,7 +15,9 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'This interplanetary company will surely pay off',
-  action: (player, game) => game.production(player, 'megacredit', 3),
+  production: {
+    megacredit: 3
+  },
   emoji: '🤝',
   layout: (
     <div className="m-bottom">

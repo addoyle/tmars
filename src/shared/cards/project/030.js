@@ -16,17 +16,10 @@ export default new Automated({
   tags: ['earth', 'power'],
   desc,
   flavor: 'A huge energy beam. Difficult to collect, but who cares?',
-  action: (player, game) => {
-    game.production(player, 'megacredit', -2);
-    game.production(player, 'heat', 2);
-    game.production(player, 'power', 2);
-  },
-  canPlay: player => {
-    const valid = player.production.megacredit > -4;
-    return {
-      valid,
-      msg: !valid ? 'Not enough M€ production' : null
-    };
+  production: {
+    megacredit: -2,
+    heat: 2,
+    power: 2
   },
   emoji: '🌠',
   layout: (

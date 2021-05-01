@@ -18,7 +18,7 @@ export default new Automated({
   desc,
   flavor:
     'Situated on Verona Rupes, the highest vertical drop in the solar system, the resort attracts many of the thrill-seekers among the rich on Earth',
-  action: (player, game) =>
+  production: (player, game) =>
     game.production(player, 'megacredit', player.tags.earth),
   vp: 1,
   emoji: '🧗',

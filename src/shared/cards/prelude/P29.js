@@ -16,10 +16,10 @@ export default new Prelude({
   desc,
   flavor: 'The investment was high, but it’s paying off now',
   emoji: '🌇',
-  action: (player, game, done) => {
-    game.production(player, 'megacredit', 2);
-    game.promptTile(player, 'city', done);
+  production: {
+    megacredit: 2
   },
+  tile: 'city',
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

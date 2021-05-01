@@ -15,7 +15,6 @@ export default new Prelude({
     'The Western Alliance Space Agency has a lot of leverage, now at your disposal',
   emoji: '🛰️',
   action: (player, game) => {
-    game.resources(player, 'titanium', 6);
     game.keepSelected(
       player,
       game.revealCards(
@@ -26,6 +25,9 @@ export default new Prelude({
         { tag: 'space' }
       )
     );
+  },
+  resources: {
+    titanium: 6
   },
   layout: (
     <div className="flex gutter">

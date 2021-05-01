@@ -18,7 +18,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Very unethical, very illegal, very lucrative',
-  action: (player, game, done) => {
+  production: (player, game, done) => {
     game.promptPlayer(
       player,
       'Pick a player to remove 2 M€ production',

@@ -17,9 +17,11 @@ export default new Prelude({
   emoji: '♻️',
   todo: true,
   action: (player, game, done) => {
-    game.production(player, 'plant', 1);
     // TODO: Figure out how to skip global requirements
     game.promptCard(player, done);
+  },
+  production: {
+    plant: 1
   },
   layout: (
     <div className="flex gutter">

@@ -16,16 +16,9 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Accelerating building of the infrastructure',
-  action: (player, game) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'steel', 2);
-  },
-  canPlay: player => {
-    const valid = player.resources.power > 0;
-    return {
-      valid,
-      msg: !valid ? 'Not enough energy production' : null
-    };
+  production: {
+    power: -1,
+    steel: 2
   },
   emoji: '🏗',
   layout: (

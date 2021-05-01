@@ -21,17 +21,12 @@ export default new Automated({
   desc,
   flavor:
     'Treating the smouldering Mercurian ground at sunset, collecting the separated molten metals',
-  action: (player, game) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'titanium', 1);
-    game.resources(player, 'titanium', 4);
+  resources: {
+    titanium: 4
   },
-  canPlay: player => {
-    const valid = player.production.power > 1;
-    return {
-      valid,
-      msg: !valid ? 'Not enough energy production' : null
-    };
+  production: {
+    power: -1,
+    titanium: 1
   },
   emoji: '🌘',
   layout: (

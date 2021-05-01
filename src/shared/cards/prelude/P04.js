@@ -18,10 +18,12 @@ export default new Prelude({
     'Bioengineering is of the utmost importance on Mars, and you just got a head start',
   emoji: '🥼',
   action: (player, game) => {
-    game.production(player, 'plant', 1);
     game.drawCard(player);
     game.drawCard(player);
     game.drawCard(player);
+  },
+  production: {
+    plant: 1
   },
   layout: (
     <div className="flex gutter">

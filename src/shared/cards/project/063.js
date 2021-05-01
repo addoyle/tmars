@@ -12,8 +12,7 @@ export default new Event({
   tags: ['event'],
   desc,
   flavor: 'Ruthlessly excavating rich areas',
-  action: (player, game, done) => {
-    game.resources(player, 'steel', 2);
+  action: (player, game, done) =>
     game.param(player, 'oxygen', () =>
       game.promptPlayer(
         player,
@@ -27,7 +26,9 @@ export default new Event({
         player => player.resources.plant > 0,
         done
       )
-    );
+    ),
+  resources: {
+    steel: 2
   },
   emoji: '🏗',
   layout: (

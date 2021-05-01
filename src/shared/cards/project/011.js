@@ -13,8 +13,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'There are many unpopulated areas to crash it in',
-  action: (player, game, done) => {
-    game.resources(player, 'titanium', 4);
+  action: (player, game, done) =>
     game.param(player, 'temperature', () =>
       game.param(player, 'temperature', () =>
         game.promptPlayer(
@@ -30,7 +29,9 @@ export default new Event({
           done
         )
       )
-    );
+    ),
+  resources: {
+    titanium: 4
   },
   emoji: '☄',
   layout: (

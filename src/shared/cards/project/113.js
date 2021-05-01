@@ -15,7 +15,9 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Perhaps the most readily available energy source on Mars',
-  action: (player, game) => game.production(player, 'power', 1),
+  production: {
+    power: 1
+  },
   vp: 1,
   emoji: '☀',
   layout: (

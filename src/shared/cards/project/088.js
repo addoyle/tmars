@@ -19,9 +19,11 @@ export default new Automated({
   },
   desc,
   flavor: 'Stabilizing the soil',
-  action: (player, game) => {
-    game.production(player, 'plant', 1);
-    game.resources(player, 'plant', 1);
+  resources: {
+    plant: 1
+  },
+  production: {
+    plant: 1
   },
   emoji: '🌾',
   layout: (

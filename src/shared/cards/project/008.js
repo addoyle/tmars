@@ -25,30 +25,18 @@ const card = new Automated({
   desc,
   flavor:
     'With its ideal placement and all its facilities, this is the true capital of Mars',
-  action: (player, game, done) => {
-    game.production(player, 'power', -2);
-    game.production(player, 'megacredit', 5);
-    game.promptTile(player, 'capital city', tile => {
-      card.tile = tile;
-      done();
-    });
+  // action: (player, game, done) =>
+  //   game.promptTile(player, 'capital city', tile => {
+  //     card.tile = tile;
+  //     done();
+  //   }),
+  production: {
+    power: -2,
+    megacredit: 5
   },
-  canPlay: (player, game) => {
-    if (player.production.power < 2) {
-      return {
-        valid: false,
-        msg: 'Not enough energy production'
-      };
-    }
-
-    const valid = !!game.findPossibleTiles('city', player).length;
-    return {
-      valid,
-      msg: !valid ? 'Cannot place this tile' : null
-    };
-  },
+  tile: 'capital city',
   vp: (player, game) =>
-    game.neighbors(card.tile).filter(t => t.type === 'ocean').length,
+    game.neighbors(card.placedTile).filter(t => t.type === 'ocean').length,
   emoji: '🏛',
   todo: true,
   layout: (

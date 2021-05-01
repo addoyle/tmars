@@ -21,9 +21,9 @@ export default new Automated({
   desc,
   flavor:
     'Nuclear energy is safe, especially when located on a remote asteroid rich in radioactive elements',
-  action: (player, game) => {
-    game.production(player, 'heat', 3);
-    game.production(player, 'power', 3);
+  production: {
+    heat: 3,
+    power: 3
   },
   vp: 1,
   emoji: '🔫',

@@ -19,10 +19,11 @@ export default new Event({
   flavor:
     'Adding nitrogen to Mars will both thicken the atmosphere with N2 and provide fertilizer for plants',
   action: (player, game, done) => {
-    game.production(player, 'plant', player.tags.plant >= 3 ? 4 : 1);
     game.tr(player, 2);
     game.param(player, 'temperature', done);
   },
+  production: (player, game) =>
+    game.production(player, 'plant', player.tags.plant >= 3 ? 4 : 1),
   emoji: '☄',
   layout: (
     <div className="flex gutter">

@@ -19,9 +19,11 @@ export default new Automated({
   },
   desc,
   flavor: 'Taking root in every crevice and patch of soil',
-  action: (player, game) => {
-    game.production(player, 'plant', 1);
-    game.resources(player, 'plant', 3);
+  resources: {
+    plant: 3
+  },
+  production: {
+    plant: 1
   },
   emoji: '🌱',
   layout: (

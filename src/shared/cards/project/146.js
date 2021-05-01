@@ -19,16 +19,11 @@ export default new Automated({
   },
   desc,
   flavor: 'Specially made to thrive on the salty Martian rock',
-  action: (player, game) => {
-    game.resources(player, 'plant', -2);
-    game.production(player, 'plant', 2);
+  resources: {
+    plant: -2
   },
-  canPlay: player => {
-    const valid = player.resources.plant > 1;
-    return {
-      valid,
-      msg: !valid ? 'Requires at least two plant resources' : null
-    };
+  production: {
+    plant: 2
   },
   emoji: '🥦',
   layout: (

@@ -17,7 +17,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'They need it. But we need it more',
-  action: (player, game, done) =>
+  production: (player, game, done) =>
     game.promptPlayer(
       player,
       'Pick a player to remove 1 energy production',

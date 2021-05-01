@@ -15,9 +15,10 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'By aerobraking it we get its contents without the impact',
-  action: (player, game, done) => {
-    game.resources(player, 'plant', 2);
-    game.param(player, 'oxygen', () => game.promptTile(player, 'ocean', done));
+  action: (player, game, done) =>
+    game.param(player, 'oxygen', () => game.promptTile(player, 'ocean', done)),
+  resources: {
+    plant: 2
   },
   emoji: '☄',
   layout: (

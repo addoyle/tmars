@@ -26,19 +26,13 @@ export default new Automated({
   desc,
   flavor:
     'Giant lava tubes can provide protection for early settlements on Mars',
-  action: (player, game, done) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'megacredit', 2);
-    game.promptTile(player, 'city', done, customFilter);
+  action: (player, game, done) =>
+    game.promptTile(player, 'city', done, customFilter),
+  production: {
+    power: -1,
+    megacredit: 2
   },
   canPlay: (player, game) => {
-    if (player.production.power < 1) {
-      return {
-        valid: false,
-        msg: 'Not enough energy production'
-      };
-    }
-
     const valid = !!game.findPossibleTiles(
       { special: 'volcano' },
       player,

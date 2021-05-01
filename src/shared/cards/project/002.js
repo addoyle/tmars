@@ -22,7 +22,7 @@ export default new Automated({
   vp: 1,
   desc,
   flavor: 'Your hold on the titanium market tightens',
-  action: (player, game, done) =>
+  production: (player, game, done) =>
     game.promptPlayer(
       player,
       'Pick a player to remove 1 titanium production',

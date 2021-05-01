@@ -26,26 +26,11 @@ export default new Active({
     game.production(player, 'megacredit', -2);
     game.promptTile(player, 'city', done);
   },
-  canPlay: (player, game) => {
-    if (player.production.power < 1) {
-      return {
-        valid: false,
-        msg: 'Not enough energy production'
-      };
-    }
-    if (player.production.megacredit <= -4) {
-      return {
-        valid: false,
-        msg: 'Not enough M€ production'
-      };
-    }
-
-    const valid = !!game.findPossibleTiles('city', player).length;
-    return {
-      valid,
-      msg: !valid ? 'Cannot place city tile' : null
-    };
+  production: {
+    power: -1,
+    megacredit: -2
   },
+  tile: 'city',
   events: {
     onAnyTile: (player, game, tile) =>
       // Is a city

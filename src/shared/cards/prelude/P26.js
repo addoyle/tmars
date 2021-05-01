@@ -17,10 +17,10 @@ export default new Prelude({
   flavor:
     'The poles of Mars have an abundance of both water and carbon dioxide, ready for the taking',
   emoji: '💈',
-  action: (player, game, done) => {
-    game.production(player, 'heat', 2);
-    game.promptTile(player, 'ocean', done);
+  production: {
+    heat: 2
   },
+  tile: 'ocean',
   layout: (
     <div className="flex gutter">
       <div className="col-1 middle text-center">

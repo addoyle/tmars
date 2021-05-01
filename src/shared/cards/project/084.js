@@ -8,7 +8,6 @@ export default new Automated({
   cost: 6,
   tags: ['science', 'space'],
   flavor: 'Exploring the Kupier belt objects',
-  action: () => {},
   vp: 1,
   emoji: '🛰',
   layout: (

@@ -23,26 +23,14 @@ export default new Automated({
   },
   desc,
   flavor: 'A spacious area for a great city',
-  action: (player, game, done) => {
-    game.resources(player, 'plant', 3);
-    game.production(player, 'power', -1);
-    game.production(player, 'megacredit', 3);
-    game.promptTile(player, 'city', done);
+  resources: {
+    plant: 3
   },
-  canPlay: (player, game) => {
-    if (player.production.power < 1) {
-      return {
-        valid: false,
-        msg: 'Not enough energy production'
-      };
-    }
-
-    const valid = !!game.findPossibleTiles('city', player).length;
-    return {
-      valid,
-      msg: !valid ? 'Cannot place city tile' : null
-    };
+  production: {
+    power: -1,
+    megacredit: 3
   },
+  tile: 'city',
   emoji: '🕌',
   vp: 1,
   layout: (

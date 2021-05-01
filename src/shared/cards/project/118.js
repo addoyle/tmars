@@ -22,10 +22,12 @@ export default new Automated({
   desc,
   flavor:
     'At least we can have a decent food production allowing for rapid population increase',
-  action: (player, game) => {
-    game.production(player, 'megacredit', 2);
-    game.production(player, 'plant', 2);
-    game.resources(player, 'plant', 2);
+  resources: {
+    plant: 2
+  },
+  production: {
+    megacredit: 2,
+    plant: 2
   },
   vp: 2,
   emoji: '🚜',

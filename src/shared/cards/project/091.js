@@ -21,7 +21,9 @@ export default new Automated({
   desc,
   flavor:
     'Counters the inevitable damage from cosmic radiation and reverses many aging symptoms',
-  action: (player, game) => game.production(player, 'megacredit', 2),
+  production: {
+    megacredit: 2
+  },
   vp: 2,
   emoji: '🧬',
   layout: (

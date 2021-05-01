@@ -14,9 +14,11 @@ export default new Automated({
   tags: ['science', 'space', 'power'],
   desc,
   flavor: 'Working those solar storms to your advantage',
-  action: (player, game) => {
-    game.production(player, 'power', 1);
-    game.resources(player, 'titanium', 2);
+  resources: {
+    titanium: 2
+  },
+  production: {
+    power: 1
   },
   emoji: '💨',
   layout: (

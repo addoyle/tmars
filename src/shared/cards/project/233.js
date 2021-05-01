@@ -20,7 +20,9 @@ export default new Automated({
   desc,
   flavor:
     'The mountains on Venus’ nothern continent are full of interesting metals',
-  action: (player, game) => game.production(player, 'titanium', 1),
+  production: {
+    titanium: 1
+  },
   emoji: '⛏',
   layout: (
     <div className="flex gutter">

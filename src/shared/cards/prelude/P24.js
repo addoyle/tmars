@@ -17,10 +17,12 @@ export default new Prelude({
   desc,
   flavor: 'Mars needs it to get the air pressure up',
   emoji: '💨',
-  action: (player, game) => {
-    game.resources(player, 'megacredit', 5);
-    game.production(player, 'plant', 1);
-    game.tr(player, 1);
+  action: (player, game) => game.tr(player, 1),
+  resources: {
+    megacredit: 5
+  },
+  production: {
+    plant: 1
   },
   layout: (
     <div className="flex gutter">

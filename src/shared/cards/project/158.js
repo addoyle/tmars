@@ -16,9 +16,9 @@ export default new Automated({
   desc,
   flavor:
     'Fuel production and metal refining can be programmed into microorganisms',
-  action: (player, game) => {
-    game.production(player, 'power', 1);
-    game.production(player, 'steel', 1);
+  production: {
+    power: 1,
+    steel: 1
   },
   emoji: '🦠️',
   layout: (

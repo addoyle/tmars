@@ -15,7 +15,9 @@ export default new Automated({
   tags: ['jovian', 'space'],
   desc,
   flavor: 'Where gravity is low and rare minerals abound',
-  action: (player, game) => game.production(player, 'titanium', 2),
+  production: {
+    titanium: 2
+  },
   vp: 2,
   emoji: '🌖',
   layout: (
