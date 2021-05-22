@@ -13,8 +13,13 @@ export default new Prelude({
   emoji: '🧐',
   todo: true,
   action: (player, game, done) => {
-    // TODO: Figure out how to reduce cost by 25
-    game.promptCard(player, done);
+    // Reduce cost of card by 25
+    player.rates.cost.all = (player.rates.cost.all || 0) - 25;
+    game.promptCard(player, player => {
+      // Set cost modifier back
+      player.rates.cost.all += 25;
+      done();
+    });
   },
   layout: (
     <div className="flex m-top m-bottom">

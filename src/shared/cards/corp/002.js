@@ -18,6 +18,7 @@ export default new Corporation({
   startingMC: 36,
   starting: player => (player.rates.plant = 7),
   resources: {
+    megacredit: 36,
     plant: 3
   },
   production: {

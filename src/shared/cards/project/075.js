@@ -15,8 +15,8 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'By aerobraking it we get its contents without the impact',
-  action: (player, game, done) =>
-    game.param(player, 'oxygen', () => game.promptTile(player, 'ocean', done)),
+  tile: 'ocean',
+  param: 'oxygen',
   resources: {
     plant: 2
   },

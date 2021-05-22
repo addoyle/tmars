@@ -14,22 +14,19 @@ export default new Event({
   desc,
   flavor: 'There are many unpopulated areas to crash it in',
   action: (player, game, done) =>
-    game.param(player, 'temperature', () =>
-      game.param(player, 'temperature', () =>
-        game.promptPlayer(
-          player,
-          'Pick a player to remove up to 4 plants',
-          [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
-          ['took 4 plants ', { resource: 'plant' }, ' from'],
-          targetPlayer => {
-            targetPlayer && game.resources(targetPlayer, 'plant', -4);
-            done();
-          },
-          player => player.resources.plant > 0,
-          done
-        )
-      )
+    game.promptPlayer(
+      player,
+      'Pick a player to remove up to 4 plants',
+      [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
+      ['took 4 plants ', { resource: 'plant' }, ' from'],
+      targetPlayer => {
+        targetPlayer && game.resources(targetPlayer, 'plant', -4);
+        done();
+      },
+      player => player.resources.plant > 0,
+      done
     ),
+  param: ['temperature', 'temperature'],
   resources: {
     titanium: 4
   },

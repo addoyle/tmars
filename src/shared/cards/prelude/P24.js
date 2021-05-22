@@ -17,7 +17,7 @@ export default new Prelude({
   desc,
   flavor: 'Mars needs it to get the air pressure up',
   emoji: '💨',
-  action: (player, game) => game.tr(player, 1),
+  tr: 1,
   resources: {
     megacredit: 5
   },

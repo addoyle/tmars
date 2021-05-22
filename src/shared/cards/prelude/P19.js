@@ -12,7 +12,7 @@ export default new Prelude({
   desc,
   flavor: 'Metal delivery. Without brakes',
   emoji: '☄',
-  action: (player, game, done) => game.param(player, 'temperature', done),
+  param: 'temperature',
   resources: {
     titanium: 4,
     steel: 4

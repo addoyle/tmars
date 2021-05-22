@@ -24,13 +24,9 @@ export default new Event({
   desc,
   flavor:
     "Releasing tremendous lava flows from one of Mars' gargantuan volcanoes",
-  action: (player, game, done) => {
-    game.param(player, 'temperature', () =>
-      game.param(player, 'temperature', () =>
-        game.promptTile(player, { special: 'volcano' }, done, customFilter)
-      )
-    );
-  },
+  action: (player, game, done) =>
+    game.promptTile(player, { special: 'volcano' }, done, customFilter),
+  param: ['temperature', 'temperature'],
   canPlay: (player, game) => {
     const valid = !!game.findPossibleTiles(
       { special: 'volcano' },

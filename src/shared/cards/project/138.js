@@ -17,8 +17,7 @@ export default new Automated({
   desc,
   flavor:
     'It is not exactly environmentally friendly to just dig up the surface, but it can be profitable',
-  action: (player, game, done) =>
-    game.param(player, 'oxygen', () => game.param(player, 'oxygen', done)),
+  param: ['oxygen', 'oxygen'],
   production: {
     power: -2,
     steel: 2,

@@ -16,7 +16,7 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Digging deep to find heat from the core',
-  action: (player, game, done) => game.param(player, 'temperature', done),
+  param: ['temperature'],
   production: {
     power: 1
   },

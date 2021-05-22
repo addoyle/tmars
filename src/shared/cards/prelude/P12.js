@@ -14,17 +14,21 @@ export default new Prelude({
   flavor:
     'Nothing spurs new ecological advances like having a biological testing ground',
   emoji: '🌳',
-  action: (player, game) =>
-    game.keepSelected(
-      player,
-      game.revealCards(
-        player,
-        card => card.tags.includes('plant'),
-        2,
-        'plant cards',
-        { tag: 'plant' }
-      )
-    ),
+  // action: (player, game) =>
+  //   game.keepSelected(
+  //     player,
+  //     game.revealCards(
+  //       player,
+  //       card => card.tags.includes('plant'),
+  //       2,
+  //       'plant cards',
+  //       { tag: 'plant' }
+  //     )
+  //   ),
+  drawCard: {
+    num: 2,
+    tag: 'plant'
+  },
   tile: 'greenery',
   layout: (
     <div className="flex gutter m-bottom">

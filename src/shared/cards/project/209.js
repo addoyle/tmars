@@ -14,20 +14,19 @@ export default new Event({
   desc,
   flavor: 'I made that crater - can I name it?',
   action: (player, game, done) =>
-    game.param(player, 'temperature', () =>
-      game.promptPlayer(
-        player,
-        'Pick a player to remove up to 2 plants',
-        [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
-        ['took 2 plants ', { resource: 'plant' }, ' from'],
-        targetPlayer => {
-          targetPlayer && game.resources(targetPlayer, 'plant', -2);
-          done();
-        },
-        player => player.resources.plant > 0,
-        done
-      )
+    game.promptPlayer(
+      player,
+      'Pick a player to remove up to 2 plants',
+      [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
+      ['took 2 plants ', { resource: 'plant' }, ' from'],
+      targetPlayer => {
+        targetPlayer && game.resources(targetPlayer, 'plant', -2);
+        done();
+      },
+      player => player.resources.plant > 0,
+      done
     ),
+  param: ['temperature'],
   emoji: '☄',
   layout: (
     <div className="flex m-bottom">

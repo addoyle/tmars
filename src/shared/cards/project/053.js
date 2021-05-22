@@ -18,10 +18,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Filling the Valles Marineris takes a lot of water',
-  action: (player, game, done) =>
-    game.promptTile(player, 'ocean', () =>
-      game.promptTile(player, 'ocean', done)
-    ),
+  tile: ['ocean', 'ocean'],
   vp: 1,
   emoji: '🏊',
   layout: (

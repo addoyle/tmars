@@ -21,11 +21,6 @@ export default new Active({
   desc,
   flavor:
     'Taking care of immigrants is costly, but will begin to pay off when they start working for you in the growing society',
-  action: (player, game, done) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'megacredit', -2);
-    game.promptTile(player, 'city', done);
-  },
   production: {
     power: -1,
     megacredit: -2

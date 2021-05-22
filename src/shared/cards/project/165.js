@@ -16,7 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'By generating a magnetic field, you can protect organisms from cosmic radiation',
-  action: (player, game) => game.tr(player, 3),
+  tr: 3,
   production: {
     power: -4,
     plant: 2

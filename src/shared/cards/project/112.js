@@ -15,7 +15,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Influencing the people in power',
-  action: (player, game) => game.tr(player, 2),
+  tr: 2,
   vp: -2,
   emoji: '👥',
   layout: (

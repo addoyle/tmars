@@ -16,7 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'Certain aromatic compounds can absorb dangerous radiation without breaking',
-  action: (player, game) => game.tr(player, 2),
+  tr: 2,
   production: {
     power: -1
   },

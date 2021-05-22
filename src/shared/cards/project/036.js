@@ -12,7 +12,7 @@ export default new Event({
   desc,
   flavor:
     "We need some nitrogen and other inert gases to increase atmospheric pressure. Let's stay away from helium, though",
-  action: (player, game) => game.tr(player, 2),
+  tr: 2,
   emoji: '🌬',
   layout: (
     <div>

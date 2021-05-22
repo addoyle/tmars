@@ -15,7 +15,7 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'Protecting a limited area from cosmic radiation',
-  action: (player, game) => game.tr(player, 1),
+  tr: 1,
   production: {
     power: -2,
     plant: 1

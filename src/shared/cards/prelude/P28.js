@@ -17,11 +17,7 @@ export default new Prelude({
   desc,
   flavor: 'Having the right conncections for every scientific problem',
   emoji: '💻',
-  action: (player, game) => {
-    game.drawCard(player);
-    game.drawCard(player);
-    game.drawCard(player);
-  },
+  drawCard: 3,
   production: {
     megacredit: 1
   },

@@ -13,24 +13,19 @@ export default new Event({
   desc,
   flavor: 'We don’t use that moon anyway',
   action: (player, game, done) =>
-    game.param(player, 'temperature', () =>
-      game.param(player, 'temperature', () =>
-        game.param(player, 'temperature', () =>
-          game.promptPlayer(
-            player,
-            'Pick a player to remove up to 8 plants',
-            [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
-            ['took 8 plants ', { resource: 'plant' }, ' from'],
-            targetPlayer => {
-              targetPlayer && game.resources(targetPlayer, 'plant', -8);
-              done();
-            },
-            player => player.resources.plant > 0,
-            done
-          )
-        )
-      )
+    game.promptPlayer(
+      player,
+      'Pick a player to remove up to 8 plants',
+      [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
+      ['took 8 plants ', { resource: 'plant' }, ' from'],
+      targetPlayer => {
+        targetPlayer && game.resources(targetPlayer, 'plant', -8);
+        done();
+      },
+      player => player.resources.plant > 0,
+      done
     ),
+  param: ['temperature', 'temperature', 'temperature'],
   resources: {
     steel: 4
   },
