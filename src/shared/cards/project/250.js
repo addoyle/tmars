@@ -20,7 +20,7 @@ export default new Automated({
   flavor: 'We have too much of it anyway',
   production: (player, game) =>
     game.production(player, 'megacredit', player.tags.venus),
-  action: (player, game, done) => game.param(player, 'venus', done),
+  venus: ['venus'],
   emoji: '🍯',
   layout: (
     <div className="flex">

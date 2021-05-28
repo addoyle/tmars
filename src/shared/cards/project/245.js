@@ -19,10 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Connecting the planets to the Cloud',
-  action: (player, game) => {
-    game.drawCard(player);
-    game.drawCard(player);
-  },
+  drawCard: 2,
   vp: 1,
   emoji: '💻',
   layout: (

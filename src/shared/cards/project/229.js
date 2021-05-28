@@ -13,10 +13,7 @@ export default new Automated({
   desc,
   flavor:
     'Drastically lowering the temperature to cause CO\u2082 to precipitate, reducing the greenhouse effect',
-  action: (player, game, done) =>
-    game.param(player, 'venus', () =>
-      game.param(player, 'venus', () => game.param(player, 'venus', done))
-    ),
+  param: ['venus', 'venus', 'venus'],
   emoji: '⛱',
   layout: (
     <div className="m-top m-bottom">

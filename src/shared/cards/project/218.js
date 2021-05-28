@@ -17,20 +17,19 @@ export default new Event({
   desc,
   flavor: 'Directing it to an almost safe place',
   action: (player, game, done) =>
-    game.param(player, 'venus', () =>
-      game.promptPlayer(
-        player,
-        'Pick a player to remove up to 4 M€',
-        [p => ({ megacredit: p.resources.megacredit })],
-        ['took 4 M€ ', { megacredit: '4' }, ' from'],
-        targetPlayer => {
-          targetPlayer && game.resources(targetPlayer, 'megacredit', -4);
-          done();
-        },
-        player => player.tags.venus > 0,
-        done
-      )
+    game.promptPlayer(
+      player,
+      'Pick a player to remove up to 4 M€',
+      [p => ({ megacredit: p.resources.megacredit })],
+      ['took 4 M€ ', { megacredit: '4' }, ' from'],
+      targetPlayer => {
+        targetPlayer && game.resources(targetPlayer, 'megacredit', -4);
+        done();
+      },
+      player => player.tags.venus > 0,
+      done
     ),
+  param: ['venus'],
   emoji: '☄',
   layout: (
     <div className="flex gutter">

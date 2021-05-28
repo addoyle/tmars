@@ -12,7 +12,7 @@ export default new Event({
   set: 'venus',
   desc,
   flavor: 'There is some in the atmosphere, but not nearly enough',
-  action: (player, game, done) => game.param(player, 'venus', done),
+  venus: ['venus'],
   emoji: '🚒',
   layout: (
     <div className="text-center">

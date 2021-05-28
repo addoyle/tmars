@@ -16,8 +16,7 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'Dual terraforming by redirecting sunlight from Venus to Mars',
-  action: (player, game, done) =>
-    game.param(player, 'venus', () => game.param(player, 'venus', done)),
+  venus: ['venus', 'venus'],
   production: {
     heat: 2
   },

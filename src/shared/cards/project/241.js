@@ -17,7 +17,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Constructing the corridors of power',
-  action: (player, game) => game.tr(player, 2),
+  tr: 2,
   emoji: '🏛',
   layout: (
     <div>

@@ -20,10 +20,7 @@ export default new Event({
   },
   desc,
   flavor: 'A thorough investigation of the geology of Mars',
-  action: (player, game) => {
-    game.drawCard(player);
-    game.drawCard(player);
-  },
+  drawCard: 2,
   emoji: '🔦',
   vp: 1,
   layout: (

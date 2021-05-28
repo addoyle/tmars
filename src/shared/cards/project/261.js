@@ -21,10 +21,10 @@ export default new Automated({
   },
   desc,
   flavor: 'Starting the biosphere in earnest',
-  action: (player, game, done) => {
-    game.param(player, 'venus', done);
+  action: (player, game, done) =>
     // TODO figure out or and resources
-  },
+    done(),
+  venus: ['venus'],
   vp: 1,
   emoji: '🌵',
   todo: true,
