@@ -86,7 +86,8 @@ $title-font: 'Prototype', sans-serif;
   position: relative;
 
   .icon,
-  .icon.resource {
+  .icon.resource,
+  .restriction {
     position: absolute;
     font-size: 0.7em;
     top: -0.5em;
@@ -96,6 +97,20 @@ $title-font: 'Prototype', sans-serif;
   &.card {
     .mc {
       left: 0.4em;
+    }
+
+    &.back .mc {
+      font-size: .7em;
+      margin: 0;
+      top: -.5em;
+      left: -.5em;
+    }
+
+    .restriction {
+      font-size: .5em;
+      height: 1em;
+      width: 2em;
+      right: -1.25em;
     }
 
     .title,

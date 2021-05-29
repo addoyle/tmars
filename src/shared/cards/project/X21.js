@@ -1,72 +1,39 @@
 import React from 'react';
-import Active from '../Active';
+import Automated from '../Automated';
 import {
-  Resource,
-  MegaCredit,
-  Tag,
+  Tile,
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-// TODO action
+const desc =
+  'Place a city tile IN SPACE, outside and separate from the planet.';
 
-const activeDesc =
-  'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
-const desc = 'Add 1 floater for every Earth tag you have, including this.';
-
-const card = new Active({
+export default new Automated({
   number: 'X21',
-  title: 'Meltworks',
-  cost: 4,
-  tags: ['building'],
+  title: 'Field-Capped City',
+  cost: 29,
+  tags: ['power', 'city', 'building'],
   set: 'promo',
-  activeDesc,
   desc,
-  flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: (player, game) => game.cardResource(player, card, player.tags.earth),
-  actions: [
-    {
-      name: 'Spend 1 Floater',
-      icon: <Resource name="floater" />,
-      action: (player, game) => {
-        game.resources(
-          player,
-          'megacredit',
-          Math.min(game.cardResource(player, card), 5)
-        );
-        game.cardResource(player, card, -1);
-      }
-    }
-  ],
-  vp: 1,
-  emoji: '🏄',
-  activeLayout: (
-    <div>
-      <div className="resources text-center">
-        <Resource name="floater" />
-        <span className="arrow" />
-        <MegaCredit value="1" />
-        <span>/</span>
-        <Resource name="floater" />
-        <span>*(max 5)</span>
-      </div>
-      <div className="description text-center">{activeDesc}</div>
-    </div>
-  ),
+  flavor:
+    'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
+  action: (player, game, done) =>
+    game.placeTile(player, game.offMars.torus, 'city', done),
+  vp: 2,
+  emoji: '🍩',
   layout: (
     <div className="flex">
       <div className="col-1 middle">
         <div className="resources">
-          <Resource name="floater" />/<Tag name="earth" />
+          <Tile name="city" asterisk />
         </div>
       </div>
-      <div className="col-1 description middle">{desc}</div>
+      <div className="col-2 description middle">{desc}</div>
       <div className="col-1 bottom">
         <VictoryPoint>
-          <span className="big point">1</span>
+          <span className="big point">2</span>
         </VictoryPoint>
       </div>
     </div>
   )
 });
-
-export default card;

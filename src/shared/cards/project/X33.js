@@ -10,14 +10,10 @@ const desc =
 
 export default new Automated({
   number: 'X33',
-  title: 'Great Dam',
-  cost: 15,
-  tags: ['power', 'building'],
+  title: 'Magnetic Field Generators',
+  cost: 22,
+  tags: ['building'],
   set: 'promo',
-  restriction: {
-    value: 4,
-    tile: 'ocean'
-  },
   desc,
   flavor:
     'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',

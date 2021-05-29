@@ -15,9 +15,9 @@ const desc = 'Add 1 floater for every Earth tag you have, including this.';
 
 const card = new Active({
   number: 'X27',
-  title: 'Asteroid Deflection System',
-  cost: 13,
-  tags: ['earth', 'space', 'building'],
+  title: 'Mohole Lake',
+  cost: 31,
+  tags: ['building'],
   set: 'promo',
   activeDesc,
   desc,

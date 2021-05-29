@@ -18,6 +18,11 @@ const ProjectLayout = props => {
   if (props.restriction) {
     const res = cloneDeep(props.restriction);
 
+    // Any optional text
+    if (res.text) {
+      restriction.push({ text: res.text });
+    }
+
     // Maximum restriction, append the word 'max'
     if (res.max) {
       restriction.push({ text: 'max' });
@@ -127,6 +132,7 @@ ProjectLayout.propTypes = {
   number: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   cost: PropTypes.number,
   restriction: PropTypes.shape({
+    text: PropTypes.string,
     max: PropTypes.bool,
     param: PropTypes.string,
     tag: PropTypes.oneOfType([

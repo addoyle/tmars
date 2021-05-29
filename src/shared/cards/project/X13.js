@@ -1,73 +1,45 @@
 import React from 'react';
 import Active from '../Active';
 import {
-  Resource,
   MegaCredit,
-  Tag,
-  VictoryPoint
+  Param,
+  Production
 } from '../../../client/game/components/assets/Assets';
 
-// TODO action
-
 const activeDesc =
-  'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
-const desc = 'Add 1 floater for every Earth tag you have, including this.';
+  'Effect: When you play a card with a basic cost of 20 M€ or more, increase your M€ production 1 step.';
 
 const card = new Active({
   number: 'X13',
-  title: 'Asteroid Hollowing',
-  cost: 16,
-  tags: ['space'],
+  title: 'Advertising',
+  cost: 4,
+  tags: ['earth'],
   set: 'promo',
   activeDesc,
-  desc,
-  resource: 'asteroid',
-  flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: (player, game) => game.cardResource(player, card, player.tags.earth),
-  actions: [
-    {
-      name: 'Spend 1 Floater',
-      icon: <Resource name="floater" />,
-      action: (player, game) => {
-        game.resources(
-          player,
-          'megacredit',
-          Math.min(game.cardResource(player, card), 5)
-        );
-        game.cardResource(player, card, -1);
-      }
-    }
-  ],
-  vp: 1,
-  emoji: '🏄',
+  flavor: 'Big projects make big headlines',
+  events: {
+    onAnyCardPlayed: (player, game, card) =>
+      // Has a base cost of 20 or more
+      card.cost >= 20 &&
+      // Bump M€ production
+      game.production(player, 'megacredit', 1)
+  },
+  emoji: '📺',
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Resource name="floater" />
-        <span className="arrow" />
-        <MegaCredit value="1" />
-        <span>/</span>
-        <Resource name="floater" />
-        <span>*(max 5)</span>
+        <Param name="card back" megacredit={20} />
+        <span>:</span>
+        <Production>
+          <div className="flex">
+            <MegaCredit value="1" />
+          </div>
+        </Production>
       </div>
       <div className="description text-center">{activeDesc}</div>
     </div>
   ),
-  layout: (
-    <div className="flex">
-      <div className="col-1 middle">
-        <div className="resources">
-          <Resource name="floater" />/<Tag name="earth" />
-        </div>
-      </div>
-      <div className="col-1 description middle">{desc}</div>
-      <div className="col-1 bottom">
-        <VictoryPoint>
-          <span className="big point">1</span>
-        </VictoryPoint>
-      </div>
-    </div>
-  )
+  layout: <div />
 });
 
 export default card;

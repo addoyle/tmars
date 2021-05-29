@@ -1,43 +1,32 @@
 import React from 'react';
-import Automated from '../Automated';
-import {
-  Tile,
-  VictoryPoint
-} from '../../../client/game/components/assets/Assets';
+import Event from '../Event';
+import { Resource } from '../../../client/game/components/assets/Assets';
 
-const desc =
-  'Place a city tile IN SPACE, outside and separate from the planet.';
+const desc = 'Requires that you have 2 Party Leaders. Gain 1 TR.';
 
-export default new Automated({
+// TODO implement this when TURMOIL gets added
+
+export default new Event({
   number: 'X20',
-  title: 'Magnetic Shield',
-  cost: 24,
-  tags: ['space'],
+  title: 'Diversity Support',
+  cost: 4,
+  tags: ['event'],
   set: 'promo',
   restriction: {
-    value: 3,
-    tag: 'power'
+    value: 9,
+    tag: 'all'
   },
   desc,
-  flavor:
-    'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
-  action: (player, game, done) =>
-    game.placeTile(player, game.offMars.torus, 'city', done),
-  vp: 2,
-  emoji: '🍩',
+  flavor: 'I think we can both benefit from this arrangement',
+  action: () => {},
+  emoji: '🤝',
+  todo: true,
   layout: (
-    <div className="flex">
-      <div className="col-1 middle">
-        <div className="resources">
-          <Tile name="city" asterisk />
-        </div>
+    <div className="text-center">
+      <div className="resources">
+        <Resource name="tr" />
       </div>
-      <div className="col-2 description middle">{desc}</div>
-      <div className="col-1 bottom">
-        <VictoryPoint>
-          <span className="big point">2</span>
-        </VictoryPoint>
-      </div>
+      <div className="m-top m-bottom description">{desc}</div>
     </div>
   )
 });

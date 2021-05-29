@@ -2,7 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Tag from './Tag';
 import classNames from 'classnames';
-import { Resource } from './Assets';
+import { MegaCredit, Resource } from './Assets';
+import Restriction from './Restriction';
 
 /**
  * TR parameter
@@ -15,8 +16,10 @@ const Param = props => (
     className={classNames('param', props.name, { anyone: props.anyone })}
     style={props.style}
   >
+    {props.megacredit ? <MegaCredit value={props.megacredit} /> : null}
     {props.tag ? <Tag name={props.tag} /> : null}
     {props.resource ? <Resource name={props.resource} /> : null}
+    {props.requirement ? <Restriction /> : null}
     {props.name.includes('card') &&
     props.name.match(/active|event|automated|prelude/) ? (
       <>
@@ -78,8 +81,10 @@ Param.propTypes = {
   name: PropTypes.string,
   tag: PropTypes.string,
   resource: PropTypes.string,
+  megacredit: PropTypes.number,
   style: PropTypes.object,
-  anyone: PropTypes.bool
+  anyone: PropTypes.bool,
+  requirement: PropTypes.bool
 };
 
 export default Param;

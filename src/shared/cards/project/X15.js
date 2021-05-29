@@ -3,67 +3,69 @@ import Active from '../Active';
 import {
   Resource,
   MegaCredit,
-  Tag,
-  VictoryPoint
+  VictoryPoint,
+  Production
 } from '../../../client/game/components/assets/Assets';
 
-// TODO action
-
 const activeDesc =
-  'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
-const desc = 'Add 1 floater for every Earth tag you have, including this.';
+  'Action: Spend 1 titanium to add 1 asteroid resource here and increase 1 M€ production 1 step.';
+const desc = '1 VP per 2 asteroids on this card.';
 
 const card = new Active({
   number: 'X15',
-  title: 'Comet Aiming',
-  cost: 17,
+  title: 'Asteroid Hollowing',
+  cost: 16,
   tags: ['space'],
   set: 'promo',
   activeDesc,
   desc,
   resource: 'asteroid',
-  flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: (player, game) => game.cardResource(player, card, player.tags.earth),
+  flavor:
+    'Creating colonies by settling the interior of asteroids and spinning them up for artificial gravity',
   actions: [
     {
-      name: 'Spend 1 Floater',
-      icon: <Resource name="floater" />,
+      name: 'Spend 1 Titanium',
+      icon: <Resource name="titanium" />,
+      canPlay: player => {
+        const valid = player.resources.titanium >= 1;
+        return {
+          valid,
+          msg: 'Not enough titanium'
+        };
+      },
       action: (player, game) => {
-        game.resources(
-          player,
-          'megacredit',
-          Math.min(game.cardResource(player, card), 5)
-        );
-        game.cardResource(player, card, -1);
+        game.resources(player, 'titanium', -1);
+        game.cardResource(player, card, 1);
+        game.production(player, 'megacredit', 1);
       }
     }
   ],
   vp: 1,
-  emoji: '🏄',
+  emoji: '🌑',
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Resource name="floater" />
+        <Resource name="titanium" />
         <span className="arrow" />
-        <MegaCredit value="1" />
-        <span>/</span>
-        <Resource name="floater" />
-        <span>*(max 5)</span>
+        <Resource name="asteroid" />
+        <Production>
+          <div className="flex">
+            <MegaCredit value="1" />
+          </div>
+        </Production>
       </div>
       <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (
     <div className="flex">
-      <div className="col-1 middle">
-        <div className="resources">
-          <Resource name="floater" />/<Tag name="earth" />
-        </div>
-      </div>
-      <div className="col-1 description middle">{desc}</div>
+      <div className="col-4 description middle text-center">{desc}</div>
       <div className="col-1 bottom">
         <VictoryPoint>
-          <span className="big point">1</span>
+          <span>
+            <span className="point">1</span>/2
+            <Resource name="asteroid" />
+          </span>
         </VictoryPoint>
       </div>
     </div>

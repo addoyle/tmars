@@ -10,10 +10,14 @@ const desc =
 
 export default new Automated({
   number: 'X24',
-  title: 'Jovian Embassy',
-  cost: 14,
-  tags: ['jovian', 'building'],
+  title: 'Magnetic Shield',
+  cost: 24,
+  tags: ['space'],
   set: 'promo',
+  restriction: {
+    value: 3,
+    tag: 'power'
+  },
   desc,
   flavor:
     'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',

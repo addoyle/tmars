@@ -159,11 +159,19 @@ class Game extends SharedGame {
   calculateCost(card, modifiers) {
     if (card && modifiers) {
       let modifiedCost = card.cost + (modifiers.all || 0);
+
+      // Tags
       Object.entries(modifiers).forEach(([tag, modifier]) => {
         if (card.tags.includes(tag)) {
           modifiedCost += modifier;
         }
       });
+
+      // Requirements (Cutting Edge Technology)
+      if (card.restriction) {
+        modifiedCost += modifiers.requirement || 0;
+      }
+
       return modifiedCost < 0 ? 0 : modifiedCost;
     } else {
       return card?.cost || 0;

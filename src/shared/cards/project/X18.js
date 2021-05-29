@@ -1,66 +1,42 @@
 import React from 'react';
 import Active from '../Active';
 import {
-  Resource,
   MegaCredit,
-  Tag,
-  VictoryPoint
+  VictoryPoint,
+  Param
 } from '../../../client/game/components/assets/Assets';
 
 // TODO action
 
 const activeDesc =
-  'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
-const desc = 'Add 1 floater for every Earth tag you have, including this.';
+  'Effect: When playing a card with a requirement, you pay 2 M€ less.';
 
 const card = new Active({
   number: 'X18',
-  title: 'Directed Impactors',
-  cost: 8,
-  tags: ['space'],
+  title: 'Cutting Edge Technology',
+  cost: 12,
+  tags: ['science'],
   set: 'promo',
   activeDesc,
-  desc,
-  resource: 'asteroid',
-  flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: (player, game) => game.cardResource(player, card, player.tags.earth),
-  actions: [
-    {
-      name: 'Spend 1 Floater',
-      icon: <Resource name="floater" />,
-      action: (player, game) => {
-        game.resources(
-          player,
-          'megacredit',
-          Math.min(game.cardResource(player, card), 5)
-        );
-        game.cardResource(player, card, -1);
-      }
-    }
-  ],
+  flavor:
+    'We choose to go to the Moon in this decade and do the other things, not because they are easy, but because they are hard.’ - JFK',
+  action: player =>
+    (player.rates.cost.requirement = (player.rates.cost.requirement || 0) - 2),
   vp: 1,
-  emoji: '🏄',
+  emoji: '🧬',
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Resource name="floater" />
-        <span className="arrow" />
-        <MegaCredit value="1" />
-        <span>/</span>
-        <Resource name="floater" />
-        <span>*(max 5)</span>
+        <Param name="card back" requirement />
+        <span>&nbsp;&nbsp;&nbsp;:</span>
+        <MegaCredit value="-2" />
       </div>
       <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (
     <div className="flex">
-      <div className="col-1 middle">
-        <div className="resources">
-          <Resource name="floater" />/<Tag name="earth" />
-        </div>
-      </div>
-      <div className="col-1 description middle">{desc}</div>
+      <div className="col-4" />
       <div className="col-1 bottom">
         <VictoryPoint>
           <span className="big point">1</span>

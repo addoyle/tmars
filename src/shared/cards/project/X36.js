@@ -14,7 +14,7 @@ const activeDesc =
 const desc = 'Add 1 floater for every Earth tag you have, including this.';
 
 const card = new Active({
-  number: 'X35',
+  number: 'X36',
   title: 'Bio Printing Facility',
   cost: 7,
   tags: ['building'],
