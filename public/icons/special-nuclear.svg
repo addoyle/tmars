@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg width="600" height="600" viewBox="-350 -350 700 700" xmlns="http://www.w3.org/2000/svg">
   <g>
-    <circle r="50" style="fill: rgb(17, 17, 17);"/>
-    <path d="M 75 0 C 75 -26.795 60.705 -51.555 37.5 -64.952 L 125 -216.506 C 202.35 -171.848 250 -89.316 250 0 Z" id="bld" style="fill: rgb(17, 17, 17);"/>
-    <path d="M -37.5 64.952 C -14.295 78.349 14.295 78.349 37.5 64.952 L 125 216.506 C 47.65 261.164 -47.65 261.164 -125 216.506 Z" style="fill: rgb(17, 17, 17);"/>
-    <path d="M -37.5 -64.952 C -60.705 -51.554 -75 -26.795 -75 0 L -250 0 C -250 -89.316 -202.35 -171.848 -125 -216.506 Z" style="fill: rgb(17, 17, 17);"/>
+    <circle r="50" style="stroke-width: 4px; stroke: rgb(0, 0, 0); fill-opacity: 0.7;"/>
+    <path d="M 75 0 C 75 -26.795 60.705 -51.555 37.5 -64.952 L 125 -216.506 C 202.35 -171.848 250 -89.316 250 0 Z" id="bld" style="stroke-width: 4px; stroke: rgb(0, 0, 0); fill-opacity: 0.7;"/>
+    <path d="M -37.5 64.952 C -14.295 78.349 14.295 78.349 37.5 64.952 L 125 216.506 C 47.65 261.164 -47.65 261.164 -125 216.506 Z" style="stroke-width: 4px; stroke: rgb(0, 0, 0); fill-opacity: 0.7;"/>
+    <path d="M -37.5 -64.952 C -60.705 -51.554 -75 -26.795 -75 0 L -250 0 C -250 -89.316 -202.35 -171.848 -125 -216.506 Z" style="stroke-width: 4px; stroke: rgb(0, 0, 0); fill-opacity: 0.7;"/>
   </g>
 </svg>
