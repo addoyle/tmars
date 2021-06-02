@@ -1,41 +1,70 @@
 import React from 'react';
 import Automated from '../Automated';
 import {
+  Production,
+  Resource,
   Tile,
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
 const desc =
-  'Place a city tile IN SPACE, outside and separate from the planet.';
+  'Requires 4 ocean tiles. Increase your energy production 2 steps. Place this tile ADJACENT TO AN OCEAN TILE.';
+const customFilter = (tile, game, notReserved, neighbors) =>
+  // Not reserved
+  notReserved(tile) &&
+  // Adjacent to an ocean
+  neighbors.filter(t => t.type === 'ocean').length;
 
 export default new Automated({
   number: 'X32',
+  replaces: '136',
   title: 'Great Dam',
-  cost: 15,
+  cost: 12,
   tags: ['power', 'building'],
-  set: 'promo',
   restriction: {
     value: 4,
     tile: 'ocean'
   },
   desc,
-  flavor:
-    'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
+  flavor: 'Letting natural processes do the work',
   action: (player, game, done) =>
-    game.placeTile(player, game.offMars.torus, 'city', done),
-  vp: 2,
-  emoji: '🍩',
+    game.promptTile(player, { special: 'dam' }, done, customFilter),
+  canPlay: (player, game) => {
+    const valid = !!game.findPossibleTiles(
+      { special: 'dam' },
+      player,
+      customFilter
+    ).length;
+
+    return {
+      valid,
+      msg: !valid ? 'Cannot place tile' : null
+    };
+  },
+  production: {
+    power: 2
+  },
+  vp: 1,
+  emoji: '🌊',
   layout: (
-    <div className="flex">
-      <div className="col-1 middle">
-        <div className="resources">
-          <Tile name="city" asterisk />
+    <div className="flex gutter">
+      <div className="col-3">
+        <div className="flex center">
+          <Production>
+            <div className="flex">
+              <Resource name="power" />
+              <Resource name="power" />
+            </div>
+          </Production>
+          <div className="resources">
+            <Tile name="special" icon="dam" asterisk />
+          </div>
         </div>
+        <div className="description text-center m-top">{desc}</div>
       </div>
-      <div className="col-2 description middle">{desc}</div>
       <div className="col-1 bottom">
         <VictoryPoint>
-          <span className="big point">2</span>
+          <span className="big point">1</span>
         </VictoryPoint>
       </div>
     </div>

@@ -1,39 +1,69 @@
 import React from 'react';
 import Automated from '../Automated';
 import {
-  Tile,
-  VictoryPoint
+  Production,
+  Resource,
+  Tile
 } from '../../../client/game/components/assets/Assets';
 
 const desc =
-  'Place a city tile IN SPACE, outside and separate from the planet.';
+  'Decrease your energy production 4 steps and increase your plant production 2 steps. Raise your TR 3 steps. Place this tile.';
 
 export default new Automated({
   number: 'X33',
+  replaces: '165',
   title: 'Magnetic Field Generators',
-  cost: 22,
+  cost: 20,
   tags: ['building'],
-  set: 'promo',
   desc,
   flavor:
-    'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
+    'By generating a magnetic field, you can protect organisms from cosmic radiation',
   action: (player, game, done) =>
-    game.placeTile(player, game.offMars.torus, 'city', done),
-  vp: 2,
-  emoji: '🍩',
+    game.promptTile(player, { special: 'magnet' }, done),
+  canPlay: (player, game) => {
+    const valid = !!game.findPossibleTiles({ special: 'magnet' }, player)
+      .length;
+
+    return {
+      valid,
+      msg: !valid ? 'Cannot place this tile' : null
+    };
+  },
+  tr: 3,
+  production: {
+    power: -4,
+    plant: 2
+  },
+  emoji: '🧲',
   layout: (
-    <div className="flex">
-      <div className="col-1 middle">
-        <div className="resources">
-          <Tile name="city" asterisk />
+    <div className="text-center">
+      <div className="flex gutter">
+        <div className="col-1 text-center">
+          <Production>
+            <div className="flex">
+              <span className="middle">&ndash;4</span>
+              <Resource name="power" />
+            </div>
+            <div className="flex">
+              <div className="col-1">+</div>
+              <Resource name="plant" />
+              <Resource name="plant" />
+            </div>
+          </Production>
+        </div>
+        <div className="col-1 text-center middle">
+          <div className="resources">
+            <span>3</span>
+            <Resource name="tr" />
+          </div>
+        </div>
+        <div className="col-1 text-center middle">
+          <div className="resources">
+            <Tile name="special" icon="magnet" />
+          </div>
         </div>
       </div>
-      <div className="col-2 description middle">{desc}</div>
-      <div className="col-1 bottom">
-        <VictoryPoint>
-          <span className="big point">2</span>
-        </VictoryPoint>
-      </div>
+      <div className="description">{desc}</div>
     </div>
   )
 });

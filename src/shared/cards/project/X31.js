@@ -16,6 +16,7 @@ const customFilter = (tile, game, notReserved, neighbors) =>
 
 export default new Event({
   number: 'X31',
+  replaces: '039',
   title: 'Deimos Down',
   cost: 31,
   tags: ['space', 'event'],

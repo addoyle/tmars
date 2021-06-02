@@ -25,11 +25,6 @@ const card = new Automated({
   desc,
   flavor:
     'With its ideal placement and all its facilities, this is the true capital of Mars',
-  // action: (player, game, done) =>
-  //   game.promptTile(player, 'capital city', tile => {
-  //     card.tile = tile;
-  //     done();
-  //   }),
   production: {
     power: -2,
     megacredit: 5
