@@ -41,7 +41,7 @@ const card = new Active({
     }
   ],
   vp: 1,
-  emoji: '🌑',
+  emoji: '🥄',
   activeLayout: (
     <div>
       <div className="resources text-center">

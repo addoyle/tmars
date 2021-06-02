@@ -1,12 +1,8 @@
 import React from 'react';
 import Automated from '../Automated';
-import {
-  Tile,
-  VictoryPoint
-} from '../../../client/game/components/assets/Assets';
+import { Resource } from '../../../client/game/components/assets/Assets';
 
-const desc =
-  'Place a city tile IN SPACE, outside and separate from the planet.';
+const desc = 'Requires 3 power tags. Raise your TR 4 steps.';
 
 export default new Automated({
   number: 'X24',
@@ -20,24 +16,18 @@ export default new Automated({
   },
   desc,
   flavor:
-    'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
-  action: (player, game, done) =>
-    game.placeTile(player, game.offMars.torus, 'city', done),
-  vp: 2,
-  emoji: '🍩',
+    'Generating a magnetic field at the L1 Lagrange point will deflect solar radiation from Mars',
+  tr: 4,
+  emoji: '🧲',
   layout: (
-    <div className="flex">
-      <div className="col-1 middle">
+    <div className="flex m-top m-bottom">
+      <div className="col-1 middle text-center">
         <div className="resources">
-          <Tile name="city" asterisk />
+          <span>4</span>
+          <Resource name="tr" />
         </div>
       </div>
-      <div className="col-2 description middle">{desc}</div>
-      <div className="col-1 bottom">
-        <VictoryPoint>
-          <span className="big point">2</span>
-        </VictoryPoint>
-      </div>
+      <div className="col-2 middle description">{desc}</div>
     </div>
   )
 });

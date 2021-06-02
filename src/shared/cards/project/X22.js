@@ -2,9 +2,7 @@ import React from 'react';
 import Event from '../Event';
 import { Resource } from '../../../client/game/components/assets/Assets';
 
-const desc = 'Requires that you have 2 Party Leaders. Gain 1 TR.';
-
-// TODO implement this when TURMOIL gets added
+const desc = 'Gain 4 plants, and add 4 microbes to ANOTHER CARD.';
 
 export default new Event({
   number: 'X22',
@@ -13,16 +11,27 @@ export default new Event({
   tags: ['earth', 'space', 'event'],
   set: 'promo',
   desc,
-  flavor: 'I think we can both benefit from this arrangement',
-  action: () => {},
-  emoji: '🤝',
+  flavor:
+    'Supplying elements that are essential for biological life, but are scarce on Mars',
+  action: (player, game, done) => {
+    // TODO 4 microbes
+    done();
+  },
+  resources: {
+    plant: 4
+  },
+  emoji: '🍎',
   todo: true,
   layout: (
-    <div className="text-center">
+    <div className="text-center m-top">
       <div className="resources">
-        <Resource name="tr" />
+        <span>4</span>
+        <Resource name="plant" />
+        &nbsp;
+        <span>4</span>
+        <Resource name="microbe" />*
       </div>
-      <div className="m-top m-bottom description">{desc}</div>
+      <div className="m-top description">{desc}</div>
     </div>
   )
 });

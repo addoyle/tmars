@@ -3,15 +3,13 @@ import Active from '../Active';
 import {
   Resource,
   MegaCredit,
-  Tag,
-  VictoryPoint
+  Param
 } from '../../../client/game/components/assets/Assets';
 
 // TODO action
 
 const activeDesc =
-  'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
-const desc = 'Add 1 floater for every Earth tag you have, including this.';
+  'Action: Spend 6 M€ to add 1 asteroid to ANY CARD (titanium may be used to pay for this), or remove 1 asteroid here to raise temperature 1 step.';
 
 const card = new Active({
   number: 'X19',
@@ -20,54 +18,109 @@ const card = new Active({
   tags: ['space'],
   set: 'promo',
   activeDesc,
-  desc,
   resource: 'asteroid',
-  flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: (player, game) => game.cardResource(player, card, player.tags.earth),
+  flavor: 'Pushing asteroids towards Mars, delivering huge amounts of heat',
   actions: [
     {
-      name: 'Spend 1 Floater',
-      icon: <Resource name="floater" />,
-      action: (player, game) => {
+      name: 'Add 1 asteroid',
+      log: ['add an asteroid ', { resource: 'asteroid' }],
+      icon: <Resource name="asteroid" />,
+      counter: {
+        name: 'Use Titanium',
+        max: player =>
+          Math.min(
+            Math.ceil(6 / player.rates.titanium),
+            player.resources.titanium
+          ),
+        icon: <Resource name="titanium" />,
+        resultIcon: (count, player) => (
+          <MegaCredit value={6 - count * player.rates.titanium} />
+        )
+      },
+      canPlay: (player, game, count) => {
+        const valid =
+          player.resources.megacredit + count * player.rates.titanium >= 6;
+        return {
+          valid,
+          msg: !valid ? 'Cannot afford this' : null
+        };
+      },
+      action: (player, game, done, count) => {
         game.resources(
           player,
           'megacredit',
-          Math.min(game.cardResource(player, card), 5)
+          -Math.max(0, 6 - count * player.rates.titanium)
         );
+        game.resources(player, 'titanium', -count);
+
+        // TODO: Pick any card
+        game.cardResource(player, card, 1);
+
+        done();
+      }
+    },
+    {
+      name: 'Raise Temperature',
+      log: ['raise temperature', { param: 'temperature' }],
+      icon: (
+        <>
+          <Resource name="asteroid" />
+          <span className="arrow" />
+          <Param name="temperature" />
+        </>
+      ),
+      canPlay: (player, game) => {
+        const valid = game.cardResource(player, card) > 0;
+        return {
+          valid,
+          msg: !valid ? 'Not enough asteroids' : null
+        };
+      },
+      action: (player, game, done) => {
         game.cardResource(player, card, -1);
+        game.param(player, 'temperature', done);
       }
     }
   ],
-  vp: 1,
-  emoji: '🏄',
+  emoji: '🥊',
+  todo: true,
   activeLayout: (
     <div>
-      <div className="resources text-center">
-        <Resource name="floater" />
-        <span className="arrow" />
-        <MegaCredit value="1" />
-        <span>/</span>
-        <Resource name="floater" />
-        <span>*(max 5)</span>
+      <div className="table center">
+        <div className="row">
+          <div className="cell" />
+          <div className="cell middle resources text-center">
+            <MegaCredit value="6" />
+            <span className="sup">
+              (<Resource name="titanium" />)
+            </span>
+          </div>
+          <div className="cell middle resources">
+            <span className="arrow" />
+          </div>
+          <div className="cell middle resources text-center">
+            <Resource name="asteroid" />*
+          </div>
+        </div>
+        <div className="row">
+          <div className="cell middle resources">
+            <span>OR</span>
+          </div>
+          <div className="cell middle resources text-center">
+            <Resource name="asteroid" />
+          </div>
+          <div className="cell middle resources">
+            <span className="arrow" />
+          </div>
+          <div className="cell middle resources text-center">
+            <Param name="temperature" />
+          </div>
+        </div>
       </div>
       <div className="description text-center">{activeDesc}</div>
     </div>
   ),
-  layout: (
-    <div className="flex">
-      <div className="col-1 middle">
-        <div className="resources">
-          <Resource name="floater" />/<Tag name="earth" />
-        </div>
-      </div>
-      <div className="col-1 description middle">{desc}</div>
-      <div className="col-1 bottom">
-        <VictoryPoint>
-          <span className="big point">1</span>
-        </VictoryPoint>
-      </div>
-    </div>
-  )
+  layout: <div />
 });
 
 export default card;

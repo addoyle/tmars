@@ -1,12 +1,11 @@
 import React from 'react';
 import Automated from '../Automated';
 import {
-  Tile,
+  Resource,
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
 
-const desc =
-  'Place a city tile IN SPACE, outside and separate from the planet.';
+const desc = 'Raise your TR 1 step.';
 
 export default new Automated({
   number: 'X23',
@@ -16,22 +15,21 @@ export default new Automated({
   set: 'promo',
   desc,
   flavor:
-    'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
-  action: (player, game, done) =>
-    game.placeTile(player, game.offMars.torus, 'city', done),
-  vp: 2,
-  emoji: '🍩',
+    'A place to negotiate trade deals and regulations with the other solar system',
+  tr: 1,
+  vp: 1,
+  emoji: '🏢',
   layout: (
     <div className="flex">
-      <div className="col-1 middle">
+      <div className="col-3 middle text-center">
         <div className="resources">
-          <Tile name="city" asterisk />
+          <Resource name="tr" />
         </div>
       </div>
-      <div className="col-2 description middle">{desc}</div>
-      <div className="col-1 bottom">
+      <div className="col-3 description middle text-center">{desc}</div>
+      <div className="col-4 flex bottom right">
         <VictoryPoint>
-          <span className="big point">2</span>
+          <span className="big point">1</span>
         </VictoryPoint>
       </div>
     </div>

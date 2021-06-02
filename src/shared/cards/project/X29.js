@@ -1,17 +1,12 @@
 import React from 'react';
 import Active from '../Active';
 import {
-  Resource,
-  MegaCredit,
-  Tag,
-  VictoryPoint
+  VictoryPoint,
+  Param
 } from '../../../client/game/components/assets/Assets';
 
-// TODO action
-
-const activeDesc =
-  'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
-const desc = 'Add 1 floater for every Earth tag you have, including this.';
+const activeDesc = 'Action: Draw a card.';
+const desc = 'Requires 2 science tags.';
 
 const card = new Active({
   number: 'X29',
@@ -25,48 +20,32 @@ const card = new Active({
   },
   activeDesc,
   desc,
-  flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: (player, game) => game.cardResource(player, card, player.tags.earth),
+  flavor:
+    'Direct observation of the mantle and core yields both surprises and insights in planetology',
   actions: [
     {
-      name: 'Spend 1 Floater',
-      icon: <Resource name="floater" />,
-      action: (player, game) => {
-        game.resources(
-          player,
-          'megacredit',
-          Math.min(game.cardResource(player, card), 5)
-        );
-        game.cardResource(player, card, -1);
-      }
+      name: 'Draw a card',
+      icon: <Param name="card back" />,
+      action: (player, game) => game.drawCard(player)
     }
   ],
-  vp: 1,
-  emoji: '🏄',
+  vp: 2,
+  emoji: '🌡️',
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Resource name="floater" />
         <span className="arrow" />
-        <MegaCredit value="1" />
-        <span>/</span>
-        <Resource name="floater" />
-        <span>*(max 5)</span>
+        <Param name="card back" />
       </div>
       <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (
     <div className="flex">
-      <div className="col-1 middle">
-        <div className="resources">
-          <Resource name="floater" />/<Tag name="earth" />
-        </div>
-      </div>
-      <div className="col-1 description middle">{desc}</div>
+      <div className="col-3 description middle text-center">{desc}</div>
       <div className="col-1 bottom">
         <VictoryPoint>
-          <span className="big point">1</span>
+          <span className="big point">2</span>
         </VictoryPoint>
       </div>
     </div>

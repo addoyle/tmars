@@ -1,12 +1,14 @@
 import React from 'react';
 import Automated from '../Automated';
 import {
-  Tile,
-  VictoryPoint
+  MegaCredit,
+  Production,
+  Resource,
+  Tile
 } from '../../../client/game/components/assets/Assets';
 
 const desc =
-  'Place a city tile IN SPACE, outside and separate from the planet.';
+  'Increase your M€ production 2 steps, and increase your energy production 1 step. Gain 3 plants and place a city tile.';
 
 export default new Automated({
   number: 'X21',
@@ -16,23 +18,36 @@ export default new Automated({
   set: 'promo',
   desc,
   flavor:
-    'A world of its own inside a giant space wheel, slowly rotating to create artificial gravity',
-  action: (player, game, done) =>
-    game.placeTile(player, game.offMars.torus, 'city', done),
-  vp: 2,
-  emoji: '🍩',
+    'Protecting an area by deflecting particle radiation to a central tower, which converts the radiation to energy that powers the deflecting magnetic field',
+  production: {
+    megacredit: 2,
+    power: 1
+  },
+  resources: {
+    plant: 3
+  },
+  tile: 'city',
+  emoji: '🗼',
   layout: (
     <div className="flex">
       <div className="col-1 middle">
-        <div className="resources">
-          <Tile name="city" asterisk />
-        </div>
+        <Production>
+          <div className="flex">
+            <MegaCredit value="2" />
+          </div>
+          <div className="flex">
+            <Resource name="power" />
+          </div>
+        </Production>
       </div>
-      <div className="col-2 description middle">{desc}</div>
-      <div className="col-1 bottom">
-        <VictoryPoint>
-          <span className="big point">2</span>
-        </VictoryPoint>
+      <div className="col-4">
+        <div className="resources">
+          <Resource name="plant" />
+          <Resource name="plant" />
+          <Resource name="plant" />
+          <Tile name="city" />
+        </div>
+        <div className="description">{desc}</div>
       </div>
     </div>
   )

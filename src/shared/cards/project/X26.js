@@ -1,17 +1,10 @@
 import React from 'react';
 import Active from '../Active';
-import {
-  Resource,
-  MegaCredit,
-  Tag,
-  VictoryPoint
-} from '../../../client/game/components/assets/Assets';
+import { Resource } from '../../../client/game/components/assets/Assets';
 
 // TODO action
 
-const activeDesc =
-  'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
-const desc = 'Add 1 floater for every Earth tag you have, including this.';
+const activeDesc = 'Action: Spend 5 heat to gain 3 steel.';
 
 const card = new Active({
   number: 'X26',
@@ -20,53 +13,44 @@ const card = new Active({
   tags: ['building'],
   set: 'promo',
   activeDesc,
-  desc,
-  flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: (player, game) => game.cardResource(player, card, player.tags.earth),
+  flavor: 'Melting ores and recycled materials for new uses',
   actions: [
     {
-      name: 'Spend 1 Floater',
-      icon: <Resource name="floater" />,
+      name: 'Spend 5 heat',
+      icon: (
+        <>
+          <span>5</span>
+          <Resource name="heat" />
+        </>
+      ),
+      canPlay: player => {
+        const valid = player.resources.heat >= 5;
+        return {
+          valid,
+          msg: !valid ? 'Not enough heat' : null
+        };
+      },
       action: (player, game) => {
-        game.resources(
-          player,
-          'megacredit',
-          Math.min(game.cardResource(player, card), 5)
-        );
-        game.cardResource(player, card, -1);
+        game.resources(player, 'heat', -5);
+        game.resources(player, 'steel', 3);
       }
     }
   ],
-  vp: 1,
-  emoji: '🏄',
+  emoji: '🔥',
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Resource name="floater" />
+        <span>5</span>
+        <Resource name="heat" />
         <span className="arrow" />
-        <MegaCredit value="1" />
-        <span>/</span>
-        <Resource name="floater" />
-        <span>*(max 5)</span>
+        <Resource name="steel" />
+        <Resource name="steel" />
+        <Resource name="steel" />
       </div>
-      <div className="description text-center">{activeDesc}</div>
+      <div className="description text-center m-top">{activeDesc}</div>
     </div>
   ),
-  layout: (
-    <div className="flex">
-      <div className="col-1 middle">
-        <div className="resources">
-          <Resource name="floater" />/<Tag name="earth" />
-        </div>
-      </div>
-      <div className="col-1 description middle">{desc}</div>
-      <div className="col-1 bottom">
-        <VictoryPoint>
-          <span className="big point">1</span>
-        </VictoryPoint>
-      </div>
-    </div>
-  )
+  layout: <div />
 });
 
 export default card;

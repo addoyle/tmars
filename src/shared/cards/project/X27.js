@@ -2,16 +2,14 @@ import React from 'react';
 import Active from '../Active';
 import {
   Resource,
-  MegaCredit,
-  Tag,
-  VictoryPoint
+  Tile,
+  Param
 } from '../../../client/game/components/assets/Assets';
 
 // TODO action
 
-const activeDesc =
-  'Action: Spend 1 floater from here to gain 1 M€ for each floater here, INCLUDING THE PAID FLOATER (max 5).';
-const desc = 'Add 1 floater for every Earth tag you have, including this.';
+const activeDesc = 'Action: Add a microbe or animal to ANOTHER card.';
+const desc = 'Place an ocean tile. Raise temperature 1 step. Gain 3 plants.';
 
 const card = new Active({
   number: 'X27',
@@ -21,51 +19,57 @@ const card = new Active({
   set: 'promo',
   activeDesc,
   desc,
-  resource: 'asteroid',
-  flavor: 'Believe the hype and become a cloudrider in this new extreme sport!',
-  action: (player, game) => game.cardResource(player, card, player.tags.earth),
+  flavor:
+    'Excavating a Mohole and then flooding it is an excellent way to create a zone of ambient temperature, moisture, and liquid water',
+  resources: {
+    plant: 3
+  },
+  param: ['temperature'],
+  tile: 'ocean',
   actions: [
     {
-      name: 'Spend 1 Floater',
-      icon: <Resource name="floater" />,
-      action: (player, game) => {
-        game.resources(
-          player,
-          'megacredit',
-          Math.min(game.cardResource(player, card), 5)
-        );
-        game.cardResource(player, card, -1);
+      name: 'Add a microbe',
+      icon: <Resource name="microbe" />,
+      action: (player, game, done) => {
+        // TODO
+        done();
+      }
+    },
+    {
+      name: 'Add an animal',
+      icon: <Resource name="animal" />,
+      action: (player, game, done) => {
+        // TODO
+        done();
       }
     }
   ],
-  vp: 1,
-  emoji: '🏄',
+  emoji: '🌊',
+  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <Resource name="floater" />
         <span className="arrow" />
-        <MegaCredit value="1" />
-        <span>/</span>
-        <Resource name="floater" />
-        <span>*(max 5)</span>
+        <Resource name="microbe" />*<span> OR </span>
+        <Resource name="animal" />*
       </div>
       <div className="description text-center">{activeDesc}</div>
     </div>
   ),
   layout: (
     <div className="flex">
-      <div className="col-1 middle">
+      <div className="col-3 middle text-center">
         <div className="resources">
-          <Resource name="floater" />/<Tag name="earth" />
+          <Resource name="plant" />
+          <Resource name="plant" />
+          <Resource name="plant" />
+        </div>
+        <div className="resources">
+          <Param name="temperature" />
+          <Tile name="ocean" />
         </div>
       </div>
-      <div className="col-1 description middle">{desc}</div>
-      <div className="col-1 bottom">
-        <VictoryPoint>
-          <span className="big point">1</span>
-        </VictoryPoint>
-      </div>
+      <div className="col-4 description middle text-center">{desc}</div>
     </div>
   )
 });
