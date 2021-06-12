@@ -15,10 +15,77 @@ const card = new Corporation({
   titleClass: 'astrodrill',
   resources: { megacredit: 35 },
   starting: (player, game) => game.cardResource(player, card, 3),
+  actions: [
+    {
+      name: 'Add 1 Asteroid to ANY card',
+      log: ['add an asteroid ', { resource: 'asteroid' }],
+      icon: (
+        <>
+          <Resource name="asteroid" />*
+        </>
+      ),
+      action: (player, game, done) => {
+        // TODO
+        done();
+      }
+    },
+    {
+      name: 'Gain 1 M€',
+      log: ['gain 1 M€ ', { megacredit: null }],
+      icon: <MegaCredit />,
+      action: (player, game) => game.resources(player, 'megacredit', 1)
+    },
+    {
+      name: 'Gain 1 Steel',
+      log: ['gain 1 steel ', { resource: 'steel' }],
+      icon: <Resource name="steel" />,
+      action: (player, game) => game.resources(player, 'steel', 1)
+    },
+    {
+      name: 'Gain 1 Titanium',
+      log: ['gain 1 titanium ', { resource: 'titanium' }],
+      icon: <Resource name="titanium" />,
+      action: (player, game) => game.resources(player, 'titanium', 1)
+    },
+    {
+      name: 'Gain 1 Plant',
+      log: ['gain 1 plant ', { resource: 'plant' }],
+      icon: <Resource name="plant" />,
+      action: (player, game) => game.resources(player, 'plant', 1)
+    },
+    {
+      name: 'Gain 1 Energy',
+      log: ['gain 1 energy ', { resource: 'power' }],
+      icon: <Resource name="power" />,
+      action: (player, game) => game.resources(player, 'power', 1)
+    },
+    {
+      name: 'Gain 1 Heat',
+      log: ['gain 1 heat ', { resource: 'heat' }],
+      icon: <Resource name="heat" />,
+      action: (player, game) => game.resources(player, 'heat', 1)
+    },
+    {
+      name: 'Spend 1 Asteroid',
+      log: ['spend 1 asteroid ', { resource: 'asteroid' }],
+      icon: <Resource name="asteroid" />,
+      canPlay: (player, game) => {
+        const valid = game.cardResource(player, card) >= 1;
+        return {
+          valid,
+          msg: !valid ? 'Not enough asteroids' : null
+        };
+      },
+      action: (player, game) => {
+        game.resources(player, 'titanium', 3);
+        game.cardResource(player, card, -1);
+      }
+    }
+  ],
   tags: ['space'],
   set: 'promo',
   desc,
-  // resource: 'asteroid',
+  resource: 'asteroid',
   effectDesc,
   // todo: true,
   flavor:
@@ -26,7 +93,7 @@ const card = new Corporation({
   layout: (
     <div>
       <div className="flex gutter">
-        <div className="col-2 middle text-center">
+        <div className="col-2 bottom m-bottom text-center">
           <div className="resources">
             <MegaCredit value="35" />
             <Resource name="blank" />

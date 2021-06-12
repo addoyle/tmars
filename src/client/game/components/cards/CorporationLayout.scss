@@ -1019,11 +1019,71 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
       text-transform: uppercase;
       font-size: .05em;
       width: 9.5em;
-      margin: 0 0 0 .75em;
+      margin: 5em 0 -5em .75em;
       border-top: .6em solid #333;
       border-left: .75em solid transparent;
       border-right: .75em solid transparent;
       filter: drop-shadow(0.15em 0.15em 0.15em rgba(0, 0, 0, 0.75));
+
+      &:before {
+        content: '';
+        position: absolute;
+        left: -.75em;
+        top: -4.75em;
+        background-image: radial-gradient(
+          #999 0%,
+          #333 35%,
+          transparent 35%,
+          transparent 42%,
+          #fa9b09 42%,
+          #fa9b09 45%,
+          transparent 45%,
+          transparent 50%,
+          #ede274 50%,
+          #ede274 57%,
+          transparent 57%,
+          transparent 62%,
+          #fa9b09 62%,
+          #fa9b09 65%,
+          transparent 65%);
+        background-size: 10em 10em;
+        background-position: center top;
+        width: 9.5em;
+        height: 4em;
+        clip-path: polygon(0 0, 70% 0%, 50% 100%, 60% 100%, 100% 50%, 100% 100%, 0 100%);
+      }
+
+      &:after {
+        content: '';
+        position: absolute;
+        left: 4.35em;
+        top: -4.75em;
+        background-image: radial-gradient(
+          #fa9b09 0%,
+          #fa9b09 25%,
+          transparent 25%,
+          transparent 28%,
+          #fa9b09 28%,
+          #fa9b09 36%,
+          transparent 36%,
+          transparent 39%,
+          #fa9b09 39%,
+          #fa9b09 47%,
+          transparent 47%,
+          transparent 50%,
+          #fa9b09 50%);
+        background-size: 10em 10em;
+        background-position: -5em top;
+        width: 4em;
+        height: 4em;
+        clip-path: polygon(37.2% 20%, 80% 58.125%, 0 100%);
+      }
+      
+      .image-resources {
+        font-size: 2em;
+        top: -1em;
+        -webkit-text-stroke: 0;
+      }
     }
 
     &.pharmacy {
