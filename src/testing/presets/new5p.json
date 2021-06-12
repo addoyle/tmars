@@ -58,7 +58,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [{ "card": "P02" }, { "card": "011" }, { "card": "000" }],
+        "corp": [{ "card": "CP2" }, { "card": "C11" }, { "card": "C00" }],
         "prelude": [
           { "card": "P04" },
           { "card": "P14" },
@@ -136,7 +136,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [{ "card": "X01" }, { "card": "P03" }, { "card": "000" }],
+        "corp": [{ "card": "CX1" }, { "card": "CP3" }, { "card": "C00" }],
         "prelude": [
           { "card": "P22" },
           { "card": "P10" },
@@ -214,7 +214,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [{ "card": "001" }, { "card": "020" }, { "card": "000" }],
+        "corp": [{ "card": "C01" }, { "card": "C20" }, { "card": "C00" }],
         "prelude": [
           { "card": "P26" },
           { "card": "P20" },
@@ -292,7 +292,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [{ "card": "015" }, { "card": "009" }, { "card": "000" }],
+        "corp": [{ "card": "C15" }, { "card": "C09" }, { "card": "C00" }],
         "prelude": [
           { "card": "P05" },
           { "card": "P29" },
@@ -370,7 +370,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [{ "card": "004" }, { "card": "019" }, { "card": "000" }],
+        "corp": [{ "card": "C04" }, { "card": "C19" }, { "card": "C00" }],
         "prelude": [
           { "card": "P12" },
           { "card": "P27" },

@@ -19,7 +19,7 @@ const customFilter = player => (tile, game, notReserved, neighbors) =>
   neighbors.filter(t => t.player === player.number).length;
 
 export default new Corporation({
-  number: '013',
+  number: 'C13',
   title: 'Arcadian Communities',
   titleStyle: {
     fontSize: '.07em',

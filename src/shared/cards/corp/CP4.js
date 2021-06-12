@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: When you play a science tag, you pay 2 M€ less for it.';
 
 export default new Corporation({
-  number: 'P04',
+  number: 'CP4',
   title: 'Valley Trust',
   titleClass: 'valley-trust',
   resources: { megacredit: 37 },

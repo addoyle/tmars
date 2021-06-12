@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: When you play a building tag, including this, gain 1 microbe to this card, or remove 2 microbes here and raise your plant production 1 step.';
 
 const card = new Corporation({
-  number: '015',
+  number: 'C15',
   title: 'Recyclon',
   titleStyle: {
     fontSize: '.1em',

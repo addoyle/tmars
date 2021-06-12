@@ -58,7 +58,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [{ "card": "002" }, { "card": "011" }, { "card": "000" }],
+        "corp": [{ "card": "C02" }, { "card": "C11" }, { "card": "C00" }],
         "prelude": [
           { "card": "P29" },
           { "card": "P24" },
@@ -136,7 +136,7 @@
         ],
         "automated": [],
         "event": [],
-        "corp": [{ "card": "P01" }, { "card": "X02" }, { "card": "000" }],
+        "corp": [{ "card": "CP1" }, { "card": "CX2" }, { "card": "C00" }],
         "prelude": [
           { "card": "P34" },
           { "card": "P10" },

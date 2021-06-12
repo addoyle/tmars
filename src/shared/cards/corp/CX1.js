@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: When a player causes another player to decrease production or lose resources, pay 3 M€ to the victim, or as much as possible.';
 
 export default new Corporation({
-  number: 'X01',
+  number: 'CX1',
   title: 'Mons Insurance',
   titleClass: 'mons',
   resources: { megacredit: 48 },

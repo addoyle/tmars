@@ -10,7 +10,7 @@ const onThingPlayed = (player, game, thing) =>
   thing.cost >= 20 && game.resources(player, 'megacredit', 4);
 
 export default new Corporation({
-  number: '001',
+  number: 'C01',
   title: 'CrediCor',
   titleClass: 'credicor',
   resources: { megacredit: 57 },

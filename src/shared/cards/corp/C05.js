@@ -10,7 +10,7 @@ const desc = 'You start with 20 steel and 30 M€.';
 const effectDesc = 'Effect: Each time you play an event, you gain 2 M€.';
 
 export default new Corporation({
-  number: '005',
+  number: 'C05',
   title: 'Interplanetary Cinematics',
   titleClass: 'interplanetary',
   resources: {

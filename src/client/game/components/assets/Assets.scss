@@ -417,6 +417,7 @@ $title-font: 'Prototype', sans-serif;
   &.all { @include icon(url('./icons/all.svg'), 330, 0%, 0, true, 99%, 101%, 15%); }
   &.fighter { @include icon(url('./icons/fighter.svg'), 26, 0%, 0.6, false, 30%); }
   &.asteroid { @include icon(url('./icons/asteroid.svg'), 26, 0%, 0.6, false, 30%); }
+  &.disease { @include icon(url('./icons/disease.svg'), 40, 80%, 0.2, false, 50%); }
   &.marker { @include icon(#e06635, 48, 80%, 0.2, true, false); }
   &.player-1 { @include icon(hsl(0, 80%, 40%), 0, 80%, 0.2, true, false); }
   &.player-2 { @include icon(hsl(240, 80%, 40%), 240, 80%, 0.2, true, false); }
@@ -426,7 +427,6 @@ $title-font: 'Prototype', sans-serif;
 }
 
 .icon.tr {
-  // @include icon(url('./icons/tr.svg'), 17, 90%, .1);
   background: linear-gradient(hsl(28, 94%, 65%) 60%, hsl(28, 94%, 65%));
   &:before {
     background: url('./icons/tr.svg') no-repeat center/85%,
@@ -589,6 +589,7 @@ $title-font: 'Prototype', sans-serif;
 .resources {
   font-size: 2em;
   font-family: $title-font;
+  vertical-align: middle;
 
   &.condense > * {
     margin: 0;
@@ -782,6 +783,8 @@ $title-font: 'Prototype', sans-serif;
 .arrow {
   color: #d94c38;
   -webkit-text-stroke: 0.05em darkred;
+  font-size: 1.5em;
+  line-height: .75;
 
   &:before {
     content: '\27A1';

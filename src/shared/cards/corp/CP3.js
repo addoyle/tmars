@@ -14,7 +14,7 @@ const isMin = (player, prod) =>
   player.production[prod] === Math.min(...Object.values(player.production));
 
 export default new Corporation({
-  number: 'P03',
+  number: 'CP3',
   title: 'Robinson Industries',
   titleClass: 'robinson-industries',
   resources: { megacredit: 47 },

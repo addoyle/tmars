@@ -7,7 +7,7 @@ const effectDesc =
   'Action: Use a blue card action that has already been used this generation.';
 
 export default new Corporation({
-  number: '018',
+  number: 'C18',
   title: 'Viron',
   titleClass: 'viron',
   resources: { megacredit: 48 },

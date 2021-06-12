@@ -1011,6 +1011,67 @@ $aphrodite-font: 'Blippo', Impact, Charcoal, monospace;
         text-shadow: 0 0 0.3em rgba(255, 255, 255, 0.7);
       }
     }
+
+    &.astrodrill {
+      color: #ede274;
+      -webkit-text-stroke: .05em #fa9b09;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      font-size: .05em;
+      width: 9.5em;
+      margin: 0 0 0 .75em;
+      border-top: .6em solid #333;
+      border-left: .75em solid transparent;
+      border-right: .75em solid transparent;
+      filter: drop-shadow(0.15em 0.15em 0.15em rgba(0, 0, 0, 0.75));
+    }
+
+    &.pharmacy {
+      color: transparent;
+      line-height: 0;
+      overflow: visible;
+      margin: 0 0 .15em 0;
+      width: 5em;
+
+      &:before {
+        line-height: 1;
+        position: absolute;
+        top: 7em;
+        left: 2em;
+        display: block;
+        content: 'PHARMACY UNION';
+        font-family: sans-serif;
+        font-weight: 900;
+        transform: rotate(-90deg);
+        font-size: .25em;
+        width: 1em;
+        height: 1em;
+        color: black;
+      }
+
+      &:after {
+        line-height: .5;
+        content: '\2623';
+        position: absolute;
+        font-size: 2em;
+        top: 0;
+        left: .25em;
+        color: #fff;
+        text-shadow: 0 0 .1em #000;
+        border-top: .2em solid #fff;
+        border-right: .25em solid transparent;
+        border-bottom: .25em solid transparent;
+        border-left: .25em solid transparent;
+        padding: 0 .1em;
+      }
+
+      .image-resources {
+        font-size: 1.25em;
+        left: 15%;
+        top: 75%;
+        transform: none;
+      }
+    }
   }
 
   .flavor {

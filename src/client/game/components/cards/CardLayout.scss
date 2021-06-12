@@ -129,6 +129,8 @@ $title-font: 'Prototype', sans-serif;
     color: black;
     font-size: 1.5em;
     white-space: nowrap;
+    z-index: 1;
+    box-shadow: 0.1em 0.1em 0.1em #0008;
   }
 
   .todo {

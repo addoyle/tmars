@@ -116,7 +116,7 @@
         ],
         "corp": [
           {
-            "card": "011",
+            "card": "C11",
             "select": false,
             "disabled": false
           }
@@ -265,7 +265,7 @@
         ],
         "corp": [
           {
-            "card": "P03",
+            "card": "CP3",
             "select": false,
             "disabled": false
           }
@@ -454,7 +454,7 @@
         ],
         "corp": [
           {
-            "card": "001",
+            "card": "C01",
             "select": false,
             "disabled": false
           }
@@ -598,7 +598,7 @@
         ],
         "corp": [
           {
-            "card": "015",
+            "card": "C15",
             "select": false,
             "disabled": false,
             "resource": 0
@@ -757,7 +757,7 @@
         ],
         "corp": [
           {
-            "card": "004",
+            "card": "C04",
             "select": false,
             "disabled": false
           }
@@ -1310,7 +1310,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "015"
+          "corp": "C15"
         },
         " and bought 7 projects."
       ],
@@ -1321,7 +1321,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "004"
+          "corp": "C04"
         },
         " and bought 7 projects."
       ],
@@ -1332,7 +1332,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "011"
+          "corp": "C11"
         },
         " and bought 7 projects."
       ],
@@ -1343,7 +1343,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "P03"
+          "corp": "CP3"
         },
         " and bought 7 projects."
       ],
@@ -1354,7 +1354,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "001"
+          "corp": "C01"
         },
         " and bought 8 projects."
       ],
@@ -2682,7 +2682,7 @@
       "body": [
         "'s ",
         {
-          "corp": "001"
+          "corp": "C01"
         },
         " effect was triggered."
       ],
@@ -2812,7 +2812,7 @@
       "body": [
         "'s ",
         {
-          "corp": "001"
+          "corp": "C01"
         },
         " effect was triggered."
       ],
@@ -3158,7 +3158,7 @@
       "body": [
         "'s ",
         {
-          "corp": "015"
+          "corp": "C15"
         },
         " effect was triggered."
       ],
@@ -3514,7 +3514,7 @@
       "body": [
         "'s ",
         {
-          "corp": "001"
+          "corp": "C01"
         },
         " effect was triggered."
       ],
@@ -3703,7 +3703,7 @@
       "body": [
         "'s ",
         {
-          "corp": "015"
+          "corp": "C15"
         },
         " effect was triggered."
       ],
@@ -3865,7 +3865,7 @@
       "body": [
         "'s ",
         {
-          "corp": "004"
+          "corp": "C04"
         },
         " effect was triggered."
       ],
@@ -3881,7 +3881,7 @@
       "body": [
         " used an action on ",
         {
-          "corp": "P03"
+          "corp": "CP3"
         },
         " to ",
         "increase energy production ",
@@ -4131,7 +4131,7 @@
       "body": [
         "'s ",
         {
-          "corp": "015"
+          "corp": "C15"
         },
         " effect was triggered."
       ],
@@ -4291,7 +4291,7 @@
       "body": [
         "'s ",
         {
-          "corp": "001"
+          "corp": "C01"
         },
         " effect was triggered."
       ],
