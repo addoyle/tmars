@@ -155,7 +155,8 @@ class Game extends SharedGame {
       Object.values(this.cardStore.corp)
         .filter(
           corp =>
-            +corp.number !== 0 &&
+            // Filter out Beginner Corp
+            corp.number !== 'C00' &&
             (corp.set === 'base' ||
               (Array.isArray(corp.set) ? corp.set : [corp.set]).every(set =>
                 this.sets.includes(set)
@@ -220,7 +221,7 @@ class Game extends SharedGame {
     }
     // Add in beginner corp
     // TODO: make this optional
-    this.players.forEach(player => player.cards.corp.push({ card: '000' }));
+    this.players.forEach(player => player.cards.corp.push({ card: 'C00' }));
 
     // Deal out 10 projects
     for (let i = 0; i < 10; i++) {
@@ -302,8 +303,12 @@ class Game extends SharedGame {
    */
   applyCorp(player) {
     const corp = this.cardStore.corp[player.cards.corp[0].card];
-    this.resources(player, 'megacredit', corp.startingMC);
-    corp.starting && corp.starting(player, this);
+
+    // Perform corp's standard action
+    corp.standardAction(player, this);
+
+    // TODO: Move these into normal action function
+    // corp.starting && corp.starting(player, this);
     (corp.tags || []).forEach(tag => player.tags[tag]++);
   }
 
@@ -1132,10 +1137,8 @@ class Game extends SharedGame {
    * @param {number} num Amount to change
    */
   resources(player, resource, num) {
-    player.resources[resource] += num;
-    if (player.resources[resource] < 0) {
-      player.resources[resource] = 0;
-    }
+    player.resources[resource] = Math.max(player.resources[resource] + num, 0);
+
     // TODO fire resource change
 
     return true;
@@ -1150,6 +1153,7 @@ class Game extends SharedGame {
    */
   production(player, resource, num) {
     player.production[resource] += num;
+
     // TODO fire production change
 
     return true;
@@ -1165,6 +1169,7 @@ class Game extends SharedGame {
     player.tr += num;
 
     // For UNMI, marks if TR was raised this generation
+    // TODO: Move this to an event in UNMI
     player.trRaised = true;
 
     // TODO fire terraform change

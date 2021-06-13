@@ -103,7 +103,7 @@ const CardDrawer = props => {
                         cardStore.get(
                           'corp',
                           gameStore.player?.cards.corp[0].card
-                        )?.startingMC
+                        )?.resources.megacredit
                       }
                     />
                     <CardRef
@@ -154,7 +154,7 @@ const CardDrawer = props => {
                             cardStore.get(
                               'corp',
                               gameStore.player?.cards.corp[0].card
-                            )?.startingMC)
+                            )?.resources.megacredit)
                       )
                     : numSelected > props.max || numSelected < props.min
                 }

@@ -15,7 +15,6 @@ export default new Corporation({
   number: 'C02',
   title: 'Ecoline',
   titleClass: 'ecoline',
-  startingMC: 36,
   starting: player => (player.rates.plant = 7),
   resources: {
     megacredit: 36,

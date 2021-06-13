@@ -18,9 +18,9 @@ const card = new Active({
   activeDesc,
   flavor: 'Big projects make big headlines',
   events: {
-    onAnyCardPlayed: (player, game, card) =>
+    onAnyCardPlayed: (player, game, playedCard) =>
       // Has a base cost of 20 or more
-      card.cost >= 20 &&
+      playedCard.cost >= 20 &&
       // Bump M€ production
       game.production(player, 'megacredit', 1)
   },

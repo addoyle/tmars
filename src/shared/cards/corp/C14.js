@@ -33,8 +33,8 @@ export default new Corporation({
   desc,
   effectDesc,
   events: {
-    onAnyCardPlayed: (player, game, card, targetPlayer, done) => {
-      if (card.tags.includes('microbe')) {
+    onAnyCardPlayed: (player, game, playedCard, targetPlayer, done) => {
+      if (playedCard.tags.includes('microbe')) {
         game.resources(player, 'megacredit', 2);
 
         // TODO: Target player gets to choose one or the other

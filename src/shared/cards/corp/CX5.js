@@ -11,25 +11,47 @@ const desc = 'You start with 54 M€. Draw a science card.';
 const effectDesc =
   'Effect: When ANY microbe tag is played, including these 2, add a disease here and lose 4 M€ or as much as possible. When you play a science tag, remove 1 disease from here and raise your TR 1 step, OR, if there are no dieases here, you may raise TR 3 steps and place this card in your event pile. It now counts as a played event.';
 
-export default new Corporation({
+const card = new Corporation({
   number: 'CX5',
   title: 'Pharmacy Union',
   titleClass: 'pharmacy',
   resources: { megacredit: 54 },
-  starting: (player, game) =>
-    game.players
-      .filter(p => p.number !== player.number)
-      .forEach(p => game.production(p, 'megacredit', -2)),
+  drawCard: {
+    num: 1,
+    tag: 'science'
+  },
   tags: ['microbe', 'microbe'],
   set: 'promo',
   desc,
   resource: 'disease',
   effectDesc,
   events: {
-    losesResources: (player, game, victim) => {
-      const amt = Math.min(3, player.resources.megacredit);
-      game.resources(player, 'megacredit', -amt);
-      game.resources(victim, 'megacredit', amt);
+    onAnyCardPlayed: (player, game, playedCard) => {
+      if (!player.cards.corp[0].disabled) {
+        const numTags = playedCard.tags.filter(t => t === 'microbe').length;
+        if (numTags > 0) {
+          game.resources(player, 'megacredit', -4 * numTags);
+          game.cardResource(player, card, numTags);
+        }
+      }
+    },
+    onCardPlayed: (player, game, playedCard) => {
+      if (!player.cards.corp[0].disabled) {
+        const numTags = playedCard.tags.filter(t => t === 'science');
+        for (let i = 0; i < numTags; i++) {
+          if (game.cardResource(player, card) > 0) {
+            game.cardResource(player, card, -1);
+            game.tr(player, 1);
+          } else {
+            game.tr(player, 3);
+            player.cards.events.push({ card: this.number });
+            player.cards.corp[0].disabled = true;
+
+            // Break out of the loop in case there's multiple science tags
+            break;
+          }
+        }
+      }
     }
   },
   flavor:
@@ -87,3 +109,5 @@ export default new Corporation({
     </div>
   )
 });
+
+export default card;

@@ -223,6 +223,7 @@ class GameService {
     const done = () => {
       // Trigger card-played events
       game.fire('onCardPlayed', player, playedCard);
+      game.fire('onAnyCardPlayed', player, playedCard);
 
       game.playerStatus?.done();
 
@@ -275,6 +276,7 @@ class GameService {
     // Set tags
     playedCard.tags.forEach(tag => player.tags[tag]++);
 
+    // Callback for once the card action is complete
     const done = () => {
       // Mark prelude as played
       player.cards.prelude.find(
@@ -302,12 +304,13 @@ class GameService {
     };
 
     // Perform card's action
-    if (playedCard.action) {
-      playedCard.action(player, game, done);
+    playedCard.standardAction(player, game, done);
+    // if (playedCard.action) {
+    //   playedCard.action(player, game, done);
 
-      // Server action didn't call done, call it now
-      playedCard.action.length < 3 && done();
-    }
+    //   // Server action didn't call done, call it now
+    //   playedCard.action.length < 3 && done();
+    // }
 
     return this.export(game);
   }

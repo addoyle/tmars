@@ -32,11 +32,11 @@ export default new Corporation({
   desc,
   effectDesc,
   events: {
-    onAnyCardPlayed: (player, game, card) =>
+    onAnyCardPlayed: (player, game, playedCard) =>
       // Is NOT an event card
-      card.type !== 'event' &&
+      playedCard.type !== 'event' &&
       // Has a Jovian tag
-      card.tags.includes('jovian') &&
+      playedCard.tags.includes('jovian') &&
       // Bump M€ production
       game.production(player, 'megacredit', 1)
   },

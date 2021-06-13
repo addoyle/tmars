@@ -17,6 +17,10 @@ const card = new Corporation({
   titleClass: 'celestic',
   resources: { megacredit: 42 },
   firstAction: (player, game) =>
+    // drawCard: {
+    //   num: 2,
+    //   resource: 'floater'
+    // },
     game.keepSelected(
       player,
       game.revealCards(
