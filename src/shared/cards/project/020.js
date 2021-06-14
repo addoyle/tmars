@@ -21,25 +21,7 @@ export default new Active({
   tags: ['science', 'city', 'building'],
   desc,
   flavor: 'Finding new ways to do things',
-  action: player => {
-    // game.promptTile(
-    //   player,
-    //   'city',
-    //   () => {
-    player.rates.cost.all = (player.rates.cost.all || 0) - 1;
-    //     done();
-    //   },
-    //   customFilter
-    // );
-  },
-  // canPlay: (player, game) => {
-  //   const valid = !!game.findPossibleTiles('city', player, customFilter).length;
-
-  //   return {
-  //     valid,
-  //     msg: !valid ? 'No spaces exist that are next to no other tile' : null
-  //   };
-  // },
+  action: player => (player.rates.cost.all = (player.rates.cost.all || 0) - 1),
   tile: {
     tile: 'city',
     filter: (tile, game, notReserved, neighbors) =>

@@ -457,16 +457,21 @@ class Game extends SharedGame {
    */
   promptTile(player, tile, callback, customFilter) {
     // If all the oceans are placed, don't prompt
-    if (tile === 'ocean' && this.params.ocean <= 0) {
+    if (tile.tile === 'ocean' && this.params.ocean <= 0) {
       callback && callback();
       return;
     }
 
-    const possibleTiles = this.findPossibleTiles(tile, player, customFilter);
+    // Find possible placements for tile
+    const possibleTiles = this.findPossibleTiles(
+      tile.tile,
+      player,
+      customFilter
+    );
+
     if (possibleTiles.length) {
-      possibleTiles.forEach(
-        t => (t.clickable = isString(tile) ? tile : 'special')
-      );
+      // Make them clickable
+      possibleTiles.forEach(t => (t.clickable = tile.tile));
 
       // Hide UI components to allow easier access to board
       player.ui = {
@@ -483,13 +488,13 @@ class Game extends SharedGame {
       // Set the player status
       this.playerStatus = {
         player,
-        tile,
+        tile: tile.tile,
         type: 'prompt-tile',
         done: placedTile => {
           // Raise params if necessary
-          if (tile === 'ocean') {
+          if (tile.tile === 'ocean') {
             this.param(player, 'ocean');
-          } else if (tile === 'greenery') {
+          } else if (tile.tile === 'greenery') {
             this.param(player, 'oxygen');
           }
 

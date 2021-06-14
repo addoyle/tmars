@@ -26,7 +26,7 @@ const PlayableCard = ({ gameStore, card }) => {
   const valid = {
     valid: meetsReqs?.valid && canPlay?.valid && canAfford,
     msg: [
-      meetsReqs?.msg,
+      ...meetsReqs?.msg,
       canPlay?.msg,
       !canAfford && "You can't afford this"
     ].filter(m => m)

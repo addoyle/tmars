@@ -8,13 +8,6 @@ import {
 
 const desc =
   'Raise temperature 2 steps and place this tile ON EITHER THARSIS THOLUS, ASCRAEUS MONS, PAVONIS MONS OR ARSIA MONS.';
-const customFilter = (tile, game, notReserved) =>
-  // Not reserved
-  notReserved(tile) &&
-  // Is Hellas (no volcano spaces)
-  (game.board.toLowerCase() === 'hellas' ||
-    // Or is a volcanic area
-    tile.attrs?.includes('volcano'));
 
 export default new Event({
   number: '140',
@@ -24,21 +17,17 @@ export default new Event({
   desc,
   flavor:
     "Releasing tremendous lava flows from one of Mars' gargantuan volcanoes",
-  action: (player, game, done) =>
-    game.promptTile(player, { special: 'volcano' }, done, customFilter),
-  param: ['temperature', 'temperature'],
-  canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles(
-      { special: 'volcano' },
-      player,
-      customFilter
-    ).length;
-
-    return {
-      valid,
-      msg: !valid ? 'No volcanic areas availble' : null
-    };
+  tile: {
+    special: 'volcano',
+    filter: (tile, game, notReserved) =>
+      // Not reserved
+      notReserved(tile) &&
+      // Is Hellas (no volcano spaces)
+      (game.board.toLowerCase() === 'hellas' ||
+        // Or is a volcanic area
+        tile.attrs?.includes('volcano'))
   },
+  param: ['temperature', 'temperature'],
   emoji: '🌋',
   layout: (
     <div className="text-center">

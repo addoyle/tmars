@@ -9,11 +9,6 @@ import {
 
 const desc =
   'Requires 4 ocean tiles. Increase your energy production 2 steps. Place this tile ADJACENT TO AN OCEAN TILE.';
-const customFilter = (tile, game, notReserved, neighbors) =>
-  // Not reserved
-  notReserved(tile) &&
-  // Adjacent to an ocean
-  neighbors.filter(t => t.type === 'ocean').length;
 
 export default new Automated({
   number: 'X32',
@@ -27,19 +22,13 @@ export default new Automated({
   },
   desc,
   flavor: 'Letting natural processes do the work',
-  action: (player, game, done) =>
-    game.promptTile(player, { special: 'dam' }, done, customFilter),
-  canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles(
-      { special: 'dam' },
-      player,
-      customFilter
-    ).length;
-
-    return {
-      valid,
-      msg: !valid ? 'Cannot place tile' : null
-    };
+  tile: {
+    special: 'dam',
+    filter: (tile, game, notReserved, neighbors) =>
+      // Not reserved
+      notReserved(tile) &&
+      // Adjacent to an ocean
+      neighbors.filter(t => t.type === 'ocean').length
   },
   production: {
     power: 2

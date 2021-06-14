@@ -9,11 +9,6 @@ import {
 
 const desc =
   'Oxygen must be 4% or less. Place this tile NEXT TO NO OTHER TILE. Increase your M€ production 1 step.';
-const customFilter = (tile, game, notReserved, neighbors) =>
-  // Not reserved
-  notReserved(tile) &&
-  // No neighbors
-  !neighbors.filter(t => t.name).length;
 
 export default new Automated({
   number: '044',
@@ -28,20 +23,13 @@ export default new Automated({
   desc,
   flavor:
     'Creating a national park with original Martian landforms and environments',
-  action: (player, game, done) => {
-    game.promptTile(player, { special: 'mars' }, done, customFilter);
-  },
-  canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles(
-      { special: 'mars' },
-      player,
-      customFilter
-    ).length;
-
-    return {
-      valid,
-      msg: !valid ? 'No spaces exist that are next to no other tile' : null
-    };
+  tile: {
+    special: 'mars',
+    filter: (tile, game, notReserved, neighbors) =>
+      // Not reserved
+      notReserved(tile) &&
+      // No neighbors
+      !neighbors.filter(t => t.name).length
   },
   vp: 1,
   emoji: '🏜',

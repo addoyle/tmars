@@ -177,8 +177,6 @@ class GameService {
     // Pay for the card
     let cost = playedCard.cost;
 
-    // TODO handle rate modifiers
-
     if (params.steel && playedCard.tags.includes('building')) {
       cost -= params.steel * player.rates.steel;
     }
@@ -221,6 +219,7 @@ class GameService {
 
     // To do once all card actions are complete (placing tiles, etc.)
     const done = () => {
+      console.log('called done');
       // Trigger card-played events
       game.fire('onCardPlayed', player, playedCard);
       game.fire('onAnyCardPlayed', player, playedCard);
@@ -233,15 +232,7 @@ class GameService {
     };
 
     // Perform card's action
-    if (playedCard.action) {
-      playedCard.action(player, game, done);
-
-      // Server action didn't call done, call it now
-      playedCard.action.length < 3 && done();
-    } else {
-      // No action, call done
-      done();
-    }
+    playedCard.standardAction(player, game, done);
 
     return this.export(game);
   }

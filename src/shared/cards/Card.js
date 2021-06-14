@@ -42,8 +42,8 @@ export default class Card {
       if (isFunction(this.production)) {
         // TODO: do function
       } else {
-        Object.keys(this.production).forEach(r =>
-          game.production(player, r, this.production[r])
+        Object.keys(this.production).forEach(p =>
+          game.production(player, p, this.production[p])
         );
       }
     }
@@ -65,6 +65,7 @@ export default class Card {
 
       // Reveal cards with tags
       if (this.drawCard.tag) {
+        opts.reveal = true;
         opts.filter = card => card.tags.includes(this.drawCard.tag);
         opts.log = `${this.drawCard.tag} cards`;
         opts.icon = { tag: this.drawCard.tag };
@@ -72,6 +73,7 @@ export default class Card {
 
       // Reveal cards with resources
       if (this.drawCard.resource) {
+        opts.reveal = true;
         opts.filter = card => card.resource === this.drawCard.resource;
         opts.log = `${this.drawCard.resource} cards`;
         opts.icon = { resource: this.drawCard.resource };
@@ -90,10 +92,11 @@ export default class Card {
 
     // Now begins the actions with callbacks
     let chain = [];
-    const callNextInChain = i =>
-      chain[i]
+    const callNextInChain = i => () => {
+      return chain[i]
         ? chain[i](player, game, callNextInChain(i + 1))
         : done && done();
+    };
 
     // Handle params
     if (this.param) {
@@ -118,13 +121,17 @@ export default class Card {
       chain = [
         ...chain,
         ...tiles.map(tile => i =>
-          game.promptTile(player, tile, callNextInChain(i + 1))
+          game.promptTile(player, tile, callNextInChain(i + 1), tile.filter)
         )
       ];
     }
 
-    // TODO: Card's action
+    // Handle custom card action
+    if (this.action) {
+      chain.push(this.action);
+    }
 
-    callNextInChain(0);
+    // Start the chain
+    callNextInChain(0)();
   }
 }

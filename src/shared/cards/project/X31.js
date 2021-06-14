@@ -8,11 +8,6 @@ import {
 
 const desc =
   'Raise temperature 3 steps. Place this tile ADJACENT TO NO CITY TILE. Gain 4 steel. Remove up to 6 plants from any player.';
-const customFilter = (tile, game, notReserved, neighbors) =>
-  // Not reserved
-  notReserved(tile) &&
-  // Not neighboring a city
-  !neighbors.filter(t => ['city', 'capital city'].includes(t.type)).length;
 
 export default new Event({
   number: 'X31',
@@ -23,34 +18,25 @@ export default new Event({
   desc,
   flavor: 'We don’t use that moon anyway',
   action: (player, game, done) =>
-    game.promptTile(
+    game.promptPlayer(
       player,
-      { special: 'deimos' },
-      game.promptPlayer(
-        player,
-        'Pick a player to remove up to 6 plants',
-        [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
-        ['took 6 plants ', { resource: 'plant' }, ' from'],
-        targetPlayer => {
-          targetPlayer && game.resources(targetPlayer, 'plant', -6);
-          done();
-        },
-        player => player.resources.plant > 0,
-        done
-      ),
-      customFilter
+      'Pick a player to remove up to 6 plants',
+      [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
+      ['took 6 plants ', { resource: 'plant' }, ' from'],
+      targetPlayer => {
+        targetPlayer && game.resources(targetPlayer, 'plant', -6);
+        done();
+      },
+      player => player.resources.plant > 0,
+      done
     ),
-  canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles(
-      { special: 'deimos' },
-      player,
-      customFilter
-    ).length;
-
-    return {
-      valid,
-      msg: !valid ? 'Cannot place tile' : null
-    };
+  tile: {
+    special: 'deimos',
+    filter: (tile, game, notReserved, neighbors) =>
+      // Not reserved
+      notReserved(tile) &&
+      // Not neighboring a city
+      !neighbors.filter(t => ['city', 'capital city'].includes(t.type)).length
   },
   param: ['temperature', 'temperature', 'temperature'],
   resources: {

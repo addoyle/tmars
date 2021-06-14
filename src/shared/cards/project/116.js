@@ -8,8 +8,6 @@ import {
 const desc =
   'Requires -6°C or warmer. Place 1 ocean tile ON AN AREA NOT RESERVED FOR OCEAN.';
 
-const customFilter = (tile, game, notReserved) => notReserved(tile);
-
 export default new Automated({
   number: '116',
   title: 'Artificial Lake',
@@ -21,8 +19,10 @@ export default new Automated({
   },
   desc,
   flavor: 'Landscaping is as natural as terraforming',
-  action: (player, game, done) =>
-    game.promptTile(player, 'ocean', done, customFilter),
+  tile: {
+    tile: 'ocean',
+    filter: (tile, game, notReserved) => notReserved(tile)
+  },
   vp: 1,
   emoji: '🦆',
   layout: (

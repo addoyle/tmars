@@ -10,11 +10,6 @@ import {
 const activeDesc =
   'Action: Spend 7 M€ to increase your steel production 1 step.';
 const desc = 'Place this tile ADJACENT TO A CITY TILE.';
-const customFilter = (tile, game, notReserved, neighbors) =>
-  // Not reserved
-  notReserved(tile) &&
-  // Is adjacent a city
-  neighbors.filter(t => t.type === 'city' || t.type === 'capital city').length;
 
 export default new Active({
   number: '123',
@@ -26,19 +21,13 @@ export default new Active({
   desc,
   flavor:
     'Assigned to heavy industry, this area is not the nicest place on Mars',
-  action: (player, game, done) =>
-    game.promptTile(player, { special: 'factory' }, done, customFilter),
-  canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles(
-      { special: 'factory' },
-      player,
-      customFilter
-    ).length;
-
-    return {
-      valid,
-      msg: !valid ? 'Requires a space adjacent to a city tile' : null
-    };
+  tile: {
+    special: 'factory',
+    filter: (tile, game, notReserved, neighbors) =>
+      // Not reserved
+      notReserved(tile) &&
+      // Is adjacent a city
+      neighbors.filter(t => t.type.includes('city')).length
   },
   actions: [
     {

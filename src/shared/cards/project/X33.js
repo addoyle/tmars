@@ -18,16 +18,8 @@ export default new Automated({
   desc,
   flavor:
     'By generating a magnetic field, you can protect organisms from cosmic radiation',
-  action: (player, game, done) =>
-    game.promptTile(player, { special: 'magnet' }, done),
-  canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles({ special: 'magnet' }, player)
-      .length;
-
-    return {
-      valid,
-      msg: !valid ? 'Cannot place this tile' : null
-    };
+  tile: {
+    special: 'magnet'
   },
   tr: 3,
   production: {

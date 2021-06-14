@@ -29,7 +29,7 @@ export default class Project extends Card {
    * @returns Validation object with the status of whether or not the card meets the requirements
    */
   meetsRequirements(player, game) {
-    const result = { valid: true };
+    const result = { valid: true, msg: [] };
 
     // Check requirements
     if (this.restriction) {
@@ -45,9 +45,11 @@ export default class Project extends Card {
           (max && game.params[param] > val)
         ) {
           result.valid = false;
-          result.msg = `Requires ${max ? 'at most' : 'at least'} ${val}${
-            suffix[param] || ''
-          }${param === 'temperature' ? '' : ` ${param}`}`;
+          result.msg.push(
+            `Requires ${max ? 'at most' : 'at least'} ${val}${
+              suffix[param] || ''
+            }${param === 'temperature' ? '' : ` ${param}`}`
+          );
         }
       }
 
@@ -59,9 +61,9 @@ export default class Project extends Card {
         // Includes ? tags, if applicable
         if (tags.some(t => player.tags[t] + (player.tags.any || 0) < val)) {
           result.valid = false;
-          result.msg = `Requires ${val} ${tags.join(', ')} tag${
-            val > 1 ? 's' : ''
-          }`;
+          result.msg.push(
+            `Requires ${val} ${tags.join(', ')} tag${val > 1 ? 's' : ''}`
+          );
         }
       }
 
@@ -81,7 +83,7 @@ export default class Project extends Card {
             : tiles.filter(t => t.player === player.number);
         if ((!max && actual < val) || (max && actual > val)) {
           result.valid = false;
-          result.msg = `Requires ${val} ${tile} tile${val > 1 ? 's' : ''}`;
+          result.msg.push(`Requires ${val} ${tile} tile${val > 1 ? 's' : ''}`);
         }
       }
 
@@ -90,7 +92,7 @@ export default class Project extends Card {
         const prod = this.restriction.production;
         if (player.production[prod] < val) {
           result.valid = false;
-          result.msg = `Requires ${val} ${prod} production`;
+          result.msg.push(`Requires ${val} ${prod} production`);
         }
       }
 
@@ -100,7 +102,7 @@ export default class Project extends Card {
         if (this.restriction.resource === 'tr') {
           if (player.tr < val) {
             result.valid = false;
-            result.msg = `Requires ${val} Terraform Rating`;
+            result.msg.push(`Requires ${val} Terraform Rating`);
           }
         }
         // Standard resources
@@ -116,7 +118,9 @@ export default class Project extends Card {
           player.resources[this.restriction.resource] < val
         ) {
           result.valid = false;
-          result.msg = `Requires ${val} ${this.restriction.resource} resources`;
+          result.msg.push(
+            `Requires ${val} ${this.restriction.resource} resources`
+          );
         }
         // Anything else is treated as resources on cards
         else if (
@@ -126,7 +130,9 @@ export default class Project extends Card {
             .reduce((sum, c) => sum + c.resource, 0) < val
         ) {
           result.valid = false;
-          result.msg = `Requires ${val} ${this.restriction.resource} resources on cards`;
+          result.msg.push(
+            `Requires ${val} ${this.restriction.resource} resources on cards`
+          );
         }
       }
     }
@@ -136,12 +142,14 @@ export default class Project extends Card {
       Object.keys(this.resources).forEach(r => {
         if (
           this.resources[r] < 0 &&
-          this.player.resources[r] + this.resources[r] < 0
+          player.resources[r] + this.resources[r] < 0
         ) {
           result.valid = false;
-          result.msg = `Not enough ${
-            { megacredit: 'M€', power: 'energy' }[r] || r
-          } resources`;
+          result.msg.push(
+            `Not enough ${
+              { megacredit: 'M€', power: 'energy' }[r] || r
+            } resources`
+          );
         }
       });
     }
@@ -152,26 +160,35 @@ export default class Project extends Card {
         if (
           this.production[r] < 0 &&
           ((r === 'megacredit' &&
-            this.player.production.megacredit + this.production.megacredit <
-              -5) ||
-            this.player.production[r] + this.production[r] < 0)
+            player.production.megacredit + this.production.megacredit < -5) ||
+            player.production[r] + this.production[r] < 0)
         ) {
           result.valid = false;
-          result.msg = `Not enough ${
-            { megacredit: 'M€', power: 'energy' }[r] || r
-          } production`;
+          result.msg.push(
+            `Not enough ${
+              { megacredit: 'M€', power: 'energy' }[r] || r
+            } production`
+          );
         }
       });
     }
 
-    // TODO: Handle tiles
-    // if (this.tile) {
-    //   const tiles = (Array.isArray(this.tile)
-    //     ? this.tile
-    //     : [this.tile]
-    //   ).map(tile => (isPlainObject(tile) ? tile : { tile }));
+    // Check tile placement
+    if (this.tile) {
+      const tiles = (Array.isArray(this.tile)
+        ? this.tile
+        : [this.tile]
+      ).map(tile => (isPlainObject(tile) ? tile : { tile }));
 
-    // }
+      if (
+        !tiles.every(
+          t => game.findPossibleTiles(t.tile, player, t.filter).length
+        )
+      ) {
+        result.valid = false;
+        result.msg.push('Cannot place tile');
+      }
+    }
 
     return result;
   }

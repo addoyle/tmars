@@ -87,7 +87,7 @@ $title-font: 'Prototype', sans-serif;
 
   .icon,
   .icon.resource,
-  .restriction {
+  & > .restriction {
     position: absolute;
     font-size: 0.7em;
     top: -0.5em;
@@ -106,7 +106,7 @@ $title-font: 'Prototype', sans-serif;
       left: -.5em;
     }
 
-    .restriction {
+    & > .restriction {
       font-size: .5em;
       height: 1em;
       width: 2em;
@@ -590,6 +590,7 @@ $title-font: 'Prototype', sans-serif;
   font-size: 2em;
   font-family: $title-font;
   vertical-align: middle;
+  white-space: nowrap;
 
   &.condense > * {
     margin: 0;
@@ -813,7 +814,6 @@ $title-font: 'Prototype', sans-serif;
 }
 
 .tmars .standard-project {
-  font-size: 1em;
   font-family: $title-font;
   text-align: center;
   background: #e8a91c;
