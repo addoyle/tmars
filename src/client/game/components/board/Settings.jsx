@@ -16,7 +16,9 @@ const Settings = ({ gameStore }) => {
         shift: gameStore.drawer,
         empty:
           gameStore.drawer !== null &&
-          !gameStore.player?.cards[gameStore.drawer]?.length
+          !gameStore.player?.cards[gameStore.drawer]?.length &&
+          !(gameStore.drawer === 'hand' && gameStore.player?.cards.buy.length),
+        buy: gameStore.drawer === 'hand' && gameStore.player?.cards.buy.length
       })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}

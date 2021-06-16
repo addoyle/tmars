@@ -195,5 +195,37 @@ $hand-height: 40vh;
         margin-right: 0;
       }
     }
+
+    button .text {
+      vertical-align: middle;
+    }
+
+    .hand {
+      width: 37px;
+      display: inline-block;
+
+      .param {
+        box-shadow: 0 0 4px rgba(255, 255, 255, 0.4);
+        margin-right: -16px;
+
+        &:first-of-type {
+          transform: rotateZ(-5deg);
+        }
+        &:last-of-type {
+          transform: rotateZ(5deg);
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .param {
+      box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.4);
+      margin-right: 8px;
+
+      &.corp:before,
+      &.prelude :before {
+        font-size: 1pt;
+      }
+    }
   }
 }
