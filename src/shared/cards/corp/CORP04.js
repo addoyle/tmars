@@ -11,7 +11,7 @@ const effectDesc =
   'Effect: Each time you get any steel or titanium as a placement bonus on the map, increase your steel prodution 1 step.';
 
 export default new Corporation({
-  number: 'C04',
+  number: 'CORP04',
   title: 'Mining Guild',
   titleClass: 'mining-guild',
   resources: {

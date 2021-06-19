@@ -12,15 +12,11 @@ const effectDesc =
   'Effect: Your temperature, oxygen, and ocean requirements are +2 or -2 steps, your choice in each case.';
 
 export default new Corporation({
-  number: 'C06',
+  number: 'CORP06',
   title: 'Inventrix',
   titleClass: 'inventrix',
   resources: { megacredit: 45 },
-  firstAction: (player, game) => {
-    game.drawCard(player);
-    game.drawCard(player);
-    game.drawCard(player);
-  },
+  startingAction: { drawCard: 3 },
   tags: ['science'],
   desc,
   effectDesc,

@@ -219,7 +219,6 @@ class GameService {
 
     // To do once all card actions are complete (placing tiles, etc.)
     const done = () => {
-      console.log('called done');
       // Trigger card-played events
       game.fire('onCardPlayed', player, playedCard);
       game.fire('onAnyCardPlayed', player, playedCard);
@@ -232,7 +231,7 @@ class GameService {
     };
 
     // Perform card's action
-    playedCard.standardAction(player, game, done);
+    game.performAction(playedCard, player, game, done);
 
     return this.export(game);
   }
@@ -295,13 +294,7 @@ class GameService {
     };
 
     // Perform card's action
-    playedCard.standardAction(player, game, done);
-    // if (playedCard.action) {
-    //   playedCard.action(player, game, done);
-
-    //   // Server action didn't call done, call it now
-    //   playedCard.action.length < 3 && done();
-    // }
+    game.performAction(playedCard, player, game, done);
 
     return this.export(game);
   }

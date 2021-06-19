@@ -12,7 +12,7 @@ const effectDesc =
   'Effect: When ANY microbe tag is played, including these 2, add a disease here and lose 4 M€ or as much as possible. When you play a science tag, remove 1 disease from here and raise your TR 1 step, OR, if there are no dieases here, you may raise TR 3 steps and place this card in your event pile. It now counts as a played event.';
 
 const card = new Corporation({
-  number: 'CX5',
+  number: 'CORPX5',
   title: 'Pharmacy Union',
   titleClass: 'pharmacy',
   resources: { megacredit: 54 },

@@ -13,11 +13,11 @@ const effectDesc =
   'Effect: Each time a microbe tag is played, including this, THAT PLAYER gains 2€, or adds a microbe to THAT card, and you gain 2€.';
 
 export default new Corporation({
-  number: 'C14',
+  number: 'CORP14',
   title: 'Splice',
   titleClass: 'splice',
   resources: { megacredit: 44 },
-  firstAction: (player, game) =>
+  startingAction: (player, game) =>
     game.keepSelected(
       player,
       game.revealCards(

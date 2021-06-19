@@ -12,11 +12,11 @@ const desc =
 const effectDesc = 'Action: Add a floater to ANY card.';
 
 const card = new Corporation({
-  number: 'C19',
+  number: 'CORP19',
   title: 'Celestic',
   titleClass: 'celestic',
   resources: { megacredit: 42 },
-  firstAction: (player, game) =>
+  startingAction: (player, game) =>
     // drawCard: {
     //   num: 2,
     //   resource: 'floater'

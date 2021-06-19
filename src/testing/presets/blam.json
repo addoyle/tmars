@@ -79,7 +79,7 @@
         "event": [],
         "corp": [
           {
-            "card": "C08",
+            "card":"CORP08",
             "select": false
           }
         ],
@@ -176,17 +176,17 @@
         "event": [],
         "corp": [
           {
-            "card": "C09",
+            "card": "CORP09",
             "select": false
           }
         ],
         "prelude": [
           {
-            "card": "P19",
+            "card": "P30",
             "select": false
           },
           {
-            "card": "P29",
+            "card": "P14",
             "select": false
           }
         ],
@@ -714,7 +714,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "C09"
+          "corp": "CORP09"
         },
         " and bought 5 projects."
       ],
@@ -725,7 +725,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "C08"
+          "corp": "CORP08"
         },
         " and bought 7 projects."
       ],
@@ -1490,67 +1490,67 @@
     ],
     "corps": [
       {
-        "card": "C02"
+        "card":"CORP02"
       },
       {
-        "card": "C03"
+        "card":"CORP03"
       },
       {
-        "card": "C14"
+        "card":"CORP14"
       },
       {
-        "card": "C04"
+        "card":"CORP04"
       },
       {
-        "card": "C05"
+        "card":"CORP05"
       },
       {
-        "card": "C12"
+        "card":"CORP12"
       },
       {
-        "card": "C01"
+        "card":"CORP01"
       },
       {
-        "card": "CX2"
+        "card":"CORPX2"
       },
       {
-        "card": "CP1"
+        "card":"CORPP1"
       },
       {
-        "card": "CP4"
+        "card":"CORPP4"
       },
       {
-        "card": "CX1"
+        "card":"CORPX1"
       },
       {
-        "card": "CX4"
+        "card":"CORPX4"
       },
       {
-        "card": "CP3"
+        "card":"CORPP3"
       },
       {
-        "card": "C11"
+        "card":"CORP11"
       },
       {
-        "card": "C15"
+        "card":"CORP15"
       },
       {
-        "card": "CP5"
+        "card":"CORPP5"
       },
       {
-        "card": "CX5"
+        "card":"CORPX5"
       },
       {
-        "card": "CP2"
+        "card":"CORPP2"
       },
       {
-        "card": "C06"
+        "card":"CORP06"
       },
       {
-        "card": "C07"
+        "card":"CORP07"
       },
       {
-        "card": "CX3"
+        "card":"CORPX3"
       }
     ],
     "preludes": [

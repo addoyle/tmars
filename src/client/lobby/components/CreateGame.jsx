@@ -148,7 +148,7 @@ const CreateGame = ({ gameStore }) => {
               <FieldSet label="Variants" fullWidth>
                 <FormControl>
                   <FormControlLabel
-                    label="Draft"
+                    label="Drafting"
                     checked={variants.draft}
                     onChange={() => toggleVariant('draft')}
                     control={<Switch color="primary" />}

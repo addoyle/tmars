@@ -19,7 +19,7 @@ const customFilter = player => (tile, game, notReserved, neighbors) =>
   neighbors.filter(t => t.player === player.number).length;
 
 export default new Corporation({
-  number: 'C13',
+  number: 'CORP13',
   title: 'Arcadian Communities',
   titleStyle: {
     fontSize: '.07em',
@@ -37,7 +37,8 @@ export default new Corporation({
     megacredit: 40,
     steel: 10
   },
-  firstAction: (player, game, done) => game.promptTile(player, 'marker', done),
+  startingAction: (player, game, done) =>
+    game.promptTile(player, 'marker', done),
   actions: [
     {
       name: 'Place a marker',

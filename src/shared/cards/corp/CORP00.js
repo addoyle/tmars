@@ -10,7 +10,7 @@ const desc =
   'You start with 42 M€. INSTEAD OF PARTICIPATING IN THE FIRST RESEARCH PHASE, DRAW 10 CARDS FOR FREE.';
 
 export default new Corporation({
-  number: 'C00',
+  number: 'CORP00',
   title: 'Beginner Corporation',
   titleStyle: {
     margin: '1.8em auto .8em',

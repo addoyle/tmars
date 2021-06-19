@@ -12,7 +12,7 @@ const effectDesc =
   "Effect: Each new adjacency between your tile and an opponent's tile gives you a standard resource of your choice (regardless of who just placed a tile).";
 
 export default new Corporation({
-  number: 'CX3',
+  number: 'CORPX3',
   title: 'Philares',
   titleClass: 'philares',
   resources: { megacredit: 47 },

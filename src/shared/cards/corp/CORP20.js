@@ -12,11 +12,11 @@ const effectDesc =
   'Effect: Your Venus requirements are +/- 2 steps, your choice in each case.';
 
 export default new Corporation({
-  number: 'C20',
+  number: 'CORP20',
   title: 'Morning Star Inc.',
   titleClass: 'msi',
   resources: { megacredit: 50 },
-  firstAction: (player, game) =>
+  startingAction: (player, game) =>
     game.keepSelected(
       player,
       game.revealCards(

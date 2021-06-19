@@ -12,11 +12,11 @@ const effectDesc =
   'Effect: When any city tile is placed ON MARS, increase your M€ production 1 step. When you place a city tile, gain 3 M€.';
 
 export default new Corporation({
-  number: 'C08',
+  number: 'CORP08',
   title: 'Tharsis Republic',
   titleClass: 'tharsis',
   resources: { megacredit: 40 },
-  firstAction: (player, game, done) =>
+  startingAction: (player, game, done) =>
     game.promptTile(player, { tile: 'city' }, done),
   tags: ['building'],
   desc,

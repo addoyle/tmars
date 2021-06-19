@@ -170,8 +170,12 @@ const CardDrawer = props => {
                 // Show a confirmation button if the current phase isn't action or prelude
                 (gameStore.phase !== 'action' &&
                   gameStore.phase !== 'prelude' &&
+                  // And the player has not already picked their starting cards for this drawer
                   startMode &&
                   !startPhase[props.type]) ||
+                // Or if we're in draft or buy mode
+                draftMode ||
+                buyMode ||
                 // Or if the player is trying to buy cards
                 gameStore.playerStatus?.type === 'buy-card' ? (
                   <button
@@ -278,7 +282,11 @@ const CardDrawer = props => {
                   </span>
                   <span className="col-1">
                     <FontAwesomeIcon
-                      icon={gameStore.player.firstAction ? 'stop' : 'forward'}
+                      icon={
+                        gameStore.player.firstAction
+                          ? 'check-square'
+                          : 'forward'
+                      }
                     />
                   </span>
                 </button>
@@ -382,7 +390,8 @@ const CardDrawer = props => {
           ))
         }
         {draftMode && gameStore.player?.cards.buy.length ? (
-          // In draft mode, the cards that can be drafted and your hand are shown side-by-side, with a separator in between
+          // In draft mode, the cards that can be drafted and have been drafted
+          // are shown side-by-side, with a separator in between
           <>
             <li className="separator" />
             {gameStore.player?.cards.buy.map(card => (

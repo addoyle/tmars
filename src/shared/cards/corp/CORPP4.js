@@ -12,12 +12,12 @@ const effectDesc =
   'Effect: When you play a science tag, you pay 2 M€ less for it.';
 
 export default new Corporation({
-  number: 'CP4',
+  number: 'CORPP4',
   title: 'Valley Trust',
   titleClass: 'valley-trust',
   resources: { megacredit: 37 },
   starting: player => (player.rates.cost.science = -2),
-  firstAction: () => {
+  startingAction: () => {
     // TODO
   },
   tags: ['earth'],

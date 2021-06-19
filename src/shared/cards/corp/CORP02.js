@@ -12,10 +12,10 @@ const effectDesc =
   'Effect: You may always pay 7 plants, instead of 8, to place 1 greenery.';
 
 export default new Corporation({
-  number: 'C02',
+  number: 'CORP02',
   title: 'Ecoline',
   titleClass: 'ecoline',
-  starting: player => (player.rates.plant = 7),
+  action: player => (player.rates.plant = 7),
   resources: {
     megacredit: 36,
     plant: 3

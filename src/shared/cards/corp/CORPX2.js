@@ -12,7 +12,7 @@ const effectDesc =
   'Action: Increase your energy production 1 step IF YOU HAVE NO ENERGY RESOURCES, or spend 3 M€ to draw a building card.';
 
 export default new Corporation({
-  number: 'CX2',
+  number: 'CORPX2',
   title: 'Factorum',
   titleClass: 'factorum',
   resources: { megacredit: 37 },

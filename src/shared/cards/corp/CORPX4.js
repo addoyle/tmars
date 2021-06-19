@@ -10,7 +10,7 @@ const effectDesc =
   'Action: Either add 1 asteroid to ANY CARD or gain any standard resource, OR spend 1 asteroid here to gain 3 titanium.';
 
 const card = new Corporation({
-  number: 'CX4',
+  number: 'CORPX4',
   title: 'AstroDrill',
   titleClass: 'astrodrill',
   resources: { megacredit: 35 },

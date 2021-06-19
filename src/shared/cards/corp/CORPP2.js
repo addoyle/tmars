@@ -13,7 +13,7 @@ const effectDesc =
   'Effect: When you play an earth tag, including this, draw a card.';
 
 export default new Corporation({
-  number: 'CP2',
+  number: 'CORPP2',
   title: 'Point Luna',
   titleClass: 'point-luna',
   resources: { megacredit: 38 },

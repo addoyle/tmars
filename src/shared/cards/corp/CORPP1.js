@@ -11,7 +11,7 @@ const effectDesc =
   'Effect: When you play a building tag, you pay 2 M€ less for it.';
 
 export default new Corporation({
-  number: 'CP1',
+  number: 'CORPP1',
   title: 'Cheung Shing Mars',
   titleClass: 'cheung-shing-mars',
   resources: { megacredit: 44 },

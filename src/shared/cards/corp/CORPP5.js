@@ -11,11 +11,11 @@ const effectDesc =
   'Effect: When you play a card with a NON-NEGATIVE VP icon, including this, gain 3 M€.';
 
 export default new Corporation({
-  number: 'CP5',
+  number: 'CORPP5',
   title: 'Vitor',
   titleClass: 'vitor',
   resources: { megacredit: 45 },
-  firstAction: () => {
+  startingAction: () => {
     // TODO
   },
   tags: ['earth'],
