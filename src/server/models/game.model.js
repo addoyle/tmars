@@ -444,11 +444,13 @@ class Game extends SharedGame {
    * parameters (temperature, oxygen, venus), followed by any custom actions
    * defined on the card.
    *
+   * @param {object} action The action object to perform
    * @param {Player} player The player performing the standard action
    * @param {Game} game The game
    * @param {*} done Callback when the actions are complete
+   * @param {...any} otherArgs Optional other arguments to be passed in to custom actions
    */
-  performAction(action, player, game, done) {
+  performAction(action, player, game, done, ...otherArgs) {
     // If the action is just a function, call it as normal
     if (isFunction(action)) {
       action(player, game, done);
@@ -457,6 +459,11 @@ class Game extends SharedGame {
       }
       return;
     }
+
+    console.log(Object.getPrototypeOf(action.constructor)?.name);
+    const isCardAction =
+      action.constructor.name === 'Corporation' ||
+      Object.getPrototypeOf(action.constructor)?.name === 'Project';
 
     // Action queue for actions with callbacks
     let actionQueue = [];
@@ -471,7 +478,7 @@ class Game extends SharedGame {
           const nextAction = next();
 
           // Perform the action
-          action(player, game, nextAction);
+          action(player, game, nextAction, ...otherArgs);
 
           // If the action doesn't call the callback, call it now
           if (action.length < 3) {
@@ -579,7 +586,19 @@ class Game extends SharedGame {
       actionQueue.push(
         // eslint-disable-next-line no-unused-vars
         ...tiles.map(tile => (player, game, done) =>
-          game.promptTile(player, tile, next(), tile.filter)
+          game.promptTile(
+            player,
+            tile,
+            area => {
+              // If the card is performing the action, assign the placed tile to the card (in case it needs it)
+              if (isCardAction) {
+                this.cardTile(player, action, area);
+              }
+
+              next();
+            },
+            tile.filter
+          )
         )
       );
     }

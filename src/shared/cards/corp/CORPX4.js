@@ -9,12 +9,28 @@ const desc = 'You start with 35 M€, and 3 asteroid resources here.';
 const effectDesc =
   'Action: Either add 1 asteroid to ANY CARD or gain any standard resource, OR spend 1 asteroid here to gain 3 titanium.';
 
+// Repeatable function to create all the action buttons
+const createAction = (resource, label) => ({
+  name: `Gain 1 ${label}`,
+  log: [
+    `gain 1 ${label}`,
+    resource === 'megacredit' ? { megacredit: null } : { resource }
+  ],
+  icon:
+    resource === 'megacredit' ? (
+      <MegaCredit value="1" />
+    ) : (
+      <Resource name={resource} />
+    ),
+  resources: { [resource]: 1 }
+});
+
 const card = new Corporation({
   number: 'CORPX4',
   title: 'AstroDrill',
   titleClass: 'astrodrill',
   resources: { megacredit: 35 },
-  starting: (player, game) => game.cardResource(player, card, 3),
+  action: (player, game) => game.cardResource(player, card, 3),
   actions: [
     {
       name: 'Add 1 Asteroid to ANY card',
@@ -29,42 +45,12 @@ const card = new Corporation({
         done();
       }
     },
-    {
-      name: 'Gain 1 M€',
-      log: ['gain 1 M€ ', { megacredit: null }],
-      icon: <MegaCredit />,
-      action: (player, game) => game.resources(player, 'megacredit', 1)
-    },
-    {
-      name: 'Gain 1 Steel',
-      log: ['gain 1 steel ', { resource: 'steel' }],
-      icon: <Resource name="steel" />,
-      action: (player, game) => game.resources(player, 'steel', 1)
-    },
-    {
-      name: 'Gain 1 Titanium',
-      log: ['gain 1 titanium ', { resource: 'titanium' }],
-      icon: <Resource name="titanium" />,
-      action: (player, game) => game.resources(player, 'titanium', 1)
-    },
-    {
-      name: 'Gain 1 Plant',
-      log: ['gain 1 plant ', { resource: 'plant' }],
-      icon: <Resource name="plant" />,
-      action: (player, game) => game.resources(player, 'plant', 1)
-    },
-    {
-      name: 'Gain 1 Energy',
-      log: ['gain 1 energy ', { resource: 'power' }],
-      icon: <Resource name="power" />,
-      action: (player, game) => game.resources(player, 'power', 1)
-    },
-    {
-      name: 'Gain 1 Heat',
-      log: ['gain 1 heat ', { resource: 'heat' }],
-      icon: <Resource name="heat" />,
-      action: (player, game) => game.resources(player, 'heat', 1)
-    },
+    createAction('megacredit', 'M€'),
+    createAction('steel', 'Steel'),
+    createAction('titanium', 'Titanium'),
+    createAction('plant', 'Plant'),
+    createAction('power', 'Energy'),
+    createAction('heat', 'Heat'),
     {
       name: 'Spend 1 Asteroid',
       log: ['spend 1 asteroid ', { resource: 'asteroid' }],

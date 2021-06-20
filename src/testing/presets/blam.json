@@ -105,6 +105,7 @@
         "plant": 8,
         "heat": 8,
         "ocean": 2,
+        "requirement": {},
         "cost": {}
       },
       "passed": false,
@@ -202,6 +203,7 @@
         "plant": 8,
         "heat": 8,
         "ocean": 2,
+        "requirement": {},
         "cost": {
           "power": -3
         },

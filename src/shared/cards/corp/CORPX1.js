@@ -17,7 +17,7 @@ export default new Corporation({
   titleClass: 'mons',
   resources: { megacredit: 48 },
   production: { megacredit: 4 },
-  starting: (player, game) =>
+  action: (player, game) =>
     game.players
       .filter(p => p.number !== player.number)
       .forEach(p => game.production(p, 'megacredit', -2)),

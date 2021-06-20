@@ -35,8 +35,8 @@ export default new Corporation({
           msg: !valid ? 'Requires 0 energy resources' : null
         };
       },
-      action: (player, game) => {
-        game.production(player, 'power', 1);
+      production: {
+        power: 1
       }
     },
     {
@@ -47,21 +47,15 @@ export default new Corporation({
         const valid = player.resources.megacredit >= 3;
         return {
           valid,
-          msg: !valid ? 'Not enough M€' : null
+          msg: !valid ? "Can't afford this" : null
         };
       },
-      action: (player, game) => {
-        game.resources(player, 'megacredit', -3);
-        game.keepSelected(
-          player,
-          game.revealCards(
-            player,
-            card => card.tags.includes('building'),
-            1,
-            'building cards',
-            { tag: 'building' }
-          )
-        );
+      resources: {
+        megacredit: -3
+      },
+      drawCard: {
+        num: 1,
+        tag: 'building'
       }
     }
   ],

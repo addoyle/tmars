@@ -18,9 +18,7 @@ export default new Corporation({
   titleClass: 'point-luna',
   resources: { megacredit: 38 },
   production: { titanium: 1 },
-  starting: (player, game) =>
-    // Effects don't happen in the starting phase, so perform action now
-    game.drawCard(player),
+  drawCard: 1, // Effects aren't fired in the starting phase, so perform action now
   tags: ['earth', 'space'],
   set: 'prelude',
   desc,

@@ -10,8 +10,40 @@ const desc = 'You start with 47 M€.';
 const effectDesc =
   'Action: Spend 4 M€ to increase (one of) your LOWEST PRODUCTION 1 step.';
 
-const isMin = (player, prod) =>
-  player.production[prod] === Math.min(...Object.values(player.production));
+// Repeatable function to create all the action buttons
+const createAction = (resource, label) => ({
+  name: `Increase ${label} Production`,
+  log: [
+    `increase ${label} production`,
+    resource === 'megacredit' ? { megacredit: null } : { resource }
+  ],
+  icon: (
+    <Production>
+      <div className="flex">
+        {resource === 'megacredit' ? (
+          <MegaCredit value="1" />
+        ) : (
+          <Resource name={resource} />
+        )}
+      </div>
+    </Production>
+  ),
+  canPlay: player => {
+    if (player.resources.megacredit < 4) {
+      return { valid: false, msg: "Can't afford this" };
+    }
+
+    const valid =
+      player.production[resource] ===
+      Math.min(...Object.values(player.production));
+    return {
+      valid,
+      msg: !valid ? `${label} production is not the lowest` : null
+    };
+  },
+  resources: { megacredit: -4 },
+  production: { [resource]: 1 }
+});
 
 export default new Corporation({
   number: 'CORPP3',
@@ -19,138 +51,12 @@ export default new Corporation({
   titleClass: 'robinson-industries',
   resources: { megacredit: 47 },
   actions: [
-    {
-      name: 'Increase M€ Production',
-      log: ['increase M€ production ', { megacredit: null }],
-      icon: (
-        <Production>
-          <div className="flex">
-            <MegaCredit value="1" />
-          </div>
-        </Production>
-      ),
-      canPlay: player => {
-        const valid = isMin(player, 'megacredit');
-        return {
-          valid,
-          msg: !valid ? 'M€ production is not the lowest' : null
-        };
-      },
-      action: (player, game) => {
-        game.resources(player, 'megacredit', -4);
-        game.production(player, 'megacredit', 1);
-      }
-    },
-    {
-      name: 'Increase Steel Production',
-      log: ['increase steel production ', { resource: 'steel' }],
-      icon: (
-        <Production>
-          <div className="flex">
-            <Resource name="steel" />
-          </div>
-        </Production>
-      ),
-      canPlay: player => {
-        const valid = isMin(player, 'steel');
-        return {
-          valid,
-          msg: !valid ? 'Steel production is not the lowest' : null
-        };
-      },
-      action: (player, game) => {
-        game.resources(player, 'megacredit', -4);
-        game.production(player, 'steel', 1);
-      }
-    },
-    {
-      name: 'Increase Titanium Production',
-      log: ['increase titanium production ', { resource: 'titanium' }],
-      icon: (
-        <Production>
-          <div className="flex">
-            <Resource name="titanium" />
-          </div>
-        </Production>
-      ),
-      canPlay: player => {
-        const valid = isMin(player, 'titanium');
-        return {
-          valid,
-          msg: !valid ? 'Titanium production is not the lowest' : null
-        };
-      },
-      action: (player, game) => {
-        game.resources(player, 'megacredit', -4);
-        game.production(player, 'titanium', 1);
-      }
-    },
-    {
-      name: 'Increase Plant Production',
-      log: ['increase plant production ', { resource: 'plant' }],
-      icon: (
-        <Production>
-          <div className="flex">
-            <Resource name="plant" />
-          </div>
-        </Production>
-      ),
-      canPlay: player => {
-        const valid = isMin(player, 'plant');
-        return {
-          valid,
-          msg: !valid ? 'Plant production is not the lowest' : null
-        };
-      },
-      action: (player, game) => {
-        game.resources(player, 'megacredit', -4);
-        game.production(player, 'plant', 1);
-      }
-    },
-    {
-      name: 'Increase Enery Production',
-      log: ['increase energy production ', { resource: 'power' }],
-      icon: (
-        <Production>
-          <div className="flex">
-            <Resource name="power" />
-          </div>
-        </Production>
-      ),
-      canPlay: player => {
-        const valid = isMin(player, 'power');
-        return {
-          valid,
-          msg: !valid ? 'Energy production is not the lowest' : null
-        };
-      },
-      action: (player, game) => {
-        game.resources(player, 'megacredit', -4);
-        game.production(player, 'power', 1);
-      }
-    },
-    {
-      name: 'Increase Heat Production',
-      log: ['increase heat production ', { resource: 'heat' }],
-      icon: (
-        <Production>
-          <div className="flex">
-            <Resource name="heat" />
-          </div>
-        </Production>
-      ),
-      canPlay: player => {
-        const valid = isMin(player, 'heat');
-        return {
-          valid,
-          msg: !valid ? 'Heat production is not the lowest' : null
-        };
-      },
-      action: (player, game) => {
-        game.resources(player, 'megacredit', -4);
-        game.production(player, 'heat', 1);
-      }
-    }
+    createAction('megacredit', 'M€'),
+    createAction('steel', 'Steel'),
+    createAction('titanium', 'Titanium'),
+    createAction('plant', 'Plant'),
+    createAction('power', 'Energy'),
+    createAction('heat', 'Heat')
   ],
   tags: [],
   set: 'prelude',

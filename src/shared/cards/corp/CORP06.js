@@ -17,10 +17,16 @@ export default new Corporation({
   titleClass: 'inventrix',
   resources: { megacredit: 45 },
   startingAction: { drawCard: 3 },
+  action: player =>
+    (player.rates.requirement = {
+      temperature: 2,
+      oxygen: 2,
+      ocean: 2,
+      venus: 2
+    }),
   tags: ['science'],
   desc,
   effectDesc,
-  todo: true,
   flavor:
     "Inventrix uses brains, as well as muscle, when competing with other mega-corps. Its motto being: 'Do it right,' Inventrix is focused on research.",
   layout: (

@@ -17,17 +17,12 @@ export default new Corporation({
   title: 'Splice',
   titleClass: 'splice',
   resources: { megacredit: 44 },
-  startingAction: (player, game) =>
-    game.keepSelected(
-      player,
-      game.revealCards(
-        player,
-        card => card.tags.includes('microbe'),
-        1,
-        'microbe cards',
-        { tag: 'microbe' }
-      )
-    ),
+  startingAction: {
+    drawCard: {
+      num: 1,
+      tag: 'microbe'
+    }
+  },
   tags: ['microbe'],
   set: 'promo',
   desc,

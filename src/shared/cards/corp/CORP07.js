@@ -16,7 +16,7 @@ export default new Corporation({
     megacredit: 30,
     titanium: 10
   },
-  starting: player => player.rates.titanium++,
+  action: player => (player.rates.titanium = 1),
   tags: ['space'],
   desc,
   effectDesc,

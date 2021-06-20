@@ -21,6 +21,7 @@ const boards = {
 const MilestoneAward = ({ gameStore, cardStore }) => {
   const milestones = boards[gameStore?.board]?.milestones.slice() || [];
   const awards = boards[gameStore?.board]?.awards.slice() || [];
+  const actionPhase = gameStore.phase === 'action';
 
   // Add in new Venus Next awards/milestones
   if (gameStore.sets.includes('venus')) {
@@ -126,12 +127,13 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
             const allClaimed = gameStore.milestones.length >= 3;
 
             const disabled =
-              false &&
-              (!qualifies ||
+              (!actionPhase ||
+                !qualifies ||
                 allClaimed ||
                 gameStore?.player.resources.megacredit < 8) &&
               !claimed;
             const clickable =
+              actionPhase &&
               qualifies &&
               !allClaimed &&
               !claimed &&
@@ -267,12 +269,13 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
             const allFunded = gameStore.awards.length >= 3;
 
             const disabled =
-              false &&
-              (allFunded ||
+              (!actionPhase ||
+                allFunded ||
                 gameStore.player?.resources.megacredit <
                   8 + 6 * gameStore.awards.length) &&
               !funded;
             const clickable =
+              actionPhase &&
               !allFunded &&
               !funded &&
               gameStore.player?.number === gameStore.turn;
@@ -328,7 +331,8 @@ MilestoneAward.propTypes = {
     player: PropTypes.object,
     claimMilestone: PropTypes.func,
     fundAward: PropTypes.func,
-    turn: PropTypes.number
+    turn: PropTypes.number,
+    phase: PropTypes.string
   }),
   cardStore: PropTypes.shape({
     get: PropTypes.func

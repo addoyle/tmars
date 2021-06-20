@@ -16,7 +16,7 @@ export default new Corporation({
   titleClass: 'cheung-shing-mars',
   resources: { megacredit: 44 },
   production: { megacredit: 3 },
-  starting: player => (player.rates.cost.building = -2),
+  action: player => (player.rates.cost.building = -2),
   tags: ['building'],
   set: 'prelude',
   desc,

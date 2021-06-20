@@ -16,21 +16,12 @@ const card = new Corporation({
   title: 'Celestic',
   titleClass: 'celestic',
   resources: { megacredit: 42 },
-  startingAction: (player, game) =>
-    // drawCard: {
-    //   num: 2,
-    //   resource: 'floater'
-    // },
-    game.keepSelected(
-      player,
-      game.revealCards(
-        player,
-        card => card.resource === 'floater',
-        2,
-        'floater cards',
-        { resource: 'floater' }
-      )
-    ),
+  startingAction: {
+    drawCard: {
+      num: 2,
+      resource: 'floater'
+    }
+  },
   tags: ['venus'],
   set: 'venus',
   desc,

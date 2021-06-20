@@ -18,7 +18,7 @@ export default new Corporation({
     letterSpacing: '.2em'
   },
   resources: { megacredit: 60 },
-  starting: player => (player.rates.cost.earth = -3),
+  action: player => (player.rates.cost.earth = -3),
   tags: ['earth'],
   set: 'corporate',
   desc,

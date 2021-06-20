@@ -16,17 +16,13 @@ export default new Corporation({
   title: 'Morning Star Inc.',
   titleClass: 'msi',
   resources: { megacredit: 50 },
-  startingAction: (player, game) =>
-    game.keepSelected(
-      player,
-      game.revealCards(
-        player,
-        card => card.tags.includes('venus'),
-        3,
-        'venus cards',
-        { tag: 'venus' }
-      )
-    ),
+  action: player => (player.rates.requirement.venus = 2),
+  startingAction: {
+    drawCard: {
+      num: 3,
+      tag: 'venus'
+    }
+  },
   tags: ['venus'],
   set: 'venus',
   desc,

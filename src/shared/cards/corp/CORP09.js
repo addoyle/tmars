@@ -15,7 +15,7 @@ export default new Corporation({
   number: 'CORP09',
   title: 'ThorGate',
   titleClass: 'thorgate',
-  starting: player => {
+  action: player => {
     player.rates.cost.power = -3;
     player.rates.powerplant = 8;
   },

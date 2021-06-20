@@ -337,6 +337,7 @@ class GameService {
     };
 
     // Perform card's action
+    game.performAction(action, player, game, done);
     if (action.action) {
       action.action(player, game, done, count);
 

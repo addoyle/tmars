@@ -16,7 +16,7 @@ export default new Corporation({
   title: 'Valley Trust',
   titleClass: 'valley-trust',
   resources: { megacredit: 37 },
-  starting: player => (player.rates.cost.science = -2),
+  action: player => (player.rates.cost.science = -2),
   startingAction: () => {
     // TODO
   },

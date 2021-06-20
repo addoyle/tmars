@@ -40,9 +40,12 @@ export default class Project extends Card {
       if (this.restriction.param) {
         const param = this.restriction.param;
         const suffix = { oxygen: '%', venus: '%', temperature: '°C' };
+        const modifier =
+          (player.rates.requirement[param] || 0) *
+          (param === 'temperature' ? 2 : 1);
         if (
-          (!max && game.params[param] < val) ||
-          (max && game.params[param] > val)
+          (!max && game.params[param] + modifier < val) ||
+          (max && game.params[param] - modifier > val)
         ) {
           result.valid = false;
           result.msg.push(
@@ -77,11 +80,15 @@ export default class Project extends Card {
             t =>
               t.type === tile || (tile === 'city' && t.type === 'capital city')
           );
+        const modifier = player.rates.requirement.ocean || 0;
         const actual =
           tile === 'ocean' || this.restriction.anyone
             ? tiles.length
             : tiles.filter(t => t.player === player.number);
-        if ((!max && actual < val) || (max && actual > val)) {
+        if (
+          (!max && actual + modifier < val) ||
+          (max && actual - modifier > val)
+        ) {
           result.valid = false;
           result.msg.push(`Requires ${val} ${tile} tile${val > 1 ? 's' : ''}`);
         }
@@ -159,9 +166,9 @@ export default class Project extends Card {
       Object.keys(this.production).forEach(r => {
         if (
           this.production[r] < 0 &&
-          ((r === 'megacredit' &&
-            player.production.megacredit + this.production.megacredit < -5) ||
-            player.production[r] + this.production[r] < 0)
+          player.production[r] + this.production[r] < r === 'megacredit'
+            ? -5
+            : 0
         ) {
           result.valid = false;
           result.msg.push(
