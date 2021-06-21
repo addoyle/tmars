@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { castArray } from 'lodash';
 import './CardLayout.scss';
 import classnames from 'classnames';
+import { inject } from 'mobx-react';
 
 /**
  * Base level Card class
@@ -15,6 +17,22 @@ const CardLayout = props => {
         simple: props.simple
       })}
     >
+      {props.showZoom ? (
+        <div
+          className="zoom"
+          onClick={e => {
+            e.stopPropagation();
+            props.gameStore.showCurrentCard(
+              { card: props.number },
+              ['automated', 'active', 'event'].includes(props.type)
+                ? 'project'
+                : props.type
+            );
+          }}
+        >
+          <FontAwesomeIcon icon="search-plus" />
+        </div>
+      ) : null}
       {props.children}
       {props.set && props.set !== 'base'
         ? castArray(props.set).map((set, i) => (
@@ -27,6 +45,7 @@ const CardLayout = props => {
 };
 
 CardLayout.propTypes = {
+  number: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   set: PropTypes.oneOfType([
     PropTypes.string,
@@ -37,8 +56,12 @@ CardLayout.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
+  gameStore: PropTypes.shape({
+    showCurrentCard: PropTypes.func
+  }),
   simple: PropTypes.bool,
-  todo: PropTypes.bool
+  todo: PropTypes.bool,
+  showZoom: PropTypes.bool
 };
 
-export default CardLayout;
+export default inject('gameStore')(CardLayout);

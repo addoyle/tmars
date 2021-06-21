@@ -87,10 +87,12 @@ const ProjectLayout = props => {
 
   return (
     <CardLayout
+      number={props.number}
       type={props.type}
       set={props.set}
       todo={props.todo}
       landscape={props.type === 'prelude'}
+      showZoom={props.showZoom}
     >
       <div className="project">
         <div className="header">
@@ -129,7 +131,7 @@ const ProjectLayout = props => {
 
 ProjectLayout.propTypes = {
   title: PropTypes.string.isRequired,
-  number: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  number: PropTypes.string.isRequired,
   cost: PropTypes.number,
   restriction: PropTypes.shape({
     text: PropTypes.string,
@@ -159,7 +161,8 @@ ProjectLayout.propTypes = {
   layout: PropTypes.node.isRequired,
   flavor: PropTypes.string,
   todo: PropTypes.bool,
-  modifiedCost: PropTypes.number
+  modifiedCost: PropTypes.number,
+  showZoom: PropTypes.bool
 };
 
 export default ProjectLayout;

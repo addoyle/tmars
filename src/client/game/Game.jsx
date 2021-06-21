@@ -18,7 +18,8 @@ import {
   faThumbsUp,
   faToggleOff,
   faToggleOn,
-  faCheckSquare
+  faCheckSquare,
+  faSearchPlus
 } from '@fortawesome/free-solid-svg-icons';
 import { subscribe, gameId } from '../util/api';
 
@@ -42,6 +43,7 @@ library.add(faThumbsUp);
 library.add(faToggleOn);
 library.add(faToggleOff);
 library.add(faCheckSquare);
+library.add(faSearchPlus);
 
 /**
  * TMars entry point

@@ -97,7 +97,7 @@ const CardDrawer = props => {
                   disabled: card?.disabled
                 })}
               >
-                <CardPreview card={card} type="project" />
+                <CardPreview card={card} type="project" showZoom />
               </li>
             ))
           : null}
@@ -381,6 +381,7 @@ const CardDrawer = props => {
                 resources={card?.resources}
                 type={cardType}
                 costModifiers={props.type ? gameStore.player.rates.cost : []}
+                showZoom={props.mode === 'select' || props.mode === 'draft'}
                 showResources={
                   !['start', 'prelude'].includes(gameStore.phase) &&
                   ['active', 'corp'].includes(props.type)
@@ -405,7 +406,7 @@ const CardDrawer = props => {
                     cardType === gameStore.currentCard.type
                 })}
               >
-                <CardPreview card={card} type="project" />
+                <CardPreview card={card} type="project" showZoom />
               </li>
             ))}
           </>

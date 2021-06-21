@@ -20,6 +20,35 @@ $title-font: 'Prototype', sans-serif;
     width: 1.4em;
   }
 
+  .zoom {
+    position: absolute;
+    font-size: .125em;
+    color: #fff;
+    top: .5em;
+    right: .5em;
+    width: 2em;
+    height: 2em;
+    border-radius: 1em;
+    background: rgba(0,128,0,.5);
+    opacity: 0;
+    transition: opacity .3s ease, box-shadow .15s ease, background-color .15s ease;
+    z-index: 2;
+    text-align: center;
+    line-height: 2;
+    box-shadow: 0 0 0 1px rgba(0,64,0,.75);
+
+    &:hover {
+      background-color: rgba(0,128,0,.75);;
+      box-shadow: 0 0 0 .2em rgba(0,64,0,.75);
+    }
+  }
+
+  &:hover {
+    .zoom {
+      opacity: 1;
+    }
+  }
+
   > .mc,
   > .tags {
     font-size: 0.15em;
