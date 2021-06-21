@@ -5,6 +5,11 @@ import {
   Resource,
   Production
 } from '../../../client/game/components/assets/Assets';
+import {
+  RES_STEEL,
+  RES_TITANIUM,
+  TAG_BUILDING
+} from '../../../shared/game/constants';
 
 const desc = 'You start with 30 M€, 5 steel, and 1 steel production.';
 const effectDesc =
@@ -21,13 +26,13 @@ export default new Corporation({
   production: {
     steel: 1
   },
-  tags: ['building', 'building'],
+  tags: [TAG_BUILDING, TAG_BUILDING],
   desc,
   effectDesc,
   events: {
     onTile: (player, game, tile) =>
       // Space has steel or titanium placement bonus
-      ['steel', 'titanium'].some(r => tile.resources?.includes(r)) &&
+      [RES_STEEL, RES_TITANIUM].some(r => tile.resources?.includes(r)) &&
       // Bump steel production
       game.production(player, 'steel', 1)
   },
