@@ -29,7 +29,6 @@ export default new Automated({
     power: -1,
     titanium: 1
   },
-
   vp: 3,
   emoji: '🌃',
   layout: (

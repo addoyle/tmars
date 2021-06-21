@@ -460,7 +460,6 @@ class Game extends SharedGame {
       return;
     }
 
-    console.log(Object.getPrototypeOf(action.constructor)?.name);
     const isCardAction =
       action.constructor.name === 'Corporation' ||
       Object.getPrototypeOf(action.constructor)?.name === 'Project';

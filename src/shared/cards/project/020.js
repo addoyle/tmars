@@ -8,12 +8,6 @@ import {
 const activeDesc = 'Effect: When you play a card, you pay 1 M€ less for it.';
 const desc = 'Place a city tile NEXT TO NO OTHER TILE.';
 
-// const customFilter = (tile, game, notReserved, neighbors) =>
-//   // Not reserved
-//   notReserved(tile) &&
-//   // No neighbors
-//   !neighbors.filter(t => t.name).length;
-
 export default new Active({
   number: '020',
   title: 'Research Outpost',

@@ -15,7 +15,6 @@ export default new Prelude({
   desc,
   flavor: 'I had no idea that you could actually do that',
   emoji: '♻️',
-  todo: true,
   action: (player, game, done) => {
     // TODO: Figure out how to skip global requirements
     game.promptCard(player, done);

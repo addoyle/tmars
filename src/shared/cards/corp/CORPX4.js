@@ -73,7 +73,7 @@ const card = new Corporation({
   desc,
   resource: 'asteroid',
   effectDesc,
-  // todo: true,
+  todo: true,
   flavor:
     'When minerals got more rare on Earth, many corporations turned to the asteroids for more. AstroDrill made this an art form, quickly dismantling hundreds of small asteroids from the main asteroid belt, enabling export of a wide variety of materials',
   layout: (

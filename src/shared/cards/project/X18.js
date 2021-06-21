@@ -6,8 +6,6 @@ import {
   Param
 } from '../../../client/game/components/assets/Assets';
 
-// TODO action
-
 const activeDesc =
   'Effect: When playing a card with a requirement, you pay 2 M€ less.';
 
