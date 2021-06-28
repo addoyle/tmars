@@ -33,7 +33,7 @@ export default new Prelude({
   },
   events: {
     onCardPlayed: player => {
-      const card = player.cards.event.find(c => c.card === this.number);
+      const card = player.cards.prelude.find(c => c.card === this.number);
 
       if (!card.nextCardPlayed) {
         const req = player.rates.requirement;

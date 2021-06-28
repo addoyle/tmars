@@ -66,6 +66,7 @@ export default class Player {
   firstAction = true;
   startingAction = true;
   score = {};
+  actionStack = [];
 
   constructor(name) {
     this.name = name;

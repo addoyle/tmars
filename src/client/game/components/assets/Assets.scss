@@ -470,7 +470,7 @@ $title-font: 'Prototype', sans-serif;
   }
 
   &.modified > .value {
-    -webkit-text-stroke: red 1px;
+    -webkit-text-stroke: red .075em;
   }
 
   > .value {

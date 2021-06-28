@@ -74,7 +74,11 @@ const CardModal = ({ gameStore, cardStore }) => {
       ) : null}
 
       <div className="footer">
-        {currentCard.mode === 'play' && myTurn && !gameStore.playerStatus ? (
+        {currentCard.mode === 'play' &&
+        myTurn &&
+        (!gameStore.playerStatus ||
+          (gameStore.playerStatus.type === 'prompt-card' &&
+            gameStore.playerStatus.cardType === currentCard.type)) ? (
           currentCard.type === 'project' ? (
             <PlayableCard card={card} />
           ) : currentCard.type === 'prelude' ? (

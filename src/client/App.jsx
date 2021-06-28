@@ -6,7 +6,7 @@ import Game from './game/Game';
 import './App.scss';
 
 /**
- * TMars lobby entry point
+ * TMars entry point
  */
 const App = () => (
   <BrowserRouter>

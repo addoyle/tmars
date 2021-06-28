@@ -10,6 +10,7 @@ import Tharsis from '../../shared/boards/Tharsis';
 import Elysium from '../../shared/boards/Elysium';
 import Hellas from '../../shared/boards/Hellas';
 import Player from '../models/player.model';
+import { last } from 'lodash';
 
 const client = redis.createClient();
 const redisGet = promisify(client.get).bind(client);
@@ -293,7 +294,7 @@ class GameService {
       }
     };
 
-    // Perform card's action
+    // Perform prelude's action
     game.performAction(playedCard, player, game, done);
 
     return this.export(game);
@@ -523,17 +524,13 @@ class GameService {
    * @param {number} tileId Tile id
    */
   @push(gameFilter)
-  placeTile(id, tileId) {
+  placeTile(id, tileId, playerNum) {
     const game = this.games[id];
-    const player = game.playerStatus.player;
+    const player = game.players[playerNum - 1];
     const area = game.tileFromId(tileId);
+    const action = last(player.actionStack);
 
-    game.placeTile(
-      player,
-      area,
-      game.playerStatus.tile,
-      game.playerStatus.done
-    );
+    game.placeTile(player, area, action.tile);
 
     return this.export(game);
   }
@@ -906,6 +903,7 @@ class GameService {
     // eslint-disable-next-line no-unused-vars
     const { cardStore, ...gameNoStore } = game;
 
+    // Write to redis
     client.set(game.id, JSON.stringify(gameNoStore), () => {});
 
     return game.export();

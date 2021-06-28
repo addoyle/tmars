@@ -44,9 +44,9 @@ const CardPreview = props => {
       ) : (
         <ProjectLayout
           {...cardObj}
-          modifiedCost={modifiedCost}
           resource={props.showResources ? resource : null}
           showZoom={props.showZoom}
+          modifiedCost={modifiedCost}
         />
       )}
     </div>

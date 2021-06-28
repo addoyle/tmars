@@ -5,7 +5,8 @@ import {
   startCase,
   groupBy,
   isPlainObject,
-  times
+  times,
+  last
 } from 'lodash';
 import { normalize } from '../util';
 import Tharsis from '../../shared/boards/Tharsis';
@@ -72,7 +73,6 @@ class Game extends SharedGame {
   milestones = [];
   awards = [];
   phase = 'start';
-  playerStatus;
   endGame = false;
 
   offMars = {
@@ -285,35 +285,15 @@ class Game extends SharedGame {
    *
    * @param {Player} player
    * @param {string} pile
-   * @param {function} done If a callback is set, this was done as a card action
    */
-  drawCard(player, pile = 'hand', done) {
-    // Reshuffle draw deck
+  drawCard(player, pile = 'hand') {
+    // Shuffle the dicard pile into the draw deck if empty
     if (this.cards.deck.length === 0) {
       this.cards.deck = shuffle(this.cards.discard);
       this.cards.discard = [];
     }
 
     player.cards[pile].push(this.cards.deck.shift());
-
-    if (done) {
-      // Set the player status
-      this.playerStatus = {
-        player,
-        type: 'buy-card',
-        done: () => {
-          // Player status is resolved
-          this.playerStatus = null;
-
-          // Show UI components
-          player.ui = {
-            drawer: 'hand'
-          };
-
-          done && done();
-        }
-      };
-    }
   }
 
   /**
@@ -326,8 +306,7 @@ class Game extends SharedGame {
     // Perform corp's standard action
     this.performAction(corp, player, this);
 
-    // TODO: Move these into normal action function
-    // corp.starting && corp.starting(player, this);
+    // Apply tags
     (corp.tags || []).forEach(tag => player.tags[tag]++);
   }
 
@@ -460,9 +439,9 @@ class Game extends SharedGame {
       return;
     }
 
-    const isCardAction =
-      action.constructor.name === 'Corporation' ||
-      Object.getPrototypeOf(action.constructor)?.name === 'Project';
+    // const isCardAction =
+    //   action.constructor.name === 'Corporation' ||
+    //   Object.getPrototypeOf(action.constructor)?.name === 'Project';
 
     // Action queue for actions with callbacks
     let actionQueue = [];
@@ -582,24 +561,7 @@ class Game extends SharedGame {
         : [action.tile]
       ).map(tile => (isPlainObject(tile) ? tile : { tile }));
 
-      actionQueue.push(
-        // eslint-disable-next-line no-unused-vars
-        ...tiles.map(tile => (player, game, done) =>
-          game.promptTile(
-            player,
-            tile,
-            area => {
-              // If the card is performing the action, assign the placed tile to the card (in case it needs it)
-              if (isCardAction) {
-                this.cardTile(player, action, area);
-              }
-
-              next();
-            },
-            tile.filter
-          )
-        )
-      );
+      tiles.forEach(tile => this.promptTile(player, tile, tile.filter));
     }
 
     // Handle custom card action
@@ -615,27 +577,26 @@ class Game extends SharedGame {
    * Prompt for playing a card
    *
    * @param {object} player The player to prompt
-   * @param {func} callback Callback once the card is played
+   * @param {string} type The card type
+   * @param {func} done Callback once the card is played
    */
-  promptCard(player, callback) {
+  promptCard(player, type, done) {
     player.ui = {
-      drawer: 'hand'
+      drawer: type === 'project' ? 'hand' : type
     };
 
     this.playerStatus = {
       type: 'prompt-card',
+      cardType: type,
       player,
       modifiers: {},
       done: () => {
-        // Player status is resolved
-        this.playerStatus = null;
-
         // Show UI components
         player.ui = {
           drawer: this.phase === 'prelude' ? 'prelude' : 'hand'
         };
 
-        callback && callback();
+        done && done();
       }
     };
   }
@@ -645,12 +606,11 @@ class Game extends SharedGame {
    *
    * @param {object} player Player placing the tile
    * @param {string} tile Tile type to place (ocean, city, greenery, or {special: 'type'})
-   * @param {func} callback Callback once the tile is placed
+   * @param {func} customFilter Optional filter for possible tile placement
    */
-  promptTile(player, tile, callback, customFilter) {
+  promptTile(player, tile, customFilter) {
     // If all the oceans are placed, don't prompt
     if (tile.tile === 'ocean' && this.params.ocean <= 0) {
-      callback && callback();
       return;
     }
 
@@ -663,56 +623,64 @@ class Game extends SharedGame {
 
     if (possibleTiles.length) {
       // Make them clickable
-      possibleTiles.forEach(t => (t.clickable = tile.tile));
+      // possibleTiles.forEach(t => (t.clickable = tile.tile));
 
       // Hide UI components to allow easier access to board
-      player.ui = {
-        drawer: null,
-        playerStats: {
-          show: false,
-          pid: player.number
-        },
-        currentCard: { show: false },
-        showMilestones: false,
-        showStandardProjects: false
-      };
+      // player.ui = {
+      //   drawer: null,
+      //   playerStats: {
+      //     show: false,
+      //     pid: player.number
+      //   },
+      //   currentCard: { show: false },
+      //   showMilestones: false,
+      //   showStandardProjects: false
+      // };
 
       // Set the player status
-      this.playerStatus = {
-        player,
+      player.actionStack.push({
+        // player,
         tile: tile.tile,
         type: 'prompt-tile',
-        done: placedTile => {
-          // Raise params if necessary
-          if (tile.tile === 'ocean') {
-            this.param(player, 'ocean');
-          } else if (tile.tile === 'greenery') {
-            this.param(player, 'oxygen');
-          }
+        ui: {
+          drawer: null,
+          playerStats: {
+            show: false,
+            pid: player.number
+          },
+          currentCard: { show: false },
+          showMilestones: false,
+          showStandardProjects: false
+        },
+        possibleTiles
+        // done: placedTile => {
+        //   // Raise params if necessary
+        //   if (tile.tile === 'ocean') {
+        //     this.param(player, 'ocean');
+        //   } else if (tile.tile === 'greenery') {
+        //     this.param(player, 'oxygen');
+        //   }
 
-          // Remove clickable
-          possibleTiles.forEach(t => (t.clickable = null));
+        //   // Remove clickable
+        //   possibleTiles.forEach(t => (t.clickable = null));
 
-          // Player status is resolved
-          this.playerStatus = null;
+        //   // Show UI components
+        //   player.ui = {
+        //     drawer:
+        //       this.phase === 'prelude'
+        //         ? 'prelude'
+        //         : this.phase === 'end'
+        //         ? null
+        //         : 'hand',
+        //     playerStats: {
+        //       show: true,
+        //       pid: player.number
+        //     }
+        //   };
 
-          // Show UI components
-          player.ui = {
-            drawer:
-              this.phase === 'prelude'
-                ? 'prelude'
-                : this.phase === 'end'
-                ? null
-                : 'hand',
-            playerStats: {
-              show: true,
-              pid: player.number
-            }
-          };
-
-          callback && callback(placedTile);
-        }
-      };
+        //   done && done(placedTile);
+        // }
+      });
     }
   }
 
@@ -778,9 +746,6 @@ class Game extends SharedGame {
       optional: !!cancelAction,
       cancelAction,
       done: () => {
-        // Player status is resolved
-        this.playerStatus = null;
-
         // Show UI components
         player.ui = {
           drawer: this.phase === 'prelude' ? 'prelude' : 'hand',
@@ -837,7 +802,6 @@ class Game extends SharedGame {
         player.rates.ocean;
     }
 
-    let notDone = true;
     // Handle placement bonuses
     (area.resources || [])
       .filter(r => r)
@@ -848,8 +812,7 @@ class Game extends SharedGame {
         }
         // Place an ocean
         else if (r === 'ocean') {
-          notDone = false;
-          this.promptTile(player, 'ocean', done);
+          this.promptTile(player, { tile: 'ocean' }, done);
         }
         // Megacredits
         else if (r.megacredit) {
@@ -861,14 +824,15 @@ class Game extends SharedGame {
         }
       });
 
+    // Mark the action as complete
+    this.completeAction(player, area);
+
     // Check if this tile placement finished terraforming
     this.checkEndGame();
 
     // Trigger events
     this.fire('onTile', player, area);
     this.fire('onAnyTile', null, area);
-
-    notDone && done(area);
   }
 
   /**
@@ -1266,6 +1230,11 @@ class Game extends SharedGame {
    * Advance to the next turn
    */
   nextTurn() {
+    // Nothing can happen if there are any outstanding actions for any player
+    if (this.players.some(p => p.actionStack.length)) {
+      return;
+    }
+
     // If all players have passed, move into the production phase
     if (this.players.every(p => p.passed)) {
       if (this.phase === 'action') {
@@ -1407,7 +1376,9 @@ class Game extends SharedGame {
     const playerCard = player.cards.hand
       .concat(player.cards.active)
       .concat(player.cards.automated)
+      .concat(player.cards.event)
       .concat(player.cards.corp)
+      .concat(player.cards.prelude)
       .find(c => c.card === card.number);
 
     if (tile) {
@@ -1415,6 +1386,16 @@ class Game extends SharedGame {
     }
 
     return tile || this.tileFromId(playerCard.tile);
+  }
+
+  completeAction(player, params) {
+    // Pop off the action
+    player.actionStack.pop();
+
+    // Pass args into next action, if there is one
+    if (player.actionStack.length) {
+      last(player.actionStack).params = params;
+    }
   }
 
   pushLog(player, log) {

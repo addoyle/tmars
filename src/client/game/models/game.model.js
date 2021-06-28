@@ -1,6 +1,7 @@
-import { observable, action } from 'mobx';
+import { observable, action, toJS } from 'mobx';
 import { API, gameId } from '../../util/api';
 import SharedGame from '../../../shared/game/game.shared.model';
+import { last } from 'lodash';
 
 const PLAYER_NUM = new URLSearchParams(window.location.search).get('player');
 const POST = 'POST';
@@ -55,9 +56,6 @@ class Game extends SharedGame {
   // Players
   @observable players = [];
   @observable player;
-
-  // Temporary status when an action is pending
-  @observable playerStatus;
 
   // Game phase
   @observable phase;
@@ -149,6 +147,12 @@ class Game extends SharedGame {
 
     // Update player specific UI states
     this.player.ui && Object.assign(this, this.player.ui);
+
+    // Set any temporary UI states from the current stack
+    const action = last(this.player.actionStack);
+    action && action.ui && Object.assign(this, action.ui);
+
+    console.log(toJS(action));
   }
 
   /**
@@ -157,6 +161,11 @@ class Game extends SharedGame {
    * @param {object} modifiers Cost modifiers
    */
   calculateCost(card, modifiers) {
+    // Not a project card (usually a prelude)
+    if (card && !card.cost) {
+      return undefined;
+    }
+
     if (card && modifiers) {
       let modifiedCost = card.cost + (modifiers.all || 0);
 
@@ -235,7 +244,7 @@ class Game extends SharedGame {
   }
 
   placeTile(id) {
-    API(`game/${gameId()}/place-tile/${id}`, POST);
+    API(`game/${gameId()}/place-tile/${id}`, POST, { player: +PLAYER_NUM });
   }
 
   pickChoice(choice) {

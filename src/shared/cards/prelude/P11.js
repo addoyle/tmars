@@ -3,7 +3,7 @@ import Prelude from '../Prelude';
 
 const desc = 'PLAY A CARD FROM HAND, REDUCING ITS COST BY 25 M€';
 
-export default new Prelude({
+const card = new Prelude({
   number: 'P11',
   title: 'Excentric Sponsor',
   tags: [],
@@ -13,10 +13,10 @@ export default new Prelude({
   emoji: '🧐',
   todo: true,
   action: (player, game, done) => {
-    // Reduce cost of card by 25
+    // Set modifier
     player.rates.cost.all = (player.rates.cost.all || 0) - 25;
-    game.promptCard(player, player => {
-      // Set cost modifier back
+
+    game.promptCard(player, 'project', () => {
       player.rates.cost.all += 25;
       done();
     });
@@ -29,3 +29,5 @@ export default new Prelude({
     </div>
   )
 });
+
+export default card;

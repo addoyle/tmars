@@ -9,10 +9,12 @@ const PlayableCard = ({ gameStore, card }) => {
   const currentCard = gameStore.currentCard;
   const player = gameStore.player;
 
+  const modifiedCost = gameStore.calculateCost(card, player?.rates.cost);
+
   // Effective cost is the cost of the card in M€ subtracting resources
   const effectiveCost = Math.max(
     0,
-    gameStore.calculateCost(card, player?.rates.cost) -
+    modifiedCost -
       player?.rates.steel * currentCard.steel -
       player?.rates.titanium * currentCard.titanium -
       currentCard.heat
@@ -34,14 +36,14 @@ const PlayableCard = ({ gameStore, card }) => {
 
   // Calculating maximum required resources needed/available to purchase card
   const maxSteel = Math.min(
-    Math.ceil(card?.cost / (player?.rates.steel || 2)),
+    Math.ceil(modifiedCost / (player?.rates.steel || 2)),
     player?.resources.steel
   );
   const maxTitanium = Math.min(
-    Math.ceil(card?.cost / (player?.rates.titanium || 3)),
+    Math.ceil(modifiedCost / (player?.rates.titanium || 3)),
     player?.resources.titanium
   );
-  const maxHeat = Math.min(card?.cost, player?.resources.heat);
+  const maxHeat = Math.min(modifiedCost, player?.resources.heat);
 
   return (
     <>
