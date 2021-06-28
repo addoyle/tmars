@@ -16,9 +16,9 @@ export default new Prelude({
   desc,
   flavor: 'Exploring the most volcanic place in the solar system',
   emoji: '⛺',
-  action: (player, game) => {
-    game.production(player, 'titanium', 1);
-    game.drawCard(player);
+  drawCard: 1,
+  production: {
+    titanium: 1
   },
   layout: (
     <div className="flex gutter">

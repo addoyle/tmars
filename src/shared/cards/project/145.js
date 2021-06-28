@@ -21,7 +21,9 @@ export default new Automated({
   desc,
   flavor:
     'After finding ways to predict earthquakes, it was only a matter of time before it became feasible to exploit the enormous energies involved',
-  action: (player, game) => game.production(player, 'power', 3),
+  production: {
+    power: 3
+  },
   vp: 1,
   emoji: '😱',
   layout: (

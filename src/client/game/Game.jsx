@@ -12,12 +12,14 @@ import {
   faArrowLeft,
   faChevronUp,
   faChevronDown,
+  faChevronRight,
   faCog,
   faForward,
   faThumbsUp,
-  faTimesCircle,
   faToggleOff,
-  faToggleOn
+  faToggleOn,
+  faCheckSquare,
+  faSearchPlus
 } from '@fortawesome/free-solid-svg-icons';
 import { subscribe, gameId } from '../util/api';
 
@@ -34,12 +36,14 @@ library.add(faArrowAltCircleRight);
 library.add(faArrowLeft);
 library.add(faChevronUp);
 library.add(faChevronDown);
+library.add(faChevronRight);
 library.add(faCog);
 library.add(faForward);
 library.add(faThumbsUp);
-library.add(faTimesCircle);
 library.add(faToggleOn);
 library.add(faToggleOff);
+library.add(faCheckSquare);
+library.add(faSearchPlus);
 
 /**
  * TMars entry point

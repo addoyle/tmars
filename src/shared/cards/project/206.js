@@ -12,10 +12,33 @@ export default new Event({
   tags: ['science', 'event'],
   desc,
   flavor: 'If it isn’t feasible, then make it so',
-  action: () => {},
+  action: player => {
+    const req = player.rates.requirement;
+    req.temperature = (req.temperature || 0) + 2;
+    req.oxygen = (req.temperature || 0) + 2;
+    req.ocean = (req.ocean || 0) + 2;
+    req.venus = (req.venus || 0) + 2;
+
+    // Add a flag to keep track of if the card has been played
+    player.cards.event.find(c => c.card === this.number).nextCardPlayed = false;
+  },
+  events: {
+    onCardPlayed: player => {
+      const card = player.cards.event.find(c => c.card === this.number);
+
+      if (!card.nextCardPlayed) {
+        const req = player.rates.requirement;
+        req.temperature = (req.temperature || 0) - 2;
+        req.oxygen = (req.temperature || 0) - 2;
+        req.ocean = (req.ocean || 0) - 2;
+        req.venus = (req.venus || 0) - 2;
+
+        card.nextCardPlayed = true;
+      }
+    }
+  },
   vp: -1,
   emoji: '📐',
-  todo: true,
   layout: (
     <div className="text-center">
       <div className="flex center resources">

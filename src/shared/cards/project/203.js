@@ -14,7 +14,9 @@ export default new Automated({
   tags: ['space'],
   desc,
   flavor: 'Huge ultra-thin mirrors focusing sunlight onto the red planet',
-  action: (player, game) => game.production(player, 'heat', 7),
+  production: {
+    heat: 7
+  },
   emoji: '☀️',
   layout: (
     <div className="flex gutter">

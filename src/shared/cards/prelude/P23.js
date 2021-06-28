@@ -16,10 +16,12 @@ export default new Prelude({
   desc,
   flavor: 'Making use of all the minerals you’re digging up',
   emoji: '🧱',
-  action: (player, game) => {
-    game.resources(player, 'heat', 2);
-    game.production(player, 'steel', 1);
-    game.production(player, 'heat', 2);
+  resources: {
+    heat: 2
+  },
+  production: {
+    steel: 1,
+    heat: 2
   },
   layout: (
     <div className="flex gutter">

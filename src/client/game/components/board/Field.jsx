@@ -4,6 +4,7 @@ import { inject, observer } from 'mobx-react';
 import './Field.scss';
 import classnames from 'classnames';
 import { Tile, Resource, Param, MegaCredit } from '../assets/Assets';
+import { last } from 'lodash';
 
 const offMars = {
   ganymede: {
@@ -64,6 +65,8 @@ const Field = ({ gameStore }) => {
     }
   };
 
+  const playerAction = last(gameStore.player?.actionStack);
+
   return (
     <div className={classnames('field', { venus: hasVenus })}>
       <div className="tiles">
@@ -73,9 +76,6 @@ const Field = ({ gameStore }) => {
             <div className={`${city} row`} key={i}>
               <Tile
                 name={gameStore.offMars[city].player ? 'city-placed' : 'blank'}
-                clickable={
-                  gameStore.offMars[city].clickable ? 'city' : undefined
-                }
               >
                 {gameStore.offMars[city].player ? <Tile name="city" /> : null}
                 {!gameStore.offMars[city].player ? (
@@ -116,10 +116,9 @@ const Field = ({ gameStore }) => {
                     : 'blank')
                 } ${area.icon || ''}`}
                 clickable={
-                  gameStore.playerStatus?.type === 'prompt-tile' &&
-                  gameStore.playerStatus?.player.number ===
-                    gameStore.player?.number
-                    ? area.clickable
+                  playerAction?.type === 'prompt-tile' &&
+                  playerAction.possibleTiles.includes(area.id)
+                    ? playerAction.tile
                     : undefined
                 }
                 onClick={() => gameStore.placeTile(area)}
@@ -174,15 +173,17 @@ Field.propTypes = {
     field: PropTypes.arrayOf(PropTypes.arrayOf(tilePropType)),
     offMars: PropTypes.objectOf(tilePropType),
     sets: PropTypes.arrayOf(PropTypes.string),
-    playerStatus: PropTypes.shape({
-      type: PropTypes.string,
-      player: PropTypes.shape({
-        number: PropTypes.number
-      }),
-      tile: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
-    }),
     player: PropTypes.shape({
-      number: PropTypes.number
+      number: PropTypes.number,
+      actionStack: PropTypes.arrayOf(
+        PropTypes.shape({
+          type: PropTypes.string,
+          player: PropTypes.shape({
+            number: PropTypes.number
+          }),
+          tile: PropTypes.oneOfType([PropTypes.string, PropTypes.object])
+        })
+      )
     }),
     placeTile: PropTypes.func
   })

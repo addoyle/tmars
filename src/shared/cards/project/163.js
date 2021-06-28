@@ -12,11 +12,13 @@ export default new Event({
   tags: ['earth', 'space', 'event'],
   desc,
   flavor: 'Providing nitrogen needed in the atmosphere and for biomass',
-  action: (player, game) => {
-    game.tr(player, 1);
-    game.resources(player, 'plant', 4);
-
+  action: (player, game, done) => {
     // TODO add animals and microbes to other cards
+    console.log(done);
+  },
+  tr: 1,
+  resources: {
+    plant: 4
   },
   emoji: '🍾',
   todo: true,

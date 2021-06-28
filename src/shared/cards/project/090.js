@@ -15,10 +15,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Through technical excellence you will unlock many wondrous things',
-  action: (player, game) => {
-    game.drawCard(player);
-    game.drawCard(player);
-  },
+  drawCard: 2,
   vp: 1,
   emoji: '‍🔬',
   layout: (

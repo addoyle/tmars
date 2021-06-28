@@ -18,7 +18,7 @@ function renderRestriction(restriction) {
   } else if (restriction.param) {
     return <Param name={restriction.param} />;
   } else if (restriction.resource) {
-    return <Resource name={restriction.resource} />;
+    return <Resource name={restriction.resource} anyone={restriction.anyone} />;
   } else if (restriction.production) {
     return (
       <Production>
@@ -38,7 +38,7 @@ function renderRestriction(restriction) {
  */
 const Restriction = ({ max, values }) => (
   <div className={classNames('restriction', { max })}>
-    {values.map((restriction, i) => (
+    {values?.map((restriction, i) => (
       <span key={i}>
         {restriction.text ? restriction.text : renderRestriction(restriction)}
       </span>

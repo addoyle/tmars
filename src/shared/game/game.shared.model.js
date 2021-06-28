@@ -13,64 +13,43 @@ class SharedGame {
     const self = this;
     const notReserved = t =>
       !t.attrs?.filter(attr => attr.includes('reserved')).length;
+    let filter;
 
     // If the card has a special placement (special tiles, typically)
-    if (customFilter) {
-      return this.getField()
-        .flat()
-        .filter(
-          t =>
-            // Not occupied
-            !t.name &&
-            // Passes custom filter
-            customFilter(t, this, notReserved, this.neighbors(t))
-        );
+    if (filter) {
+      filter = t => customFilter(t, this, notReserved, this.neighbors(t));
     }
+
     // By default, special tiles have no placement restrictions (other than reserved tiles)
     else if (tile.special) {
-      return this.getField()
-        .flat()
-        .filter(
-          t =>
-            // Not reserved
-            notReserved(t) &&
-            // Not occupied
-            !t.name
-        );
+      filter = t =>
+        // Not reserved
+        notReserved(t);
     }
+
     // Oceans can only be placed on reserved ocean tiles
     else if (tile === 'ocean') {
-      return this.getField()
-        .flat()
-        .filter(
-          t =>
-            // Reserved ocean spots
-            t.attrs?.includes('reserved-ocean') &&
-            // Not occupied
-            !t.name
-        );
+      filter = t =>
+        // Reserved ocean spots
+        t.attrs?.includes('reserved-ocean');
     }
+
     // Cities can not be placed next to another city
     else if (tile === 'city' || tile === 'capital city') {
-      return this.getField()
-        .flat()
-        .filter(
-          t =>
-            // Not reserved
-            notReserved(t) &&
-            // Not occupied
-            !t.name &&
-            // Not adjacent to another city
-            !self
-              .neighbors(t)
-              .filter(
-                neighbor =>
-                  neighbor.type === 'city' || neighbor.type === 'capital city'
-              ).length
-        );
+      filter = t =>
+        // Not reserved
+        notReserved(t) &&
+        // Not adjacent to another city
+        !self
+          .neighbors(t)
+          .filter(
+            neighbor =>
+              neighbor.type === 'city' || neighbor.type === 'capital city'
+          ).length;
     }
+
     // Greeneries have to be placed next to an existing player's tile if possible, otherwise anywhere
-    else if (tile === 'greenery') {
+    if (tile === 'greenery') {
       // Spaces adjacent to player's tiles
       const adjacentSites = uniq(
         this.getField()
@@ -84,16 +63,30 @@ class SharedGame {
           .filter(t => !t.name && notReserved(t))
       );
 
-      return (adjacentSites.length
-        ? adjacentSites
-        : this.getField().flat()
-      ).filter(
-        t =>
-          // Not reserved
-          notReserved(t) &&
-          // Not occupied
-          !t.name
-      );
+      return (adjacentSites.length ? adjacentSites : this.getField().flat())
+        .filter(
+          t =>
+            // Not reserved
+            notReserved(t) &&
+            // Not occupied
+            !t.name
+        )
+        .map(t => t.id);
+    }
+
+    // Any other tile
+    else {
+      return this.getField()
+        .flat()
+        .filter(
+          t =>
+            // Not occupied
+            // TODO: handle markers
+            !t.name &&
+            // Passes the filter
+            filter(t)
+        )
+        .map(t => t.id);
     }
   }
 

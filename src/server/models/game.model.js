@@ -1,4 +1,13 @@
-import { shuffle, isString, isFunction, startCase, groupBy } from 'lodash';
+import {
+  shuffle,
+  isString,
+  isFunction,
+  startCase,
+  groupBy,
+  isPlainObject,
+  times,
+  last
+} from 'lodash';
 import { normalize } from '../util';
 import Tharsis from '../../shared/boards/Tharsis';
 import Hellas from '../../shared/boards/Hellas';
@@ -64,7 +73,6 @@ class Game extends SharedGame {
   milestones = [];
   awards = [];
   phase = 'start';
-  playerStatus;
   endGame = false;
 
   offMars = {
@@ -155,7 +163,8 @@ class Game extends SharedGame {
       Object.values(this.cardStore.corp)
         .filter(
           corp =>
-            +corp.number !== 0 &&
+            // Filter out Beginner Corp
+            corp.number !== 'CORP00' &&
             (corp.set === 'base' ||
               (Array.isArray(corp.set) ? corp.set : [corp.set]).every(set =>
                 this.sets.includes(set)
@@ -220,7 +229,7 @@ class Game extends SharedGame {
     }
     // Add in beginner corp
     // TODO: make this optional
-    this.players.forEach(player => player.cards.corp.push({ card: '000' }));
+    this.players.forEach(player => player.cards.corp.push({ card: 'CORP00' }));
 
     // Deal out 10 projects
     for (let i = 0; i < 10; i++) {
@@ -243,9 +252,19 @@ class Game extends SharedGame {
 
     if (
       this.params.generation === 1 &&
-      player.firstAction &&
-      corp.firstAction
+      player.startingAction &&
+      corp.startingAction
     ) {
+      // Log the starting action
+      LogService.pushLog(
+        this.id,
+        new Log(player.number, [
+          ' performed ',
+          { corp: player.cards.corp[0].card },
+          "'s starting action."
+        ])
+      );
+
       // To do once all card actions are complete (placing tiles, etc.)
       const done = () => {
         this.playerStatus?.done();
@@ -253,10 +272,11 @@ class Game extends SharedGame {
         this.nextTurn();
       };
 
-      corp.firstAction(player, this, done);
-      if (corp.firstAction.length <= 2) {
-        done();
-      }
+      // Marking starting action as complete
+      player.startingAction = false;
+
+      // Perform the action
+      this.performAction(corp.startingAction, player, this, done);
     }
   }
 
@@ -265,35 +285,15 @@ class Game extends SharedGame {
    *
    * @param {Player} player
    * @param {string} pile
-   * @param {function} done If a callback is set, this was done as a card action
    */
-  drawCard(player, pile = 'hand', done) {
-    // Reshuffle draw deck
+  drawCard(player, pile = 'hand') {
+    // Shuffle the dicard pile into the draw deck if empty
     if (this.cards.deck.length === 0) {
       this.cards.deck = shuffle(this.cards.discard);
       this.cards.discard = [];
     }
 
     player.cards[pile].push(this.cards.deck.shift());
-
-    if (done) {
-      // Set the player status
-      this.playerStatus = {
-        player,
-        type: 'buy-card',
-        done: () => {
-          // Player status is resolved
-          this.playerStatus = null;
-
-          // Show UI components
-          player.ui = {
-            drawer: 'hand'
-          };
-
-          done && done();
-        }
-      };
-    }
   }
 
   /**
@@ -302,8 +302,11 @@ class Game extends SharedGame {
    */
   applyCorp(player) {
     const corp = this.cardStore.corp[player.cards.corp[0].card];
-    this.resources(player, 'megacredit', corp.startingMC);
-    corp.starting && corp.starting(player, this);
+
+    // Perform corp's standard action
+    this.performAction(corp, player, this);
+
+    // Apply tags
     (corp.tags || []).forEach(tag => player.tags[tag]++);
   }
 
@@ -415,30 +418,185 @@ class Game extends SharedGame {
   }
 
   /**
+   * Performs an action. The standard action is typically changing
+   * resources/production, placing tiles, drawing cards, and increasing global
+   * parameters (temperature, oxygen, venus), followed by any custom actions
+   * defined on the card.
+   *
+   * @param {object} action The action object to perform
+   * @param {Player} player The player performing the standard action
+   * @param {Game} game The game
+   * @param {*} done Callback when the actions are complete
+   * @param {...any} otherArgs Optional other arguments to be passed in to custom actions
+   */
+  performAction(action, player, game, done, ...otherArgs) {
+    // If the action is just a function, call it as normal
+    if (isFunction(action)) {
+      action(player, game, done);
+      if (action.length < 3) {
+        done();
+      }
+      return;
+    }
+
+    // const isCardAction =
+    //   action.constructor.name === 'Corporation' ||
+    //   Object.getPrototypeOf(action.constructor)?.name === 'Project';
+
+    // Action queue for actions with callbacks
+    let actionQueue = [];
+    const next = function () {
+      // Capture arguments being passed into follow-on actions (e.g. player picked, tile placement, etc.)
+      const outerArgs = arguments;
+
+      // Return the next action
+      return function () {
+        if (actionQueue.length) {
+          const action = actionQueue.shift();
+          const nextAction = next();
+
+          // Perform the action
+          action(player, game, nextAction, ...otherArgs);
+
+          // If the action doesn't call the callback, call it now
+          if (action.length < 3) {
+            nextAction(...outerArgs);
+          }
+        } else {
+          // We've completed the queue, call the final callback
+          done && done(...arguments);
+        }
+      };
+    };
+
+    // Handle resources
+    if (action.resources) {
+      if (isFunction(action.resources)) {
+        actionQueue.push(action.resources);
+      } else {
+        Object.keys(action.resources).forEach(r =>
+          game.resources(player, r, action.resources[r])
+        );
+      }
+    }
+
+    // Handle production
+    if (action.production) {
+      if (isFunction(action.production)) {
+        actionQueue.push(action.production);
+      } else {
+        Object.keys(action.production).forEach(p =>
+          game.production(player, p, action.production[p])
+        );
+      }
+    }
+
+    // Handle TR
+    if (action.tr) {
+      if (isFunction(action.tr)) {
+        actionQueue.push(action.tr);
+      } else {
+        game.tr(player, action.tr);
+      }
+    }
+
+    // Handle cards
+    if (action.drawCard) {
+      if (isFunction(action.drawCard)) {
+        actionQueue.push(action.drawCard);
+      } else {
+        const opts = {
+          reveal: false,
+          filter: () => true,
+          num: action.drawCard.num || 1,
+          log: `${action.drawCard.num} cards`,
+          icon: {}
+        };
+
+        // Reveal cards with tags
+        if (action.drawCard.tag) {
+          opts.reveal = true;
+          opts.filter = card => card.tags.includes(action.drawCard.tag);
+          opts.log = `${action.drawCard.tag} cards`;
+          opts.icon = { tag: action.drawCard.tag };
+        }
+
+        // Reveal cards with resources
+        if (action.drawCard.resource) {
+          opts.reveal = true;
+          opts.filter = card => card.resource === action.drawCard.resource;
+          opts.log = `${action.drawCard.resource} cards`;
+          opts.icon = { resource: action.drawCard.resource };
+        }
+
+        // Reveal cards if needed, otherwise just draw the cards
+        if (opts.reveal) {
+          game.keepSelected(
+            player,
+            game.revealCards(player, opts.filter, opts.num, opts.log, opts.icon)
+          );
+        } else {
+          times(opts.num, () => game.drawCard(player));
+        }
+      }
+    }
+
+    // Handle params
+    if (action.param) {
+      const params = Array.isArray(action.param)
+        ? action.param
+        : [action.param];
+      actionQueue.push(
+        // eslint-disable-next-line no-unused-vars
+        ...params.map(param => (player, game, done) =>
+          game.param(player, param, next())
+        )
+      );
+    }
+
+    // Handle tiles
+    if (action.tile) {
+      const tiles = (Array.isArray(action.tile)
+        ? action.tile
+        : [action.tile]
+      ).map(tile => (isPlainObject(tile) ? tile : { tile }));
+
+      tiles.forEach(tile => this.promptTile(player, tile, tile.filter));
+    }
+
+    // Handle custom card action
+    if (action.action) {
+      actionQueue.push(action.action);
+    }
+
+    // Start the action queue
+    next()();
+  }
+
+  /**
    * Prompt for playing a card
    *
    * @param {object} player The player to prompt
-   * @param {func} callback Callback once the card is played
+   * @param {string} type The card type
+   * @param {func} done Callback once the card is played
    */
-  promptCard(player, callback) {
+  promptCard(player, type, done) {
     player.ui = {
-      drawer: 'hand'
+      drawer: type === 'project' ? 'hand' : type
     };
 
     this.playerStatus = {
       type: 'prompt-card',
+      cardType: type,
       player,
       modifiers: {},
       done: () => {
-        // Player status is resolved
-        this.playerStatus = null;
-
         // Show UI components
         player.ui = {
           drawer: this.phase === 'prelude' ? 'prelude' : 'hand'
         };
 
-        callback && callback();
+        done && done();
       }
     };
   }
@@ -448,69 +606,81 @@ class Game extends SharedGame {
    *
    * @param {object} player Player placing the tile
    * @param {string} tile Tile type to place (ocean, city, greenery, or {special: 'type'})
-   * @param {func} callback Callback once the tile is placed
+   * @param {func} customFilter Optional filter for possible tile placement
    */
-  promptTile(player, tile, callback, customFilter) {
+  promptTile(player, tile, customFilter) {
     // If all the oceans are placed, don't prompt
-    if (tile === 'ocean' && this.params.ocean <= 0) {
-      callback && callback();
+    if (tile.tile === 'ocean' && this.params.ocean <= 0) {
       return;
     }
 
-    const possibleTiles = this.findPossibleTiles(tile, player, customFilter);
+    // Find possible placements for tile
+    const possibleTiles = this.findPossibleTiles(
+      tile.tile,
+      player,
+      customFilter
+    );
+
     if (possibleTiles.length) {
-      possibleTiles.forEach(
-        t => (t.clickable = isString(tile) ? tile : 'special')
-      );
+      // Make them clickable
+      // possibleTiles.forEach(t => (t.clickable = tile.tile));
 
       // Hide UI components to allow easier access to board
-      player.ui = {
-        drawer: null,
-        playerStats: {
-          show: false,
-          pid: player.number
-        },
-        currentCard: { show: false },
-        showMilestones: false,
-        showStandardProjects: false
-      };
+      // player.ui = {
+      //   drawer: null,
+      //   playerStats: {
+      //     show: false,
+      //     pid: player.number
+      //   },
+      //   currentCard: { show: false },
+      //   showMilestones: false,
+      //   showStandardProjects: false
+      // };
 
       // Set the player status
-      this.playerStatus = {
-        player,
-        tile,
+      player.actionStack.push({
+        // player,
+        tile: tile.tile,
         type: 'prompt-tile',
-        done: placedTile => {
-          // Raise params if necessary
-          if (tile === 'ocean') {
-            this.param(player, 'ocean');
-          } else if (tile === 'greenery') {
-            this.param(player, 'oxygen');
-          }
+        ui: {
+          drawer: null,
+          playerStats: {
+            show: false,
+            pid: player.number
+          },
+          currentCard: { show: false },
+          showMilestones: false,
+          showStandardProjects: false
+        },
+        possibleTiles
+        // done: placedTile => {
+        //   // Raise params if necessary
+        //   if (tile.tile === 'ocean') {
+        //     this.param(player, 'ocean');
+        //   } else if (tile.tile === 'greenery') {
+        //     this.param(player, 'oxygen');
+        //   }
 
-          // Remove clickable
-          possibleTiles.forEach(t => (t.clickable = null));
+        //   // Remove clickable
+        //   possibleTiles.forEach(t => (t.clickable = null));
 
-          // Player status is resolved
-          this.playerStatus = null;
+        //   // Show UI components
+        //   player.ui = {
+        //     drawer:
+        //       this.phase === 'prelude'
+        //         ? 'prelude'
+        //         : this.phase === 'end'
+        //         ? null
+        //         : 'hand',
+        //     playerStats: {
+        //       show: true,
+        //       pid: player.number
+        //     }
+        //   };
 
-          // Show UI components
-          player.ui = {
-            drawer:
-              this.phase === 'prelude'
-                ? 'prelude'
-                : this.phase === 'end'
-                ? null
-                : 'hand',
-            playerStats: {
-              show: true,
-              pid: player.number
-            }
-          };
-
-          callback && callback(placedTile);
-        }
-      };
+        //   done && done(placedTile);
+        // }
+      });
     }
   }
 
@@ -576,9 +746,6 @@ class Game extends SharedGame {
       optional: !!cancelAction,
       cancelAction,
       done: () => {
-        // Player status is resolved
-        this.playerStatus = null;
-
         // Show UI components
         player.ui = {
           drawer: this.phase === 'prelude' ? 'prelude' : 'hand',
@@ -635,7 +802,6 @@ class Game extends SharedGame {
         player.rates.ocean;
     }
 
-    let notDone = true;
     // Handle placement bonuses
     (area.resources || [])
       .filter(r => r)
@@ -646,8 +812,7 @@ class Game extends SharedGame {
         }
         // Place an ocean
         else if (r === 'ocean') {
-          notDone = false;
-          this.promptTile(player, 'ocean', done);
+          this.promptTile(player, { tile: 'ocean' }, done);
         }
         // Megacredits
         else if (r.megacredit) {
@@ -659,14 +824,15 @@ class Game extends SharedGame {
         }
       });
 
+    // Mark the action as complete
+    this.completeAction(player, area);
+
     // Check if this tile placement finished terraforming
     this.checkEndGame();
 
     // Trigger events
     this.fire('onTile', player, area);
     this.fire('onAnyTile', null, area);
-
-    notDone && done(area);
   }
 
   /**
@@ -704,8 +870,8 @@ class Game extends SharedGame {
     }
     // Increase generation
     const gen = ++this.params.generation;
-    // Set the turn to 0 until the action phase starts
-    this.turn = 0;
+    // Set the turn to 1 until the action phase starts
+    this.turn = 1;
 
     // Reset things for players
     this.players.forEach(p => {
@@ -1064,6 +1230,11 @@ class Game extends SharedGame {
    * Advance to the next turn
    */
   nextTurn() {
+    // Nothing can happen if there are any outstanding actions for any player
+    if (this.players.some(p => p.actionStack.length)) {
+      return;
+    }
+
     // If all players have passed, move into the production phase
     if (this.players.every(p => p.passed)) {
       if (this.phase === 'action') {
@@ -1132,10 +1303,8 @@ class Game extends SharedGame {
    * @param {number} num Amount to change
    */
   resources(player, resource, num) {
-    player.resources[resource] += num;
-    if (player.resources[resource] < 0) {
-      player.resources[resource] = 0;
-    }
+    player.resources[resource] = Math.max(player.resources[resource] + num, 0);
+
     // TODO fire resource change
 
     return true;
@@ -1150,6 +1319,7 @@ class Game extends SharedGame {
    */
   production(player, resource, num) {
     player.production[resource] += num;
+
     // TODO fire production change
 
     return true;
@@ -1165,6 +1335,7 @@ class Game extends SharedGame {
     player.tr += num;
 
     // For UNMI, marks if TR was raised this generation
+    // TODO: Move this to an event in UNMI
     player.trRaised = true;
 
     // TODO fire terraform change
@@ -1205,7 +1376,9 @@ class Game extends SharedGame {
     const playerCard = player.cards.hand
       .concat(player.cards.active)
       .concat(player.cards.automated)
+      .concat(player.cards.event)
       .concat(player.cards.corp)
+      .concat(player.cards.prelude)
       .find(c => c.card === card.number);
 
     if (tile) {
@@ -1213,6 +1386,16 @@ class Game extends SharedGame {
     }
 
     return tile || this.tileFromId(playerCard.tile);
+  }
+
+  completeAction(player, params) {
+    // Pop off the action
+    player.actionStack.pop();
+
+    // Pass args into next action, if there is one
+    if (player.actionStack.length) {
+      last(player.actionStack).params = params;
+    }
   }
 
   pushLog(player, log) {

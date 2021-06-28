@@ -10,6 +10,7 @@ import Tharsis from '../../shared/boards/Tharsis';
 import Elysium from '../../shared/boards/Elysium';
 import Hellas from '../../shared/boards/Hellas';
 import Player from '../models/player.model';
+import { last } from 'lodash';
 
 const client = redis.createClient();
 const redisGet = promisify(client.get).bind(client);
@@ -177,8 +178,6 @@ class GameService {
     // Pay for the card
     let cost = playedCard.cost;
 
-    // TODO handle rate modifiers
-
     if (params.steel && playedCard.tags.includes('building')) {
       cost -= params.steel * player.rates.steel;
     }
@@ -223,6 +222,7 @@ class GameService {
     const done = () => {
       // Trigger card-played events
       game.fire('onCardPlayed', player, playedCard);
+      game.fire('onAnyCardPlayed', player, playedCard);
 
       game.playerStatus?.done();
 
@@ -232,15 +232,7 @@ class GameService {
     };
 
     // Perform card's action
-    if (playedCard.action) {
-      playedCard.action(player, game, done);
-
-      // Server action didn't call done, call it now
-      playedCard.action.length < 3 && done();
-    } else {
-      // No action, call done
-      done();
-    }
+    game.performAction(playedCard, player, game, done);
 
     return this.export(game);
   }
@@ -275,6 +267,7 @@ class GameService {
     // Set tags
     playedCard.tags.forEach(tag => player.tags[tag]++);
 
+    // Callback for once the card action is complete
     const done = () => {
       // Mark prelude as played
       player.cards.prelude.find(
@@ -301,13 +294,8 @@ class GameService {
       }
     };
 
-    // Perform card's action
-    if (playedCard.action) {
-      playedCard.action(player, game, done);
-
-      // Server action didn't call done, call it now
-      playedCard.action.length < 3 && done();
-    }
+    // Perform prelude's action
+    game.performAction(playedCard, player, game, done);
 
     return this.export(game);
   }
@@ -350,6 +338,7 @@ class GameService {
     };
 
     // Perform card's action
+    game.performAction(action, player, game, done);
     if (action.action) {
       action.action(player, game, done, count);
 
@@ -535,17 +524,13 @@ class GameService {
    * @param {number} tileId Tile id
    */
   @push(gameFilter)
-  placeTile(id, tileId) {
+  placeTile(id, tileId, playerNum) {
     const game = this.games[id];
-    const player = game.playerStatus.player;
+    const player = game.players[playerNum - 1];
     const area = game.tileFromId(tileId);
+    const action = last(player.actionStack);
 
-    game.placeTile(
-      player,
-      area,
-      game.playerStatus.tile,
-      game.playerStatus.done
-    );
+    game.placeTile(player, area, action.tile);
 
     return this.export(game);
   }
@@ -918,6 +903,7 @@ class GameService {
     // eslint-disable-next-line no-unused-vars
     const { cardStore, ...gameNoStore } = game;
 
+    // Write to redis
     client.set(game.id, JSON.stringify(gameNoStore), () => {});
 
     return game.export();

@@ -19,8 +19,10 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'The largest city on the Moon',
-  action: (player, game, done) => {
+  production: (player, game) => {
     game.production(player, 'megacredit', player.tags.earth);
+  },
+  action: (player, game, done) => {
     game.placeTile(player, game.offMars.luna, 'city', done);
   },
   vp: 2,

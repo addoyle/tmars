@@ -69,7 +69,7 @@
         "event": [],
         "corp": [
           {
-            "card": "011",
+            "card":"CORP11",
             "select": false
           }
         ],
@@ -182,7 +182,7 @@
         "event": [],
         "corp": [
           {
-            "card": "015",
+            "card":"CORP15",
             "select": false,
             "resource": 1
           }
@@ -279,7 +279,7 @@
         "event": [],
         "corp": [
           {
-            "card": "X02",
+            "card":"CORPX2",
             "select": false
           }
         ],
@@ -689,7 +689,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "015"
+          "corp":"CORP15"
         },
         " and bought 6 projects."
       ],
@@ -700,7 +700,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "X02"
+          "corp":"CORPX2"
         },
         " and bought 4 projects."
       ],
@@ -711,7 +711,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "011"
+          "corp":"CORP11"
         },
         " and bought 6 projects."
       ],

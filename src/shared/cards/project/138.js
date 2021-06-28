@@ -17,18 +17,11 @@ export default new Automated({
   desc,
   flavor:
     'It is not exactly environmentally friendly to just dig up the surface, but it can be profitable',
-  action: (player, game, done) => {
-    game.production(player, 'power', -2);
-    game.production(player, 'steel', 2);
-    game.production(player, 'titanium', 1);
-    game.param(player, 'oxygen', () => game.param(player, 'oxygen', done));
-  },
-  canPlay: player => {
-    const valid = player.production.power >= 2;
-    return {
-      valid,
-      msg: !valid ? 'Not enough energy production' : null
-    };
+  param: ['oxygen', 'oxygen'],
+  production: {
+    power: -2,
+    steel: 2,
+    titanium: 1
   },
   emoji: '👷',
   layout: (

@@ -16,7 +16,7 @@ export default new Automated({
   desc,
   flavor:
     'In a stationary orbit far from the planet, enabling very precise measurements',
-  action: (player, game) => game.drawCard(player),
+  drawCard: 1,
   vp: 1,
   emoji: '🔭',
   layout: (

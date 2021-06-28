@@ -27,9 +27,10 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'A center of commerce in the cool clouds',
-  action: (player, game, done) => {
-    game.production(player, 'megacredit', 2);
-    game.placeTile(player, game.offMars.stratopolis, 'city', done);
+  action: (player, game, done) =>
+    game.placeTile(player, game.offMars.stratopolis, 'city', done),
+  production: {
+    megacredit: 2
   },
   vp: () => Math.floor(this.resources / 3),
   emoji: '🌥',

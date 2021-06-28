@@ -16,7 +16,9 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'The pride of the asteroid belt',
-  action: (player, game) => game.production(player, 'titanium', 1),
+  production: {
+    titanium: 1
+  },
   vp: 1,
   emoji: '🛰',
   layout: (

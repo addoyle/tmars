@@ -1,3 +1,4 @@
+import { isPlainObject } from 'lodash';
 import Card from './Card';
 
 export default class Project extends Card {
@@ -14,110 +15,185 @@ export default class Project extends Card {
   }
 
   /**
-   * Any card specific requirements for play excluding global restrictions.
-   *
-   * E.g. negative power production requires the player to have at least 1 power production
+   * Any card specific requirements for play excluding global restrictions and resource/production requirements.
    */
   canPlay() {
     return { valid: true };
   }
 
+  /**
+   * Check if the requirements are met in order to play the card
+   *
+   * @param {Player} player The player
+   * @param {Game} game The game
+   * @returns Validation object with the status of whether or not the card meets the requirements
+   */
   meetsRequirements(player, game) {
-    const result = { valid: true };
+    const result = { valid: true, msg: [] };
 
-    // No restriction, we're good!
-    if (!this.restriction) {
-      return result;
-    }
+    // Check requirements
+    if (this.restriction) {
+      const val = this.restriction.value;
+      const max = this.restriction.max;
 
-    const val = this.restriction.value;
-    const max = this.restriction.max;
-
-    // Check parameters
-    if (this.restriction.param) {
-      const param = this.restriction.param;
-      const suffix = { oxygen: '%', venus: '%', temperature: '°C' };
-      if (
-        (!max && game.params[param] < val) ||
-        (max && game.params[param] > val)
-      ) {
-        result.valid = false;
-        result.msg = `Requires ${max ? 'at most' : 'at least'} ${val}${
-          suffix[param] || ''
-        }${param === 'temperature' ? '' : ` ${param}`}`;
-      }
-    }
-
-    // Check tags
-    if (this.restriction.tag) {
-      const tags = Array.isArray(this.restriction.tag)
-        ? this.restriction.tag
-        : [this.restriction.tag];
-      // Includes ? tags, if applicable
-      if (tags.some(t => player.tags[t] + (player.tags.any || 0) < val)) {
-        result.valid = false;
-        result.msg = `Requires ${val} ${tags.join(', ')} tag${
-          val > 1 ? 's' : ''
-        }`;
-      }
-    }
-
-    // Check tiles
-    if (this.restriction.tile) {
-      const tile = this.restriction.tile;
-      const tiles = game.field
-        .flat()
-        .concat(Object.values(game.offMars))
-        .filter(
-          t => t.type === tile || (tile === 'city' && t.type === 'capital city')
-        );
-      const actual =
-        tile === 'ocean' || this.restriction.anyone
-          ? tiles.length
-          : tiles.filter(t => t.player === player.number);
-      if ((!max && actual < val) || (max && actual > val)) {
-        result.valid = false;
-        result.msg = `Requires ${val} ${tile} tile${val > 1 ? 's' : ''}`;
-      }
-    }
-
-    // Check production
-    if (this.restriction.production) {
-      const prod = this.restriction.production;
-      if (player.production[prod] < val) {
-        result.valid = false;
-        result.msg = `Requires ${val} ${prod} production`;
-      }
-    }
-
-    // Check resources
-    if (this.restriction.resource) {
-      // Special case when resource is TR
-      if (this.restriction.resource === 'tr') {
-        if (player.tr < val) {
+      // Check parameters
+      if (this.restriction.param) {
+        const param = this.restriction.param;
+        const suffix = { oxygen: '%', venus: '%', temperature: '°C' };
+        const modifier =
+          (player.rates.requirement[param] || 0) *
+          (param === 'temperature' ? 2 : 1);
+        if (
+          (!max && game.params[param] + modifier < val) ||
+          (max && game.params[param] - modifier > val)
+        ) {
           result.valid = false;
-          result.msg = `Requires ${val} Terraform Rating`;
+          result.msg.push(
+            `Requires ${max ? 'at most' : 'at least'} ${val}${
+              suffix[param] || ''
+            }${param === 'temperature' ? '' : ` ${param}`}`
+          );
         }
       }
-      // Standard resources
-      else if (
-        ['megacredit', 'steel', 'titanium', 'plant', 'power', 'heat'].includes(
-          this.restriction.resource
-        ) &&
-        player.resources[this.restriction.resource] < val
-      ) {
-        result.valid = false;
-        result.msg = `Requires ${val} ${this.restriction.resource} resources`;
+
+      // Check tags
+      if (this.restriction.tag) {
+        const tags = Array.isArray(this.restriction.tag)
+          ? this.restriction.tag
+          : [this.restriction.tag];
+        // Includes ? tags, if applicable
+        if (tags.some(t => player.tags[t] + (player.tags.any || 0) < val)) {
+          result.valid = false;
+          result.msg.push(
+            `Requires ${val} ${tags.join(', ')} tag${val > 1 ? 's' : ''}`
+          );
+        }
       }
-      // Anything else is treated as resources on cards
-      else if (
-        player.cards.active
-          .concat(player.cards.corp)
-          .filter(c => c.resource === this.restriction.resource)
-          .reduce((sum, c) => sum + c.resource, 0) < val
+
+      // Check tiles
+      if (this.restriction.tile) {
+        const tile = this.restriction.tile;
+        const tiles = game.field
+          .flat()
+          .concat(Object.values(game.offMars))
+          .filter(
+            t =>
+              t.type === tile || (tile === 'city' && t.type === 'capital city')
+          );
+        const modifier = player.rates.requirement.ocean || 0;
+        const actual =
+          tile === 'ocean' || this.restriction.anyone
+            ? tiles.length
+            : tiles.filter(t => t.player === player.number);
+        if (
+          (!max && actual + modifier < val) ||
+          (max && actual - modifier > val)
+        ) {
+          result.valid = false;
+          result.msg.push(`Requires ${val} ${tile} tile${val > 1 ? 's' : ''}`);
+        }
+      }
+
+      // Check production
+      if (this.restriction.production) {
+        const prod = this.restriction.production;
+        if (player.production[prod] < val) {
+          result.valid = false;
+          result.msg.push(`Requires ${val} ${prod} production`);
+        }
+      }
+
+      // Check resources
+      if (this.restriction.resource) {
+        // Special case when resource is TR
+        if (this.restriction.resource === 'tr') {
+          if (player.tr < val) {
+            result.valid = false;
+            result.msg.push(`Requires ${val} Terraform Rating`);
+          }
+        }
+        // Standard resources
+        else if (
+          [
+            'megacredit',
+            'steel',
+            'titanium',
+            'plant',
+            'power',
+            'heat'
+          ].includes(this.restriction.resource) &&
+          player.resources[this.restriction.resource] < val
+        ) {
+          result.valid = false;
+          result.msg.push(
+            `Requires ${val} ${this.restriction.resource} resources`
+          );
+        }
+        // Anything else is treated as resources on cards
+        else if (
+          player.cards.active
+            .concat(player.cards.corp)
+            .filter(c => c.resource === this.restriction.resource)
+            .reduce((sum, c) => sum + c.resource, 0) < val
+        ) {
+          result.valid = false;
+          result.msg.push(
+            `Requires ${val} ${this.restriction.resource} resources on cards`
+          );
+        }
+      }
+    }
+
+    // Check negative resources
+    if (this.resources && isPlainObject(this.resources)) {
+      Object.keys(this.resources).forEach(r => {
+        if (
+          this.resources[r] < 0 &&
+          player.resources[r] + this.resources[r] < 0
+        ) {
+          result.valid = false;
+          result.msg.push(
+            `Not enough ${
+              { megacredit: 'M€', power: 'energy' }[r] || r
+            } resources`
+          );
+        }
+      });
+    }
+
+    // Check negative production
+    if (this.production && isPlainObject(this.production)) {
+      Object.keys(this.production).forEach(r => {
+        if (
+          this.production[r] < 0 &&
+          player.production[r] + this.production[r] < r === 'megacredit'
+            ? -5
+            : 0
+        ) {
+          result.valid = false;
+          result.msg.push(
+            `Not enough ${
+              { megacredit: 'M€', power: 'energy' }[r] || r
+            } production`
+          );
+        }
+      });
+    }
+
+    // Check tile placement
+    if (this.tile) {
+      const tiles = (Array.isArray(this.tile)
+        ? this.tile
+        : [this.tile]
+      ).map(tile => (isPlainObject(tile) ? tile : { tile }));
+
+      if (
+        !tiles.every(
+          t => game.findPossibleTiles(t.tile, player, t.filter).length
+        )
       ) {
         result.valid = false;
-        result.msg = `Requires ${val} ${this.restriction.resource} resources on cards`;
+        result.msg.push('Cannot place tile');
       }
     }
 

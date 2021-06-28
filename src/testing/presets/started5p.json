@@ -43,30 +43,27 @@
       },
       "cards": {
         "hand": [
-          {
-            "card": "039"
-          },
-          {
-            "card": "107"
-          },
-          {
-            "card": "006"
-          },
-          {
-            "card": "044"
-          },
-          {
-            "card": "236"
-          },
-          {
-            "card": "057"
-          },
-          {
-            "card": "063"
-          },
-          {
-            "card": "031"
-          }
+          { "card": "X13" },
+          { "card": "X14" },
+          { "card": "X15" },
+          { "card": "X16" },
+          { "card": "X17" },
+          { "card": "X18" },
+          { "card": "X19" },
+          { "card": "X20" },
+          { "card": "X21" },
+          { "card": "X22" },
+          { "card": "X23" },
+          { "card": "X24" },
+          { "card": "X25" },
+          { "card": "X26" },
+          { "card": "X27" },
+          { "card": "X28" },
+          { "card": "X29" },
+          { "card": "X30" },
+          { "card": "X31" },
+          { "card": "X32" },
+          { "card": "X33" }
         ],
         "draft": [],
         "active": [],
@@ -75,7 +72,7 @@
         "event": [],
         "corp": [
           {
-            "card": "011",
+            "card":"CORPX4",
             "select": false
           }
         ],
@@ -176,7 +173,7 @@
         "event": [],
         "corp": [
           {
-            "card": "P03",
+            "card":"CORP3",
             "select": false
           }
         ],
@@ -270,7 +267,7 @@
         "event": [],
         "corp": [
           {
-            "card": "001",
+            "card":"CORP01",
             "select": false
           }
         ],
@@ -372,7 +369,7 @@
         "event": [],
         "corp": [
           {
-            "card": "015",
+            "card":"CORP15",
             "select": false
           }
         ],
@@ -488,7 +485,7 @@
         "event": [],
         "corp": [
           {
-            "card": "004",
+            "card":"CORPX5",
             "select": false
           }
         ],
@@ -1158,7 +1155,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "015"
+          "corp":"CORP15"
         },
         " and bought 4 projects."
       ],
@@ -1169,7 +1166,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "004"
+          "corp":"CORPX5"
         },
         " and bought 6 projects."
       ],
@@ -1180,7 +1177,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "011"
+          "corp":"CORPX4"
         },
         " and bought 6 projects."
       ],
@@ -1191,7 +1188,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "P03"
+          "corp":"CORPP3"
         },
         " and bought 6 projects."
       ],
@@ -1202,7 +1199,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "001"
+          "corp":"CORP01"
         },
         " and bought 4 projects."
       ],

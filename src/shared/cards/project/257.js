@@ -17,10 +17,12 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'Its unique components can be used on Mars as well',
-  action: (player, game, done) => {
-    game.production(player, 'plant', 1);
-    game.param(player, 'venus', done);
+  action: (player, game, done) =>
     // TODO figure out microbes
+    done(),
+  venus: ['venus'],
+  production: {
+    plant: 1
   },
   emoji: '🌱',
   todo: true,

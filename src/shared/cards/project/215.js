@@ -14,10 +14,9 @@ export default new Event({
   flavor:
     'Converting CO\u2082 into nanotube materials that support your hovering infrastructure',
   action: (player, game, done) =>
-    game.param(player, 'venus', () => {
-      // TODO handle floaters
-      done();
-    }),
+    // TODO handle floaters
+    done(),
+  param: ['venus'],
   emoji: '🎈',
   todo: true,
   layout: (

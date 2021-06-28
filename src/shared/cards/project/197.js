@@ -17,7 +17,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Why stop at Mars?',
-  action: (player, game) => game.tr(player, player.tags.jovian),
+  tr: (player, game) => game.tr(player, player.tags.jovian),
   vp: 2,
   emoji: '🌘',
   layout: (

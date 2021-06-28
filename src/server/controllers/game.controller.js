@@ -190,7 +190,13 @@ export function getAllCardNumbers(req, res) {
  * @param {*} res
  */
 export function placeTile(req, res) {
-  res.send(GameService.placeTile(`${req.params.id}`, req.params.tileId));
+  res.send(
+    GameService.placeTile(
+      `${req.params.id}`,
+      req.params.tileId,
+      req.body.player
+    )
+  );
 }
 
 /**

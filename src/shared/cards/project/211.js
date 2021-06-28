@@ -21,9 +21,9 @@ export default new Automated({
   desc,
   flavor:
     'Protected by the ice and the micro-environment it creates inside, making the ice darker',
-  action: (player, game) => {
-    game.production(player, 'plant', 1);
-    game.production(player, 'heat', 1);
+  production: {
+    plant: 1,
+    heat: 1
   },
   emoji: '❄️',
   layout: (

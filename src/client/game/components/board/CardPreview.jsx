@@ -39,12 +39,14 @@ const CardPreview = props => {
         <CorporationLayout
           {...cardObj}
           resource={props.showResources ? resource : null}
+          showZoom={props.showZoom}
         />
       ) : (
         <ProjectLayout
           {...cardObj}
-          modifiedCost={modifiedCost}
           resource={props.showResources ? resource : null}
+          showZoom={props.showZoom}
+          modifiedCost={modifiedCost}
         />
       )}
     </div>
@@ -81,7 +83,8 @@ CardPreview.propTypes = {
   }),
   costModifiers: PropTypes.shape({
     all: PropTypes.number
-  })
+  }),
+  showZoom: PropTypes.bool
 };
 
 export default inject('cardStore', 'gameStore')(observer(CardPreview));

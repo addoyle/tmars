@@ -24,16 +24,9 @@ const card = new Active({
   desc,
   resource: 'animal',
   flavor: 'Providing meat, wood, leather, etc.',
-  action: (player, game) => {
-    game.production(player, 'plant', -1);
-    game.production(player, 'megacredit', 2);
-  },
-  canPlay: player => {
-    const valid = player.production.plant > 0;
-    return {
-      valid,
-      msg: !valid ? 'Not enough plant production' : null
-    };
+  production: {
+    plant: -1,
+    megacredit: 2
   },
   actions: [
     {

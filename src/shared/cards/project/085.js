@@ -19,27 +19,12 @@ const card = new Automated({
   set: 'corporate',
   desc,
   flavor: 'Taking advantage of dense population centers',
-  action: (player, game, done) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'megacredit', 4);
-    game.promptTile(player, { special: 'euro' }, tile => {
-      game.cardTile(player, card, tile);
-      done();
-    });
+  production: {
+    power: -1,
+    megacredit: 4
   },
-  canPlay: (player, game) => {
-    if (player.production.power < 1) {
-      return {
-        valid: false,
-        msg: 'Not enough enery production'
-      };
-    }
-    const valid = !!game.findPossibleTiles({ special: 'euro' }, player).length;
-
-    return {
-      valid,
-      msg: !valid ? 'Cannot place this tile' : null
-    };
+  tile: {
+    special: 'euro'
   },
   vp: (player, game) =>
     game

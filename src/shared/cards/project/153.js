@@ -15,7 +15,13 @@ export default new Active({
   flavor: 'Pushing the limits of the possible',
   vp: 1,
   emoji: '🥽',
-  todo: true,
+  action: player => {
+    const req = player.rates.requirement;
+    req.temperature = (req.temperature || 0) + 2;
+    req.oxygen = (req.oxygen || 0) + 2;
+    req.ocean = (req.ocean || 0) + 2;
+    req.venus = (req.venus || 0) + 2;
+  },
   activeLayout: (
     <div>
       <div className="flex center resources">

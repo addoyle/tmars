@@ -18,7 +18,7 @@ export default new Automated({
   set: 'promo',
   desc,
   flavor: 'Deuterium, diamonds, and delicacies',
-  action: (player, game) =>
+  production: (player, game) =>
     game.production(
       player,
       'megacredit',

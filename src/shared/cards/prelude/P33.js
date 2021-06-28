@@ -12,10 +12,10 @@ export default new Prelude({
   desc,
   flavor: 'Allowing you to speed up your colonization',
   emoji: '🪂',
-  action: (player, game) => {
-    game.resources(player, 'titanium', 3);
-    game.resources(player, 'steel', 8);
-    game.resources(player, 'plant', 3);
+  resources: {
+    titanium: 3,
+    steel: 8,
+    plant: 3
   },
   layout: (
     <div className="flex gutter m-bottom">

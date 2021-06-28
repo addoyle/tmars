@@ -15,7 +15,9 @@ export default new Automated({
   desc,
   flavor:
     "Mars' main export industry also supplies the planet with construction materials",
-  action: (player, game) => game.production(player, 'steel', 1),
+  production: {
+    steel: 1
+  },
   emoji: '⛏',
   layout: (
     <div className="flex gutter">

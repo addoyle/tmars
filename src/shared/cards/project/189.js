@@ -16,7 +16,7 @@ export default new Automated({
   tags: ['power'],
   desc,
   flavor: 'Minimizing urban energy spending',
-  action: (player, game) =>
+  production: (player, game) =>
     game.production(
       player,
       'power',

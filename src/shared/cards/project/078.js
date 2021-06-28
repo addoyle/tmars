@@ -11,10 +11,7 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'We need its water down here',
-  action: (player, game, done) =>
-    game.promptTile(player, 'ocean', () =>
-      game.promptTile(player, 'ocean', done)
-    ),
+  tile: ['ocean', 'ocean'],
   emoji: '☄',
   layout: (
     <div className="text-center">

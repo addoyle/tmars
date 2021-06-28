@@ -7,8 +7,6 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTION
-
 const activeDesc = 'Action: Spend 1 steel to gain 5 M€';
 const desc = 'Increase your titanium production 1 step.';
 
@@ -22,7 +20,9 @@ export default new Active({
   desc,
   flavor:
     'An ultra-strong cable car up to geo-stationary orbit, enabling reasonable export costs',
-  action: (player, game) => game.production(player, 'titanium', 1),
+  production: {
+    titanium: 1
+  },
   actions: [
     {
       name: 'Spend 1 Steel',

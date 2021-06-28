@@ -19,13 +19,8 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Investing in social events can open up new opportunities',
-  action: (player, game) => game.production(player, 'megacredit', -1),
-  canPlay: player => {
-    const valid = player.production.megacredit > -5;
-    return {
-      valid,
-      msg: !valid ? 'Not enough M€ production' : null
-    };
+  production: {
+    megacredit: -1
   },
   actions: [
     {

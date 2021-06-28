@@ -20,7 +20,8 @@ export default new Automated({
   },
   desc,
   flavor: 'Pollinating flowers and spreading seeds',
-  action: (player, game) => game.production(player, 'plant', player.tags.plant),
+  production: (player, game) =>
+    game.production(player, 'plant', player.tags.plant),
   emoji: '🐞',
   layout: (
     <div className="text-center">

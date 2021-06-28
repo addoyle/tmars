@@ -18,7 +18,9 @@ export default new Automated({
   },
   desc,
   flavor: 'State of the art technology',
-  action: (player, game) => game.production(player, 'power', 3),
+  production: {
+    player: 3
+  },
   emoji: '🔮',
   layout: (
     <div className="text-center">

@@ -20,9 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Lessens solar influx, but enhances plant growth',
-  action: (player, game, done) => {
-    game.production(player, 'megacredit', -1);
-    game.production(player, 'plant', 2);
+  action: (player, game, done) =>
     game.promptPlayer(
       player,
       'Pick a player to remove 1 heat production',
@@ -33,14 +31,10 @@ export default new Automated({
         done();
       },
       player => player.production.heat > 0
-    );
-  },
-  canPlay: player => {
-    const valid = player.production.megacredit > -5;
-    return {
-      valid,
-      msg: !valid ? 'M€ production too low' : null
-    };
+    ),
+  production: {
+    megacredit: -1,
+    plant: 2
   },
   emoji: '⛅',
   layout: (

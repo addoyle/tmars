@@ -17,9 +17,9 @@ export default new Prelude({
   desc,
   flavor: 'The greening of the red planet has begun',
   emoji: '🏡',
-  action: (player, game) => {
-    game.production(player, 'megacredit', -1);
-    game.production(player, 'plant', 2);
+  production: {
+    megacredit: -1,
+    plant: 2
   },
   layout: (
     <div className="flex gutter">

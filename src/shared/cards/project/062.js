@@ -13,7 +13,9 @@ export default new Event({
   desc,
   flavor:
     'Still mostly untouched, Mars offers easy access to many useful minerals',
-  action: (player, game) => game.resources(player, 'steel', 5),
+  resources: {
+    steel: 5
+  },
   emoji: '🧱',
   layout: (
     <div>

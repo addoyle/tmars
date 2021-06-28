@@ -20,7 +20,9 @@ export default new Automated({
   },
   desc,
   flavor: 'Your wide-spread influence results in a World Government contract',
-  action: (player, game) => game.production(player, 'steel', 2),
+  production: {
+    steel: 2
+  },
   emoji: '⚖',
   layout: (
     <div>

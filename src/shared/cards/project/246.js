@@ -18,8 +18,7 @@ export default new Event({
   desc,
   flavor:
     'Smash a heavy asteroid at a slanting angle to increase Venus’ rotation, reducing day length',
-  action: (player, game, done) =>
-    game.param(player, 'venus', () => game.param(player, 'venus', done)),
+  venus: ['venus', 'venus'],
   emoji: '☄',
   layout: (
     <div className="text-center">

@@ -17,9 +17,10 @@ export default new Automated({
   tags: ['space', 'city'],
   desc,
   flavor: 'The doorway to Mars',
-  action: (player, game, done) => {
-    game.production(player, 'titanium', 1);
-    game.placeTile(player, game.offMars.phobos, 'city', done);
+  action: (player, game, done) =>
+    game.placeTile(player, game.offMars.phobos, 'city', done),
+  production: {
+    titanium: 1
   },
   emoji: '🍄',
   vp: 3,

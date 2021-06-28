@@ -1,0 +1,1642 @@
+{
+  "id": "BLAM",
+  "sets": [
+    "corporate",
+    "prelude",
+    "promo"
+  ],
+  "players": [
+    {
+      "name": "Andy",
+      "number": 1,
+      "tr": 20,
+      "resources": {
+        "megacredit": 19,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "production": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "tags": {
+        "building": 1,
+        "space": 0,
+        "power": 0,
+        "science": 0,
+        "jovian": 0,
+        "earth": 0,
+        "plant": 0,
+        "microbe": 0,
+        "animal": 0,
+        "city": 0,
+        "venus": 0,
+        "event": 0
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [
+          {
+            "card": "160"
+          },
+          {
+            "card": "007"
+          },
+          {
+            "card": "013"
+          },
+          {
+            "card": "X31"
+          },
+          {
+            "card": "002"
+          },
+          {
+            "card": "045"
+          },
+          {
+            "card": "156"
+          },
+          {
+            "card": "X18"
+          }
+        ],
+        "draft": [],
+        "active": [],
+        "buy": [],
+        "automated": [],
+        "event": [],
+        "corp": [
+          {
+            "card":"CORP08",
+            "select": false
+          }
+        ],
+        "prelude": [
+          {
+            "card": "P34",
+            "select": false
+          },
+          {
+            "card": "P35",
+            "select": false
+          }
+        ],
+        "onDeck": []
+      },
+      "ui": {
+        "drawer": "prelude"
+      },
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8,
+        "ocean": 2,
+        "requirement": {},
+        "cost": {}
+      },
+      "passed": false,
+      "firstAction": true,
+      "startingAction": true,
+      "score": {}
+    },
+    {
+      "name": "Jane",
+      "number": 2,
+      "tr": 20,
+      "resources": {
+        "megacredit": 33,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 0,
+        "heat": 0
+      },
+      "production": {
+        "megacredit": 0,
+        "steel": 0,
+        "titanium": 0,
+        "plant": 0,
+        "power": 1,
+        "heat": 0
+      },
+      "tags": {
+        "building": 0,
+        "space": 0,
+        "power": 1,
+        "science": 0,
+        "jovian": 0,
+        "earth": 0,
+        "plant": 0,
+        "microbe": 0,
+        "animal": 0,
+        "city": 0,
+        "venus": 0,
+        "event": 0
+      },
+      "tiles": {
+        "city": 0,
+        "greenery": 0,
+        "special": 0
+      },
+      "cards": {
+        "hand": [
+          {
+            "card": "122"
+          },
+          {
+            "card": "009"
+          },
+          {
+            "card": "144"
+          },
+          {
+            "card": "069"
+          },
+          {
+            "card": "150"
+          }
+        ],
+        "draft": [],
+        "active": [],
+        "buy": [],
+        "automated": [],
+        "event": [],
+        "corp": [
+          {
+            "card": "CORP09",
+            "select": false
+          }
+        ],
+        "prelude": [
+          {
+            "card": "P30",
+            "select": false
+          },
+          {
+            "card": "P14",
+            "select": false
+          }
+        ],
+        "onDeck": []
+      },
+      "ui": {
+        "drawer": "prelude"
+      },
+      "rates": {
+        "steel": 2,
+        "titanium": 3,
+        "buy": 3,
+        "plant": 8,
+        "heat": 8,
+        "ocean": 2,
+        "requirement": {},
+        "cost": {
+          "power": -3
+        },
+        "powerplant": 8
+      },
+      "passed": false,
+      "firstAction": true,
+      "startingAction": true,
+      "score": {}
+    }
+  ],
+  "turn": 2,
+  "startingPlayer": 2,
+  "params": {
+    "temperature": -30,
+    "oxygen": 0,
+    "ocean": 9,
+    "generation": 1,
+    "venus": 0
+  },
+  "variants": {
+    "draft": true,
+    "corporate": true,
+    "wgt": false
+  },
+  "board": "Elysium",
+  "field": [
+    [
+      {
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 0
+      },
+      {
+        "resources": [
+          "titanium"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 1
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 2
+      },
+      {
+        "resources": [
+          "steel"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 3
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "id": 4
+      }
+    ],
+    [
+      {
+        "resources": [
+          "titanium"
+        ],
+        "text": "Hecates Tholus",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 5
+      },
+      {
+        "id": 6
+      },
+      {
+        "id": 7
+      },
+      {
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 8
+      },
+      {
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 9
+      },
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "id": 10
+      }
+    ],
+    [
+      {
+        "resources": [
+          "titanium",
+          "titanium"
+        ],
+        "text": "Elysium Mons",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 11
+      },
+      {
+        "id": 12
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "id": 13
+      },
+      {
+        "id": 14
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 15
+      },
+      {
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 16
+      },
+      {
+        "resources": [
+          "card",
+          "card",
+          "card"
+        ],
+        "text": "Olympus Mons",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 17
+      }
+    ],
+    [
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 18
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 19
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 20
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 21
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 22
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 23
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 24
+      },
+      {
+        "resources": [
+          "plant",
+          "steel"
+        ],
+        "id": 25
+      }
+    ],
+    [
+      {
+        "resources": [
+          "plant",
+          0,
+          "plant"
+        ],
+        "id": 26
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 27
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 28
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "attrs": [
+          "reserved-ocean"
+        ],
+        "id": 29
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 30
+      },
+      {
+        "resources": [
+          "plant",
+          "plant",
+          "plant"
+        ],
+        "id": 31
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 32
+      },
+      {
+        "resources": [
+          "plant",
+          "plant"
+        ],
+        "id": 33
+      },
+      {
+        "resources": [
+          "titanium",
+          "plant"
+        ],
+        "text": "Arsia Mons",
+        "attrs": [
+          "volcano"
+        ],
+        "id": 34
+      }
+    ],
+    [
+      {
+        "resources": [
+          "steel"
+        ],
+        "id": 35
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 36
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 37
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 38
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 39
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 40
+      },
+      {
+        "resources": [
+          "plant"
+        ],
+        "id": 41
+      },
+      {
+        "id": 42
+      }
+    ],
+    [
+      {
+        "resources": [
+          "titanium"
+        ],
+        "id": 43
+      },
+      {
+        "resources": [
+          "steel"
+        ],
+        "id": 44
+      },
+      {
+        "id": 45
+      },
+      {
+        "id": 46
+      },
+      {
+        "resources": [
+          "steel"
+        ],
+        "id": 47
+      },
+      {
+        "id": 48
+      },
+      {
+        "id": 49
+      }
+    ],
+    [
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "id": 50
+      },
+      {
+        "id": 51
+      },
+      {
+        "id": 52
+      },
+      {
+        "id": 53
+      },
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "id": 54
+      },
+      {
+        "id": 55
+      }
+    ],
+    [
+      {
+        "resources": [
+          "steel"
+        ],
+        "id": 56
+      },
+      {
+        "id": 57
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "id": 58
+      },
+      {
+        "resources": [
+          "card"
+        ],
+        "id": 59
+      },
+      {
+        "resources": [
+          "steel",
+          "steel"
+        ],
+        "id": 60
+      }
+    ]
+  ],
+  "milestones": [],
+  "awards": [],
+  "phase": "prelude",
+  "endGame": false,
+  "offMars": {
+    "ganymede": {},
+    "phobos": {},
+    "torus": {},
+    "maxwell": {},
+    "stratopolis": {},
+    "luna": {},
+    "dawn": {}
+  },
+  "log": [
+    {
+      "player": 0,
+      "body": "Welcome to Terraforming Mars!",
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "You are terraforming **Elysium**, ",
+        "the other side of mars!"
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        "Please select 1 ",
+        {
+          "corp": "Corporation",
+          "drawer": "corp"
+        },
+        ", 2 ",
+        {
+          "prelude": "Preludes",
+          "drawer": "prelude"
+        },
+        ", ",
+        "and buy cards for your ",
+        {
+          "project": "starting hand",
+          "drawer": "hand"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": " will be your starting player!",
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " bought 5 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " bought 7 cards ",
+        {
+          "param": "card back"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " is representing ",
+        {
+          "corp": "CORP09"
+        },
+        " and bought 5 projects."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " is representing ",
+        {
+          "corp": "CORP08"
+        },
+        " and bought 7 projects."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "prelude": "PRELUDE PHASE",
+          "drawer": "prelude"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "prelude-phase"
+        ]
+      }
+    },
+    {
+      "player": 0,
+      "body": [
+        "Reveal your ",
+        {
+          "prelude": "preludes",
+          "drawer": "prelude"
+        },
+        "."
+      ],
+      "system": true
+    }
+  ],
+  "cards": {
+    "deck": [
+      {
+        "card": "111"
+      },
+      {
+        "card": "025"
+      },
+      {
+        "card": "X17"
+      },
+      {
+        "card": "021"
+      },
+      {
+        "card": "P41"
+      },
+      {
+        "card": "201"
+      },
+      {
+        "card": "028"
+      },
+      {
+        "card": "113"
+      },
+      {
+        "card": "147"
+      },
+      {
+        "card": "049"
+      },
+      {
+        "card": "171"
+      },
+      {
+        "card": "085"
+      },
+      {
+        "card": "146"
+      },
+      {
+        "card": "153"
+      },
+      {
+        "card": "082"
+      },
+      {
+        "card": "138"
+      },
+      {
+        "card": "211"
+      },
+      {
+        "card": "188"
+      },
+      {
+        "card": "005"
+      },
+      {
+        "card": "161"
+      },
+      {
+        "card": "073"
+      },
+      {
+        "card": "099"
+      },
+      {
+        "card": "143"
+      },
+      {
+        "card": "110"
+      },
+      {
+        "card": "X32"
+      },
+      {
+        "card": "087"
+      },
+      {
+        "card": "010"
+      },
+      {
+        "card": "P37"
+      },
+      {
+        "card": "036"
+      },
+      {
+        "card": "X08"
+      },
+      {
+        "card": "046"
+      },
+      {
+        "card": "162"
+      },
+      {
+        "card": "003"
+      },
+      {
+        "card": "037"
+      },
+      {
+        "card": "195"
+      },
+      {
+        "card": "114"
+      },
+      {
+        "card": "029"
+      },
+      {
+        "card": "X30"
+      },
+      {
+        "card": "169"
+      },
+      {
+        "card": "X33"
+      },
+      {
+        "card": "136"
+      },
+      {
+        "card": "008"
+      },
+      {
+        "card": "047"
+      },
+      {
+        "card": "080"
+      },
+      {
+        "card": "097"
+      },
+      {
+        "card": "159"
+      },
+      {
+        "card": "197"
+      },
+      {
+        "card": "X01"
+      },
+      {
+        "card": "104"
+      },
+      {
+        "card": "204"
+      },
+      {
+        "card": "055"
+      },
+      {
+        "card": "128"
+      },
+      {
+        "card": "092"
+      },
+      {
+        "card": "P39"
+      },
+      {
+        "card": "X13"
+      },
+      {
+        "card": "115"
+      },
+      {
+        "card": "105"
+      },
+      {
+        "card": "X07"
+      },
+      {
+        "card": "131"
+      },
+      {
+        "card": "140"
+      },
+      {
+        "card": "158"
+      },
+      {
+        "card": "119"
+      },
+      {
+        "card": "117"
+      },
+      {
+        "card": "X16"
+      },
+      {
+        "card": "103"
+      },
+      {
+        "card": "035"
+      },
+      {
+        "card": "151"
+      },
+      {
+        "card": "142"
+      },
+      {
+        "card": "192"
+      },
+      {
+        "card": "175"
+      },
+      {
+        "card": "X26"
+      },
+      {
+        "card": "090"
+      },
+      {
+        "card": "071"
+      },
+      {
+        "card": "062"
+      },
+      {
+        "card": "067"
+      },
+      {
+        "card": "034"
+      },
+      {
+        "card": "132"
+      },
+      {
+        "card": "X03"
+      },
+      {
+        "card": "166"
+      },
+      {
+        "card": "208"
+      },
+      {
+        "card": "129"
+      },
+      {
+        "card": "040"
+      },
+      {
+        "card": "149"
+      },
+      {
+        "card": "X20"
+      },
+      {
+        "card": "X11"
+      },
+      {
+        "card": "X37"
+      },
+      {
+        "card": "152"
+      },
+      {
+        "card": "X23"
+      },
+      {
+        "card": "P36"
+      },
+      {
+        "card": "205"
+      },
+      {
+        "card": "X29"
+      },
+      {
+        "card": "134"
+      },
+      {
+        "card": "X19"
+      },
+      {
+        "card": "141"
+      },
+      {
+        "card": "098"
+      },
+      {
+        "card": "168"
+      },
+      {
+        "card": "091"
+      },
+      {
+        "card": "094"
+      },
+      {
+        "card": "086"
+      },
+      {
+        "card": "095"
+      },
+      {
+        "card": "063"
+      },
+      {
+        "card": "183"
+      },
+      {
+        "card": "124"
+      },
+      {
+        "card": "112"
+      },
+      {
+        "card": "068"
+      },
+      {
+        "card": "X06"
+      },
+      {
+        "card": "018"
+      },
+      {
+        "card": "079"
+      },
+      {
+        "card": "198"
+      },
+      {
+        "card": "184"
+      },
+      {
+        "card": "200"
+      },
+      {
+        "card": "100"
+      },
+      {
+        "card": "X12"
+      },
+      {
+        "card": "096"
+      },
+      {
+        "card": "044"
+      },
+      {
+        "card": "050"
+      },
+      {
+        "card": "064"
+      },
+      {
+        "card": "185"
+      },
+      {
+        "card": "059"
+      },
+      {
+        "card": "145"
+      },
+      {
+        "card": "027"
+      },
+      {
+        "card": "X04"
+      },
+      {
+        "card": "155"
+      },
+      {
+        "card": "016"
+      },
+      {
+        "card": "157"
+      },
+      {
+        "card": "070"
+      },
+      {
+        "card": "026"
+      },
+      {
+        "card": "125"
+      },
+      {
+        "card": "148"
+      },
+      {
+        "card": "133"
+      },
+      {
+        "card": "057"
+      },
+      {
+        "card": "093"
+      },
+      {
+        "card": "051"
+      },
+      {
+        "card": "030"
+      },
+      {
+        "card": "081"
+      },
+      {
+        "card": "033"
+      },
+      {
+        "card": "165"
+      },
+      {
+        "card": "172"
+      },
+      {
+        "card": "012"
+      },
+      {
+        "card": "043"
+      },
+      {
+        "card": "X10"
+      },
+      {
+        "card": "054"
+      },
+      {
+        "card": "P38"
+      },
+      {
+        "card": "108"
+      },
+      {
+        "card": "181"
+      },
+      {
+        "card": "052"
+      },
+      {
+        "card": "032"
+      },
+      {
+        "card": "154"
+      },
+      {
+        "card": "179"
+      },
+      {
+        "card": "X24"
+      },
+      {
+        "card": "170"
+      },
+      {
+        "card": "038"
+      },
+      {
+        "card": "X28"
+      },
+      {
+        "card": "017"
+      },
+      {
+        "card": "174"
+      },
+      {
+        "card": "X14"
+      },
+      {
+        "card": "130"
+      },
+      {
+        "card": "006"
+      },
+      {
+        "card": "212"
+      },
+      {
+        "card": "116"
+      },
+      {
+        "card": "066"
+      },
+      {
+        "card": "031"
+      },
+      {
+        "card": "207"
+      },
+      {
+        "card": "020"
+      },
+      {
+        "card": "176"
+      },
+      {
+        "card": "199"
+      },
+      {
+        "card": "101"
+      },
+      {
+        "card": "076"
+      },
+      {
+        "card": "X21"
+      },
+      {
+        "card": "163"
+      },
+      {
+        "card": "041"
+      },
+      {
+        "card": "X22"
+      },
+      {
+        "card": "084"
+      },
+      {
+        "card": "014"
+      },
+      {
+        "card": "048"
+      },
+      {
+        "card": "173"
+      },
+      {
+        "card": "042"
+      },
+      {
+        "card": "126"
+      },
+      {
+        "card": "077"
+      },
+      {
+        "card": "X36"
+      },
+      {
+        "card": "107"
+      },
+      {
+        "card": "024"
+      },
+      {
+        "card": "182"
+      },
+      {
+        "card": "011"
+      },
+      {
+        "card": "078"
+      },
+      {
+        "card": "X34"
+      },
+      {
+        "card": "189"
+      },
+      {
+        "card": "004"
+      },
+      {
+        "card": "186"
+      },
+      {
+        "card": "060"
+      },
+      {
+        "card": "180"
+      },
+      {
+        "card": "075"
+      },
+      {
+        "card": "206"
+      },
+      {
+        "card": "P40"
+      },
+      {
+        "card": "056"
+      },
+      {
+        "card": "190"
+      },
+      {
+        "card": "X05"
+      },
+      {
+        "card": "196"
+      },
+      {
+        "card": "015"
+      },
+      {
+        "card": "001"
+      },
+      {
+        "card": "039"
+      },
+      {
+        "card": "194"
+      },
+      {
+        "card": "109"
+      },
+      {
+        "card": "167"
+      },
+      {
+        "card": "P42"
+      },
+      {
+        "card": "089"
+      },
+      {
+        "card": "139"
+      },
+      {
+        "card": "209"
+      },
+      {
+        "card": "137"
+      },
+      {
+        "card": "178"
+      },
+      {
+        "card": "X02"
+      },
+      {
+        "card": "164"
+      },
+      {
+        "card": "177"
+      },
+      {
+        "card": "120"
+      },
+      {
+        "card": "083"
+      },
+      {
+        "card": "106"
+      },
+      {
+        "card": "072"
+      },
+      {
+        "card": "X25"
+      },
+      {
+        "card": "X15"
+      },
+      {
+        "card": "061"
+      },
+      {
+        "card": "191"
+      },
+      {
+        "card": "053"
+      },
+      {
+        "card": "023"
+      },
+      {
+        "card": "123"
+      },
+      {
+        "card": "X27"
+      },
+      {
+        "card": "118"
+      },
+      {
+        "card": "019"
+      },
+      {
+        "card": "121"
+      },
+      {
+        "card": "127"
+      },
+      {
+        "card": "102"
+      },
+      {
+        "card": "187"
+      },
+      {
+        "card": "210"
+      },
+      {
+        "card": "065"
+      }
+    ],
+    "discard": [
+      {
+        "card": "074"
+      },
+      {
+        "card": "202"
+      },
+      {
+        "card": "022"
+      },
+      {
+        "card": "058"
+      },
+      {
+        "card": "203"
+      },
+      {
+        "card": "135"
+      },
+      {
+        "card": "193"
+      },
+      {
+        "card": "088"
+      }
+    ],
+    "corps": [
+      {
+        "card":"CORP02"
+      },
+      {
+        "card":"CORP03"
+      },
+      {
+        "card":"CORP14"
+      },
+      {
+        "card":"CORP04"
+      },
+      {
+        "card":"CORP05"
+      },
+      {
+        "card":"CORP12"
+      },
+      {
+        "card":"CORP01"
+      },
+      {
+        "card":"CORPX2"
+      },
+      {
+        "card":"CORPP1"
+      },
+      {
+        "card":"CORPP4"
+      },
+      {
+        "card":"CORPX1"
+      },
+      {
+        "card":"CORPX4"
+      },
+      {
+        "card":"CORPP3"
+      },
+      {
+        "card":"CORP11"
+      },
+      {
+        "card":"CORP15"
+      },
+      {
+        "card":"CORPP5"
+      },
+      {
+        "card":"CORPX5"
+      },
+      {
+        "card":"CORPP2"
+      },
+      {
+        "card":"CORP06"
+      },
+      {
+        "card":"CORP07"
+      },
+      {
+        "card":"CORPX3"
+      }
+    ],
+    "preludes": [
+      {
+        "card": "P16"
+      },
+      {
+        "card": "P12"
+      },
+      {
+        "card": "P09"
+      },
+      {
+        "card": "P20"
+      },
+      {
+        "card": "P33"
+      },
+      {
+        "card": "P01"
+      },
+      {
+        "card": "P24"
+      },
+      {
+        "card": "P06"
+      },
+      {
+        "card": "P27"
+      },
+      {
+        "card": "P28"
+      },
+      {
+        "card": "P14"
+      },
+      {
+        "card": "P22"
+      },
+      {
+        "card": "P26"
+      },
+      {
+        "card": "P07"
+      },
+      {
+        "card": "P18"
+      },
+      {
+        "card": "P25"
+      },
+      {
+        "card": "P15"
+      },
+      {
+        "card": "P21"
+      },
+      {
+        "card": "P10"
+      },
+      {
+        "card": "P23"
+      },
+      {
+        "card": "P08"
+      },
+      {
+        "card": "P02"
+      },
+      {
+        "card": "P32"
+      },
+      {
+        "card": "P31"
+      },
+      {
+        "card": "P13"
+      },
+      {
+        "card": "P05"
+      },
+      {
+        "card": "P17"
+      }
+    ]
+  }
+}

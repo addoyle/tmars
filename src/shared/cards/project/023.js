@@ -18,7 +18,9 @@ export default new Active({
   desc,
   activeDesc,
   flavor: 'Suitable for freezing temperatures',
-  action: (player, game) => game.resources(player, 'plant', 1),
+  resources: {
+    plant: 1
+  },
   events: {
     onAnyTile: (player, game, tile) =>
       // Is an city

@@ -21,7 +21,10 @@ export default new Active({
   activeLayout: (
     <div>
       <div className="resources text-center">
-        <span className="standard-project">Standard projects</span>:
+        <span className="standard-project" style={{ whiteSpace: 'initial' }}>
+          Standard projects
+        </span>
+        :
         <MegaCredit value="3" />
       </div>
       <div className="description text-center">{activeDesc}</div>

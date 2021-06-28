@@ -18,6 +18,11 @@ const ProjectLayout = props => {
   if (props.restriction) {
     const res = cloneDeep(props.restriction);
 
+    // Any optional text
+    if (res.text) {
+      restriction.push({ text: res.text });
+    }
+
     // Maximum restriction, append the word 'max'
     if (res.max) {
       restriction.push({ text: 'max' });
@@ -81,12 +86,7 @@ const ProjectLayout = props => {
   }
 
   return (
-    <CardLayout
-      type={props.type}
-      set={props.set}
-      todo={props.todo}
-      landscape={props.type === 'prelude'}
-    >
+    <CardLayout {...props} landscape={props.type === 'prelude'}>
       <div className="project">
         <div className="header">
           {props.type !== 'prelude' ? (
@@ -107,12 +107,7 @@ const ProjectLayout = props => {
           <div className="flavor">{props.flavor}</div>
         </div>
       </div>
-      {props.type !== 'prelude' ? (
-        <MegaCredit
-          value={props.modifiedCost}
-          modified={props.modifiedCost !== props.cost}
-        />
-      ) : null}
+      {props.type !== 'prelude' ? <MegaCredit value={props.cost} /> : null}
       <div className="tags">
         {props.tags.map((tag, i) => (
           <Tag key={i} name={tag} />
@@ -124,9 +119,10 @@ const ProjectLayout = props => {
 
 ProjectLayout.propTypes = {
   title: PropTypes.string.isRequired,
-  number: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  number: PropTypes.string.isRequired,
   cost: PropTypes.number,
   restriction: PropTypes.shape({
+    text: PropTypes.string,
     max: PropTypes.bool,
     param: PropTypes.string,
     tag: PropTypes.oneOfType([
@@ -153,7 +149,8 @@ ProjectLayout.propTypes = {
   layout: PropTypes.node.isRequired,
   flavor: PropTypes.string,
   todo: PropTypes.bool,
-  modifiedCost: PropTypes.number
+  modifiedCost: PropTypes.number,
+  showZoom: PropTypes.bool
 };
 
 export default ProjectLayout;

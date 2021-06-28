@@ -12,11 +12,7 @@ export default new Prelude({
   desc,
   flavor: 'You found a big one!',
   emoji: '🌊️',
-  action: (player, game, done) => {
-    game.promptTile(player, 'ocean', () =>
-      game.promptTile(player, 'ocean', done)
-    );
-  },
+  tile: ['ocean', 'ocean'],
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-center middle">

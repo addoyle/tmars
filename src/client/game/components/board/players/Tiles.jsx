@@ -62,17 +62,7 @@ const Tiles = props => {
       </div>
 
       <div className="flex section middle m-top">
-        <div className="flex middle">
-          <Tooltip title="All city tiles" arrow>
-            <div className="resources col-1 text-right middle">
-              <span>
-                {onMarsCount({ type: 'city', anyone }) +
-                  offMarsCount({ type: 'city', anyone })}
-              </span>
-              <Tile name="city" anyone />
-            </div>
-          </Tooltip>
-
+        <div className="flex middle col-1">
           <Tooltip title="Total owned tiles" arrow>
             <div className="resources col-1 text-right middle flex center-items">
               <span>
@@ -88,12 +78,22 @@ const Tiles = props => {
               </Tile>
             </div>
           </Tooltip>
+
+          <Tooltip title="All city tiles" arrow>
+            <div className="resources col-1 text-right middle">
+              <span>
+                {onMarsCount({ type: 'city', anyone }) +
+                  offMarsCount({ type: 'city', anyone })}
+              </span>
+              <Tile name="city" anyone />
+            </div>
+          </Tooltip>
         </div>
 
-        <div className="on-mars flex">
+        <div className="on-mars flex col-1">
           {[{ type: 'city' }, { type: 'city', anyone }].map((tile, i) => (
             <Tooltip
-              title={`${tile.anyone ? 'All ' : ''}${capitalize(
+              title={`${tile.anyone ? 'All ' : 'Your '}${capitalize(
                 tile.type
               )} tiles ON MARS`}
               arrow

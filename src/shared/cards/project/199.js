@@ -19,17 +19,8 @@ export default new Active({
   desc,
   flavor:
     'A place to conduct secret research, preventing the wrong people from getting in. Or out',
-  action: (player, game, done) => {
-    game.promptTile(player, { special: 'restricted' }, done);
-  },
-  canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles({ special: 'restricted' }, player)
-      .length;
-
-    return {
-      valid,
-      msg: !valid ? 'Cannot place this tile' : null
-    };
+  tile: {
+    special: 'restricted'
   },
   actions: [
     {

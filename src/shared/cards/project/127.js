@@ -12,7 +12,7 @@ export default new Event({
   desc,
   flavor:
     "Also known as an aquifer. Burst one open and you've got a lot of water",
-  action: (player, game, done) => game.promptTile(player, 'ocean', done),
+  tile: 'ocean',
   emoji: '🌊',
   layout: (
     <div className="text-center">

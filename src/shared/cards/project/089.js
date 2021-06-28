@@ -16,16 +16,9 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'The Martian ground is full of oxidizing agents',
-  action: (player, game) => {
-    game.production(player, 'megacredit', -1);
-    game.production(player, 'power', 2);
-  },
-  canPlay: player => {
-    const valid = player.resources.megacredit > -5;
-    return {
-      valid,
-      msg: !valid ? 'Not enough M€ production' : null
-    };
+  production: {
+    megacredit: -1,
+    power: 2
   },
   emoji: '🏭',
   layout: (

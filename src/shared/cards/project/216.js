@@ -19,10 +19,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Examining the extreme environment at the lowest elevation on Venus',
-  action: (player, game) => {
-    game.drawCard(player);
-    game.drawCard(player);
-  },
+  drawCard: 2,
   vp: 2,
   emoji: '❄️',
   layout: (

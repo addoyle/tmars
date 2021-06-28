@@ -15,6 +15,10 @@ $title-font: 'Prototype', sans-serif;
     &.empty {
       bottom: calc(20vh + 8px);
     }
+
+    &.buy {
+      bottom: calc(80vh + 8px);
+    }
   }
 
   .control {

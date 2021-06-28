@@ -19,7 +19,9 @@ export default new Automated({
   },
   desc,
   flavor: 'Well, see, first you need some waves...',
-  action: (player, game) => game.production(player, 'power', 1),
+  production: {
+    power: 1
+  },
   vp: 1,
   emoji: '🌊',
   layout: (

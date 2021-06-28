@@ -17,7 +17,9 @@ export default new Automated({
   tags: ['earth', 'space'],
   desc,
   flavor: 'The new world attracts ever more immigrants from the old',
-  action: (player, game) => game.production(player, 'megacredit', 5),
+  production: {
+    megacredit: 5
+  },
   vp: (player, game) =>
     Math.floor(
       game.field

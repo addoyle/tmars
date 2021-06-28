@@ -17,9 +17,11 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'Allowing access to the harsh Venusian environment',
-  action: (player, game) => {
-    game.production(player, 'megacredit', 2);
+  action: () => {
     // TODO figure out how to add resource to a venus card
+  },
+  production: {
+    megacredit: 2
   },
   emoji: '👨‍🚀',
   todo: true,

@@ -18,10 +18,9 @@ export default new Automated({
   set: 'venus',
   desc,
   flavor: 'We have too much of it anyway',
-  action: (player, game, done) => {
-    game.production(player, 'megacredit', player.tags.venus);
-    game.param(player, 'venus', done);
-  },
+  production: (player, game) =>
+    game.production(player, 'megacredit', player.tags.venus),
+  venus: ['venus'],
   emoji: '🍯',
   layout: (
     <div className="flex">

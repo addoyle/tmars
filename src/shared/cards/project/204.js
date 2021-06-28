@@ -12,10 +12,7 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Testing launch techniques, space hardware, and whatnot',
-  action: (player, game) => {
-    game.drawCard(player);
-    game.drawCard(player);
-  },
+  drawCard: 2,
   emoji: '💡',
   layout: (
     <div className="text-center">

@@ -19,16 +19,11 @@ export default new Automated({
   },
   desc,
   flavor: 'Efficient soil makers',
-  action: (player, game) => {
-    game.resources(player, 'plant', -1);
-    game.production(player, 'plant', 1);
+  resources: {
+    plant: -1
   },
-  canPlay: player => {
-    const valid = player.resources.plant > 0;
-    return {
-      valid,
-      msg: !valid ? 'Requires at least one plant resource' : null
-    };
+  production: {
+    plant: 1
   },
   emoji: '🥦',
   layout: (

@@ -20,7 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Burning wood is easy',
-  action: (player, game, done) =>
+  production: (player, game, done) =>
     game.promptPlayer(
       player,
       'Pick a player to remove 1 plant production',

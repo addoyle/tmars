@@ -5,16 +5,8 @@ import {
   Tile
 } from '../../../client/game/components/assets/Assets';
 
-// TODO ACTTION
-
 const activeDesc = 'Effect: When you play a card, you pay 1 M€ less for it.';
 const desc = 'Place a city tile NEXT TO NO OTHER TILE.';
-
-const customFilter = (tile, game, notReserved, neighbors) =>
-  // Not reserved
-  notReserved(tile) &&
-  // No neighbors
-  !neighbors.filter(t => t.name).length;
 
 export default new Active({
   number: '020',
@@ -23,24 +15,14 @@ export default new Active({
   tags: ['science', 'city', 'building'],
   desc,
   flavor: 'Finding new ways to do things',
-  action: (player, game, done) => {
-    game.promptTile(
-      player,
-      'city',
-      () => {
-        player.rates.cost.all = (player.rates.cost.all || 0) - 1;
-        done();
-      },
-      customFilter
-    );
-  },
-  canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles('city', player, customFilter).length;
-
-    return {
-      valid,
-      msg: !valid ? 'No spaces exist that are next to no other tile' : null
-    };
+  action: player => (player.rates.cost.all = (player.rates.cost.all || 0) - 1),
+  tile: {
+    tile: 'city',
+    filter: (tile, game, notReserved, neighbors) =>
+      // Not reserved
+      notReserved(tile) &&
+      // No neighbors
+      !neighbors.filter(t => t.name).length
   },
   emoji: '🏢',
   activeLayout: (

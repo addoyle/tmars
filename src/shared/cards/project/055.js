@@ -22,10 +22,12 @@ export default new Automated({
   desc,
   flavor:
     'The newly formed oceans are very rich in minerals, perfect for food production',
-  action: (player, game) => {
-    game.production(player, 'megacredit', 2);
-    game.production(player, 'plant', 3);
-    game.resources(player, 'plant', 2);
+  resources: {
+    plant: 2
+  },
+  production: {
+    megacredit: 2,
+    plant: 3
   },
   vp: 1,
   emoji: '🌿',

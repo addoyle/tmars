@@ -31,7 +31,7 @@ export default new Event({
           game.resources(targetPlayer, 'megacredit', -3);
 
           // Put in target player's events
-          targetPlayer.cards.event.push({ card: 'X06' });
+          targetPlayer.cards.event.push({ card: this.number });
           targetPlayer.tags.event++;
         }
         done();

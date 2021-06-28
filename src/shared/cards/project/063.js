@@ -12,22 +12,22 @@ export default new Event({
   tags: ['event'],
   desc,
   flavor: 'Ruthlessly excavating rich areas',
-  action: (player, game, done) => {
-    game.resources(player, 'steel', 2);
-    game.param(player, 'oxygen', () =>
-      game.promptPlayer(
-        player,
-        'Pick a player to remove up to 2 plants',
-        [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
-        ['took 2 plants ', { resource: 'plant' }, ' from'],
-        targetPlayer => {
-          targetPlayer && game.resources(targetPlayer, 'plant', -2);
-          done();
-        },
-        player => player.resources.plant > 0,
-        done
-      )
-    );
+  action: (player, game, done) =>
+    game.promptPlayer(
+      player,
+      'Pick a player to remove up to 2 plants',
+      [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
+      ['took 2 plants ', { resource: 'plant' }, ' from'],
+      targetPlayer => {
+        targetPlayer && game.resources(targetPlayer, 'plant', -2);
+        done();
+      },
+      player => player.resources.plant > 0,
+      done
+    ),
+  param: ['oxygen'],
+  resources: {
+    steel: 2
   },
   emoji: '🏗',
   layout: (

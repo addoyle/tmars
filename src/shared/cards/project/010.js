@@ -17,23 +17,21 @@ export default new Event({
   desc,
   flavor: 'Prepare to be cratered!',
   action: (player, game, done) => {
-    game.param(player, 'temperature', () =>
-      game.promptTile(player, 'ocean', () =>
-        game.promptPlayer(
-          player,
-          'Pick a player to remove up to 3 plants',
-          [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
-          ['took 3 plants ', { resource: 'plant' }, ' from'],
-          targetPlayer => {
-            targetPlayer && game.resources(targetPlayer, 'plant', -3);
-            done();
-          },
-          player => player.resources.plant > 0,
-          done
-        )
-      )
+    game.promptPlayer(
+      player,
+      'Pick a player to remove up to 3 plants',
+      [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
+      ['took 3 plants ', { resource: 'plant' }, ' from'],
+      targetPlayer => {
+        targetPlayer && game.resources(targetPlayer, 'plant', -3);
+        done();
+      },
+      player => player.resources.plant > 0,
+      done
     );
   },
+  param: ['temperature'],
+  tile: 'ocean',
   emoji: '☄',
   layout: (
     <div className="flex gutter m-top m-bottom">

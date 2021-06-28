@@ -17,7 +17,7 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Licensed by the ‘government’',
-  action: (player, game) =>
+  production: (player, game) =>
     game.production(
       player,
       'megacredit',

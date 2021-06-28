@@ -17,25 +17,11 @@ export default new Automated({
   desc,
   flavor:
     'Excavating is expensive, but given both protection and building materials',
-  action: (player, game, done) => {
-    game.production(player, 'power', -2);
-    game.production(player, 'steel', 2);
-    game.promptTile(player, 'city', done);
+  production: {
+    power: -2,
+    steel: 2
   },
-  canPlay: (player, game) => {
-    if (player.production.power < 2) {
-      return {
-        valid: false,
-        msg: 'Not enough energy production'
-      };
-    }
-
-    const valid = !!game.findPossibleTiles('city', player).length;
-    return {
-      valid,
-      msg: !valid ? 'Cannot place city tile' : null
-    };
-  },
+  tile: 'city',
   emoji: '🚇',
   layout: (
     <div className="flex">

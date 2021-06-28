@@ -15,9 +15,11 @@ export default new Event({
   set: 'corporate',
   desc,
   flavor: 'Greenhouse gases (GHGs) to retain the heat',
-  action: (player, game) => {
-    game.production(player, 'heat', 1);
-    game.resources(player, 'heat', 3);
+  resources: {
+    heat: 3
+  },
+  production: {
+    heat: 1
   },
   emoji: '🍾',
   layout: (

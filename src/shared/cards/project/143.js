@@ -18,11 +18,11 @@ export default new Event({
   desc,
   flavor: 'Huge delivery from Earth',
   action: (player, game, done) => {
-    game.drawCard(player);
-    game.drawCard(player);
     // TODO figure out the or thing
-    game.promptTile(player, 'ocean', done);
+    console.log(done);
   },
+  drawCard: 2,
+  tile: 'ocean',
   vp: 2,
   emoji: '📦',
   todo: true,

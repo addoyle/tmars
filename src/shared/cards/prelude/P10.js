@@ -15,11 +15,39 @@ export default new Prelude({
   desc,
   flavor: 'I had no idea that you could actually do that',
   emoji: '♻️',
-  todo: true,
   action: (player, game, done) => {
-    game.production(player, 'plant', 1);
     // TODO: Figure out how to skip global requirements
     game.promptCard(player, done);
+
+    // Set modifier to some high number as to bypass any checks
+    const req = player.rates.requirement;
+    req.temperature = (req.temperature || 0) + 100;
+    req.oxygen = (req.temperature || 0) + 100;
+    req.ocean = (req.ocean || 0) + 100;
+    req.venus = (req.venus || 0) + 100;
+
+    // Add a flag to keep track of if the card has been played
+    player.cards.prelude.find(
+      c => c.card === this.number
+    ).nextCardPlayed = false;
+  },
+  events: {
+    onCardPlayed: player => {
+      const card = player.cards.prelude.find(c => c.card === this.number);
+
+      if (!card.nextCardPlayed) {
+        const req = player.rates.requirement;
+        req.temperature = (req.temperature || 0) - 100;
+        req.oxygen = (req.temperature || 0) - 100;
+        req.ocean = (req.ocean || 0) - 100;
+        req.venus = (req.venus || 0) - 100;
+
+        card.nextCardPlayed = true;
+      }
+    }
+  },
+  production: {
+    plant: 1
   },
   layout: (
     <div className="flex gutter">

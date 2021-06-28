@@ -14,18 +14,12 @@ export default new Prelude({
   flavor:
     'The Western Alliance Space Agency has a lot of leverage, now at your disposal',
   emoji: '🛰️',
-  action: (player, game) => {
-    game.resources(player, 'titanium', 6);
-    game.keepSelected(
-      player,
-      game.revealCards(
-        player,
-        card => card.tags.includes('space'),
-        2,
-        'space cards',
-        { tag: 'space' }
-      )
-    );
+  drawCard: {
+    num: 2,
+    tag: 'space'
+  },
+  resources: {
+    titanium: 6
   },
   layout: (
     <div className="flex gutter">

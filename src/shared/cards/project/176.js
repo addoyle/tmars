@@ -22,9 +22,11 @@ export default new Automated({
   desc,
   flavor:
     'Utilizing the uniquely dense and moist atmosphere in the canyons of Noctis Labyrinthus',
-  action: (player, game) => {
-    game.production(player, 'megacredit', 1);
-    game.resources(player, 'plant', 2);
+  resources: {
+    plant: 2
+  },
+  production: {
+    megacredit: 1
   },
   vp: 1,
   emoji: '🚜',

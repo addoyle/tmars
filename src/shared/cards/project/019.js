@@ -15,8 +15,9 @@ export default new Event({
   action: (player, game, done) => {
     // TODO: Figure out an or situation, and how to choose cards to add resources to
 
-    game.promptTile(player, 'ocean', done);
+    console.log(done);
   },
+  tile: 'ocean',
   emoji: '🎈',
   todo: true,
   layout: (

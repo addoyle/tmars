@@ -18,16 +18,9 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'Utilizing heat production to attract tourists',
-  action: (player, game) => {
-    game.production(player, 'heat', -2);
-    game.production(player, 'megacredit', 3);
-  },
-  canPlay: player => {
-    const valid = player.production.heat >= 2;
-    return {
-      valid,
-      msg: !valid ? 'Not enough heat production' : null
-    };
+  production: {
+    heat: -2,
+    megacredit: 3
   },
   vp: 2,
   emoji: '🏖',

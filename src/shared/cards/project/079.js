@@ -25,9 +25,10 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Tapping trhe very fabric of space',
-  action: (player, game) => {
-    game.production(player, 'power', 4);
-    player.rates.cost.space = (player.rates.cost.space || 0) - 2;
+  action: player =>
+    (player.rates.cost.space = (player.rates.cost.space || 0) - 2),
+  production: {
+    power: 4
   },
   emoji: '🌟',
   activeLayout: (

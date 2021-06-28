@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme =>
 
 const CreateGame = ({ gameStore }) => {
   const [name, setName] = useState('');
+  const [nameErr, setNameErr] = useState('');
   const [expansions, setExpansions] = useState({
     corporate: true,
     venus: false,
@@ -42,21 +43,27 @@ const CreateGame = ({ gameStore }) => {
   const [players, setPlayers] = useState([]);
   const [error, setError] = useState(false);
 
+  const onNameChange = val => {
+    if (gameStore.games.some(game => game.id === val)) {
+      setNameErr('Game name already exists');
+    }
+    setName(val);
+  };
   const toggleExpansion = exp =>
     setExpansions({ ...expansions, [exp]: !expansions[exp] });
   const toggleVariant = variant =>
     setVariants({ ...variants, [variant]: !variants[variant] });
   const setPlayer = (i, name) => {
     const p = [...players];
-    p[i] = name;
-    setPlayers(p);
+    p[i] = name.trim();
+    setPlayers(p.filter(p => p));
   };
 
   const classes = useStyles();
 
   const createGame = () => {
     // Validate
-    if (name && players[0]) {
+    if (name && !gameStore.games.some(game => game.id === name) && players[0]) {
       const game = {
         id: name,
         players,
@@ -85,10 +92,14 @@ const CreateGame = ({ gameStore }) => {
               label="Game Name"
               required
               fullWidth
-              error={error && !name}
-              helperText={error && !name ? 'Required' : ''}
+              error={(error && !name) || !!nameErr}
+              helperText={error && !name ? 'Required' : nameErr}
               onChange={e =>
-                setName(e.target.value.replaceAll(/[^a-zA-Z0-9-_.~]/g, '-'))
+                onNameChange(
+                  e.target.value
+                    .replaceAll(/[^a-zA-Z0-9-_.~]/g, '-')
+                    .toLowerCase()
+                )
               }
               value={name}
             />
@@ -137,7 +148,7 @@ const CreateGame = ({ gameStore }) => {
               <FieldSet label="Variants" fullWidth>
                 <FormControl>
                   <FormControlLabel
-                    label="Draft"
+                    label="Drafting"
                     checked={variants.draft}
                     onChange={() => toggleVariant('draft')}
                     control={<Switch color="primary" />}
@@ -289,7 +300,8 @@ const CreateGame = ({ gameStore }) => {
 CreateGame.propTypes = {
   gameStore: PropTypes.shape({
     createGame: PropTypes.func,
-    getGames: PropTypes.func
+    getGames: PropTypes.func,
+    games: PropTypes.array
   })
 };
 

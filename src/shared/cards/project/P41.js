@@ -15,7 +15,7 @@ export default new Automated({
   set: 'prelude',
   desc,
   flavor: 'A tribute to those who inspired us to come',
-  action: (player, game) => game.drawCard(player),
+  drawCard: 1,
   vp: 1,
   emoji: '🗽',
   layout: (

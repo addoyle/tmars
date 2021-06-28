@@ -17,10 +17,12 @@ export default new Prelude({
   desc,
   flavor: 'Allowing a steady growth of the Martian society',
   emoji: '🏭',
-  action: (player, game) => {
-    game.resources(player, 'megacredit', 6);
-    game.production(player, 'power', 1);
-    game.production(player, 'steel', 1);
+  resources: {
+    megacredit: 6
+  },
+  production: {
+    power: 1,
+    steel: 1
   },
   layout: (
     <div className="flex gutter">

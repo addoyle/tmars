@@ -16,7 +16,9 @@ export default new Automated({
   set: 'corporate',
   desc,
   flavor: 'You always wanted to be a warden, didn’t you?',
-  action: (player, game) => game.production(player, 'megacredit', 3),
+  production: {
+    megacredit: 3
+  },
   vp: 2,
   emoji: '👮',
   layout: (

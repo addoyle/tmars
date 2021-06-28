@@ -15,17 +15,10 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'Protecting a limited area from cosmic radiation',
-  action: (player, game) => {
-    game.production(player, 'power', -2);
-    game.production(player, 'plant', 1);
-    game.tr(player, 1);
-  },
-  canPlay: player => {
-    const valid = player.production.power >= 2;
-    return {
-      valid,
-      msg: !valid ? 'Not enough energy production' : null
-    };
+  tr: 1,
+  production: {
+    power: -2,
+    plant: 1
   },
   emoji: '🧲',
   layout: (

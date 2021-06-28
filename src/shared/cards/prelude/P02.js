@@ -19,11 +19,13 @@ export default new Prelude({
   flavor:
     'The high pressure of an underground aquifer can be used for energy production when the water is released',
   emoji: '💦',
-  action: (player, game, done) => {
-    game.production(player, 'power', 2);
-    game.resources(player, 'megacredit', -3);
-    game.promptTile(player, 'ocean', done);
+  resources: {
+    megacredit: -3
   },
+  production: {
+    power: 2
+  },
+  tile: 'ocean',
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-center middle">

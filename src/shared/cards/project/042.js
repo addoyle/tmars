@@ -20,7 +20,9 @@ export default new Automated({
   },
   desc,
   flavor: 'Photosynthesizing bacteria specializing in extreme environments',
-  action: (player, game) => game.production(player, 'plant', 1),
+  production: {
+    plant: 1
+  },
   emoji: '🦠',
   layout: (
     <div className="flex">

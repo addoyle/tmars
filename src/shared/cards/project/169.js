@@ -21,10 +21,12 @@ export default new Automated({
   },
   desc,
   flavor: 'Farming the thawed soil over the frozen bedrock',
-  action: (player, game) => {
-    game.production(player, 'plant', 1);
-    game.production(player, 'megacredit', 2);
-    game.resources(player, 'plant', 1);
+  resources: {
+    plant: 1
+  },
+  production: {
+    plant: 1,
+    megacredit: 2
   },
   vp: 2,
   emoji: '🚜',

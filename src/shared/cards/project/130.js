@@ -20,7 +20,7 @@ export default new Automated({
   },
   desc,
   flavor: 'Milling about in the soil, ‘processing’ it',
-  action: (player, game) =>
+  production: (player, game) =>
     game.production(player, 'plant', Math.floor(player.tags.microbe / 2)),
   emoji: '🐛',
   layout: (

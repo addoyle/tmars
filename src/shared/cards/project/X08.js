@@ -20,10 +20,8 @@ export default new Active({
   desc,
   flavor:
     'Debris in low Earth orbit is a steadily growing hazard for space traffic',
-  action: (player, game) => game.production(player, 'megacredit', -2),
-  canPlay: player => {
-    const valid = player.production.megacredit > -4;
-    return { valid, msg: !valid ? 'Not enough M€ production' : null };
+  production: {
+    megacredit: -2
   },
   actions: [
     {

@@ -17,16 +17,9 @@ export default new Automated({
   tags: ['building'],
   desc,
   flavor: 'For the growing population',
-  action: (player, game) => {
-    game.production(player, 'plant', -1);
-    game.production(player, 'megacredit', 4);
-  },
-  canPlay: player => {
-    const valid = player.production.plant >= 1;
-    return {
-      valid,
-      msg: !valid ? 'Not enough plant production' : null
-    };
+  production: {
+    plant: -1,
+    megacredit: 4
   },
   vp: 1,
   emoji: '🌽',

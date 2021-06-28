@@ -26,13 +26,8 @@ export default new Active({
   desc,
   flavor:
     'A 200 km long acceleration ramp up the side of Pavonis Mons, hurtling export goods into space',
-  action: (player, game) => game.production(player, 'power', -1),
-  canPlay: player => {
-    const valid = player.production.power > 0;
-    return {
-      valid,
-      msg: !valid ? 'Not enough energy production' : null
-    };
+  production: {
+    power: -1
   },
   actions: [
     {

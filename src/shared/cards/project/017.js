@@ -18,9 +18,6 @@ export default new Automated({
   desc,
   flavor: 'In Noctis Labyrinthus, where the mist is gray',
   action: (player, game, done) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'megacredit', 3);
-
     const noctisSpace = game.field
       .flat()
       .find(t => t.attrs?.includes('reserved-noctis-city'));
@@ -34,14 +31,11 @@ export default new Automated({
       game.promptTile(player, 'city', done);
     }
   },
+  production: {
+    power: -1,
+    megacredit: 3
+  },
   canPlay: (player, game) => {
-    if (player.production.power < 1) {
-      return {
-        valid: false,
-        msg: 'Not enough energy production'
-      };
-    }
-
     const valid =
       game.field.includes(t => t.attrs?.includes('reserved-noctis-city')) ||
       !!game.findPossibleTiles('city', player).length;

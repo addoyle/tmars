@@ -20,9 +20,11 @@ export default new Automated({
   },
   desc,
   flavor: 'Providing fruits, wood, and new habitats',
-  action: (player, game) => {
-    game.production(player, 'plant', 3);
-    game.resources(player, 'plant', 1);
+  resources: {
+    plant: 1
+  },
+  production: {
+    plant: 3
   },
   vp: 1,
   emoji: '🌲',

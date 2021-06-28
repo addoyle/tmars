@@ -22,7 +22,9 @@ export default new Automated({
   desc,
   flavor:
     'New synthetic fabrics, able to protect from cosmic radiation, are becoming high fashion',
-  action: (player, game) => game.production(player, 'megacredit', 1),
+  production: {
+    megacredit: 1
+  },
   vp: 1,
   emoji: '👨‍🚀',
   layout: (

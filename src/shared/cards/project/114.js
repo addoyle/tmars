@@ -15,7 +15,6 @@ export default new Automated({
   },
   desc,
   flavor: 'Allowing easy access to the still quite harsh environment',
-  action: () => {},
   vp: 2,
   emoji: '😷',
   layout: (

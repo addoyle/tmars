@@ -17,9 +17,9 @@ export default new Event({
   desc,
   flavor:
     'Less CO\u2082 on Venus and more on Mars helps terraform both planets',
-  action: (player, game, done) => {
-    game.production(player, 'heat', 3);
-    game.param(player, 'venus', done);
+  param: ['venus'],
+  production: {
+    heat: 3
   },
   emoji: '🍾',
   layout: (

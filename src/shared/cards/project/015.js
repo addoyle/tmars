@@ -42,16 +42,18 @@ export default new Active({
   emoji: '🧲',
   activeLayout: (
     <div className="text-center">
-      <Production>
-        <div className="flex">
-          <div>&ndash;</div>
-          <Resource name="power" />
-        </div>
-      </Production>
-      <span className="resources">
-        <span className="arrow" />
-        <Resource name="tr" />
-      </span>
+      <div className="flex center">
+        <Production>
+          <div className="flex">
+            <div>&ndash;</div>
+            <Resource name="power" />
+          </div>
+        </Production>
+        <span className="resources middle">
+          <span className="arrow" />
+          <Resource name="tr" />
+        </span>
+      </div>
       <div className="description text-center">{activeDesc}</div>
     </div>
   ),

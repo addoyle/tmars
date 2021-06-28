@@ -18,17 +18,10 @@ export default new Automated({
   desc,
   flavor:
     'With its shallow gravity well, Mars is a good host for the space industry, and rockets need fuel',
-  action: (player, game) => {
-    game.production(player, 'power', -1);
-    game.production(player, 'titanium', 1);
-    game.production(player, 'megacredit', 1);
-  },
-  canPlay: player => {
-    const valid = player.production.power > 0;
-    return {
-      valid,
-      msg: !valid ? 'Not enough energy production' : null
-    };
+  production: {
+    power: -1,
+    titanium: 1,
+    megacredit: 1
   },
   emoji: '⛽',
   layout: (

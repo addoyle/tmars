@@ -16,16 +16,9 @@ export default new Automated({
   tags: ['power', 'building'],
   desc,
   flavor: 'Simple but limited power supply',
-  action: (player, game) => {
-    game.production(player, 'megacredit', -1);
-    game.production(player, 'power', 1);
-  },
-  canPlay: player => {
-    const valid = player.resources.megacredit > -5;
-    return {
-      valid,
-      msg: !valid ? 'Not enough M€ production' : null
-    };
+  production: {
+    megacredit: -1,
+    power: 1
   },
   emoji: '⛽',
   layout: (

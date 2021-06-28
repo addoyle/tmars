@@ -27,16 +27,10 @@ export default new Active({
   desc,
   flavor:
     'A much needed base of operations in the high mountains of the Ishtar continent',
-  action: (player, game, done) => {
-    game.production(player, 'power', -1);
-    game.placeTile(player, game.offMars.maxwell, 'city', done);
-  },
-  canPlay: player => {
-    const valid = player.production.power > 0;
-    return {
-      valid,
-      msg: !valid ? 'Not enough energy production' : null
-    };
+  action: (player, game, done) =>
+    game.placeTile(player, game.offMars.maxwell, 'city', done),
+  production: {
+    power: -1
   },
   vp: 3,
   emoji: '🌆',

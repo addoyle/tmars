@@ -17,10 +17,10 @@ export default new Prelude({
   flavor:
     'The first Martians wrote their story of civilization shortly after the terraforming announcement',
   emoji: '⛺',
-  action: (player, game, done) => {
-    game.production(player, 'plant', 1);
-    game.promptTile(player, 'city', done);
+  production: {
+    plant: 1
   },
+  tile: 'city',
   layout: (
     <div className="flex gutter">
       <div className="col-1 text-right middle">

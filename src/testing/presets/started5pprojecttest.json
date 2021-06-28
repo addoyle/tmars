@@ -111,7 +111,7 @@
         "event": [],
         "corp": [
           {
-            "card": "005",
+            "card":"CORP05"
             "select": false
           }
         ],
@@ -257,7 +257,7 @@
         "event": [],
         "corp": [
           {
-            "card": "008",
+            "card":"CORP08"
             "select": false
           }
         ],
@@ -399,7 +399,7 @@
         "event": [],
         "corp": [
           {
-            "card": "001",
+            "card":"CORP01"
             "select": false
           }
         ],
@@ -546,7 +546,7 @@
         "event": [],
         "corp": [
           {
-            "card": "009",
+            "card":"CORP09"
             "select": false
           }
         ],
@@ -672,7 +672,7 @@
         "event": [],
         "corp": [
           {
-            "card": "004",
+            "card":"CORP04"
             "select": false
           }
         ],
@@ -1120,7 +1120,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "015"
+          "corp":"CORP15"
         },
         " and bought 4 projects."
       ],
@@ -1131,7 +1131,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "004"
+          "corp":"CORP04"
         },
         " and bought 6 projects."
       ],
@@ -1142,7 +1142,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "011"
+          "corp":"CORP11"
         },
         " and bought 6 projects."
       ],
@@ -1153,7 +1153,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "P03"
+          "corp":"CORPP3"
         },
         " and bought 6 projects."
       ],
@@ -1164,7 +1164,7 @@
       "body": [
         " is representing ",
         {
-          "corp": "001"
+          "corp":"CORP01"
         },
         " and bought 4 projects."
       ],

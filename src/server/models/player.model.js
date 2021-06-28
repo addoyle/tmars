@@ -59,12 +59,14 @@ export default class Player {
     plant: 8, // Plants to place a greenery
     heat: 8, // Heat to raise temperature
     ocean: 2, // Ocean adjacency bonus,
+    requirement: {}, // Requirement modifier (for temp/oxygen)
     cost: {} // Cost modifier functions
   };
   passed = false;
   firstAction = true;
   startingAction = true;
   score = {};
+  actionStack = [];
 
   constructor(name) {
     this.name = name;
