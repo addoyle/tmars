@@ -10,27 +10,9 @@ class Game extends SharedGame {
   // Sets, or expansions, that are enabled in this game
   @observable sets = [];
 
-  // Active drawer, or falsey to show none
-  @observable drawer = 'corp';
-
-  // Active card, shown in a popup
-  @observable currentCard = {
-    show: false,
-    card: null,
-    type: null,
-    mode: null,
-    steel: 0,
-    titanium: 0
-  };
-
-  // Player stats popup
-  @observable playerStats = {
-    show: true,
-    pid: +PLAYER_NUM
-  };
-
   // Global params
-  @observable params = {
+  @observable
+  params = {
     temperature: -30,
     oxygen: 0,
     ocean: 9,
@@ -63,9 +45,25 @@ class Game extends SharedGame {
   // Game settings/menu
   @observable settings = {};
 
-  // State of milestones and standard projects windows
-  @observable showMilestones = false;
-  @observable showStandardProjects = false;
+  // State of UI
+  @observable ui = {
+    milestones: false,
+    standardProjects: false,
+    drawer: 'corp',
+    playerStats: {
+      show: true,
+      pid: +PLAYER_NUM
+    },
+    // Active card, shown in a popup
+    currentCard: {
+      show: false,
+      card: null,
+      type: null,
+      mode: null,
+      steel: 0,
+      titanium: 0
+    }
+  };
 
   variants = {
     draft: false,
@@ -88,14 +86,32 @@ class Game extends SharedGame {
     e && e.preventDefault();
 
     // Clicking on the same drawer, show none
-    this.drawer = this.drawer === drawer ? null : drawer;
+    this.ui.drawer = this.ui.drawer === drawer ? null : drawer;
 
     // Any other drawer is clicked, confirm revealed cards
-    if (this.drawer !== 'reveal') {
+    if (this.ui.drawer !== 'reveal') {
       this.player.cards.reveal = [];
     }
 
-    this.doSwitchDrawer(this.drawer);
+    this.doSwitchDrawer(this.ui.drawer);
+  }
+
+  /**
+   * Toggle if the standard project drawer is open
+   */
+  @action
+  toggleStandardProjects() {
+    this.ui.standardProjects = !this.ui.standardProjects;
+    this.doToggleStandardProjects();
+  }
+
+  /**
+   * Toggle if the milestone/awards drawer is open
+   */
+  @action
+  toggleMilestoneAwards() {
+    this.ui.milestones = !this.ui.milestones;
+    this.doToggleMilestoneAwards();
   }
 
   /**
@@ -146,11 +162,11 @@ class Game extends SharedGame {
     this.player = game.players[+PLAYER_NUM - 1];
 
     // Update player specific UI states
-    this.player.ui && Object.assign(this, this.player.ui);
+    this.player.ui && Object.assign(this.ui, this.player.ui);
 
     // Set any temporary UI states from the current stack
     const action = last(this.player.actionStack);
-    action && action.ui && Object.assign(this, action.ui);
+    action && action.ui && Object.assign(this.ui, action.ui);
 
     console.log(toJS(action));
   }
@@ -239,6 +255,18 @@ class Game extends SharedGame {
 
   doSwitchDrawer(drawer) {
     API(`game/${gameId()}/switch-drawer/${drawer}`, POST, {
+      player: +PLAYER_NUM
+    });
+  }
+
+  doToggleStandardProjects() {
+    API(`game/${gameId()}/toggle-standard-project`, POST, {
+      player: +PLAYER_NUM
+    });
+  }
+
+  doToggleMilestoneAwards() {
+    API(`game/${gameId()}/toggle-milestone`, POST, {
       player: +PLAYER_NUM
     });
   }

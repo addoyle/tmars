@@ -196,7 +196,7 @@ const CardDrawers = ({ gameStore }) => {
               'drawer-btn',
               ...(drawer.extraClasses || []),
               {
-                open: gameStore.drawer === drawer.type,
+                open: gameStore.ui.drawer === drawer.type,
                 empty: !gameStore.player?.cards[drawer.type]?.length,
                 hidden: drawer.hidden
               }
@@ -210,7 +210,7 @@ const CardDrawers = ({ gameStore }) => {
       {drawers.map(drawer => (
         <CardDrawer
           key={`drawer-${drawer.type}`}
-          collapse={gameStore.drawer !== drawer.type}
+          collapse={gameStore.ui.drawer !== drawer.type}
           {...drawer}
         />
       ))}
@@ -221,7 +221,9 @@ const CardDrawers = ({ gameStore }) => {
 CardDrawers.propTypes = {
   gameStore: PropTypes.shape({
     switchDrawer: PropTypes.func.isRequired,
-    drawer: PropTypes.string,
+    ui: PropTypes.shape({
+      drawer: PropTypes.string
+    }),
     sets: PropTypes.arrayOf(PropTypes.string),
     phase: PropTypes.string,
     turn: PropTypes.number,

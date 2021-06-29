@@ -12,7 +12,7 @@ import ActionableCard from './ActionableCard';
  * Shows the currently selected card
  */
 const CardModal = ({ gameStore, cardStore }) => {
-  const currentCard = gameStore.currentCard;
+  const currentCard = gameStore.ui.currentCard;
   const player = gameStore.player;
 
   // Ref for container, used in dragging
@@ -104,13 +104,15 @@ const CardModal = ({ gameStore, cardStore }) => {
 
 CardModal.propTypes = {
   gameStore: PropTypes.shape({
-    currentCard: PropTypes.shape({
-      show: PropTypes.bool,
-      card: PropTypes.object,
-      type: PropTypes.string,
-      mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft', 'select']),
-      showResources: PropTypes.bool
-    }).isRequired,
+    ui: PropTypes.shape({
+      currentCard: PropTypes.shape({
+        show: PropTypes.bool,
+        card: PropTypes.object,
+        type: PropTypes.string,
+        mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft', 'select']),
+        showResources: PropTypes.bool
+      }).isRequired
+    }),
     turn: PropTypes.number,
     player: PropTypes.shape({
       rates: PropTypes.shape({

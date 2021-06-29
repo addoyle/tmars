@@ -51,7 +51,11 @@ export default class Player {
     prelude: [],
     onDeck: []
   };
-  ui = {};
+  ui = {
+    drawer: 'corp',
+    milestones: false,
+    standardProjects: false
+  };
   rates = {
     steel: 2, // Value of steel for playing building cards
     titanium: 3, // Value of titanium for playing space cards

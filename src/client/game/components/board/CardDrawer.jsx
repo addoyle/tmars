@@ -91,9 +91,9 @@ const CardDrawer = props => {
                 onClick={() => props.gameStore.toggleSelectCard(card, 'buy')}
                 className={classNames('card-selector', {
                   selected:
-                    gameStore.currentCard.show &&
-                    card?.card === gameStore.currentCard.card.card &&
-                    'buy' === gameStore.currentCard.type,
+                    gameStore.ui.currentCard.show &&
+                    card?.card === gameStore.ui.currentCard.card.card &&
+                    'buy' === gameStore.ui.currentCard.type,
                   disabled: card?.disabled
                 })}
               >
@@ -369,9 +369,9 @@ const CardDrawer = props => {
               className={classNames('card-selector', {
                 selected:
                   // Denote that the card is "active" if a card is shown
-                  gameStore.currentCard.show &&
+                  gameStore.ui.currentCard.show &&
                   // And that shown card matches this card
-                  card?.card === gameStore.currentCard.card.card,
+                  card?.card === gameStore.ui.currentCard.card.card,
                 disabled: card?.disabled,
                 landscape: cardType === 'prelude' || cardType === 'corp'
               })}
@@ -401,9 +401,9 @@ const CardDrawer = props => {
                 onClick={() => gameStore.showCurrentCard(card, 'project')}
                 className={classNames('card-selector', {
                   selected:
-                    gameStore.currentCard.show &&
-                    card?.card === gameStore.currentCard.card.card &&
-                    cardType === gameStore.currentCard.type
+                    gameStore.ui.currentCard.show &&
+                    card?.card === gameStore.ui.currentCard.card.card &&
+                    cardType === gameStore.ui.currentCard.type
                 })}
               >
                 <CardPreview card={card} type="project" showZoom />
@@ -430,7 +430,18 @@ CardDrawer.propTypes = {
   min: PropTypes.number,
   max: PropTypes.number,
   gameStore: PropTypes.shape({
-    drawer: PropTypes.string,
+    ui: PropTypes.shape({
+      currentCard: PropTypes.shape({
+        card: PropTypes.shape({
+          card: PropTypes.string,
+          select: PropTypes.bool,
+          resources: PropTypes.objectOf(PropTypes.number)
+        }),
+        disabled: PropTypes.bool,
+        type: PropTypes.string,
+        show: PropTypes.bool
+      })
+    }),
     switchDrawer: PropTypes.func,
     toggleSelectCard: PropTypes.func,
     phase: PropTypes.string,
@@ -452,16 +463,6 @@ CardDrawer.propTypes = {
         cost: PropTypes.object
       }),
       firstAction: PropTypes.bool
-    }),
-    currentCard: PropTypes.shape({
-      card: PropTypes.shape({
-        card: PropTypes.string,
-        select: PropTypes.bool,
-        resources: PropTypes.objectOf(PropTypes.number)
-      }),
-      disabled: PropTypes.bool,
-      type: PropTypes.string,
-      show: PropTypes.bool
     }),
     params: PropTypes.shape({
       generation: PropTypes.number

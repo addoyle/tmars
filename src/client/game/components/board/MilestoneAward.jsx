@@ -58,7 +58,7 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
   return (
     <div
       className={classnames('milestone-awards', {
-        collapse: !gameStore.showMilestones
+        collapse: !gameStore.ui.milestones
       })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
@@ -66,7 +66,7 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
       <div className="header text-center">
         <button
           className="milestone-award btn"
-          onClick={() => (gameStore.showMilestones = !gameStore.showMilestones)}
+          onClick={() => gameStore.toggleMilestoneAwards()}
         >
           Milestones/Awards
         </button>
@@ -327,7 +327,10 @@ MilestoneAward.propTypes = {
         player: PropTypes.number
       })
     ),
-    showMilestones: PropTypes.bool,
+    toggleMilestoneAwards: PropTypes.func,
+    ui: PropTypes.shape({
+      milestones: PropTypes.bool
+    }),
     player: PropTypes.object,
     claimMilestone: PropTypes.func,
     fundAward: PropTypes.func,

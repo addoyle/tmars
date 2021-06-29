@@ -147,7 +147,7 @@ const StandardProjects = ({ gameStore }) => {
   return (
     <div
       className={classNames('standard-projects', {
-        collapse: !gameStore.showStandardProjects
+        collapse: !gameStore.ui.standardProjects
       })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
@@ -155,9 +155,7 @@ const StandardProjects = ({ gameStore }) => {
       <div className="header text-center">
         <button
           className="standard-project"
-          onClick={() =>
-            (gameStore.showStandardProjects = !gameStore.showStandardProjects)
-          }
+          onClick={() => gameStore.toggleStandardProjects()}
         >
           Standard Projects
         </button>
@@ -244,7 +242,10 @@ const StandardProjects = ({ gameStore }) => {
 StandardProjects.propTypes = {
   gameStore: PropTypes.shape({
     sets: PropTypes.arrayOf(PropTypes.string),
-    showStandardProjects: PropTypes.bool,
+    ui: PropTypes.shape({
+      standardProjects: PropTypes.bool
+    }),
+    toggleStandardProjects: PropTypes.func,
     player: PropTypes.shape({
       rates: PropTypes.shape({
         powerplant: PropTypes.number

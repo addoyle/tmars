@@ -15,7 +15,7 @@ import { Param, Resource, Tile } from '../../assets/Assets';
  * Shows player's resources, tags, cards played, etc.
  */
 const PlayerStats = props => {
-  const { pid, show } = props.gameStore.playerStats;
+  const { pid, show } = props.gameStore.ui.playerStats;
   const player = props.gameStore.players[pid - 1];
 
   return (
@@ -32,7 +32,7 @@ const PlayerStats = props => {
             ) : null}
             <div
               className="close"
-              onClick={() => (props.gameStore.playerStats.show = false)}
+              onClick={() => (props.gameStore.ui.playerStats.show = false)}
             >
               &times;
             </div>
@@ -99,9 +99,11 @@ const PlayerStats = props => {
 
 PlayerStats.propTypes = {
   gameStore: PropTypes.shape({
-    playerStats: PropTypes.shape({
-      show: PropTypes.bool,
-      pid: PropTypes.number
+    ui: PropTypes.shape({
+      playerStats: PropTypes.shape({
+        show: PropTypes.bool,
+        pid: PropTypes.number
+      })
     }),
     players: PropTypes.arrayOf(
       PropTypes.shape({

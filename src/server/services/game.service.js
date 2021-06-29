@@ -550,6 +550,32 @@ class GameService {
   }
 
   /**
+   * Toggle if the standard projects drawer is open
+   *
+   * @param {string} id Game ID
+   * @param {number} playerNum Player number
+   */
+  toggleStandardProjects(id, playerNum) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+    player.ui.standardProjects = !player.ui.standardProjects;
+    return this.export(game);
+  }
+
+  /**
+   * Toggle if the milestone/awards drawer is open
+   *
+   * @param {string} id Game ID
+   * @param {number} playerNum Player number
+   */
+  toggleMilestoneAwards(id, playerNum) {
+    const game = this.games[id];
+    const player = this.getPlayer(game, playerNum);
+    player.ui.milestoneAwards = !player.ui.milestoneAwards;
+    return this.export(game);
+  }
+
+  /**
    * Pick a choice
    *
    * @param {string} id Game ID

@@ -15,10 +15,10 @@ const Players = ({ gameStore }) =>
       <div
         className={classNames(
           'player-selector',
-          `player-${gameStore.playerStats.pid}`,
+          `player-${gameStore.ui.playerStats.pid}`,
           {
-            active: gameStore.playerStats.pid === +gameStore.turn,
-            hidden: !gameStore.playerStats.show
+            active: gameStore.ui.playerStats.pid === +gameStore.turn,
+            hidden: !gameStore.ui.playerStats.show
           }
         )}
       />
@@ -32,9 +32,9 @@ const Players = ({ gameStore }) =>
               active={i + 1 === +gameStore.turn}
               starting={i + 1 === +gameStore.startingPlayer}
               onClick={() =>
-                gameStore.playerStats.show &&
-                gameStore.playerStats.pid === i + 1
-                  ? (gameStore.playerStats.show = false)
+                gameStore.ui.playerStats.show &&
+                gameStore.ui.playerStats.pid === i + 1
+                  ? (gameStore.ui.playerStats.show = false)
                   : gameStore.showPlayerStats(i + 1, player)
               }
             />
@@ -49,7 +49,9 @@ const Players = ({ gameStore }) =>
 Players.propTypes = {
   gameStore: PropTypes.shape({
     players: PropTypes.array,
-    playerStats: PlayerStats.propTypes,
+    ui: PropTypes.shape({
+      playerStats: PlayerStats.propTypes
+    }),
     showPlayerStats: PropTypes.func,
     turn: PropTypes.number,
     startingPlayer: PropTypes.number

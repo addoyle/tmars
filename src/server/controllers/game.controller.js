@@ -159,6 +159,16 @@ export function switchDrawer(req, res) {
   res.sendStatus(200);
 }
 
+export function toggleStandardProjects(req, res) {
+  GameService.toggleStandardProjects(`${req.params.id}`, req.body.player);
+  res.sendStatus(200);
+}
+
+export function toggleMilestoneAwards(req, res) {
+  GameService.toggleMilestoneAwards(`${req.params.id}`, req.body.player);
+  res.sendStatus(200);
+}
+
 /**
  * Stream the game actions
  *

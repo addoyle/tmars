@@ -622,21 +622,6 @@ class Game extends SharedGame {
     );
 
     if (possibleTiles.length) {
-      // Make them clickable
-      // possibleTiles.forEach(t => (t.clickable = tile.tile));
-
-      // Hide UI components to allow easier access to board
-      // player.ui = {
-      //   drawer: null,
-      //   playerStats: {
-      //     show: false,
-      //     pid: player.number
-      //   },
-      //   currentCard: { show: false },
-      //   showMilestones: false,
-      //   showStandardProjects: false
-      // };
-
       // Set the player status
       player.actionStack.push({
         // player,
@@ -653,33 +638,6 @@ class Game extends SharedGame {
           showStandardProjects: false
         },
         possibleTiles
-        // done: placedTile => {
-        //   // Raise params if necessary
-        //   if (tile.tile === 'ocean') {
-        //     this.param(player, 'ocean');
-        //   } else if (tile.tile === 'greenery') {
-        //     this.param(player, 'oxygen');
-        //   }
-
-        //   // Remove clickable
-        //   possibleTiles.forEach(t => (t.clickable = null));
-
-        //   // Show UI components
-        //   player.ui = {
-        //     drawer:
-        //       this.phase === 'prelude'
-        //         ? 'prelude'
-        //         : this.phase === 'end'
-        //         ? null
-        //         : 'hand',
-        //     playerStats: {
-        //       show: true,
-        //       pid: player.number
-        //     }
-        //   };
-
-        //   done && done(placedTile);
-        // }
       });
     }
   }
@@ -823,6 +781,13 @@ class Game extends SharedGame {
           player.resources[r]++;
         }
       });
+
+    // Handle terraforming stuff
+    if (tile === 'ocean') {
+      this.param(player, 'ocean');
+    } else if (tile === 'greenery') {
+      this.param(player, 'oxygen');
+    }
 
     // Mark the action as complete
     this.completeAction(player, area);
