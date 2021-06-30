@@ -31,12 +31,7 @@ const Players = ({ gameStore }) =>
               player={player}
               active={i + 1 === +gameStore.turn}
               starting={i + 1 === +gameStore.startingPlayer}
-              onClick={() =>
-                gameStore.ui.playerStats.show &&
-                gameStore.ui.playerStats.pid === i + 1
-                  ? (gameStore.ui.playerStats.show = false)
-                  : gameStore.showPlayerStats(i + 1, player)
-              }
+              onClick={() => gameStore.showPlayerStats(i + 1)}
             />
           </li>
         ))}
@@ -50,7 +45,10 @@ Players.propTypes = {
   gameStore: PropTypes.shape({
     players: PropTypes.array,
     ui: PropTypes.shape({
-      playerStats: PlayerStats.propTypes
+      playerStats: PropTypes.shape({
+        show: PropTypes.bool,
+        pid: PropTypes.number
+      })
     }),
     showPlayerStats: PropTypes.func,
     turn: PropTypes.number,

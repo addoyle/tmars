@@ -34,16 +34,7 @@ router.post(
   validate,
   GameController.confirmSelection
 );
-router.post(
-  '/:id/switch-drawer/:drawer',
-  validate,
-  GameController.switchDrawer
-);
-router.post(
-  '/:id/toggle-standard-project',
-  GameController.toggleStandardProjects
-);
-router.post('/:id/toggle-milestone', GameController.toggleMilestoneAwards);
+router.post('/:id/update-ui', validate, GameController.updateUI);
 router.post('/:id/place-tile/:tileId', validate, GameController.placeTile);
 router.post('/:id/pass-skip', validate, GameController.passSkip);
 router.post('/:id/standard-project', validate, GameController.standardProject);

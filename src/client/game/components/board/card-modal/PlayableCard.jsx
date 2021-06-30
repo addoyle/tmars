@@ -6,7 +6,7 @@ import { Tooltip } from '@material-ui/core';
 import classnames from 'classnames';
 
 const PlayableCard = ({ gameStore, card }) => {
-  const currentCard = gameStore.currentCard;
+  const currentCard = gameStore.ui.currentCard;
   const player = gameStore.player;
 
   const modifiedCost = gameStore.calculateCost(card, player?.rates.cost);
@@ -174,13 +174,15 @@ const PlayableCard = ({ gameStore, card }) => {
 PlayableCard.propTypes = {
   gameStore: PropTypes.shape({
     calculateCost: PropTypes.func,
-    currentCard: PropTypes.shape({
-      card: PropTypes.object,
-      show: PropTypes.bool,
-      steel: PropTypes.number,
-      titanium: PropTypes.number,
-      heat: PropTypes.number
-    }).isRequired,
+    ui: PropTypes.shape({
+      currentCard: PropTypes.shape({
+        card: PropTypes.object,
+        show: PropTypes.bool,
+        steel: PropTypes.number,
+        titanium: PropTypes.number,
+        heat: PropTypes.number
+      }).isRequired
+    }),
     playCard: PropTypes.func,
     player: PropTypes.shape({
       resources: PropTypes.shape({

@@ -267,6 +267,9 @@ class GameService {
     // Set tags
     playedCard.tags.forEach(tag => player.tags[tag]++);
 
+    // Hide card
+    player.ui.currentCard.show = false;
+
     // Callback for once the card action is complete
     const done = () => {
       // Mark prelude as played
@@ -536,42 +539,16 @@ class GameService {
   }
 
   /**
-   * Switch the opened drawer
+   * Show/toggle the player stats pane
    *
    * @param {string} id Game ID
    * @param {number} playerNum Player number
-   * @param {string} drawer Drawer to switch to
+   * @param {object} ui The new state of the UI
    */
-  switchDrawer(id, playerNum, drawer) {
+  updateUI(id, playerNum, ui) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
-    player.ui.drawer = drawer;
-    return this.export(game);
-  }
-
-  /**
-   * Toggle if the standard projects drawer is open
-   *
-   * @param {string} id Game ID
-   * @param {number} playerNum Player number
-   */
-  toggleStandardProjects(id, playerNum) {
-    const game = this.games[id];
-    const player = this.getPlayer(game, playerNum);
-    player.ui.standardProjects = !player.ui.standardProjects;
-    return this.export(game);
-  }
-
-  /**
-   * Toggle if the milestone/awards drawer is open
-   *
-   * @param {string} id Game ID
-   * @param {number} playerNum Player number
-   */
-  toggleMilestoneAwards(id, playerNum) {
-    const game = this.games[id];
-    const player = this.getPlayer(game, playerNum);
-    player.ui.milestoneAwards = !player.ui.milestoneAwards;
+    player.ui = ui;
     return this.export(game);
   }
 

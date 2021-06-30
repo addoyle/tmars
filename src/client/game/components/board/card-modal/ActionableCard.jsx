@@ -5,7 +5,7 @@ import { Tooltip } from '@material-ui/core';
 import classnames from 'classnames';
 
 const ActionableCard = ({ gameStore, card }) => {
-  const currentCard = gameStore.currentCard;
+  const currentCard = gameStore.ui.currentCard;
   const player = gameStore.player;
 
   return (
@@ -85,10 +85,12 @@ const ActionableCard = ({ gameStore, card }) => {
 
 ActionableCard.propTypes = {
   gameStore: PropTypes.shape({
-    currentCard: PropTypes.shape({
-      card: PropTypes.object,
-      show: PropTypes.bool
-    }).isRequired,
+    ui: PropTypes.shape({
+      currentCard: PropTypes.shape({
+        card: PropTypes.object,
+        show: PropTypes.bool
+      }).isRequired
+    }),
     cardAction: PropTypes.func,
     player: PropTypes.object
   }),

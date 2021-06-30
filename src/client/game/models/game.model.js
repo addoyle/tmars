@@ -93,7 +93,7 @@ class Game extends SharedGame {
       this.player.cards.reveal = [];
     }
 
-    this.doSwitchDrawer(this.ui.drawer);
+    this.updateUI();
   }
 
   /**
@@ -102,7 +102,7 @@ class Game extends SharedGame {
   @action
   toggleStandardProjects() {
     this.ui.standardProjects = !this.ui.standardProjects;
-    this.doToggleStandardProjects();
+    this.updateUI();
   }
 
   /**
@@ -111,7 +111,7 @@ class Game extends SharedGame {
   @action
   toggleMilestoneAwards() {
     this.ui.milestones = !this.ui.milestones;
-    this.doToggleMilestoneAwards();
+    this.updateUI();
   }
 
   /**
@@ -130,7 +130,7 @@ class Game extends SharedGame {
    */
   @action
   showCurrentCard(card, type, mode, showResources) {
-    this.currentCard = {
+    this.ui.currentCard = {
       ...this.currentCard,
       show: true,
       card,
@@ -141,6 +141,7 @@ class Game extends SharedGame {
       heat: 0,
       showResources
     };
+    this.updateUI();
   }
 
   @action
@@ -207,8 +208,15 @@ class Game extends SharedGame {
     API(`game/${gameId()}?player=${player}`).then(res => this.update(res));
   }
 
-  showPlayerStats(pid, player) {
-    this.playerStats = { ...this.playerStats, show: true, pid, player };
+  @action
+  showPlayerStats(pid, show) {
+    this.ui.playerStats = {
+      pid,
+      show:
+        show ?? (this.ui.playerStats.pid !== pid || !this.ui.playerStats.show)
+    };
+
+    this.updateUI();
   }
 
   playCard(card, opts) {
@@ -253,21 +261,10 @@ class Game extends SharedGame {
     });
   }
 
-  doSwitchDrawer(drawer) {
-    API(`game/${gameId()}/switch-drawer/${drawer}`, POST, {
-      player: +PLAYER_NUM
-    });
-  }
-
-  doToggleStandardProjects() {
-    API(`game/${gameId()}/toggle-standard-project`, POST, {
-      player: +PLAYER_NUM
-    });
-  }
-
-  doToggleMilestoneAwards() {
-    API(`game/${gameId()}/toggle-milestone`, POST, {
-      player: +PLAYER_NUM
+  updateUI() {
+    API(`game/${gameId()}/update-ui`, POST, {
+      player: +PLAYER_NUM,
+      ui: this.ui
     });
   }
 

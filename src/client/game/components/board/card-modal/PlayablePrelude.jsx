@@ -4,7 +4,7 @@ import { inject, observer } from 'mobx-react';
 import Param from '../../assets/Param';
 
 const PlayablePrelude = ({ gameStore }) => {
-  const currentCard = gameStore.currentCard;
+  const currentCard = gameStore.ui.currentCard;
 
   return (
     <div className="flex gutter">
@@ -35,10 +35,12 @@ const PlayablePrelude = ({ gameStore }) => {
 
 PlayablePrelude.propTypes = {
   gameStore: PropTypes.shape({
-    currentCard: PropTypes.shape({
-      card: PropTypes.object,
-      show: PropTypes.bool
-    }).isRequired,
+    ui: PropTypes.shape({
+      currentCard: PropTypes.shape({
+        card: PropTypes.object,
+        show: PropTypes.bool
+      }).isRequired
+    }),
     playPrelude: PropTypes.func
   })
 };

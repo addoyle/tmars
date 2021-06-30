@@ -1,5 +1,9 @@
 import GameService from '../services/game.service';
 
+const OK = 200;
+const NOT_FOUND = 404;
+const BAD_REQUEST = 400;
+
 /**
  * Get the current state of the game (should only be used on page load)
  *
@@ -37,7 +41,7 @@ export function getGames(req, res) {
  */
 export function createGame(req, res) {
   GameService.createGame(`${req.params.id}`, req.body);
-  res.sendStatus(200);
+  res.sendStatus(OK);
 }
 
 /**
@@ -58,7 +62,7 @@ export function deleteGame(req, res) {
  */
 export function playCard(req, res) {
   GameService.playCard(`${req.params.id}`, req.body.player, req.body, res);
-  res.sendStatus(200);
+  res.sendStatus(OK);
 }
 
 /**
@@ -74,7 +78,7 @@ export function playPrelude(req, res) {
     req.body.card,
     res
   );
-  res.sendStatus(200);
+  res.sendStatus(OK);
 }
 
 /**
@@ -91,7 +95,7 @@ export function cardAction(req, res) {
     req.body.index,
     req.body.count
   );
-  res.sendStatus(200);
+  res.sendStatus(OK);
 }
 
 /**
@@ -109,7 +113,7 @@ export function toggleSelectCard(req, res) {
     req.body.single,
     res
   );
-  res.sendStatus(200);
+  res.sendStatus(OK);
 }
 
 /**
@@ -120,7 +124,7 @@ export function toggleSelectCard(req, res) {
  */
 export function draftCard(req, res) {
   GameService.draftCard(`${req.params.id}`, req.body.player, res);
-  res.sendStatus(200);
+  res.sendStatus(OK);
 }
 
 /**
@@ -131,7 +135,7 @@ export function draftCard(req, res) {
  */
 export function buySelectedCards(req, res) {
   GameService.buySelectedCards(`${req.params.id}`, req.body.player, res);
-  res.sendStatus(200);
+  res.sendStatus(OK);
 }
 
 /**
@@ -147,26 +151,12 @@ export function confirmSelection(req, res) {
     req.params.type,
     res
   );
-  res.sendStatus(200);
+  res.sendStatus(OK);
 }
 
-export function switchDrawer(req, res) {
-  GameService.switchDrawer(
-    `${req.params.id}`,
-    req.body.player,
-    req.params.drawer
-  );
-  res.sendStatus(200);
-}
-
-export function toggleStandardProjects(req, res) {
-  GameService.toggleStandardProjects(`${req.params.id}`, req.body.player);
-  res.sendStatus(200);
-}
-
-export function toggleMilestoneAwards(req, res) {
-  GameService.toggleMilestoneAwards(`${req.params.id}`, req.body.player);
-  res.sendStatus(200);
+export function updateUI(req, res) {
+  GameService.updateUI(`${req.params.id}`, req.body.player, req.body.ui);
+  res.sendStatus(OK);
 }
 
 /**
@@ -302,11 +292,11 @@ export function loadPreset(req, res) {
 
       GameService.registerGame(presetGame, req.params.id);
 
-      res.sendStatus(200);
+      res.sendStatus(OK);
     } else {
-      res.sendStatus(404);
+      res.sendStatus(NOT_FOUND);
     }
   } else {
-    res.sendStatus(400);
+    res.sendStatus(BAD_REQUEST);
   }
 }
