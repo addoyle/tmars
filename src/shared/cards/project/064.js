@@ -12,7 +12,7 @@ const customFilter = player => (tile, game, notReserved, neighbors) =>
   // Not reserved
   notReserved(tile) &&
   // Is adjacent to one of your own tiles
-  neighbors.filter(t => t.player === player.number).length &&
+  neighbors.some(t => t.player === player.number) &&
   // Has either steel or titanium placement bonus
   (tile.resources?.includes('steel') || tile.resources?.includes('titanium'));
 
@@ -41,7 +41,7 @@ export default new Automated({
       customFilter(player)
     ),
   canPlay: (player, game) => {
-    const valid = !!game.findPossibleTiles(
+    const valid = game.findPossibleTiles(
       { special: 'mine' },
       player,
       customFilter(player)

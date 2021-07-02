@@ -6,6 +6,8 @@ import { observer, inject } from 'mobx-react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Param } from '../assets/Assets';
 import classnames from 'classnames';
+import { last } from 'lodash';
+import { toJS } from 'mobx';
 
 const CardDrawers = ({ gameStore }) => {
   const buyMode =
@@ -13,6 +15,9 @@ const CardDrawers = ({ gameStore }) => {
     (gameStore.phase !== 'research' ||
       (gameStore.phase === 'research' &&
         gameStore.player?.cards.buy.length === 4));
+
+  const latestAction = last(gameStore.player?.actionStack);
+  console.log(toJS(gameStore.player?.actionStack));
 
   const drawers = [
     // Hand of cards
@@ -39,7 +44,8 @@ const CardDrawers = ({ gameStore }) => {
       mode:
         (gameStore.phase === 'action' ||
           (gameStore.phase === 'prelude' &&
-            gameStore.playerStatus?.type === 'prompt-card')) &&
+            latestAction?.type === 'prompt-card' &&
+            latestAction?.mode === 'play')) &&
         gameStore.turn === gameStore.player?.number
           ? 'play'
           : null
@@ -183,6 +189,29 @@ const CardDrawers = ({ gameStore }) => {
       ),
       hidden: !gameStore.player?.cards.reveal?.length,
       closable: true
+    },
+
+    // Cards that an action is to be performed against
+    {
+      type: 'chooser',
+      tab: (
+        <>
+          <Param name="card back" />
+          <span>
+            Cards
+            {gameStore.player ? (
+              <span className="card-count">
+                {latestAction?.cards
+                  ? Object.values(latestAction.cards).flat().length
+                  : 0}
+              </span>
+            ) : null}
+          </span>
+        </>
+      ),
+      hidden:
+        latestAction?.type !== 'prompt-card' || latestAction?.mode === 'play',
+      closable: true
     }
   ];
 
@@ -233,9 +262,6 @@ CardDrawers.propTypes = {
     params: PropTypes.shape({
       generation: PropTypes.number
     }),
-    playerStatus: PropTypes.shape({
-      type: PropTypes.string
-    }),
     player: PropTypes.shape({
       cards: PropTypes.shape({
         hand: PropTypes.arrayOf(PropTypes.object),
@@ -248,6 +274,12 @@ CardDrawers.propTypes = {
         buy: PropTypes.arrayOf(PropTypes.object),
         reveal: PropTypes.arrayOf(PropTypes.object)
       }),
+      actionStack: PropTypes.arrayOf(
+        PropTypes.shape({
+          type: PropTypes.string,
+          cards: PropTypes.array
+        })
+      ),
       number: PropTypes.number
     })
   })

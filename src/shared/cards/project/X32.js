@@ -28,7 +28,7 @@ export default new Automated({
       // Not reserved
       notReserved(tile) &&
       // Adjacent to an ocean
-      neighbors.filter(t => t.type === 'ocean').length
+      neighbors.some(t => t.type === 'ocean')
   },
   production: {
     power: 2

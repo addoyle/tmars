@@ -137,6 +137,7 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
               qualifies &&
               !allClaimed &&
               !claimed &&
+              !gameStore.player?.actionStack.length &&
               gameStore.player?.number === gameStore.turn;
 
             return (

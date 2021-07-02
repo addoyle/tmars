@@ -15,10 +15,7 @@ export default new Prelude({
   desc,
   flavor: 'I had no idea that you could actually do that',
   emoji: '♻️',
-  action: (player, game, done) => {
-    // TODO: Figure out how to skip global requirements
-    game.promptCard(player, done);
-
+  action: (player, game) => {
     // Set modifier to some high number as to bypass any checks
     const req = player.rates.requirement;
     req.temperature = (req.temperature || 0) + 100;
@@ -26,25 +23,17 @@ export default new Prelude({
     req.ocean = (req.ocean || 0) + 100;
     req.venus = (req.venus || 0) + 100;
 
-    // Add a flag to keep track of if the card has been played
-    player.cards.prelude.find(
-      c => c.card === this.number
-    ).nextCardPlayed = false;
-  },
-  events: {
-    onCardPlayed: player => {
-      const card = player.cards.prelude.find(c => c.card === this.number);
-
-      if (!card.nextCardPlayed) {
+    game.promptCard(player, {
+      cards: 'hand',
+      mode: 'play',
+      action: player => {
         const req = player.rates.requirement;
-        req.temperature = (req.temperature || 0) - 100;
-        req.oxygen = (req.temperature || 0) - 100;
-        req.ocean = (req.ocean || 0) - 100;
-        req.venus = (req.venus || 0) - 100;
-
-        card.nextCardPlayed = true;
+        req.temperature -= 100;
+        req.oxygen -= 100;
+        req.ocean -= 100;
+        req.venus -= 100;
       }
-    }
+    });
   },
   production: {
     plant: 1

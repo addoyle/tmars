@@ -36,7 +36,7 @@ export default new Event({
       // Not reserved
       notReserved(tile) &&
       // Not neighboring a city
-      !neighbors.filter(t => ['city', 'capital city'].includes(t.type)).length
+      !neighbors.filter(t => ['city', 'capital city'].some(t.type))
   },
   param: ['temperature', 'temperature', 'temperature'],
   resources: {

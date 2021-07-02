@@ -1,4 +1,4 @@
-import { observable, action, toJS } from 'mobx';
+import { observable, action } from 'mobx';
 import { API, gameId } from '../../util/api';
 import SharedGame from '../../../shared/game/game.shared.model';
 import { last } from 'lodash';
@@ -93,7 +93,7 @@ class Game extends SharedGame {
       this.player.cards.reveal = [];
     }
 
-    this.updateUI();
+    this.updateUI({ drawer: this.ui.drawer });
   }
 
   /**
@@ -102,7 +102,7 @@ class Game extends SharedGame {
   @action
   toggleStandardProjects() {
     this.ui.standardProjects = !this.ui.standardProjects;
-    this.updateUI();
+    this.updateUI({ standardProjects: this.ui.standardProjects });
   }
 
   /**
@@ -111,7 +111,7 @@ class Game extends SharedGame {
   @action
   toggleMilestoneAwards() {
     this.ui.milestones = !this.ui.milestones;
-    this.updateUI();
+    this.updateUI({ milestones: this.ui.milestones });
   }
 
   /**
@@ -141,7 +141,7 @@ class Game extends SharedGame {
       heat: 0,
       showResources
     };
-    this.updateUI();
+    this.updateUI({ currentCard: this.ui.currentCard });
   }
 
   @action
@@ -168,8 +168,6 @@ class Game extends SharedGame {
     // Set any temporary UI states from the current stack
     const action = last(this.player.actionStack);
     action && action.ui && Object.assign(this.ui, action.ui);
-
-    console.log(toJS(action));
   }
 
   /**
@@ -261,10 +259,10 @@ class Game extends SharedGame {
     });
   }
 
-  updateUI() {
+  updateUI(ui) {
     API(`game/${gameId()}/update-ui`, POST, {
       player: +PLAYER_NUM,
-      ui: this.ui
+      ui
     });
   }
 

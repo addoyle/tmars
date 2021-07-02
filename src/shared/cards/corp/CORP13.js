@@ -16,7 +16,7 @@ const customFilter = player => (tile, game, notReserved, neighbors) =>
   // Not reserved
   notReserved(tile) &&
   // Is adjacent to one of your own tiles
-  neighbors.filter(t => t.player === player.number).length;
+  neighbors.some(t => t.player === player.number);
 
 export default new Corporation({
   number: 'CORP13',

@@ -22,7 +22,7 @@ export default new Active({
       // Not reserved
       notReserved(tile) &&
       // No neighbors
-      !neighbors.filter(t => t.name).length
+      !neighbors.some(t => t.name)
   },
   emoji: '🏢',
   activeLayout: (

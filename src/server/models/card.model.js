@@ -50,4 +50,8 @@ export default class CardModel {
       console.log(Object.values(this.prelude).length, 'preludes loaded');
     });
   }
+
+  get(id) {
+    return this.project[id] || this.corp[id] || this.prelude[id];
+  }
 }

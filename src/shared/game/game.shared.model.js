@@ -11,12 +11,11 @@ class SharedGame {
    */
   findPossibleTiles(tile, player, customFilter) {
     const self = this;
-    const notReserved = t =>
-      !t.attrs?.filter(attr => attr.includes('reserved')).length;
+    const notReserved = t => !t.attrs?.some(attr => attr.includes('reserved'));
     let filter;
 
     // If the card has a special placement (special tiles, typically)
-    if (filter) {
+    if (customFilter) {
       filter = t => customFilter(t, this, notReserved, this.neighbors(t));
     }
 

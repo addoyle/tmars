@@ -75,4 +75,28 @@ export default class Player {
   constructor(name) {
     this.name = name;
   }
+
+  get allCards() {
+    return this.cards.hand
+      .concat(this.cards.active)
+      .concat(this.cards.automated)
+      .concat(this.cards.event)
+      .concat(this.cards.corp)
+      .concat(this.cards.prelude);
+  }
+
+  get allActionableCards() {
+    return this.cards.active.concat(this.cards.corp);
+  }
+
+  get allFaceupCards() {
+    return this.cards.active
+      .concat(this.cards.automated)
+      .concat(this.cards.corp)
+      .concat(this.cards.prelude);
+  }
+
+  get allPlayedCards() {
+    return this.allFaceupCards.concat(this.cards.event);
+  }
 }

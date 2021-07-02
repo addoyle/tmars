@@ -29,8 +29,8 @@ $title-font: 'Prototype', sans-serif;
     font-size: .1em;
     position: absolute;
     display: flex;
-    top: -1.2em;
-    left: .5em;
+    top: -.925em;
+    left: 2.25em;
     padding: .1em .35em 0;
     background: #444a;
     border-style: solid;
@@ -48,6 +48,12 @@ $title-font: 'Prototype', sans-serif;
       color: #fff;
       text-transform: uppercase;
       font-family: $title-font, sans-serif;
+    }
+
+    & > .mc {
+      font-size: 1.4em;
+      margin-top: -.3em;
+      margin-bottom: -.2em;
     }
   }
 

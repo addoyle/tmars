@@ -11,14 +11,14 @@ const card = new Prelude({
   desc,
   flavor: 'He’ll support you, but he wants something big with his name on it',
   emoji: '🧐',
-  todo: true,
-  action: (player, game, done) => {
+  action: (player, game) => {
     // Set modifier
     player.rates.cost.all = (player.rates.cost.all || 0) - 25;
 
-    game.promptCard(player, 'project', () => {
-      player.rates.cost.all += 25;
-      done();
+    game.promptCard(player, {
+      cards: 'hand',
+      mode: 'play',
+      action: player => (player.rates.cost.all += 25)
     });
   },
   layout: (

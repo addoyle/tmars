@@ -212,27 +212,29 @@ class GameService {
     }
 
     // Put card in appropriate drawer
-    // HACK to handle Law Suit, which doesn't go in player's hand
-    card.card !== 'X06' && player.cards[playedCard.type].push(card);
+    player.cards[playedCard.type].push(card);
 
     // Remove from hand
     player.cards.hand = player.cards.hand.filter(c => c?.card !== card.card);
 
-    // To do once all card actions are complete (placing tiles, etc.)
-    const done = () => {
-      // Trigger card-played events
-      game.fire('onCardPlayed', player, playedCard);
-      game.fire('onAnyCardPlayed', player, playedCard);
-
-      game.playerStatus?.done();
-
-      if (game.phase === 'action') {
-        game.nextTurn();
-      }
-    };
+    // Hide current card
+    player.ui.currentCard.show = false;
 
     // Perform card's action
-    game.performAction(playedCard, player, game, done);
+    game.performAction(playedCard, player, game);
+
+    // Trigger card-played events
+    game.fire('onCardPlayed', player, playedCard);
+    game.fire('onAnyCardPlayed', player, playedCard);
+
+    // If the card was played as the result of another card's action, pop that action off the stack
+    if (player.actionStack.length) {
+      game.completeAction(player, playedCard);
+    }
+
+    if (game.phase === 'action') {
+      game.nextTurn();
+    }
 
     return this.export(game);
   }
@@ -253,7 +255,7 @@ class GameService {
 
     // Check to make sure the user can play this prelude
     if (
-      !player.cards.prelude.filter(c => card.card === c.card).length ||
+      !player.cards.prelude.some(c => card.card === c.card) ||
       player.cards.prelude.find(c => card.card === c.card).disabled
     ) {
       return this.export(game);
@@ -270,35 +272,17 @@ class GameService {
     // Hide card
     player.ui.currentCard.show = false;
 
-    // Callback for once the card action is complete
-    const done = () => {
-      // Mark prelude as played
-      player.cards.prelude.find(
-        prelude => prelude.card === card.card
-      ).disabled = true;
-
-      // If both preludes have been played, advance to the next player
-      if (!player.cards.prelude.filter(prelude => !prelude.disabled).length) {
-        game.nextTurn();
-
-        // All preludes played, start action phase
-        if (
-          game.players.every(player =>
-            player.cards.prelude.every(prelude => prelude.disabled)
-          )
-        ) {
-          // Enable preludes
-          game.players.forEach(player =>
-            player.cards.prelude.forEach(prelude => (prelude.disabled = false))
-          );
-
-          game.beginActionPhase();
-        }
-      }
-    };
-
     // Perform prelude's action
-    game.performAction(playedCard, player, game, done);
+    game.performAction(playedCard, player, game);
+
+    // Mark prelude as played
+    player.cards.prelude.find(
+      prelude => prelude.card === card.card
+    ).disabled = true;
+
+    if (!player.actionStack.length) {
+      game.endPreludeAction(player, card);
+    }
 
     return this.export(game);
   }
@@ -548,7 +532,7 @@ class GameService {
   updateUI(id, playerNum, ui) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
-    player.ui = ui;
+    player.ui = { ...player.ui, ...ui };
     return this.export(game);
   }
 

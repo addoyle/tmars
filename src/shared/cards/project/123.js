@@ -27,7 +27,7 @@ export default new Active({
       // Not reserved
       notReserved(tile) &&
       // Is adjacent a city
-      neighbors.filter(t => t.type.includes('city')).length
+      neighbors.some(t => t.type.includes('city'))
   },
   actions: [
     {

@@ -5,8 +5,7 @@ import {
   startCase,
   groupBy,
   isPlainObject,
-  times,
-  last
+  times
 } from 'lodash';
 import { normalize } from '../util';
 import Tharsis from '../../shared/boards/Tharsis';
@@ -146,20 +145,26 @@ class Game extends SharedGame {
     }
 
     // Filter out non-used cards and shuffle project deck
-    this.cards.deck = shuffle(
-      Object.values(this.cardStore.project)
-        .filter(card => {
-          const answer =
-            card.set === 'base' ||
-            (Array.isArray(card.set) ? card.set : [card.set]).every(set =>
-              this.sets.includes(set)
-            );
-          return answer;
-        })
-        .map(card => ({ card: normalize(card.number) }))
+    let deck = Object.values(this.cardStore.project).filter(
+      card =>
+        card.set === 'base' ||
+        (Array.isArray(card.set) ? card.set : [card.set]).every(set =>
+          this.sets.includes(set)
+        )
     );
-    // Do the same for the corp deck
+    // Remove any card that gets replaced by another (e.g. X32 replaces 136)
+    const replaced = deck
+      .filter(c => c.replaces)
+      .reduce((r, c) => ({ ...r, [c.replaces]: c.number }), {});
+    deck = deck.filter(c => !replaced[c.number]);
+
+    // Shuffle it up and store just the ids
+    this.cards.deck = shuffle(
+      deck.map(card => ({ card: normalize(card.number) }))
+    );
+
     this.cards.corps = shuffle(
+      // Do the same for the corp deck
       Object.values(this.cardStore.corp)
         .filter(
           corp =>
@@ -326,7 +331,7 @@ class Game extends SharedGame {
     // Draw cards until the number of matching cards reaches the expected size
     while (
       (keep = reveal
-        .map(card => this.cardStore.project[card.card])
+        .map(card => this.cardStore.get(card.card))
         .filter(revealFilter || (() => true))
         .map(card => ({
           card: normalize(card.number)
@@ -384,9 +389,8 @@ class Game extends SharedGame {
    *
    * @param {Player} player Player who receives the rewards for the bump
    * @param {string} param Param to bump
-   * @param {func} done Callback once param is complete
    */
-  param(player, param, done) {
+  param(player, param) {
     if (
       paramStats[param] !== undefined &&
       (this.params[param] < paramStats[param].max ||
@@ -407,10 +411,7 @@ class Game extends SharedGame {
             ` ${startCase(param)}!`
           ])
         );
-        rewardAction(player, this, done);
-        rewardAction.length < 3 && done();
-      } else {
-        done && done();
+        rewardAction(player, this);
       }
     }
 
@@ -426,53 +427,18 @@ class Game extends SharedGame {
    * @param {object} action The action object to perform
    * @param {Player} player The player performing the standard action
    * @param {Game} game The game
-   * @param {*} done Callback when the actions are complete
-   * @param {...any} otherArgs Optional other arguments to be passed in to custom actions
    */
-  performAction(action, player, game, done, ...otherArgs) {
+  performAction(action, player, game) {
     // If the action is just a function, call it as normal
     if (isFunction(action)) {
-      action(player, game, done);
-      if (action.length < 3) {
-        done();
-      }
+      action(player, game);
       return;
     }
-
-    // const isCardAction =
-    //   action.constructor.name === 'Corporation' ||
-    //   Object.getPrototypeOf(action.constructor)?.name === 'Project';
-
-    // Action queue for actions with callbacks
-    let actionQueue = [];
-    const next = function () {
-      // Capture arguments being passed into follow-on actions (e.g. player picked, tile placement, etc.)
-      const outerArgs = arguments;
-
-      // Return the next action
-      return function () {
-        if (actionQueue.length) {
-          const action = actionQueue.shift();
-          const nextAction = next();
-
-          // Perform the action
-          action(player, game, nextAction, ...otherArgs);
-
-          // If the action doesn't call the callback, call it now
-          if (action.length < 3) {
-            nextAction(...outerArgs);
-          }
-        } else {
-          // We've completed the queue, call the final callback
-          done && done(...arguments);
-        }
-      };
-    };
 
     // Handle resources
     if (action.resources) {
       if (isFunction(action.resources)) {
-        actionQueue.push(action.resources);
+        action.resources(player, this);
       } else {
         Object.keys(action.resources).forEach(r =>
           game.resources(player, r, action.resources[r])
@@ -483,7 +449,7 @@ class Game extends SharedGame {
     // Handle production
     if (action.production) {
       if (isFunction(action.production)) {
-        actionQueue.push(action.production);
+        action.production(player, this);
       } else {
         Object.keys(action.production).forEach(p =>
           game.production(player, p, action.production[p])
@@ -494,7 +460,7 @@ class Game extends SharedGame {
     // Handle TR
     if (action.tr) {
       if (isFunction(action.tr)) {
-        actionQueue.push(action.tr);
+        action.tr(player, this);
       } else {
         game.tr(player, action.tr);
       }
@@ -503,7 +469,9 @@ class Game extends SharedGame {
     // Handle cards
     if (action.drawCard) {
       if (isFunction(action.drawCard)) {
-        actionQueue.push(action.drawCard);
+        action.drawCard(player, this);
+      } else if (!isNaN(action.drawCard)) {
+        times(action.drawCard, () => game.drawCard(player));
       } else {
         const opts = {
           reveal: false,
@@ -543,15 +511,14 @@ class Game extends SharedGame {
 
     // Handle params
     if (action.param) {
-      const params = Array.isArray(action.param)
-        ? action.param
-        : [action.param];
-      actionQueue.push(
-        // eslint-disable-next-line no-unused-vars
-        ...params.map(param => (player, game, done) =>
-          game.param(player, param, next())
-        )
-      );
+      if (isFunction(action.param)) {
+        action.param(player, this);
+      } else {
+        (Array.isArray(action.param)
+          ? action.param
+          : [action.param]
+        ).forEach(p => this.param(player, p));
+      }
     }
 
     // Handle tiles
@@ -566,39 +533,43 @@ class Game extends SharedGame {
 
     // Handle custom card action
     if (action.action) {
-      actionQueue.push(action.action);
+      action.action(player, this);
     }
-
-    // Start the action queue
-    next()();
   }
 
   /**
-   * Prompt for playing a card
+   * Prompt for a card
    *
    * @param {object} player The player to prompt
-   * @param {string} type The card type
-   * @param {func} done Callback once the card is played
+   * @param {object} options Options for the card prompt
    */
-  promptCard(player, type, done) {
-    player.ui = {
-      drawer: type === 'project' ? 'hand' : type
-    };
+  promptCard(player, options) {
+    const cards =
+      options.cards === 'hand'
+        ? undefined
+        : (options.any ? this.players : [player]).reduce(
+            (o, p) => ({
+              ...o,
+              [p.number]: p.cards[options.cards || 'allActionableCards'].filter(
+                options.filter || (() => true)
+              )
+            }),
+            {}
+          );
 
-    this.playerStatus = {
+    player.actionStack.push({
       type: 'prompt-card',
-      cardType: type,
-      player,
-      modifiers: {},
-      done: () => {
-        // Show UI components
-        player.ui = {
-          drawer: this.phase === 'prelude' ? 'prelude' : 'hand'
-        };
-
-        done && done();
-      }
-    };
+      cards,
+      description: options.description || 'Choose a card',
+      mode: options.mode || 'select',
+      ui: {
+        drawer: options.cards === 'hand' ? 'hand' : 'chooser',
+        currentCard: { show: false },
+        showMilestones: false,
+        showStandardProjects: false
+      },
+      action: options.action
+    });
   }
 
   /**
@@ -624,7 +595,6 @@ class Game extends SharedGame {
     if (possibleTiles.length) {
       // Set the player status
       player.actionStack.push({
-        // player,
         tile: tile.tile,
         type: 'prompt-tile',
         ui: {
@@ -722,9 +692,8 @@ class Game extends SharedGame {
    * @param {object} player Player placing the tile
    * @param {object} area Field area to place the tile
    * @param {string} tile Tile to place, e.g. 'ocean', 'city', etc.
-   * @param {func} done Callback once the tile is placed
    */
-  placeTile(player, area, tile, done) {
+  placeTile(player, area, tile) {
     const type = isString(tile) ? tile : 'special';
 
     // Set the tile
@@ -760,6 +729,9 @@ class Game extends SharedGame {
         player.rates.ocean;
     }
 
+    // Mark the action as complete
+    this.completeAction(player, area);
+
     // Handle placement bonuses
     (area.resources || [])
       .filter(r => r)
@@ -770,7 +742,7 @@ class Game extends SharedGame {
         }
         // Place an ocean
         else if (r === 'ocean') {
-          this.promptTile(player, { tile: 'ocean' }, done);
+          this.promptTile(player, { tile: 'ocean' });
         }
         // Megacredits
         else if (r.megacredit) {
@@ -788,9 +760,6 @@ class Game extends SharedGame {
     } else if (tile === 'greenery') {
       this.param(player, 'oxygen');
     }
-
-    // Mark the action as complete
-    this.completeAction(player, area);
 
     // Check if this tile placement finished terraforming
     this.checkEndGame();
@@ -1116,11 +1085,8 @@ class Game extends SharedGame {
         );
 
       // Cards
-      player.score.cards = player.cards.automated
-        .concat(player.cards.active)
-        .concat(player.cards.event)
-        .map(card => this.cardStore.project[card.card])
-        .concat(player.cards.corp.map(c => this.cardStore.corp[c.card]))
+      player.score.cards = player.allPlayedCards
+        .map(card => this.cardStore.get(card.card))
         .reduce(
           (sum, card) =>
             sum +
@@ -1242,8 +1208,7 @@ class Game extends SharedGame {
     (player ? [player] : this.players).forEach(p =>
       // Loop through active cards and corp
       p.cards.active
-        .map(c => this.cardStore.project[c.card])
-        .concat(p.cards.corp.map(c => this.cardStore.corp[c.card]))
+        .map(c => this.cardStore.get(c.card))
         .filter(c => c.events && c.events[evt])
         .forEach(c => {
           c.events[evt](p, this, ...opts) &&
@@ -1338,13 +1303,7 @@ class Game extends SharedGame {
    * @param {obhect} tile Tile to set
    */
   cardTile(player, card, tile) {
-    const playerCard = player.cards.hand
-      .concat(player.cards.active)
-      .concat(player.cards.automated)
-      .concat(player.cards.event)
-      .concat(player.cards.corp)
-      .concat(player.cards.prelude)
-      .find(c => c.card === card.number);
+    const playerCard = player.allCards.find(c => c.card === card.number);
 
     if (tile) {
       playerCard.tile = tile.id;
@@ -1355,11 +1314,37 @@ class Game extends SharedGame {
 
   completeAction(player, params) {
     // Pop off the action
-    player.actionStack.pop();
+    const action = player.actionStack.pop();
 
-    // Pass args into next action, if there is one
-    if (player.actionStack.length) {
-      last(player.actionStack).params = params;
+    // Perform the action, if necessary
+    if (action.action) {
+      action.action(player, this, params);
+    }
+
+    // Run end actions if stack is empty
+    if (this.phase === 'prelude') {
+      this.endPreludeAction(player);
+    }
+  }
+
+  endPreludeAction(player) {
+    // If both preludes have been played, advance to the next player
+    if (!player.cards.prelude.filter(prelude => !prelude.disabled).length) {
+      this.nextTurn();
+
+      // All preludes played, start action phase
+      if (
+        this.players.every(player =>
+          player.cards.prelude.every(prelude => prelude.disabled)
+        )
+      ) {
+        // Enable preludes
+        this.players.forEach(player =>
+          player.cards.prelude.forEach(prelude => (prelude.disabled = false))
+        );
+
+        this.beginActionPhase();
+      }
     }
   }
 

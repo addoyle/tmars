@@ -29,7 +29,7 @@ export default new Automated({
       // Not reserved
       notReserved(tile) &&
       // No neighbors
-      !neighbors.filter(t => t.name).length
+      !neighbors.some(t => t.name)
   },
   vp: 1,
   emoji: '🏜',

@@ -20,12 +20,16 @@ const StandardProject = inject('gameStore')(
 
     const [chooserOpen, openChooser] = useState(false);
 
-    const canUse = Array.isArray(props.cost)
-      ? player?.resources.megacredit >= props.cost[0] ||
-        player?.resources[props.cost[1]] >= (player?.rates[props.cost[1]] || 8)
-      : isNaN(props.cost)
-      ? player?.cards.hand.length
-      : player?.resources.megacredit >= props.cost;
+    const canUse =
+      props.gameStore.phase === 'action' &&
+      !player?.actionStack.length &&
+      (Array.isArray(props.cost)
+        ? player?.resources.megacredit >= props.cost[0] ||
+          player?.resources[props.cost[1]] >=
+            (player?.rates[props.cost[1]] || 8)
+        : isNaN(props.cost)
+        ? player?.cards.hand.length
+        : player?.resources.megacredit >= props.cost);
 
     const action = () => {
       if (!canUse || props.gameStore.turn !== player?.number) {
@@ -128,7 +132,8 @@ StandardProject.propTypes = {
     player: PropTypes.shape({
       rates: PropTypes.object
     }),
-    standardProject: PropTypes.func
+    standardProject: PropTypes.func,
+    phase: PropTypes.string
   }),
   cost: PropTypes.oneOfType([
     PropTypes.number,
