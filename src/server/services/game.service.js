@@ -207,7 +207,7 @@ class GameService {
       player.tags.event++;
     } else {
       playedCard.tags.forEach(
-        tag => (player.tags[tag] = (player.tags[tag] || 0) + 1)
+        tag => (player.tags[tag] = (player.tags[tag] ?? 0) + 1)
       );
     }
 
@@ -267,7 +267,9 @@ class GameService {
     );
 
     // Set tags
-    playedCard.tags.forEach(tag => player.tags[tag]++);
+    playedCard.tags.forEach(
+      tag => (player.tags[tag] = (player.tags[tag] ?? 0) + 1)
+    );
 
     // Hide card
     player.ui.currentCard.show = false;

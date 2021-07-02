@@ -383,7 +383,7 @@ const CardDrawer = props => {
                 costModifiers={props.type ? gameStore.player.rates.cost : []}
                 showZoom={props.mode === 'select' || props.mode === 'draft'}
                 showResources={
-                  !['start', 'prelude'].includes(gameStore.phase) &&
+                  gameStore.phase !== 'start' &&
                   ['active', 'corp'].includes(props.type)
                 }
               />

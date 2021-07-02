@@ -114,8 +114,11 @@ class Game extends SharedGame {
     // Show welcome message
     this.log.push(new Log(0, 'Welcome to Terraforming Mars!'));
 
-    // Assign the player numbers
-    this.players.forEach((player, i) => (player.number = i + 1));
+    // Assign players starting stuff
+    this.players.forEach((player, i) => {
+      player.number = i + 1;
+      player.ui.playerStats = { show: true, pid: i + 1 };
+    });
 
     // Solo game specific rules
     if (this.players.length === 1) {

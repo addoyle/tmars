@@ -7,7 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Param } from '../assets/Assets';
 import classnames from 'classnames';
 import { last } from 'lodash';
-import { toJS } from 'mobx';
 
 const CardDrawers = ({ gameStore }) => {
   const buyMode =
@@ -17,7 +16,6 @@ const CardDrawers = ({ gameStore }) => {
         gameStore.player?.cards.buy.length === 4));
 
   const latestAction = last(gameStore.player?.actionStack);
-  console.log(toJS(gameStore.player?.actionStack));
 
   const drawers = [
     // Hand of cards
