@@ -1,3 +1,4 @@
+import Game from '../models/game.model';
 import GameService from '../services/game.service';
 
 const OK = 200;
@@ -290,7 +291,10 @@ export function loadPreset(req, res) {
       );
       presetGame.id = req.params.id;
 
-      GameService.registerGame(presetGame, req.params.id);
+      GameService.registerGame(
+        new Game(GameService.cardStore, presetGame),
+        req.params.id
+      );
 
       res.sendStatus(OK);
     } else {
