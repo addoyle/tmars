@@ -5,6 +5,7 @@ import BodyParser from 'body-parser';
 import compression from 'compression';
 import spdy from 'spdy';
 import fs from 'fs';
+import os from 'os';
 
 // Import routes
 import logRoutes from './src/server/routes/log.routes';
@@ -51,7 +52,14 @@ spdy
       console.error(error);
       return process.exit(1);
     } else {
-      console.log(`HTTP/2 server started on port ${config.port}`);
+      const ip = os
+        .networkInterfaces()
+        ['eth0'].find(
+          network => network.family === 'IPv4' && !network.internal
+        );
+      console.log(
+        `HTTP/2 server started on https://${ip.address}:${config.port}`
+      );
     }
   });
 // app.listen(config.port, () =>
