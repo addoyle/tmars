@@ -291,6 +291,7 @@ export function loadPreset(req, res) {
       );
       presetGame.id = req.params.id;
 
+      delete GameService.games[req.params.id];
       GameService.registerGame(
         new Game(GameService.cardStore, presetGame),
         req.params.id

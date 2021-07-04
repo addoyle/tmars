@@ -10,11 +10,11 @@
     {
       "name": "Frank",
       "number": 1,
-      "tr": 20,
+      "tr": 21,
       "resources": {
-        "megacredit": 100,
+        "megacredit": 97,
         "steel": 100,
-        "titanium": 100,
+        "titanium": 102,
         "plant": 100,
         "power": 100,
         "heat": 100
@@ -23,15 +23,15 @@
         "megacredit": 100,
         "steel": 100,
         "titanium": 100,
-        "plant": 100,
-        "power": 100,
+        "plant": 101,
+        "power": 102,
         "heat": 103
       },
       "tags": {
         "building": 0,
         "space": 1,
-        "power": 0,
-        "science": 0,
+        "power": 1,
+        "science": 1,
         "jovian": 0,
         "earth": 0,
         "plant": 0,
@@ -83,7 +83,10 @@
           { "card": "052" },
           { "card": "054" },
           { "card": "059" },
-          { "card": "061" }
+          { "card": "061" },
+          { "card": "240" },
+          { "card": "191" },
+          { "card": "193" }
         ],
         "draft": [],
         "active": [],
@@ -99,20 +102,35 @@
         "prelude": [
           {
             "card": "P02",
-            "select": false
+            "select": false,
+            "disabled": false
           },
           {
             "card": "P04",
-            "select": false
+            "select": false,
+            "disabled": false
           }
         ],
         "onDeck": []
       },
       "ui": {
-        "drawer": "prelude",
+        "drawer": "hand",
         "playerStats": {
           "show": true,
           "pid": 1
+        },
+        "currentCard": {
+          "show": false,
+          "card": {
+            "card": "P04",
+            "select": false
+          },
+          "type": "prelude",
+          "mode": "play",
+          "steel": 0,
+          "titanium": 0,
+          "heat": 0,
+          "showResources": false
         }
       },
       "rates": {
@@ -128,14 +146,15 @@
       "passed": false,
       "firstAction": true,
       "startingAction": true,
-      "score": {}
+      "score": {},
+      "trRaised": true
     },
     {
       "name": "Larissa",
       "number": 2,
       "tr": 20,
       "resources": {
-        "megacredit": 100,
+        "megacredit": 75,
         "steel": 100,
         "titanium": 100,
         "plant": 100,
@@ -146,21 +165,21 @@
         "megacredit": 100,
         "steel": 100,
         "titanium": 100,
-        "plant": 100,
+        "plant": 101,
         "power": 100,
         "heat": 100
       },
       "tags": {
         "building": 1,
-        "space": 0,
+        "space": 1,
         "power": 0,
         "science": 0,
-        "jovian": 0,
+        "jovian": 1,
         "earth": 0,
-        "plant": 0,
-        "microbe": 0,
+        "plant": 1,
+        "microbe": 2,
         "animal": 0,
-        "city": 0,
+        "city": 1,
         "venus": 0,
         "event": 0
       },
@@ -182,7 +201,6 @@
           { "card": "074" },
           { "card": "076" },
           { "card": "080" },
-          { "card": "081" },
           { "card": "086" },
           { "card": "095" },
           { "card": "096" },
@@ -204,14 +222,20 @@
           { "card": "128" },
           { "card": "129" },
           { "card": "130" },
-          { "card": "131" },
           { "card": "133" },
           { "card": "134" }
         ],
         "draft": [],
-        "active": [],
+        "active": [
+          {
+            "card": "131",
+            "resource": 1
+          }
+        ],
         "buy": [],
-        "automated": [],
+        "automated": [
+          { "card": "081" }
+        ],
         "event": [],
         "corp": [
           {
@@ -222,20 +246,32 @@
         "prelude": [
           {
             "card": "P10",
-            "select": false
+            "select": false,
+            "disabled": false
           },
           {
             "card": "P11",
-            "select": false
+            "select": false,
+            "disabled": false
           }
         ],
         "onDeck": []
       },
       "ui": {
-        "drawer": "prelude",
+        "drawer": "hand",
         "playerStats": {
           "show": true,
           "pid": 2
+        },
+        "currentCard": {
+          "show": false,
+          "card": { "card": "081" },
+          "type": "project",
+          "mode": "play",
+          "steel": 0,
+          "titanium": 0,
+          "heat": 0,
+          "showResources": false
         }
       },
       "rates": {
@@ -245,8 +281,15 @@
         "plant": 8,
         "heat": 8,
         "ocean": 2,
-        "requirement": {},
-        "cost": {}
+        "requirement": {
+          "temperature": 0,
+          "oxygen": 0,
+          "ocean": 0,
+          "venus": 0
+        },
+        "cost": {
+          "all": 0
+        }
       },
       "passed": false,
       "firstAction": true,
@@ -256,11 +299,11 @@
     {
       "name": "Colin",
       "number": 3,
-      "tr": 20,
+      "tr": 24,
       "resources": {
-        "megacredit": 100,
-        "steel": 110,
-        "titanium": 100,
+        "megacredit": 95,
+        "steel": 114,
+        "titanium": 104,
         "plant": 100,
         "power": 100,
         "heat": 100
@@ -271,7 +314,7 @@
         "titanium": 100,
         "plant": 100,
         "power": 100,
-        "heat": 100
+        "heat": 101
       },
       "tags": {
         "building": 0,
@@ -345,20 +388,35 @@
         "prelude": [
           {
             "card": "P15",
-            "select": false
+            "select": false,
+            "disabled": false
           },
           {
             "card": "P19",
-            "select": false
+            "select": false,
+            "disabled": false
           }
         ],
         "onDeck": []
       },
       "ui": {
-        "drawer": "prelude",
+        "drawer": "hand",
         "playerStats": {
           "show": true,
           "pid": 3
+        },
+        "currentCard": {
+          "show": false,
+          "card": {
+            "card": "P19",
+            "select": false
+          },
+          "type": "prelude",
+          "mode": "play",
+          "steel": 0,
+          "titanium": 0,
+          "heat": 0,
+          "showResources": false
         }
       },
       "rates": {
@@ -374,12 +432,13 @@
       "passed": false,
       "firstAction": true,
       "startingAction": true,
-      "score": {}
+      "score": {},
+      "trRaised": true
     },
     {
       "name": "Andy",
       "number": 4,
-      "tr": 20,
+      "tr": 21,
       "resources": {
         "megacredit": 100,
         "steel": 100,
@@ -389,15 +448,15 @@
         "heat": 100
       },
       "production": {
-        "megacredit": 100,
+        "megacredit": 101,
         "steel": 100,
         "titanium": 100,
         "plant": 100,
         "power": 100,
-        "heat": 100
+        "heat": 102
       },
       "tags": {
-        "building": 0,
+        "building": 1,
         "space": 0,
         "power": 0,
         "science": 0,
@@ -408,7 +467,8 @@
         "animal": 0,
         "city": 0,
         "venus": 0,
-        "event": 0
+        "event": 0,
+        "any": 1
       },
       "tiles": {
         "city": 0,
@@ -451,7 +511,11 @@
           { "card": "251" },
           { "card": "253" },
           { "card": "256" },
-          { "card": "257" }
+          { "card": "257" },
+          { "card": "196" },
+          { "card": "113" },
+          { "card": "075" },
+          { "card": "244" }
         ],
         "draft": [],
         "active": [],
@@ -467,20 +531,35 @@
         "prelude": [
           {
             "card": "P26",
-            "select": false
+            "select": false,
+            "disabled": false
           },
           {
             "card": "P28",
-            "select": false
+            "select": false,
+            "disabled": false
           }
         ],
         "onDeck": []
       },
       "ui": {
-        "drawer": "prelude",
+        "drawer": "hand",
         "playerStats": {
           "show": true,
           "pid": 4
+        },
+        "currentCard": {
+          "show": false,
+          "card": {
+            "card": "P28",
+            "select": false
+          },
+          "type": "prelude",
+          "mode": "play",
+          "steel": 0,
+          "titanium": 0,
+          "heat": 0,
+          "showResources": false
         }
       },
       "rates": {
@@ -498,22 +577,23 @@
       "passed": false,
       "firstAction": true,
       "startingAction": true,
-      "score": {}
+      "score": {},
+      "trRaised": true
     },
     {
       "name": "Adrian",
       "number": 5,
-      "tr": 20,
+      "tr": 23,
       "resources": {
-        "megacredit": 100,
-        "steel": 100,
+        "megacredit": 96,
+        "steel": 105,
         "titanium": 100,
         "plant": 100,
         "power": 100,
-        "heat": 100
+        "heat": 103
       },
       "production": {
-        "megacredit": 100,
+        "megacredit": 102,
         "steel": 100,
         "titanium": 100,
         "plant": 100,
@@ -521,7 +601,7 @@
         "heat": 100
       },
       "tags": {
-        "building": 1,
+        "building": 3,
         "space": 0,
         "power": 0,
         "science": 0,
@@ -530,7 +610,7 @@
         "plant": 0,
         "microbe": 0,
         "animal": 0,
-        "city": 0,
+        "city": 1,
         "venus": 0,
         "event": 0
       },
@@ -591,20 +671,35 @@
         "prelude": [
           {
             "card": "P29",
-            "select": false
+            "select": false,
+            "disabled": false
           },
           {
             "card": "P30",
-            "select": false
+            "select": false,
+            "disabled": false
           }
         ],
         "onDeck": []
       },
       "ui": {
-        "drawer": "prelude",
+        "drawer": "hand",
         "playerStats": {
           "show": true,
           "pid": 5
+        },
+        "currentCard": {
+          "show": false,
+          "card": {
+            "card": "P30",
+            "select": false
+          },
+          "type": "prelude",
+          "mode": "play",
+          "steel": 0,
+          "titanium": 0,
+          "heat": 0,
+          "showResources": false
         }
       },
       "rates": {
@@ -620,15 +715,16 @@
       "passed": false,
       "firstAction": true,
       "startingAction": true,
-      "score": {}
+      "score": {},
+      "trRaised": true
     }
   ],
-  "turn": 4,
-  "startingPlayer": 4,
+  "turn": 1,
+  "startingPlayer": 1,
   "params": {
-    "temperature": -30,
-    "oxygen": 0,
-    "ocean": 9,
+    "temperature": -22,
+    "oxygen": 2,
+    "ocean": 6,
     "generation": 1,
     "venus": 0
   },
@@ -860,7 +956,9 @@
         "attrs": [
           "reserved-ocean"
         ],
-        "id": 31
+        "id": 31,
+        "name": "ocean-placed",
+        "type": "ocean"
       },
       {
         "resources": [
@@ -872,7 +970,9 @@
         "attrs": [
           "reserved-ocean"
         ],
-        "id": 32
+        "id": 32,
+        "name": "ocean-placed",
+        "type": "ocean"
       },
       {
         "attrs": [
@@ -938,7 +1038,9 @@
         "attrs": [
           "reserved-ocean"
         ],
-        "id": 43
+        "id": 43,
+        "name": "ocean-placed",
+        "type": "ocean"
       },
       {
         "id": 44
@@ -1026,7 +1128,10 @@
           }
         ],
         "text": "SOUTH POLE",
-        "id": 58
+        "id": 58,
+        "name": "city-placed",
+        "type": "city",
+        "player": 5
       },
       {
         "resources": [
@@ -1042,10 +1147,14 @@
   ],
   "milestones": [],
   "awards": [],
-  "phase": "prelude",
+  "phase": "action",
   "endGame": false,
   "offMars": {
-    "ganymede": {},
+    "ganymede": {
+      "name": "city-placed",
+      "type": "city",
+      "player": 2
+    },
     "phobos": {},
     "torus": {},
     "maxwell": {},
@@ -1177,17 +1286,235 @@
         "."
       ],
       "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P02"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 1,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P04"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P10"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "131"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        "'s ",
+        {
+          "project": "131"
+        },
+        " effect was triggered."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P11"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " played ",
+        {
+          "project": "081"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 2,
+      "body": [
+        " placed a city ",
+        {
+          "tile": "city"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P15"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " got a reward from raising ",
+        {
+          "param": "temperature"
+        },
+        " Temperature!"
+      ],
+      "system": true
+    },
+    {
+      "player": 3,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P19"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P26"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 4,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P28"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P29"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " placed a city ",
+        {
+          "tile": "city"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " placed an ocean ",
+        {
+          "tile": "ocean"
+        },
+        " tile."
+      ],
+      "system": true
+    },
+    {
+      "player": 5,
+      "body": [
+        " revealed ",
+        {
+          "prelude": "P30"
+        },
+        "."
+      ],
+      "system": true
+    },
+    {
+      "player": 0,
+      "body": [
+        {
+          "project": "ACTION PHASE",
+          "drawer": "hand"
+        }
+      ],
+      "system": true,
+      "opts": {
+        "classNames": [
+          "phase",
+          "action-phase"
+        ]
+      }
     }
   ],
   "cards": {
     "deck": [
-      { "card": "240" },
-      { "card": "191" },
-      { "card": "193" },
-      { "card": "196" },
-      { "card": "113" },
-      { "card": "075" },
-      { "card": "244" },
       { "card": "090" },
       { "card": "175" },
       { "card": "092" },
