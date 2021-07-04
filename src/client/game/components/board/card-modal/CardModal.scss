@@ -31,6 +31,10 @@ $title-font: 'Prototype', sans-serif;
 
     > .card {
       transition: height 0.5s ease, width 0.5s ease;
+
+      &.modified {
+        margin-top: .125em;
+      }
     }
   }
 

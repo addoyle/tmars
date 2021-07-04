@@ -9,16 +9,17 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 const Settings = ({ gameStore }) => {
   const [shown, setShown] = useState(false);
+  const player = gameStore.player;
 
   return (
     <div
       className={classnames('settings-wrapper', {
-        shift: gameStore.drawer,
+        shift: player?.ui.drawer,
         empty:
-          gameStore.drawer !== null &&
-          !gameStore.player?.cards[gameStore.drawer]?.length &&
-          !(gameStore.drawer === 'hand' && gameStore.player?.cards.buy.length),
-        buy: gameStore.drawer === 'hand' && gameStore.player?.cards.buy.length
+          player?.ui.drawer &&
+          !player?.cards[player?.ui.drawer]?.length &&
+          !(player?.ui.drawer === 'hand' && player?.cards.buy.length),
+        buy: player?.ui.drawer === 'hand' && player?.cards.buy.length
       })}
       onMouseDown={e => e.stopPropagation()}
       onMouseMove={e => e.stopPropagation()}
@@ -60,9 +61,11 @@ const Settings = ({ gameStore }) => {
 
 Settings.propTypes = {
   gameStore: PropTypes.shape({
-    drawer: PropTypes.string,
     player: PropTypes.shape({
-      cards: PropTypes.objectOf(PropTypes.array)
+      cards: PropTypes.objectOf(PropTypes.array),
+      ui: PropTypes.shape({
+        drawer: PropTypes.string
+      })
     }),
     settings: PropTypes.shape({
       simple: PropTypes.bool

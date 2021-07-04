@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { Param, MegaCredit } from '../assets/Assets';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CardRef from './CardRef';
+import { last } from 'lodash';
 
 /**
  * Card drawer
@@ -14,6 +15,8 @@ import CardRef from './CardRef';
 const CardDrawer = props => {
   const gameStore = props.gameStore;
   const cardStore = props.cardStore;
+  const player = gameStore.player;
+  const stackAction = last(player?.actionStack);
 
   let cardType = 'project';
   if (props.type === 'corp') {
@@ -24,24 +27,22 @@ const CardDrawer = props => {
   }
 
   // Cards in the drawer
-  const cards = gameStore.player?.cards[props.type] || [];
+  const cards = player?.cards[props.type] || [];
   // The number of selected cards
   const numSelected = cards.filter(card => card?.select).length;
   // The number of cards that are staged to be purchased
-  const numToBuy = gameStore.player?.cards.buy.filter(card => card?.select)
-    .length;
+  const numToBuy = player?.cards.buy.filter(card => card?.select).length;
 
   // Used to calculate if the second "buy" drawer should be displayed
   const buyMode =
     // There are cards in the "buy" deck
-    gameStore.player?.cards.buy.length &&
+    player?.cards.buy.length &&
     // The selected drawer is the 'hand' drawer
     props.type === 'hand' &&
     // The game phase is NOT the research phase (that's handled differently)
     (gameStore.phase !== 'research' ||
       // Or if it is, only show when all 4 cards are drafted
-      (gameStore.phase === 'research' &&
-        gameStore.player?.cards.buy.length === 4));
+      (gameStore.phase === 'research' && player?.cards.buy.length === 4));
 
   // Draft mode
   const draftMode = props.type === 'draft';
@@ -51,9 +52,9 @@ const CardDrawer = props => {
 
   // Status of the start phase
   const startPhase = {
-    corp: gameStore.player?.cards.corp.length === 1,
-    prelude: gameStore.player?.cards.prelude.length === 2,
-    hand: !gameStore.player?.cards.buy.length
+    corp: player?.cards.corp.length === 1,
+    prelude: player?.cards.prelude.length === 2,
+    hand: !player?.cards.buy.length
   };
 
   return (
@@ -68,7 +69,7 @@ const CardDrawer = props => {
     >
       {props.mode === 'draft' ? (
         <div className="on-deck">
-          {gameStore.player?.cards.onDeck.map((row, i) => (
+          {player?.cards.onDeck.map((row, i) => (
             <div key={i}>
               {[...Array(row.length)].map((n, j) => (
                 <Param key={j} name="card back" />
@@ -85,7 +86,7 @@ const CardDrawer = props => {
       >
         {buyMode
           ? // Show the BUY drawer
-            gameStore.player?.cards.buy.map(card => (
+            player?.cards.buy.map(card => (
               <li
                 key={`card-${card?.card}`}
                 onClick={() => props.gameStore.toggleSelectCard(card, 'buy')}
@@ -111,10 +112,8 @@ const CardDrawer = props => {
         buyMode ||
         startMode ||
         // Or it's your turn to play actions (shows Skip/Pass buttons)
-        ((gameStore.phase === 'action' ||
-          (gameStore.phase === 'prelude' &&
-            gameStore.playerStatus?.modifiers)) &&
-          gameStore.turn === gameStore.player.number) ? (
+        ((gameStore.phase === 'action' || gameStore.phase === 'prelude') &&
+          gameStore.turn === player.number) ? (
           <div
             className={classNames(
               'button-bar flex gutter center center-items',
@@ -124,21 +123,16 @@ const CardDrawer = props => {
             <div className="col-1" style={{ paddingLeft: '1em' }}>
               <div className="resources">
                 {buyMode ? (
-                  gameStore.player?.cards.corp.length === 1 ? (
+                  player?.cards.corp.length === 1 ? (
                     // Show information about the selected corp
                     <>
                       <MegaCredit
                         value={
-                          cardStore.get(
-                            'corp',
-                            gameStore.player?.cards.corp[0].card
-                          )?.resources.megacredit
+                          cardStore.get('corp', player?.cards.corp[0].card)
+                            ?.resources.megacredit
                         }
                       />
-                      <CardRef
-                        type="corp"
-                        card={gameStore.player?.cards.corp[0].card}
-                      />
+                      <CardRef type="corp" card={player?.cards.corp[0].card} />
                     </>
                   ) : (
                     // No corp picked yet
@@ -177,7 +171,7 @@ const CardDrawer = props => {
                 draftMode ||
                 buyMode ||
                 // Or if the player is trying to buy cards
-                gameStore.playerStatus?.type === 'buy-card' ? (
+                stackAction?.type === 'buy-card' ? (
                   <button
                     className="primary flex gutter center"
                     onClick={() =>
@@ -191,17 +185,17 @@ const CardDrawer = props => {
                       // Disable the button in BUY mode
                       buyMode
                         ? // If there's no selected corp
-                          gameStore.player?.cards.corp.length !== 1 ||
+                          player?.cards.corp.length !== 1 ||
                           // Or you can't afford all the selected cards
                           !(
-                            numToBuy * gameStore.player?.rates.buy <=
-                              gameStore.player?.resources.megacredit ||
+                            numToBuy * player?.rates.buy <=
+                              player?.resources.megacredit ||
                             // Or can't afford all the selected cards in the start phase
                             (gameStore.phase === 'start' &&
-                              numToBuy * gameStore.player?.rates.buy <=
+                              numToBuy * player?.rates.buy <=
                                 cardStore.get(
                                   'corp',
-                                  gameStore.player?.cards.corp[0].card
+                                  player?.cards.corp[0].card
                                 )?.resources.megacredit)
                           )
                         : // Disable the button if the number of cards selected is out of the allowable range
@@ -220,9 +214,7 @@ const CardDrawer = props => {
 
                     {buyMode ? (
                       <div className="resources middle">
-                        <MegaCredit
-                          value={numToBuy * gameStore.player?.rates.buy}
-                        />
+                        <MegaCredit value={numToBuy * player?.rates.buy} />
                       </div>
                     ) : draftMode ? (
                       <div className="middle">
@@ -239,9 +231,8 @@ const CardDrawer = props => {
                   <div style={{ width: '60%' }} />
                 ) : (
                   <div className="pill">
-                    {gameStore.playerStatus?.type === 'prompt-card'
-                      ? gameStore.playerStatus.modifiers?.desc ||
-                        'Play a card from hand'
+                    {stackAction?.type === 'prompt-card'
+                      ? stackAction?.desc || 'Play a card from hand'
                       : 'Your Turn'}
                   </div>
                 )
@@ -278,15 +269,11 @@ const CardDrawer = props => {
                 >
                   <span className="col-1" />
                   <span className="col-5">
-                    {gameStore.player.firstAction ? 'Pass' : 'Skip'}
+                    {player.firstAction ? 'Pass' : 'Skip'}
                   </span>
                   <span className="col-1">
                     <FontAwesomeIcon
-                      icon={
-                        gameStore.player.firstAction
-                          ? 'check-square'
-                          : 'forward'
-                      }
+                      icon={player.firstAction ? 'check-square' : 'forward'}
                     />
                   </span>
                 </button>
@@ -380,7 +367,8 @@ const CardDrawer = props => {
                 card={card}
                 resources={card?.resources}
                 type={cardType}
-                costModifiers={props.type ? gameStore.player.rates.cost : []}
+                costModifiers={props.type ? player.rates.cost : []}
+                reqModifiers={props.type ? player.rates.requirement : {}}
                 showZoom={props.mode === 'select' || props.mode === 'draft'}
                 showResources={
                   gameStore.phase !== 'start' &&
@@ -390,12 +378,12 @@ const CardDrawer = props => {
             </li>
           ))
         }
-        {draftMode && gameStore.player?.cards.buy.length ? (
+        {draftMode && player?.cards.buy.length ? (
           // In draft mode, the cards that can be drafted and have been drafted
           // are shown side-by-side, with a separator in between
           <>
             <li className="separator" />
-            {gameStore.player?.cards.buy.map(card => (
+            {player?.cards.buy.map(card => (
               <li
                 key={`card-${card?.card || card}`}
                 onClick={() => gameStore.showCurrentCard(card, 'project')}
@@ -460,9 +448,11 @@ CardDrawer.propTypes = {
       }),
       rates: PropTypes.shape({
         buy: PropTypes.number,
-        cost: PropTypes.object
+        cost: PropTypes.object,
+        requirement: PropTypes.object
       }),
-      firstAction: PropTypes.bool
+      firstAction: PropTypes.bool,
+      actionStack: PropTypes.array
     }),
     params: PropTypes.shape({
       generation: PropTypes.number
@@ -473,12 +463,6 @@ CardDrawer.propTypes = {
     confirmSelection: PropTypes.func,
     confirmReveal: PropTypes.func,
     passSkip: PropTypes.func,
-    playerStatus: PropTypes.shape({
-      type: PropTypes.string,
-      modifiers: PropTypes.shape({
-        desc: PropTypes.string
-      })
-    }),
     sets: PropTypes.array
   }),
   cardStore: PropTypes.shape({

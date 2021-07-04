@@ -62,3 +62,25 @@ export const PARAM_VENUS = 'venus';
 // Other ones
 export const TERRAFORM_RATING = 'tr';
 export const CARD_BACK = 'card back';
+
+// Global param values
+export const GLOBAL_PARAMS = {
+  TEMPERATURE: {
+    MAX: 8,
+    MIN: -30,
+    STEP: 2
+  },
+  OXYGEN: {
+    MAX: 14,
+    MIN: 0
+  },
+  OCEAN: {
+    MAX: 9,
+    MIN: 0
+  },
+  VENUS: {
+    MAX: 30,
+    MIN: 0,
+    STEP: 2
+  }
+};

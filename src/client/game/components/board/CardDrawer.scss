@@ -81,14 +81,10 @@ $hand-height: 40vh;
       display: inline-block;
       margin: 2px 2px 13px 2px;
       list-style-type: none;
-      position: relative;
       transition: background-color 0.5s ease;
       opacity: 1;
-      width: 150px;
-      height: 210px;
-      background: transparent;
       border-radius: 5px;
-      vertical-align: middle;
+      font-size: 0;
 
       &.landscape {
         width: 210px;
@@ -165,6 +161,7 @@ $hand-height: 40vh;
     opacity: 1;
     border-bottom: 4px solid #444;
     background: rgba(0, 0, 0, 0.4);
+    height: 46px;
 
     & ~ .cards {
       max-height: calc(#{$hand-height} - 46px - 3px);

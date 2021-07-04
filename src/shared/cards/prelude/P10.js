@@ -19,7 +19,7 @@ export default new Prelude({
     // Set modifier to some high number as to bypass any checks
     const req = player.rates.requirement;
     req.temperature = (req.temperature || 0) + 100;
-    req.oxygen = (req.temperature || 0) + 100;
+    req.oxygen = (req.oxygen || 0) + 100;
     req.ocean = (req.ocean || 0) + 100;
     req.venus = (req.venus || 0) + 100;
 

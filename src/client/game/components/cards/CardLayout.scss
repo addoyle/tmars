@@ -11,7 +11,7 @@ $title-font: 'Prototype', sans-serif;
   z-index: 1;
   display: inline-block;
   vertical-align: top;
-  font-family: Baskerville, serif;
+  font-family: Palatino, serif;
   text-align: left;
   overflow: hidden;
 
@@ -22,16 +22,19 @@ $title-font: 'Prototype', sans-serif;
 
   &.modified {
     overflow: visible;
-    margin-top: .1em;
   }
 
   & > .modifier {
     font-size: .1em;
     position: absolute;
     display: flex;
-    top: -.925em;
-    left: 2.25em;
-    padding: .1em .35em 0;
+    flex-direction: row;
+    align-items: center;
+    top: calc(-.1em + max(1px, .1em));
+    left: 50%;
+    transform: translate(-50%, -100%);
+    padding: .3em .35em .1em;
+    min-width: 2.25em;
     background: #444a;
     border-style: solid;
     border-color: #888a;
@@ -40,20 +43,42 @@ $title-font: 'Prototype', sans-serif;
     border-top-left-radius: .5em;
     border-top-right-radius: .5em;
 
-    &:after {
-      align-self: center;
+    &:before {
+      content: 'MODS';
+      display: block;
+      position: absolute;
+      text-align: center;
       font-size: .4em;
-      margin-left: .5em;
-      content: 'Modified Cost';
       color: #fff;
-      text-transform: uppercase;
       font-family: $title-font, sans-serif;
+      transform: translate(-50%, -66%);
+      background: #000;
+      padding: .3em;
+      top: 0;
+      left: 50%;
+      border: 1px solid #ccc;
+      border-radius: .5em;
+      line-height: .4;
     }
 
-    & > .mc {
+    .restriction {
+      font-size: .5em;
+      display: inline-flex;
+      height: 1.4em;
+      box-shadow: 0 0 0 0.1em darkred;
+    }
+
+    & > .cost .mc {
       font-size: 1.4em;
-      margin-top: -.3em;
-      margin-bottom: -.2em;
+      margin-bottom: -.25em;
+    }
+
+    & > * {
+      margin-right: .2em;
+
+      &:last-of-type {
+        margin-right: 0;
+      }
     }
   }
 

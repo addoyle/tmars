@@ -5,7 +5,8 @@ import './CardPreview.scss';
 import classNames from 'classnames';
 import CorporationLayout from '../cards/CorporationLayout';
 import ProjectLayout from '../cards/ProjectLayout';
-import { isString } from 'lodash';
+import { isEmpty, isString } from 'lodash';
+import { GLOBAL_PARAMS } from '../../../../shared/game/constants';
 
 /**
  * Displays a card as a popup
@@ -24,6 +25,23 @@ const CardPreview = props => {
     cardObj,
     props.costModifiers
   );
+  const req = cardObj?.restriction;
+  const param = req?.param ?? req?.tile;
+  const modifiedReqs =
+    req && (req.param || req.tile === 'ocean') && !isEmpty(props.reqModifiers)
+      ? {
+          ...req,
+          value: req.max
+            ? Math.min(
+                req.value + props.reqModifiers[param],
+                GLOBAL_PARAMS[param.toUpperCase()].MAX
+              )
+            : Math.max(
+                req.value - props.reqModifiers[param],
+                GLOBAL_PARAMS[param.toUpperCase()].MIN
+              )
+        }
+      : null;
 
   return (
     <div
@@ -47,6 +65,7 @@ const CardPreview = props => {
           resource={props.showResources ? resource : null}
           showZoom={props.showZoom}
           modifiedCost={modifiedCost}
+          modifiedReqs={modifiedReqs}
         />
       )}
     </div>
@@ -81,9 +100,8 @@ CardPreview.propTypes = {
     }),
     calculateCost: PropTypes.func
   }),
-  costModifiers: PropTypes.shape({
-    all: PropTypes.number
-  }),
+  costModifiers: PropTypes.object,
+  reqModifiers: PropTypes.object,
   showZoom: PropTypes.bool
 };
 

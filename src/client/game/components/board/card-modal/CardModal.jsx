@@ -68,6 +68,7 @@ const CardModal = ({ gameStore, cardStore }) => {
             card={currentCard.card}
             type={currentCard.type}
             costModifiers={player.rates.cost}
+            reqModifiers={player.rates.requirement}
             showResources={currentCard.showResources}
           />
         </div>
@@ -75,10 +76,10 @@ const CardModal = ({ gameStore, cardStore }) => {
 
       <div className="footer">
         {currentCard.mode === 'play' &&
-        myTurn &&
+        myTurn /*&&
         (!gameStore.playerStatus ||
           (gameStore.playerStatus.type === 'prompt-card' &&
-            gameStore.playerStatus.cardType === currentCard.type)) ? (
+            gameStore.playerStatus.cardType === currentCard.type))*/ ? (
           currentCard.type === 'project' ? (
             <PlayableCard card={card} />
           ) : currentCard.type === 'prelude' ? (
@@ -86,7 +87,7 @@ const CardModal = ({ gameStore, cardStore }) => {
           ) : null
         ) : currentCard.mode === 'action' &&
           myTurn &&
-          !gameStore.playerStatus &&
+          // !gameStore.playerStatus &&
           card.actions?.length ? (
           <ActionableCard card={card} />
         ) : (
@@ -116,11 +117,11 @@ CardModal.propTypes = {
     turn: PropTypes.number,
     player: PropTypes.shape({
       rates: PropTypes.shape({
-        cost: PropTypes.object
+        cost: PropTypes.object,
+        requirement: PropTypes.object
       }),
       number: PropTypes.number
-    }),
-    playerStatus: PropTypes.object
+    })
   }).isRequired,
   cardStore: PropTypes.shape({
     get: PropTypes.func
