@@ -16,7 +16,7 @@ const card = new Prelude({
     player.rates.cost.all = (player.rates.cost.all || 0) - 25;
 
     game.promptCard(player, {
-      cards: 'hand',
+      deck: 'hand',
       mode: 'play',
       action: player => (player.rates.cost.all += 25)
     });

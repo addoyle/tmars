@@ -85,15 +85,12 @@ const CardModal = ({ gameStore, cardStore }) => {
           ) : currentCard.type === 'prelude' ? (
             <PlayablePrelude />
           ) : null
-        ) : currentCard.mode === 'action' &&
-          myTurn &&
-          // !gameStore.playerStatus &&
-          card.actions?.length ? (
+        ) : currentCard.mode === 'action' && myTurn && card?.actions?.length ? (
           <ActionableCard card={card} />
         ) : (
           <button
             className="text-center col-1"
-            onClick={() => (currentCard.show = false)}
+            onClick={() => gameStore.hideCurrentCard()}
           >
             Close
           </button>
@@ -121,7 +118,8 @@ CardModal.propTypes = {
         requirement: PropTypes.object
       }),
       number: PropTypes.number
-    })
+    }),
+    hideCurrentCard: PropTypes.func
   }).isRequired,
   cardStore: PropTypes.shape({
     get: PropTypes.func

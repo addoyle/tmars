@@ -19,7 +19,10 @@ export default new Active({
     {
       name: 'Look at top card',
       icon: <Param name="card back" />,
-      action: (player, game, done) => game.drawCard(player, 'buy', done)
+      action: (player, game) =>
+        game.promptCard(player, {
+          deck: 'buy'
+        })
     }
   ],
   emoji: '🤔',

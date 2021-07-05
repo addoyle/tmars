@@ -261,7 +261,9 @@ const CardDrawer = props => {
               className="col-1 flex gutter right"
               style={{ paddingRight: '.5em' }}
             >
-              {gameStore.phase === 'action' ? (
+              {gameStore.phase === 'action' &&
+              !player.actionStack.length &&
+              props.type !== 'reveal' ? (
                 // Show skip/pass button
                 <button
                   className="flex gutter center-items"

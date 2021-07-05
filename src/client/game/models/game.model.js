@@ -145,6 +145,12 @@ class Game extends SharedGame {
   }
 
   @action
+  hideCurrentCard() {
+    this.ui.currentCard.show = false;
+    this.updateUI({ currentCard: this.ui.currentCard });
+  }
+
+  @action
   revealCards(cards) {
     this.player.cards.reveal = cards;
     this.switchDrawer('reveal');

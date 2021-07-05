@@ -24,7 +24,7 @@ export default new Prelude({
     req.venus = (req.venus || 0) + 100;
 
     game.promptCard(player, {
-      cards: 'hand',
+      deck: 'hand',
       mode: 'play',
       action: player => {
         const req = player.rates.requirement;

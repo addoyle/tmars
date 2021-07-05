@@ -539,15 +539,21 @@ class Game extends SharedGame {
    *
    * @param {object} player The player to prompt
    * @param {object} options Options for the card prompt
+   * @param {string} options.deck Describes which deck to pull cards from (e.g. hand, automated, allCards, allActionableCards, etc.)
+   * @param {(card: object) => boolean} options.filter Filter function for cards according to a specific criteria
+   * @param {string} options.mode Specifies the mode of the card modal
+   * @param {string} options.description Short description to the user
    */
   promptCard(player, options) {
     const cards =
-      options.cards === 'hand'
+      options.deck === 'hand'
         ? undefined
+        : options.deck === 'buy'
+        ? times(options.number ?? 1, this.drawCard(player, 'buy'))
         : (options.any ? this.players : [player]).reduce(
             (o, p) => ({
               ...o,
-              [p.number]: p.cards[options.cards || 'allActionableCards'].filter(
+              [p.number]: p.cards[options.deck || 'allActionableCards'].filter(
                 options.filter || (() => true)
               )
             }),
@@ -560,7 +566,10 @@ class Game extends SharedGame {
       description: options.description || 'Choose a card',
       mode: options.mode || 'select',
       ui: {
-        drawer: options.cards === 'hand' ? 'hand' : 'chooser',
+        drawer:
+          options.deck === 'hand' || options.deck === 'buy'
+            ? 'hand'
+            : 'chooser',
         currentCard: { show: false },
         showMilestones: false,
         showStandardProjects: false
@@ -1160,6 +1169,12 @@ class Game extends SharedGame {
   nextTurn() {
     // Nothing can happen if there are any outstanding actions for any player
     if (this.players.some(p => p.actionStack.length)) {
+      console.log(
+        "Somebody's got an action left",
+        this.players
+          .filter(p => p.actionStack)
+          .map(({ name, actionStack }) => ({ name, actionStack }))
+      );
       return;
     }
 

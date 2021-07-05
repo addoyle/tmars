@@ -28,7 +28,7 @@ const PlayableCard = ({ gameStore, card }) => {
   const valid = {
     valid: meetsReqs?.valid && canPlay?.valid && canAfford,
     msg: [
-      ...meetsReqs?.msg,
+      ...(meetsReqs?.msg || []),
       canPlay?.msg,
       !canAfford && "You can't afford this"
     ].filter(m => m)
@@ -49,7 +49,7 @@ const PlayableCard = ({ gameStore, card }) => {
     <>
       {
         // Use Steel button
-        card.tags.includes('building') ? (
+        card?.tags.includes('building') ? (
           <button
             className="text-center"
             onClick={() =>
@@ -72,7 +72,7 @@ const PlayableCard = ({ gameStore, card }) => {
 
       {
         // Use Titanium button
-        card.tags.includes('space') ? (
+        card?.tags.includes('space') ? (
           <button
             className="text-center"
             onClick={() =>
@@ -164,7 +164,7 @@ const PlayableCard = ({ gameStore, card }) => {
 
         <button
           className="text-center col-1"
-          onClick={() => (currentCard.show = false)}
+          onClick={() => gameStore.hideCurrentCard()}
         >
           Cancel
         </button>
@@ -202,7 +202,8 @@ PlayableCard.propTypes = {
       cards: PropTypes.shape({
         corp: PropTypes.array
       })
-    })
+    }),
+    hideCurrentCard: PropTypes.func
   }),
   card: PropTypes.shape({
     tags: PropTypes.array,

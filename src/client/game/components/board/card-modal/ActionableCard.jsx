@@ -75,7 +75,7 @@ const ActionableCard = ({ gameStore, card }) => {
 
       <button
         className="text-center col-1"
-        onClick={() => (currentCard.show = false)}
+        onClick={() => gameStore.hideCurrentCard()}
       >
         Cancel
       </button>
@@ -92,7 +92,8 @@ ActionableCard.propTypes = {
       }).isRequired
     }),
     cardAction: PropTypes.func,
-    player: PropTypes.object
+    player: PropTypes.object,
+    hideCurrentCard: PropTypes.func
   }),
   card: PropTypes.shape({
     number: PropTypes.string,

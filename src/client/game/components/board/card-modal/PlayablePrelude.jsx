@@ -25,7 +25,7 @@ const PlayablePrelude = ({ gameStore }) => {
 
       <button
         className="text-center col-1"
-        onClick={() => (currentCard.show = false)}
+        onClick={() => gameStore.hideCurrentCard()}
       >
         Cancel
       </button>
@@ -41,7 +41,8 @@ PlayablePrelude.propTypes = {
         show: PropTypes.bool
       }).isRequired
     }),
-    playPrelude: PropTypes.func
+    playPrelude: PropTypes.func,
+    hideCurrentCard: PropTypes.func
   })
 };
 

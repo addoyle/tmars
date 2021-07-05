@@ -130,7 +130,8 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
               (!actionPhase ||
                 !qualifies ||
                 allClaimed ||
-                gameStore?.player.resources.megacredit < 8) &&
+                gameStore.player?.actionStack.length ||
+                gameStore.player?.resources.megacredit < 8) &&
               !claimed;
             const clickable =
               actionPhase &&
@@ -272,6 +273,7 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
             const disabled =
               (!actionPhase ||
                 allFunded ||
+                gameStore.player?.actionStack.length ||
                 gameStore.player?.resources.megacredit <
                   8 + 6 * gameStore.awards.length) &&
               !funded;
@@ -279,6 +281,7 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
               actionPhase &&
               !allFunded &&
               !funded &&
+              !gameStore.player?.actionStack.length &&
               gameStore.player?.number === gameStore.turn;
 
             return (

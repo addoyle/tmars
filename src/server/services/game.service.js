@@ -240,7 +240,9 @@ class GameService {
     // If the card was played as the result of another card's action, pop that action off the stack
     if (player.actionStack.length) {
       game.completeAction(player, playedCard);
-    } else if (game.phase === 'action') {
+    }
+    // Otherwise end the turn
+    else if (game.phase === 'action') {
       game.nextTurn();
     }
 
@@ -352,6 +354,11 @@ class GameService {
       c => c.card === card.card.card
     ).disabled = true;
 
+    // If the card was played as the result of another card's action, pop that action off the stack
+    if (!player.actionStack.length && game.phase === 'action') {
+      game.nextTurn();
+    }
+
     return this.export(game);
   }
 
@@ -422,7 +429,7 @@ class GameService {
       player.name,
       'bought',
       boughtCards.length,
-      ', discarded',
+      'discarded',
       discardedCards.length
     );
 
@@ -460,6 +467,10 @@ class GameService {
     // If the card was played as the result of another card's action, pop that action off the stack
     if (player.actionStack.length) {
       game.completeAction(player, { boughtCards, discardedCards });
+    }
+    // Otherwise end the turn
+    else if (game.phase === 'action') {
+      game.nextTurn();
     }
 
     return this.export(game);

@@ -36,21 +36,16 @@ const card = new Active({
         <>
           <MegaCredit value={1} />
           <span className="arrow" />
-          <Param name="card back" />
+          <Param name="card back" tag="microbe" />
         </>
       ),
-      canPlay: player => {
-        const valid = player.resources.megacredit >= 1;
-        return {
-          valid,
-          msg: !valid ? "Can't afford this" : null
-        };
-      },
+      megacredit: -1,
       action: (player, game) => {
-        game.resources(player, 'megacredit', -1);
-        const reveal = game.revealCards(player, null, 1, 'microbe', {
-          tag: 'microbe'
-        })[0];
+        const reveal = game.cardStore.get(
+          game.revealCards(player, null, 1, 'microbe', {
+            tag: 'microbe'
+          })[0].card
+        );
 
         game.cards.discard.push({ card: reveal.number });
 
