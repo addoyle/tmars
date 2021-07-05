@@ -53,14 +53,14 @@ export default new Active({
           msg: !valid ? 'Cannot afford this' : null
         };
       },
-      action: (player, game, done, count) => {
+      tile: 'ocean',
+      action: (player, game, params) => {
         game.resources(
           player,
           'megacredit',
-          -Math.max(0, 12 - count * player.rates.titanium)
+          -Math.max(0, 12 - params.count * player.rates.titanium)
         );
-        game.resources(player, 'titanium', -count);
-        game.promptTile(player, 'ocean', done);
+        game.resources(player, 'titanium', -params.count);
       }
     }
   ],

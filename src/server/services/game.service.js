@@ -93,7 +93,7 @@ class GameService {
                 name: player.name,
                 number: player.number,
                 tr: player.tr,
-                corp: this.cardStore.corp[player.cards.corp[0].card]?.title
+                corp: this.cardStore.get(player.cards.corp[0].card)?.title
               })),
               turn: game.turn,
               params: game.params,
@@ -128,6 +128,7 @@ class GameService {
    * @param {object} opts Game options
    */
   createGame(id, game) {
+    console.log('Creating game', id);
     const newGame = new Game(this.cardStore, game);
     newGame.players = game.players.map(p => new Player(p));
     newGame.init();
@@ -141,6 +142,7 @@ class GameService {
    * @param {object} res Response object
    */
   deleteGame(id, res) {
+    console.log('Deleting game', id);
     if (this.games[id]) {
       delete this.games[id];
       client.del(id);
@@ -169,7 +171,15 @@ class GameService {
       return this.export(game);
     }
 
-    const playedCard = this.cardStore.project[card.card];
+    const playedCard = this.cardStore.get(card.card);
+
+    console.log(
+      `${id}:`,
+      player.name,
+      'played',
+      playedCard.title,
+      `(${playedCard.number})`
+    );
 
     // TODO: Check requirements
     // TODO: Check if player can afford card
@@ -230,9 +240,7 @@ class GameService {
     // If the card was played as the result of another card's action, pop that action off the stack
     if (player.actionStack.length) {
       game.completeAction(player, playedCard);
-    }
-
-    if (game.phase === 'action') {
+    } else if (game.phase === 'action') {
       game.nextTurn();
     }
 
@@ -251,7 +259,7 @@ class GameService {
   playPrelude(id, playerNum, card) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
-    const playedCard = this.cardStore.prelude[card.card];
+    const playedCard = this.cardStore.get(card.card);
 
     // Check to make sure the user can play this prelude
     if (
@@ -260,6 +268,14 @@ class GameService {
     ) {
       return this.export(game);
     }
+
+    console.log(
+      `${id}:`,
+      player.name,
+      'revealed prelude',
+      playedCard.title,
+      `(${playedCard.number})`
+    );
 
     LogService.pushLog(
       id,
@@ -302,8 +318,18 @@ class GameService {
   cardAction(id, playerNum, card, index, count) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
-    const playedCard = this.cardStore[card.type][card.card.card];
+    const playedCard = this.cardStore.get(card.card.card);
     const action = playedCard.actions[index];
+
+    console.log(
+      `${id}:`,
+      player.name,
+      'performed action',
+      index + 1,
+      'for',
+      playedCard.title,
+      `(${playedCard.number})`
+    );
 
     let log = [
       ' used an action on ',
@@ -315,27 +341,16 @@ class GameService {
     }
     LogService.pushLog(id, new Log(playerNum, log.concat(['.'])));
 
-    const done = () => {
-      // Mark action card as played by marking as "disabled"
-      player.cards[card.type === 'project' ? 'active' : 'corp'].find(
-        c => c.card === card.card.card
-      ).disabled = true;
-
-      game.playerStatus?.done();
-
-      game.nextTurn();
-    };
+    // Hide active card
+    player.ui.currentCard.show = false;
 
     // Perform card's action
-    game.performAction(action, player, game, done);
-    if (action.action) {
-      action.action(player, game, done, count);
+    game.performAction(action, player, game, { count });
 
-      // Server action didn't call done, call it now
-      action.action.length < 3 && done();
-    } else {
-      done();
-    }
+    // Mark action card as played by marking as "disabled"
+    player.cards[card.type === 'project' ? 'active' : 'corp'].find(
+      c => c.card === card.card.card
+    ).disabled = true;
 
     return this.export(game);
   }
@@ -347,12 +362,20 @@ class GameService {
    * @param {number} playerNum Player number
    * @param {object} card Card to toggle
    * @param {string} type Card type. One of [project, corp, prelude]
+   * @param {boolean} single Deselects all other cards if true
    * @returns Game status
    */
   @push(gameFilter)
   toggleSelectCard(id, playerNum, card, type, single) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
+
+    console.log(
+      `${id}:`,
+      player.name,
+      card.select ? 'deselected' : 'selected',
+      card.card
+    );
 
     player.cards[type] = player.cards[type].map(c =>
       card.card === c.card
@@ -394,6 +417,15 @@ class GameService {
       .filter(card => !card.select)
       .map(card => ({ card: card.card }));
 
+    console.log(
+      `${id}:`,
+      player.name,
+      'bought',
+      boughtCards.length,
+      ', discarded',
+      discardedCards.length
+    );
+
     // Move bought cards into hand
     player.cards.hand = player.cards.hand.concat(boughtCards);
 
@@ -425,7 +457,10 @@ class GameService {
       game.beginActionPhase();
     }
 
-    game.playerStatus?.done(boughtCards, discardedCards);
+    // If the card was played as the result of another card's action, pop that action off the stack
+    if (player.actionStack.length) {
+      game.completeAction(player, { boughtCards, discardedCards });
+    }
 
     return this.export(game);
   }
@@ -448,6 +483,8 @@ class GameService {
     if (!card) {
       return this.export(game);
     }
+
+    console.log(`${id}:`, player.name, 'drafted', card.card);
 
     // Move card to buy pile
     player.cards.buy.push(card);
@@ -519,6 +556,15 @@ class GameService {
     const area = game.tileFromId(tileId);
     const action = last(player.actionStack);
 
+    console.log(
+      `${id}:`,
+      player.name,
+      `placed a${action.tile === 'ocean' ? 'n' : ''}`,
+      action.tile,
+      'tile at',
+      area.id
+    );
+
     game.placeTile(player, area, action.tile);
 
     return this.export(game);
@@ -581,12 +627,16 @@ class GameService {
     const player = this.getPlayer(game, game.turn);
 
     if (player.firstAction) {
+      console.log(`${id}:`, player.name, 'passed');
+
       player.passed = true;
       player.firstAction = false;
 
       // Log the pass
       LogService.pushLog(game.id, new Log(player.number, [' passed.']));
     } else {
+      console.log(`${id}:`, player.name, 'skipped');
+
       // Log the skip
       LogService.pushLog(game.id, new Log(player.number, [' skipped.']));
     }
@@ -609,6 +659,8 @@ class GameService {
   standardProject(id, playerNum, project, resource, res) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
+
+    console.log(`${id}:`, player.name, 'played standard project', project);
 
     const doProject = (
       cost,
@@ -708,6 +760,7 @@ class GameService {
   claimMilestone(id, playerNum, milestone) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
+
     const claimedMilestone =
       milestone === 'Hoverlord'
         ? {
@@ -715,12 +768,12 @@ class GameService {
               player.cards.active
                 .map(c => ({
                   card: c,
-                  obj: this.cardStore.get('project', c.card)
+                  obj: this.cardStore.get(c.card)
                 }))
                 .concat(
                   player.cards.corp.map(c => ({
                     card: c,
-                    obj: this.cardStore.get('corp', c.card)
+                    obj: this.cardStore.get(c.card)
                   }))
                 )
                 .filter(c => c?.obj.resource === 'floater')
@@ -744,6 +797,7 @@ class GameService {
         id,
         new Log(playerNum, [' claimed the ', { milestone }, ' milestone.'])
       );
+      console.log(`${id}:`, player.name, 'claimed the', milestone, 'milestone');
 
       game.nextTurn();
     }
@@ -774,6 +828,7 @@ class GameService {
         id,
         new Log(playerNum, [' funded the ', { award }, ' award.'])
       );
+      console.log(`${id}:`, player.name, 'funded the', award, 'award');
 
       game.nextTurn();
     }

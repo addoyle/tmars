@@ -273,18 +273,11 @@ class Game extends SharedGame {
         ])
       );
 
-      // To do once all card actions are complete (placing tiles, etc.)
-      const done = () => {
-        this.playerStatus?.done();
-
-        this.nextTurn();
-      };
-
       // Marking starting action as complete
       player.startingAction = false;
 
       // Perform the action
-      this.performAction(corp.startingAction, player, this, done);
+      this.performAction(corp.startingAction, player, this);
     }
   }
 
@@ -430,8 +423,9 @@ class Game extends SharedGame {
    * @param {object} action The action object to perform
    * @param {Player} player The player performing the standard action
    * @param {Game} game The game
+   * @param {object} params Optional params passed to custom action
    */
-  performAction(action, player, game) {
+  performAction(action, player, game, params) {
     // If the action is just a function, call it as normal
     if (isFunction(action)) {
       action(player, game);
@@ -536,7 +530,7 @@ class Game extends SharedGame {
 
     // Handle custom card action
     if (action.action) {
-      action.action(player, this);
+      action.action(player, this, params);
     }
   }
 
@@ -1327,6 +1321,8 @@ class Game extends SharedGame {
     // Run end actions if stack is empty
     if (this.phase === 'prelude') {
       this.endPreludeAction(player);
+    } else {
+      this.nextTurn();
     }
   }
 

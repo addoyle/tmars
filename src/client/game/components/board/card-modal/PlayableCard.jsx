@@ -96,13 +96,15 @@ const PlayableCard = ({ gameStore, card }) => {
       }
 
       {
-        // Use Heat button (only applicable to Helion)
-        player?.cards.corp[0].number === '003' ? (
+        // Use Heat button (i.e. Helion)
+        player?.rates.heatAsMC > 0 ? (
           <button
             className="text-center"
             onClick={() =>
               (currentCard.heat =
-                currentCard.heat >= maxHeat ? 0 : currentCard.heat + 1)
+                currentCard.heat >= maxHeat
+                  ? 0
+                  : currentCard.heat + player?.rates.heatAsMC)
             }
           >
             <div className="flex">
@@ -194,6 +196,7 @@ PlayableCard.propTypes = {
       rates: PropTypes.shape({
         steel: PropTypes.number,
         titanium: PropTypes.number,
+        heatAsMC: PropTypes.number,
         cost: PropTypes.object
       }),
       cards: PropTypes.shape({

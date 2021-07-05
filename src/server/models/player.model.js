@@ -59,6 +59,7 @@ export default class Player {
   rates = {
     steel: 2, // Value of steel for playing building cards
     titanium: 3, // Value of titanium for playing space cards
+    heatAsMC: 0, // Value of heat as M€ (for Helion)
     buy: 3, // Cost to buy a card
     plant: 8, // Plants to place a greenery
     heat: 8, // Heat to raise temperature
