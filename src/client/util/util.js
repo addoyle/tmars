@@ -55,7 +55,7 @@ export function displayRequirement(requirement) {
       const item = Array.isArray(raw[key]) ? raw[key] : [raw[key]];
 
       // Render the restrictions
-      for (let i = 0; i < raw.value; i++) {
+      for (let i = 0; i < val; i++) {
         item.forEach(item => req.push({ [key]: item, anyone: raw.anyone }));
       }
     };

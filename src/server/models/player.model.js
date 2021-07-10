@@ -73,8 +73,8 @@ export default class Player {
   score = {};
   actionStack = [];
 
-  constructor(name) {
-    this.name = name;
+  constructor(player) {
+    player && Object.assign(this, player);
   }
 
   get allCards() {

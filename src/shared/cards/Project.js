@@ -1,4 +1,3 @@
-import { isPlainObject } from 'lodash';
 import Card from './Card';
 
 export default class Project extends Card {
@@ -144,58 +143,7 @@ export default class Project extends Card {
       }
     }
 
-    // Check negative resources
-    if (this.resources && isPlainObject(this.resources)) {
-      Object.keys(this.resources).forEach(r => {
-        if (
-          this.resources[r] < 0 &&
-          player.resources[r] + this.resources[r] < 0
-        ) {
-          result.valid = false;
-          result.msg.push(
-            `Not enough ${
-              { megacredit: 'M€', power: 'energy' }[r] || r
-            } resources`
-          );
-        }
-      });
-    }
-
-    // Check negative production
-    if (this.production && isPlainObject(this.production)) {
-      Object.keys(this.production).forEach(r => {
-        if (
-          this.production[r] < 0 &&
-          player.production[r] + this.production[r] < r === 'megacredit'
-            ? -5
-            : 0
-        ) {
-          result.valid = false;
-          result.msg.push(
-            `Not enough ${
-              { megacredit: 'M€', power: 'energy' }[r] || r
-            } production`
-          );
-        }
-      });
-    }
-
-    // Check tile placement
-    if (this.tile) {
-      const tiles = (Array.isArray(this.tile)
-        ? this.tile
-        : [this.tile]
-      ).map(tile => (isPlainObject(tile) ? tile : { tile }));
-
-      if (
-        !tiles.every(
-          t => game.findPossibleTiles(t.tile, player, t.filter).length
-        )
-      ) {
-        result.valid = false;
-        result.msg.push('Cannot place tile');
-      }
-    }
+    this.actionPlayable(this, player, game, result);
 
     return result;
   }

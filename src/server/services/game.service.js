@@ -124,13 +124,12 @@ class GameService {
    * Creates a new game
    *
    * @param {string} id Game ID
-   * @param {Player} players Player names
    * @param {object} opts Game options
    */
   createGame(id, game) {
     console.log('Creating game', id);
     const newGame = new Game(this.cardStore, game);
-    newGame.players = game.players.map(p => new Player(p));
+    newGame.players = game.players.map(name => new Player({ name }));
     newGame.init();
     this.registerGame(newGame, id);
   }
@@ -230,15 +229,18 @@ class GameService {
     // Hide current card
     player.ui.currentCard.show = false;
 
+    // If there are remaining actions BEFORE the card action, this card was likely played as the result of an action
+    const hasRemainingActions = player.actionStack.length;
+
     // Perform card's action
-    game.performAction(playedCard, player, game);
+    game.performAction(playedCard, player, playedCard);
 
     // Trigger card-played events
     game.fire('onCardPlayed', player, playedCard);
     game.fire('onAnyCardPlayed', player, playedCard);
 
     // If the card was played as the result of another card's action, pop that action off the stack
-    if (player.actionStack.length) {
+    if (hasRemainingActions) {
       game.completeAction(player, playedCard);
     }
     // Otherwise end the turn
@@ -293,7 +295,7 @@ class GameService {
     player.ui.currentCard.show = false;
 
     // Perform prelude's action
-    game.performAction(playedCard, player, game);
+    game.performAction(playedCard, player, playedCard);
 
     // Mark prelude as played
     player.cards.prelude.find(
@@ -321,41 +323,57 @@ class GameService {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
     const playedCard = this.cardStore.get(card.card.card);
-    const action = playedCard.actions[index];
+    const action = (playedCard.actions?.length
+      ? playedCard.actions
+      : last(player.actionStack).ui.currentCard.actions)[index];
 
-    console.log(
-      `${id}:`,
-      player.name,
-      'performed action',
-      index + 1,
-      'for',
-      playedCard.title,
-      `(${playedCard.number})`
-    );
-
-    let log = [
-      ' used an action on ',
-      { [playedCard.type === 'corp' ? 'corp' : 'project']: card.card.card }
-    ];
-    if (action.log) {
-      log.push(' to ');
-      log = log.concat(action.log);
-    }
-    LogService.pushLog(id, new Log(playerNum, log.concat(['.'])));
+    // If there are remaining actions BEFORE the card action, this card was likely played as the result of an action
+    const hasRemainingActions = player.actionStack.length;
 
     // Hide active card
     player.ui.currentCard.show = false;
 
-    // Perform card's action
-    game.performAction(action, player, game, { count });
+    if (action) {
+      const targetPlayer = action.targetPlayer
+        ? this.getPlayer(game, action.targetPlayer)
+        : player;
 
-    // Mark action card as played by marking as "disabled"
-    player.cards[card.type === 'project' ? 'active' : 'corp'].find(
-      c => c.card === card.card.card
-    ).disabled = true;
+      console.log(
+        `${id}:`,
+        player.name,
+        'performed action',
+        index + 1,
+        'for',
+        playedCard.title,
+        `(${playedCard.number})`
+      );
+
+      // Show in chat log
+      let log = [
+        ' used an action on ',
+        { [playedCard.type === 'corp' ? 'corp' : 'project']: card.card.card }
+      ];
+      if (action.log) {
+        log.push(' to ');
+        log = log.concat(action.log);
+      }
+      LogService.pushLog(id, new Log(playerNum, log.concat(['.'])));
+
+      // Perform card's action
+      game.performAction(action, targetPlayer, playedCard, { count });
+    }
 
     // If the card was played as the result of another card's action, pop that action off the stack
-    if (!player.actionStack.length && game.phase === 'action') {
+    if (hasRemainingActions) {
+      game.completeAction(player);
+    }
+    // Otherwise end the turn
+    else if (game.phase === 'action') {
+      // Mark action card as played by marking as "disabled"
+      player.cards[card.type === 'project' ? 'active' : 'corp'].find(
+        c => c.card === card.card.card
+      ).disabled = true;
+
       game.nextTurn();
     }
 
@@ -595,37 +613,42 @@ class GameService {
     return this.export(game);
   }
 
-  /**
-   * Pick a choice
-   *
-   * @param {string} id Game ID
-   * @param {number} i Item that was chosen
-   */
-  @push(gameFilter)
-  pickChoice(id, i) {
-    const game = this.games[id];
-    const player = game.playerStatus.player;
+  // /**
+  //  * Play a card action
+  //  *
+  //  * @param {string} id Game ID
+  //  * @param {number} playerNum Player number
+  //  * @param {number} i Item that was chosen
+  //  */
+  // @push(gameFilter)
+  // playAction(id, playerNum, i) {
+  //   const game = this.games[id];
+  //   const player = this.getPlayer(game, playerNum);
+  //   const action = last(player.actionStack);
 
-    if (i !== null) {
-      const choice = game.playerStatus.choices[i];
+  //   // If i is null, cancel button was clicked
+  //   if (i !== null) {
+  //     const choice = action.choices[i];
 
-      choice.action(player, game);
+  //     game.performAction(
+  //       choice.action,
+  //       choice.targetPlayer ? this.getPlayer(game, choice.targetPlayer) : player
+  //     );
 
-      // Log the placement
-      if (choice.logSnippet) {
-        LogService.pushLog(
-          game.id,
-          new Log(player.number, [' ', ...choice.logSnippet, '.'])
-        );
-      }
-    } else {
-      game.playerStatus.cancelAction(player, game);
-    }
+  //     // Log the placement
+  //     if (choice.logSnippet) {
+  //       LogService.pushLog(
+  //         game.id,
+  //         new Log(player.number, [' ', ...choice.logSnippet, '.'])
+  //       );
+  //     }
+  //   }
 
-    // game.playerStatus.done(pickedPlayer);
+  //   // Mark action as complete
+  //   game.completeAction(player);
 
-    return this.export(game);
-  }
+  //   return this.export(game);
+  // }
 
   /**
    * Pass or skip a turn
@@ -697,19 +720,14 @@ class GameService {
         );
 
         if (resource) {
-          player.resources[resource] -= player.rates[resource];
+          game.resources(player, resource, -player.rates[resource]);
         } else {
-          player.resources.megacredit -= cost;
+          game.resources(player, 'megacredit', -cost);
 
           // Only fire when M€ was used as using plant/heat doesn't actually count as a standard project
           game.fire('onStandardProject', player, { project, cost });
         }
-
-        const done = () => game.nextTurn();
-        action(done);
-        if (action.length === 0) {
-          done();
-        }
+        game.performAction(action, player);
       } else {
         res.sendStatus(403);
       }
@@ -722,36 +740,38 @@ class GameService {
           break;
         }
         case 'Power Plant': {
-          doProject(player.rates.powerplant || 11, () =>
-            game.production(player, 'power', 1)
-          );
+          doProject(player.rates.powerplant || 11, {
+            production: { power: 1 }
+          });
           break;
         }
         case 'Asteroid': {
-          doProject(14, done => game.param(player, 'temperature', done));
+          doProject(14, { param: ['temperature'] });
           break;
         }
         case 'Aquifer': {
-          doProject(18, done => game.promptTile(player, 'ocean', done));
+          doProject(18, { tile: 'ocean' });
           break;
         }
         case 'Greenery': {
-          doProject(23, done => game.promptTile(player, 'greenery', done));
+          doProject(23, { tile: 'greenery' });
           break;
         }
         case 'City': {
-          doProject(18, done => {
-            game.production(player, 'megacredit', 1);
-            game.promptTile(player, 'city', done);
+          doProject(18, {
+            production: {
+              megacredit: 1
+            },
+            tile: 'city'
           });
           break;
         }
         case 'Air Scrapping': {
-          doProject(15, done => game.param(player, 'venus', done));
+          doProject(15, { param: ['venus'] });
           break;
         }
         case 'Buffer Gas': {
-          doProject(16, () => game.tr(player, 1));
+          doProject(16, { tr: 1 });
           break;
         }
       }

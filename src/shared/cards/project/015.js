@@ -26,17 +26,10 @@ export default new Active({
           </div>
         </Production>
       ),
-      canPlay: player => {
-        const valid = player.production.power >= 1;
-        return {
-          valid,
-          msg: 'Not enough energy production'
-        };
+      production: {
+        power: -1
       },
-      action: (player, game) => {
-        game.production(player, 'power', -1);
-        game.tr(player, 1);
-      }
+      tr: 1
     }
   ],
   emoji: '🧲',

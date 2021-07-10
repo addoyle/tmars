@@ -59,7 +59,7 @@ const card = new Active({
       }
     }
   ],
-  vp: (player, game) => game.cardResource(player, card) * 3,
+  vp: (player, game) => (game.cardResource(player, card) > 0 ? 3 : 0),
   emoji: '🔍',
   activeLayout: (
     <div>

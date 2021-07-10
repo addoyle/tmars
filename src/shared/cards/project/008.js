@@ -8,8 +8,6 @@ import {
   Production
 } from '../../../client/game/components/assets/Assets';
 
-// VERIFY VP
-
 const desc =
   'Requires 4 ocean tiles. Place this tile. Decrease your energy production 2 steps and increase your M€ production 5 steps. 1 ADDITIONAL VP FOR EACH OCEAN TILE ADJACENT TO THIS CITY TILE.';
 
@@ -33,7 +31,6 @@ const card = new Automated({
   vp: (player, game) =>
     game.neighbors(card.placedTile).filter(t => t.type === 'ocean').length,
   emoji: '🏛',
-  todo: true,
   layout: (
     <div>
       <div className="gutter">

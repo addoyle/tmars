@@ -16,17 +16,10 @@ export default new Active({
     {
       name: 'Spend 1 Energy',
       icon: <Resource name="power" />,
-      canPlay: player => {
-        const valid = player.resources.power >= 1;
-        return {
-          valid,
-          msg: 'Not enough energy'
-        };
+      resources: {
+        power: -1
       },
-      action: (player, game) => {
-        game.resources(player, 'power', -1);
-        game.drawCard(player);
-      }
+      drawCard: 1
     }
   ],
   emoji: '🏢',

@@ -27,16 +27,9 @@ export default new Active({
     {
       name: 'Spend 1 Steel',
       icon: <Resource name="steel" />,
-      canPlay: player => {
-        const valid = player.resources.steel >= 1;
-        return {
-          valid,
-          msg: 'Not enough steel'
-        };
-      },
-      action: (player, game) => {
-        game.resources(player, 'steel', -1);
-        game.resources(player, 'megacredit', 5);
+      resources: {
+        steel: -1,
+        megacredit: 5
       }
     }
   ],

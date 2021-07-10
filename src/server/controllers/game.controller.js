@@ -207,7 +207,9 @@ export function placeTile(req, res) {
  * @param {*} res
  */
 export function pickChoice(req, res) {
-  res.send(GameService.pickChoice(`${req.params.id}`, req.body.choice));
+  res.send(
+    GameService.pickChoice(`${req.params.id}`, req.body.player, req.body.choice)
+  );
 }
 
 /**

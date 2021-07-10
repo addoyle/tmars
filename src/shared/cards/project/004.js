@@ -20,19 +20,10 @@ export default new Automated({
   },
   desc,
   flavor: 'Lessens solar influx, but enhances plant growth',
-  action: (player, game, done) =>
-    game.promptPlayer(
-      player,
-      'Pick a player to remove 1 heat production',
-      [p => ({ production: 'heat', value: p.production.heat })],
-      ['took 1 heat ', { resource: 'heat' }, ' production from'],
-      targetPlayer => {
-        game.production(targetPlayer, 'heat', -1);
-        done();
-      },
-      player => player.production.heat > 0
-    ),
   production: {
+    any: {
+      heat: -1
+    },
     megacredit: -1,
     plant: 2
   },

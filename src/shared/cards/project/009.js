@@ -12,23 +12,11 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'What are those plants in our impact zone?',
-  action: (player, game, done) =>
-    game.param(player, 'temperature', () =>
-      game.promptPlayer(
-        player,
-        'Pick a player to remove up to 3 plants',
-        [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
-        ['took 3 plants ', { resource: 'plant' }, ' from'],
-        targetPlayer => {
-          targetPlayer && game.resources(targetPlayer, 'plant', -3);
-          done();
-        },
-        player => player.resources.plant > 0,
-        done
-      )
-    ),
   resources: {
-    titanium: 2
+    titanium: 2,
+    any: {
+      plant: -3
+    }
   },
   emoji: '☄',
   layout: (

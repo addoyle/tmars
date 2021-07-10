@@ -85,7 +85,9 @@ const CardModal = ({ gameStore, cardStore }) => {
           ) : currentCard.type === 'prelude' ? (
             <PlayablePrelude />
           ) : null
-        ) : currentCard.mode === 'action' && myTurn && card?.actions?.length ? (
+        ) : currentCard.mode === 'action' &&
+          myTurn &&
+          (card?.actions?.length || currentCard.actions?.length) ? (
           <ActionableCard card={card} />
         ) : (
           <button
@@ -108,6 +110,7 @@ CardModal.propTypes = {
         card: PropTypes.object,
         type: PropTypes.string,
         mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft', 'select']),
+        actions: PropTypes.array,
         showResources: PropTypes.bool
       }).isRequired
     }),

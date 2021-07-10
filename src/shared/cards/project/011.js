@@ -13,22 +13,12 @@ export default new Event({
   tags: ['space', 'event'],
   desc,
   flavor: 'There are many unpopulated areas to crash it in',
-  action: (player, game, done) =>
-    game.promptPlayer(
-      player,
-      'Pick a player to remove up to 4 plants',
-      [p => ({ text: +p.resources.plant }), { resource: 'plant' }],
-      ['took 4 plants ', { resource: 'plant' }, ' from'],
-      targetPlayer => {
-        targetPlayer && game.resources(targetPlayer, 'plant', -4);
-        done();
-      },
-      player => player.resources.plant > 0,
-      done
-    ),
   param: ['temperature', 'temperature'],
   resources: {
-    titanium: 4
+    titanium: 4,
+    any: {
+      plant: -4
+    }
   },
   emoji: '☄',
   layout: (
@@ -39,7 +29,8 @@ export default new Event({
           <Param name="temperature" />
         </div>
         <div className="resources">
-          4<Resource name="plant" anyone />
+          <span>&ndash;4</span>
+          <Resource name="plant" anyone />
         </div>
       </div>
       <div className="col-5">

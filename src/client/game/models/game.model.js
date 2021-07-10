@@ -277,7 +277,7 @@ class Game extends SharedGame {
   }
 
   pickChoice(choice) {
-    API(`game/${gameId()}/pick-choice`, POST, { choice });
+    API(`game/${gameId()}/pick-choice`, POST, { choice, player: +PLAYER_NUM });
   }
 
   passSkip() {

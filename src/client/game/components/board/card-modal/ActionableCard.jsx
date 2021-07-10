@@ -3,23 +3,78 @@ import PropTypes from 'prop-types';
 import { inject, observer } from 'mobx-react';
 import { Tooltip } from '@material-ui/core';
 import classnames from 'classnames';
+import { Resource, MegaCredit, Production } from '../../assets/Assets';
+import { toJS } from 'mobx';
+import { isPlainObject } from 'lodash';
+
+// Render the icon
+const renderIcon = origIcon => {
+  if (!origIcon) {
+    return <span />;
+  }
+
+  const icons = Array.isArray(origIcon) ? origIcon : [origIcon];
+
+  return (
+    <div className="resources">
+      {icons.map((icon, i) => {
+        if (icon?.player) {
+          return <Resource key={i} name={`player-${icon.player}`} />;
+        } else if (icon?.megacredit) {
+          return <MegaCredit key={i} value={icon.megacredit} />;
+        } else if (icon?.resource) {
+          return <Resource key={i} name={icon.resource} />;
+        } else if (icon?.production) {
+          return (
+            <Production key={i}>
+              <div className="flex">
+                {icon.production === 'megacredit' ? (
+                  <MegaCredit value={icon.value} />
+                ) : (
+                  <>
+                    {icon.value !== null ? <span>{icon.value}</span> : null}
+                    <Resource name={icon.production} />
+                  </>
+                )}
+              </div>
+            </Production>
+          );
+        } else if (icon?.text) {
+          return <span key={i}>{`${icon.text}`}</span>;
+        } else {
+          return <span key={i}>{icon}</span>;
+        }
+      })}
+    </div>
+  );
+};
 
 const ActionableCard = ({ gameStore, card }) => {
   const currentCard = gameStore.ui.currentCard;
   const player = gameStore.player;
+  const actions = card?.actions || toJS(currentCard?.actions) || [];
 
   return (
     <>
-      {card.actions?.map((action, i) => {
+      {actions?.map((action, i) => {
         const [count, setCount] = useState(0);
+        const targetPlayer = action.targetPlayer
+          ? gameStore.players[action.targetPlayer - 1]
+          : player;
 
         const valid = action.canPlay
-          ? action.canPlay(gameStore.player, gameStore, count)
-          : { valid: true };
+          ? action.canPlay(targetPlayer, gameStore, count)
+          : { valid: true, msg: [] };
+        card?.actionPlayable(action, targetPlayer, gameStore, valid);
+        console.log(valid);
 
         return (
-          <div key={`${card.number}-${i}`}>
-            <Tooltip title={valid?.msg || ''} arrow placement="top">
+          <div key={`${card?.number}-${i}`}>
+            <Tooltip
+              title={valid?.msg.length ? valid.msg.join('\n') : ''}
+              arrow
+              placement="top"
+            >
               <button
                 className={classnames({
                   disabled: !valid?.valid
@@ -39,11 +94,20 @@ const ActionableCard = ({ gameStore, card }) => {
                   <div className="resources middle">
                     {action.counter
                       ? action.counter.resultIcon(count, player, gameStore)
+                      : isPlainObject(action.icon)
+                      ? renderIcon(action.icon)
                       : action.icon}
                   </div>
                   <div className="center middle">{action.name}</div>
                   {action.counter ? (
                     <div className="resources middle">{action.icon}</div>
+                  ) : null}
+                  {action.rightIcon ? (
+                    <div className="right middle">
+                      {isPlainObject(action.icon)
+                        ? renderIcon(action.rightIcon)
+                        : action.rightIcon}
+                    </div>
                   ) : null}
                 </div>
               </button>
@@ -73,12 +137,21 @@ const ActionableCard = ({ gameStore, card }) => {
         );
       })}
 
-      <button
-        className="text-center col-1"
-        onClick={() => gameStore.hideCurrentCard()}
-      >
-        Cancel
-      </button>
+      {!currentCard.isPrompt ? (
+        <button
+          className="text-center col-1"
+          onClick={() => gameStore.hideCurrentCard()}
+        >
+          Cancel
+        </button>
+      ) : currentCard.optional ? (
+        <button
+          className="text-center col-1"
+          onClick={() => gameStore.cardAction(currentCard, null)}
+        >
+          Cancel
+        </button>
+      ) : null}
     </>
   );
 };
@@ -88,11 +161,15 @@ ActionableCard.propTypes = {
     ui: PropTypes.shape({
       currentCard: PropTypes.shape({
         card: PropTypes.object,
-        show: PropTypes.bool
+        show: PropTypes.bool,
+        actions: PropTypes.array,
+        isPrompt: PropTypes.bool,
+        optional: PropTypes.bool
       }).isRequired
     }),
     cardAction: PropTypes.func,
     player: PropTypes.object,
+    players: PropTypes.array,
     hideCurrentCard: PropTypes.func
   }),
   card: PropTypes.shape({
@@ -108,7 +185,8 @@ ActionableCard.propTypes = {
           resultIcon: PropTypes.func
         })
       })
-    )
+    ),
+    actionPlayable: PropTypes.func
   })
 };
 

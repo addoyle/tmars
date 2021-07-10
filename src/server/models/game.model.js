@@ -14,6 +14,7 @@ import Elysium from '../../shared/boards/Elysium';
 import Log from './log.model';
 import LogService from '../services/log.service';
 import SharedGame from '../../shared/game/game.shared.model';
+import Player from './player.model';
 
 const paramStats = {
   temperature: {
@@ -23,7 +24,6 @@ const paramStats = {
     rewards: {
       [-24]: (player, game) => game.production(player, 'heat', 1),
       [-20]: (player, game) => game.production(player, 'heat', 1),
-      // TODO: place an ocean
       0: (player, game, done) => game.promptTile(player, 'ocean', done)
     }
   },
@@ -104,6 +104,8 @@ class Game extends SharedGame {
 
     if (game) {
       Object.assign(this, game);
+
+      this.players = game.players.map(p => new Player(p));
     }
   }
 
@@ -277,7 +279,7 @@ class Game extends SharedGame {
       player.startingAction = false;
 
       // Perform the action
-      this.performAction(corp.startingAction, player, this);
+      this.performAction(corp.startingAction, player, corp);
     }
   }
 
@@ -305,7 +307,7 @@ class Game extends SharedGame {
     const corp = this.cardStore.corp[player.cards.corp[0].card];
 
     // Perform corp's standard action
-    this.performAction(corp, player, this);
+    this.performAction(corp, player, corp);
 
     // Apply tags
     (corp.tags || []).forEach(tag => player.tags[tag]++);
@@ -422,13 +424,13 @@ class Game extends SharedGame {
    *
    * @param {object} action The action object to perform
    * @param {Player} player The player performing the standard action
-   * @param {Game} game The game
+   * @param {object} card The associated card
    * @param {object} params Optional params passed to custom action
    */
-  performAction(action, player, game, params) {
+  performAction(action, player, card, params) {
     // If the action is just a function, call it as normal
     if (isFunction(action)) {
-      action(player, game);
+      action(player, this);
       return;
     }
 
@@ -438,7 +440,26 @@ class Game extends SharedGame {
         action.resources(player, this);
       } else {
         Object.keys(action.resources).forEach(r =>
-          game.resources(player, r, action.resources[r])
+          r === 'any'
+            ? Object.entries(action.resources.any).forEach(([k, v]) => {
+                this.promptPlayer(player, card, {
+                  title: v.title || 'Pick a player',
+                  icon: v.icon || [
+                    pp => ({ text: pp.resources[k] }),
+                    { resource: k }
+                  ],
+                  logSnippet: v.log || [
+                    `take ${isNaN(v) ? -v.val : -v} ${k}`,
+                    Math.abs(v.val) === 1 && k === 'plant' ? ' ' : 's ',
+                    { resource: k },
+                    ' from'
+                  ],
+                  filter: v.filter || (pp => pp.resources[k] > 0),
+                  action: { resources: { [k]: v } },
+                  optional: true
+                });
+              })
+            : this.resources(player, r, action.resources[r])
         );
       }
     }
@@ -449,7 +470,24 @@ class Game extends SharedGame {
         action.production(player, this);
       } else {
         Object.keys(action.production).forEach(p =>
-          game.production(player, p, action.production[p])
+          p === 'any'
+            ? Object.entries(action.production.any).forEach(([k, v]) => {
+                this.promptPlayer(player, {
+                  title: v.title || 'Pick a player',
+                  icon: v.icon || [
+                    pp => ({ text: pp.production[k] }),
+                    { production: k }
+                  ],
+                  logSnippet: v.log || [
+                    `take ${isNaN(v) ? -v.val : -v} ${k} `,
+                    { resource: k },
+                    ' production from'
+                  ],
+                  filter: v.filter || (pp => pp.production[k] > 0),
+                  action: { production: { [k]: v } }
+                });
+              })
+            : this.production(player, p, action.production[p])
         );
       }
     }
@@ -459,16 +497,16 @@ class Game extends SharedGame {
       if (isFunction(action.tr)) {
         action.tr(player, this);
       } else {
-        game.tr(player, action.tr);
+        this.tr(player, action.tr);
       }
     }
 
-    // Handle cards
+    // Handle drawing cards
     if (action.drawCard) {
       if (isFunction(action.drawCard)) {
         action.drawCard(player, this);
       } else if (!isNaN(action.drawCard)) {
-        times(action.drawCard, () => game.drawCard(player));
+        times(action.drawCard, () => this.drawCard(player));
       } else {
         const opts = {
           reveal: false,
@@ -496,14 +534,19 @@ class Game extends SharedGame {
 
         // Reveal cards if needed, otherwise just draw the cards
         if (opts.reveal) {
-          game.keepSelected(
+          this.keepSelected(
             player,
-            game.revealCards(player, opts.filter, opts.num, opts.log, opts.icon)
+            this.revealCards(player, opts.filter, opts.num, opts.log, opts.icon)
           );
         } else {
-          times(opts.num, () => game.drawCard(player));
+          times(opts.num, () => this.drawCard(player));
         }
       }
+    }
+
+    // Handle a choice
+    if (action.actions && action.actions.length) {
+      this.promptAction(player, card, false, 'Choose an action');
     }
 
     // Handle params
@@ -525,7 +568,7 @@ class Game extends SharedGame {
         : [action.tile]
       ).map(tile => (isPlainObject(tile) ? tile : { tile }));
 
-      tiles.forEach(tile => this.promptTile(player, tile, tile.filter));
+      tiles.forEach(tile => this.promptTile(player, tile.tile, tile.filter));
     }
 
     // Handle custom card action
@@ -587,21 +630,17 @@ class Game extends SharedGame {
    */
   promptTile(player, tile, customFilter) {
     // If all the oceans are placed, don't prompt
-    if (tile.tile === 'ocean' && this.params.ocean <= 0) {
+    if (tile === 'ocean' && this.params.ocean <= 0) {
       return;
     }
 
     // Find possible placements for tile
-    const possibleTiles = this.findPossibleTiles(
-      tile.tile,
-      player,
-      customFilter
-    );
+    const possibleTiles = this.findPossibleTiles(tile, player, customFilter);
 
     if (possibleTiles.length) {
       // Set the player status
       player.actionStack.push({
-        tile: tile.tile,
+        tile,
         type: 'prompt-tile',
         ui: {
           drawer: null,
@@ -610,8 +649,8 @@ class Game extends SharedGame {
             pid: player.number
           },
           currentCard: { show: false },
-          showMilestones: false,
-          showStandardProjects: false
+          milestones: false,
+          standardProjects: false
         },
         possibleTiles
       });
@@ -619,77 +658,70 @@ class Game extends SharedGame {
   }
 
   /**
-   * Prompt for a player
+   * Helper function to show a choice prompt for a player
    *
    * @param {object} player The player to prompt
-   * @param {string} desc Description to present to user
-   * @param {object} icon The icon to prompt for
-   * @param {func} action Action when the player is chosen
-   * @param {array} logSnippet The snippet of a log that would fit this sentence: '{player} {snippet} {targetPlayer}'
-   * @param {func} cancelAction Action when the player hits cancel
-   * @param {func} filter Optional player filter
+   * @param {object} card The associated card
+   * @param {string} options.desc Description to present to user
+   * @param {object} options.icon The icon to prompt for
+   * @param {func} options.action Action when the player is chosen
+   * @param {array} options.logSnippet The snippet of a log that would fit this sentence: '{player} {snippet} {targetPlayer}'
+   * @param {func} options.optional Action when the player hits cancel
+   * @param {func} options.filter Optional player filter
    */
-  promptPlayer(
-    player,
-    desc,
-    icon,
-    logSnippet,
-    action,
-    filter = () => true,
-    cancelAction = () => {}
-  ) {
+  promptPlayer(player, card, options) {
     const renderIcon = (icons, p) =>
       (Array.isArray(icons) ? icons : [icons]).map(i =>
         isFunction(i) ? i(p, this) : i
       );
-    this.promptChoice(
+
+    this.promptAction(
       player,
-      desc,
+      card,
+      options.optional,
+      options.title,
       this.players.map(p => ({
         icon: { player: p.number },
-        rightIcon: renderIcon(icon, p),
-        label: p.name,
-        disabled: !filter(p),
-        logSnippet: logSnippet
-          ? [...logSnippet, ' ', { player: p.number }]
+        rightIcon: renderIcon(options.icon, p),
+        name: p.name,
+        canPlay: options.filter ?? (() => true),
+        log: options.logSnippet
+          ? [...options.logSnippet, ' ', { player: p.number }]
           : null,
-        action: (player, game) => action(p, game)
-      })),
-      cancelAction
+        targetPlayer: p.number,
+        ...options.action
+      }))
     );
   }
 
   /**
-   * Prompt for a list of choices
+   * Prompt for a list of actions
    *
    * @param {object} player Player making the choice
+   * @param {object} card The associated card
+   * @param {boolean} optional Whether the choices is optional, i.e. can be "canceled"
    * @param {string} desc Description of the choices
-   * @param {array} choices List of choices and actions
-   * @param {func} cancelAction Whether the choices is optional, i.e. can be "canceled"
+   * @param {array} actions Overrides the list of actions on the  card
    */
-  promptChoice(player, desc, choices, cancelAction = null) {
-    player.ui = {
-      currentCard: { show: false }
-    };
+  promptAction(player, card, optional = false, desc, actions) {
+    player.ui.currentCard.show = false;
 
-    this.playerStatus = {
-      type: 'prompt-choice',
-      player,
-      choices,
+    player.actionStack.push({
+      type: 'prompt-action',
       desc,
-      optional: !!cancelAction,
-      cancelAction,
-      done: () => {
-        // Show UI components
-        player.ui = {
-          drawer: this.phase === 'prelude' ? 'prelude' : 'hand',
-          playerStats: {
-            show: true,
-            pid: player.number
-          }
-        };
+      ui: {
+        currentCard: {
+          show: true,
+          card: card.card ? card : { card: card.number },
+          type: 'project',
+          mode: 'action',
+          actions,
+          showResources: true,
+          isPrompt: true,
+          optional
+        }
       }
-    };
+    });
   }
 
   /**
@@ -735,6 +767,10 @@ class Game extends SharedGame {
         player.rates.ocean;
     }
 
+    // Trigger events
+    this.fire('onTile', player, area);
+    this.fire('onAnyTile', null, area);
+
     // Mark the action as complete
     this.completeAction(player, area);
 
@@ -769,10 +805,6 @@ class Game extends SharedGame {
 
     // Check if this tile placement finished terraforming
     this.checkEndGame();
-
-    // Trigger events
-    this.fire('onTile', player, area);
-    this.fire('onAnyTile', null, area);
   }
 
   /**
@@ -1169,12 +1201,6 @@ class Game extends SharedGame {
   nextTurn() {
     // Nothing can happen if there are any outstanding actions for any player
     if (this.players.some(p => p.actionStack.length)) {
-      console.log(
-        "Somebody's got an action left",
-        this.players
-          .filter(p => p.actionStack)
-          .map(({ name, actionStack }) => ({ name, actionStack }))
-      );
       return;
     }
 
@@ -1325,6 +1351,10 @@ class Game extends SharedGame {
   }
 
   completeAction(player, params) {
+    if (!player.actionStack.length) {
+      return;
+    }
+
     // Pop off the action
     const action = player.actionStack.pop();
 
