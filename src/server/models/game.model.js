@@ -7,7 +7,6 @@ import {
   isPlainObject,
   times
 } from 'lodash';
-import { normalize } from '../util';
 import Tharsis from '../../shared/boards/Tharsis';
 import Hellas from '../../shared/boards/Hellas';
 import Elysium from '../../shared/boards/Elysium';
@@ -164,9 +163,7 @@ class Game extends SharedGame {
     deck = deck.filter(c => !replaced[c.number]);
 
     // Shuffle it up and store just the ids
-    this.cards.deck = shuffle(
-      deck.map(card => ({ card: normalize(card.number) }))
-    );
+    this.cards.deck = shuffle(deck.map(card => ({ card: card.number })));
 
     this.cards.corps = shuffle(
       // Do the same for the corp deck
@@ -180,14 +177,12 @@ class Game extends SharedGame {
                 this.sets.includes(set)
               ))
         )
-        .map(card => ({ card: normalize(card.number) }))
+        .map(card => ({ card: card.number }))
     );
     // And the prelude deck
     if (this.sets.includes('prelude')) {
       this.cards.preludes = shuffle(
-        Object.keys(this.cardStore.prelude).map(card => ({
-          card: normalize(card)
-        }))
+        Object.keys(this.cardStore.prelude).map(card => ({ card }))
       );
     }
 
@@ -331,9 +326,7 @@ class Game extends SharedGame {
       (keep = reveal
         .map(card => this.cardStore.get(card.card))
         .filter(revealFilter || (() => true))
-        .map(card => ({
-          card: normalize(card.number)
-        }))).length < num
+        .map(card => ({ card: card.number }))).length < num
     ) {
       reveal.push(this.cards.deck.shift());
     }
@@ -545,8 +538,8 @@ class Game extends SharedGame {
     }
 
     // Handle a choice
-    if (action.actions && action.actions.length) {
-      this.promptAction(player, card, false, 'Choose an action');
+    if (action.or && action.or.length) {
+      this.promptAction(player, card, false, 'Choose an action', action.or);
     }
 
     // Handle params
@@ -596,9 +589,13 @@ class Game extends SharedGame {
         : (options.any ? this.players : [player]).reduce(
             (o, p) => ({
               ...o,
-              [p.number]: p.cards[options.deck || 'allActionableCards'].filter(
-                options.filter || (() => true)
-              )
+              [p.number]:
+                p.cards[options.deck] ||
+                p[options.deck || 'allActionableCards'].filter(
+                  c =>
+                    !options.filter ||
+                    options.filter({ ...this.cardStore.get(c.card), ...c })
+                )
             }),
             {}
           );
@@ -617,7 +614,7 @@ class Game extends SharedGame {
         showMilestones: false,
         showStandardProjects: false
       },
-      action: options.action
+      ...options.action
     });
   }
 
@@ -1324,13 +1321,13 @@ class Game extends SharedGame {
       .concat(player.cards.corp)
       .find(c => c.card === card.number);
 
-    if (!playerCard.resource) {
-      playerCard.resource = 0;
+    if (!playerCard.cardResource) {
+      playerCard.cardResource = 0;
     }
 
-    playerCard.resource += value;
+    playerCard.cardResource += value;
 
-    return playerCard.resource;
+    return playerCard.cardResource;
   }
 
   /**

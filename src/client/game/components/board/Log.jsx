@@ -5,11 +5,18 @@ import './Log.scss';
 import CardRef from './CardRef';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import classNames from 'classnames';
-import Markdown from 'react-markdown';
-import { isPlainObject } from 'lodash';
+import ReactMarkdown from 'react-markdown';
+import { isPlainObject, repeat } from 'lodash';
 import { subscribe, gameId } from '../../../util/api';
 import { Tile, Param, Resource, Tag, MegaCredit } from '../assets/Assets';
 import LogText from './LogText';
+
+const preserveSpaces = str =>
+  str.replace(
+    /^( *)(.*?)( *)$/,
+    ($0, $1, $2, $3) =>
+      repeat('&nbsp;', $1.length) + $2 + repeat('&nbsp;', $3.length)
+  );
 
 /**
  * The chat log/game history
@@ -127,12 +134,13 @@ const Log = forwardRef((props, ref) => {
                       return body === ' ' ? (
                         ' '
                       ) : (
-                        <Markdown
+                        <ReactMarkdown
                           key={i}
                           className="log-inline"
-                          source={body?.toString() || ''}
-                          plugins={[require('remark-external-links')]}
-                        />
+                          plugins={[require('remark-gfm')]}
+                        >
+                          {preserveSpaces(body?.toString()) || ''}
+                        </ReactMarkdown>
                       );
                     }
                   }

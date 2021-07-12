@@ -1,23 +1,23 @@
 import { API } from '../../util/api';
-
-import { action, observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 class GameModel {
-  @observable games = [];
+  games = [];
 
-  @action
+  constructor() {
+    makeAutoObservable(this);
+  }
+
   getGames() {
     API('game/games').then(res => (this.games = res));
   }
 
-  @action
   createGame(game) {
     API(`game/${game.id}/create`, 'POST', {
       ...game
     });
   }
 
-  @action
   deleteGame(id) {
     API(`game/${id}`, 'DELETE');
   }

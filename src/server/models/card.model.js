@@ -1,5 +1,4 @@
 import fs from 'fs';
-import { normalize } from '../util';
 
 export default class CardModel {
   project = {};
@@ -33,7 +32,7 @@ export default class CardModel {
               ['automated', 'active', 'event'].includes(card.type)
                 ? 'project'
                 : card.type
-            ][normalize(card.number)] = card;
+            ][card.number] = card;
 
             return cards;
           },

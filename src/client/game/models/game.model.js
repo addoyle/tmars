@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx';
+import { observable, action, makeObservable } from 'mobx';
 import { API, gameId } from '../../util/api';
 import SharedGame from '../../../shared/game/game.shared.model';
 import { last } from 'lodash';
@@ -8,10 +8,9 @@ const POST = 'POST';
 
 class Game extends SharedGame {
   // Sets, or expansions, that are enabled in this game
-  @observable sets = [];
+  sets = [];
 
   // Global params
-  @observable
   params = {
     temperature: -30,
     oxygen: 0,
@@ -21,8 +20,8 @@ class Game extends SharedGame {
   };
 
   // The field (tiles)
-  @observable field = [];
-  @observable offMars = {
+  field = [];
+  offMars = {
     ganymede: {},
     phobos: {},
     torus: {},
@@ -33,20 +32,20 @@ class Game extends SharedGame {
   };
 
   // Current player's turn
-  @observable turn;
+  turn;
 
   // Players
-  @observable players = [];
-  @observable player;
+  players = [];
+  player;
 
   // Game phase
-  @observable phase;
+  phase;
 
   // Game settings/menu
-  @observable settings = {};
+  settings = {};
 
   // State of UI
-  @observable ui = {
+  ui = {
     milestones: false,
     standardProjects: false,
     drawer: 'corp',
@@ -71,6 +70,31 @@ class Game extends SharedGame {
     trSolo: false
   };
 
+  constructor() {
+    super();
+
+    makeObservable(this, {
+      sets: observable,
+      params: observable,
+      field: observable,
+      offMars: observable,
+      turn: observable,
+      players: observable,
+      player: observable,
+      phase: observable,
+      settings: observable,
+      ui: observable,
+      switchDrawer: action,
+      toggleStandardProjects: action,
+      toggleMilestoneAwards: action,
+      showCurrentCard: action,
+      hideCurrentCard: action,
+      revealCards: action,
+      update: action,
+      showPlayerStats: action
+    });
+  }
+
   getField() {
     return this.field;
   }
@@ -81,7 +105,6 @@ class Game extends SharedGame {
    * @param {string} drawer Drawer to show, or null to hide
    * @param {Event} e Original DOM event
    */
-  @action
   switchDrawer(drawer, e) {
     e && e.preventDefault();
 
@@ -99,7 +122,6 @@ class Game extends SharedGame {
   /**
    * Toggle if the standard project drawer is open
    */
-  @action
   toggleStandardProjects() {
     this.ui.standardProjects = !this.ui.standardProjects;
     this.updateUI({ standardProjects: this.ui.standardProjects });
@@ -108,7 +130,6 @@ class Game extends SharedGame {
   /**
    * Toggle if the milestone/awards drawer is open
    */
-  @action
   toggleMilestoneAwards() {
     this.ui.milestones = !this.ui.milestones;
     this.updateUI({ milestones: this.ui.milestones });
@@ -128,7 +149,6 @@ class Game extends SharedGame {
    * @param {string} mode Play mode
    * @param {boolean} showResources True to show resources on the card
    */
-  @action
   showCurrentCard(card, type, mode, showResources) {
     this.ui.currentCard = {
       ...this.currentCard,
@@ -144,13 +164,11 @@ class Game extends SharedGame {
     this.updateUI({ currentCard: this.ui.currentCard });
   }
 
-  @action
   hideCurrentCard() {
     this.ui.currentCard.show = false;
     this.updateUI({ currentCard: this.ui.currentCard });
   }
 
-  @action
   revealCards(cards) {
     this.player.cards.reveal = cards;
     this.switchDrawer('reveal');
@@ -161,7 +179,6 @@ class Game extends SharedGame {
    *
    * @param {Object} game The game object to update
    */
-  @action
   update(game) {
     // Update the game, which will fire off a UI change
     Object.assign(this, game);
@@ -212,7 +229,6 @@ class Game extends SharedGame {
     API(`game/${gameId()}?player=${player}`).then(res => this.update(res));
   }
 
-  @action
   showPlayerStats(pid, show) {
     this.ui.playerStats = {
       pid,

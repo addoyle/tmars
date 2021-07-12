@@ -13,44 +13,35 @@ export default new Event({
   desc,
   flavor: 'A light-weight but expensive crucial element',
   tile: 'ocean',
-  actions: [
+  or: [
     {
       name: 'Plants',
       log: ['3 plants ', { resource: 'plant' }],
-      icon: (
-        <>
-          <span>3</span>
-          <Resource name="plant" />
-        </>
-      ),
+      icon: ['3', { resource: 'plant' }],
       resources: {
         plant: 3
       }
     },
     {
       name: 'Microbes on a card',
-      icon: (
-        <>
-          <span>3</span>
-          <Resource name="microbe" />
-        </>
-      ),
+      icon: ['3', { resource: 'microbe' }],
       log: ['3 microbes ', { resource: 'microbe' }, ' on '],
       // canPlay: (player, game) =>
       //   player.cards.corp
       //     .concat(player.cards.active)
       //     .map(c => game.cardStore.get(c.card))
       //     .some(c => c.resource === 'microbe'),
-      action: {}
+      filter: card => card.tags.includes('microbe'),
+      action: (player, game) => {
+        game.promptCard(player, {
+          action: (player, game, card) =>
+            game.cardResource(player, { number: card.card }, 3)
+        });
+      }
     },
     {
       name: 'Animals on a card',
-      icon: (
-        <>
-          <span>2</span>
-          <Resource name="animal" />
-        </>
-      ),
+      icon: ['2', { resource: 'animal' }],
       log: ['2 animals ', { resource: 'animal' }, ' on '],
       // canPlay: (player, game) =>
       //   player.cards.corp

@@ -8,47 +8,37 @@ import { toJS } from 'mobx';
 import { isPlainObject } from 'lodash';
 
 // Render the icon
-const renderIcon = origIcon => {
-  if (!origIcon) {
-    return <span />;
-  }
-
-  const icons = Array.isArray(origIcon) ? origIcon : [origIcon];
-
-  return (
-    <div className="resources">
-      {icons.map((icon, i) => {
-        if (icon?.player) {
-          return <Resource key={i} name={`player-${icon.player}`} />;
-        } else if (icon?.megacredit) {
-          return <MegaCredit key={i} value={icon.megacredit} />;
-        } else if (icon?.resource) {
-          return <Resource key={i} name={icon.resource} />;
-        } else if (icon?.production) {
-          return (
-            <Production key={i}>
-              <div className="flex">
-                {icon.production === 'megacredit' ? (
-                  <MegaCredit value={icon.value} />
-                ) : (
-                  <>
-                    {icon.value !== null ? <span>{icon.value}</span> : null}
-                    <Resource name={icon.production} />
-                  </>
-                )}
-              </div>
-            </Production>
-          );
-        } else if (icon?.text) {
-          return <span key={i}>{`${icon.text}`}</span>;
-        } else {
-          return <span key={i}>{icon}</span>;
-        }
-      })}
-    </div>
+const renderIcon = origIcon =>
+  origIcon ? (
+    (Array.isArray(origIcon) ? origIcon : [origIcon]).map((icon, i) =>
+      icon?.player ? (
+        <Resource key={i} name={`player-${icon.player}`} />
+      ) : icon?.megacredit ? (
+        <MegaCredit key={i} value={icon.megacredit} />
+      ) : icon?.resource ? (
+        <Resource key={i} name={icon.resource} />
+      ) : icon?.production ? (
+        <Production key={i}>
+          <div className="flex">
+            {icon.production === 'megacredit' ? (
+              <MegaCredit value={icon.value} />
+            ) : (
+              <>
+                {icon.value !== null ? <span>{icon.value}</span> : null}
+                <Resource name={icon.production} />
+              </>
+            )}
+          </div>
+        </Production>
+      ) : icon?.text ? (
+        <span key={i}>{`${icon.text}`}</span>
+      ) : (
+        <span key={i}>{icon}</span>
+      )
+    )
+  ) : (
+    <span />
   );
-};
-
 const ActionableCard = ({ gameStore, card }) => {
   const currentCard = gameStore.ui.currentCard;
   const player = gameStore.player;
@@ -66,12 +56,17 @@ const ActionableCard = ({ gameStore, card }) => {
           ? action.canPlay(targetPlayer, gameStore, count)
           : { valid: true, msg: [] };
         card?.actionPlayable(action, targetPlayer, gameStore, valid);
-        console.log(valid);
 
         return (
           <div key={`${card?.number}-${i}`}>
             <Tooltip
-              title={valid?.msg.length ? valid.msg.join('\n') : ''}
+              title={
+                valid?.msg.length
+                  ? Array.isArray(valid.msg)
+                    ? valid.msg.join('\n')
+                    : valid.msg
+                  : ''
+              }
               arrow
               placement="top"
             >
@@ -94,9 +89,7 @@ const ActionableCard = ({ gameStore, card }) => {
                   <div className="resources middle">
                     {action.counter
                       ? action.counter.resultIcon(count, player, gameStore)
-                      : isPlainObject(action.icon)
-                      ? renderIcon(action.icon)
-                      : action.icon}
+                      : renderIcon(action.icon)}
                   </div>
                   <div className="center middle">{action.name}</div>
                   {action.counter ? (

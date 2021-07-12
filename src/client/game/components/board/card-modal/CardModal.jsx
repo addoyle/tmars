@@ -7,6 +7,7 @@ import './CardModal.scss';
 import PlayableCard from './PlayableCard';
 import PlayablePrelude from './PlayablePrelude';
 import ActionableCard from './ActionableCard';
+import { last } from 'lodash';
 
 /**
  * Shows the currently selected card
@@ -22,7 +23,7 @@ const CardModal = ({ gameStore, cardStore }) => {
   const [dragging, setDragging] = useState(false);
   const [prevTouch, setPrevTouch] = useState(null);
 
-  const card = cardStore.get(currentCard.type, currentCard.card);
+  const card = cardStore.get(currentCard.card);
 
   // Current player's turn
   const myTurn = gameStore.turn === player?.number;
@@ -76,10 +77,10 @@ const CardModal = ({ gameStore, cardStore }) => {
 
       <div className="footer">
         {currentCard.mode === 'play' &&
-        myTurn /*&&
-        (!gameStore.playerStatus ||
-          (gameStore.playerStatus.type === 'prompt-card' &&
-            gameStore.playerStatus.cardType === currentCard.type))*/ ? (
+        myTurn &&
+        (!player.actionStack.length ||
+          (last(player.actionStack).type === 'prompt-card' &&
+            last(player.actionStack).deck === currentCard.type)) ? (
           currentCard.type === 'project' ? (
             <PlayableCard card={card} />
           ) : currentCard.type === 'prelude' ? (
@@ -120,7 +121,8 @@ CardModal.propTypes = {
         cost: PropTypes.object,
         requirement: PropTypes.object
       }),
-      number: PropTypes.number
+      number: PropTypes.number,
+      actionStack: PropTypes.array
     }),
     hideCurrentCard: PropTypes.func
   }).isRequired,

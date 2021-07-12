@@ -15,7 +15,7 @@ const field = [
     { resources: ['plant', 'plant'] },
     { resources: ['plant', 'plant'] },
     { resources: ['plant', 'steel'] },
-    { resources: ['plant'] }
+    { resources: [0, 'plant'] }
   ],
   [
     { resources: ['plant', 'plant'], attrs: ['reserved-ocean'] },

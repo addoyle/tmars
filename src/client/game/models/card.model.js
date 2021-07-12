@@ -1,16 +1,20 @@
 import { API } from '../../util/api';
-import { observable, action } from 'mobx';
-import { computedFn } from 'mobx-utils';
+import { makeAutoObservable } from 'mobx';
+// import { computedFn } from 'mobx-utils';
 import { isString } from 'lodash';
 
 class Card {
-  @observable cards = {};
+  cards = {};
 
   constructor() {
+    makeAutoObservable(this, {
+      // get: computedFn
+    });
+
     const loadCards = (type, cards) => {
       Promise.all(
         cards.map(card => import(`../../../shared/cards/${type}/${card}`))
-      ).then(res => this.setCardsFromPromise(type, res));
+      ).then(res => this.setCardsFromPromise(res));
     };
 
     API('game/card-numbers').then(res => {
@@ -20,33 +24,21 @@ class Card {
     });
   }
 
-  @action
-  setCardsFromPromise(type, cards) {
+  setCardsFromPromise(cards) {
     this.cards = {
       ...this.cards,
-      [type]: cards
+      ...cards
         .map(card => card.default)
-        .reduce(
-          (set, card) =>
-            (set = { ...set, [this.normalize(card.number)]: card }),
-          {}
-        )
+        .reduce((set, card) => (set = { ...set, [card.number]: card }), {})
     };
   }
 
-  normalize(card) {
-    return isNaN(card) ? card : card.toString().padStart(3, '0');
-  }
-
-  @computedFn
-  get(type, card) {
+  get(card) {
     if (!card) {
       return null;
     }
 
-    const cardObj = isString(card) ? { card } : card;
-
-    return this.cards[type] && this.cards[type][this.normalize(cardObj.card)];
+    return this.cards[isString(card) ? card : card.card];
   }
 }
 

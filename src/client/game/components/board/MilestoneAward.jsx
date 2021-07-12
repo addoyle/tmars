@@ -36,12 +36,12 @@ const MilestoneAward = ({ gameStore, cardStore }) => {
         player.cards.active
           .map(c => ({
             card: c,
-            obj: cardStore.get('project', c.card)
+            obj: cardStore.get(c.card)
           }))
           .concat(
             player.cards.corp.map(c => ({
               card: c,
-              obj: cardStore.get('corp', c.card)
+              obj: cardStore.get(c.card)
             }))
           )
           .filter(c => c?.obj?.resource === 'floater')

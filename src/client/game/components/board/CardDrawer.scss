@@ -55,6 +55,15 @@ $hand-height: 40vh;
     }
   }
 
+  h2 {
+    color: #eee;
+    font-size: 1.5em;
+    font-family: $title-font, sans-serif;
+    margin: 1em 1em 0;
+    padding-bottom: .25em;
+    border-bottom: 2px solid;
+  }
+
   .cards {
     margin: 0;
     text-align: center;

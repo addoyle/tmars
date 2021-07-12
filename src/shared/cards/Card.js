@@ -54,9 +54,8 @@ export default class Card {
 
     // Check tile placement
     if (action.tile) {
-      const tiles = (Array.isArray(action.tile)
-        ? action.tile
-        : [action.tile]
+      const tiles = (
+        Array.isArray(action.tile) ? action.tile : [action.tile]
       ).map(tile => (isPlainObject(tile) ? tile : { tile }));
 
       if (

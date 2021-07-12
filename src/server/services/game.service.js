@@ -84,7 +84,7 @@ class GameService {
     return client.keys('*', (err, keys) => {
       client.mget(...keys, (err, games) => {
         done(
-          games
+          (games || [])
             .map(game => JSON.parse(game))
             .map(game => ({
               id: game.id,
@@ -323,12 +323,14 @@ class GameService {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
     const playedCard = this.cardStore.get(card.card.card);
-    const action = (playedCard.actions?.length
-      ? playedCard.actions
-      : last(player.actionStack).ui.currentCard.actions)[index];
+    const action = (
+      playedCard.actions?.length
+        ? playedCard.actions
+        : last(player.actionStack).ui.currentCard.actions
+    )[index];
 
     // If there are remaining actions BEFORE the card action, this card was likely played as the result of an action
-    const hasRemainingActions = player.actionStack.length;
+    const numActions = player.actionStack.length;
 
     // Hide active card
     player.ui.currentCard.show = false;
@@ -363,12 +365,12 @@ class GameService {
       game.performAction(action, targetPlayer, playedCard, { count });
     }
 
-    // If the card was played as the result of another card's action, pop that action off the stack
-    if (hasRemainingActions) {
+    // If there are no new actions, complete this action
+    if (numActions === player.actionStack.length) {
       game.completeAction(player);
     }
-    // Otherwise end the turn
-    else if (game.phase === 'action') {
+    // No actions left, end the turn
+    else if (!numActions && game.phase === 'action') {
       // Mark action card as played by marking as "disabled"
       player.cards[card.type === 'project' ? 'active' : 'corp'].find(
         c => c.card === card.card.card
@@ -402,11 +404,19 @@ class GameService {
       card.card
     );
 
-    player.cards[type] = player.cards[type].map(c =>
+    const select = c =>
       card.card === c.card
         ? { ...c, select: single ? true : !card.select }
-        : { ...c, select: single ? false : c.select }
-    );
+        : { ...c, select: single ? false : c.select };
+
+    if (type === 'chooser' && player.actionStack.length) {
+      const lastAction = last(player.actionStack);
+      Object.keys(lastAction.cards).forEach(
+        k => (lastAction.cards[k] = lastAction.cards[k].map(select))
+      );
+    } else {
+      player.cards[type] = player.cards[type].map(select);
+    }
 
     return this.export(game);
   }

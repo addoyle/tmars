@@ -209,7 +209,10 @@ const CardDrawers = ({ gameStore }) => {
       ),
       hidden:
         latestAction?.type !== 'prompt-card' || latestAction?.mode === 'play',
-      closable: true
+      closable: true,
+      mode: 'select',
+      min: latestAction?.min ?? 1,
+      max: latestAction?.max ?? 1
     }
   ];
 
@@ -224,7 +227,11 @@ const CardDrawers = ({ gameStore }) => {
               ...(drawer.extraClasses || []),
               {
                 open: gameStore.ui.drawer === drawer.type,
-                empty: !gameStore.player?.cards[drawer.type]?.length,
+                empty:
+                  !Object.values(
+                    last(gameStore.player?.actionStack)?.cards || []
+                  ).flat().length &&
+                  !gameStore.player?.cards[drawer.type]?.length,
                 hidden: drawer.hidden
               }
             )}
@@ -275,7 +282,10 @@ CardDrawers.propTypes = {
       actionStack: PropTypes.arrayOf(
         PropTypes.shape({
           type: PropTypes.string,
-          cards: PropTypes.array
+          cards: PropTypes.oneOfType([
+            PropTypes.array,
+            PropTypes.objectOf(PropTypes.array)
+          ])
         })
       ),
       number: PropTypes.number

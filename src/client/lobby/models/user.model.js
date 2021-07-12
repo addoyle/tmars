@@ -1,9 +1,13 @@
 // import { API } from '../../util/api';
 
-import { observable } from 'mobx';
+import { makeAutoObservable } from 'mobx';
 
 class User {
-  @observable name = '';
+  constructor() {
+    makeAutoObservable(this);
+  }
+
+  name = '';
 }
 
 export default User;

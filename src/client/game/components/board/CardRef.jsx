@@ -12,7 +12,7 @@ import HoverIntent from '../../../util/HoverIntent';
 const CardRef = props => {
   const [shown, setShown] = useState(false);
 
-  const card = props.cardStore.get(props.type, props.card);
+  const card = props.cardStore.get(props.card);
 
   return (
     <HoverIntent

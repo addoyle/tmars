@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  */
 const Separator = props => {
   let number = props.number;
-  if (isNaN(number)) {
+  if (!isNaN(number)) {
     number = +number.substring(1);
   }
   const binaryNum = number.toString(2);
@@ -17,9 +17,7 @@ const Separator = props => {
     <div className="separator">
       {(binaryNum.length < 8 ? '0'.repeat(8 - binaryNum.length) : null) +
         binaryNum}
-      <div className="number">
-        {'0'.repeat(3 - props.number.toString().length) + props.number}
-      </div>
+      <div className="number">{props.number}</div>
     </div>
   );
 };

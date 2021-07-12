@@ -12,7 +12,7 @@ import {
   faTree,
   faTrashAlt
 } from '@fortawesome/free-solid-svg-icons';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import { createTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Content from './components/Content.jsx';
 import GameModel from './models/game.model.js';
@@ -29,7 +29,7 @@ library.add(faClock);
 library.add(faTree);
 library.add(faTrashAlt);
 
-const theme = createMuiTheme({
+const theme = createTheme({
   palette: {
     type: 'dark',
     primary: { main: '#ca834e', contrastText: '#fdf0e0' }

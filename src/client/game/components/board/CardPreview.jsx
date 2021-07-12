@@ -13,11 +13,11 @@ import { GLOBAL_PARAMS } from '../../../../shared/game/constants';
  */
 const CardPreview = props => {
   const card = isString(props.card) ? { card: props.card } : props.card;
-  const cardObj = props.cardStore.get(props.type, card?.card);
+  const cardObj = props.cardStore.get(card?.card);
 
   const resource = cardObj?.resource && {
     type: cardObj.resource,
-    value: card?.resource || 0
+    value: card?.cardResource || 0
   };
 
   // Apply cost modifiers (e.g. Research Outpost)
@@ -53,7 +53,7 @@ const CardPreview = props => {
     >
       {!cardObj ? (
         <div>Loading...</div>
-      ) : props.type === 'corp' ? (
+      ) : cardObj.constructor.name === 'Corporation' ? (
         <CorporationLayout
           {...cardObj}
           resource={props.showResources ? resource : null}
@@ -87,11 +87,9 @@ CardPreview.propTypes = {
     }),
     PropTypes.oneOfType([PropTypes.number, PropTypes.string])
   ]).isRequired,
-  type: PropTypes.string.isRequired,
   show: PropTypes.bool,
   showResources: PropTypes.bool,
   cardStore: PropTypes.shape({
-    normalize: PropTypes.func.isRequired,
     get: PropTypes.func.isRequired
   }),
   gameStore: PropTypes.shape({

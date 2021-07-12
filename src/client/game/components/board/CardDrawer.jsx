@@ -27,9 +27,14 @@ const CardDrawer = props => {
   }
 
   // Cards in the drawer
-  const cards = player?.cards[props.type] || [];
+  const cards = (props.type === 'chooser' && stackAction?.cards) ||
+    (player?.cards[props.type] && { 0: player?.cards[props.type] }) || {
+      0: []
+    };
   // The number of selected cards
-  const numSelected = cards.filter(card => card?.select).length;
+  const numSelected = Object.values(cards)
+    .flat()
+    .filter(card => card?.select).length;
   // The number of cards that are staged to be purchased
   const numToBuy = player?.cards.buy.filter(card => card?.select).length;
 
@@ -61,7 +66,7 @@ const CardDrawer = props => {
     <div
       className={classNames('drawer', {
         collapse: props.collapse,
-        empty: !cards.length && !buyMode,
+        empty: !Object.values(cards).flat().length && !buyMode,
         'buy-mode': buyMode
       })}
       onMouseDown={e => e.stopPropagation()}
@@ -120,32 +125,34 @@ const CardDrawer = props => {
               { 'buy-mode': buyMode }
             )}
           >
-            <div className="col-1" style={{ paddingLeft: '1em' }}>
-              <div className="resources">
-                {buyMode ? (
-                  player?.cards.corp.length === 1 ? (
-                    // Show information about the selected corp
-                    <>
-                      <MegaCredit
-                        value={
-                          cardStore.get('corp', player?.cards.corp[0].card)
-                            ?.resources.megacredit
-                        }
-                      />
-                      <CardRef type="corp" card={player?.cards.corp[0].card} />
-                    </>
-                  ) : (
-                    // No corp picked yet
-                    <em style={{ fontSize: '.5em', color: '#200a' }}>
-                      {buyMode
-                        ? 'No corporation yet'
-                        : props.min === props.max
-                        ? `Pick ${props.min}`
-                        : `Pick between ${props.min} and ${props.max}`}
-                    </em>
-                  )
-                ) : null}
-              </div>
+            <div className="col-1 flex" style={{ paddingLeft: '1em' }}>
+              {buyMode || props.mode === 'select' ? (
+                player?.cards.corp.length === 1 &&
+                gameStore.phase === 'start' ? (
+                  // Show information about the selected corp
+                  <div className="resources">
+                    <MegaCredit
+                      value={
+                        cardStore.get(player?.cards.corp[0].card)?.resources
+                          .megacredit
+                      }
+                    />
+                    <CardRef type="corp" card={player?.cards.corp[0].card} />
+                  </div>
+                ) : (
+                  // No corp picked yet
+                  <div
+                    className="pill text-center"
+                    style={{ backgroundColor: '#f002' }}
+                  >
+                    {buyMode
+                      ? 'No corporation yet'
+                      : props.min === props.max
+                      ? `Pick ${props.min}`
+                      : `Pick between ${props.min} and ${props.max}`}
+                  </div>
+                )
+              ) : null}
             </div>
             <div className="col-2 flex gutter center center-items">
               {buyMode ? (
@@ -156,9 +163,9 @@ const CardDrawer = props => {
                   </span>
                   <span>For sale</span>
                 </div>
-              ) : startMode ? (
-                <div className="col-1" />
-              ) : null}
+              ) : (
+                startMode && <div className="col-1" />
+              )}
 
               {
                 // Show a confirmation button if the current phase isn't action or prelude
@@ -193,10 +200,8 @@ const CardDrawer = props => {
                             // Or can't afford all the selected cards in the start phase
                             (gameStore.phase === 'start' &&
                               numToBuy * player?.rates.buy <=
-                                cardStore.get(
-                                  'corp',
-                                  player?.cards.corp[0].card
-                                )?.resources.megacredit)
+                                cardStore.get(player?.cards.corp[0].card)
+                                  ?.resources.megacredit)
                           )
                         : // Disable the button if the number of cards selected is out of the allowable range
                           // (e.g. 1 corp, 2 preludes, etc.)
@@ -216,22 +221,25 @@ const CardDrawer = props => {
                       <div className="resources middle">
                         <MegaCredit value={numToBuy * player?.rates.buy} />
                       </div>
-                    ) : draftMode ? (
-                      <div className="middle">
-                        <FontAwesomeIcon
-                          fixedWidth
-                          icon={`arrow-alt-circle-${
-                            ['right', 'left'][gameStore.params.generation % 2]
-                          }`}
-                        />
-                      </div>
-                    ) : null}
+                    ) : (
+                      draftMode && (
+                        <div className="middle">
+                          <FontAwesomeIcon
+                            fixedWidth
+                            icon={`arrow-alt-circle-${
+                              ['right', 'left'][gameStore.params.generation % 2]
+                            }`}
+                          />
+                        </div>
+                      )
+                    )}
                   </button>
                 ) : startMode ? (
                   <div style={{ width: '60%' }} />
                 ) : (
                   <div className="pill">
-                    {stackAction?.type === 'prompt-card'
+                    {stackAction?.type === 'prompt-card' &&
+                    stackAction?.deck === 'hand'
                       ? stackAction?.desc || 'Play a card from hand'
                       : 'Your Turn'}
                   </div>
@@ -246,15 +254,17 @@ const CardDrawer = props => {
                     <FontAwesomeIcon icon="chevron-down" />
                   </span>
                 </div>
-              ) : startMode ? (
-                // Tell the user what they need to finish choosing to complete their start phase
-                <div className="pill text-center col-1">
-                  <span>Also Pick</span>
-                  <span className="section">
-                    <FontAwesomeIcon icon="chevron-right" />
-                  </span>
-                </div>
-              ) : null}
+              ) : (
+                startMode && (
+                  // Tell the user what they need to finish choosing to complete their start phase
+                  <div className="pill text-center col-1">
+                    <span>Also Pick</span>
+                    <span className="section">
+                      <FontAwesomeIcon icon="chevron-right" />
+                    </span>
+                  </div>
+                )
+              )}
             </div>
 
             <div
@@ -279,129 +289,139 @@ const CardDrawer = props => {
                     />
                   </span>
                 </button>
-              ) : startMode ? (
-                //Show Corp/Prelude/Hand buttons
-                <>
-                  {props.type !== 'hand' ? (
-                    <button
-                      className="col-1 flex"
-                      onClick={() => gameStore.switchDrawer('hand')}
-                      disabled={startPhase.hand}
-                    >
-                      <div className="hand middle">
-                        <Param name="card back" />
-                        <Param name="card back" />
-                        <Param name="card back" />
-                      </div>
-                      <div className="col-1 text middle">Hand</div>
-                    </button>
-                  ) : null}
-                  {props.type !== 'corp' ? (
-                    <button
-                      className="col-1 flex"
-                      onClick={() => gameStore.switchDrawer('corp')}
-                      disabled={startPhase.corp}
-                    >
-                      <div className="middle">
-                        <Param name="card corp landscape" />
-                      </div>
-                      <div className="col-1 text middle">Corporation</div>
-                    </button>
-                  ) : null}
-                  {props.type !== 'prelude' &&
-                  gameStore.sets.includes('prelude') ? (
-                    <button
-                      className="col-1 flex"
-                      onClick={() => gameStore.switchDrawer('prelude')}
-                      disabled={startPhase.prelude}
-                    >
-                      <div className="middle">
-                        <Param name="card prelude landscape" />
-                      </div>
-                      <div className="col-1 text middle">Preludes</div>
-                    </button>
-                  ) : null}
-                </>
-              ) : null}
+              ) : (
+                startMode && (
+                  //Show Corp/Prelude/Hand buttons
+                  <>
+                    {props.type !== 'hand' && (
+                      <button
+                        className="col-1 flex"
+                        onClick={() => gameStore.switchDrawer('hand')}
+                        disabled={startPhase.hand}
+                      >
+                        <div className="hand middle">
+                          <Param name="card back" />
+                          <Param name="card back" />
+                          <Param name="card back" />
+                        </div>
+                        <div className="col-1 text middle">Hand</div>
+                      </button>
+                    )}
+                    {props.type !== 'corp' && (
+                      <button
+                        className="col-1 flex"
+                        onClick={() => gameStore.switchDrawer('corp')}
+                        disabled={startPhase.corp}
+                      >
+                        <div className="middle">
+                          <Param name="card corp landscape" />
+                        </div>
+                        <div className="col-1 text middle">Corporation</div>
+                      </button>
+                    )}
+                    {props.type !== 'prelude' &&
+                      gameStore.sets.includes('prelude') && (
+                        <button
+                          className="col-1 flex"
+                          onClick={() => gameStore.switchDrawer('prelude')}
+                          disabled={startPhase.prelude}
+                        >
+                          <div className="middle">
+                            <Param name="card prelude landscape" />
+                          </div>
+                          <div className="col-1 text middle">Preludes</div>
+                        </button>
+                      )}
+                  </>
+                )
+              )}
             </div>
           </div>
         ) : null
       }
 
-      <ul className="cards">
-        {
-          // Show cards in drawer
-          cards.map(card => (
-            <li
-              key={`card-${card?.card || card}`}
-              onClick={() =>
-                // Disable action if card is disabled
-                !card?.disabled
-                  ? // Select card if in select or draft mode
-                    props.mode === 'select' || props.mode === 'draft'
-                    ? gameStore.toggleSelectCard(
-                        card,
-                        props.mode === 'draft' ? 'draft' : cardType,
-                        props.min === 1 && props.max === 1
-                          ? { single: true }
-                          : null
-                      )
-                    : // Otherwise show the card
-                      gameStore.showCurrentCard(
-                        card,
-                        cardType,
-                        props.mode,
-                        props.type === 'active' || props.type === 'corp'
-                      )
-                  : null
-              }
-              className={classNames('card-selector', {
-                selected:
-                  // Denote that the card is "active" if a card is shown
-                  gameStore.ui.currentCard.show &&
-                  // And that shown card matches this card
-                  card?.card === gameStore.ui.currentCard.card.card,
-                disabled: card?.disabled,
-                landscape: cardType === 'prelude' || cardType === 'corp'
-              })}
-            >
-              <CardPreview
-                card={card}
-                resources={card?.resources}
-                type={cardType}
-                costModifiers={props.type ? player.rates.cost : []}
-                reqModifiers={props.type ? player.rates.requirement : {}}
-                showZoom={props.mode === 'select' || props.mode === 'draft'}
-                showResources={
-                  gameStore.phase !== 'start' &&
-                  ['active', 'corp'].includes(props.type)
-                }
-              />
-            </li>
-          ))
-        }
-        {draftMode && player?.cards.buy.length ? (
-          // In draft mode, the cards that can be drafted and have been drafted
-          // are shown side-by-side, with a separator in between
-          <>
-            <li className="separator" />
-            {player?.cards.buy.map(card => (
-              <li
-                key={`card-${card?.card || card}`}
-                onClick={() => gameStore.showCurrentCard(card, 'project')}
-                className={classNames('card-selector', {
-                  selected:
-                    gameStore.ui.currentCard.show &&
-                    card?.card === gameStore.ui.currentCard.card.card &&
-                    cardType === gameStore.ui.currentCard.type
-                })}
-              >
-                <CardPreview card={card} type="project" showZoom />
-              </li>
-            ))}
-          </>
-        ) : null}
-      </ul>
+      {Object.keys(cards).map(group => (
+        <React.Fragment key={`group-${group}`}>
+          {gameStore.players[group - 1] &&
+            (Object.keys(cards).length > 1 || group !== `${player.number}`) && (
+              <h2>{gameStore.players[group - 1].name}</h2>
+            )}
+          <ul className="cards">
+            {
+              // Show cards in drawer
+              cards[group].map(card => (
+                <li
+                  key={`card-${group}-${card?.card || card}`}
+                  onClick={() =>
+                    // Disable action if card is disabled
+                    !card?.disabled
+                      ? // Select card if in select or draft mode
+                        props.mode === 'select' || props.mode === 'draft'
+                        ? gameStore.toggleSelectCard(
+                            card,
+                            props.type,
+                            props.min === 1 && props.max === 1
+                              ? { single: true }
+                              : null
+                          )
+                        : // Otherwise show the card
+                          gameStore.showCurrentCard(
+                            card,
+                            cardType,
+                            props.mode,
+                            props.type === 'active' || props.type === 'corp'
+                          )
+                      : null
+                  }
+                  className={classNames('card-selector', {
+                    selected:
+                      // Denote that the card is "active" if a card is shown
+                      gameStore.ui.currentCard.show &&
+                      // And that shown card matches this card
+                      card?.card === gameStore.ui.currentCard.card.card,
+                    disabled: card?.disabled,
+                    landscape: cardType === 'prelude' || cardType === 'corp'
+                  })}
+                >
+                  <CardPreview
+                    card={card}
+                    resources={card?.resources}
+                    // type={cardType}
+                    costModifiers={props.type ? player.rates.cost : []}
+                    reqModifiers={props.type ? player.rates.requirement : {}}
+                    showZoom={props.mode === 'select' || props.mode === 'draft'}
+                    showResources={
+                      gameStore.phase !== 'start' &&
+                      ['active', 'corp'].includes(props.type)
+                    }
+                  />
+                </li>
+              ))
+            }
+            {draftMode && player?.cards.buy.length ? (
+              // In draft mode, the cards that can be drafted and have been drafted
+              // are shown side-by-side, with a separator in between
+              <>
+                <li className="separator" />
+                {player?.cards.buy.map(card => (
+                  <li
+                    key={`card-${card?.card || card}`}
+                    onClick={() => gameStore.showCurrentCard(card, 'project')}
+                    className={classNames('card-selector', {
+                      selected:
+                        gameStore.ui.currentCard.show &&
+                        card?.card === gameStore.ui.currentCard.card.card &&
+                        cardType === gameStore.ui.currentCard.type
+                    })}
+                  >
+                    <CardPreview card={card} type="project" showZoom />
+                  </li>
+                ))}
+              </>
+            ) : null}
+          </ul>
+        </React.Fragment>
+      ))}
     </div>
   );
 };
@@ -414,7 +434,10 @@ CardDrawer.defaultProps = {
 CardDrawer.propTypes = {
   tab: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   type: PropTypes.string,
-  cards: PropTypes.array,
+  cards: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.objectOf(PropTypes.array)
+  ]),
   mode: PropTypes.oneOf(['play', 'action', 'buy', 'draft', 'select']),
   collapse: PropTypes.bool,
   min: PropTypes.number,
@@ -448,6 +471,7 @@ CardDrawer.propTypes = {
         buy: PropTypes.array,
         draft: PropTypes.array
       }),
+
       rates: PropTypes.shape({
         buy: PropTypes.number,
         cost: PropTypes.object,
@@ -456,6 +480,7 @@ CardDrawer.propTypes = {
       firstAction: PropTypes.bool,
       actionStack: PropTypes.array
     }),
+    players: PropTypes.array,
     params: PropTypes.shape({
       generation: PropTypes.number
     }),

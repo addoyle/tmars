@@ -205,6 +205,9 @@ const Games = ({ gameStore }) => {
             </Accordion>
           );
         })}
+        {!gameStore.games.length ? (
+          <span className="quiet">No games to list&hellip;</span>
+        ) : null}
       </Paper>
       <Dialog open={!!confirmOpen} onClose={() => setConfirmOpen(false)}>
         <DialogTitle>Delete {confirmOpen}</DialogTitle>
