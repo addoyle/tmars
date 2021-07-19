@@ -20,7 +20,7 @@ const card = new Active({
   flavor: 'Taking responsibility for preparing the ground for cultivation',
   resources: { plant: 3 },
   events: {
-    onCardResource: (player, game, done, card, oldValue) => {
+    onCardResource: (player, game, card, oldValue) => {
       if (
         card.resource === 'microbe' &&
         game.cardResource(player, card) - oldValue > 0

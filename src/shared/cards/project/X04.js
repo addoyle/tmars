@@ -5,6 +5,7 @@ import {
   Param,
   VictoryPoint
 } from '../../../client/game/components/assets/Assets';
+import { times } from 'lodash';
 
 const activeDesc =
   'Action: Spend any amount of energy to draw the same number of cards. TAKE 1 INTO HAND AND DISCARD THE REST.';
@@ -33,26 +34,30 @@ export default new Active({
           </>
         )
       },
-      canPlay: (player, game, count) => {
+      canPlay: (player, game, cardStore, count) => {
         const valid = count > 0;
         return {
           valid,
           msg: !valid ? 'Requires at least 1 energy' : null
         };
       },
-      action: (player, game, done, count) => {
-        game.resources(player, 'megacredit', -count);
-        for (let i = 0; i < count; i++) {
-          // TODO take 1 card and discard the rest
-          // game.drawCard(player);
-        }
-        done();
+      resources: {
+        power: (player, game, { count }) => -count
+      },
+      action: (player, game, { count }) => {
+        const cards = [];
+        times(count, () => cards.push(game.drawCard()));
+
+        game.promptCard(player, {
+          cards,
+          action: (player, game, cards) =>
+            (player.cards.hand = [...player.cards.hand, ...cards])
+        });
       }
     }
   ],
   vp: 1,
   emoji: '🔬',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

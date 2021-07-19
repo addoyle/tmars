@@ -17,6 +17,10 @@ class Log {
   postLog(log) {
     API(`log/${gameId()}`, 'POST', log).then(() => {});
   }
+
+  update(log) {
+    this.log = this.log.concat(log);
+  }
 }
 
 export default Log;

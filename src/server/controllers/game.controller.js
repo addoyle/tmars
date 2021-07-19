@@ -1,8 +1,6 @@
-import Game from '../models/game.model';
 import GameService from '../services/game.service';
 
 const OK = 200;
-const NOT_FOUND = 404;
 const BAD_REQUEST = 400;
 
 /**
@@ -282,27 +280,8 @@ export function fundAward(req, res) {
  */
 export function loadPreset(req, res) {
   if (req.query.preset) {
-    const presetGame = require(`../../testing/presets/${req.query.preset}.json`);
-
-    if (presetGame) {
-      console.log(
-        'Loading',
-        req.query.preset,
-        'preset into game',
-        req.params.id
-      );
-      presetGame.id = req.params.id;
-
-      delete GameService.games[req.params.id];
-      GameService.registerGame(
-        new Game(GameService.cardStore, presetGame),
-        req.params.id
-      );
-
-      res.sendStatus(OK);
-    } else {
-      res.sendStatus(NOT_FOUND);
-    }
+    GameService.loadPreset(req.params.id, req.query.preset);
+    res.sendStatus(OK);
   } else {
     res.sendStatus(BAD_REQUEST);
   }

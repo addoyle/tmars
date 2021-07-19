@@ -8,6 +8,7 @@ import { Param, MegaCredit } from '../assets/Assets';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import CardRef from './CardRef';
 import { last } from 'lodash';
+import { toJS } from 'mobx';
 
 /**
  * Card drawer
@@ -61,6 +62,8 @@ const CardDrawer = props => {
     prelude: player?.cards.prelude.length === 2,
     hand: !player?.cards.buy.length
   };
+
+  console.log(toJS(cards));
 
   return (
     <div
@@ -178,7 +181,10 @@ const CardDrawer = props => {
                 draftMode ||
                 buyMode ||
                 // Or if the player is trying to buy cards
-                stackAction?.type === 'buy-card' ? (
+                (stackAction?.type === 'buy-card' && props.type === 'hand') ||
+                // Or if the user is prompted for a card
+                (stackAction?.type === 'prompt-card' &&
+                  props.type === 'chooser') ? (
                   <button
                     className="primary flex gutter center"
                     onClick={() =>
@@ -340,13 +346,14 @@ const CardDrawer = props => {
         ) : null
       }
 
-      {Object.keys(cards).map(group => (
-        <React.Fragment key={`group-${group}`}>
-          {gameStore.players[group - 1] &&
-            (Object.keys(cards).length > 1 || group !== `${player.number}`) && (
+      <ul className="cards">
+        {Object.keys(cards).map(group => (
+          <React.Fragment key={`group-${group}`}>
+            {gameStore.players[group - 1] &&
+            Object.keys(cards).length > 1 &&
+            cards[group].length ? (
               <h2>{gameStore.players[group - 1].name}</h2>
-            )}
-          <ul className="cards">
+            ) : null}
             {
               // Show cards in drawer
               cards[group].map(card => (
@@ -386,13 +393,12 @@ const CardDrawer = props => {
                   <CardPreview
                     card={card}
                     resources={card?.resources}
-                    // type={cardType}
                     costModifiers={props.type ? player.rates.cost : []}
                     reqModifiers={props.type ? player.rates.requirement : {}}
                     showZoom={props.mode === 'select' || props.mode === 'draft'}
                     showResources={
                       gameStore.phase !== 'start' &&
-                      ['active', 'corp'].includes(props.type)
+                      ['active', 'corp', 'chooser'].includes(props.type)
                     }
                   />
                 </li>
@@ -414,14 +420,14 @@ const CardDrawer = props => {
                         cardType === gameStore.ui.currentCard.type
                     })}
                   >
-                    <CardPreview card={card} type="project" showZoom />
+                    <CardPreview card={card} showZoom />
                   </li>
                 ))}
               </>
             ) : null}
-          </ul>
-        </React.Fragment>
-      ))}
+          </React.Fragment>
+        ))}
+      </ul>
     </div>
   );
 };

@@ -24,22 +24,10 @@ export default new Automated({
   flavor: 'Your hold on the titanium market tightens',
   production: {
     titanium: 1,
-    any: {
+    anyone: {
       titanium: -1
     }
   },
-  // production: (player, game) =>
-  //   game.promptPlayer(
-  //     player,
-  //     'Pick a player to remove 1 titanium production',
-  //     [p => ({ text: p.production.titanium }), { production: 'titanium' }],
-  //     ['took 1 titanium ', { resource: 'titanium' }, ' production from'],
-  //     targetPlayer => {
-  //       game.production(player, 'titanium', 1);
-  //       game.production(targetPlayer, 'titanium', -1);
-  //     },
-  //     player => player.production.titanium > 0
-  //   ),
   emoji: '🌘',
   layout: (
     <div className="flex gutter">

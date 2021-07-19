@@ -227,11 +227,13 @@ const CardDrawers = ({ gameStore }) => {
               ...(drawer.extraClasses || []),
               {
                 open: gameStore.ui.drawer === drawer.type,
-                empty:
-                  !Object.values(
-                    last(gameStore.player?.actionStack)?.cards || []
-                  ).flat().length &&
-                  !gameStore.player?.cards[drawer.type]?.length,
+                empty: !(
+                  (drawer.type === 'chooser' &&
+                    Object.values(
+                      last(gameStore.player?.actionStack)?.cards || {}
+                    ).flat().length) ||
+                  gameStore.player?.cards[drawer.type]?.length
+                ),
                 hidden: drawer.hidden
               }
             )}

@@ -33,10 +33,8 @@ const card = new Active({
           msg: 'Not enough microbes'
         };
       },
-      action: (player, game, done) => {
-        game.cardResource(player, card, -2);
-        game.param(player, 'oxygen', done);
-      }
+      param: ['oxygen'],
+      action: (player, game) => game.cardResource(player, card, -2)
     }
   ],
   emoji: '🦠',

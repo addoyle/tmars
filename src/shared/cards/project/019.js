@@ -16,7 +16,7 @@ export default new Event({
   or: [
     {
       name: 'Plants',
-      log: ['3 plants ', { resource: 'plant' }],
+      log: ['get 3 plants ', { resource: 'plant' }],
       icon: ['3', { resource: 'plant' }],
       resources: {
         plant: 3
@@ -25,34 +25,21 @@ export default new Event({
     {
       name: 'Microbes on a card',
       icon: ['3', { resource: 'microbe' }],
-      log: ['3 microbes ', { resource: 'microbe' }, ' on '],
-      // canPlay: (player, game) =>
-      //   player.cards.corp
-      //     .concat(player.cards.active)
-      //     .map(c => game.cardStore.get(c.card))
-      //     .some(c => c.resource === 'microbe'),
-      filter: card => card.tags.includes('microbe'),
-      action: (player, game) => {
-        game.promptCard(player, {
-          action: (player, game, card) =>
-            game.cardResource(player, { number: card.card }, 3)
-        });
+      log: ['add 3 microbes ', { resource: 'microbe' }],
+      resources: {
+        microbe: 3
       }
     },
     {
       name: 'Animals on a card',
       icon: ['2', { resource: 'animal' }],
-      log: ['2 animals ', { resource: 'animal' }, ' on '],
-      // canPlay: (player, game) =>
-      //   player.cards.corp
-      //     .concat(player.cards.active)
-      //     .map(c => game.cardStore.get(c.card))
-      //     .some(c => c.resource === 'animal'),
-      action: {}
+      log: ['add 2 animals ', { resource: 'animal' }],
+      resources: {
+        animal: 2
+      }
     }
   ],
   emoji: '🎈',
-  todo: true,
   layout: (
     <div>
       <div className="resources text-center">

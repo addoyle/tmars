@@ -17,8 +17,9 @@ export default new Automated({
   set: 'promo',
   desc,
   flavor: 'Developing a gene and cell design for microorganisms',
-  // TODO: Put microbes on cards
-  action: (player, game, done) => console.log(done),
+  resources: {
+    microbe: player => player.tags.science
+  },
   drawCard: 1,
   emoji: '🦠',
   todo: true,

@@ -20,21 +20,28 @@ export default new Active({
     {
       name: 'Spend 1 Enery',
       icon: <Resource name="power" />,
-      canPlay: player => {
-        const valid = player.resources.power >= 1;
-        return {
-          valid,
-          msg: 'Not enough energy'
-        };
-      },
-      action: (player, game) =>
-        game.resources(
-          player,
-          'megacredit',
+      resources: {
+        power: -1,
+        megacredit: (player, game) =>
           game.field
             .flat()
             .filter(t => ['city', 'capital city'].includes(t.type)).length
-        )
+      }
+      // canPlay: player => {
+      //   const valid = player.resources.power >= 1;
+      //   return {
+      //     valid,
+      //     msg: 'Not enough energy'
+      //   };
+      // },
+      // action: (player, game) =>
+      //   game.resources(
+      //     player,
+      //     'megacredit',
+      //     game.field
+      //       .flat()
+      //       .filter(t => ['city', 'capital city'].includes(t.type)).length
+      //   )
     }
   ],
   emoji: '🚝',

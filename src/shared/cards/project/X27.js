@@ -30,22 +30,19 @@ const card = new Active({
     {
       name: 'Add a microbe',
       icon: <Resource name="microbe" />,
-      action: (player, game, done) => {
-        // TODO
-        done();
+      resources: {
+        microbe: 1
       }
     },
     {
       name: 'Add an animal',
       icon: <Resource name="animal" />,
-      action: (player, game, done) => {
-        // TODO
-        done();
+      resources: {
+        animal: 1
       }
     }
   ],
   emoji: '🌊',
-  todo: true,
   activeLayout: (
     <div>
       <div className="resources text-center">

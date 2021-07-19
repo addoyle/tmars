@@ -28,9 +28,8 @@ const Log = forwardRef((props, ref) => {
   useEffect(() => {
     logStore.fetchLogs();
 
-    let eventSource = subscribe(
-      `log/${gameId()}/stream`,
-      log => (logStore.log = logStore.log.concat(log))
+    let eventSource = subscribe(`log/${gameId()}/stream`, log =>
+      logStore.update(log)
     );
 
     return () => eventSource.close();
@@ -157,7 +156,8 @@ const Log = forwardRef((props, ref) => {
 Log.propTypes = {
   logStore: PropTypes.shape({
     fetchLogs: PropTypes.func,
-    log: PropTypes.array
+    log: PropTypes.array,
+    update: PropTypes.func
   }),
   gameStore: PropTypes.shape({
     players: PropTypes.array,

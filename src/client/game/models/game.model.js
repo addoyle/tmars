@@ -91,7 +91,8 @@ class Game extends SharedGame {
       hideCurrentCard: action,
       revealCards: action,
       update: action,
-      showPlayerStats: action
+      showPlayerStats: action,
+      loadPreset: action
     });
   }
 
@@ -329,6 +330,10 @@ class Game extends SharedGame {
       award,
       player: +PLAYER_NUM
     });
+  }
+
+  loadPreset(preset) {
+    API(`game/${gameId()}/loadPreset?preset=${preset}`);
   }
 }
 

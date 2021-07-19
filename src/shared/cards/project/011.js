@@ -16,7 +16,7 @@ export default new Event({
   param: ['temperature', 'temperature'],
   resources: {
     titanium: 4,
-    any: {
+    anyone: {
       plant: -4
     }
   },

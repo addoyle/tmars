@@ -11,7 +11,7 @@ const activeDesc =
   'Action: Remove 1 microbe from any card to add 1 to this card.';
 const desc = 'Requires 4% oxygen. 1 VP per 2 microbes on this card.';
 
-export default new Active({
+const card = new Active({
   number: '035',
   title: 'Ants',
   cost: 9,
@@ -24,9 +24,20 @@ export default new Active({
   desc,
   flavor:
     'Although an important part of many ecosystems, ants can also be detrimental to their organisms',
-  vp: () => Math.floor(this.resources / 2),
+  actions: [
+    {
+      name: 'Steal 1 Microbe',
+      icon: <Resource name="microbe" any />,
+      resources: {
+        anyone: {
+          microbe: -1
+        }
+      },
+      cardResource: 1
+    }
+  ],
   emoji: '🐜',
-  todo: true,
+  vp: (player, game) => Math.floor(game.cardResource(player, card) / 2),
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -51,3 +62,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

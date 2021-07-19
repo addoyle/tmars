@@ -18,20 +18,39 @@ const card = new Active({
   flavor: 'Introducing new species on demand',
   actions: [
     {
-      name: 'Spend 2 Energy',
+      name: 'Gain 2 Plants',
       icon: (
         <>
           <Resource name="power" />
           <Resource name="power" />
         </>
       ),
-      action: (player, game) => {
-        game.resources(
-          player,
-          'megacredit',
-          Math.min(game.cardResource(player, card), 5)
-        );
-        game.cardResource(player, card, -1);
+      rightIcon: (
+        <>
+          <Resource name="plant" />
+          <Resource name="plant" />
+        </>
+      ),
+      resources: {
+        power: -2,
+        plant: 2
+      }
+    },
+    {
+      name: 'Add 1 Animal',
+      icon: (
+        <>
+          <Resource name="power" />
+          <Resource name="power" />
+        </>
+      ),
+      rightIcon: (
+        <>
+          <Resource name="animal" />
+        </>
+      ),
+      resources: {
+        animal: 1
       }
     }
   ],

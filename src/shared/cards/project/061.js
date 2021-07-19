@@ -21,19 +21,11 @@ export default new Automated({
   desc,
   flavor:
     'The border between the northern plains and the southern highlands is rich in minerals. Control it, and you will control the global mining business',
-  action: (player, game, done) => {
-    game.promptPlayer(
-      player,
-      'Pick a player to remove 1 steel production',
-      [p => ({ production: 'steel', value: p.production.steel })],
-      ['took 1 steel production ', { production: 'steel' }, ' from'],
-      targetPlayer => {
-        game.production(player, 'steel', 1);
-        game.production(targetPlayer, 'steel', -1);
-        done();
-      },
-      player => player.production.steel > 0
-    );
+  production: {
+    steel: 1,
+    anyone: {
+      steel: -1
+    }
   },
   emoji: '⛰',
   layout: (

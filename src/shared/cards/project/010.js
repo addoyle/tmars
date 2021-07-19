@@ -18,7 +18,7 @@ export default new Event({
   flavor: 'Prepare to be cratered!',
   param: ['temperature'],
   resources: {
-    any: {
+    anyone: {
       plant: -3
     }
   },

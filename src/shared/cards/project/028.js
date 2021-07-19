@@ -24,17 +24,10 @@ const card = new Active({
       name: 'Spend 1 Titanium',
       log: ['add a fighter ', { resource: 'fighter' }],
       icon: <Resource name="titanium" />,
-      canPlay: player => {
-        const valid = player.resources.titanium >= 1;
-        return {
-          valid,
-          msg: 'Not enough titanium'
-        };
+      resources: {
+        titanium: -1
       },
-      action: (player, game) => {
-        game.resources(player, 'titanium', -1);
-        game.cardResource(player, card, 1);
-      }
+      cardResource: 1
     }
   ],
   vp: (player, game) => game.cardResource(player, card),

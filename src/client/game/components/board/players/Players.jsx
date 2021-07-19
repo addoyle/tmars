@@ -35,6 +35,16 @@ const Players = ({ gameStore }) =>
             />
           </li>
         ))}
+        <li>
+          <button
+            style={{ pointerEvents: 'auto' }}
+            onMouseDown={e => e.stopPropagation()}
+            onMouseMove={e => e.stopPropagation()}
+            onClick={() => gameStore.loadPreset('card-testing')}
+          >
+            Reload Testing
+          </button>
+        </li>
       </ul>
 
       <PlayerStats />
@@ -52,7 +62,8 @@ Players.propTypes = {
     }),
     showPlayerStats: PropTypes.func,
     turn: PropTypes.number,
-    startingPlayer: PropTypes.number
+    startingPlayer: PropTypes.number,
+    loadPreset: PropTypes.func
   })
 };
 

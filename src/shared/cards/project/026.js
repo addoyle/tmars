@@ -23,23 +23,15 @@ export default new Automated({
   },
   desc,
   flavor: 'A wonder of the world, doing wonders for the tourism business',
-  action: (player, game, done) => {
-    // TODO: figure out how to add resources to other cards
-    game.promptCard(
-      card => card.resources++,
-      card => card.tags.includes('animal'),
-      done
-    );
-  },
   resources: {
-    plant: 3
+    plant: 3,
+    animal: 1
   },
   production: {
     megacredit: 2
   },
   vp: 1,
   emoji: '🏞',
-  todo: true,
   layout: (
     <div>
       <div className="resources">

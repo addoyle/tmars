@@ -5,7 +5,7 @@ import { MegaCredit, Param, Resource } from '../../assets/Assets';
 import { Tooltip } from '@material-ui/core';
 import classnames from 'classnames';
 
-const PlayableCard = ({ gameStore, card }) => {
+const PlayableCard = ({ gameStore, cardStore, card }) => {
   const currentCard = gameStore.ui.currentCard;
   const player = gameStore.player;
 
@@ -22,8 +22,10 @@ const PlayableCard = ({ gameStore, card }) => {
 
   // Checks if the card can be played
   const meetsReqs =
-    card?.meetsRequirements && card?.meetsRequirements(player, gameStore);
-  const canPlay = card?.canPlay && card?.canPlay(player, gameStore);
+    gameStore?.meetsRequirements &&
+    card &&
+    gameStore?.meetsRequirements(player, card, cardStore);
+  const canPlay = card?.canPlay && card?.canPlay(player, gameStore, cardStore);
   const canAfford = player?.resources.megacredit >= effectiveCost;
   const valid = {
     valid: meetsReqs?.valid && canPlay?.valid && canAfford,
@@ -146,7 +148,7 @@ const PlayableCard = ({ gameStore, card }) => {
                   titanium: currentCard.titanium,
                   heat: currentCard.heat
                 });
-                currentCard.show = false;
+                gameStore.hideCurrentCard();
               }
             }}
           >
@@ -203,14 +205,17 @@ PlayableCard.propTypes = {
         corp: PropTypes.array
       })
     }),
+    meetsRequirements: PropTypes.func,
     hideCurrentCard: PropTypes.func
+  }),
+  cardStore: PropTypes.shape({
+    get: PropTypes.func
   }),
   card: PropTypes.shape({
     tags: PropTypes.array,
     cost: PropTypes.number,
-    meetsRequirements: PropTypes.func,
     canPlay: PropTypes.func
   })
 };
 
-export default inject('gameStore')(observer(PlayableCard));
+export default inject('gameStore', 'cardStore')(observer(PlayableCard));

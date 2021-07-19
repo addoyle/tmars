@@ -45,18 +45,11 @@ const card = new Active({
           msg: !valid ? 'Cannot afford this' : null
         };
       },
-      action: (player, game, done, count) => {
-        game.resources(
-          player,
-          'megacredit',
-          -Math.max(0, 6 - count * player.rates.titanium)
-        );
-        game.resources(player, 'titanium', -count);
-
-        // TODO: Pick any card
-        game.cardResource(player, card, 1);
-
-        done();
+      resources: {
+        megacredit: (player, game, count) =>
+          -Math.max(0, 6 - count * player.rates.titanium),
+        titanium: (player, game, count) => -count,
+        asteroid: 1
       }
     },
     {
@@ -69,21 +62,11 @@ const card = new Active({
           <Param name="temperature" />
         </>
       ),
-      canPlay: (player, game) => {
-        const valid = game.cardResource(player, card) > 0;
-        return {
-          valid,
-          msg: !valid ? 'Not enough asteroids' : null
-        };
-      },
-      action: (player, game, done) => {
-        game.cardResource(player, card, -1);
-        game.param(player, 'temperature', done);
-      }
+      cardResource: -1,
+      param: ['temperature']
     }
   ],
   emoji: '🥊',
-  todo: true,
   activeLayout: (
     <div>
       <div className="table center">

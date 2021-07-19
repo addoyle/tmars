@@ -13,15 +13,11 @@ export default new Event({
   desc,
   flavor:
     'Supplying elements that are essential for biological life, but are scarce on Mars',
-  action: (player, game, done) => {
-    // TODO 4 microbes
-    done();
-  },
   resources: {
-    plant: 4
+    plant: 4,
+    microbe: 4
   },
   emoji: '🍎',
-  todo: true,
   layout: (
     <div className="text-center m-top">
       <div className="resources">

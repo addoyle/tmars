@@ -38,7 +38,7 @@ export default new Active({
           <MegaCredit value={12 - count * player.rates.titanium} />
         )
       },
-      canPlay: (player, game, count) => {
+      canPlay: (player, game, card, count) => {
         if (game.params.ocean <= 0) {
           return {
             valid: false,
@@ -54,13 +54,10 @@ export default new Active({
         };
       },
       tile: 'ocean',
-      action: (player, game, params) => {
-        game.resources(
-          player,
-          'megacredit',
-          -Math.max(0, 12 - params.count * player.rates.titanium)
-        );
-        game.resources(player, 'titanium', -params.count);
+      resources: {
+        megacredit: (player, game, { count }) =>
+          -Math.max(0, 12 - count * player.rates.titanium),
+        titanium: (player, game, { count }) => -count
       }
     }
   ],

@@ -1,4 +1,5 @@
-import { uniq } from 'lodash';
+import { isPlainObject, uniq } from 'lodash';
+import Player from '../../server/models/player.model';
 
 class SharedGame {
   getField() {}
@@ -228,6 +229,251 @@ class SharedGame {
       .find(c => c.card === card.number);
 
     return (playerCard && playerCard.resource) || 0;
+  }
+
+  /**
+   * Check if the requirements are met in order to play the card
+   *
+   * @param {Player} player The player
+   * @param {object} action The action or card to verify
+   * @returns Validation object with the status of whether or not the card meets the requirements
+   */
+  meetsRequirements(player, card, cardStore) {
+    const result = { valid: true, msg: [] };
+
+    // Check requirements
+    if (card.restriction) {
+      const val = card.restriction.value;
+      const max = card.restriction.max;
+
+      // Check parameters
+      if (card.restriction.param) {
+        const param = card.restriction.param;
+        const suffix = { oxygen: '%', venus: '%', temperature: '°C' };
+        const modifier =
+          (player.rates.requirement[param] || 0) *
+          (param === 'temperature' ? 2 : 1);
+        if (
+          (!max && this.params[param] + modifier < val) ||
+          (max && this.params[param] - modifier > val)
+        ) {
+          result.valid = false;
+          result.msg.push(
+            `Requires ${max ? 'at most' : 'at least'} ${val}${
+              suffix[param] || ''
+            }${param === 'temperature' ? '' : ` ${param}`}`
+          );
+        }
+      }
+
+      // Check tags
+      if (card.restriction.tag) {
+        const tags = Array.isArray(card.restriction.tag)
+          ? card.restriction.tag
+          : [card.restriction.tag];
+        // Includes ? tags, if applicable
+        if (tags.some(t => player.tags[t] + (player.tags.any || 0) < val)) {
+          result.valid = false;
+          result.msg.push(
+            `Requires ${val} ${tags.join(', ')} tag${val > 1 ? 's' : ''}`
+          );
+        }
+      }
+
+      // Check tiles
+      if (card.restriction.tile) {
+        const tile = card.restriction.tile;
+        const tiles = this.field
+          .flat()
+          .concat(Object.values(this.offMars))
+          .filter(
+            t =>
+              t.type === tile || (tile === 'city' && t.type === 'capital city')
+          );
+        const modifier = player.rates.requirement.ocean || 0;
+        const actual =
+          tile === 'ocean' || card.restriction.anyone
+            ? tiles.length
+            : tiles.filter(t => t.player === player.number);
+        if (
+          (!max && actual + modifier < val) ||
+          (max && actual - modifier > val)
+        ) {
+          result.valid = false;
+          result.msg.push(`Requires ${val} ${tile} tile${val > 1 ? 's' : ''}`);
+        }
+      }
+
+      // Check production
+      if (card.restriction.production) {
+        const prod = card.restriction.production;
+        if (player.production[prod] < val) {
+          result.valid = false;
+          result.msg.push(`Requires ${val} ${prod} production`);
+        }
+      }
+
+      // Check resources
+      if (card.restriction.resource) {
+        // Special case when resource is TR
+        if (card.restriction.resource === 'tr') {
+          if (player.tr < val) {
+            result.valid = false;
+            result.msg.push(`Requires ${val} Terraform Rating`);
+          }
+        }
+        // Standard resources
+        else if (
+          [
+            'megacredit',
+            'steel',
+            'titanium',
+            'plant',
+            'power',
+            'heat'
+          ].includes(card.restriction.resource) &&
+          player.resources[card.restriction.resource] < val
+        ) {
+          result.valid = false;
+          result.msg.push(
+            `Requires ${val} ${card.restriction.resource} resources`
+          );
+        }
+        // Anything else is treated as resources on cards
+        else if (
+          player.cards.active
+            .concat(player.cards.corp)
+            .filter(c => c.resource === card.restriction.resource)
+            .reduce((sum, c) => sum + c.resource, 0) < val
+        ) {
+          result.valid = false;
+          result.msg.push(
+            `Requires ${val} ${this.restriction.resource} resources on cards`
+          );
+        }
+      }
+    }
+
+    this.actionPlayable(card, player, cardStore, result);
+
+    return result;
+  }
+
+  actionPlayable(action, player, cardStore, result = { valid: true, msg: [] }) {
+    const translate = r => ({ megacredit: 'M€', power: 'energy' }[r] || r);
+    const standardResources = [
+      'megacredit',
+      'steel',
+      'titanium',
+      'plant',
+      'power',
+      'heat'
+    ];
+    const isCard = ['Automated', 'Active', 'Event', 'Prelude'].includes(
+      action.constructor.name
+    );
+
+    const checkCardResources = (p, r) => {
+      const players = Array.isArray(p) ? p : [p];
+
+      if (
+        players.every(
+          p =>
+            // Player doesn't have a card in play that can accept one
+            !new Player(p).allActionableCards
+              .map(card => cardStore.get(card.card))
+              .some(card => card?.resource === r)
+        ) &&
+        // Card actions are exempt from this requirement (i.e. playing a card)
+        !isCard
+      ) {
+        result.valid = false;
+        result.msg.push(
+          `Requires at least one card in play ${
+            players.length > 1 ? 'by ANY PLAYER ' : ''
+          }that can accept ${translate(r)} resources`
+        );
+      }
+    };
+
+    // Validate resources
+    if (action.resources && isPlainObject(action.resources)) {
+      Object.keys(action.resources).forEach(r => {
+        // The action is on all players
+        if (r === 'anyone') {
+          Object.keys(action.resources.anyone).forEach(ar => {
+            // Negative standard resources on other players is always optional, i.e. should not block the action
+
+            // Check card resources, i.e. resource is NOT one of the standard resources
+            if (!standardResources.includes(ar)) {
+              checkCardResources(this.players, ar);
+            }
+          });
+        } else {
+          // Check negative resources
+          if (
+            standardResources.includes(r) &&
+            action.resources[r] < 0 &&
+            player.resources[r] + action.resources[r] < 0
+          ) {
+            result.valid = false;
+            result.msg.push(`Not enough ${translate(r)} resources`);
+          }
+
+          // Check card resources, i.e. resource is NOT one of the standard resources
+          if (!standardResources.includes(r)) {
+            checkCardResources(this.players, r);
+          }
+        }
+      });
+    }
+
+    // Validate production
+    if (action.production && isPlainObject(action.production)) {
+      const checkProduction = (p, r, anyone = false) => {
+        // Check negative production
+        if (
+          action.production[r] < 0 &&
+          player.production[r] + action.production[r] < r === 'megacredit'
+            ? -5
+            : 0
+        ) {
+          result.valid = false;
+          result.msg.push(
+            anyone
+              ? `Requires at least one player with ${translate(r)} production`
+              : `Not enough ${translate(r)} production`
+          );
+        }
+      };
+
+      Object.keys(action.production).forEach(r => {
+        // The action is on all players
+        if (r === 'anyone') {
+          Object.keys(action.production.anyone).forEach(ar =>
+            checkProduction(this.players, ar)
+          );
+        } else {
+          checkProduction(player, r);
+        }
+      });
+    }
+
+    // Check tile placement
+    if (action.tile) {
+      const tiles = (
+        Array.isArray(action.tile) ? action.tile : [action.tile]
+      ).map(tile => (isPlainObject(tile) ? tile : { tile }));
+
+      if (
+        !tiles.every(
+          t => this.findPossibleTiles(t.tile, player, t.filter).length
+        )
+      ) {
+        result.valid = false;
+        result.msg.push('Cannot place tile');
+      }
+    }
   }
 }
 

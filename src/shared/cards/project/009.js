@@ -14,7 +14,7 @@ export default new Event({
   flavor: 'What are those plants in our impact zone?',
   resources: {
     titanium: 2,
-    any: {
+    anyone: {
       plant: -3
     }
   },

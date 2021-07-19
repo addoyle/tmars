@@ -2,8 +2,6 @@ import React from 'react';
 import Event from '../Event';
 import { Resource } from '../../../client/game/components/assets/Assets';
 
-// TODO FIGURE OUT HOW TO DO OR AND CARD PICKER
-
 const desc = 'Remove up to 2 animals or 5 plants from any player.';
 
 export default new Event({
@@ -15,9 +13,29 @@ export default new Event({
   desc,
   flavor:
     'The virus is transient, changing from liquid to air-borne to blood transfusion',
-  action: () => {},
+  or: [
+    {
+      name: 'Remove 2 Animals',
+      log: ['removed 2 animals ', { resource: 'animal' }],
+      icon: ['-2', { resource: 'animal', anyone: true }],
+      resources: {
+        anyone: {
+          animal: -2
+        }
+      }
+    },
+    {
+      name: 'Remove 5 Plants',
+      log: ['removed 5 plants ', { resource: 'plant' }],
+      icon: ['-5', { resource: 'plant', anyone: true }],
+      resources: {
+        anyone: {
+          plant: -5
+        }
+      }
+    }
+  ],
   emoji: '🦠',
-  todo: true,
   layout: (
     <div>
       <div className="resources text-center">

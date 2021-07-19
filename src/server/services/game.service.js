@@ -229,8 +229,8 @@ class GameService {
     // Hide current card
     player.ui.currentCard.show = false;
 
-    // If there are remaining actions BEFORE the card action, this card was likely played as the result of an action
-    const hasRemainingActions = player.actionStack.length;
+    // Capture the stack index before performing the action
+    const stackIndex = player.actionStack.length - 1;
 
     // Perform card's action
     game.performAction(playedCard, player, playedCard);
@@ -239,14 +239,8 @@ class GameService {
     game.fire('onCardPlayed', player, playedCard);
     game.fire('onAnyCardPlayed', player, playedCard);
 
-    // If the card was played as the result of another card's action, pop that action off the stack
-    if (hasRemainingActions) {
-      game.completeAction(player, playedCard);
-    }
-    // Otherwise end the turn
-    else if (game.phase === 'action') {
-      game.nextTurn();
-    }
+    // The action is complete!
+    game.completeAction(player, stackIndex, playedCard);
 
     return this.export(game);
   }
@@ -294,6 +288,9 @@ class GameService {
     // Hide card
     player.ui.currentCard.show = false;
 
+    // Capture the stack index before performing the action
+    const stackIndex = player.actionStack.length - 1;
+
     // Perform prelude's action
     game.performAction(playedCard, player, playedCard);
 
@@ -302,9 +299,8 @@ class GameService {
       prelude => prelude.card === card.card
     ).disabled = true;
 
-    if (!player.actionStack.length) {
-      game.endPreludeAction(player, card);
-    }
+    // The action is complete!
+    game.completeAction(player, stackIndex, playedCard);
 
     return this.export(game);
   }
@@ -323,14 +319,11 @@ class GameService {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
     const playedCard = this.cardStore.get(card.card.card);
-    const action = (
-      playedCard.actions?.length
-        ? playedCard.actions
-        : last(player.actionStack).ui.currentCard.actions
-    )[index];
+    const action = (last(player.actionStack)?.ui?.currentCard?.actions ||
+      playedCard.actions)[index];
 
-    // If there are remaining actions BEFORE the card action, this card was likely played as the result of an action
-    const numActions = player.actionStack.length;
+    // Capture the stack index before performing the action
+    const stackIndex = player.actionStack.length - 1;
 
     // Hide active card
     player.ui.currentCard.show = false;
@@ -365,19 +358,16 @@ class GameService {
       game.performAction(action, targetPlayer, playedCard, { count });
     }
 
-    // If there are no new actions, complete this action
-    if (numActions === player.actionStack.length) {
-      game.completeAction(player);
-    }
-    // No actions left, end the turn
-    else if (!numActions && game.phase === 'action') {
-      // Mark action card as played by marking as "disabled"
-      player.cards[card.type === 'project' ? 'active' : 'corp'].find(
-        c => c.card === card.card.card
-      ).disabled = true;
-
-      game.nextTurn();
-    }
+    // The action is complete!
+    game.completeAction(
+      player,
+      stackIndex,
+      () =>
+        // Mark active card or corp as played by marking as "disabled"
+        (player.cards[card.type === 'project' ? 'active' : 'corp'].find(
+          c => c.card === card.card.card
+        ).disabled = true)
+    );
 
     return this.export(game);
   }
@@ -492,14 +482,11 @@ class GameService {
       game.beginActionPhase();
     }
 
-    // If the card was played as the result of another card's action, pop that action off the stack
-    if (player.actionStack.length) {
-      game.completeAction(player, { boughtCards, discardedCards });
-    }
-    // Otherwise end the turn
-    else if (game.phase === 'action') {
-      game.nextTurn();
-    }
+    // The action is complete!
+    game.completeAction(player, player.actionStack.length - 1, {
+      boughtCards,
+      discardedCards
+    });
 
     return this.export(game);
   }
@@ -562,21 +549,36 @@ class GameService {
   confirmSelection(id, playerNum, type) {
     const game = this.games[id];
     const player = this.getPlayer(game, playerNum);
+    const stackAction = last(player.actionStack);
 
-    player.cards[type] = player.cards[type]
+    const selectedCards = (
+      player.cards[type] ||
+      (type === 'chooser' && Object.values(stackAction.cards).flat()) ||
+      []
+    )
       .filter(card => card.select)
       .map(card => ({ ...card, select: false }));
 
-    // Beginner corp, move all BUY cards to hand
-    if (type === 'corp' && player.cards.corp[0].card === '000') {
-      player.cards.hand = player.cards.buy.map(card => ({
-        card: card.card
-      }));
-      player.cards.buy = [];
-    }
+    if (!stackAction) {
+      player.cards[type] = selectedCards;
 
-    if (game.phase === 'start') {
-      this.checkStartPhaseDone(game);
+      // Beginner corp, move all BUY cards to hand
+      if (type === 'corp' && player.cards.corp[0].card === '000') {
+        player.cards.hand = player.cards.buy.map(card => ({
+          card: card.card
+        }));
+        player.cards.buy = [];
+      }
+
+      if (game.phase === 'start') {
+        this.checkStartPhaseDone(game);
+      }
+    } else if (stackAction.type === 'prompt-card') {
+      // Capture the stack index before performing the action
+      const stackIndex = player.actionStack.length - 1;
+
+      // The action is complete!
+      game.completeAction(player, stackIndex, selectedCards);
     }
 
     return this.export(game);
@@ -604,7 +606,11 @@ class GameService {
       area.id
     );
 
-    game.placeTile(player, area, action.tile);
+    game.placeTile(
+      player,
+      area,
+      action.tile === 'special' ? { special: action.icon } : action.tile
+    );
 
     return this.export(game);
   }
@@ -622,43 +628,6 @@ class GameService {
     player.ui = { ...player.ui, ...ui };
     return this.export(game);
   }
-
-  // /**
-  //  * Play a card action
-  //  *
-  //  * @param {string} id Game ID
-  //  * @param {number} playerNum Player number
-  //  * @param {number} i Item that was chosen
-  //  */
-  // @push(gameFilter)
-  // playAction(id, playerNum, i) {
-  //   const game = this.games[id];
-  //   const player = this.getPlayer(game, playerNum);
-  //   const action = last(player.actionStack);
-
-  //   // If i is null, cancel button was clicked
-  //   if (i !== null) {
-  //     const choice = action.choices[i];
-
-  //     game.performAction(
-  //       choice.action,
-  //       choice.targetPlayer ? this.getPlayer(game, choice.targetPlayer) : player
-  //     );
-
-  //     // Log the placement
-  //     if (choice.logSnippet) {
-  //       LogService.pushLog(
-  //         game.id,
-  //         new Log(player.number, [' ', ...choice.logSnippet, '.'])
-  //       );
-  //     }
-  //   }
-
-  //   // Mark action as complete
-  //   game.completeAction(player);
-
-  //   return this.export(game);
-  // }
 
   /**
    * Pass or skip a turn
@@ -977,6 +946,25 @@ class GameService {
     }
 
     return game.players[p];
+  }
+
+  @push(gameFilter)
+  loadPreset(id, preset) {
+    const presetGame = require(`../../testing/presets/${preset}.json`);
+
+    if (presetGame) {
+      console.log('Loading', preset, 'preset into game', id);
+      presetGame.id = id;
+
+      // Remove game
+      delete this.games[id];
+      client.del(id);
+
+      const game = new Game(this.cardStore, presetGame);
+      this.registerGame(game, id);
+
+      return this.export(game);
+    }
   }
 
   /**

@@ -4,7 +4,6 @@ import { inject, observer } from 'mobx-react';
 import { Tooltip } from '@material-ui/core';
 import classnames from 'classnames';
 import { Resource, MegaCredit, Production } from '../../assets/Assets';
-import { toJS } from 'mobx';
 import { isPlainObject } from 'lodash';
 
 // Render the icon
@@ -14,18 +13,18 @@ const renderIcon = origIcon =>
       icon?.player ? (
         <Resource key={i} name={`player-${icon.player}`} />
       ) : icon?.megacredit ? (
-        <MegaCredit key={i} value={icon.megacredit} />
+        <MegaCredit key={i} value={icon.megacredit} anyone={icon.anyone} />
       ) : icon?.resource ? (
-        <Resource key={i} name={icon.resource} />
+        <Resource key={i} name={icon.resource} anyone={icon.anyone} />
       ) : icon?.production ? (
         <Production key={i}>
           <div className="flex">
             {icon.production === 'megacredit' ? (
-              <MegaCredit value={icon.value} />
+              <MegaCredit value={icon.value} anyone={icon.anyone} />
             ) : (
               <>
                 {icon.value !== null ? <span>{icon.value}</span> : null}
-                <Resource name={icon.production} />
+                <Resource name={icon.production} anyone={icon.anyone} />
               </>
             )}
           </div>
@@ -33,35 +32,42 @@ const renderIcon = origIcon =>
       ) : icon?.text ? (
         <span key={i}>{`${icon.text}`}</span>
       ) : (
-        <span key={i}>{icon}</span>
+        <React.Fragment key={i}>{icon}</React.Fragment>
       )
     )
   ) : (
     <span />
   );
-const ActionableCard = ({ gameStore, card }) => {
+
+const ActionableCard = ({ gameStore, cardStore, card }) => {
   const currentCard = gameStore.ui.currentCard;
   const player = gameStore.player;
-  const actions = card?.actions || toJS(currentCard?.actions) || [];
+  const actions = currentCard?.actions || card?.actions || [];
+
+  const [theCount, doSetCount] = useState([]);
+  const count = i => theCount[i] ?? 0;
+  const setCount = (i, c) => {
+    theCount[i] = c;
+    doSetCount([...theCount]);
+  };
 
   return (
     <>
       {actions?.map((action, i) => {
-        const [count, setCount] = useState(0);
         const targetPlayer = action.targetPlayer
           ? gameStore.players[action.targetPlayer - 1]
           : player;
 
         const valid = action.canPlay
-          ? action.canPlay(targetPlayer, gameStore, count)
+          ? action.canPlay(targetPlayer, gameStore, cardStore, count(i))
           : { valid: true, msg: [] };
-        card?.actionPlayable(action, targetPlayer, gameStore, valid);
+        gameStore?.actionPlayable(action, targetPlayer, cardStore, valid);
 
         return (
           <div key={`${card?.number}-${i}`}>
             <Tooltip
               title={
-                valid?.msg.length
+                valid?.msg?.length
                   ? Array.isArray(valid.msg)
                     ? valid.msg.join('\n')
                     : valid.msg
@@ -79,16 +85,16 @@ const ActionableCard = ({ gameStore, card }) => {
                     gameStore.cardAction(
                       currentCard,
                       i,
-                      action.counter ? count : null
+                      action.counter ? count(i) : null
                     );
-                    currentCard.show = false;
+                    gameStore.hideCurrentCard();
                   }
                 }}
               >
                 <div className="flex">
                   <div className="resources middle">
                     {action.counter
-                      ? action.counter.resultIcon(count, player, gameStore)
+                      ? action.counter.resultIcon(count(i), player, gameStore)
                       : renderIcon(action.icon)}
                   </div>
                   <div className="center middle">{action.name}</div>
@@ -96,7 +102,7 @@ const ActionableCard = ({ gameStore, card }) => {
                     <div className="resources middle">{action.icon}</div>
                   ) : null}
                   {action.rightIcon ? (
-                    <div className="right middle">
+                    <div className="right resources middle">
                       {isPlainObject(action.icon)
                         ? renderIcon(action.rightIcon)
                         : action.rightIcon}
@@ -111,9 +117,10 @@ const ActionableCard = ({ gameStore, card }) => {
                 className="text-center"
                 onClick={() => {
                   setCount(
-                    count >= action.counter.max(player, gameStore)
+                    i,
+                    count(i) >= action.counter.max(player, gameStore)
                       ? 0
-                      : count + 1
+                      : count(i) + 1
                   );
                 }}
               >
@@ -121,7 +128,7 @@ const ActionableCard = ({ gameStore, card }) => {
                   <div className="resources middle">{action.counter.icon}</div>
                   <div className="center middle">{action.counter.name}</div>
                   <div className="pill middle">
-                    ({count}/{action.counter.max(player, gameStore)})
+                    ({count(i)}/{action.counter.max(player, gameStore)})
                   </div>
                 </div>
               </button>
@@ -163,7 +170,11 @@ ActionableCard.propTypes = {
     cardAction: PropTypes.func,
     player: PropTypes.object,
     players: PropTypes.array,
-    hideCurrentCard: PropTypes.func
+    hideCurrentCard: PropTypes.func,
+    actionPlayable: PropTypes.func
+  }),
+  cardStore: PropTypes.shape({
+    get: PropTypes.func
   }),
   card: PropTypes.shape({
     number: PropTypes.string,
@@ -178,9 +189,8 @@ ActionableCard.propTypes = {
           resultIcon: PropTypes.func
         })
       })
-    ),
-    actionPlayable: PropTypes.func
+    )
   })
 };
 
-export default inject('gameStore')(observer(ActionableCard));
+export default inject('gameStore', 'cardStore')(observer(ActionableCard));

@@ -35,10 +35,9 @@ export default new Active({
           msg: !valid ? 'Requires at least 2 M€' : null
         };
       },
-      action: (player, game, done, count) => {
-        game.resources(player, 'megacredit', -(count * 2));
-        game.resources(player, 'power', count);
-        done();
+      resources: {
+        megacredit: (player, game, { count }) => -(count * 2),
+        power: (player, game, { count }) => count
       }
     },
     {
@@ -50,16 +49,11 @@ export default new Active({
           </div>
         </Production>
       ),
-      canPlay: player => {
-        const valid = player.production.power > 0;
-        return {
-          valid,
-          msg: !valid ? 'Not enough enery production' : null
-        };
+      production: {
+        power: -1
       },
-      action: (player, game) => {
-        game.production(player, 'power', -1);
-        game.resources(player, 'megacredit', 8);
+      resources: {
+        megacredit: 8
       }
     }
   ],

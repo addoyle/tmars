@@ -11,7 +11,7 @@ const activeDesc =
   'Action: Remove 1 animal from any card and add it to this card.';
 const desc = 'Requires 11% oxygen. 1 VP per animal on this card.';
 
-export default new Active({
+const card = new Active({
   number: '024',
   title: 'Predators',
   cost: 14,
@@ -23,9 +23,20 @@ export default new Active({
   activeDesc,
   desc,
   flavor: 'Lions and tigers and bears, oh my',
+  actions: [
+    {
+      name: 'Steal 1 Animal',
+      icon: <Resource name="animal" any />,
+      resources: {
+        anyone: {
+          animal: -1
+        }
+      },
+      cardResource: 1
+    }
+  ],
   emoji: '🐻',
-  vp: () => this.resources,
-  todo: true,
+  vp: (player, game) => game.cardResource(player, card),
   activeLayout: (
     <div>
       <div className="resources text-center">
@@ -49,3 +60,5 @@ export default new Active({
     </div>
   )
 });
+
+export default card;

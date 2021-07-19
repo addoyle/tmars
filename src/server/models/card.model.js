@@ -24,7 +24,11 @@ export default class CardModel {
         .readdirSync(`${CARD_DIR}/prelude`)
         .map(f => import(`${CARD_DIR}/prelude/${f}`))
     ]).then(res => {
-      ({ project: this.project, corp: this.corp, prelude: this.prelude } = res
+      ({
+        project: this.project,
+        corp: this.corp,
+        prelude: this.prelude
+      } = res
         .map(card => card.default)
         .reduce(
           (cards, card) => {

@@ -28,7 +28,7 @@ const card = new Active({
       name: 'Add 1 Microbe',
       log: ['add a microbe ', { resource: 'microbe' }],
       icon: <Resource name="microbe" />,
-      action: (player, game) => game.cardResource(player, card, 1)
+      cardResource: 1
     }
   ],
   vp: (player, game) => Math.floor(game.cardResource(player, card) / 2),

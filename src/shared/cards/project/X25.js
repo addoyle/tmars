@@ -16,7 +16,7 @@ const card = new Active({
   activeDesc,
   flavor: 'Meating the demands for high-protein foods',
   events: {
-    onCardResource: (player, game, done, card, oldValue) => {
+    onCardResource: (player, game, card, oldValue) => {
       if (
         card.resource === 'animal' &&
         game.cardResource(player, card) - oldValue > 0

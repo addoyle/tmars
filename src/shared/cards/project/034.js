@@ -24,9 +24,7 @@ const card = new Active({
       name: 'Add 1 Microbe',
       log: ['add a microbe ', { resource: 'microbe' }],
       icon: <Resource name="microbe" />,
-      action: (player, game) => {
-        game.cardResource(player, card, 1);
-      }
+      action: (player, game) => game.cardResource(player, card, 1)
     },
     {
       name: 'Raise Temperature',
@@ -39,10 +37,8 @@ const card = new Active({
           msg: 'Not enough microbes'
         };
       },
-      action: (player, game, done) => {
-        game.cardResource(player, card, -2);
-        game.param(player, 'temperature', done);
-      }
+      param: ['temperature'],
+      action: (player, game) => game.cardResource(player, card, -2)
     }
   ],
   emoji: '🦠',

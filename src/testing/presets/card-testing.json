@@ -230,7 +230,7 @@
         "active": [
           {
             "card": "131",
-            "resource": 1
+            "cardResource": 1
           }
         ],
         "buy": [],
@@ -720,14 +720,14 @@
       "trRaised": true
     }
   ],
-  "turn": 1,
-  "startingPlayer": 1,
+  "turn": 5,
+  "startingPlayer": 5,
   "params": {
-    "temperature": -22,
-    "oxygen": 2,
+    "temperature": 6,
+    "oxygen": 4,
     "ocean": 6,
     "generation": 1,
-    "venus": 0
+    "venus": 28
   },
   "variants": {
     "draft": true,

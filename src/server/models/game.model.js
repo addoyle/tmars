@@ -5,7 +5,8 @@ import {
   startCase,
   groupBy,
   isPlainObject,
-  times
+  times,
+  last
 } from 'lodash';
 import Tharsis from '../../shared/boards/Tharsis';
 import Hellas from '../../shared/boards/Hellas';
@@ -291,7 +292,11 @@ class Game extends SharedGame {
       this.cards.discard = [];
     }
 
-    player.cards[pile].push(this.cards.deck.shift());
+    const drawnCard = this.cards.deck.shift();
+    if (player && pile) {
+      player.cards[pile].push(drawnCard);
+    }
+    return drawnCard;
   }
 
   /**
@@ -423,36 +428,94 @@ class Game extends SharedGame {
   performAction(action, player, card, params) {
     // If the action is just a function, call it as normal
     if (isFunction(action)) {
-      action(player, this);
+      action(player, this, card, params);
       return;
     }
+
+    const standardResources = [
+      'megacredit',
+      'steel',
+      'titanium',
+      'plant',
+      'power',
+      'heat'
+    ];
 
     // Handle resources
     if (action.resources) {
       if (isFunction(action.resources)) {
-        action.resources(player, this);
+        action.resources(player, this, params);
       } else {
         Object.keys(action.resources).forEach(r =>
-          r === 'any'
-            ? Object.entries(action.resources.any).forEach(([k, v]) => {
-                this.promptPlayer(player, card, {
-                  title: v.title || 'Pick a player',
-                  icon: v.icon || [
-                    pp => ({ text: pp.resources[k] }),
-                    { resource: k }
-                  ],
-                  logSnippet: v.log || [
-                    `take ${isNaN(v) ? -v.val : -v} ${k}`,
-                    Math.abs(v.val) === 1 && k === 'plant' ? ' ' : 's ',
-                    { resource: k },
-                    ' from'
-                  ],
-                  filter: v.filter || (pp => pp.resources[k] > 0),
-                  action: { resources: { [k]: v } },
-                  optional: true
-                });
+          r === 'anyone'
+            ? Object.entries(action.resources.anyone).forEach(([ar, val]) =>
+                // Standard resource, prompt for player to remove from
+                standardResources.includes(ar)
+                  ? this.promptPlayer(player, card, {
+                      title: val.title || 'Pick a player',
+                      icon: val.icon || [
+                        pp => ({ text: pp.resources[ar] }),
+                        { resource: ar }
+                      ],
+                      logSnippet: val.log || [
+                        `take ${isNaN(val) ? -val.val : -val} ${ar}`,
+                        Math.abs(val.val) === 1 && ar === 'plant' ? ' ' : 's ',
+                        { resource: ar },
+                        ' from'
+                      ],
+                      filter: val.filter || (pp => pp.resources[ar] > 0),
+                      action: { resources: { [ar]: val } },
+                      optional: true
+                    })
+                  : // Card resource, prompt for a player's card
+                    this.promptCard(player, {
+                      filter: card => card.resource === ar,
+                      anyone: true,
+                      action: (player, game, cards) => {
+                        cards.forEach(card => {
+                          // Find owner of card
+                          const targetPlayer = this.players.find(p =>
+                            p.allCards.map(c => c.card).includes(card.card)
+                          );
+
+                          this.cardResource(
+                            targetPlayer,
+                            { number: cards[0].card },
+                            isFunction(action.resources.anyone[ar])
+                              ? action.resources.anyone[ar](
+                                  targetPlayer,
+                                  this,
+                                  params
+                                )
+                              : action.resources.anyone[ar]
+                          );
+                        });
+                      }
+                    })
+              )
+            : // Standard resources
+            standardResources.includes(r)
+            ? this.resources(
+                player,
+                r,
+                isFunction(action.resources[r])
+                  ? action.resources[r](player, this, params)
+                  : action.resources[r]
+              )
+            : // Card resources
+              this.promptCard(player, {
+                filter: card => card.resource === r,
+                action: (player, game, cards) =>
+                  cards.forEach(card =>
+                    this.cardResource(
+                      player,
+                      { number: card.card },
+                      isFunction(action.resources[r])
+                        ? action.resources[r](player, this, params)
+                        : action.resources[r]
+                    )
+                  )
               })
-            : this.resources(player, r, action.resources[r])
         );
       }
     }
@@ -463,9 +526,9 @@ class Game extends SharedGame {
         action.production(player, this);
       } else {
         Object.keys(action.production).forEach(p =>
-          p === 'any'
-            ? Object.entries(action.production.any).forEach(([k, v]) => {
-                this.promptPlayer(player, {
+          p === 'anyone'
+            ? Object.entries(action.production.anyone).forEach(([k, v]) => {
+                this.promptPlayer(player, card, {
                   title: v.title || 'Pick a player',
                   icon: v.icon || [
                     pp => ({ text: pp.production[k] }),
@@ -480,7 +543,13 @@ class Game extends SharedGame {
                   action: { production: { [k]: v } }
                 });
               })
-            : this.production(player, p, action.production[p])
+            : this.production(
+                player,
+                p,
+                isFunction(action.production[p])
+                  ? action.production[p](player, this, params)
+                  : action.production[p]
+              )
         );
       }
     }
@@ -491,6 +560,15 @@ class Game extends SharedGame {
         action.tr(player, this);
       } else {
         this.tr(player, action.tr);
+      }
+    }
+
+    // Handle card resources
+    if (action.cardResource) {
+      if (isFunction(action.cardResource)) {
+        action.cardResource(player, this, card);
+      } else {
+        this.cardResource(player, card, action.cardResource);
       }
     }
 
@@ -547,21 +625,25 @@ class Game extends SharedGame {
       if (isFunction(action.param)) {
         action.param(player, this);
       } else {
-        (Array.isArray(action.param)
-          ? action.param
-          : [action.param]
-        ).forEach(p => this.param(player, p));
+        (Array.isArray(action.param) ? action.param : [action.param]).forEach(
+          p => this.param(player, p)
+        );
       }
     }
 
     // Handle tiles
     if (action.tile) {
-      const tiles = (Array.isArray(action.tile)
-        ? action.tile
-        : [action.tile]
+      const tiles = (
+        Array.isArray(action.tile) ? action.tile : [action.tile]
       ).map(tile => (isPlainObject(tile) ? tile : { tile }));
 
-      tiles.forEach(tile => this.promptTile(player, tile.tile, tile.filter));
+      tiles.forEach(tile =>
+        this.promptTile(
+          player,
+          tile.special ? { special: tile.special } : tile.tile,
+          tile.filter
+        )
+      );
     }
 
     // Handle custom card action
@@ -582,15 +664,22 @@ class Game extends SharedGame {
    */
   promptCard(player, options) {
     const cards =
-      options.deck === 'hand'
+      // Cards were provided
+      options.cards?.length
+        ? { 0: options.cards }
+        : // If the deck is the hand, don't specify cards as the hand will be used
+        options.deck === 'hand'
         ? undefined
-        : options.deck === 'buy'
-        ? times(options.number ?? 1, this.drawCard(player, 'buy'))
-        : (options.any ? this.players : [player]).reduce(
+        : // If the deck is the buy deck, draw the specified number of cards and show the draw drawer
+        options.deck === 'buy'
+        ? times(options.number ?? 1, this.drawCard(player, 'buy')) && undefined
+        : // Otherwise group the cards by player (even if it's just for the current player)
+          (options.anyone ? this.players : [player]).reduce(
             (o, p) => ({
               ...o,
               [p.number]:
                 p.cards[options.deck] ||
+                // Only select the cards that match a criteria
                 p[options.deck || 'allActionableCards'].filter(
                   c =>
                     !options.filter ||
@@ -600,9 +689,15 @@ class Game extends SharedGame {
             {}
           );
 
+    console.log(cards);
+
+    // Nothing matched the filter, typically due to a card being played with no cards matching that resource
+    if (!Object.values(cards).flat().length) {
+      return;
+    }
+
     player.actionStack.push({
       type: 'prompt-card',
-      cards,
       description: options.description || 'Choose a card',
       mode: options.mode || 'select',
       ui: {
@@ -614,7 +709,8 @@ class Game extends SharedGame {
         showMilestones: false,
         showStandardProjects: false
       },
-      ...options.action
+      ...options,
+      cards
     });
   }
 
@@ -637,7 +733,8 @@ class Game extends SharedGame {
     if (possibleTiles.length) {
       // Set the player status
       player.actionStack.push({
-        tile,
+        tile: tile.special ? 'special' : tile,
+        icon: tile.special,
         type: 'prompt-tile',
         ui: {
           drawer: null,
@@ -702,6 +799,7 @@ class Game extends SharedGame {
    */
   promptAction(player, card, optional = false, desc, actions) {
     player.ui.currentCard.show = false;
+    console.log(actions);
 
     player.actionStack.push({
       type: 'prompt-action',
@@ -712,7 +810,10 @@ class Game extends SharedGame {
           card: card.card ? card : { card: card.number },
           type: 'project',
           mode: 'action',
-          actions,
+          actions: actions.map(action => ({
+            ...action,
+            canPlay: this.actionPlayable(action, player, this.cardStore)
+          })),
           showResources: true,
           isPrompt: true,
           optional
@@ -768,8 +869,8 @@ class Game extends SharedGame {
     this.fire('onTile', player, area);
     this.fire('onAnyTile', null, area);
 
-    // Mark the action as complete
-    this.completeAction(player, area);
+    // Capture the stack index before performing the action
+    const stackIndex = player.actionStack.length - 1;
 
     // Handle placement bonuses
     (area.resources || [])
@@ -799,6 +900,9 @@ class Game extends SharedGame {
     } else if (tile === 'greenery') {
       this.param(player, 'oxygen');
     }
+
+    // Mark the action as complete
+    this.completeAction(player, stackIndex, area);
 
     // Check if this tile placement finished terraforming
     this.checkEndGame();
@@ -1321,13 +1425,18 @@ class Game extends SharedGame {
       .concat(player.cards.corp)
       .find(c => c.card === card.number);
 
-    if (!playerCard.cardResource) {
-      playerCard.cardResource = 0;
+    if (playerCard) {
+      const oldValue = playerCard.cardResource;
+
+      playerCard.cardResource = Math.max(
+        0,
+        (playerCard.cardResource ?? 0) + value
+      );
+
+      this.fire('onCardResource', player, playerCard, oldValue);
+
+      return playerCard.cardResource;
     }
-
-    playerCard.cardResource += value;
-
-    return playerCard.cardResource;
   }
 
   /**
@@ -1347,24 +1456,49 @@ class Game extends SharedGame {
     return tile || this.tileFromId(playerCard.tile);
   }
 
-  completeAction(player, params) {
-    if (!player.actionStack.length) {
-      return;
+  completeAction(player, i, ...params) {
+    // Nothing in the stack, complete the action as normal
+    if (!player.actionStack.length || i < 0 || i >= player.actionStack.length) {
+      // If params is a function, call that first
+      if (params?.length === 1 && isFunction(params[0])) {
+        params[0](player, this);
+      }
+
+      // Run end actions if stack is empty
+      this.phase === 'prelude'
+        ? this.endPreludeAction(player)
+        : this.nextTurn();
     }
+    // Work up the stack
+    else {
+      // If the index matches the current stack size, we're done! Start popping things off!
+      if (player.actionStack.length - 1 === i) {
+        // Pop off the action
+        const action = player.actionStack.pop();
 
-    // Pop off the action
-    const action = player.actionStack.pop();
+        // Capture the stack size
+        const stackSize = player.actionStack.length;
 
-    // Perform the action, if necessary
-    if (action.action) {
-      action.action(player, this, params);
-    }
+        // Perform the action, if necessary
+        if (action.action) {
+          action.action(player, this, ...(params || action.params));
+        }
 
-    // Run end actions if stack is empty
-    if (this.phase === 'prelude') {
-      this.endPreludeAction(player);
-    } else {
-      this.nextTurn();
+        // If nothing new was added to the stack, keep going up the stack!
+        // Otherwise, we're waiting for the player for the next action
+        if (
+          player.actionStack.length === stackSize &&
+          (player.actionStack[i - 1]?.done || i - 1 < 0)
+        ) {
+          this.completeAction(player, i - 1);
+        }
+      }
+
+      // Otherwise, put the params on the stack action to be used later
+      else {
+        // player.actionStack[i].params = params;
+        player.actionStack[i].done = true;
+      }
     }
   }
 

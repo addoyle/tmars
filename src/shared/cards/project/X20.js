@@ -19,8 +19,26 @@ export default new Event({
   flavor:
     'Being able to supply a wide variety of products makes you a go-to partner for the World Government',
   tr: 1,
+  canPlay: (player, game, cardStore) => {
+    // Standard resources
+    let numResources = Object.values(player.resources).filter(
+      v => v > 0
+    ).length;
+
+    numResources += new Set(
+      player.cards.corp
+        .concat(player.cards.active)
+        .filter(c => c.cardResource > 0)
+        .map(c => cardStore.get(c.card).resource)
+    ).size;
+
+    const valid = numResources >= 9;
+    return {
+      valid,
+      msg: valid ? 'Not enough unique resources' : null
+    };
+  },
   emoji: '🤝',
-  todo: true,
   layout: (
     <div className="flex m-bottom">
       <div className="col-2 text-center">

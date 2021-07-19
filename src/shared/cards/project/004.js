@@ -21,7 +21,7 @@ export default new Automated({
   desc,
   flavor: 'Lessens solar influx, but enhances plant growth',
   production: {
-    any: {
+    anyone: {
       heat: -1
     },
     megacredit: -1,

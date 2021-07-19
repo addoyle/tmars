@@ -42,7 +42,7 @@ const Board = props => {
       }
 
       if (e.key === 'Escape') {
-        props.gameStore.currentCard.show = false;
+        props.gameStore.hideCurrentCard();
       }
     };
 
@@ -98,6 +98,7 @@ Board.propTypes = {
     currentCard: PropTypes.shape({
       show: PropTypes.bool
     }),
+    hideCurrentCard: PropTypes.func,
     board: PropTypes.string,
     players: PropTypes.array
   })
